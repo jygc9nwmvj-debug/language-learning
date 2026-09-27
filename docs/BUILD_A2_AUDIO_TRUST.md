@@ -1,4 +1,11 @@
-# Build A2 — Audio Trust (acceptance candidate)
+# Build A2 — Audio Trust (human audio acceptance failed)
+
+**2026-09-27 follow-up:** Reference audio is on hold after human listening failures.
+See [solution comparison](A2_AUDIO_SOLUTION_COMPARISON.md), [baseline measurements](A2_QA_REPORT.json),
+and [MFA/price evidence](A2_TOOL_COMPARISON_EVIDENCE.json). No new assets or deployment
+were made during this evaluation. All manifest assets remain `generated`; none are
+`human-approved`. The original implementation record below is historical.
+
 
 A1 remains accepted. No writing, curriculum expansion, speech recognition, pronunciation scoring,
 learner pitch analysis, identity/sync or new player is included.

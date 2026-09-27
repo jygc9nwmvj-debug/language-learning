@@ -1,0 +1,920 @@
+{
+  "policyVersion": "a2-qa-1",
+  "policySha256": "a3b0b8eadd77f0ba518f2afd44287a856b1064ac1ed01af5579ecba8b845827c",
+  "asr": {
+    "model": "mlx-community/Qwen3-ASR-0.6B-4bit",
+    "revision": "313d850181767edf09f00a9c289becca70e58cd0",
+    "language": "Chinese",
+    "expectedTextProvided": false,
+    "temperature": 0
+  },
+  "generatedAt": "2026-09-27T17:13:36.029900+00:00",
+  "assets": [
+    {
+      "item": "nihao",
+      "variant": "natural",
+      "path": "/audio/mandarin/nihao.wav",
+      "expected": {
+        "hans": "你好",
+        "hant": "你好",
+        "pinyin": "nǐ hǎo",
+        "toneNumbers": "ni3 hao3",
+        "tones": [
+          3,
+          3
+        ]
+      },
+      "sha256": "c00426e8b5e07542af45aa5d50926fd16e201b8162843c21c35bfe27a1ffeae9",
+      "measurements": {
+        "durationSeconds": 0.56,
+        "speechSpanSeconds": 0.45,
+        "syllablesPerSecond": 4.44,
+        "peakDbfs": -15.66,
+        "activeRmsDbfs": -25.79,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.09,
+        "trailingSeconds": 0.02,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "你好。"
+      },
+      "issues": [
+        "pace",
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 5.022
+    },
+    {
+      "item": "nihao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/nihao-slow.wav",
+      "expected": {
+        "hans": "你好",
+        "hant": "你好",
+        "pinyin": "nǐ hǎo",
+        "toneNumbers": "ni3 hao3",
+        "tones": [
+          3,
+          3
+        ]
+      },
+      "sha256": "7f5c6b686fa363cdea0d7ad792841b1cd23d2fb39e9f0600f560e2edfc069278",
+      "measurements": {
+        "durationSeconds": 2.4,
+        "speechSpanSeconds": 2.26,
+        "syllablesPerSecond": 0.88,
+        "peakDbfs": -9.67,
+        "activeRmsDbfs": -20.03,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.06,
+        "maximumInternalPauseSeconds": 0.24,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "你好。"
+      },
+      "issues": [
+        "pace",
+        "human_rejected",
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 5.022
+    },
+    {
+      "item": "wo",
+      "variant": "natural",
+      "path": "/audio/mandarin/wo.wav",
+      "expected": {
+        "hans": "我",
+        "hant": "我",
+        "pinyin": "wǒ",
+        "toneNumbers": "wo3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "db40991bf4dcd90f5621d81eb3e0d2e80eb8bfa66c626e7fab07dd5a631622fd",
+      "measurements": {
+        "durationSeconds": 0.64,
+        "speechSpanSeconds": 0.54,
+        "syllablesPerSecond": 1.85,
+        "peakDbfs": -16.97,
+        "activeRmsDbfs": -27.88,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.02,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "review",
+          "expectedTone": 3,
+          "medianHz": 245.6,
+          "thirdsSemitones": [
+            -0.12,
+            -0.2,
+            1.08
+          ],
+          "spanSemitones": 1.72,
+          "frames": 44,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "我。"
+      },
+      "issues": [
+        "pitch_review"
+      ],
+      "slowNaturalSpeechRatio": 1.278
+    },
+    {
+      "item": "wo",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/wo-slow.wav",
+      "expected": {
+        "hans": "我",
+        "hant": "我",
+        "pinyin": "wǒ",
+        "toneNumbers": "wo3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "32d94054f86be0bd0ea8e61f6e699a8fcb74795a6349247d12e118a2f6f16aca",
+      "measurements": {
+        "durationSeconds": 0.8,
+        "speechSpanSeconds": 0.69,
+        "syllablesPerSecond": 1.45,
+        "peakDbfs": -14.89,
+        "activeRmsDbfs": -25.03,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.03,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "review",
+          "expectedTone": 3,
+          "medianHz": 156.5,
+          "thirdsSemitones": [
+            -0.02,
+            -0.36,
+            3.63
+          ],
+          "spanSemitones": 4.79,
+          "frames": 65,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "我。"
+      },
+      "issues": [
+        "pitch_review"
+      ],
+      "slowNaturalSpeechRatio": 1.278
+    },
+    {
+      "item": "ni",
+      "variant": "natural",
+      "path": "/audio/mandarin/ni.wav",
+      "expected": {
+        "hans": "你",
+        "hant": "你",
+        "pinyin": "nǐ",
+        "toneNumbers": "ni3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "0b08c656d9d736ca18ad09355e2cd78fe9859b80ec99ca6f17e3d0a4951df07c",
+      "measurements": {
+        "durationSeconds": 0.56,
+        "speechSpanSeconds": 0.41,
+        "syllablesPerSecond": 2.44,
+        "peakDbfs": -14.85,
+        "activeRmsDbfs": -24.55,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.07,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 3,
+          "medianHz": 160.1,
+          "thirdsSemitones": [
+            0.58,
+            -0.3,
+            -0.17
+          ],
+          "spanSemitones": 1.56,
+          "frames": 37,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "mismatch",
+        "text": "义。"
+      },
+      "issues": [
+        "asr_mismatch",
+        "style_ratio",
+        "human_review_pending_variant_unspecified"
+      ],
+      "slowNaturalSpeechRatio": 2.146
+    },
+    {
+      "item": "ni",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/ni-slow.wav",
+      "expected": {
+        "hans": "你",
+        "hant": "你",
+        "pinyin": "nǐ",
+        "toneNumbers": "ni3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "23dbc6abfdad4b14976878e0a5ad4a378f4954646381e7171627f6ad5e527859",
+      "measurements": {
+        "durationSeconds": 1.04,
+        "speechSpanSeconds": 0.88,
+        "syllablesPerSecond": 1.14,
+        "peakDbfs": -15.44,
+        "activeRmsDbfs": -23.66,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.08,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 3,
+          "medianHz": 223.3,
+          "thirdsSemitones": [
+            -0.01,
+            -0.77,
+            1.49
+          ],
+          "spanSemitones": 2.93,
+          "frames": 84,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "你。"
+      },
+      "issues": [
+        "style_ratio",
+        "human_review_pending_variant_unspecified"
+      ],
+      "slowNaturalSpeechRatio": 2.146
+    },
+    {
+      "item": "hao",
+      "variant": "natural",
+      "path": "/audio/mandarin/hao.wav",
+      "expected": {
+        "hans": "好",
+        "hant": "好",
+        "pinyin": "hǎo",
+        "toneNumbers": "hao3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "49ac9ad1485875e0ca8f22a6d4580b009c0c2f58d539ba95f1253485525b6d6f",
+      "measurements": {
+        "durationSeconds": 0.72,
+        "speechSpanSeconds": 0.62,
+        "syllablesPerSecond": 1.61,
+        "peakDbfs": -9.5,
+        "activeRmsDbfs": -21.73,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.02,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "review",
+          "expectedTone": 3,
+          "medianHz": 297.6,
+          "thirdsSemitones": [
+            -1.01,
+            0.0,
+            2.52
+          ],
+          "spanSemitones": 3.77,
+          "frames": 45,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "好。"
+      },
+      "issues": [
+        "pitch_review",
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 2.129
+    },
+    {
+      "item": "hao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/hao-slow.wav",
+      "expected": {
+        "hans": "好",
+        "hant": "好",
+        "pinyin": "hǎo",
+        "toneNumbers": "hao3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "90d829de9da2490888b0578d68ad26d8c1ad9636223465cbe934d1d34d77603b",
+      "measurements": {
+        "durationSeconds": 1.44,
+        "speechSpanSeconds": 1.32,
+        "syllablesPerSecond": 0.76,
+        "peakDbfs": -18.11,
+        "activeRmsDbfs": -28.87,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.04,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "review",
+          "expectedTone": 3,
+          "medianHz": 230.7,
+          "thirdsSemitones": [
+            -0.18,
+            -0.68,
+            1.23
+          ],
+          "spanSemitones": 2.69,
+          "frames": 94,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "好。"
+      },
+      "issues": [
+        "pace",
+        "pitch_review",
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 2.129
+    },
+    {
+      "item": "wojiao",
+      "variant": "natural",
+      "path": "/audio/mandarin/wojiao.wav",
+      "expected": {
+        "hans": "我叫",
+        "hant": "我叫",
+        "pinyin": "wǒ jiào",
+        "toneNumbers": "wo3 jiao4",
+        "tones": [
+          3,
+          4
+        ]
+      },
+      "sha256": "41f649b8aa18235927f9f40ee03326c02dc72d04008e6bfaee9600bd3f3473d4",
+      "measurements": {
+        "durationSeconds": 0.72,
+        "speechSpanSeconds": 0.6,
+        "syllablesPerSecond": 3.33,
+        "peakDbfs": -12.22,
+        "activeRmsDbfs": -26.44,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.04,
+        "maximumInternalPauseSeconds": 0.02,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "我叫。"
+      },
+      "issues": [
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 3.383
+    },
+    {
+      "item": "wojiao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/wojiao-slow.wav",
+      "expected": {
+        "hans": "我叫",
+        "hant": "我叫",
+        "pinyin": "wǒ jiào",
+        "toneNumbers": "wo3 jiao4",
+        "tones": [
+          3,
+          4
+        ]
+      },
+      "sha256": "572c373a2676f9d9ddedc890ea630a976aefbff3babac5c8a895fd0d20afe295",
+      "measurements": {
+        "durationSeconds": 2.16,
+        "speechSpanSeconds": 2.03,
+        "syllablesPerSecond": 0.99,
+        "peakDbfs": -7.58,
+        "activeRmsDbfs": -18.74,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.05,
+        "maximumInternalPauseSeconds": 0.08,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "我叫。"
+      },
+      "issues": [
+        "pace",
+        "style_ratio"
+      ],
+      "slowNaturalSpeechRatio": 3.383
+    },
+    {
+      "item": "askname",
+      "variant": "natural",
+      "path": "/audio/mandarin/nijiaoshenmemingzi.wav",
+      "expected": {
+        "hans": "你叫什么名字？",
+        "hant": "你叫什麼名字？",
+        "pinyin": "nǐ jiào shénme míngzi",
+        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5",
+        "tones": [
+          3,
+          4,
+          2,
+          5,
+          2,
+          5
+        ]
+      },
+      "sha256": "087a4f720103c7a19860879ef39791d739c7f324a2af2e87f9f63c730d232c02",
+      "measurements": {
+        "durationSeconds": 1.2,
+        "speechSpanSeconds": 1.04,
+        "syllablesPerSecond": 5.77,
+        "peakDbfs": -12.75,
+        "activeRmsDbfs": -24.26,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.09,
+        "trailingSeconds": 0.07,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "你叫什么名字？"
+      },
+      "issues": [
+        "pace",
+        "human_rejected"
+      ],
+      "slowNaturalSpeechRatio": 1.635
+    },
+    {
+      "item": "askname",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/nijiaoshenmemingzi-slow.wav",
+      "expected": {
+        "hans": "你叫什么名字？",
+        "hant": "你叫什麼名字？",
+        "pinyin": "nǐ jiào shénme míngzi",
+        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5",
+        "tones": [
+          3,
+          4,
+          2,
+          5,
+          2,
+          5
+        ]
+      },
+      "sha256": "ac8a3478361152500488ff0ed7f9c5391c800d2c5944794ac6bc244149f91f06",
+      "measurements": {
+        "durationSeconds": 1.84,
+        "speechSpanSeconds": 1.7,
+        "syllablesPerSecond": 3.53,
+        "peakDbfs": -10.81,
+        "activeRmsDbfs": -26.41,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.09,
+        "trailingSeconds": 0.05,
+        "maximumInternalPauseSeconds": 0.11,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "你叫什么名字？"
+      },
+      "issues": [
+        "pace"
+      ],
+      "slowNaturalSpeechRatio": 1.635
+    },
+    {
+      "item": "xiexie",
+      "variant": "natural",
+      "path": "/audio/mandarin/xiexie.wav",
+      "expected": {
+        "hans": "谢谢",
+        "hant": "謝謝",
+        "pinyin": "xièxie",
+        "toneNumbers": "xie4 xie5",
+        "tones": [
+          4,
+          5
+        ]
+      },
+      "sha256": "96fdefc32f47038a01c469d4d3538489c7067e74307624e70a08f5243f48af80",
+      "measurements": {
+        "durationSeconds": 0.64,
+        "speechSpanSeconds": 0.51,
+        "syllablesPerSecond": 3.92,
+        "peakDbfs": -11.95,
+        "activeRmsDbfs": -25.43,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.05,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "谢谢。"
+      },
+      "issues": [
+        "pace"
+      ],
+      "slowNaturalSpeechRatio": 1.647
+    },
+    {
+      "item": "xiexie",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/xiexie-slow.wav",
+      "expected": {
+        "hans": "谢谢",
+        "hant": "謝謝",
+        "pinyin": "xièxie",
+        "toneNumbers": "xie4 xie5",
+        "tones": [
+          4,
+          5
+        ]
+      },
+      "sha256": "37ceace011694935399c1edb7c0c61b677f757497f26b9179f6e6310cb308c0c",
+      "measurements": {
+        "durationSeconds": 0.96,
+        "speechSpanSeconds": 0.84,
+        "syllablesPerSecond": 2.38,
+        "peakDbfs": -13.13,
+        "activeRmsDbfs": -25.95,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.09,
+        "trailingSeconds": 0.03,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "谢谢。"
+      },
+      "issues": [],
+      "slowNaturalSpeechRatio": 1.647
+    },
+    {
+      "item": "zaijian",
+      "variant": "natural",
+      "path": "/audio/mandarin/zaijian.wav",
+      "expected": {
+        "hans": "再见",
+        "hant": "再見",
+        "pinyin": "zàijiàn",
+        "toneNumbers": "zai4 jian4",
+        "tones": [
+          4,
+          4
+        ]
+      },
+      "sha256": "49d4ed9c3bacdb643af52dba102e30f803cab0e904363d6a2c9ce7c8b1392709",
+      "measurements": {
+        "durationSeconds": 0.72,
+        "speechSpanSeconds": 0.58,
+        "syllablesPerSecond": 3.45,
+        "peakDbfs": -11.56,
+        "activeRmsDbfs": -24.53,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.06,
+        "maximumInternalPauseSeconds": 0.03,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "再见。"
+      },
+      "issues": [],
+      "slowNaturalSpeechRatio": 1.69
+    },
+    {
+      "item": "zaijian",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/zaijian-slow.wav",
+      "expected": {
+        "hans": "再见",
+        "hant": "再見",
+        "pinyin": "zàijiàn",
+        "toneNumbers": "zai4 jian4",
+        "tones": [
+          4,
+          4
+        ]
+      },
+      "sha256": "9d4175340e6309927decf11699e274e36978419efa60852b1e70cf6a2f20cbe5",
+      "measurements": {
+        "durationSeconds": 1.12,
+        "speechSpanSeconds": 0.98,
+        "syllablesPerSecond": 2.04,
+        "peakDbfs": -14.31,
+        "activeRmsDbfs": -28.17,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.08,
+        "trailingSeconds": 0.06,
+        "maximumInternalPauseSeconds": 0.04,
+        "pitch": {
+          "status": "not_applicable",
+          "reason": "connected_speech_not_graded_as_citation_tones"
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "再见。"
+      },
+      "issues": [],
+      "slowNaturalSpeechRatio": 1.69
+    },
+    {
+      "item": "ma1",
+      "variant": "didactic_contour",
+      "path": "/audio/mandarin/ma1.wav",
+      "expected": {
+        "hans": "妈",
+        "hant": "媽",
+        "pinyin": "mā",
+        "toneNumbers": "ma1",
+        "tones": [
+          1
+        ]
+      },
+      "sha256": "daee5122fab7af9f15dff5455264999d62f6f653c27f3459747c2e6a8f21e4bd",
+      "measurements": {
+        "durationSeconds": 1.0,
+        "speechSpanSeconds": 0.65,
+        "syllablesPerSecond": 1.54,
+        "peakDbfs": -2.5,
+        "activeRmsDbfs": -16.13,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.19,
+        "trailingSeconds": 0.16,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 1,
+          "medianHz": 205.0,
+          "thirdsSemitones": [
+            -0.0,
+            0.0,
+            -0.01
+          ],
+          "spanSemitones": 0.03,
+          "frames": 61,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "妈。"
+      },
+      "issues": []
+    },
+    {
+      "item": "ma2",
+      "variant": "didactic_contour",
+      "path": "/audio/mandarin/ma2.wav",
+      "expected": {
+        "hans": "麻",
+        "hant": "麻",
+        "pinyin": "má",
+        "toneNumbers": "ma2",
+        "tones": [
+          2
+        ]
+      },
+      "sha256": "38e2252b06032d498a9f3ce5f98641fe0077b5bd42696a8fabbb87bf7788821b",
+      "measurements": {
+        "durationSeconds": 1.0,
+        "speechSpanSeconds": 0.66,
+        "syllablesPerSecond": 1.52,
+        "peakDbfs": -2.5,
+        "activeRmsDbfs": -17.1,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.19,
+        "trailingSeconds": 0.15,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 2,
+          "medianHz": 171.2,
+          "thirdsSemitones": [
+            -5.66,
+            0.13,
+            4.33
+          ],
+          "spanSemitones": 11.01,
+          "frames": 62,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "segmental_match_tone_unverified",
+        "text": "妈。"
+      },
+      "issues": []
+    },
+    {
+      "item": "ma3",
+      "variant": "didactic_contour",
+      "path": "/audio/mandarin/ma3.wav",
+      "expected": {
+        "hans": "马",
+        "hant": "馬",
+        "pinyin": "mǎ",
+        "toneNumbers": "ma3",
+        "tones": [
+          3
+        ]
+      },
+      "sha256": "3c7a539af3e3b7e0da19a24970f3c118d68933d8ed01e7714fa9f46e03d99ac5",
+      "measurements": {
+        "durationSeconds": 1.0,
+        "speechSpanSeconds": 0.66,
+        "syllablesPerSecond": 1.52,
+        "peakDbfs": -2.5,
+        "activeRmsDbfs": -17.99,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.19,
+        "trailingSeconds": 0.15,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 3,
+          "medianHz": 135.2,
+          "thirdsSemitones": [
+            -1.2,
+            -3.96,
+            6.79
+          ],
+          "spanSemitones": 13.16,
+          "frames": 62,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "text_match",
+        "text": "马？"
+      },
+      "issues": []
+    },
+    {
+      "item": "ma4",
+      "variant": "didactic_contour",
+      "path": "/audio/mandarin/ma4.wav",
+      "expected": {
+        "hans": "骂",
+        "hant": "罵",
+        "pinyin": "mà",
+        "toneNumbers": "ma4",
+        "tones": [
+          4
+        ]
+      },
+      "sha256": "361233e8aac231049e54c049a4427b47d4fa75df336c7e73cbf1a586b7ffbeb1",
+      "measurements": {
+        "durationSeconds": 1.0,
+        "speechSpanSeconds": 0.66,
+        "syllablesPerSecond": 1.52,
+        "peakDbfs": -2.5,
+        "activeRmsDbfs": -17.14,
+        "clippedFraction": 0.0,
+        "leadingSeconds": 0.19,
+        "trailingSeconds": 0.15,
+        "maximumInternalPauseSeconds": 0.0,
+        "pitch": {
+          "status": "compatible",
+          "expectedTone": 4,
+          "medianHz": 153.8,
+          "thirdsSemitones": [
+            5.04,
+            -0.12,
+            -7.38
+          ],
+          "spanSemitones": 13.98,
+          "frames": 62,
+          "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+        }
+      },
+      "asr": {
+        "status": "segmental_match_tone_unverified",
+        "text": "妈。"
+      },
+      "issues": []
+    }
+  ],
+  "humanApprovalGranted": false,
+  "status": "exploratory baseline, not a release gate or pronunciation verdict",
+  "policy": {
+    "version": "a2-qa-1",
+    "description": "Provisional engineering review corridors, not scientific optimal speech rates. Changes require a new report.",
+    "durationSeconds": [
+      0.25,
+      8.0
+    ],
+    "activeRmsDbfs": [
+      -32,
+      -9
+    ],
+    "peakDbfs": [
+      -25,
+      -0.5
+    ],
+    "maxClippedFraction": 0.0001,
+    "maxLeadingSilenceSeconds": 0.3,
+    "maxTrailingSilenceSeconds": 0.4,
+    "maxInternalSilenceSeconds": 0.4,
+    "naturalSyllablesPerSecond": [
+      2.0,
+      3.8
+    ],
+    "carefulSlowSyllablesPerSecond": [
+      1.2,
+      2.6
+    ],
+    "naturalSingleSpeechSeconds": [
+      0.35,
+      0.95
+    ],
+    "carefulSlowSingleSpeechSeconds": [
+      0.5,
+      1.25
+    ],
+    "slowNaturalSpeechRatio": [
+      1.2,
+      1.9
+    ],
+    "pitchFloorHz": 65,
+    "pitchCeilingHz": 550,
+    "minimumVoicedFrames": 8
+  }
+}
