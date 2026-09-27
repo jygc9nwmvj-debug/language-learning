@@ -87,9 +87,8 @@ Toleranzprobe, kein allgemeiner Nachweis der Lesbarkeit echter Handschrift.
 Physisches iPhone-/Pencil-Gefühl, passende Fading-Geschwindigkeit und behaltenes Schreiben bleiben
 Fragen der normalen Nutzung, nicht weitere technische Abnahmelisten.
 
-Veröffentlichung: Der geprüfte lokale Build ist bereit. Die automatische Freigabeprüfung blockierte
-am 2026-09-27 den Push auf main mit der Begründung, die frühere Push-Freigabe gelte nur für A2.
-Eine ausdrückliche Build-B-Veröffentlichungsbestätigung ist noch erforderlich.
+Veröffentlichung: Build B wurde nach abgeschlossener interner Prüfung am 2026-09-27 ausdrücklich
+zum Push freigegeben. Normale App: https://language-learning-abk.pages.dev/ ; Kennzeichnung „Testversion B“.
 
 ## Daten-Provenienz (SHA-256)
 
