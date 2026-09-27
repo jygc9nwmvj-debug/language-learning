@@ -1,136 +1,123 @@
-import { useEffect, useMemo, useState } from 'react';
-import { StepRenderer } from '../core/exercises/steps';
-import { getLessonProgress, getPreference, saveLessonProgress, setPreference } from '../core/progress/db';
-import { lesson001 } from '../languages/mandarin/content/lessons/001-hello';
-
-type ScriptChoice = 'traditional' | 'simplified';
-
+import { useEffect, useRef, useState } from 'react';
+import { db, exportLearningState, importLearningState, logEvent, recordAttempt, type Session } from '../core/progress/db';
+import { ui } from '../core/i18n/de';
+import { content, taskMap } from '../languages/mandarin/content';
+import { composeReview, objectFor, withSpacedRetry } from '../languages/mandarin/session';
+import { Exercise, type Evidence } from '../languages/mandarin/components/Exercise';
+import { Worksheet } from '../languages/mandarin/components/Worksheet';
 export function LessonRunner() {
-  const [started, setStarted] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [stepIndex, setStepIndex] = useState(0);
-  const [script, setScript] = useState<ScriptChoice>('traditional');
-  const [displayName, setDisplayName] = useState('');
-  const [revisitCount, setRevisitCount] = useState(0);
-  const [completed, setCompleted] = useState(false);
-
-  useEffect(() => {
-    void (async () => {
-      const [storedScript, name, progress] = await Promise.all([
-        getPreference('script', 'traditional'),
-        getPreference('displayName', ''),
-        getLessonProgress(lesson001.id),
-      ]);
-      setScript(storedScript === 'simplified' ? 'simplified' : 'traditional');
-      setDisplayName(name);
-      if (progress) {
-        setStepIndex(Math.min(progress.currentStep, lesson001.steps.length - 1));
-        setRevisitCount(progress.revisitCount);
-        setCompleted(progress.completed);
+  const [ready, setReady] = useState(false), [error, setError] = useState(''), [busy, setBusy] = useState(false);
+  const [view, setView] = useState<'home' | 'learn' | 'done'>('home');
+  const [session, setSession] = useState<Session | null>(null);
+  const [script, setScript] = useState<'hant' | 'hans'>('hant'); const [name, setName] = useState('');
+  const [message, setMessage] = useState(''), [reflection, setReflection] = useState(''), [reflectionSaved, setReflectionSaved] = useState(false);
+  const [offline, setOffline] = useState(document.documentElement.dataset.offline ?? 'waiting');
+  const lock = useRef(false), taskStarted = useRef(Date.now());
+  async function load() {
+    try {
+      await db.open();
+      const [latest, storedScript, storedName] = await Promise.all([db.sessions.orderBy('updatedAt').last(), db.preferences.get('script'), db.preferences.get('name')]);
+      setSession(latest ?? null); setScript(storedScript?.value === 'hans' ? 'hans' : 'hant'); setName(storedName?.value ?? ''); setReady(true); setError('');
+    } catch { setError(ui.storageError); }
+  }
+  useEffect(() => { void load(); const listener = () => setOffline(document.documentElement.dataset.offline ?? 'waiting'); window.addEventListener('offline-ready', listener); return () => window.removeEventListener('offline-ready', listener); }, []);
+  useEffect(() => { taskStarted.current = Date.now(); }, [session?.index, session?.id]);
+  async function mutation(action: () => Promise<void>) {
+    if (lock.current) throw new Error('A save is already pending'); lock.current = true; setBusy(true); setError('');
+    try { await action(); } catch (e) { setError(ui.storageError); throw e; }
+    finally { lock.current = false; setBusy(false); }
+  }
+  const task = session ? taskMap.get(session.plan[session.index]) : undefined;
+  function event(type: string, detail: Record<string, string | number | boolean> = {}) {
+    if (!session) return;
+    void logEvent({ sessionId: session.id, taskId: task?.id ?? 'home', type, detail: { ...detail, index: session.index } }).catch(() => setError(ui.storageError));
+  }
+  async function begin() {
+    await mutation(async () => {
+      let next = session;
+      if (!next || next.completed) {
+        const plan = !next ? content.initialPlan : composeReview(await db.relations.toArray(), script, Date.now());
+        next = { id: crypto.randomUUID(), plan, index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now(), script };
       }
-      setReady(true);
-    })();
-  }, []);
-
-  const steps = useMemo(() => {
-    if (revisitCount === 0) return lesson001.steps;
-    // On revisit we deliberately remove some scaffolding and move recall earlier.
-    const core = [...lesson001.steps];
-    const recall = core.find((s) => s.id === 'recall');
-    const without = core.filter((s) => s.id !== 'recall' && s.id !== 'first-listen');
-    return recall ? [without[0], recall, ...without.slice(1)] : without;
-  }, [revisitCount]);
-
-  useEffect(() => {
-    if (!ready) return;
-    void setPreference('script', script);
-  }, [script, ready]);
-
-  useEffect(() => {
-    if (!ready) return;
-    void setPreference('displayName', displayName);
-  }, [displayName, ready]);
-
-  const next = async () => {
-    if (stepIndex >= steps.length - 1) {
-      setCompleted(true);
-      await saveLessonProgress(lesson001.id, 0, true, revisitCount);
-      return;
-    }
-    const nextIndex = stepIndex + 1;
-    setStepIndex(nextIndex);
-    await saveLessonProgress(lesson001.id, nextIndex, false, revisitCount);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const restart = async () => {
-    const nextRevisit = revisitCount + 1;
-    setRevisitCount(nextRevisit);
-    setCompleted(false);
-    setStepIndex(0);
-    setStarted(true);
-    await saveLessonProgress(lesson001.id, 0, false, nextRevisit);
-  };
-
-  if (!ready) return <main className="shell"><p>Loading local progress…</p></main>;
-
-  if (!started && !completed) {
-    return (
-      <main className="shell">
-        <section className="card startCard">
-          <p className="eyebrow">Foundation · Lesson 1</p>
-          <h1>你好</h1>
-          <p className="lead">Say hello. Say your name. Hear what tone does.</p>
-          <div className="settingBlock">
-            <span>Characters</span>
-            <div className="segmented">
-              <button className={script === 'traditional' ? 'selected' : ''} onClick={() => setScript('traditional')}>Traditional</button>
-              <button className={script === 'simplified' ? 'selected' : ''} onClick={() => setScript('simplified')}>Simplified</button>
-            </div>
-          </div>
-          <p className="muted">About 15–20 minutes · works offline after the first load · progress stays on this device.</p>
-          <button type="button" onClick={() => setStarted(true)}>Start</button>
-        </section>
-      </main>
-    );
+      const chosen = next;
+      await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
+        await db.sessions.put(chosen); await db.preferences.put({ key: 'script', value: chosen.script });
+        await logEvent({ sessionId: chosen.id, taskId: chosen.plan[chosen.index], type: session && !session.completed ? 'session_resume' : 'session_start', detail: { script: chosen.script } });
+      });
+      setSession(chosen); setScript(chosen.script); setReflectionSaved(false); setView('learn');
+    });
   }
-
-  if (completed) {
-    return (
-      <main className="shell">
-        <section className="card centerText">
-          <p className="eyebrow">Lesson complete</p>
-          <h1>你好。</h1>
-          <p className="lead">You can already greet someone, say your name and recognize 我 · 你 · 好.</p>
-          <p>Your progress is stored locally in this browser.</p>
-          <div className="buttonRow centeredRow">
-            <button type="button" onClick={() => void restart()}>Do it again — differently</button>
-            <button className="secondaryButton" type="button" onClick={() => { setStarted(false); setCompleted(false); }}>Back</button>
-          </div>
-        </section>
-      </main>
-    );
+  async function next(skip = false) {
+    if (!session || !task) return;
+    await mutation(async () => {
+      const completed = session.index >= session.plan.length - 1;
+      const updated = { ...session, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
+      await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
+        await db.sessions.put(updated); await db.preferences.put({ key: 'name', value: name.trim() });
+        await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { durationMs: Date.now() - taskStarted.current } });
+      });
+      setSession(updated); if (completed) setView('done'); window.scrollTo({ top: 0 });
+    });
   }
-
-  const step = steps[stepIndex];
-  const progress = Math.round(((stepIndex + 1) / steps.length) * 100);
-
-  return (
-    <main className="lessonShell">
-      <header className="lessonHeader">
-        <button className="textButton" type="button" onClick={() => setStarted(false)}>Lesson 1</button>
-        <div className="progressTrack" aria-label={`${progress}% through lesson`}><span style={{ width: `${progress}%` }} /></div>
-        <span className="stepCount">{stepIndex + 1}/{steps.length}</span>
-      </header>
-      <section className="lessonCard">
-        <StepRenderer
-          step={step}
-          script={script}
-          displayName={displayName}
-          setDisplayName={setDisplayName}
-          onNext={() => void next()}
-        />
-      </section>
-    </main>
-  );
+  async function attempt(e: Evidence, tone?: number) {
+    if (!session || !task) return;
+    await mutation(async () => {
+      const history = await db.events.where('sessionId').equals(session.id).toArray();
+      const exposed = history.some(event => event.taskId === task.id && event.detail.index === session.index && ['pinyin_reveal', 'writing_hint', 'stroke_animation', 'guided_start', 'answer_clarification', 'attempt'].includes(event.type));
+      const assisted = e.assisted || exposed;
+      const objectId = tone ? `cmn:tone:${tone}` : objectFor(task, session.script);
+      const target = tone ? 'perception' as const : task.target!;
+      const plan = !tone && ['listen', 'read', 'recall'].includes(task.kind) && (e.result !== 'success' || assisted) ? withSpacedRetry(session.plan, session.index, task.id) : session.plan;
+      const updated = { ...session, plan, updatedAt: Date.now() };
+      await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
+        await recordAttempt({ objectId, target, result: e.result, assisted, sessionId: session.id, at: Date.now() }, {
+          sessionId: session.id, taskId: task.id, type: 'attempt', detail: { objectId, target, result: e.result, assisted, index: session.index,
+            responseTimeMs: Date.now() - taskStarted.current, ...e.detail },
+        }); await db.sessions.put(updated);
+      });
+      setSession(updated);
+    });
+  }
+  async function pause() {
+    if (!session) return;
+    await mutation(async () => {
+      await db.preferences.put({ key: 'name', value: name.trim() });
+      await logEvent({ sessionId: session.id, taskId: task?.id ?? '', type: 'session_pause', detail: { durationMs: Date.now() - session.startedAt } });
+      setView('home');
+    });
+  }
+  async function backup() {
+    try { const url = URL.createObjectURL(new Blob([await exportLearningState()], { type: 'application/json' }));
+      const a = document.createElement('a'); a.href = url; a.download = `mandarin-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch { setError(ui.storageError); }
+  }
+  async function restore(file: File) {
+    try { if (file.size > 20_000_000) throw new Error('Too large'); await importLearningState(await file.text(), new Set(taskMap.keys())); await load(); setMessage(ui.backupDone); }
+    catch { setMessage(ui.backupError); }
+  }
+  const safe = (action: () => Promise<void>) => { void action().catch(() => {}); };
+  const settings = <details className="settings"><summary>{ui.settings}</summary>
+    <fieldset disabled={busy || (!!session && !session.completed)}><legend>{ui.script}</legend><div className="segmented">{(['hant', 'hans'] as const).map(s => <button type="button" key={s} aria-pressed={script === s} className={script === s ? 'selected' : ''} onClick={() => { setScript(s); }}>{ui[s]}</button>)}</div></fieldset>
+    <div className="settingsActions"><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
+      <label className="fileLabel">{ui.restore}<input type="file" accept="application/json,.json" onChange={e => { const file = e.target.files?.[0]; if (file) void restore(file); e.target.value = ''; }} /></label>
+      <button type="button" className="textButton" onClick={() => { void navigator.storage?.persist?.().then(ok => setMessage(ok ? ui.persisted : ui.notPersisted)).catch(() => setMessage(ui.notPersisted)); }}>{ui.persist}</button>
+      <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button></div>{message && <p role="status">{message}</p>}
+  </details>;
+  const errorBox = error && <p className="feedback error" role="alert">{error}{!ready && <button type="button" onClick={() => void load()}>{ui.reload}</button>}</p>;
+  if (!ready) return <main className="shell"><div className="card">{errorBox || <p>{ui.loading}</p>}</div></main>;
+  return <><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
+    {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin · Foundation 01</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
+      <button type="button" disabled={busy} onClick={() => safe(begin)}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
+      <div className="homeMeta"><span>{ui.saved}</span><span role="status">{offline === 'development' ? ui.offlineDevelopment : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span></div>
+      {errorBox}{settings}<p className="prototypeNote">{ui.prototype}</p></section>}
+    {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><button type="button" disabled={busy} className="textButton" onClick={() => safe(pause)}>{ui.pause}</button></header>
+      <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin · 01' : ui.recall}</p><h2>{task.prompt.de}</h2>{errorBox}
+        {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
+          : <><Exercise key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => safe(() => next())} />
+            <button type="button" className="skipButton" disabled={busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
+      </section></>}
+    {view === 'done' && <section className="card"><p className="eyebrow">Mandarin · 01</p><h1>{ui.closeTitle}</h1><p className="lead">{ui.closeBody}</p>{errorBox}
+      {!reflectionSaved ? <div className="stepStack"><label className="fieldLabel">{ui.note}<textarea maxLength={500} value={reflection} onChange={e => setReflection(e.target.value)} /></label><p>{ui.reflect}</p><div className="buttonRow">{[ui.easy, ui.right, ui.much].map(r => <button type="button" className="secondaryButton" key={r} disabled={busy} onClick={() => safe(() => mutation(async () => { await logEvent({ sessionId: session!.id, taskId: 'closure', type: 'reflection', detail: { rating: r, note: reflection } }); setReflectionSaved(true); }))}>{r}</button>)}</div></div> : <p role="status">{ui.reflectionSaved}</p>}
+      <button type="button" className="textButton" onClick={() => setView('home')}>{ui.home}</button>{settings}</section>}
+  </main><Worksheet /></>;
 }

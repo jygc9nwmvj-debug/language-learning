@@ -1,88 +1,41 @@
 * { box-sizing: border-box; }
-:root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f3f1eb;
-  color: #1a1917;
-  font-synthesis: none;
-}
-html { background: #f3f1eb; }
+:root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #25332d; background: #f3f1e9; font-synthesis: none; line-height: 1.6; }
 body { margin: 0; min-width: 320px; }
-button, input { font: inherit; }
-button { cursor: pointer; }
-.shell, .lessonShell { min-height: 100dvh; }
-.shell { display: grid; place-items: center; padding: 24px; }
-.card, .lessonCard {
-  background: #fff;
-  border: 1px solid #dedbd2;
-  border-radius: 24px;
-  box-shadow: 0 18px 60px rgba(20,20,15,.05);
-}
-.card { width: min(100%, 720px); padding: clamp(28px, 6vw, 64px); }
-.startCard h1 { font-size: clamp(5rem, 17vw, 9rem); margin: .08em 0; font-family: "Songti SC", "Noto Serif CJK SC", serif; }
-.lead { font-size: clamp(1.15rem, 3vw, 1.5rem); line-height: 1.45; max-width: 34rem; }
-.eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; font-weight: 700; color: #716e64; }
-.muted { color: #716e64; line-height: 1.55; }
-button {
-  border: 0;
-  background: #191816;
-  color: white;
-  padding: 13px 19px;
-  border-radius: 999px;
-  font-weight: 650;
-}
-button:disabled { opacity: .45; cursor: default; }
-.secondaryButton, .segmented button, .textButton { background: #ece9e0; color: #25231f; }
-.textButton { padding: 8px 12px; }
-.buttonRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.centeredRow { justify-content: center; }
-.settingBlock { margin: 30px 0; display: grid; gap: 10px; }
-.segmented { display: inline-flex; gap: 4px; padding: 4px; background: #ece9e0; border-radius: 999px; width: fit-content; }
-.segmented button { padding: 9px 13px; }
-.segmented .selected { background: #191816; color: white; }
-.lessonShell { padding: 18px; }
-.lessonHeader { width: min(100%, 860px); margin: 0 auto 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
-.progressTrack { height: 6px; background: #ddd9cf; border-radius: 99px; overflow: hidden; }
-.progressTrack span { display: block; height: 100%; background: #191816; transition: width .25s ease; }
-.stepCount { color: #777369; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.lessonCard { width: min(100%, 860px); min-height: calc(100dvh - 90px); margin: auto; padding: clamp(26px, 6vw, 62px); display: grid; align-content: center; }
-.stepStack { display: grid; gap: 22px; }
-.centerText { text-align: center; }
-.centerText .buttonRow { justify-content: center; }
-.hanziHero, .hanziLarge, .hanziQuote { font-family: "Songti SC", "Noto Serif CJK SC", serif; margin: 0; }
-.hanziHero { font-size: clamp(5rem, 18vw, 10rem); line-height: 1; }
-.hanziLarge { font-size: clamp(4rem, 14vw, 7rem); line-height: 1; }
-.hanziSentence { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: clamp(2rem, 7vw, 4rem); }
-.hanziQuote { font-size: clamp(2rem, 8vw, 4.5rem); line-height: 1.35; }
-.pinyin { color: #666259; font-size: 1.15rem; letter-spacing: .04em; }
-.feedback { background: #f0eee7; border-radius: 14px; padding: 13px 15px; line-height: 1.45; }
-.privacyNote { color: #777369; font-size: .8rem; }
-.toolPanel { border-top: 1px solid #e3e0d7; padding-top: 18px; }
-.pitchGraph { width: 100%; height: 120px; background: #f5f3ed; border-radius: 14px; margin-top: 14px; }
-.pitchGraph line { stroke: #d6d2c8; }
-.writingCanvas { display: block; width: min(100%, 440px); aspect-ratio: 1; margin: 0 auto 16px; background: #faf9f5; border: 1px solid #d8d4ca; border-radius: 18px; }
-.writingTool > button { display: block; margin: 14px auto 0; }
-.paperMode { text-align: center; }
-.paperCharacter { font-family: "Songti SC", serif; font-size: 8rem; margin: .1em 0; }
-.toneGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.toneCard { border: 1px solid #dedbd2; border-radius: 16px; padding: 14px; display: grid; gap: 9px; text-align: center; }
-.toneCard strong { font-size: 1.4rem; }
-.quizBox, .answerCard { background: #f6f4ee; border-radius: 18px; padding: 20px; }
-.equation { display: flex; justify-content: center; flex-wrap: wrap; gap: .4em; align-items: center; font-family: "Songti SC", serif; font-size: clamp(2rem, 8vw, 4rem); }
-.fieldLabel { display: grid; gap: 8px; font-weight: 650; }
-.fieldLabel input { width: min(100%, 480px); border: 1px solid #cbc7bc; border-radius: 12px; padding: 13px; font-size: 1.1rem; }
-.personalSentence { font-family: "Songti SC", serif; font-size: 2.4rem; }
-.dialogueList { display: grid; gap: 14px; }
-@media (max-width: 640px) {
-  .toneGrid { grid-template-columns: repeat(2, 1fr); }
-  .lessonShell { padding: 10px; }
-  .lessonCard { border-radius: 18px; padding: 24px 18px; }
-  .lessonHeader { grid-template-columns: auto 1fr; }
-  .stepCount { display: none; }
-}
+button, input, textarea { font: inherit; }
+button { border: 1px solid transparent; background: #294b3c; color: #fff; border-radius: 7px; padding: 12px 22px; cursor: pointer; font-weight: 600; min-height: 46px; }
+button:hover { filter: brightness(.94); } button:disabled { opacity: .45; cursor: default; }
+button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #ae6b36; outline-offset: 4px; }
+h1, h2, h3, p { margin: 0; } h1 { font-weight: 500; letter-spacing: -.025em; } h2 { font-weight: 550; font-size: clamp(1.45rem, 3.5vw, 2rem); line-height: 1.4; margin-bottom: 20px; }
+.shell { min-height: 100dvh; display: grid; place-items: center; padding: 36px 24px; }
+.card, .lessonCard { width: min(100%, 800px); background: #fffefa; padding: clamp(28px, 6vw, 64px); border: 1px solid #dad8cc; border-radius: 12px; }
+.card { display: grid; gap: 24px; }.card > button { justify-self: start; }
+.startCard h1 { font-family: "Songti TC", "Songti SC", serif; font-size: clamp(6rem, 18vw, 10rem); line-height: 1.3; }
+.startCard h2 { margin: 0; } .lead { font-size: clamp(1.1rem, 3vw, 1.35rem); max-width: 38rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .17em; font-size: .75rem; font-weight: 650; color: #657568; }
+.muted, .privacyNote, .prototypeNote { color: #697269; }.privacyNote { font-size: .85rem; margin-top: 10px; }
+.prototypeNote { font-size: .8rem; border-top: 1px solid #deded2; padding-top: 14px; }
+.homeMeta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: .85rem; color: #657568; }
+.settings { border-top: 1px solid #deded2; padding-top: 18px; }.settings summary { cursor: pointer; font-size: .9rem; }.settingsActions { display: grid; gap: 12px; justify-items: start; margin-top: 18px; }
+fieldset { border: 0; padding: 0; margin: 20px 0; }legend { margin-bottom: 10px; }.segmented { display: flex; flex-wrap: wrap; gap: 8px; }.segmented button { background: #eceee5; color: #294b3c; }.segmented .selected { background: #294b3c; color: white; }
+.secondaryButton { background: #e9eee7; color: #294b3c; }.textButton { background: transparent; color: #365642; border-color: #d5dace; }
+.fileLabel { display: grid; gap: 8px; font-size: .9rem; } input[type=file] { max-width: 100%; }
+.lessonShell { padding: 22px; min-height: 100dvh; }.lessonHeader { width: min(100%, 800px); margin: 0 auto 20px; display: flex; justify-content: space-between; gap: 16px; align-items: center; font-size: .9rem; }.lessonHeader button { padding: 8px 14px; font-size: .85rem; }
+.lessonCard { margin: auto; min-height: 72vh; }.lessonCard > .eyebrow { margin-bottom: 20px; }
+.stepStack { display: grid; gap: 22px; }.stepStack > button { justify-self: start; }.buttonRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.hanziHero, .hanziLarge, .hanziSentence, .personalSentence, .sheetCharacter { font-family: "Songti TC", "Songti SC", serif; font-weight: 400; overflow-wrap: anywhere; }
+.hanziHero { font-size: clamp(3.6rem, 12vw, 6rem); line-height: 1.35; }.hanziLarge { font-size: 6rem; }.hanziSentence { font-size: clamp(2rem, 7vw, 3.5rem); }.personalSentence { font-size: 2rem; }.pinyin { font-size: 1.2rem; color: #697269; }
+.toolPanel { border-top: 1px solid #ddd; padding-top: 18px; }.toolPanel audio { display: block; max-width: 100%; margin-top: 12px; }
+.fieldLabel { display: grid; gap: 8px; } input:not([type=file]), textarea { width: 100%; color: #25332d; background: #fff; border: 1px solid #a8b1a7; border-radius: 6px; padding: 12px; } textarea { min-height: 90px; }
+.feedback { background: #eff1e9; border-left: 3px solid #7c967d; padding: 16px; margin-bottom: 12px; }.error { border-color: #a74f32; }
+.reference { border-left: 2px solid #aeb9a7; padding-left: 20px; display: grid; gap: 8px; }.skipButton { background: none; color: #687669; font-weight: 400; margin-top: 28px; padding-left: 0; text-decoration: underline; }
+.audioControl { display: inline-grid; gap: 10px; }.audioControl > span { font-size: .85rem; color: #a74f32; }
+.writingCanvas { display: block; width: min(100%, 340px); height: auto; aspect-ratio: 1; background: #f6f6ef; border: 1px solid #c3cbbd; touch-action: none; margin: 0 auto 16px; }
+.hanziWriter { width: 280px; height: 280px; max-width: 100%; margin: auto; background: #f6f6ef; border: 1px solid #c3cbbd; touch-action: none; }.hanziWriter svg { max-width: 100%; height: auto; }.comparison { display: grid; gap: 16px; }
+.toneGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }.toneCard { display: grid; gap: 12px; padding: 12px; border: 1px solid #d0d9ca; border-radius: 6px; text-align: center; }.toneCard button { padding: 10px; }.toneCard strong { font-size: 1.4rem; }.quizBox { display: grid; gap: 20px; padding: 24px; background: #f1f3ec; border-radius: 8px; }
+.worksheet { display: none; }
+@media(max-width: 640px) { .shell { padding: 12px; }.card { padding: 26px 20px; }.lessonShell { padding: 12px; }.lessonCard { padding: 28px 20px; }.lessonHeader { font-size: .8rem; }.toneGrid { grid-template-columns: repeat(2, 1fr); }.hanziHero { font-size: 3.7rem; } }
+@page { size: A4 portrait; margin: 16mm; }
 @media print {
-  body * { visibility: hidden; }
-  .paperMode, .paperMode * { visibility: visible; }
-  .paperMode { position: absolute; inset: 0; background: white; padding: 20mm; color: black; }
-  .paperMode button { display: none; }
-  .paperCharacter { font-size: 100pt; }
+  :root, body { background: white; color: black; }
+  main { display: none !important; }.worksheet { display: block; font-size: 11pt; line-height: 1.5; }.worksheet h1 { font-size: 24pt; margin: 4mm 0; }.worksheet h2 { font-size: 12pt; margin: 8mm 0 4mm; }.sheetCharacter { font-size: 32pt; }.sheetGrid { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid #aaa; border-left: 1px solid #aaa; }.sheetGrid span { display: grid; place-items: center; aspect-ratio: 1; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; }.sheetGrid span:before { content: ''; position: absolute; left: 50%; height: 100%; border-left: 1px dashed #bbb; }.sheetGrid span:after { content: ''; position: absolute; top: 50%; width: 100%; border-top: 1px dashed #bbb; }.sheetGrid b { font: 40pt "Songti TC", serif; }.worksheet > p:last-child { margin-top: 10mm; }
 }

@@ -1,24 +1,33 @@
 {
   "name": "language-learning-pwa",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "npm run validate && tsc -b && vite build && node scripts/build-sw.mjs",
+    "preview": "vite preview",
+    "validate": "node scripts/validate-content.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "dexie": "4.4.6",
+    "hanzi-writer": "3.7.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "zod": "4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.1",
+    "fake-indexeddb": "6.2.5",
     "typescript": "7.0.2",
     "vite": "8.3.1"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

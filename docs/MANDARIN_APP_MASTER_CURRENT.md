@@ -987,3 +987,14 @@ The first prototype test evaluates:
 - whether the engine's stopping/adaptation decisions are useful.
 
 **Decision:** no more pedagogical feature expansion before the real prototype. Next step is implementation at the Mac.
+
+## 35. Mac implementation checkpoint — 2026-09-27
+
+The later **Complexity Cut** is now recorded in `COMPLEXITY_CUT_v0.1.md` and narrows the breadth
+of the earlier theoretical specifications. German is the private test UI; English is a later
+localization for any learner comfortable using it, not solely native English speakers.
+
+The local React build now implements the minimal Lesson-1 loop. See
+`IMPLEMENTATION_STATUS_v0.1.md` for tested behavior and the remaining real-device/audio gates.
+This replaces “READY FOR MAC BUILD” as the technical status; it does **not** assert that the
+real-device learning-success criterion has been established. No Lesson 2 before that evaluation.

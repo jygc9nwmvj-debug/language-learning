@@ -1,60 +1,29 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { AudioButton } from '../../../core/exercises/AudioButton';
-import { PitchRecorder } from '../../../core/audio/PitchRecorder';
-
+import { Recorder } from '../../../core/audio/Recorder';
+import { ui } from '../../../core/i18n/de';
 const tones = [
-  { id: 1, pinyin: 'mā', hanzi: '媽 / 妈', meaning: 'mother', audio: '/audio/mandarin/ma1.wav', target: 'high' as const },
-  { id: 2, pinyin: 'má', hanzi: '麻', meaning: 'hemp', audio: '/audio/mandarin/ma2.wav', target: 'rising' as const },
-  { id: 3, pinyin: 'mǎ', hanzi: '馬 / 马', meaning: 'horse', audio: '/audio/mandarin/ma3.wav', target: 'low' as const },
-  { id: 4, pinyin: 'mà', hanzi: '罵 / 骂', meaning: 'scold', audio: '/audio/mandarin/ma4.wav', target: 'falling' as const },
+  { pinyin: 'mā', hant: '媽', hans: '妈', meaning: 'Mutter' },
+  { pinyin: 'má', hant: '麻', hans: '麻', meaning: 'Hanf' },
+  { pinyin: 'mǎ', hant: '馬', hans: '马', meaning: 'Pferd' },
+  { pinyin: 'mà', hant: '罵', hans: '骂', meaning: 'schimpfen' },
 ];
-
-type Props = { onComplete: (success: boolean) => void };
-
-export function ToneLab({ onComplete }: Props) {
-  const [revealed, setRevealed] = useState(false);
-  const [question, setQuestion] = useState(0);
-  const [answered, setAnswered] = useState(false);
-  const target = useMemo(() => [2, 4, 3][question % 3], [question]);
-
-  return (
-    <div className="stepStack">
-      <div>
-        <p className="eyebrow">Tone lab</p>
-        <h2>Same syllable. Different word.</h2>
-        <p>Listen before you memorize any rules.</p>
-      </div>
-      <div className="toneGrid">
-        {tones.map((tone) => (
-          <article className="toneCard" key={tone.id}>
-            <AudioButton src={tone.audio} label={`Tone ${tone.id}`} />
-            {revealed && <><strong>{tone.pinyin}</strong><span>{tone.hanzi}</span><span>{tone.meaning}</span></>}
-          </article>
-        ))}
-      </div>
-      {!revealed ? (
-        <button type="button" onClick={() => setRevealed(true)}>Reveal meanings</button>
-      ) : (
-        <>
-          <div className="quizBox">
-            <p>Which tone is this?</p>
-            <AudioButton src={tones[target - 1].audio} label="Play mystery tone" />
-            <div className="buttonRow">
-              {[1, 2, 3, 4].map((n) => (
-                <button className="secondaryButton" key={n} type="button" onClick={() => {
-                  setAnswered(true);
-                  if (n === target && question < 2) {
-                    setTimeout(() => { setQuestion((q) => q + 1); setAnswered(false); }, 450);
-                  }
-                }}>{n}</button>
-              ))}
-            </div>
-            {answered && <p className="feedback">Listen again and compare the contour. Tone is part of the word, not decoration.</p>}
-          </div>
-          <PitchRecorder target={tones[target - 1].target} />
-          <button type="button" onClick={() => onComplete(true)}>Continue</button>
-        </>
-      )}
-    </div>
-  );
+export function ToneLab({ script, onEvent, onResult, onNext, disabled }: {
+  script: 'hant' | 'hans'; onEvent: (type: string) => void;
+  onResult: (tone: number, correct: boolean) => Promise<void>; onNext: () => void; disabled: boolean;
+}) {
+  const [revealed, setRevealed] = useState(false); const [question, setQuestion] = useState(0);
+  const [answer, setAnswer] = useState<number | null>(null); const [heard, setHeard] = useState(false);
+  const target = [2, 4, 3][question];
+  return <div className="stepStack"><p>{ui.toneIntro}</p><div className="toneGrid">{tones.map((tone, i) => <div className="toneCard" key={tone.pinyin}>
+    <AudioButton src={`/audio/mandarin/ma${i + 1}.wav`} label={`Ton ${i + 1}`} onPlay={() => onEvent('audio_replay')} />
+    {revealed && <><strong>{tone.pinyin}</strong><span lang="zh">{tone[script]}</span><span>{tone.meaning}</span></>}
+  </div>)}</div>
+  {!revealed ? <button type="button" onClick={() => { setRevealed(true); onEvent('tone_reveal'); }}>{ui.toneReveal}</button>
+    : <><div className="quizBox"><h3>{ui.toneQuestion}</h3><AudioButton src={`/audio/mandarin/ma${target}.wav`} onPlay={() => { setHeard(true); onEvent('audio_replay'); }} />
+      <div className="buttonRow">{[1, 2, 3, 4].map(n => <button key={n} type="button" disabled={!heard || answer !== null || disabled} onClick={() => void onResult(target, n === target).then(() => setAnswer(n)).catch(() => {})}>{n}</button>)}</div>
+      {answer !== null && <><p role="status">{answer === target ? ui.toneCorrect : ui.toneWrong} {tones[target - 1].pinyin} · Ton {target}</p>
+        <button type="button" disabled={disabled} onClick={() => { if (question === 2) onNext(); else { setQuestion(q => q + 1); setAnswer(null); setHeard(false); } }}>{ui.continue}</button></>}
+    </div><Recorder onEvent={onEvent} /><p className="muted">{ui.toneUncertain}</p></>}
+  </div>;
 }

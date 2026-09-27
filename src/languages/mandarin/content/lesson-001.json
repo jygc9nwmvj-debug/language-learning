@@ -1,0 +1,415 @@
+{
+  "version": "lesson1-v0.1.1",
+  "qaStatus": "draft",
+  "audioStatus": "prototype",
+  "items": [
+    {
+      "id": "nihao",
+      "hant": "你好",
+      "hans": "你好",
+      "pinyin": "nǐ hǎo",
+      "meaning": {
+        "de": "hallo",
+        "en": "hello"
+      },
+      "audio": "/audio/mandarin/nihao.wav",
+      "slowAudio": "/audio/mandarin/nihao-slow.wav",
+      "tones": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "wo",
+      "hant": "我",
+      "hans": "我",
+      "pinyin": "wǒ",
+      "meaning": {
+        "de": "ich / mich",
+        "en": "I / me"
+      },
+      "audio": "/audio/mandarin/wo.wav",
+      "slowAudio": "/audio/mandarin/wo-slow.wav",
+      "tones": [
+        3
+      ]
+    },
+    {
+      "id": "ni",
+      "hant": "你",
+      "hans": "你",
+      "pinyin": "nǐ",
+      "meaning": {
+        "de": "du / dich",
+        "en": "you"
+      },
+      "audio": "/audio/mandarin/ni.wav",
+      "slowAudio": "/audio/mandarin/ni-slow.wav",
+      "tones": [
+        3
+      ]
+    },
+    {
+      "id": "hao",
+      "hant": "好",
+      "hans": "好",
+      "pinyin": "hǎo",
+      "meaning": {
+        "de": "gut",
+        "en": "good"
+      },
+      "audio": "/audio/mandarin/hao.wav",
+      "slowAudio": "/audio/mandarin/hao-slow.wav",
+      "tones": [
+        3
+      ]
+    },
+    {
+      "id": "wojiao",
+      "hant": "我叫",
+      "hans": "我叫",
+      "pinyin": "wǒ jiào",
+      "meaning": {
+        "de": "ich heiße",
+        "en": "my name is"
+      },
+      "audio": "/audio/mandarin/wojiao.wav",
+      "slowAudio": "/audio/mandarin/wojiao-slow.wav",
+      "tones": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "askname",
+      "hant": "你叫什麼名字？",
+      "hans": "你叫什么名字？",
+      "pinyin": "nǐ jiào shénme míngzi",
+      "meaning": {
+        "de": "Wie heißt du?",
+        "en": "What is your name?"
+      },
+      "audio": "/audio/mandarin/nijiaoshenmemingzi.wav",
+      "slowAudio": "/audio/mandarin/nijiaoshenmemingzi-slow.wav",
+      "tones": [
+        3,
+        4,
+        2,
+        5,
+        2,
+        5
+      ]
+    },
+    {
+      "id": "xiexie",
+      "hant": "謝謝",
+      "hans": "谢谢",
+      "pinyin": "xièxie",
+      "meaning": {
+        "de": "danke",
+        "en": "thank you"
+      },
+      "audio": "/audio/mandarin/xiexie.wav",
+      "slowAudio": "/audio/mandarin/xiexie-slow.wav",
+      "tones": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "zaijian",
+      "hant": "再見",
+      "hans": "再见",
+      "pinyin": "zàijiàn",
+      "meaning": {
+        "de": "auf Wiedersehen",
+        "en": "goodbye"
+      },
+      "audio": "/audio/mandarin/zaijian.wav",
+      "slowAudio": "/audio/mandarin/zaijian-slow.wav",
+      "tones": [
+        4,
+        4
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "meet-nihao",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "nihao"
+    },
+    {
+      "id": "meet-wo",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "wo"
+    },
+    {
+      "id": "meet-ni",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "ni"
+    },
+    {
+      "id": "meet-hao",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "hao"
+    },
+    {
+      "id": "meet-wojiao",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "wojiao"
+    },
+    {
+      "id": "meet-askname",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "askname"
+    },
+    {
+      "id": "meet-xiexie",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "xiexie"
+    },
+    {
+      "id": "meet-zaijian",
+      "kind": "encounter",
+      "prompt": {
+        "de": "Hören. Verstehen. Selbst sagen."
+      },
+      "itemId": "zaijian"
+    },
+    {
+      "id": "tones",
+      "kind": "tones",
+      "prompt": {
+        "de": "Ein Laut, vier verschiedene Wörter."
+      }
+    },
+    {
+      "id": "write-guided",
+      "kind": "writing",
+      "prompt": {
+        "de": "好: links 女, rechts 子. Schau zu und schreibe mit."
+      },
+      "itemId": "hao",
+      "target": "writing",
+      "recall": false
+    },
+    {
+      "id": "write-recall",
+      "kind": "writing",
+      "prompt": {
+        "de": "Schreibe das Zeichen für „gut“ aus dem Gedächtnis."
+      },
+      "itemId": "hao",
+      "target": "writing",
+      "recall": true
+    },
+    {
+      "id": "hear-nihao",
+      "kind": "listen",
+      "prompt": {
+        "de": "Was bedeutet das Gehörte?"
+      },
+      "itemId": "nihao",
+      "target": "listening",
+      "answers": [
+        "hallo",
+        "hello",
+        "begrüßung"
+      ]
+    },
+    {
+      "id": "hear-askname",
+      "kind": "listen",
+      "prompt": {
+        "de": "Was bedeutet das Gehörte?"
+      },
+      "itemId": "askname",
+      "target": "listening",
+      "answers": [
+        "wie heißt du",
+        "wie heisst du",
+        "wie ist dein name",
+        "what is your name"
+      ]
+    },
+    {
+      "id": "hear-xiexie",
+      "kind": "listen",
+      "prompt": {
+        "de": "Was bedeutet das Gehörte?"
+      },
+      "itemId": "xiexie",
+      "target": "listening",
+      "answers": [
+        "danke",
+        "thank you"
+      ]
+    },
+    {
+      "id": "hear-zaijian",
+      "kind": "listen",
+      "prompt": {
+        "de": "Was bedeutet das Gehörte?"
+      },
+      "itemId": "zaijian",
+      "target": "listening",
+      "answers": [
+        "auf wiedersehen",
+        "tschüss",
+        "tschuess",
+        "goodbye"
+      ]
+    },
+    {
+      "id": "read-wo",
+      "kind": "read",
+      "prompt": {
+        "de": "Was bedeutet dieses Zeichen?"
+      },
+      "itemId": "wo",
+      "target": "reading",
+      "answers": [
+        "ich",
+        "mich",
+        "i",
+        "me"
+      ]
+    },
+    {
+      "id": "read-ni",
+      "kind": "read",
+      "prompt": {
+        "de": "Was bedeutet dieses Zeichen?"
+      },
+      "itemId": "ni",
+      "target": "reading",
+      "answers": [
+        "du",
+        "dich",
+        "you"
+      ]
+    },
+    {
+      "id": "read-hao",
+      "kind": "read",
+      "prompt": {
+        "de": "Was bedeutet dieses Zeichen?"
+      },
+      "itemId": "hao",
+      "target": "reading",
+      "answers": [
+        "gut",
+        "good"
+      ]
+    },
+    {
+      "id": "recall-nihao",
+      "kind": "recall",
+      "prompt": {
+        "de": "Begrüße jemanden."
+      },
+      "itemId": "nihao",
+      "target": "production"
+    },
+    {
+      "id": "recall-wojiao",
+      "kind": "recall",
+      "prompt": {
+        "de": "Stelle dich mit deinem Namen vor."
+      },
+      "itemId": "wojiao",
+      "target": "production"
+    },
+    {
+      "id": "recall-askname",
+      "kind": "recall",
+      "prompt": {
+        "de": "Frage nach dem Namen."
+      },
+      "itemId": "askname",
+      "target": "production"
+    },
+    {
+      "id": "recall-xiexie",
+      "kind": "recall",
+      "prompt": {
+        "de": "Bedanke dich."
+      },
+      "itemId": "xiexie",
+      "target": "production"
+    },
+    {
+      "id": "recall-zaijian",
+      "kind": "recall",
+      "prompt": {
+        "de": "Verabschiede dich."
+      },
+      "itemId": "zaijian",
+      "target": "production"
+    },
+    {
+      "id": "closure",
+      "kind": "closure",
+      "prompt": {
+        "de": "Gut für heute."
+      }
+    }
+  ],
+  "initialPlan": [
+    "meet-nihao",
+    "tones",
+    "meet-wo",
+    "meet-ni",
+    "meet-hao",
+    "write-guided",
+    "hear-nihao",
+    "meet-wojiao",
+    "meet-askname",
+    "read-wo",
+    "read-ni",
+    "meet-xiexie",
+    "meet-zaijian",
+    "recall-wojiao",
+    "hear-askname",
+    "read-hao",
+    "recall-nihao",
+    "recall-xiexie",
+    "recall-zaijian",
+    "write-recall",
+    "closure"
+  ],
+  "reviewPlan": [
+    "hear-nihao",
+    "recall-wojiao",
+    "hear-askname",
+    "read-wo",
+    "read-ni",
+    "read-hao",
+    "recall-nihao",
+    "recall-xiexie",
+    "recall-zaijian",
+    "write-recall"
+  ]
+}
