@@ -49,7 +49,7 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
       await expect(page.locator('.reference')).toHaveCount(0);
       await page.getByLabel('Deine Antwort', { exact: true }).fill(answers[id]);
       await page.getByRole('button', { name: 'Prüfen', exact: true }).click();
-      if (id === 'recall-wojiao') await expect(page.getByRole('status').filter({hasText:'Tonzeichen'})).toBeVisible();
+      if (id === 'recall-wojiao') await expect(page.getByRole('status').filter({hasText:'Tonangaben'})).toBeVisible();
       await next(page);
     }
     await expect.poll(async () => { const s = (await snapshot(page)).sessions.find(s => s.id === session.id); return s.index; }).not.toBe(session.index);
@@ -77,7 +77,7 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
   await expect(offline.getByText('Das Audio konnte nicht abgespielt werden.', { exact: false })).toHaveCount(0);
   await offline.getByLabel('Deine Antwort', { exact: true }).fill('hallo');
   await offline.getByRole('button', { name: 'Prüfen', exact: true }).click();
-  await expect(offline.getByRole('status').filter({hasText:'richtig'})).toBeVisible();
+  await expect(offline.getByRole('status').filter({hasText:'Richtig'})).toBeVisible();
   expect(errors).toEqual([]);
 });
 test('phone layout, denied microphone, pause/resume and A4 worksheet', async ({ page }) => {

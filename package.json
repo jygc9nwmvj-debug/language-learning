@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate && tsc -b && vite build && node scripts/build-sw.mjs",
+    "build": "npm run validate-content && tsc -b && vite build && node scripts/build-sw.mjs",
     "preview": "vite preview",
-    "validate": "node scripts/validate-content.mjs",
+    "validate": "npm run validate-content",
     "test": "node --test tests/*.test.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "validate-content": "node scripts/validate-content.mjs"
   },
   "dependencies": {
     "dexie": "4.4.6",

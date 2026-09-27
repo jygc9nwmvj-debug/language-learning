@@ -1,168 +1,104 @@
 {
-  "version": "lesson1-v0.1.3",
+  "version": "lesson1-a1",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
     {
       "id": "nihao",
-      "hant": "你好",
-      "hans": "你好",
-      "pinyin": "nǐ hǎo",
-      "meaning": {
-        "de": "hallo",
-        "en": "hello"
-      },
       "audio": "/audio/mandarin/nihao.wav",
       "slowAudio": "/audio/mandarin/nihao-slow.wav",
-      "tones": [
-        3,
-        3
-      ],
-      "syllables": [
+      "words": [
         "ni",
         "hao"
-      ]
+      ],
+      "meaning": {
+        "de": [
+          "hallo",
+          "Begrüßung"
+        ],
+        "en": [
+          "hello"
+        ]
+      }
     },
     {
       "id": "wo",
-      "hant": "我",
-      "hans": "我",
-      "pinyin": "wǒ",
-      "meaning": {
-        "de": "ich / mich",
-        "en": "I / me"
-      },
       "audio": "/audio/mandarin/wo.wav",
       "slowAudio": "/audio/mandarin/wo-slow.wav",
-      "tones": [
-        3
-      ],
-      "syllables": [
+      "words": [
         "wo"
       ]
     },
     {
       "id": "ni",
-      "hant": "你",
-      "hans": "你",
-      "pinyin": "nǐ",
-      "meaning": {
-        "de": "du / dich",
-        "en": "you"
-      },
       "audio": "/audio/mandarin/ni.wav",
       "slowAudio": "/audio/mandarin/ni-slow.wav",
-      "tones": [
-        3
-      ],
-      "syllables": [
+      "words": [
         "ni"
       ]
     },
     {
       "id": "hao",
-      "hant": "好",
-      "hans": "好",
-      "pinyin": "hǎo",
-      "meaning": {
-        "de": "gut",
-        "en": "good"
-      },
       "audio": "/audio/mandarin/hao.wav",
       "slowAudio": "/audio/mandarin/hao-slow.wav",
-      "tones": [
-        3
-      ],
-      "syllables": [
+      "words": [
         "hao"
       ]
     },
     {
       "id": "wojiao",
-      "hant": "我叫",
-      "hans": "我叫",
-      "pinyin": "wǒ jiào",
-      "meaning": {
-        "de": "ich heiße",
-        "en": "my name is"
-      },
       "audio": "/audio/mandarin/wojiao.wav",
       "slowAudio": "/audio/mandarin/wojiao-slow.wav",
-      "tones": [
-        3,
-        4
-      ],
-      "syllables": [
+      "words": [
         "wo",
         "jiao"
-      ]
+      ],
+      "meaning": {
+        "de": [
+          "ich heiße"
+        ],
+        "en": [
+          "my name is"
+        ]
+      },
+      "slot": "name"
     },
     {
       "id": "askname",
-      "hant": "你叫什麼名字？",
-      "hans": "你叫什么名字？",
-      "pinyin": "nǐ jiào shénme míngzi",
-      "meaning": {
-        "de": "Wie heißt du?",
-        "en": "What is your name?"
-      },
       "audio": "/audio/mandarin/nijiaoshenmemingzi.wav",
       "slowAudio": "/audio/mandarin/nijiaoshenmemingzi-slow.wav",
-      "tones": [
-        3,
-        4,
-        2,
-        5,
-        2,
-        5
-      ],
-      "syllables": [
+      "words": [
         "ni",
         "jiao",
-        "shen",
-        "me",
-        "ming",
-        "zi"
-      ]
+        "shenme",
+        "mingzi"
+      ],
+      "meaning": {
+        "de": [
+          "Wie heißt du?",
+          "Wie heisst du?",
+          "Wie ist dein Name?"
+        ],
+        "en": [
+          "What is your name?"
+        ]
+      },
+      "punctuation": "？"
     },
     {
       "id": "xiexie",
-      "hant": "謝謝",
-      "hans": "谢谢",
-      "pinyin": "xièxie",
-      "meaning": {
-        "de": "danke",
-        "en": "thank you"
-      },
       "audio": "/audio/mandarin/xiexie.wav",
       "slowAudio": "/audio/mandarin/xiexie-slow.wav",
-      "tones": [
-        4,
-        5
-      ],
-      "syllables": [
-        "xie",
-        "xie"
+      "words": [
+        "xiexie"
       ]
     },
     {
       "id": "zaijian",
-      "hant": "再見",
-      "hans": "再见",
-      "pinyin": "zàijiàn",
-      "meaning": {
-        "de": "auf Wiedersehen",
-        "en": "goodbye"
-      },
       "audio": "/audio/mandarin/zaijian.wav",
       "slowAudio": "/audio/mandarin/zaijian-slow.wav",
-      "tones": [
-        4,
-        4
-      ],
-      "syllables": [
-        "zai",
-        "jian"
+      "words": [
+        "zaijian"
       ]
     }
   ],
@@ -265,12 +201,7 @@
         "de": "Was bedeutet das Gehörte?"
       },
       "itemId": "nihao",
-      "target": "listening",
-      "answers": [
-        "hallo",
-        "hello",
-        "begrüßung"
-      ]
+      "target": "listening"
     },
     {
       "id": "hear-askname",
@@ -279,13 +210,7 @@
         "de": "Was bedeutet das Gehörte?"
       },
       "itemId": "askname",
-      "target": "listening",
-      "answers": [
-        "wie heißt du",
-        "wie heisst du",
-        "wie ist dein name",
-        "what is your name"
-      ]
+      "target": "listening"
     },
     {
       "id": "hear-xiexie",
@@ -294,11 +219,7 @@
         "de": "Was bedeutet das Gehörte?"
       },
       "itemId": "xiexie",
-      "target": "listening",
-      "answers": [
-        "danke",
-        "thank you"
-      ]
+      "target": "listening"
     },
     {
       "id": "hear-zaijian",
@@ -307,13 +228,7 @@
         "de": "Was bedeutet das Gehörte?"
       },
       "itemId": "zaijian",
-      "target": "listening",
-      "answers": [
-        "auf wiedersehen",
-        "tschüss",
-        "tschuess",
-        "goodbye"
-      ]
+      "target": "listening"
     },
     {
       "id": "read-wo",
@@ -322,13 +237,7 @@
         "de": "Was bedeutet dieses Zeichen?"
       },
       "itemId": "wo",
-      "target": "reading",
-      "answers": [
-        "ich",
-        "mich",
-        "i",
-        "me"
-      ]
+      "target": "reading"
     },
     {
       "id": "read-ni",
@@ -337,12 +246,7 @@
         "de": "Was bedeutet dieses Zeichen?"
       },
       "itemId": "ni",
-      "target": "reading",
-      "answers": [
-        "du",
-        "dich",
-        "you"
-      ]
+      "target": "reading"
     },
     {
       "id": "read-hao",
@@ -351,11 +255,7 @@
         "de": "Was bedeutet dieses Zeichen?"
       },
       "itemId": "hao",
-      "target": "reading",
-      "answers": [
-        "gut",
-        "good"
-      ]
+      "target": "reading"
     },
     {
       "id": "recall-nihao",
@@ -417,8 +317,7 @@
       "prompt": {
         "de": "Erinnere dich: Welchen Ton hat „ich“?"
       },
-      "toneIndex": 0,
-      "tone": 3
+      "toneIndex": 0
     },
     {
       "id": "tone-jiao",
@@ -426,10 +325,9 @@
       "itemId": "wojiao",
       "target": "perception",
       "prompt": {
-        "de": "Welchen Ton hat jiao in „ich heiße …“?"
+        "de": "Welchen Ton hat die zweite Silbe dieses Ausdrucks?"
       },
-      "toneIndex": 1,
-      "tone": 4
+      "toneIndex": 1
     },
     {
       "id": "tone-xie",
@@ -439,8 +337,7 @@
       "prompt": {
         "de": "Welchen Ton hat die erste Silbe von „danke“?"
       },
-      "toneIndex": 0,
-      "tone": 4
+      "toneIndex": 0
     }
   ],
   "initialPlan": [
@@ -480,5 +377,186 @@
     "recall-xiexie",
     "recall-zaijian",
     "write-recall"
+  ],
+  "words": [
+    {
+      "id": "wo",
+      "hant": "我",
+      "hans": "我",
+      "toneNumbers": "wo3",
+      "meaning": {
+        "de": [
+          "ich",
+          "mich"
+        ],
+        "en": [
+          "I",
+          "me"
+        ]
+      }
+    },
+    {
+      "id": "ni",
+      "hant": "你",
+      "hans": "你",
+      "toneNumbers": "ni3",
+      "meaning": {
+        "de": [
+          "du",
+          "dich"
+        ],
+        "en": [
+          "you"
+        ]
+      }
+    },
+    {
+      "id": "hao",
+      "hant": "好",
+      "hans": "好",
+      "toneNumbers": "hao3",
+      "meaning": {
+        "de": [
+          "gut"
+        ],
+        "en": [
+          "good"
+        ]
+      }
+    },
+    {
+      "id": "jiao",
+      "hant": "叫",
+      "hans": "叫",
+      "toneNumbers": "jiao4",
+      "meaning": {
+        "de": [
+          "heißen"
+        ],
+        "en": [
+          "to be called"
+        ]
+      }
+    },
+    {
+      "id": "shenme",
+      "hant": "什麼",
+      "hans": "什么",
+      "toneNumbers": "shen2 me5",
+      "meaning": {
+        "de": [
+          "was"
+        ],
+        "en": [
+          "what"
+        ]
+      }
+    },
+    {
+      "id": "mingzi",
+      "hant": "名字",
+      "hans": "名字",
+      "toneNumbers": "ming2 zi5",
+      "meaning": {
+        "de": [
+          "Name"
+        ],
+        "en": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "xiexie",
+      "hant": "謝謝",
+      "hans": "谢谢",
+      "toneNumbers": "xie4 xie5",
+      "meaning": {
+        "de": [
+          "danke"
+        ],
+        "en": [
+          "thank you"
+        ]
+      }
+    },
+    {
+      "id": "zaijian",
+      "hant": "再見",
+      "hans": "再见",
+      "toneNumbers": "zai4 jian4",
+      "meaning": {
+        "de": [
+          "auf Wiedersehen",
+          "tschüss",
+          "tschuess"
+        ],
+        "en": [
+          "goodbye"
+        ]
+      }
+    },
+    {
+      "id": "ma1",
+      "hant": "媽",
+      "hans": "妈",
+      "toneNumbers": "ma1",
+      "meaning": {
+        "de": [
+          "Mutter"
+        ],
+        "en": [
+          "mother"
+        ]
+      }
+    },
+    {
+      "id": "ma2",
+      "hant": "麻",
+      "hans": "麻",
+      "toneNumbers": "ma2",
+      "meaning": {
+        "de": [
+          "Hanf"
+        ],
+        "en": [
+          "hemp"
+        ]
+      }
+    },
+    {
+      "id": "ma3",
+      "hant": "馬",
+      "hans": "马",
+      "toneNumbers": "ma3",
+      "meaning": {
+        "de": [
+          "Pferd"
+        ],
+        "en": [
+          "horse"
+        ]
+      }
+    },
+    {
+      "id": "ma4",
+      "hant": "罵",
+      "hans": "骂",
+      "toneNumbers": "ma4",
+      "meaning": {
+        "de": [
+          "schimpfen"
+        ],
+        "en": [
+          "to scold"
+        ]
+      }
+    }
+  ],
+  "toneExamples": [
+    "ma1",
+    "ma2",
+    "ma3",
+    "ma4"
   ]
 }

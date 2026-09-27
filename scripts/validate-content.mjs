@@ -7,4 +7,4 @@ for (const asset of assets) {
   if (!existsSync(`public${asset}`)) throw new Error(`Missing asset: ${asset}`);
   validateWav(readFileSync(`public${asset}`), asset);
 }
-console.log(`Validated ${content.items.length} items, ${content.tasks.length} tasks and ${assets.length} audio references (${content.qaStatus}).`);
+console.log(`Validated ${content.words.length} canonical words, ${content.items.length} items, ${content.tasks.length} tasks and ${assets.length} audio references (${content.qaStatus}).`);

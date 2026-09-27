@@ -4,6 +4,7 @@ import 'fake-indexeddb/auto';
 import { updateRelation, DAY } from '../src/core/progress/model.ts';
 import { db, recordAttempt, exportLearningState, importLearningState } from '../src/core/progress/db.ts';
 import { content, itemMap, taskMap } from '../src/languages/mandarin/content/index.ts';
+import rawContent from '../src/languages/mandarin/content/lesson-001.json' with { type: 'json' };
 import { contentSchema } from '../src/languages/mandarin/schema/content.ts';
 import { interpretAnswer, numberedToPinyin } from '../src/languages/mandarin/answer.ts';
 import { composeReview, objectFor, withSpacedRetry } from '../src/languages/mandarin/session.ts';
@@ -17,9 +18,9 @@ test('Pinyin variants preserve content and never claim spoken tone evidence', ()
   assert.equal(interpretAnswer('wo jiao Wolfram', item, 'Wolfram').toneNotation, 'omitted');
   assert.equal(interpretAnswer('wo2 jiao1 Wolfram', item, 'Wolfram').toneNotation, 'different');
   assert.equal(interpretAnswer('wo3 jiao4 Wolfram', item, 'Wolfram').toneNotation, 'correct');
-  assert.equal(interpretAnswer('wo jiao Paul', item, 'Wolfram').result, 'failure');
-  assert.equal(interpretAnswer('wo jio Wolfram', item, 'Wolfram').needsClarification, true);
-  assert.equal(interpretAnswer('wo jio Wolfram', item, 'Wolfram').result, 'unsure');
+  assert.equal(interpretAnswer('wo jiao Paul', item, 'Wolfram').result, 'success');
+  assert.equal(interpretAnswer('wo jio Wolfram', item, 'Wolfram').needsClarification, false);
+  assert.equal(interpretAnswer('wo jio Wolfram', item, 'Wolfram').result, 'failure');
   assert.equal(interpretAnswer('ni5 hao3', itemMap.get('nihao')).result, 'success');
   assert.equal(interpretAnswer('xie4 xie5', itemMap.get('xiexie')).toneNotation, 'correct');
   assert.equal(interpretAnswer('ni3 jiao4 shen2 me5 ming2 zi5', itemMap.get('askname')).toneNotation, 'correct');
@@ -49,11 +50,11 @@ test('review is due-only, bounded, script-sensitive; errors are spaced', () => {
   assert.deepEqual(withSpacedRetry(['a','b','c','a','closure'], 0, 'a'), ['a','b','c','a','closure']);
 });
 test('content rejects broken references, duplicate IDs, and published prototype audio', () => {
-  const invalid = structuredClone(content); invalid.tasks[0].itemId = 'missing';
+  const invalid = structuredClone(rawContent); invalid.tasks[0].itemId = 'missing';
   assert.equal(contentSchema.safeParse(invalid).success, false);
-  const duplicate = structuredClone(content); duplicate.items.push(duplicate.items[0]);
+  const duplicate = structuredClone(rawContent); duplicate.items.push(duplicate.items[0]);
   assert.equal(contentSchema.safeParse(duplicate).success, false);
-  assert.equal(contentSchema.safeParse({ ...content, qaStatus: 'published' }).success, false);
+  assert.equal(contentSchema.safeParse({ ...rawContent, qaStatus: 'published' }).success, false);
 });
 test('database attempts and research log are atomic; backup validates before merge', async () => {
   await db.delete(); await db.open();

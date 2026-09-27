@@ -1,12 +1,12 @@
-# Mandarin — First contact · V0.1.3
+# Mandarin — First contact · Build A1
 
 Private German-language, local-first Lesson-1 vertical slice. No account or cloud learning services.
 Scope: `docs/COMPLEXITY_CUT_v0.1.md`, then `docs/BUILD_HANDOFF_v1.1.md` and
 `docs/MANDARIN_APP_MASTER_CURRENT.md`. The old `static-prototype/` is an archived mockup, not the app.
 
-Test deployment: https://language-learning-abk.pages.dev/ . Current repair notes and second-run instructions:
-[WRITING_FADING_v0.1.3](docs/WRITING_FADING_v0.1.3.md), including evidence boundaries and research fields;
-[RETEST_v0.1.2](docs/RETEST_v0.1.2.md) documents the retained capture/audio/typing repairs. Lesson 2 remains untouched.
+Test deployment: https://language-learning-abk.pages.dev/ . Current build: **A1 — Language Trust**.
+[Build A1 report](docs/BUILD_A1_LANGUAGE_TRUST.md) covers root-cause evidence, canonical content,
+validation, tests and limits. Earlier writing/audio repairs remain; Lesson 2 and Build A2 are untouched.
 
 ## Run
 
@@ -46,6 +46,7 @@ until the old app is closed. Microphone requires localhost or HTTPS.
 ## Tests
 
 ```sh
+npm run validate-content
 npm test
 npx playwright install webkit
 npm run test:e2e
