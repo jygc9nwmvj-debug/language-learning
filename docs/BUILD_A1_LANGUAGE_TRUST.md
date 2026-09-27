@@ -139,3 +139,18 @@ online neu öffnen und **Testversion A1** prüfen. Vollständiger Testlauf ist �
 Sicherung möglich; Verlauf bleibt erhalten. Bei der Vorstellung `wo3 jiao4 Wolfram` verwenden,
 bei „danke“ `xie4 xie5`. Erwartet: Eingabe bleibt sichtbar, „Richtig.“, kein Prüfen und keine große
 Musterkarte mehr. A1 endet hier; A2 wird nicht begonnen.
+
+## Safari-Update-Reparatur nach A1
+
+Der alte Cache-first-Service-Worker wartete mit Aktivierung auf das Schließen alter Clients.
+Ein Reload konnte deshalb dieselbe Version liefern. Der neue Worker aktiviert sich erst nach
+vollständigem Precache, dann mit `skipWaiting` und `clients.claim`, ohne selbst eine Seite neu zu laden.
+Ein vorheriges Asset-Bundle bleibt für offene Seiten verfügbar. Die App prüft Updates bei jedem Start
+ohne HTTP-Worker-Cache. Keine Änderung an IndexedDB oder Lerninhalten.
+
+Migrationstest in Chrome und WebKit: alte 0.1.2-Testseite mit bisherigem Worker-Verhalten, zwei offene
+Tabs, ungespeicherte Texteingabe, gespeicherter IndexedDB-Marker; Update per normalem Reload, weiterer
+Reload zeigt A1, Text im anderen Tab und Datenbank bleiben erhalten, vorheriges Bundle bleibt abrufbar,
+A1 startet anschließend offline. Testversion bleibt A1 (reine Auslieferungsreparatur).
+
+Technischer Bezug: [ServiceWorker skipWaiting](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting).

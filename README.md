@@ -26,8 +26,8 @@ npm run preview -- --host localhost --port 4173
 
 Open http://localhost:4173. Wait for “Für offline bereit”. Development mode intentionally does not
 register a worker. The build generates a content-addressed worker that precaches all compiled code,
-styles, audio and licenses. Deployments must serve at the origin root. Service-worker updates wait
-until the old app is closed. Microphone requires localhost or HTTPS.
+styles, audio and licenses. Deployments must serve at the origin root. Service-worker updates activate after complete precaching, even with old tabs open. Reload to display
+the downloaded update; active exercises are never reloaded automatically. One prior asset bundle is retained. Microphone requires localhost or HTTPS.
 
 ## What works
 
