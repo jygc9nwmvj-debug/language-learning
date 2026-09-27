@@ -94,3 +94,11 @@ test('validator rejects undeclared or unintroduced assessment dimensions', () =>
  future.tasks.find(t=>t.id==='recall-xiexie').assess.neutralTone=true;
  assert.equal(contentSchema.safeParse(future).success,true);
 });
+
+test('audio mappings require distinct styles and explicit tone references', () => {
+ for(const change of [
+  c=>c.items[0].slowAudio=c.items[0].audio,
+  c=>delete c.items[0].slowAudio,
+  c=>delete c.words.find(w=>w.id===c.toneExamples[0]).audio,
+ ]) {const c=structuredClone(raw);change(c);assert.equal(contentSchema.safeParse(c).success,false);}
+});

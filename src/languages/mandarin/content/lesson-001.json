@@ -1,5 +1,5 @@
 {
-  "version": "lesson1-a1-curriculum",
+  "version": "lesson1-a2-audio",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
@@ -528,7 +528,8 @@
         "en": [
           "mother"
         ]
-      }
+      },
+      "audio": "/audio/mandarin/ma1.wav"
     },
     {
       "id": "ma2",
@@ -542,7 +543,8 @@
         "en": [
           "hemp"
         ]
-      }
+      },
+      "audio": "/audio/mandarin/ma2.wav"
     },
     {
       "id": "ma3",
@@ -556,7 +558,8 @@
         "en": [
           "horse"
         ]
-      }
+      },
+      "audio": "/audio/mandarin/ma3.wav"
     },
     {
       "id": "ma4",
@@ -570,7 +573,8 @@
         "en": [
           "to scold"
         ]
-      }
+      },
+      "audio": "/audio/mandarin/ma4.wav"
     }
   ],
   "toneExamples": [

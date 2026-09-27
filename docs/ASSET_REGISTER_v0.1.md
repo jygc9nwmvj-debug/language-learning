@@ -1,3 +1,5 @@
+> A2 supersedes the audio sections below. Current provenance, generation and limitations: [BUILD_A2_AUDIO_TRUST.md](BUILD_A2_AUDIO_TRUST.md), [A2_AUDIO_MANIFEST.json](A2_AUDIO_MANIFEST.json). Earlier sections are historical.
+
 # V0.1.2 audio and writing assets
 
 ## Four-tone introduction — replaced after first learner test

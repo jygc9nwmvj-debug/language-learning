@@ -8,7 +8,7 @@ const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.wav$/);
 // Deliberately limited to the existing lesson, not a general Mandarin dictionary.
 const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma']);
 const word = z.strictObject({ id: text, hant: z.string().regex(/^\p{Script=Han}+$/u), hans: z.string().regex(/^\p{Script=Han}+$/u),
-  toneNumbers: z.string().regex(/^[a-zü]+[1-5]( [a-zü]+[1-5])*$/), meaning, review });
+  audio: asset.optional(), toneNumbers: z.string().regex(/^[a-zü]+[1-5]( [a-zü]+[1-5])*$/), meaning, review });
 export const assessmentSchema = z.strictObject({ toneNotation: z.boolean(), neutralTone: z.boolean() });
 export type Assessment = z.infer<typeof assessmentSchema>;
 const authoredSchema = z.strictObject({
@@ -31,11 +31,12 @@ const authoredSchema = z.strictObject({
     for (const token of tokens) if (!lessonSyllables.has(token.slice(0,-1))) issue(`Invalid Lesson-1 Pinyin syllable: ${token}`);
   }
   for (const i of c.items) {
+    if (!i.slowAudio || i.audio === i.slowAudio) issue(`Distinct natural/careful_slow assets required: ${i.id}`);
     for (const id of i.words) if (!words.has(id)) issue(`Unknown word: ${id}`);
     if (i.words.length > 1 && !i.meaning) issue(`Missing phrase meaning: ${i.id}`);
     if (i.words.length === 1 && i.meaning) issue(`Duplicate word meaning: ${i.id}`);
   }
-  c.toneExamples.forEach((id,n) => { if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
+  c.toneExamples.forEach((id,n) => { if (!words.get(id)?.audio) issue(`Missing tone audio: ${id}`); if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
   for (const t of c.tasks) {
     const item = items.get(t.itemId ?? '');
     if (t.kind === 'recall' && !t.assess) issue(`Missing assessment declaration: ${t.id}`);

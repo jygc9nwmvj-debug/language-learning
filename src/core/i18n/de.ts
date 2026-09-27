@@ -4,7 +4,7 @@ export const ui = {
   loading: 'Dein Lernstand wird geladen …', home: 'Erster Kontakt',
   listen: 'Anhören', again: 'Noch einmal hören', slow: 'Langsam gesprochen',
   audioError: 'Das Audio konnte nicht abgespielt werden. Versuche es noch einmal.',
-  prototype: 'Privater Prototyp · Neue Tonbeispiele und getrennte natürliche/langsame Sprachvarianten. Die didaktische Hörprüfung steht noch aus.',
+  prototype: 'Privater Prototyp · A2 Audio-Test: bearbeitete Lehrkonturen und getrennt erzeugte Sprechstile. Die Hörabnahme steht noch aus.',
   help: 'Hilfe zeigen', check: 'Prüfen', answer: 'Deine Antwort',
   name: 'Dein Name', nameHint: 'Sprich den ganzen Satz mit deinem Namen. Die Aufnahme enthält den Ausdruck ohne Namen.',
   typeHint: 'Pinyin mit oder ohne Tonzeichen, Tonzahlen oder chinesische Zeichen sind möglich.',

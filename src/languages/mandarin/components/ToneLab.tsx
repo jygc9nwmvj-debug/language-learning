@@ -14,12 +14,12 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled }: {
   const [practiceChecked, setPracticeChecked] = useState(false);
   const [practice, setPractice] = useState(''), [practiced, setPracticed] = useState(false), [practiceFeedback, setPracticeFeedback] = useState('');
   const target = [2, 4, 3][question];
-  return <div className="stepStack"><p>{ui.toneIntro}</p><p className="muted">1: hoch und eben · 2: steigend · 3: fallend, dann steigend · 4: fallend. Hier hörst du Ton 3 als vollständige Einzelkontur. In flüssiger Sprache bleibt er oft tief; nicht jedes Wort macht dieselbe volle Kurve.</p><div className="toneGrid">{tones.map((tone, i) => <div className="toneCard" key={tone.pinyin}>
-    <AudioButton src={`/audio/mandarin/ma${i + 1}.wav`} label={`Ton ${i + 1}`} onPlay={() => onEvent('audio_replay')} />
+  return <div className="stepStack"><p>{ui.toneIntro}</p><p className="muted">1: hoch und eben · 2: steigend · 3: fallend, dann steigend · 4: fallend. Die vier Lehrbeispiele haben gezielt bearbeitete Tonhöhenkonturen. Hier hörst du Ton 3 als vollständige Einzelkontur. In flüssiger Sprache bleibt er oft tief; nicht jedes Wort macht dieselbe volle Kurve.</p><div className="toneGrid">{tones.map((tone, i) => <div className="toneCard" key={tone.pinyin}>
+    <AudioButton src={tone.audio!} label={`Ton ${i + 1}`} onPlay={() => onEvent('audio_replay')} />
     {revealed && <><strong>{tone.pinyin}</strong><span lang="zh">{tone[script]}</span><span>{tone.meaning.de[0]}</span></>}
   </div>)}</div>
   {!revealed ? <button type="button" onClick={() => { setRevealed(true); onEvent('tone_reveal'); }}>{ui.toneReveal}</button>
-    : <>{question < 3 ? <div className="quizBox"><h3>{ui.toneQuestion}</h3><AudioButton src={`/audio/mandarin/ma${target}.wav`} onPlay={() => { setHeard(true); onEvent('audio_replay'); }} />
+    : <>{question < 3 ? <div className="quizBox"><h3>{ui.toneQuestion}</h3><AudioButton src={tones[target - 1].audio!} onPlay={() => { setHeard(true); onEvent('audio_replay'); }} />
       <div className="buttonRow">{[1, 2, 3, 4].map(n => <button key={n} type="button" disabled={!heard || answer !== null || disabled} onClick={() => void onResult(target, n === target).then(() => setAnswer(n)).catch(() => {})}>{n}</button>)}</div>
       {answer !== null && <><p role="status">{answer === target ? ui.toneCorrect : ui.toneWrong} {tones[target - 1].pinyin} · Ton {target}</p>
         <button type="button" disabled={disabled} onClick={() => { setQuestion(q => q + 1); setAnswer(null); setHeard(false); }}>{ui.continue}</button></>}
@@ -29,7 +29,7 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled }: {
       {!practiceChecked && <button type="submit" disabled={!practice.trim() || disabled}>Prüfen</button>}{practiceChecked && !practiced && <button type="button" onClick={() => { setPracticeChecked(false); setPracticeFeedback(''); }}>Noch einmal versuchen</button>}{practiceFeedback && <p role="status">{practiceFeedback}</p>}
       {practiced && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}
     </form>}<Recorder onEvent={onEvent} /><p className="muted">{ui.toneUncertain}</p></>}
-    <p className="privacyNote"><a href="/licenses/mandarin-tones.html" target="_blank" rel="noreferrer">Tonbeispiele: Wolfdog · CC BY-SA 4.0</a></p>
+    <p className="privacyNote"><a href="/licenses/mandarin-tones.html" target="_blank" rel="noreferrer">Lehrbeispiele nach Wolfdog · bearbeitet · CC BY-SA 4.0</a></p>
   </div>;
 }
 

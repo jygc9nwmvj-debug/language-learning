@@ -19,7 +19,7 @@ test('10 consecutive real MediaRecorder captures preserve the beginning, middle,
   });
   await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
   const results = [];
-  for (const duration of [.45, .8, 1.2, 3, 6, .45, .8, 1.2, 3, 6]) {
+  for (const duration of [.12, .25, .8, 3, 6, .12, .45, 1.2, 3, 6]) {
     await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
     await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
     await page.evaluate(seconds => {
@@ -119,6 +119,8 @@ test('microphone interruption is visible and reference playback is locked during
   await page.getByRole('button',{name:'Aufnehmen',exact:true}).click();
   await expect(page.getByRole('button',{name:'Anhören',exact:true})).toBeDisabled();
   await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
+  // Allow audible test content before interruption; an immediate interruption may have no decodable frames.
+  await page.waitForTimeout(300);
   await page.evaluate(()=>(window as any).source.stream.getAudioTracks()[0].dispatchEvent(new Event('mute')));
   await expect(page.getByText(/Das Mikrofon wurde unterbrochen/)).toBeVisible();
   await expect(page.getByRole('button',{name:'Anhören',exact:true})).toBeEnabled();

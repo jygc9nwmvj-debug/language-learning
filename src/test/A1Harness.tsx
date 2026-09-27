@@ -1,3 +1,5 @@
+import { Recorder } from '../core/audio/Recorder';
+import { AudioButton } from '../core/exercises/AudioButton';
 import { useState } from 'react';
 import { content, taskMap, itemMap } from '../languages/mandarin/content';
 import { Exercise } from '../languages/mandarin/components/Exercise';
@@ -5,6 +7,9 @@ import { evaluateAnswer, answerFeedback, type Interpretation } from '../language
 
 const tasks = content.tasks.filter(task => task.kind !== 'closure');
 export function A1Harness() {
+  const [audioRun, setAudioRun] = useState(0);
+  const [audioItem, setAudioItem] = useState('nihao');
+  const [audioEvents, setAudioEvents] = useState<unknown[]>([]);
   const [taskId, setTaskId] = useState('recall-wojiao');
   const [run, setRun] = useState(0);
   const [name, setName] = useState('Wolfram');
@@ -19,6 +24,17 @@ export function A1Harness() {
   return <main style={{ maxWidth: 760, margin: 'auto', padding: 20 }}>
     <h1>A1 Test Harness</h1>
     <p>Nur Development/Test. Alle Eingaben und Ergebnisse bleiben im Arbeitsspeicher dieser Seite. Kein Lernstand und kein Research Log werden gespeichert.</p>
+    <details open={window.location.hash === '#audio'}>
+      <summary>A2 – Audio direkt testen</summary>
+      <p>Zehn Aufnahmen ohne Reload: wǒ · nǐ · hǎo · xièxie · wǒ jiào Wolfram · nǐ hǎo · nǐ jiào shénme míngzi · kurzer Satz · längerer Satz · nochmals wǒ. Erst bei „Jetzt sprechen“ beginnen. Jede Aufnahme vollständig anhören. Reset verwirft nur diesen Test.</p>
+      <Recorder key={audioRun} onEvent={(type, detail) => setAudioEvents(previous => [...previous, {type, detail}])} />
+      <button type="button" onClick={() => { setAudioRun(n => n + 1); setAudioEvents([]); }}>Audio-Test zurücksetzen</button>
+      <p>Hörtest-Kandidaten: <a href="/licenses/mandarin-speech.html" target="_blank" rel="noreferrer">Sprachquelle und Lizenz</a>. Natürlicher und sorgfältiger Sprechstil müssen noch menschlich abgenommen werden.</p><p>Vier isolierte, gezielt bearbeitete Lehrkonturen:</p>
+      <div className="buttonRow">{content.toneExamples.map((id,i) => <AudioButton key={id} src={content.words.find(w => w.id === id)!.audio!} label={`Referenz Ton ${i+1}`} />)}</div>
+      <label className="fieldLabel">Audio-Paar<select style={{width:'100%'}} value={audioItem} onChange={e => setAudioItem(e.target.value)}>{content.items.map(item => <option key={item.id} value={item.id}>{item.hans} — {item.pinyin}</option>)}</select></label>
+      <div className="buttonRow"><AudioButton key={audioItem+'natural'} src={itemMap.get(audioItem)!.audio} label="Natural" /><AudioButton key={audioItem+'slow'} src={itemMap.get(audioItem)!.slowAudio!} label="Careful slow" /></div>
+      <details><summary>Aufnahme-Ereignisse (nur lokal)</summary><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{JSON.stringify(audioEvents,null,2)}</pre></details>
+    </details>
     <label className="fieldLabel">Lernschritt<select aria-label="Lernschritt" style={{ width: '100%', minWidth: 0, padding: 8 }} value={taskId} onChange={event => { setTaskId(event.target.value); reset(); }}>
       {tasks.map(task => <option key={task.id} value={task.id}>{task.id} — {task.itemId ? itemMap.get(task.itemId)?.hans : ''} — {task.prompt.de}</option>)}
     </select></label>

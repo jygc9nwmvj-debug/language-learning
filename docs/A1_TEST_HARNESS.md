@@ -37,3 +37,7 @@ Geprüft: 31 Node-Tests; 28 bestehende Chrome/WebKit-Tests (Trust, Continue, Hos
 好, 谢谢, Reset, Reload, Handybreite und gesperrte persistente Schreibzugriffe/DB-Öffnungen.
 Produktionsroute und Ausschluss des Harness-Chunks separat geprüft.
 Kein Test ersetzt eine Prüfung auf dem echten iPhone; Audio und Handschrifterkennung wurden hier nicht neu bewertet.
+
+## A2 extension
+
+`/__test/a1#audio` opens the isolated audio panel: microphone, immediate native playback, retake/reset, four teaching contours and all canonical natural/careful_slow pairs. See [A2 report](BUILD_A2_AUDIO_TRUST.md). No persistence added.

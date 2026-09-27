@@ -28,12 +28,18 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
       const mimeType = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus'].find(t => MediaRecorder.isTypeSupported(t));
       const recorder = new MediaRecorder(input, mimeType ? { mimeType } : undefined);
       const chunks: Blob[] = [];
-      let ready = false, ending = false, interrupted = false;
+      let ready = false, started = false, ending = false, interrupted = false;
       const timers: number[] = [];
       const later = (fn: () => void, ms: number) => { const id = window.setTimeout(fn, ms); timers.push(id); return id; };
       const clearTimers = () => timers.forEach(window.clearTimeout);
       const release = () => { clearTimers(); input.getTracks().forEach(t => t.stop()); document.removeEventListener('visibilitychange', hidden); releaseCapture(); };
-      const startedAt = performance.now();
+      const captureRequestedAt = performance.now();
+      const announceReady = () => {
+        if (ready || ending || !started || !input.getAudioTracks().length || !input.getAudioTracks().every(t => t.readyState === 'live' && !t.muted)) return;
+        ready = true; window.clearTimeout(startTimeout);
+        if (current()) { setStatus('recording'); onEvent('recording_started', { mimeType: recorder.mimeType, preparationMs: Math.round(performance.now() - captureRequestedAt) }); }
+        later(() => finish(), 60000);
+      };
       const finish = (tail = true) => {
         if (ending) return; ending = true; clearTimers();
         if (current()) setStatus('finalizing');
@@ -46,20 +52,18 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
       const interrupt = () => { if (ending) return; interrupted = true; finish(false); };
       const hidden = () => { if (document.hidden) interrupt(); };
       document.addEventListener('visibilitychange', hidden);
-      input.getAudioTracks().forEach(track => { track.addEventListener('ended', interrupt); track.addEventListener('mute', () => { if (ready) interrupt(); }); });
+      input.getAudioTracks().forEach(track => { track.addEventListener('ended', interrupt); track.addEventListener('unmute', announceReady); track.addEventListener('mute', () => { if (ready) interrupt(); }); });
+      // start is the browser's recording-start signal; chunk delivery is not a readiness clock.
+      recorder.onstart = () => { started = true; announceReady(); };
       recorder.onpause = interrupt;
       recorder.onerror = interrupt;
       recorder.ondataavailable = event => {
         if (!event.data.size) return;
         chunks.push(event.data);
-        // A start event alone does not prove that the encoder is producing data.
-        if (!ready && !ending && performance.now() - startedAt >= 500 && input.getAudioTracks().every(t => t.readyState === 'live' && !t.muted)) {
-          ready = true; window.clearTimeout(startTimeout);
-          if (current()) { setStatus('recording'); onEvent('recording_started', { mimeType: recorder.mimeType }); }
-          later(() => finish(), 60000);
-        }
+
       };
       recorder.onstop = async () => {
+        if (!ending) interrupted = true;
         release();
         if (!current()) return;
         let context: AudioContext | undefined;
@@ -68,7 +72,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
           if (!ready || blob.size === 0) throw new Error('No capture');
           context = new AudioContext();
           const decoded = await context.decodeAudioData(await blob.arrayBuffer());
-          if (decoded.duration < .2) throw new Error('Empty capture');
+          if (decoded.duration < .02) throw new Error('Empty capture');
           // A click alone has a peak too: require several short windows with audible energy.
           // This is only a recording-health warning, never speech or pronunciation recognition.
           let activeMs = 0;
@@ -87,7 +91,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
           currentURL.current = URL.createObjectURL(blob); setUrl(currentURL.current);
           setError(interrupted ? ui.recordingInterrupted : activeMs < 80 ? ui.recordingQuiet : '');
           onEvent('recording_completed_uncertain', { durationMs: Math.round(decoded.duration * 1000), activeMs, chunks: chunks.length, bytes: blob.size, mimeType: blob.type, interrupted });
-        } catch { if (current()) { setError(ui.recordingFailed); onEvent('recording_failed'); } }
+        } catch { if (current()) { setError(interrupted ? ui.recordingInterrupted : ui.recordingFailed); onEvent('recording_failed', { interrupted }); } }
         finally { if (context) await context.close(); if (current()) { setStatus('idle'); busy.current = false; } }
       };
       setStatus('preparing');

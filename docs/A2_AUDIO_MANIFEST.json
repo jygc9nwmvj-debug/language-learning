@@ -1,0 +1,717 @@
+{
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-4bit",
+  "revision": "f35faf19b0cc2160865af64ecf0f22f83d335135",
+  "voice": "Serena",
+  "speed": 1,
+  "seed": 42,
+  "temperature": 0.6,
+  "assets": [
+    {
+      "item": "nihao",
+      "variant": "natural",
+      "text": "你好",
+      "seconds": 0.56,
+      "sha256": "c00426e8b5e07542af45aa5d50926fd16e201b8162843c21c35bfe27a1ffeae9",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/nihao.wav"
+    },
+    {
+      "item": "nihao",
+      "variant": "careful_slow",
+      "text": "你好",
+      "seconds": 2.4,
+      "sha256": "7f5c6b686fa363cdea0d7ad792841b1cd23d2fb39e9f0600f560e2edfc069278",
+      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
+      "path": "/audio/mandarin/nihao-slow.wav"
+    },
+    {
+      "item": "wo",
+      "variant": "natural",
+      "text": "我。",
+      "seconds": 0.64,
+      "sha256": "db40991bf4dcd90f5621d81eb3e0d2e80eb8bfa66c626e7fab07dd5a631622fd",
+      "instruct": "标准普通话，正常说话，只读文字，不要拖长。",
+      "seed": 42,
+      "path": "/audio/mandarin/wo.wav"
+    },
+    {
+      "item": "wo",
+      "variant": "careful_slow",
+      "text": "我。",
+      "seconds": 0.8,
+      "sha256": "32d94054f86be0bd0ea8e61f6e699a8fcb74795a6349247d12e118a2f6f16aca",
+      "instruct": "慢速、清楚地说话，声音自然。",
+      "seed": 42,
+      "path": "/audio/mandarin/wo-slow.wav"
+    },
+    {
+      "item": "ni",
+      "variant": "natural",
+      "text": "你",
+      "seconds": 0.56,
+      "sha256": "0b08c656d9d736ca18ad09355e2cd78fe9859b80ec99ca6f17e3d0a4951df07c",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/ni.wav"
+    },
+    {
+      "item": "ni",
+      "variant": "careful_slow",
+      "text": "你",
+      "seconds": 1.04,
+      "sha256": "23dbc6abfdad4b14976878e0a5ad4a378f4954646381e7171627f6ad5e527859",
+      "instruct": "请像普通话老师一样非常缓慢地逐字示范，每个音节都完整清楚，音节之间停顿一下。声音自然，不要唱歌。只读给定的汉字。",
+      "seed": 7,
+      "path": "/audio/mandarin/ni-slow.wav"
+    },
+    {
+      "item": "hao",
+      "variant": "natural",
+      "text": "好",
+      "seconds": 0.72,
+      "sha256": "49ac9ad1485875e0ca8f22a6d4580b009c0c2f58d539ba95f1253485525b6d6f",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/hao.wav"
+    },
+    {
+      "item": "hao",
+      "variant": "careful_slow",
+      "text": "好",
+      "seconds": 1.44,
+      "sha256": "90d829de9da2490888b0578d68ad26d8c1ad9636223465cbe934d1d34d77603b",
+      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
+      "path": "/audio/mandarin/hao-slow.wav"
+    },
+    {
+      "item": "wojiao",
+      "variant": "natural",
+      "text": "我叫",
+      "seconds": 0.72,
+      "sha256": "41f649b8aa18235927f9f40ee03326c02dc72d04008e6bfaee9600bd3f3473d4",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/wojiao.wav"
+    },
+    {
+      "item": "wojiao",
+      "variant": "careful_slow",
+      "text": "我叫",
+      "seconds": 2.16,
+      "sha256": "572c373a2676f9d9ddedc890ea630a976aefbff3babac5c8a895fd0d20afe295",
+      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
+      "path": "/audio/mandarin/wojiao-slow.wav"
+    },
+    {
+      "item": "askname",
+      "variant": "natural",
+      "text": "你叫什么名字？",
+      "seconds": 1.2,
+      "sha256": "087a4f720103c7a19860879ef39791d739c7f324a2af2e87f9f63c730d232c02",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/nijiaoshenmemingzi.wav"
+    },
+    {
+      "item": "askname",
+      "variant": "careful_slow",
+      "text": "你叫什么名字？",
+      "seconds": 1.84,
+      "sha256": "ac8a3478361152500488ff0ed7f9c5391c800d2c5944794ac6bc244149f91f06",
+      "instruct": "慢速、清楚、自然地朗读。",
+      "seed": 13,
+      "path": "/audio/mandarin/nijiaoshenmemingzi-slow.wav"
+    },
+    {
+      "item": "xiexie",
+      "variant": "natural",
+      "text": "谢谢",
+      "seconds": 0.64,
+      "sha256": "96fdefc32f47038a01c469d4d3538489c7067e74307624e70a08f5243f48af80",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/xiexie.wav"
+    },
+    {
+      "item": "xiexie",
+      "variant": "careful_slow",
+      "text": "谢谢",
+      "seconds": 0.96,
+      "sha256": "37ceace011694935399c1edb7c0c61b677f757497f26b9179f6e6310cb308c0c",
+      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
+      "path": "/audio/mandarin/xiexie-slow.wav"
+    },
+    {
+      "item": "zaijian",
+      "variant": "natural",
+      "text": "再见",
+      "seconds": 0.72,
+      "sha256": "49d4ed9c3bacdb643af52dba102e30f803cab0e904363d6a2c9ce7c8b1392709",
+      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
+      "path": "/audio/mandarin/zaijian.wav"
+    },
+    {
+      "item": "zaijian",
+      "variant": "careful_slow",
+      "text": "再见",
+      "seconds": 1.12,
+      "sha256": "9d4175340e6309927decf11699e274e36978419efa60852b1e70cf6a2f20cbe5",
+      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
+      "path": "/audio/mandarin/zaijian-slow.wav"
+    },
+    {
+      "item": "ma1",
+      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
+      "license": "CC-BY-SA-4.0",
+      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
+      "targetPoints": [
+        [
+          0,
+          205
+        ],
+        [
+          1,
+          205
+        ]
+      ],
+      "voicedRangeSeconds": [
+        0.15,
+        0.75
+      ],
+      "measuredHz": [
+        [
+          0.19,
+          206.9
+        ],
+        [
+          0.21,
+          205.0
+        ],
+        [
+          0.23,
+          205.1
+        ],
+        [
+          0.25,
+          205.1
+        ],
+        [
+          0.27,
+          204.8
+        ],
+        [
+          0.29,
+          204.3
+        ],
+        [
+          0.31,
+          204.9
+        ],
+        [
+          0.33,
+          205.1
+        ],
+        [
+          0.35,
+          205.0
+        ],
+        [
+          0.37,
+          205.0
+        ],
+        [
+          0.39,
+          205.1
+        ],
+        [
+          0.41,
+          205.1
+        ],
+        [
+          0.43,
+          205.0
+        ],
+        [
+          0.45,
+          205.1
+        ],
+        [
+          0.47,
+          204.9
+        ],
+        [
+          0.49,
+          205.1
+        ],
+        [
+          0.51,
+          204.9
+        ],
+        [
+          0.53,
+          205.1
+        ],
+        [
+          0.55,
+          205.0
+        ],
+        [
+          0.57,
+          204.9
+        ],
+        [
+          0.59,
+          205.1
+        ],
+        [
+          0.61,
+          205.0
+        ],
+        [
+          0.63,
+          205.0
+        ],
+        [
+          0.65,
+          205.1
+        ],
+        [
+          0.67,
+          204.9
+        ],
+        [
+          0.69,
+          205.0
+        ],
+        [
+          0.71,
+          205.0
+        ],
+        [
+          0.73,
+          205.0
+        ]
+      ],
+      "sha256": "daee5122fab7af9f15dff5455264999d62f6f653c27f3459747c2e6a8f21e4bd",
+      "path": "/audio/mandarin/ma1.wav",
+      "variant": "didactic_contour",
+      "seconds": 1
+    },
+    {
+      "item": "ma2",
+      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
+      "license": "CC-BY-SA-4.0",
+      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
+      "targetPoints": [
+        [
+          0,
+          115
+        ],
+        [
+          0.25,
+          120
+        ],
+        [
+          1,
+          225
+        ]
+      ],
+      "voicedRangeSeconds": [
+        0.15,
+        0.75
+      ],
+      "measuredHz": [
+        [
+          0.21,
+          116.6
+        ],
+        [
+          0.23,
+          117.7
+        ],
+        [
+          0.25,
+          118.5
+        ],
+        [
+          0.27,
+          118.8
+        ],
+        [
+          0.29,
+          119.6
+        ],
+        [
+          0.31,
+          122.1
+        ],
+        [
+          0.33,
+          127.0
+        ],
+        [
+          0.35,
+          131.6
+        ],
+        [
+          0.37,
+          136.4
+        ],
+        [
+          0.39,
+          140.7
+        ],
+        [
+          0.41,
+          145.7
+        ],
+        [
+          0.43,
+          150.2
+        ],
+        [
+          0.45,
+          154.9
+        ],
+        [
+          0.47,
+          159.4
+        ],
+        [
+          0.49,
+          164.4
+        ],
+        [
+          0.51,
+          169.0
+        ],
+        [
+          0.53,
+          173.8
+        ],
+        [
+          0.55,
+          178.2
+        ],
+        [
+          0.57,
+          182.8
+        ],
+        [
+          0.59,
+          187.5
+        ],
+        [
+          0.61,
+          192.2
+        ],
+        [
+          0.63,
+          196.9
+        ],
+        [
+          0.65,
+          201.6
+        ],
+        [
+          0.67,
+          206.0
+        ],
+        [
+          0.69,
+          210.7
+        ],
+        [
+          0.71,
+          215.4
+        ],
+        [
+          0.73,
+          220.0
+        ]
+      ],
+      "sha256": "38e2252b06032d498a9f3ce5f98641fe0077b5bd42696a8fabbb87bf7788821b",
+      "path": "/audio/mandarin/ma2.wav",
+      "variant": "didactic_contour",
+      "seconds": 1
+    },
+    {
+      "item": "ma3",
+      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
+      "license": "CC-BY-SA-4.0",
+      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
+      "targetPoints": [
+        [
+          0,
+          175
+        ],
+        [
+          0.45,
+          95
+        ],
+        [
+          0.6,
+          100
+        ],
+        [
+          1,
+          210
+        ]
+      ],
+      "voicedRangeSeconds": [
+        0.15,
+        0.75
+      ],
+      "measuredHz": [
+        [
+          0.21,
+          155.5
+        ],
+        [
+          0.23,
+          151.1
+        ],
+        [
+          0.25,
+          145.1
+        ],
+        [
+          0.27,
+          138.9
+        ],
+        [
+          0.29,
+          132.3
+        ],
+        [
+          0.31,
+          127.6
+        ],
+        [
+          0.33,
+          122.3
+        ],
+        [
+          0.35,
+          116.0
+        ],
+        [
+          0.37,
+          109.9
+        ],
+        [
+          0.39,
+          104.2
+        ],
+        [
+          0.41,
+          98.3
+        ],
+        [
+          0.43,
+          95.5
+        ],
+        [
+          0.45,
+          96.7
+        ],
+        [
+          0.47,
+          97.7
+        ],
+        [
+          0.49,
+          98.9
+        ],
+        [
+          0.51,
+          100.8
+        ],
+        [
+          0.53,
+          109.4
+        ],
+        [
+          0.55,
+          118.3
+        ],
+        [
+          0.57,
+          127.4
+        ],
+        [
+          0.59,
+          136.6
+        ],
+        [
+          0.61,
+          145.7
+        ],
+        [
+          0.63,
+          154.9
+        ],
+        [
+          0.65,
+          163.8
+        ],
+        [
+          0.67,
+          172.8
+        ],
+        [
+          0.69,
+          182.0
+        ],
+        [
+          0.71,
+          191.3
+        ],
+        [
+          0.73,
+          200.1
+        ]
+      ],
+      "sha256": "3c7a539af3e3b7e0da19a24970f3c118d68933d8ed01e7714fa9f46e03d99ac5",
+      "path": "/audio/mandarin/ma3.wav",
+      "variant": "didactic_contour",
+      "seconds": 1
+    },
+    {
+      "item": "ma4",
+      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
+      "license": "CC-BY-SA-4.0",
+      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
+      "targetPoints": [
+        [
+          0,
+          235
+        ],
+        [
+          0.15,
+          225
+        ],
+        [
+          1,
+          95
+        ]
+      ],
+      "voicedRangeSeconds": [
+        0.15,
+        0.75
+      ],
+      "measuredHz": [
+        [
+          0.21,
+          227.3
+        ],
+        [
+          0.23,
+          226.2
+        ],
+        [
+          0.25,
+          222.4
+        ],
+        [
+          0.27,
+          216.7
+        ],
+        [
+          0.29,
+          210.3
+        ],
+        [
+          0.31,
+          207.0
+        ],
+        [
+          0.33,
+          202.4
+        ],
+        [
+          0.35,
+          197.0
+        ],
+        [
+          0.37,
+          192.2
+        ],
+        [
+          0.39,
+          187.0
+        ],
+        [
+          0.41,
+          181.8
+        ],
+        [
+          0.43,
+          176.7
+        ],
+        [
+          0.45,
+          171.6
+        ],
+        [
+          0.47,
+          166.4
+        ],
+        [
+          0.49,
+          161.5
+        ],
+        [
+          0.51,
+          156.1
+        ],
+        [
+          0.53,
+          151.3
+        ],
+        [
+          0.55,
+          145.9
+        ],
+        [
+          0.57,
+          140.9
+        ],
+        [
+          0.59,
+          136.0
+        ],
+        [
+          0.61,
+          130.8
+        ],
+        [
+          0.63,
+          125.8
+        ],
+        [
+          0.65,
+          120.6
+        ],
+        [
+          0.67,
+          115.7
+        ],
+        [
+          0.69,
+          110.5
+        ],
+        [
+          0.71,
+          105.5
+        ],
+        [
+          0.73,
+          100.5
+        ]
+      ],
+      "sha256": "361233e8aac231049e54c049a4427b47d4fa75df336c7e73cbf1a586b7ffbeb1",
+      "path": "/audio/mandarin/ma4.wav",
+      "variant": "didactic_contour",
+      "seconds": 1
+    }
+  ],
+  "license": "Apache-2.0 model; generated synthetic preset voice, no voice cloning",
+  "listeningAcceptance": "pending",
+  "runtimePlaybackRate": 1
+}
