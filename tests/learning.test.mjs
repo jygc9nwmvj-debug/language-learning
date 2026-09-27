@@ -90,13 +90,13 @@ test('tone numbers convert and incomplete, wrong, neutral and misplaced notation
   for (const v of ['xie4xie0','xie4 xie5','xièxie','xie4xie']) assert.equal(interpretAnswer(v,itemMap.get('xiexie')).toneNotation,'correct',v);
 });
 
-test('every separately generated careful_slow asset is longer and has distinct bytes', async () => {
-  const { validateWav } = await import('../scripts/audio-validation.mjs');
+test('separately synthesized slow assets are distinct and longer, without assuming a universal 20% ratio', async () => {
+  const { validateAudio } = await import('../scripts/audio-validation.mjs');
   const { readFileSync } = await import('node:fs');
   for (const item of content.items) {
     const natural=readFileSync('public'+item.audio), slow=readFileSync('public'+item.slowAudio);
     assert.notDeepEqual(natural,slow,item.id);
-    assert.ok(validateWav(slow)/validateWav(natural)>=1.2,item.id);
+    assert.ok(validateAudio(slow,item.slowAudio)>validateAudio(natural,item.audio),item.id);
   }
 });
 

@@ -14,7 +14,7 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled }: {
   const [practiceChecked, setPracticeChecked] = useState(false);
   const [practice, setPractice] = useState(''), [practiced, setPracticed] = useState(false), [practiceFeedback, setPracticeFeedback] = useState('');
   const target = [2, 4, 3][question];
-  return <div className="stepStack"><p>{ui.toneIntro}</p><p className="muted">1: hoch und eben · 2: steigend · 3: fallend, dann steigend · 4: fallend. Die vier Lehrbeispiele haben gezielt bearbeitete Tonhöhenkonturen. Hier hörst du Ton 3 als vollständige Einzelkontur. In flüssiger Sprache bleibt er oft tief; nicht jedes Wort macht dieselbe volle Kurve.</p><div className="toneGrid">{tones.map((tone, i) => <div className="toneCard" key={tone.pinyin}>
+  return <div className="stepStack"><p>{ui.toneIntro}</p><p className="muted">1: hoch und eben · 2: steigend · 3: fallend, dann steigend · 4: fallend. Die vier Lehrbeispiele wurden einzeln mit vorgegebenen Tönen synthetisiert. Hier hörst du Ton 3 als vollständige Einzelkontur. In flüssiger Sprache bleibt er oft tief; nicht jedes Wort macht dieselbe volle Kurve.</p><div className="toneGrid">{tones.map((tone, i) => <div className="toneCard" key={tone.pinyin}>
     <AudioButton src={tone.audio!} label={`Ton ${i + 1}`} onPlay={() => onEvent('audio_replay')} />
     {revealed && <><strong>{tone.pinyin}</strong><span lang="zh">{tone[script]}</span><span>{tone.meaning.de[0]}</span></>}
   </div>)}</div>
@@ -29,7 +29,7 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled }: {
       {!practiceChecked && <button type="submit" disabled={!practice.trim() || disabled}>Prüfen</button>}{practiceChecked && !practiced && <button type="button" onClick={() => { setPracticeChecked(false); setPracticeFeedback(''); }}>Noch einmal versuchen</button>}{practiceFeedback && <p role="status">{practiceFeedback}</p>}
       {practiced && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}
     </form>}<Recorder onEvent={onEvent} /><p className="muted">{ui.toneUncertain}</p></>}
-    <p className="privacyNote"><a href="/licenses/mandarin-tones.html" target="_blank" rel="noreferrer">Lehrbeispiele nach Wolfdog · bearbeitet · CC BY-SA 4.0</a></p>
+    <p className="privacyNote">Referenzaudio: Amazon Polly · Zhiyu.</p>
   </div>;
 }
 

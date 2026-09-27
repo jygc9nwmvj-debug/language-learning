@@ -4,7 +4,7 @@ import { numberedToPinyin } from '../pinyin.ts';
 const text = z.string().trim().min(1);
 const meaning = z.strictObject({ de: z.array(text).min(1), en: z.array(text).min(1) });
 const review = z.strictObject({ reviewStatus: text.optional(), sources: z.array(z.string().url()).optional(), reviewDate: text.optional(), notes: text.optional() }).optional();
-const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.wav$/);
+const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.(?:wav|mp3)$/);
 // Deliberately limited to the existing lesson, not a general Mandarin dictionary.
 const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma']);
 const word = z.strictObject({ id: text, hant: z.string().regex(/^\p{Script=Han}+$/u), hans: z.string().regex(/^\p{Script=Han}+$/u),

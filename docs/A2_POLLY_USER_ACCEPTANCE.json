@@ -1,0 +1,158 @@
+{
+  "comparison": "a2-polly-controlled-v1",
+  "at": "2026-09-27T18:56:27.164Z",
+  "notes": {
+    "ni-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "wo-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "ma1-isolated": {
+      "pronunciation": "yes",
+      "tone": "unsure",
+      "pace": "yes"
+    },
+    "ma2-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "ma3-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "ma4-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "nihao-natural": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "nihao-careful_slow": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "unsure"
+    },
+    "askname-natural": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "no"
+    },
+    "askname-careful_slow": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "hao-isolated": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "xiexie-natural": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "xiexie-careful_slow": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "wojiao_name-natural": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    },
+    "wojiao_name-careful_slow": {
+      "pronunciation": "yes",
+      "tone": "yes",
+      "pace": "yes"
+    }
+  },
+  "assets": [
+    {
+      "id": "ni",
+      "variant": "isolated",
+      "sha256": "b1957e43a5d1a71deaaa2a3f33a0f95f01dc53b43c71b83c2c09943b1a46158c"
+    },
+    {
+      "id": "wo",
+      "variant": "isolated",
+      "sha256": "eeabf8649e49b2150de06c6867e8f70879fa6fd29f8941e305eddf2b1c9f8a8c"
+    },
+    {
+      "id": "hao",
+      "variant": "isolated",
+      "sha256": "78d1fc183733624248141f6af50cccefc095e2ef0bf08ffc86a907182e430c75"
+    },
+    {
+      "id": "ma1",
+      "variant": "isolated",
+      "sha256": "98f6d9b46065db92bafc64727c44c0a1ca441407fae4add8f0d5ef8d854580e2"
+    },
+    {
+      "id": "ma2",
+      "variant": "isolated",
+      "sha256": "7dcf7e894caab5e60081998e0ca99ceb5a9ec20504b946b8d98a737a7118f3f5"
+    },
+    {
+      "id": "ma3",
+      "variant": "isolated",
+      "sha256": "a39e6bd35b546f9a8eeec50a5f8958fc3eb791f4d7ceba2d75feb56721bce70c"
+    },
+    {
+      "id": "ma4",
+      "variant": "isolated",
+      "sha256": "cb8c0ececad893bb85406f96700a6d4673e1b17778b9d7ed22fad6678f8f9c65"
+    },
+    {
+      "id": "nihao",
+      "variant": "natural",
+      "sha256": "ad2ccd44c543d39de4e2dc41807a0f5229464ad99bf84afdb46b2e7ef8589d2f"
+    },
+    {
+      "id": "nihao",
+      "variant": "careful_slow",
+      "sha256": "8ed7fb785378d061cb165608b532e469d01cc8399e3d997c18f68a1fb3cc77f1"
+    },
+    {
+      "id": "xiexie",
+      "variant": "natural",
+      "sha256": "d37e0919df6dcedef74694ad28f431be18ca999faf08940df346235d8e1917da"
+    },
+    {
+      "id": "xiexie",
+      "variant": "careful_slow",
+      "sha256": "649c52eaa5b394b8b004ccc8e0b649039439d0f0f028a0f2c00405dea1391512"
+    },
+    {
+      "id": "wojiao_name",
+      "variant": "natural",
+      "sha256": "aa1edd2991a7e523a84bf8f200f2bab9a07ef7a55168362961a9a8f9d8b28685"
+    },
+    {
+      "id": "wojiao_name",
+      "variant": "careful_slow",
+      "sha256": "20cdfce6010f86e00ed83dd909d3f008cb514428e7efc97e69c9a9c6ae24c3c3"
+    },
+    {
+      "id": "askname",
+      "variant": "natural",
+      "sha256": "eafcbff3864d210104b1b5745ca9384e437d9356276856d02c45be857a14394b"
+    },
+    {
+      "id": "askname",
+      "variant": "careful_slow",
+      "sha256": "8bac3c3b628be37be6a39a7310c15b1f0243eec065e099ff90ae4a081179c586"
+    }
+  ]
+}

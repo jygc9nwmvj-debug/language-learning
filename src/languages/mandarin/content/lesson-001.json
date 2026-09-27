@@ -1,12 +1,12 @@
 {
-  "version": "lesson1-a2-audio",
+  "version": "lesson1-a2-polly",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
     {
       "id": "nihao",
-      "audio": "/audio/mandarin/nihao.wav",
-      "slowAudio": "/audio/mandarin/nihao-slow.wav",
+      "audio": "/audio/mandarin/polly-nihao.mp3",
+      "slowAudio": "/audio/mandarin/polly-nihao-slow.mp3",
       "words": [
         "ni",
         "hao"
@@ -23,7 +23,7 @@
     },
     {
       "id": "wo",
-      "audio": "/audio/mandarin/wo.wav",
+      "audio": "/audio/mandarin/polly-wo.mp3",
       "slowAudio": "/audio/mandarin/wo-slow.wav",
       "words": [
         "wo"
@@ -31,7 +31,7 @@
     },
     {
       "id": "ni",
-      "audio": "/audio/mandarin/ni.wav",
+      "audio": "/audio/mandarin/polly-ni.mp3",
       "slowAudio": "/audio/mandarin/ni-slow.wav",
       "words": [
         "ni"
@@ -39,7 +39,7 @@
     },
     {
       "id": "hao",
-      "audio": "/audio/mandarin/hao.wav",
+      "audio": "/audio/mandarin/polly-hao.mp3",
       "slowAudio": "/audio/mandarin/hao-slow.wav",
       "words": [
         "hao"
@@ -47,8 +47,8 @@
     },
     {
       "id": "wojiao",
-      "audio": "/audio/mandarin/wojiao.wav",
-      "slowAudio": "/audio/mandarin/wojiao-slow.wav",
+      "audio": "/audio/mandarin/polly-wojiao.mp3",
+      "slowAudio": "/audio/mandarin/polly-wojiao-slow.mp3",
       "words": [
         "wo",
         "jiao"
@@ -65,8 +65,8 @@
     },
     {
       "id": "askname",
-      "audio": "/audio/mandarin/nijiaoshenmemingzi.wav",
-      "slowAudio": "/audio/mandarin/nijiaoshenmemingzi-slow.wav",
+      "audio": "/audio/mandarin/polly-askname.mp3",
+      "slowAudio": "/audio/mandarin/polly-askname-slow.mp3",
       "words": [
         "ni",
         "jiao",
@@ -87,8 +87,8 @@
     },
     {
       "id": "xiexie",
-      "audio": "/audio/mandarin/xiexie.wav",
-      "slowAudio": "/audio/mandarin/xiexie-slow.wav",
+      "audio": "/audio/mandarin/polly-xiexie.mp3",
+      "slowAudio": "/audio/mandarin/polly-xiexie-slow.mp3",
       "words": [
         "xiexie"
       ]
@@ -529,7 +529,7 @@
           "mother"
         ]
       },
-      "audio": "/audio/mandarin/ma1.wav"
+      "audio": "/audio/mandarin/polly-ma1.mp3"
     },
     {
       "id": "ma2",
@@ -544,7 +544,7 @@
           "hemp"
         ]
       },
-      "audio": "/audio/mandarin/ma2.wav"
+      "audio": "/audio/mandarin/polly-ma2.mp3"
     },
     {
       "id": "ma3",
@@ -559,7 +559,7 @@
           "horse"
         ]
       },
-      "audio": "/audio/mandarin/ma3.wav"
+      "audio": "/audio/mandarin/polly-ma3.mp3"
     },
     {
       "id": "ma4",
@@ -574,7 +574,7 @@
           "to scold"
         ]
       },
-      "audio": "/audio/mandarin/ma4.wav"
+      "audio": "/audio/mandarin/polly-ma4.mp3"
     }
   ],
   "toneExamples": [

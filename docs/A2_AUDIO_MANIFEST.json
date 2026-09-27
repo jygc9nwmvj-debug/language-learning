@@ -1,82 +1,784 @@
 {
-  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-4bit",
-  "revision": "f35faf19b0cc2160865af64ecf0f22f83d335135",
-  "voice": "Serena",
-  "speed": 1,
-  "seed": 42,
-  "temperature": 0.6,
+  "version": 2,
+  "qualityStates": [
+    "generated",
+    "technically_validated",
+    "user_accepted",
+    "needs_human_review"
+  ],
+  "note": "User acceptance is not expert certification. Needs-human-review is permitted provisionally by explicit user decision. Five legacy assets remain outside the Polly acceptance set.",
   "assets": [
+    {
+      "item": "ni",
+      "variant": "natural",
+      "text": "你",
+      "pinyin": "nǐ",
+      "path": "/audio/mandarin/polly-ni.mp3",
+      "sha256": "b1957e43a5d1a71deaaa2a3f33a0f95f01dc53b43c71b83c2c09943b1a46158c",
+      "seconds": 0.6,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3\">你</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.6,
+          "speechSpanSeconds": 0.36,
+          "syllablesPerSecond": 2.78,
+          "peakDbfs": -12.72,
+          "activeRmsDbfs": -22.14,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.09,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "wo",
+      "variant": "natural",
+      "text": "我",
+      "pinyin": "wǒ",
+      "path": "/audio/mandarin/polly-wo.mp3",
+      "sha256": "eeabf8649e49b2150de06c6867e8f70879fa6fd29f8941e305eddf2b1c9f8a8c",
+      "seconds": 0.624,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3\">我</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.624,
+          "speechSpanSeconds": 0.35,
+          "syllablesPerSecond": 2.86,
+          "peakDbfs": -11.01,
+          "activeRmsDbfs": -22.38,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.17,
+          "trailingSeconds": 0.104,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "hao",
+      "variant": "natural",
+      "text": "好",
+      "pinyin": "hǎo",
+      "path": "/audio/mandarin/polly-hao.mp3",
+      "sha256": "78d1fc183733624248141f6af50cccefc095e2ef0bf08ffc86a907182e430c75",
+      "seconds": 0.648,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"hao3\">好</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.648,
+          "speechSpanSeconds": 0.38,
+          "syllablesPerSecond": 2.63,
+          "peakDbfs": -11.87,
+          "activeRmsDbfs": -25.06,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.18,
+          "trailingSeconds": 0.088,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "ma1",
+      "variant": "natural",
+      "text": "妈",
+      "pinyin": "mā",
+      "path": "/audio/mandarin/polly-ma1.mp3",
+      "sha256": "98f6d9b46065db92bafc64727c44c0a1ca441407fae4add8f0d5ef8d854580e2",
+      "seconds": 0.6,
+      "qualityState": "needs_human_review",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma1\">妈</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.6,
+          "speechSpanSeconds": 0.31,
+          "syllablesPerSecond": 3.23,
+          "peakDbfs": -11.77,
+          "activeRmsDbfs": -21.84,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.14,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 1,
+            "medianHz": 236.1,
+            "thirdsSemitones": [
+              -0.65,
+              0.0,
+              1.04
+            ],
+            "spanSemitones": 2.08,
+            "frames": 27,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "unsure",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ]
+    },
+    {
+      "item": "ma2",
+      "variant": "natural",
+      "text": "麻",
+      "pinyin": "má",
+      "path": "/audio/mandarin/polly-ma2.mp3",
+      "sha256": "7dcf7e894caab5e60081998e0ca99ceb5a9ec20504b946b8d98a737a7118f3f5",
+      "seconds": 0.6,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma2\">麻</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.6,
+          "speechSpanSeconds": 0.32,
+          "syllablesPerSecond": 3.12,
+          "peakDbfs": -12.87,
+          "activeRmsDbfs": -24.25,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.13,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 2,
+            "medianHz": 183.9,
+            "thirdsSemitones": [
+              -0.0,
+              -1.34,
+              3.37
+            ],
+            "spanSemitones": 5.91,
+            "frames": 28,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "ma3",
+      "variant": "natural",
+      "text": "马",
+      "pinyin": "mǎ",
+      "path": "/audio/mandarin/polly-ma3.mp3",
+      "sha256": "a39e6bd35b546f9a8eeec50a5f8958fc3eb791f4d7ceba2d75feb56721bce70c",
+      "seconds": 0.672,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma3\">马</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.672,
+          "speechSpanSeconds": 0.41,
+          "syllablesPerSecond": 2.44,
+          "peakDbfs": -11.5,
+          "activeRmsDbfs": -24.87,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.112,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 3,
+            "medianHz": 172.2,
+            "thirdsSemitones": [
+              1.27,
+              -1.54,
+              1.46
+            ],
+            "spanSemitones": 4.43,
+            "frames": 37,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "ma4",
+      "variant": "natural",
+      "text": "骂",
+      "pinyin": "mà",
+      "path": "/audio/mandarin/polly-ma4.mp3",
+      "sha256": "cb8c0ececad893bb85406f96700a6d4673e1b17778b9d7ed22fad6678f8f9c65",
+      "seconds": 0.528,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma4\">骂</phoneme></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.528,
+          "speechSpanSeconds": 0.27,
+          "syllablesPerSecond": 3.7,
+          "peakDbfs": -13.87,
+          "activeRmsDbfs": -22.11,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.108,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 4,
+            "medianHz": 241.4,
+            "thirdsSemitones": [
+              1.51,
+              -0.24,
+              -4.4
+            ],
+            "spanSemitones": 6.43,
+            "frames": 23,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
     {
       "item": "nihao",
       "variant": "natural",
       "text": "你好",
-      "seconds": 0.56,
-      "sha256": "c00426e8b5e07542af45aa5d50926fd16e201b8162843c21c35bfe27a1ffeae9",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/nihao.wav",
-      "expected": {
-        "hans": "你好",
-        "hant": "你好",
-        "pinyin": "nǐ hǎo",
-        "toneNumbers": "ni3 hao3",
-        "tones": [
-          3,
-          3
-        ]
+      "pinyin": "nǐ hǎo",
+      "path": "/audio/mandarin/polly-nihao.mp3",
+      "sha256": "ad2ccd44c543d39de4e2dc41807a0f5229464ad99bf84afdb46b2e7ef8589d2f",
+      "seconds": 0.816,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni2-hao3\">你好</phoneme></prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.816,
+          "speechSpanSeconds": 0.56,
+          "syllablesPerSecond": 3.57,
+          "peakDbfs": -11.96,
+          "activeRmsDbfs": -21.92,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.106,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
     },
     {
       "item": "nihao",
       "variant": "careful_slow",
       "text": "你好",
-      "seconds": 2.4,
-      "sha256": "7f5c6b686fa363cdea0d7ad792841b1cd23d2fb39e9f0600f560e2edfc069278",
-      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
-      "path": "/audio/mandarin/nihao-slow.wav",
-      "expected": {
-        "hans": "你好",
-        "hant": "你好",
-        "pinyin": "nǐ hǎo",
-        "toneNumbers": "ni3 hao3",
-        "tones": [
-          3,
-          3
-        ]
+      "pinyin": "nǐ hǎo",
+      "path": "/audio/mandarin/polly-nihao-slow.mp3",
+      "sha256": "8ed7fb785378d061cb165608b532e469d01cc8399e3d997c18f68a1fb3cc77f1",
+      "seconds": 0.912,
+      "qualityState": "needs_human_review",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni2-hao3\">你好</phoneme></prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.912,
+          "speechSpanSeconds": 0.65,
+          "syllablesPerSecond": 3.08,
+          "peakDbfs": -11.95,
+          "activeRmsDbfs": -21.86,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.112,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": [
+            "pace"
+          ]
+        }
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "rejected",
-        "reviewer": "learner",
-        "sha256": "7f5c6b686fa363cdea0d7ad792841b1cd23d2fb39e9f0600f560e2edfc069278",
-        "reason": "Too slow and unnatural"
-      }
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "unsure"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ]
     },
     {
-      "item": "wo",
+      "item": "xiexie",
       "variant": "natural",
-      "text": "我。",
-      "seconds": 0.64,
-      "sha256": "db40991bf4dcd90f5621d81eb3e0d2e80eb8bfa66c626e7fab07dd5a631622fd",
-      "instruct": "标准普通话，正常说话，只读文字，不要拖长。",
-      "seed": 42,
-      "path": "/audio/mandarin/wo.wav",
-      "expected": {
-        "hans": "我",
-        "hant": "我",
-        "pinyin": "wǒ",
-        "toneNumbers": "wo3",
-        "tones": [
-          3
-        ]
+      "text": "谢谢",
+      "pinyin": "xièxie",
+      "path": "/audio/mandarin/polly-xiexie.mp3",
+      "sha256": "d37e0919df6dcedef74694ad28f431be18ca999faf08940df346235d8e1917da",
+      "seconds": 0.792,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"xie4-xie0\">谢谢</phoneme></prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.792,
+          "speechSpanSeconds": 0.54,
+          "syllablesPerSecond": 3.7,
+          "peakDbfs": -11.4,
+          "activeRmsDbfs": -23.17,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.16,
+          "trailingSeconds": 0.092,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "xiexie",
+      "variant": "careful_slow",
+      "text": "谢谢",
+      "pinyin": "xièxie",
+      "path": "/audio/mandarin/polly-xiexie-slow.mp3",
+      "sha256": "649c52eaa5b394b8b004ccc8e0b649039439d0f0f028a0f2c00405dea1391512",
+      "seconds": 0.912,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"xie4-xie0\">谢谢</phoneme></prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 0.912,
+          "speechSpanSeconds": 0.64,
+          "syllablesPerSecond": 3.12,
+          "peakDbfs": -11.67,
+          "activeRmsDbfs": -23.05,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.16,
+          "trailingSeconds": 0.112,
+          "maximumInternalPauseSeconds": 0.0,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": [
+            "pace"
+          ]
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "wojiao",
+      "variant": "natural",
+      "text": "我叫 Wolfram",
+      "pinyin": "wǒ jiào Wolfram",
+      "path": "/audio/mandarin/polly-wojiao.mp3",
+      "sha256": "aa1edd2991a7e523a84bf8f200f2bab9a07ef7a55168362961a9a8f9d8b28685",
+      "seconds": 1.296,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3-jiao4\">我叫</phoneme> Wolfram</prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 1.296,
+          "speechSpanSeconds": 1.04,
+          "syllablesPerSecond": null,
+          "peakDbfs": -11.62,
+          "activeRmsDbfs": -22.48,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.106,
+          "maximumInternalPauseSeconds": 0.01,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "wojiao",
+      "variant": "careful_slow",
+      "text": "我叫 Wolfram",
+      "pinyin": "wǒ jiào Wolfram",
+      "path": "/audio/mandarin/polly-wojiao-slow.mp3",
+      "sha256": "20cdfce6010f86e00ed83dd909d3f008cb514428e7efc97e69c9a9c6ae24c3c3",
+      "seconds": 1.536,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3-jiao4\">我叫</phoneme> Wolfram</prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 1.536,
+          "speechSpanSeconds": 1.24,
+          "syllablesPerSecond": null,
+          "peakDbfs": -12.02,
+          "activeRmsDbfs": -22.43,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.146,
+          "maximumInternalPauseSeconds": 0.02,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": []
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
+    },
+    {
+      "item": "askname",
+      "variant": "natural",
+      "text": "你叫什么名字？",
+      "pinyin": "nǐ jiào shénme míngzi?",
+      "path": "/audio/mandarin/polly-askname.mp3",
+      "sha256": "0bf97e931533accaa4fc2327e24afac65352983e3310c3741f5864451b3c742f",
+      "seconds": 1.608,
+      "qualityState": "needs_human_review",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"80%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3-jiao4-shen2-me0-ming2-zi0\">你叫什么名字</phoneme>？</prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 1.608,
+          "speechSpanSeconds": 1.31,
+          "syllablesPerSecond": 4.58,
+          "peakDbfs": -12.28,
+          "activeRmsDbfs": -21.41,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.16,
+          "trailingSeconds": 0.138,
+          "maximumInternalPauseSeconds": 0.03,
+          "pitch": {
+            "status": "not_applicable",
+            "reason": "connected_speech_not_graded_as_citation_tones"
+          },
+          "issues": [
+            "pace"
+          ]
+        }
+      },
+      "userReview": {
+        "status": "not_reviewed_after_tempo_change",
+        "previousRatings": {
+          "source": "a2-polly-abnahme.json",
+          "at": "2026-09-27T18:56:27.164Z",
+          "ratings": {
+            "pronunciation": "yes",
+            "tone": "yes",
+            "pace": "no"
+          }
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ]
+    },
+    {
+      "item": "askname",
+      "variant": "careful_slow",
+      "text": "你叫什么名字？",
+      "pinyin": "nǐ jiào shénme míngzi?",
+      "path": "/audio/mandarin/polly-askname-slow.mp3",
+      "sha256": "8bac3c3b628be37be6a39a7310c15b1f0243eec065e099ff90ae4a081179c586",
+      "seconds": 1.704,
+      "qualityState": "user_accepted",
+      "provider": "Amazon Polly",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3-jiao4-shen2-me0-ming2-zi0\">你叫什么名字</phoneme>？</prosody></speak>",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "decode, level, clipping, silence; pace/pitch are warnings only",
+        "measurements": {
+          "durationSeconds": 1.704,
+          "speechSpanSeconds": 1.41,
+          "syllablesPerSecond": 4.26,
+          "peakDbfs": -12.69,
+          "activeRmsDbfs": -21.51,
+          "clippedFraction": 0.0,
+          "leadingSeconds": 0.16,
+          "trailingSeconds": 0.134,
+          "maximumInternalPauseSeconds": 0.02,
+          "pitch": {
+            "status": "not_evaluated"
+          },
+          "issues": [
+            "pace"
+          ]
+        }
+      },
+      "userReview": {
+        "source": "a2-polly-abnahme.json",
+        "at": "2026-09-27T18:56:27.164Z",
+        "ratings": {
+          "pronunciation": "yes",
+          "tone": "yes",
+          "pace": "yes"
+        }
+      },
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "user_accepted"
+      ]
     },
     {
       "item": "wo",
@@ -99,31 +801,8 @@
       "qualityState": "generated",
       "humanReview": {
         "status": "pending"
-      }
-    },
-    {
-      "item": "ni",
-      "variant": "natural",
-      "text": "你",
-      "seconds": 0.56,
-      "sha256": "0b08c656d9d736ca18ad09355e2cd78fe9859b80ec99ca6f17e3d0a4951df07c",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/ni.wav",
-      "expected": {
-        "hans": "你",
-        "hant": "你",
-        "pinyin": "nǐ",
-        "toneNumbers": "ni3",
-        "tones": [
-          3
-        ]
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending",
-        "reason": "Learner reported unconvincing ni without specifying variant; both held for review",
-        "sha256": "0b08c656d9d736ca18ad09355e2cd78fe9859b80ec99ca6f17e3d0a4951df07c"
-      }
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
     },
     {
       "item": "ni",
@@ -148,29 +827,8 @@
         "status": "pending",
         "reason": "Learner reported unconvincing ni without specifying variant; both held for review",
         "sha256": "23dbc6abfdad4b14976878e0a5ad4a378f4954646381e7171627f6ad5e527859"
-      }
-    },
-    {
-      "item": "hao",
-      "variant": "natural",
-      "text": "好",
-      "seconds": 0.72,
-      "sha256": "49ac9ad1485875e0ca8f22a6d4580b009c0c2f58d539ba95f1253485525b6d6f",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/hao.wav",
-      "expected": {
-        "hans": "好",
-        "hant": "好",
-        "pinyin": "hǎo",
-        "toneNumbers": "hao3",
-        "tones": [
-          3
-        ]
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
     },
     {
       "item": "hao",
@@ -192,157 +850,8 @@
       "qualityState": "generated",
       "humanReview": {
         "status": "pending"
-      }
-    },
-    {
-      "item": "wojiao",
-      "variant": "natural",
-      "text": "我叫",
-      "seconds": 0.72,
-      "sha256": "41f649b8aa18235927f9f40ee03326c02dc72d04008e6bfaee9600bd3f3473d4",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/wojiao.wav",
-      "expected": {
-        "hans": "我叫",
-        "hant": "我叫",
-        "pinyin": "wǒ jiào",
-        "toneNumbers": "wo3 jiao4",
-        "tones": [
-          3,
-          4
-        ]
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "wojiao",
-      "variant": "careful_slow",
-      "text": "我叫",
-      "seconds": 2.16,
-      "sha256": "572c373a2676f9d9ddedc890ea630a976aefbff3babac5c8a895fd0d20afe295",
-      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
-      "path": "/audio/mandarin/wojiao-slow.wav",
-      "expected": {
-        "hans": "我叫",
-        "hant": "我叫",
-        "pinyin": "wǒ jiào",
-        "toneNumbers": "wo3 jiao4",
-        "tones": [
-          3,
-          4
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "askname",
-      "variant": "natural",
-      "text": "你叫什么名字？",
-      "seconds": 1.2,
-      "sha256": "087a4f720103c7a19860879ef39791d739c7f324a2af2e87f9f63c730d232c02",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/nijiaoshenmemingzi.wav",
-      "expected": {
-        "hans": "你叫什么名字？",
-        "hant": "你叫什麼名字？",
-        "pinyin": "nǐ jiào shénme míngzi",
-        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5",
-        "tones": [
-          3,
-          4,
-          2,
-          5,
-          2,
-          5
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "rejected",
-        "reviewer": "learner",
-        "sha256": "087a4f720103c7a19860879ef39791d739c7f324a2af2e87f9f63c730d232c02",
-        "reason": "Too fast for a beginner"
-      }
-    },
-    {
-      "item": "askname",
-      "variant": "careful_slow",
-      "text": "你叫什么名字？",
-      "seconds": 1.84,
-      "sha256": "ac8a3478361152500488ff0ed7f9c5391c800d2c5944794ac6bc244149f91f06",
-      "instruct": "慢速、清楚、自然地朗读。",
-      "seed": 13,
-      "path": "/audio/mandarin/nijiaoshenmemingzi-slow.wav",
-      "expected": {
-        "hans": "你叫什么名字？",
-        "hant": "你叫什麼名字？",
-        "pinyin": "nǐ jiào shénme míngzi",
-        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5",
-        "tones": [
-          3,
-          4,
-          2,
-          5,
-          2,
-          5
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "xiexie",
-      "variant": "natural",
-      "text": "谢谢",
-      "seconds": 0.64,
-      "sha256": "96fdefc32f47038a01c469d4d3538489c7067e74307624e70a08f5243f48af80",
-      "instruct": "用标准普通话，温和清楚地自然说话，适合初学者听。保持自然声调，不夸张，只说给定的文字。",
-      "path": "/audio/mandarin/xiexie.wav",
-      "expected": {
-        "hans": "谢谢",
-        "hant": "謝謝",
-        "pinyin": "xièxie",
-        "toneNumbers": "xie4 xie5",
-        "tones": [
-          4,
-          5
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "xiexie",
-      "variant": "careful_slow",
-      "text": "谢谢",
-      "seconds": 0.96,
-      "sha256": "37ceace011694935399c1edb7c0c61b677f757497f26b9179f6e6310cb308c0c",
-      "instruct": "你是耐心的普通话老师，正在给零基础学生做慢速跟读示范。逐字仔细发音，语速明显慢，每个音节清晰完整，音节之间有短暂的自然停顿。保持正常音高和自然音色，不拖腔，不唱歌。只说给定的文字。",
-      "path": "/audio/mandarin/xiexie-slow.wav",
-      "expected": {
-        "hans": "谢谢",
-        "hant": "謝謝",
-        "pinyin": "xièxie",
-        "toneNumbers": "xie4 xie5",
-        "tones": [
-          4,
-          5
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
     },
     {
       "item": "zaijian",
@@ -365,7 +874,8 @@
       "qualityState": "generated",
       "humanReview": {
         "status": "pending"
-      }
+      },
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
     },
     {
       "item": "zaijian",
@@ -388,619 +898,8 @@
       "qualityState": "generated",
       "humanReview": {
         "status": "pending"
-      }
-    },
-    {
-      "item": "ma1",
-      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
-      "license": "CC-BY-SA-4.0",
-      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
-      "targetPoints": [
-        [
-          0,
-          205
-        ],
-        [
-          1,
-          205
-        ]
-      ],
-      "voicedRangeSeconds": [
-        0.15,
-        0.75
-      ],
-      "measuredHz": [
-        [
-          0.19,
-          206.9
-        ],
-        [
-          0.21,
-          205
-        ],
-        [
-          0.23,
-          205.1
-        ],
-        [
-          0.25,
-          205.1
-        ],
-        [
-          0.27,
-          204.8
-        ],
-        [
-          0.29,
-          204.3
-        ],
-        [
-          0.31,
-          204.9
-        ],
-        [
-          0.33,
-          205.1
-        ],
-        [
-          0.35,
-          205
-        ],
-        [
-          0.37,
-          205
-        ],
-        [
-          0.39,
-          205.1
-        ],
-        [
-          0.41,
-          205.1
-        ],
-        [
-          0.43,
-          205
-        ],
-        [
-          0.45,
-          205.1
-        ],
-        [
-          0.47,
-          204.9
-        ],
-        [
-          0.49,
-          205.1
-        ],
-        [
-          0.51,
-          204.9
-        ],
-        [
-          0.53,
-          205.1
-        ],
-        [
-          0.55,
-          205
-        ],
-        [
-          0.57,
-          204.9
-        ],
-        [
-          0.59,
-          205.1
-        ],
-        [
-          0.61,
-          205
-        ],
-        [
-          0.63,
-          205
-        ],
-        [
-          0.65,
-          205.1
-        ],
-        [
-          0.67,
-          204.9
-        ],
-        [
-          0.69,
-          205
-        ],
-        [
-          0.71,
-          205
-        ],
-        [
-          0.73,
-          205
-        ]
-      ],
-      "sha256": "daee5122fab7af9f15dff5455264999d62f6f653c27f3459747c2e6a8f21e4bd",
-      "path": "/audio/mandarin/ma1.wav",
-      "variant": "didactic_contour",
-      "seconds": 1,
-      "expected": {
-        "hans": "妈",
-        "hant": "媽",
-        "pinyin": "mā",
-        "toneNumbers": "ma1",
-        "tones": [
-          1
-        ]
       },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "ma2",
-      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
-      "license": "CC-BY-SA-4.0",
-      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
-      "targetPoints": [
-        [
-          0,
-          115
-        ],
-        [
-          0.25,
-          120
-        ],
-        [
-          1,
-          225
-        ]
-      ],
-      "voicedRangeSeconds": [
-        0.15,
-        0.75
-      ],
-      "measuredHz": [
-        [
-          0.21,
-          116.6
-        ],
-        [
-          0.23,
-          117.7
-        ],
-        [
-          0.25,
-          118.5
-        ],
-        [
-          0.27,
-          118.8
-        ],
-        [
-          0.29,
-          119.6
-        ],
-        [
-          0.31,
-          122.1
-        ],
-        [
-          0.33,
-          127
-        ],
-        [
-          0.35,
-          131.6
-        ],
-        [
-          0.37,
-          136.4
-        ],
-        [
-          0.39,
-          140.7
-        ],
-        [
-          0.41,
-          145.7
-        ],
-        [
-          0.43,
-          150.2
-        ],
-        [
-          0.45,
-          154.9
-        ],
-        [
-          0.47,
-          159.4
-        ],
-        [
-          0.49,
-          164.4
-        ],
-        [
-          0.51,
-          169
-        ],
-        [
-          0.53,
-          173.8
-        ],
-        [
-          0.55,
-          178.2
-        ],
-        [
-          0.57,
-          182.8
-        ],
-        [
-          0.59,
-          187.5
-        ],
-        [
-          0.61,
-          192.2
-        ],
-        [
-          0.63,
-          196.9
-        ],
-        [
-          0.65,
-          201.6
-        ],
-        [
-          0.67,
-          206
-        ],
-        [
-          0.69,
-          210.7
-        ],
-        [
-          0.71,
-          215.4
-        ],
-        [
-          0.73,
-          220
-        ]
-      ],
-      "sha256": "38e2252b06032d498a9f3ce5f98641fe0077b5bd42696a8fabbb87bf7788821b",
-      "path": "/audio/mandarin/ma2.wav",
-      "variant": "didactic_contour",
-      "seconds": 1,
-      "expected": {
-        "hans": "麻",
-        "hant": "麻",
-        "pinyin": "má",
-        "toneNumbers": "ma2",
-        "tones": [
-          2
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "ma3",
-      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
-      "license": "CC-BY-SA-4.0",
-      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
-      "targetPoints": [
-        [
-          0,
-          175
-        ],
-        [
-          0.45,
-          95
-        ],
-        [
-          0.6,
-          100
-        ],
-        [
-          1,
-          210
-        ]
-      ],
-      "voicedRangeSeconds": [
-        0.15,
-        0.75
-      ],
-      "measuredHz": [
-        [
-          0.21,
-          155.5
-        ],
-        [
-          0.23,
-          151.1
-        ],
-        [
-          0.25,
-          145.1
-        ],
-        [
-          0.27,
-          138.9
-        ],
-        [
-          0.29,
-          132.3
-        ],
-        [
-          0.31,
-          127.6
-        ],
-        [
-          0.33,
-          122.3
-        ],
-        [
-          0.35,
-          116
-        ],
-        [
-          0.37,
-          109.9
-        ],
-        [
-          0.39,
-          104.2
-        ],
-        [
-          0.41,
-          98.3
-        ],
-        [
-          0.43,
-          95.5
-        ],
-        [
-          0.45,
-          96.7
-        ],
-        [
-          0.47,
-          97.7
-        ],
-        [
-          0.49,
-          98.9
-        ],
-        [
-          0.51,
-          100.8
-        ],
-        [
-          0.53,
-          109.4
-        ],
-        [
-          0.55,
-          118.3
-        ],
-        [
-          0.57,
-          127.4
-        ],
-        [
-          0.59,
-          136.6
-        ],
-        [
-          0.61,
-          145.7
-        ],
-        [
-          0.63,
-          154.9
-        ],
-        [
-          0.65,
-          163.8
-        ],
-        [
-          0.67,
-          172.8
-        ],
-        [
-          0.69,
-          182
-        ],
-        [
-          0.71,
-          191.3
-        ],
-        [
-          0.73,
-          200.1
-        ]
-      ],
-      "sha256": "3c7a539af3e3b7e0da19a24970f3c118d68933d8ed01e7714fa9f46e03d99ac5",
-      "path": "/audio/mandarin/ma3.wav",
-      "variant": "didactic_contour",
-      "seconds": 1,
-      "expected": {
-        "hans": "马",
-        "hant": "馬",
-        "pinyin": "mǎ",
-        "toneNumbers": "ma3",
-        "tones": [
-          3
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
-    },
-    {
-      "item": "ma4",
-      "source": "Wolfdog, FourMandarinTones.ogg, 0.30–1.30s",
-      "license": "CC-BY-SA-4.0",
-      "method": "Praat overlap-add resynthesis, pitch tier only, no duration manipulation",
-      "targetPoints": [
-        [
-          0,
-          235
-        ],
-        [
-          0.15,
-          225
-        ],
-        [
-          1,
-          95
-        ]
-      ],
-      "voicedRangeSeconds": [
-        0.15,
-        0.75
-      ],
-      "measuredHz": [
-        [
-          0.21,
-          227.3
-        ],
-        [
-          0.23,
-          226.2
-        ],
-        [
-          0.25,
-          222.4
-        ],
-        [
-          0.27,
-          216.7
-        ],
-        [
-          0.29,
-          210.3
-        ],
-        [
-          0.31,
-          207
-        ],
-        [
-          0.33,
-          202.4
-        ],
-        [
-          0.35,
-          197
-        ],
-        [
-          0.37,
-          192.2
-        ],
-        [
-          0.39,
-          187
-        ],
-        [
-          0.41,
-          181.8
-        ],
-        [
-          0.43,
-          176.7
-        ],
-        [
-          0.45,
-          171.6
-        ],
-        [
-          0.47,
-          166.4
-        ],
-        [
-          0.49,
-          161.5
-        ],
-        [
-          0.51,
-          156.1
-        ],
-        [
-          0.53,
-          151.3
-        ],
-        [
-          0.55,
-          145.9
-        ],
-        [
-          0.57,
-          140.9
-        ],
-        [
-          0.59,
-          136
-        ],
-        [
-          0.61,
-          130.8
-        ],
-        [
-          0.63,
-          125.8
-        ],
-        [
-          0.65,
-          120.6
-        ],
-        [
-          0.67,
-          115.7
-        ],
-        [
-          0.69,
-          110.5
-        ],
-        [
-          0.71,
-          105.5
-        ],
-        [
-          0.73,
-          100.5
-        ]
-      ],
-      "sha256": "361233e8aac231049e54c049a4427b47d4fa75df336c7e73cbf1a586b7ffbeb1",
-      "path": "/audio/mandarin/ma4.wav",
-      "variant": "didactic_contour",
-      "seconds": 1,
-      "expected": {
-        "hans": "骂",
-        "hant": "罵",
-        "pinyin": "mà",
-        "toneNumbers": "ma4",
-        "tones": [
-          4
-        ]
-      },
-      "qualityState": "generated",
-      "humanReview": {
-        "status": "pending"
-      }
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
     }
-  ],
-  "license": "Apache-2.0 model; generated synthetic preset voice, no voice cloning",
-  "listeningAcceptance": "pending",
-  "runtimePlaybackRate": 1,
-  "qaStatus": "evaluation-only; no reference audio approved; tool choice pending"
+  ]
 }

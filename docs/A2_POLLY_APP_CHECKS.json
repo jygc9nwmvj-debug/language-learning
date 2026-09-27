@@ -1,0 +1,18 @@
+[
+  {
+    "browser": "Chrome",
+    "appStarted": true,
+    "referenceButtonClicked": true,
+    "decoded": 20,
+    "offlineFiles": 20,
+    "errors": []
+  },
+  {
+    "browser": "WebKit",
+    "appStarted": true,
+    "referenceButtonClicked": true,
+    "decoded": 20,
+    "offlineFiles": 20,
+    "errors": []
+  }
+]
