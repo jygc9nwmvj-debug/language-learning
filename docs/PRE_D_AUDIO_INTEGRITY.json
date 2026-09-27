@@ -1,0 +1,236 @@
+{
+  "url": "https://language-learning-abk.pages.dev",
+  "checkedAt": "2026-09-27T20:14:44.283Z",
+  "productionCache": "mandarin-v01-ffe905eff251c666",
+  "assetCount": 20,
+  "hashMismatches": 0,
+  "unknownShipped": [],
+  "unknownEmbedded": [],
+  "embeddedReferences": [
+    "/audio/mandarin/hao-slow.wav",
+    "/audio/mandarin/ni-slow.wav",
+    "/audio/mandarin/polly-askname-slow.mp3",
+    "/audio/mandarin/polly-askname.mp3",
+    "/audio/mandarin/polly-hao.mp3",
+    "/audio/mandarin/polly-ma1.mp3",
+    "/audio/mandarin/polly-ma2.mp3",
+    "/audio/mandarin/polly-ma3.mp3",
+    "/audio/mandarin/polly-ma4.mp3",
+    "/audio/mandarin/polly-ni.mp3",
+    "/audio/mandarin/polly-nihao-slow.mp3",
+    "/audio/mandarin/polly-nihao.mp3",
+    "/audio/mandarin/polly-wo.mp3",
+    "/audio/mandarin/polly-wojiao-slow.mp3",
+    "/audio/mandarin/polly-wojiao.mp3",
+    "/audio/mandarin/polly-xiexie-slow.mp3",
+    "/audio/mandarin/polly-xiexie.mp3",
+    "/audio/mandarin/wo-slow.wav",
+    "/audio/mandarin/zaijian-slow.wav",
+    "/audio/mandarin/zaijian.wav"
+  ],
+  "errors": [],
+  "assets": [
+    {
+      "item": "ni",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-ni.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "b1957e43a5d1a71deaaa2a3f33a0f95f01dc53b43c71b83c2c09943b1a46158c",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "wo",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-wo.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "eeabf8649e49b2150de06c6867e8f70879fa6fd29f8941e305eddf2b1c9f8a8c",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "hao",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-hao.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "78d1fc183733624248141f6af50cccefc095e2ef0bf08ffc86a907182e430c75",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "ma1",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-ma1.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "98f6d9b46065db92bafc64727c44c0a1ca441407fae4add8f0d5ef8d854580e2",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "ma2",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-ma2.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "7dcf7e894caab5e60081998e0ca99ceb5a9ec20504b946b8d98a737a7118f3f5",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "ma3",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-ma3.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "a39e6bd35b546f9a8eeec50a5f8958fc3eb791f4d7ceba2d75feb56721bce70c",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "ma4",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-ma4.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "cb8c0ececad893bb85406f96700a6d4673e1b17778b9d7ed22fad6678f8f9c65",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "nihao",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-nihao.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "ad2ccd44c543d39de4e2dc41807a0f5229464ad99bf84afdb46b2e7ef8589d2f",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "nihao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/polly-nihao-slow.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "8ed7fb785378d061cb165608b532e469d01cc8399e3d997c18f68a1fb3cc77f1",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "xiexie",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-xiexie.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "d37e0919df6dcedef74694ad28f431be18ca999faf08940df346235d8e1917da",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "xiexie",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/polly-xiexie-slow.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "649c52eaa5b394b8b004ccc8e0b649039439d0f0f028a0f2c00405dea1391512",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "wojiao",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-wojiao.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "aa1edd2991a7e523a84bf8f200f2bab9a07ef7a55168362961a9a8f9d8b28685",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "wojiao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/polly-wojiao-slow.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "20cdfce6010f86e00ed83dd909d3f008cb514428e7efc97e69c9a9c6ae24c3c3",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "askname",
+      "variant": "natural",
+      "path": "/audio/mandarin/polly-askname.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "0bf97e931533accaa4fc2327e24afac65352983e3310c3741f5864451b3c742f",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "askname",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/polly-askname-slow.mp3",
+      "provider": "Amazon Polly",
+      "sha256": "8bac3c3b628be37be6a39a7310c15b1f0243eec065e099ff90ae4a081179c586",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "wo",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/wo-slow.wav",
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "sha256": "32d94054f86be0bd0ea8e61f6e699a8fcb74795a6349247d12e118a2f6f16aca",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "ni",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/ni-slow.wav",
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "sha256": "23dbc6abfdad4b14976878e0a5ad4a378f4954646381e7171627f6ad5e527859",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "hao",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/hao-slow.wav",
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "sha256": "90d829de9da2490888b0578d68ad26d8c1ad9636223465cbe934d1d34d77603b",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "zaijian",
+      "variant": "natural",
+      "path": "/audio/mandarin/zaijian.wav",
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "sha256": "49d4ed9c3bacdb643af52dba102e30f803cab0e904363d6a2c9ce7c8b1392709",
+      "matchesManifest": true,
+      "precached": true
+    },
+    {
+      "item": "zaijian",
+      "variant": "careful_slow",
+      "path": "/audio/mandarin/zaijian-slow.wav",
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "sha256": "9d4175340e6309927decf11699e274e36978419efa60852b1e70cf6a2f20cbe5",
+      "matchesManifest": true,
+      "precached": true
+    }
+  ],
+  "localBuildFiles": [
+    "hao-slow.wav",
+    "ni-slow.wav",
+    "polly-askname-slow.mp3",
+    "polly-askname.mp3",
+    "polly-hao.mp3",
+    "polly-ma1.mp3",
+    "polly-ma2.mp3",
+    "polly-ma3.mp3",
+    "polly-ma4.mp3",
+    "polly-ni.mp3",
+    "polly-nihao-slow.mp3",
+    "polly-nihao.mp3",
+    "polly-wo.mp3",
+    "polly-wojiao-slow.mp3",
+    "polly-wojiao.mp3",
+    "polly-xiexie-slow.mp3",
+    "polly-xiexie.mp3",
+    "wo-slow.wav",
+    "zaijian-slow.wav",
+    "zaijian.wav"
+  ]
+}

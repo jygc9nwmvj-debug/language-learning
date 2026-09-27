@@ -67,7 +67,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "wo",
@@ -128,7 +129,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "hao",
@@ -189,7 +191,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "ma1",
@@ -260,7 +263,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "ma2",
@@ -331,7 +335,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "ma3",
@@ -402,7 +407,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "ma4",
@@ -473,7 +479,8 @@
         "textType": "ssml",
         "ratePercent": 100
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "nihao",
@@ -534,7 +541,8 @@
         "textType": "ssml",
         "ratePercent": 90
       },
-      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained"
+      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained",
+      "productionUse": "polly_reference"
     },
     {
       "item": "nihao",
@@ -597,7 +605,8 @@
         "textType": "ssml",
         "ratePercent": 75
       },
-      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained"
+      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained",
+      "productionUse": "polly_reference"
     },
     {
       "item": "xiexie",
@@ -658,7 +667,8 @@
         "textType": "ssml",
         "ratePercent": 90
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "xiexie",
@@ -721,7 +731,8 @@
         "textType": "ssml",
         "ratePercent": 75
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "wojiao",
@@ -782,7 +793,8 @@
         "textType": "ssml",
         "ratePercent": 90
       },
-      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example"
+      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example",
+      "productionUse": "polly_reference"
     },
     {
       "item": "wojiao",
@@ -843,7 +855,8 @@
         "textType": "ssml",
         "ratePercent": 75
       },
-      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example"
+      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example",
+      "productionUse": "polly_reference"
     },
     {
       "item": "askname",
@@ -910,7 +923,8 @@
         "textType": "ssml",
         "ratePercent": 80
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "askname",
@@ -973,7 +987,8 @@
         "textType": "ssml",
         "ratePercent": 75
       },
-      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML",
+      "productionUse": "polly_reference"
     },
     {
       "item": "wo",
@@ -997,7 +1012,9 @@
       "humanReview": {
         "status": "pending"
       },
-      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "productionUse": "legacy_exception",
+      "productionReason": "Existing A2 reference retained: no corresponding Polly variant exists; replacement or removal requires a separate content/audio decision. Not user accepted."
     },
     {
       "item": "ni",
@@ -1023,7 +1040,9 @@
         "reason": "Learner reported unconvincing ni without specifying variant; both held for review",
         "sha256": "23dbc6abfdad4b14976878e0a5ad4a378f4954646381e7171627f6ad5e527859"
       },
-      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "productionUse": "legacy_exception",
+      "productionReason": "Existing A2 reference retained: no corresponding Polly variant exists; replacement or removal requires a separate content/audio decision. Not user accepted."
     },
     {
       "item": "hao",
@@ -1046,7 +1065,9 @@
       "humanReview": {
         "status": "pending"
       },
-      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "productionUse": "legacy_exception",
+      "productionReason": "Existing A2 reference retained: no corresponding Polly variant exists; replacement or removal requires a separate content/audio decision. Not user accepted."
     },
     {
       "item": "zaijian",
@@ -1070,7 +1091,9 @@
       "humanReview": {
         "status": "pending"
       },
-      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "productionUse": "legacy_exception",
+      "productionReason": "Existing A2 reference retained: no corresponding Polly variant exists; replacement or removal requires a separate content/audio decision. Not user accepted."
     },
     {
       "item": "zaijian",
@@ -1094,7 +1117,9 @@
       "humanReview": {
         "status": "pending"
       },
-      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest"
+      "provider": "legacy Qwen/Praat; see PRE_POLLY manifest",
+      "productionUse": "legacy_exception",
+      "productionReason": "Existing A2 reference retained: no corresponding Polly variant exists; replacement or removal requires a separate content/audio decision. Not user accepted."
     }
   ]
 }

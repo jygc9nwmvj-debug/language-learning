@@ -75,7 +75,7 @@ test('database attempts and research log are atomic; backup validates before mer
 test('audio validation rejects header-only files even when the TTS command exits successfully', async () => {
   const { validateWav } = await import('../scripts/audio-validation.mjs');
   const { readFileSync } = await import('node:fs');
-  assert.ok(validateWav(readFileSync('public/audio/mandarin/nihao.wav')) > .1);
+  assert.ok(validateWav(readFileSync('tools/audio-archive/nihao.wav')) > .1);
   const wav = Buffer.alloc(44); wav.write('RIFF'); wav.writeUInt32LE(36, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16); wav.writeUInt32LE(44100, 28); wav.write('data', 36);
   assert.throws(() => validateWav(wav), /Empty or silent/);
 });
