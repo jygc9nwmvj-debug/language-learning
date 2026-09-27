@@ -63,7 +63,7 @@ export function LessonRunner() {
     if (!session || !task) return;
     await mutation(async () => {
       const history = await db.events.where('sessionId').equals(session.id).toArray();
-      const exposed = history.some(event => event.taskId === task.id && event.detail.index === session.index && ['pinyin_reveal', 'writing_hint', 'stroke_animation', 'guided_start', 'answer_clarification', 'attempt'].includes(event.type));
+      const exposed = history.some(event => event.taskId === task.id && event.detail.index === session.index && ['pinyin_reveal', 'writing_hint', 'writing_stroke_hint', 'writing_preview', 'stroke_animation', 'guided_start', 'answer_clarification', 'attempt'].includes(event.type));
       const assisted = e.assisted || exposed;
       const objectId = tone ? `cmn:tone:${tone}` : objectFor(task, session.script);
       const target = tone ? 'perception' as const : task.target!;
@@ -110,11 +110,11 @@ export function LessonRunner() {
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin · Foundation 01</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><span role="status">{offline === 'development' ? ui.offlineDevelopment : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion A2 · {ui.prototype}</p></section>}
+      {errorBox}{settings}<p className="prototypeNote">Testversion B · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><button type="button" disabled={busy} className="textButton" onClick={() => safe(pause)}>{ui.pause}</button></header>
       <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'writing' && !task.recall ? 'Schreiben lernen' : task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin · 01' : ui.recall}</p><h2>{task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Die Lektion beginnt von vorn. Dein bisheriger Lernverlauf bleibt erhalten.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
-          : <><Exercise key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => safe(() => next())} />
+          : <><Exercise key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} />
             <button type="button" className="skipButton" disabled={busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
       </section></>}
     {view === 'done' && <section className="card"><p className="eyebrow">Mandarin · 01</p><h1>{ui.closeTitle}</h1><p className="lead">{ui.closeBody}</p>{errorBox}{repeatLesson}<p className="muted">Die Lektion beginnt von vorn. Dein bisheriger Lernverlauf bleibt erhalten.</p>

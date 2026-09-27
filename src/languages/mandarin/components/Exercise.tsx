@@ -12,13 +12,13 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
   onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void;
   onAttempt: (e: Evidence) => Promise<void>; onTone: (tone: number, correct: boolean) => Promise<void>;
-  onNext: () => void; disabled: boolean;
+  onNext: () => void | Promise<void>; disabled: boolean;
 }) {
   const [help, setHelp] = useState(false); const [input, setInput] = useState('');
   const [heard, setHeard] = useState(false); const [feedback, setFeedback] = useState('');
   const [answered, setAnswered] = useState(false);
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
-  const submitting = useRef(false);
+  const submitting = useRef(false), writingRecorded = useRef(false);
   const item = itemMap.get(task.itemId ?? '') as Item;
   const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} onPlay={() => { setHeard(true); onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
   const reveal = () => { setHelp(true); onEvent('pinyin_reveal'); };
@@ -41,7 +41,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   }
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'writing') return <WritingExercise recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={r => { void onAttempt({ ...r, detail: { mode: r.mode, selfReport: true } }).then(onNext).catch(() => {}); }} />;
+  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } await onNext(); }} />;
   const reference = <div className="reference"><p lang={`zh-${script === 'hant' ? 'Hant' : 'Hans'}`} className="hanziSentence">{item[script]}{item.slot === 'name' ? ' …' : ''}</p><p className="pinyin">{item.pinyin}{item.slot === 'name' ? ' …' : ''}</p><p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <div className="stepStack">
     <div className="buttonRow">{audio()}{item.slowAudio && audio(true)}</div>

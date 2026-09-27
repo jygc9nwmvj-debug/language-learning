@@ -9,7 +9,7 @@ async function snapshot(page: Page) {
 }
 const next = (page: Page) => page.getByRole('button', { name: 'Weiter', exact: true }).click();
 test('complete Lesson 1, honest evidence, backup, offline cold reopen and delayed review', async ({ page, context }) => {
-  test.setTimeout(90000);
+  test.setTimeout(150000);
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('/'); await expect(page.getByText('Für offline bereit', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
@@ -36,13 +36,14 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
       await page.getByRole('button', { name: 'Anhören', exact: true }).click();
       await page.getByRole('button', { name: id === 'tone-wo' ? '3' : '4', exact: true }).click();
       await next(page);
-    } else if (id === 'write-guided' || id === 'write-recall') {
-      if (id === 'write-guided') await paperIntroduction(page);
-      else { await expect(page.locator('.lessonCard .hanziLarge')).toHaveCount(0); await expect(page.locator('.writingCanvas')).toBeVisible(); }
-      if (id === 'write-recall') await page.getByRole('button', { name: 'Auf Papier schreiben' }).click();
-      await page.getByRole('button', { name: 'Ich habe geschrieben' }).click();
-      await page.getByRole('button', { name: 'Mit der Vorlage vergleichen' }).click();
-      await page.getByRole('button', { name: 'Sicher', exact: true }).click();
+    } else if (id.startsWith('write-')) {
+      if (id !== 'write-recall') await paperIntroduction(page, id === 'write-guided' ? 4 : 3);
+      else {
+        await expect(page.locator('.lessonCard .hanziLarge')).toHaveCount(0);
+        await page.getByRole('button', { name: 'Auf Papier schreiben', exact: true }).click();
+        await page.getByRole('button', { name: 'Ich habe geschrieben – vergleichen', exact: true }).click();
+        await page.getByRole('button', { name: 'Sicher', exact: true }).click();
+      }
     } else {
       const answers: Record<string,string> = { 'hear-nihao':'hallo','hear-askname':'wie heißt du','read-wo':'ich','read-ni':'du','read-hao':'gut','recall-wojiao':'wo jiao Wolfram','recall-nihao':'ni hao','recall-xiexie':'xiexie','recall-zaijian':'zai jian' };
       if (id.startsWith('hear-')) await page.getByRole('button', { name: 'Anhören', exact: true }).click();

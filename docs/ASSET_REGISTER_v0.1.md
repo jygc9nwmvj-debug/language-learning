@@ -54,7 +54,7 @@ Tarball SHA-1: `09ce12eb1c47d86aeb33313e622f17ba5cbac1ad`.
 Source: https://github.com/chanind/hanzi-writer-data (derived from Make Me a Hanzi / Arphic fonts).
 Copyright (C) 1999 Arphic Technology Co., Ltd. License: Arphic Public License,
 retained verbatim at `public/licenses/ARPHICPL.txt`.
-Only this character is bundled. Hanzi Writer uses the supplied JSON loader, never its default CDN.
+Build B also bundles unmodified 你.json and 我.json from the same pinned package version (see BUILD_B_WRITING_FOUNDATION.md). Hanzi Writer uses the supplied JSON loader, never its default CDN.
 Hanzi Writer 3.7.3: MIT, David Chanin; notice at `public/licenses/hanzi-writer-MIT.txt`.
 
 ## Icons and worksheet

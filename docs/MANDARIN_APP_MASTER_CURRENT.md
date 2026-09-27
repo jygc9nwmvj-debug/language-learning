@@ -998,3 +998,12 @@ The local React build now implements the minimal Lesson-1 loop. See
 `IMPLEMENTATION_STATUS_v0.1.md` for tested behavior and the remaining real-device/audio gates.
 This replaces “READY FOR MAC BUILD” as the technical status; it does **not** assert that the
 real-device learning-success criterion has been established. No Lesson 2 before that evaluation.
+
+
+## 36. Build B checkpoint — 2026-09-27
+
+The user-authorized Writing Foundation narrows this build to the existing 好 / 你 / 我 targets.
+See `BUILD_B_WRITING_FOUNDATION.md`: fixed gradual guidance, real learner SVG strokes without snapping,
+Hanzi Writer recognition and animation, immediate feedback, and the unchanged paper worksheet.
+Four/three immediate productions are a test hypothesis. No new vocabulary, adaptive engine,
+Continuous Learning, Identity/Sync or Research Mode was added. Lesson 2 remains on hold.

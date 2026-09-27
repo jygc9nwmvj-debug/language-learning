@@ -6,8 +6,7 @@ export async function openWriting(page: Page) {
   for (let n = 0; n < 5; n++) await page.getByRole('button', { name: 'Überspringen', exact: true }).click();
 }
 export async function observe(page: Page) {
-  await page.getByRole('button', { name: 'Strichfolge ansehen', exact: true }).click();
-  await page.getByRole('button', { name: 'Jetzt selbst schreiben', exact: true }).click({ timeout: 15000 });
+  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase', 'writing', { timeout: 20000 });
 }
 export async function drawStroke(page: Page, path: number[][], selector = '.hanziWriter') {
   await page.locator(selector).scrollIntoViewIfNeeded();
@@ -22,15 +21,15 @@ export async function drawStroke(page: Page, path: number[][], selector = '.hanz
 export async function writeHao(page: Page, selector = '.hanziWriter') {
   for (const path of hao.medians) await drawStroke(page, path, selector);
 }
-export async function paperIntroduction(page: Page) {
-  await observe(page); await page.getByRole('button', { name: 'Auf Papier schreiben' }).click();
-  for (let n = 0; n < 3; n++) {
-    await page.getByRole('button', { name: 'Ich habe geschrieben' }).click();
-    await page.getByRole('button', { name: 'Mit der Vorlage vergleichen' }).click();
+export async function paperIntroduction(page: Page, productions = 4) {
+  await observe(page); await page.getByRole('button', { name: 'Auf Papier schreiben', exact: true }).click();
+  for (let n = 0; n < productions; n++) {
+    await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase', 'writing');
+    await page.getByRole('button', { name: 'Ich habe geschrieben – vergleichen', exact: true }).click();
     await page.getByRole('button', { name: 'Sicher', exact: true }).click();
+    await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase', 'success');
+    if (n < productions - 1) await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase', 'writing');
   }
-  await page.getByRole('button', { name: 'Zeichen kurz ansehen' }).click();
-  await expect(page.getByText('Gleich verschwindet die Vorlage.')).toBeHidden();
 }
 export async function research(page: Page) {
   return page.evaluate(async () => {

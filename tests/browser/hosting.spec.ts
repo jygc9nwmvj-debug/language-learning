@@ -21,7 +21,7 @@ test('Cloudflare-style index redirect: reload and offline navigation use the unr
   try {
     await page.goto(`http://127.0.0.1:${port}/`);
     await expect(page.getByText('Für offline bereit',{exact:true})).toBeVisible();
-    await page.reload(); await expect(page.getByText(/Testversion A2/)).toBeVisible();
+    await page.reload(); await expect(page.getByText(/Testversion B/)).toBeVisible();
     // Stop the origin instead of WebKit's broken offline-emulation switch (Playwright #42775).
     server.closeAllConnections();await new Promise<void>(resolve=>server.close(()=>resolve()));
     await page.reload();
@@ -63,10 +63,10 @@ test('legacy offline app updates with two open tabs and preserves learner Indexe
     await expect.poll(()=>page.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration();return r?.active?.state==='activated' && !r.installing && !r.waiting ? caches.has('mandarin-v01-legacy').then(async()=> (await caches.keys()).filter(k=>k.startsWith('mandarin-v01-')).length===2) : false;})).toBe(true);
     // Neither open tab is closed and no automatic reload loses the typed answer.
     await expect(other.getByLabel('Ungespeicherte Antwort')).toHaveValue('wo3');
-    await page.reload();await expect(page.getByText(/Testversion A2/)).toBeVisible();
+    await page.reload();await expect(page.getByText(/Testversion B/)).toBeVisible();
     expect(await other.evaluate(()=>fetch('/assets/old.js').then(r=>r.text()))).toBe('legacy-asset');
     expect(await page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('learner-update-proof');q.onsuccess=()=>r(q.result);});return new Promise(r=>{const q=db.transaction('progress').objectStore('progress').get('sentinel');q.onsuccess=()=>{r(q.result);db.close();};});})).toBe('keep-my-progress');
     server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));
-    await page.reload();await expect(page.getByText(/Testversion A2/)).toBeVisible();
+    await page.reload();await expect(page.getByText(/Testversion B/)).toBeVisible();
   }finally{await other.close();await page.close();server.closeAllConnections();if(server.listening)await new Promise<void>(r=>server.close(()=>r()));}
 });

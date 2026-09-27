@@ -1,5 +1,5 @@
 {
-  "version": "lesson1-a2-polly",
+  "version": "lesson1-b-writing",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
@@ -358,6 +358,26 @@
         "de": "Welchen Ton hat die erste Silbe von „danke“?"
       },
       "toneIndex": 0
+    },
+    {
+      "id": "write-ni",
+      "kind": "writing",
+      "prompt": {
+        "de": "Schreibe das Zeichen für „du“."
+      },
+      "itemId": "ni",
+      "target": "writing",
+      "recall": false
+    },
+    {
+      "id": "write-wo",
+      "kind": "writing",
+      "prompt": {
+        "de": "Schreibe das Zeichen für „ich“."
+      },
+      "itemId": "wo",
+      "target": "writing",
+      "recall": false
     }
   ],
   "initialPlan": [
@@ -373,12 +393,14 @@
     "meet-askname",
     "read-wo",
     "read-ni",
+    "write-ni",
     "meet-xiexie",
     "meet-zaijian",
     "tone-jiao",
     "recall-wojiao",
     "hear-askname",
     "read-hao",
+    "write-wo",
     "recall-nihao",
     "tone-xie",
     "recall-xiexie",

@@ -27,7 +27,7 @@ export class LearningDatabase extends Dexie {
 }
 export const db = new LearningDatabase();
 export async function logEvent(event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
-  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: 'lesson1-a1' });
+  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: 'lesson1-b-writing' });
 }
 export async function recordAttempt(attempt: Attempt, event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
   await db.transaction('rw', db.relations, db.events, async () => {
