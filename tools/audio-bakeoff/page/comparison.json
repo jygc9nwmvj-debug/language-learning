@@ -1,0 +1,509 @@
+{
+  "id": "a2-bakeoff-20260927-v1",
+  "targets": [
+    {
+      "id": "ni",
+      "hans": "你",
+      "pinyin": "nǐ",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/69209b31de2ed6524407.wav",
+              "sha256": "69209b31de2ed65244076f52fe9131aabe40c0aeb97f8daf0b15d34397cd2ae1"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/db042dfd057640ae277b.wav",
+              "sha256": "db042dfd057640ae277b409c6151d1f522fc04c0cb4ee8d3e41c972a120dbc80"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/73d537be43e303b20a50.wav",
+              "sha256": "73d537be43e303b20a50290b5ea87e4ced2d4f968eb4f5fa1713e6070f2b8759"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wo",
+      "hans": "我",
+      "pinyin": "wǒ",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/d70d1cae14144da56be8.wav",
+              "sha256": "d70d1cae14144da56be8b98085b9942e854b7ed9d47fab53858372013b7c0697"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/a14430baa77c55c30de5.wav",
+              "sha256": "a14430baa77c55c30de5ec898c726e16c100ffdb32a532fc1e594e249ac487a3"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/0464ad2676464d700953.wav",
+              "sha256": "0464ad2676464d700953930933bab7d7184edc5953a58d4cf91f67cf973c399c"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hao",
+      "hans": "好",
+      "pinyin": "hǎo",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/70c7e7386b6168524c5e.wav",
+              "sha256": "70c7e7386b6168524c5ef4b1ff53c601764417896ed2cace021318495f5efb78"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/bf146e524cec71809aa4.wav",
+              "sha256": "bf146e524cec71809aa4dea5b90f6fa9606b33e4ad6389ac5d124f6842123ce6"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/cf16faea52b5a6c4366f.wav",
+              "sha256": "cf16faea52b5a6c4366f4b0585038d5abe03c4f2d80a24d4f7b8a3de187dcd1a"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nihao",
+      "hans": "你好",
+      "pinyin": "nǐ hǎo",
+      "variants": [
+        "natural",
+        "careful_slow"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/2b2ffe5b98d0d8a26455.wav",
+              "sha256": "2b2ffe5b98d0d8a26455c95b98f50c716dab5ab079a409cf2c706c611d685c57"
+            },
+            "careful_slow": {
+              "file": "audio/57bb25c55d69d6baeb77.wav",
+              "sha256": "57bb25c55d69d6baeb77bbad5f0127005f0587dd5ff955a4f47a73c46df6d121"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/64bca9f5f0378d89b6e6.wav",
+              "sha256": "64bca9f5f0378d89b6e61b2e934684bc9824e58b0d584ec81c96fc90ef24c5ca"
+            },
+            "careful_slow": {
+              "file": "audio/659189fc78a82fa4f638.wav",
+              "sha256": "659189fc78a82fa4f638635485a844ef8e042fc3eb9dc35a9f73e69e84cfe8cd"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/7e0f37f8b344d1b2750b.wav",
+              "sha256": "7e0f37f8b344d1b2750b8ee02c23dbdfc9cb3969795bc633bba81b70b47e9a10"
+            },
+            "careful_slow": {
+              "file": "audio/9cc59b907265a978a3e0.wav",
+              "sha256": "9cc59b907265a978a3e0adcdeb6f07e6e7f952004ebd79a0ef13227d0a3bb9dd"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "xiexie",
+      "hans": "谢谢",
+      "pinyin": "xièxie",
+      "variants": [
+        "natural",
+        "careful_slow"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/2d246f72b3f631a27cdb.wav",
+              "sha256": "2d246f72b3f631a27cdb6d325de8b57bc3c7ad8fddae712d83c506b61c3c02e6"
+            },
+            "careful_slow": {
+              "file": "audio/5444dc36eb72f5dbe14f.wav",
+              "sha256": "5444dc36eb72f5dbe14f626ada2e5e67501b26977958fed123c84937eafcba7f"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/46589bd7c1da847909c0.wav",
+              "sha256": "46589bd7c1da847909c0a172f48935e66da716d5c4d081e714a5b38612ef9eca"
+            },
+            "careful_slow": {
+              "file": "audio/ea8a8709c0453565ac0d.wav",
+              "sha256": "ea8a8709c0453565ac0d3c8ad5a8999303dd46759c55c7af84412b433b3b858e"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/2965c77d155f76a83453.wav",
+              "sha256": "2965c77d155f76a834539230c89e952af21330800fb75c007b6132270f66faf1"
+            },
+            "careful_slow": {
+              "file": "audio/d5f0d23518c27353edd4.wav",
+              "sha256": "d5f0d23518c27353edd4bd72a860ad0de2e5f90cb853000db692e9c06a541d06"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wojiao_name",
+      "hans": "我叫 Wolfram",
+      "pinyin": "wǒ jiào Wolfram",
+      "variants": [
+        "natural",
+        "careful_slow"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/39069b82c9f04dd1a7d5.wav",
+              "sha256": "39069b82c9f04dd1a7d5d77b96354bd2e2b9744060e2f2656aeaac63de95e0b0"
+            },
+            "careful_slow": {
+              "file": "audio/cf7b8898f7a89dc4f23f.wav",
+              "sha256": "cf7b8898f7a89dc4f23ffd4d3c24f375c847580ee9961b87d429af6b894fcfc2"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/2c3beda816d813f62fae.wav",
+              "sha256": "2c3beda816d813f62faecd21106e503648acfe66eebba631d18fe67170425efa"
+            },
+            "careful_slow": {
+              "file": "audio/998745e81ca6205180c5.wav",
+              "sha256": "998745e81ca6205180c5926d2b21f6c25fde9117c88a9a82f537aa6cfc6a14d0"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/be4f3780266ebd6ce3db.wav",
+              "sha256": "be4f3780266ebd6ce3db798e2d2276d6bec83a63eb32372c55e251bb06f993e4"
+            },
+            "careful_slow": {
+              "file": "audio/65a6f9ea90ce25269d9c.wav",
+              "sha256": "65a6f9ea90ce25269d9c94f059088fb8fcccfe62df97a9a891235392b0f5bae9"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "askname",
+      "hans": "你叫什么名字？",
+      "pinyin": "nǐ jiào shénme míngzi?",
+      "variants": [
+        "natural",
+        "careful_slow"
+      ],
+      "teachingTone": null,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/cfed4ff6a70508c79a3e.wav",
+              "sha256": "cfed4ff6a70508c79a3eb81c8c8d0aed4fa9572cb22b58418694106f269e7d5f"
+            },
+            "careful_slow": {
+              "file": "audio/96267f30bb8e46689a48.wav",
+              "sha256": "96267f30bb8e46689a48d223e8a429398f1a8698360c93f5598b341fc9469533"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/eab9089524bf8353570e.wav",
+              "sha256": "eab9089524bf8353570eb4e5ffb74e4ea24a51f8a32ae8701edc18da29c2763c"
+            },
+            "careful_slow": {
+              "file": "audio/1657808775da5c24cdc0.wav",
+              "sha256": "1657808775da5c24cdc0ca445b25b98d4259b913b29ee2c1fae9f82f6427ae4c"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/07a409dee5d47f7a4c82.wav",
+              "sha256": "07a409dee5d47f7a4c82963e4d8c26b1abf7a87b3c6f6f19777954d333b022d7"
+            },
+            "careful_slow": {
+              "file": "audio/d569c8bd01d4fd656638.wav",
+              "sha256": "d569c8bd01d4fd656638ce61007d006fa1f332fe7051d00213af58cc92ea2631"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ma1",
+      "hans": "妈",
+      "pinyin": "mā",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": 1,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/fc57e13eb9539aede83f.wav",
+              "sha256": "fc57e13eb9539aede83fdbe9217d380eb3647b013fbf13824018bd6d1981dc3b"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/9876ee953da21b9884ba.wav",
+              "sha256": "9876ee953da21b9884baf1194a6fbb044a1ef961fb2c97ae4cbacbdf881fe29b"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/70248909fff5edf755b5.wav",
+              "sha256": "70248909fff5edf755b516ab3f597fecc4c77245113ba33458d8baca3e65f127"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ma2",
+      "hans": "麻",
+      "pinyin": "má",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": 2,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/5bf254413fada22245ab.wav",
+              "sha256": "5bf254413fada22245ab8939d44708bee585b6ef9137c2e123cf425572f5c0e2"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/bb3c0aff877469d813ae.wav",
+              "sha256": "bb3c0aff877469d813aeb112f7acf99f76dd402362b3359c938053946820dae1"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/1835637683be6da573fd.wav",
+              "sha256": "1835637683be6da573fd928a00e737bde6da7324b6a746532a6c3273eee15b7c"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ma3",
+      "hans": "马",
+      "pinyin": "mǎ",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": 3,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/2dd0cf4ef570a5c68a69.wav",
+              "sha256": "2dd0cf4ef570a5c68a699edc16ae2acc88fbd8057e2952604ec740057e2cd6b2"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/bcf61f9debb0ed6cc2ee.wav",
+              "sha256": "bcf61f9debb0ed6cc2eea7e2b273c010478fff785a0b1c38918a9e6a2c54820a"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/b8ee10a9681212213bdf.wav",
+              "sha256": "b8ee10a9681212213bdfc6df2ef708bf5bbf78581833098eebf389dacc11260e"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ma4",
+      "hans": "骂",
+      "pinyin": "mà",
+      "variants": [
+        "natural"
+      ],
+      "teachingTone": 4,
+      "choices": [
+        {
+          "label": "A",
+          "engineName": "MeloTTS · ZH",
+          "samples": {
+            "natural": {
+              "file": "audio/d9c45b0f939cd74a9352.wav",
+              "sha256": "d9c45b0f939cd74a9352a14bd546f6391f6eaf59933df2f6673f5e971220d48d"
+            }
+          }
+        },
+        {
+          "label": "B",
+          "engineName": "CosyVoice 3 · Demo-Stimme",
+          "samples": {
+            "natural": {
+              "file": "audio/25e683dce3469206aab2.wav",
+              "sha256": "25e683dce3469206aab21b604cb37ca38dc23acc774e3ada7df1e8e83e06c854"
+            }
+          }
+        },
+        {
+          "label": "C",
+          "engineName": "Qwen3-TTS · Serena",
+          "samples": {
+            "natural": {
+              "file": "audio/fdd7d304fad07b0ea4cc.wav",
+              "sha256": "fdd7d304fad07b0ea4cccf051144a3165a1cac041cfb8c8c98d1b10f8e11ee21"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "humanApproved": false
+}

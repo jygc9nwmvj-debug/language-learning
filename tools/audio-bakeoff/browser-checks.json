@@ -1,0 +1,28 @@
+[
+  {
+    "browser": "Chrome",
+    "decoded": 45,
+    "targets": 11,
+    "notesPersist": true,
+    "reveal": true,
+    "reset": true,
+    "export": true,
+    "singlePlayback": true,
+    "originalSpeed": true,
+    "mobileOverflow": false,
+    "errors": []
+  },
+  {
+    "browser": "WebKit",
+    "decoded": 45,
+    "targets": 11,
+    "notesPersist": true,
+    "reveal": true,
+    "reset": true,
+    "export": true,
+    "singlePlayback": true,
+    "originalSpeed": true,
+    "mobileOverflow": false,
+    "errors": []
+  }
+]

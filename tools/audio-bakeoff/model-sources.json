@@ -1,0 +1,77 @@
+[
+  {
+    "model": "myshell-ai/MeloTTS-Chinese",
+    "revision": "af5d207a364ea4208c6f589c89f57f88414bdd16",
+    "license": "mit",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "checkpoint.pth",
+      "config.json"
+    ]
+  },
+  {
+    "model": "FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+    "revision": "29e01c4e8d000f4bcd70751be16fa94bf3d85a18",
+    "license": "apache-2.0",
+    "files": [
+      ".gitattributes",
+      "CosyVoice-BlankEN/config.json",
+      "CosyVoice-BlankEN/generation_config.json",
+      "CosyVoice-BlankEN/merges.txt",
+      "CosyVoice-BlankEN/model.safetensors",
+      "CosyVoice-BlankEN/tokenizer_config.json",
+      "CosyVoice-BlankEN/vocab.json",
+      "README.md",
+      "asset/dingding.png",
+      "campplus.onnx",
+      "config.json",
+      "configuration.json",
+      "cosyvoice3.yaml",
+      "flow.decoder.estimator.fp32.onnx",
+      "flow.pt",
+      "hift.pt",
+      "llm.pt",
+      "llm.rl.pt",
+      "speech_tokenizer_v3.batch.onnx",
+      "speech_tokenizer_v3.onnx"
+    ]
+  },
+  {
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+    "revision": "0c0e3051f131929182e2c023b9537f8b1c68adfe",
+    "license": "apache-2.0",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "config.json",
+      "generation_config.json",
+      "merges.txt",
+      "model.safetensors",
+      "preprocessor_config.json",
+      "speech_tokenizer/config.json",
+      "speech_tokenizer/configuration.json",
+      "speech_tokenizer/model.safetensors",
+      "speech_tokenizer/preprocessor_config.json",
+      "tokenizer_config.json",
+      "vocab.json"
+    ]
+  },
+  {
+    "model": "google-bert/bert-base-multilingual-uncased",
+    "revision": "7cbf9a625e29989f6b9c6c2fa68234c304f7e38f",
+    "license": "apache-2.0",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "config.json",
+      "flax_model.msgpack",
+      "model.safetensors",
+      "pytorch_model.bin",
+      "tf_model.h5",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "vocab.txt"
+    ]
+  }
+]

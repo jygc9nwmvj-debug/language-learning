@@ -1,0 +1,10 @@
+{
+  "melo": {
+    "repository": "https://github.com/myshell-ai/MeloTTS.git",
+    "commit": "209145371cff8fc3bd60d7be902ea69cbdb7965a"
+  },
+  "cosy": {
+    "repository": "https://github.com/FunAudioLLM/CosyVoice.git",
+    "commit": "074ca6dc9e80a2f424f1f74b48bdd7d3fea531cc"
+  }
+}

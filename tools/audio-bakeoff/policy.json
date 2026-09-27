@@ -1,0 +1,19 @@
+{
+  "version": "a2-qa-1",
+  "description": "Provisional engineering review corridors, not scientific optimal speech rates. Changes require a new report.",
+  "durationSeconds": [0.25, 8.0],
+  "activeRmsDbfs": [-32, -9],
+  "peakDbfs": [-25, -0.5],
+  "maxClippedFraction": 0.0001,
+  "maxLeadingSilenceSeconds": 0.3,
+  "maxTrailingSilenceSeconds": 0.4,
+  "maxInternalSilenceSeconds": 0.4,
+  "naturalSyllablesPerSecond": [2.0, 3.8],
+  "carefulSlowSyllablesPerSecond": [1.2, 2.6],
+  "naturalSingleSpeechSeconds": [0.35, 0.95],
+  "carefulSlowSingleSpeechSeconds": [0.5, 1.25],
+  "slowNaturalSpeechRatio": [1.2, 1.9],
+  "pitchFloorHz": 65,
+  "pitchCeilingHz": 550,
+  "minimumVoicedFrames": 8
+}

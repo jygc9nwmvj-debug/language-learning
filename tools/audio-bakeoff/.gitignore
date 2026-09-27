@@ -1,0 +1,7 @@
+models/
+generated/
+*-env/
+MeloTTS/
+CosyVoice/
+__pycache__/
+*.log

@@ -1,0 +1,13 @@
+[
+ {"id":"ni","hans":"你","pinyin":"nǐ","toneNumbers":"ni3","variants":["natural"],"cosy":"[n][ǐ]"},
+ {"id":"wo","hans":"我","pinyin":"wǒ","toneNumbers":"wo3","variants":["natural"],"cosy":"[w][ǒ]"},
+ {"id":"hao","hans":"好","pinyin":"hǎo","toneNumbers":"hao3","variants":["natural"],"cosy":"[h][ǎo]"},
+ {"id":"nihao","hans":"你好","pinyin":"nǐ hǎo","toneNumbers":"ni3 hao3","variants":["natural","careful_slow"]},
+ {"id":"xiexie","hans":"谢谢","pinyin":"xièxie","toneNumbers":"xie4 xie5","variants":["natural","careful_slow"]},
+ {"id":"wojiao_name","hans":"我叫 Wolfram","pinyin":"wǒ jiào Wolfram","toneNumbers":"wo3 jiao4 Wolfram","variants":["natural","careful_slow"]},
+ {"id":"askname","hans":"你叫什么名字？","pinyin":"nǐ jiào shénme míngzi?","toneNumbers":"ni3 jiao4 shen2 me5 ming2 zi5","variants":["natural","careful_slow"]},
+ {"id":"ma1","hans":"妈","pinyin":"mā","toneNumbers":"ma1","variants":["natural"],"cosy":"[m][ā]","teachingTone":1},
+ {"id":"ma2","hans":"麻","pinyin":"má","toneNumbers":"ma2","variants":["natural"],"cosy":"[m][á]","teachingTone":2},
+ {"id":"ma3","hans":"马","pinyin":"mǎ","toneNumbers":"ma3","variants":["natural"],"cosy":"[m][ǎ]","teachingTone":3},
+ {"id":"ma4","hans":"骂","pinyin":"mà","toneNumbers":"ma4","variants":["natural"],"cosy":"[m][à]","teachingTone":4}
+]
