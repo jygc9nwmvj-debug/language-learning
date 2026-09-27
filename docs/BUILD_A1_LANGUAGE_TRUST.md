@@ -154,3 +154,13 @@ Reload zeigt A1, Text im anderen Tab und Datenbank bleiben erhalten, vorheriges 
 A1 startet anschließend offline. Testversion bleibt A1 (reine Auslieferungsreparatur).
 
 Technischer Bezug: [ServiceWorker skipWaiting](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting).
+
+## Weiterüben nach einer Runde
+
+Der bisherige Einstieg plant nur fällige Wiederholungen. Ein leerer Review-Plan bestand lediglich aus
+`closure`; dessen Tagesabschluss-Text wirkte wie eine Lernzeit-Sperre. Die Fälligkeiten bleiben gleich,
+aber leere Runden werden nun als „Im Moment ist nichts fällig“ bezeichnet. Sowohl dort als auch nach
+einer abgeschlossenen Runde ist „Lesson 1 erneut durchgehen“ direkt sichtbar. Das verwendet den bereits
+vorhandenen vollständigen Lesson-1-Neustart und erklärt ausdrücklich, dass die Lektion von vorn beginnt
+und der Verlauf erhalten bleibt. Keine neue Lektion, kein neuer Scheduler und keine tägliche Lernbegrenzung.
+Chrome-/WebKit-Regressionsprüfungen decken beide Einstiege und den Erhalt alter Sessions/Events ab.

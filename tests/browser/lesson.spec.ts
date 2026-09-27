@@ -55,7 +55,7 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
     await expect.poll(async () => { const s = (await snapshot(page)).sessions.find(s => s.id === session.id); return s.index; }).not.toBe(session.index);
   }
   expect(safety).toBeLessThan(40);
-  await expect(page.getByRole('heading', { name: 'Gut für heute.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Runde abgeschlossen.' })).toBeVisible();
   const state = await snapshot(page);
   expect(state.relations.some(r => r.target === 'speaking')).toBe(false);
   expect(state.relations.find(r => r.objectId === 'cmn:hao:hant' && r.target === 'writing').state).toBe('DEVELOPING');

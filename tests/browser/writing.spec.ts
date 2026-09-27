@@ -54,7 +54,7 @@ test('delayed recall stays blank; asking for a model prevents independent eviden
   await writeHao(page, '.writingCanvas');
   await page.getByRole('button', { name: 'Mit der Vorlage vergleichen' }).click();
   await page.getByRole('button', { name: 'Sicher', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Gut für heute.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Runde abgeschlossen.' })).toBeVisible();
   const log = await research(page);
   const attempt = log.find(e => e.type === 'attempt');
   expect(attempt.detail.assisted).toBe(true); expect(attempt.detail.selfReport).toBe(true);
