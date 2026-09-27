@@ -24,7 +24,7 @@
     {
       "id": "wo",
       "audio": "/audio/mandarin/polly-wo.mp3",
-      "slowAudio": "/audio/mandarin/wo-slow.wav",
+      "slowAudio": "/audio/mandarin/polly-wo-slow.mp3",
       "words": [
         "wo"
       ]
@@ -32,7 +32,7 @@
     {
       "id": "ni",
       "audio": "/audio/mandarin/polly-ni.mp3",
-      "slowAudio": "/audio/mandarin/ni-slow.wav",
+      "slowAudio": "/audio/mandarin/polly-ni-slow.mp3",
       "words": [
         "ni"
       ]
@@ -40,7 +40,7 @@
     {
       "id": "hao",
       "audio": "/audio/mandarin/polly-hao.mp3",
-      "slowAudio": "/audio/mandarin/hao-slow.wav",
+      "slowAudio": "/audio/mandarin/polly-hao-slow.mp3",
       "words": [
         "hao"
       ]
@@ -95,8 +95,8 @@
     },
     {
       "id": "zaijian",
-      "audio": "/audio/mandarin/zaijian.wav",
-      "slowAudio": "/audio/mandarin/zaijian-slow.wav",
+      "audio": "/audio/mandarin/polly-zaijian.mp3",
+      "slowAudio": "/audio/mandarin/polly-zaijian-slow.mp3",
       "words": [
         "zaijian"
       ]

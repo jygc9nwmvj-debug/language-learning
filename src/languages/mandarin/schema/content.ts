@@ -6,7 +6,7 @@ const meaning = z.strictObject({ de: z.array(text).min(1), en: z.array(text).min
 const review = z.strictObject({ reviewStatus: text.optional(), sources: z.array(z.string().url()).optional(), reviewDate: text.optional(), notes: text.optional() }).optional();
 const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.(?:wav|mp3)$/);
 // Deliberately limited to the existing lesson, not a general Mandarin dictionary.
-const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma']);
+const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma','ting','bu','dong','qing','zai','shuo','yi','bian','man','dian','zhi','dao','hen','ne','shi','na','guo','ren','de','zhong','ke','qi','dui','mei','guan','xi','wan','an','er','san','si','wu','liu','ba','jiu']);
 const word = z.strictObject({ id: text, hant: z.string().regex(/^\p{Script=Han}+$/u), hans: z.string().regex(/^\p{Script=Han}+$/u),
   audio: asset.optional(), toneNumbers: z.string().regex(/^[a-zü]+[1-5]( [a-zü]+[1-5])*$/), meaning, review });
 export const assessmentSchema = z.strictObject({ toneNotation: z.boolean(), neutralTone: z.boolean() });
@@ -15,9 +15,9 @@ const authoredSchema = z.strictObject({
   introducedAssessment: assessmentSchema,
   version: text, qaStatus: z.enum(['draft', 'source_checked', 'language_reviewed', 'audio_reviewed', 'published']), audioStatus: z.enum(['prototype', 'reviewed']),
   words: z.array(word).min(1), toneExamples: z.array(text).length(4),
-  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), review })),
-  tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'closure']),
-    assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
+  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: text, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: text.optional() }).optional(), review })),
+  tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'sequence', 'closure']),
+    sequence: z.array(text).min(2).optional(), assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
   initialPlan: z.array(text), reviewPlan: z.array(text),
 }).superRefine((c, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: 'custom', message });
@@ -26,11 +26,26 @@ const authoredSchema = z.strictObject({
   const forms = new Set<string>();
   for (const w of c.words) {
     const form = `${w.hant}|${w.hans}`; if (forms.has(form)) issue(`Duplicate canonical word: ${w.id}`); forms.add(form);
+    const scriptPairs:Record<string,string>={'聽':'听','請':'请','說':'说','點':'点','嗎':'吗','國':'国','氣':'气','對':'对','沒':'没','關':'关','係':'系','麼':'么','媽':'妈','馬':'马','罵':'骂','謝':'谢','見':'见'};
+    if([...w.hant].map(c=>scriptPairs[c]??c).join('')!==w.hans)issue(`Script pair mismatch: ${w.id}`);
     const tokens = w.toneNumbers.split(' ');
     if (tokens.length !== [...w.hant].length || tokens.length !== [...w.hans].length) issue(`Character/syllable count: ${w.id}`);
     for (const token of tokens) if (!lessonSyllables.has(token.slice(0,-1))) issue(`Invalid Lesson-1 Pinyin syllable: ${token}`);
   }
   for (const i of c.items) {
+    if(i.learning) {
+      for(const id of i.learning.prerequisites) {
+        const prerequisite=items.get(id);
+        if(!prerequisite || (prerequisite.learning && prerequisite.learning.order>=i.learning.order)) issue(`Curriculum prerequisite/order: ${i.id}/${id}`);
+      }
+      if(i.learning.writing && [...words.get(i.words[0])?.hans ?? ''].length!==1) issue(`Writing target must be one character: ${i.id}`);
+    }
+    if(i.surfaceToneNumbers) {
+      const lexical=i.words.flatMap(id=>words.get(id)?.toneNumbers.split(' ')??[]);
+      const surface=i.surfaceToneNumbers.split(' ');
+      if(surface.length!==lexical.length || surface.some((s,n)=>!/[1-5]$/.test(s)||s.slice(0,-1)!==lexical[n]?.slice(0,-1))) issue(`Surface pronunciation syllables: ${i.id}`);
+    }
+
     if (!i.slowAudio || i.audio === i.slowAudio) issue(`Distinct natural/careful_slow assets required: ${i.id}`);
     for (const id of i.words) if (!words.has(id)) issue(`Unknown word: ${id}`);
     if (i.words.length > 1 && !i.meaning) issue(`Missing phrase meaning: ${i.id}`);
@@ -39,8 +54,11 @@ const authoredSchema = z.strictObject({
   c.toneExamples.forEach((id,n) => { if (!words.get(id)?.audio) issue(`Missing tone audio: ${id}`); if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
   for (const t of c.tasks) {
     const item = items.get(t.itemId ?? '');
+    if(t.kind==='sequence' && (!t.sequence || t.sequence.some(id=>!items.has(id)))) issue(`Invalid sequence: ${t.id}`);
+    if(t.kind==='writing' && item?.learning && !item.learning.writing) issue(`Writing not introduced: ${t.id}`);
     if (t.kind === 'recall' && !t.assess) issue(`Missing assessment declaration: ${t.id}`);
     if (t.assess) {
+      if(item?.learning && t.assess.toneNotation && !item.learning.concepts.includes('tone_notation'))issue(`Untaught item assessment: ${t.id}`);
       if (t.kind !== 'recall') issue(`Assessment declaration only supported for text recall: ${t.id}`);
       for (const dimension of ['toneNotation', 'neutralTone'] as const) {
         if (t.assess[dimension] && !c.introducedAssessment[dimension]) issue(`Assessment not introduced: ${t.id}/${dimension}`);
@@ -57,7 +75,7 @@ const authoredSchema = z.strictObject({
   if (c.qaStatus === 'published' && c.audioStatus !== 'reviewed') issue('Published audio needs review');
 });
 export const contentSchema = authoredSchema.transform(c => {
-  const words = c.words.map(w => ({ ...w, pinyin: numberedToPinyin(w.toneNumbers).replaceAll(' ', '') }));
+  const words = c.words.map(w => ({ ...w, pinyin: numberedToPinyin(w.toneNumbers.replace(/ (?=[aeo])/g,"'")).replaceAll(' ', '') }));
   const map = new Map(words.map(w => [w.id,w]));
   const items = c.items.map(i => {
     const parts = i.words.map(id => map.get(id)!);

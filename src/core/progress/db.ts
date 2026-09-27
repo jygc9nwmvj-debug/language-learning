@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { relationSchema, relationId, updateRelation, type Attempt, type Relation } from './model.ts';
 
 export const sessionSchema = z.object({
-  id: z.string(), plan: z.array(z.string()).max(100), index: z.number().int().nonnegative(),
+  id: z.string(), plannerVersion: z.literal('d1').optional(), plan: z.array(z.string()).max(100), index: z.number().int().nonnegative(),
   completed: z.boolean(), startedAt: z.number(), updatedAt: z.number(),
   script: z.enum(['hant', 'hans']),
 }).refine(s => s.plan.length > 0 && s.index < s.plan.length, 'Invalid session cursor');
@@ -27,7 +27,7 @@ export class LearningDatabase extends Dexie {
 }
 export const db = new LearningDatabase();
 export async function logEvent(event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
-  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: 'lesson1-b-writing' });
+  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: 'build-d-1' });
 }
 export async function recordAttempt(attempt: Attempt, event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
   await db.transaction('rw', db.relations, db.events, async () => {

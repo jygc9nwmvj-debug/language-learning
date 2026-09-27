@@ -1,7 +1,7 @@
 // Semantic UI keys; add an English catalogue after the private German test.
 export const ui = {
   continue: 'Weiter', learn: 'Weiterlernen', pause: 'Für jetzt aufhören', skip: 'Überspringen',
-  loading: 'Dein Lernstand wird geladen …', home: 'Erster Kontakt',
+  loading: 'Dein Lernstand wird geladen …', home: 'Mandarin lernen',
   listen: 'Anhören', again: 'Noch einmal hören', slow: 'Langsam gesprochen',
   audioError: 'Das Audio konnte nicht abgespielt werden. Versuche es noch einmal.',
   prototype: 'Private Lernversion.',
@@ -31,8 +31,8 @@ export const ui = {
   notPersisted: 'Dauerhafte Speicherung ist hier nicht zugesichert. Exportiere gelegentlich eine Sicherung.',
   offlineDevelopment: 'Online-Vorschau · Offlinebetrieb nicht aktiviert', offlineReady: 'Bereit zum Lernen', offlineWaiting: 'Wird vorbereitet …', offlineFailed: 'Noch nicht offline bereit. Prüfe die Internetverbindung und versuche es erneut.',
   settings: 'Einstellungen & Sicherung', script: 'Schriftzeichen', hant: 'Traditionell', hans: 'Vereinfacht',
-  homeLead: 'Begrüßen, dich vorstellen und erste Zeichen entdecken.',
-  closeTitle: 'Runde abgeschlossen.', closeBody: 'Du kannst eine Pause machen oder mit den bisherigen Inhalten weiterüben.',
+  homeLead: 'Gespräche führen, Bekanntes festigen und Neues entdecken.',
+  closeTitle: 'Runde abgeschlossen.', closeBody: 'Ein guter Moment für eine Pause. Wenn du möchtest, geht es mit einer neuen Mischung weiter.',
   nothingDue: 'Zurzeit ist nichts fällig. Wenn du möchtest, kannst du die bisherigen Wörter und Zeichen noch einmal üben.',
   reflect: 'Wie war diese Runde?', easy: 'Zu leicht', right: 'Passend', much: 'Zu viel',
   note: 'Etwas unklar oder störend? (freiwillig)', reflectionSaved: 'Danke, deine Rückmeldung bleibt lokal.',

@@ -6,6 +6,7 @@ import { AudioButton } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
 import { ui } from '../../../core/i18n/de';
 import { WritingExercise } from './WritingExercise';
+import { NumberSequence } from './NumberSequence';
 import { ToneLab, ToneRecall } from './ToneLab';
 export type Evidence = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
 export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled }: {
@@ -42,6 +43,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       setAnswered(true);
     } finally { submitting.current = false; }
   }
+  if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } await onNext(); }} />;
@@ -50,6 +52,8 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     reference={<><p className="hanziHero" lang="zh">{item[script]}</p>
       {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : <div className="pronunciationMeaning"><p className="pinyin">{item.pinyin}</p><p className="meaning">{item.meaning.de}</p></div>}</>}
     audio={<>{audio()}{item.slowAudio && audio(true)}</>}>
+    {item.learning && <p className='muted'>{item.learning.note}</p>}
+    {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p>{item.learning.discovery}</p></details>}
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
   if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise">

@@ -1,0 +1,1195 @@
+{
+  "words": [
+    {
+      "id": "tingbudong",
+      "hant": "聽不懂",
+      "hans": "听不懂",
+      "toneNumbers": "ting1 bu4 dong3",
+      "meaning": {
+        "de": [
+          "nicht verstehen (beim Hören)"
+        ],
+        "en": [
+          "not understand what is said"
+        ]
+      }
+    },
+    {
+      "id": "qing",
+      "hant": "請",
+      "hans": "请",
+      "toneNumbers": "qing3",
+      "meaning": {
+        "de": [
+          "bitte"
+        ],
+        "en": [
+          "please"
+        ]
+      }
+    },
+    {
+      "id": "zai",
+      "hant": "再",
+      "hans": "再",
+      "toneNumbers": "zai4",
+      "meaning": {
+        "de": [
+          "noch einmal"
+        ],
+        "en": [
+          "again"
+        ]
+      }
+    },
+    {
+      "id": "shuo",
+      "hant": "說",
+      "hans": "说",
+      "toneNumbers": "shuo1",
+      "meaning": {
+        "de": [
+          "sprechen"
+        ],
+        "en": [
+          "speak"
+        ]
+      }
+    },
+    {
+      "id": "yi",
+      "hant": "一",
+      "hans": "一",
+      "toneNumbers": "yi1",
+      "meaning": {
+        "de": [
+          "eins",
+          "1"
+        ],
+        "en": [
+          "one"
+        ]
+      }
+    },
+    {
+      "id": "bian",
+      "hant": "遍",
+      "hans": "遍",
+      "toneNumbers": "bian4",
+      "meaning": {
+        "de": [
+          "Durchgang"
+        ],
+        "en": [
+          "time through"
+        ]
+      }
+    },
+    {
+      "id": "man",
+      "hant": "慢",
+      "hans": "慢",
+      "toneNumbers": "man4",
+      "meaning": {
+        "de": [
+          "langsam"
+        ],
+        "en": [
+          "slow"
+        ]
+      }
+    },
+    {
+      "id": "yidian",
+      "hant": "一點",
+      "hans": "一点",
+      "toneNumbers": "yi1 dian3",
+      "meaning": {
+        "de": [
+          "ein wenig"
+        ],
+        "en": [
+          "a little"
+        ]
+      }
+    },
+    {
+      "id": "bu",
+      "hant": "不",
+      "hans": "不",
+      "toneNumbers": "bu4",
+      "meaning": {
+        "de": [
+          "nicht"
+        ],
+        "en": [
+          "not"
+        ]
+      }
+    },
+    {
+      "id": "zhidao",
+      "hant": "知道",
+      "hans": "知道",
+      "toneNumbers": "zhi1 dao5",
+      "meaning": {
+        "de": [
+          "wissen"
+        ],
+        "en": [
+          "know"
+        ]
+      }
+    },
+    {
+      "id": "ma",
+      "hant": "嗎",
+      "hans": "吗",
+      "toneNumbers": "ma5",
+      "meaning": {
+        "de": [
+          "Fragepartikel"
+        ],
+        "en": [
+          "question particle"
+        ]
+      }
+    },
+    {
+      "id": "hen",
+      "hant": "很",
+      "hans": "很",
+      "toneNumbers": "hen3",
+      "meaning": {
+        "de": [
+          "sehr / Verknüpfung vor einem Adjektiv"
+        ],
+        "en": [
+          "very / adjective link"
+        ]
+      }
+    },
+    {
+      "id": "ne",
+      "hant": "呢",
+      "hans": "呢",
+      "toneNumbers": "ne5",
+      "meaning": {
+        "de": [
+          "und …? (Rückfrage)"
+        ],
+        "en": [
+          "and …? (return question)"
+        ]
+      }
+    },
+    {
+      "id": "shi",
+      "hant": "是",
+      "hans": "是",
+      "toneNumbers": "shi4",
+      "meaning": {
+        "de": [
+          "sein"
+        ],
+        "en": [
+          "be"
+        ]
+      }
+    },
+    {
+      "id": "na",
+      "hant": "哪",
+      "hans": "哪",
+      "toneNumbers": "na3",
+      "meaning": {
+        "de": [
+          "welcher"
+        ],
+        "en": [
+          "which"
+        ]
+      }
+    },
+    {
+      "id": "guo",
+      "hant": "國",
+      "hans": "国",
+      "toneNumbers": "guo2",
+      "meaning": {
+        "de": [
+          "Land"
+        ],
+        "en": [
+          "country"
+        ]
+      }
+    },
+    {
+      "id": "ren",
+      "hant": "人",
+      "hans": "人",
+      "toneNumbers": "ren2",
+      "meaning": {
+        "de": [
+          "Mensch",
+          "Person"
+        ],
+        "en": [
+          "person"
+        ]
+      }
+    },
+    {
+      "id": "deguo",
+      "hant": "德國",
+      "hans": "德国",
+      "toneNumbers": "de2 guo2",
+      "meaning": {
+        "de": [
+          "Deutschland"
+        ],
+        "en": [
+          "Germany"
+        ]
+      }
+    },
+    {
+      "id": "zhongguo",
+      "hant": "中國",
+      "hans": "中国",
+      "toneNumbers": "zhong1 guo2",
+      "meaning": {
+        "de": [
+          "China"
+        ],
+        "en": [
+          "China"
+        ]
+      }
+    },
+    {
+      "id": "keqi",
+      "hant": "客氣",
+      "hans": "客气",
+      "toneNumbers": "ke4 qi5",
+      "meaning": {
+        "de": [
+          "höflich / förmlich"
+        ],
+        "en": [
+          "polite / formal"
+        ]
+      }
+    },
+    {
+      "id": "duibuqi",
+      "hant": "對不起",
+      "hans": "对不起",
+      "toneNumbers": "dui4 bu5 qi3",
+      "meaning": {
+        "de": [
+          "Entschuldigung",
+          "es tut mir leid",
+          "entschuldige"
+        ],
+        "en": [
+          "sorry"
+        ]
+      }
+    },
+    {
+      "id": "meiguanxi",
+      "hant": "沒關係",
+      "hans": "没关系",
+      "toneNumbers": "mei2 guan1 xi5",
+      "meaning": {
+        "de": [
+          "macht nichts",
+          "kein problem",
+          "schon gut"
+        ],
+        "en": [
+          "no problem"
+        ]
+      }
+    },
+    {
+      "id": "wanan",
+      "hant": "晚安",
+      "hans": "晚安",
+      "toneNumbers": "wan3 an1",
+      "meaning": {
+        "de": [
+          "gute Nacht"
+        ],
+        "en": [
+          "good night"
+        ]
+      }
+    },
+    {
+      "id": "er",
+      "hant": "二",
+      "hans": "二",
+      "toneNumbers": "er4",
+      "meaning": {
+        "de": [
+          "zwei",
+          "2"
+        ],
+        "en": [
+          "two"
+        ]
+      }
+    },
+    {
+      "id": "san",
+      "hant": "三",
+      "hans": "三",
+      "toneNumbers": "san1",
+      "meaning": {
+        "de": [
+          "drei",
+          "3"
+        ],
+        "en": [
+          "three"
+        ]
+      }
+    },
+    {
+      "id": "si",
+      "hant": "四",
+      "hans": "四",
+      "toneNumbers": "si4",
+      "meaning": {
+        "de": [
+          "vier",
+          "4"
+        ],
+        "en": [
+          "four"
+        ]
+      }
+    },
+    {
+      "id": "wu",
+      "hant": "五",
+      "hans": "五",
+      "toneNumbers": "wu3",
+      "meaning": {
+        "de": [
+          "fünf",
+          "5"
+        ],
+        "en": [
+          "five"
+        ]
+      }
+    },
+    {
+      "id": "liu",
+      "hant": "六",
+      "hans": "六",
+      "toneNumbers": "liu4",
+      "meaning": {
+        "de": [
+          "sechs",
+          "6"
+        ],
+        "en": [
+          "six"
+        ]
+      }
+    },
+    {
+      "id": "qi",
+      "hant": "七",
+      "hans": "七",
+      "toneNumbers": "qi1",
+      "meaning": {
+        "de": [
+          "sieben",
+          "7"
+        ],
+        "en": [
+          "seven"
+        ]
+      }
+    },
+    {
+      "id": "ba",
+      "hant": "八",
+      "hans": "八",
+      "toneNumbers": "ba1",
+      "meaning": {
+        "de": [
+          "acht",
+          "8"
+        ],
+        "en": [
+          "eight"
+        ]
+      }
+    },
+    {
+      "id": "jiu",
+      "hant": "九",
+      "hans": "九",
+      "toneNumbers": "jiu3",
+      "meaning": {
+        "de": [
+          "neun",
+          "9"
+        ],
+        "en": [
+          "nine"
+        ]
+      }
+    },
+    {
+      "id": "shi-number",
+      "hant": "十",
+      "hans": "十",
+      "toneNumbers": "shi2",
+      "meaning": {
+        "de": [
+          "zehn",
+          "10"
+        ],
+        "en": [
+          "ten"
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "dont-understand",
+      "words": [
+        "wo",
+        "tingbudong"
+      ],
+      "audio": "/audio/mandarin/polly-dont-understand.mp3",
+      "slowAudio": "/audio/mandarin/polly-dont-understand-slow.mp3",
+      "learning": {
+        "function": "repair",
+        "order": 0,
+        "prerequisites": [
+          "wo"
+        ],
+        "writing": false,
+        "note": "Wenn du die gesprochenen Wörter nicht verstehst. Lerne den Ausdruck zunächst als Ganzes.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "ich verstehe nicht",
+          "ich verstehe das nicht"
+        ],
+        "en": [
+          "I do not understand",
+          "I don't understand"
+        ]
+      },
+      "surfaceToneNumbers": "wo3 ting1 bu5 dong3"
+    },
+    {
+      "id": "say-again",
+      "words": [
+        "qing",
+        "zai",
+        "shuo",
+        "yi",
+        "bian"
+      ],
+      "audio": "/audio/mandarin/polly-say-again.mp3",
+      "slowAudio": "/audio/mandarin/polly-say-again-slow.mp3",
+      "learning": {
+        "function": "repair",
+        "order": 1,
+        "prerequisites": [
+          "dont-understand"
+        ],
+        "writing": false,
+        "note": "Eine freundliche Bitte, das Gesagte einmal zu wiederholen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "bitte sag das noch einmal",
+          "bitte wiederholen",
+          "bitte noch einmal"
+        ],
+        "en": [
+          "please say that again"
+        ]
+      },
+      "surfaceToneNumbers": "qing3 zai4 shuo1 yi2 bian4"
+    },
+    {
+      "id": "speak-slowly",
+      "words": [
+        "qing",
+        "shuo",
+        "man",
+        "yidian"
+      ],
+      "audio": "/audio/mandarin/polly-speak-slowly.mp3",
+      "slowAudio": "/audio/mandarin/polly-speak-slowly-slow.mp3",
+      "learning": {
+        "function": "repair",
+        "order": 2,
+        "prerequisites": [
+          "say-again"
+        ],
+        "writing": false,
+        "note": "Die Bitte ist direkt, mit 请 aber höflich. Ein Satz reicht.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "bitte sprich etwas langsamer",
+          "bitte langsamer sprechen",
+          "bitte langsamer"
+        ],
+        "en": [
+          "please speak a little slower"
+        ]
+      },
+      "surfaceToneNumbers": "qing3 shuo1 man4 yi4 dian3"
+    },
+    {
+      "id": "what",
+      "words": [
+        "shenme"
+      ],
+      "audio": "/audio/mandarin/polly-what.mp3",
+      "slowAudio": "/audio/mandarin/polly-what-slow.mp3",
+      "learning": {
+        "function": "repair",
+        "order": 3,
+        "prerequisites": [
+          "say-again"
+        ],
+        "writing": false,
+        "note": "Als Rückfrage: „Was?“ Allein und scharf gesprochen kann das knapp wirken; die Bitte um Wiederholung ist höflicher.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "dont-know",
+      "words": [
+        "wo",
+        "bu",
+        "zhidao"
+      ],
+      "audio": "/audio/mandarin/polly-dont-know.mp3",
+      "slowAudio": "/audio/mandarin/polly-dont-know-slow.mp3",
+      "learning": {
+        "function": "repair",
+        "order": 4,
+        "prerequisites": [
+          "dont-understand"
+        ],
+        "writing": false,
+        "note": "Ein kurzer Ausdruck für dein nächstes Gespräch.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "ich weiß nicht",
+          "ich weiss nicht",
+          "ich weiß es nicht",
+          "ich weiss es nicht"
+        ],
+        "en": [
+          "I don't know",
+          "I do not know"
+        ]
+      }
+    },
+    {
+      "id": "qing",
+      "words": [
+        "qing"
+      ],
+      "audio": "/audio/mandarin/polly-qing.mp3",
+      "slowAudio": "/audio/mandarin/polly-qing-slow.mp3",
+      "learning": {
+        "function": "social",
+        "order": 5,
+        "prerequisites": [
+          "say-again"
+        ],
+        "writing": false,
+        "note": "请 steht vor einer Bitte: 请 + Handlung. Es ist keine Antwort auf „Danke“.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "welcome",
+      "words": [
+        "bu",
+        "keqi"
+      ],
+      "audio": "/audio/mandarin/polly-welcome.mp3",
+      "slowAudio": "/audio/mandarin/polly-welcome-slow.mp3",
+      "learning": {
+        "function": "social",
+        "order": 6,
+        "prerequisites": [
+          "xiexie"
+        ],
+        "writing": false,
+        "note": "Die Antwort auf 谢谢. Hier hörst du bú vor kè; geschrieben bleibt die Grundform bù.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "bitte gern",
+          "gern geschehen",
+          "gern",
+          "bitte",
+          "keine ursache"
+        ],
+        "en": [
+          "you're welcome",
+          "you are welcome"
+        ]
+      },
+      "surfaceToneNumbers": "bu2 ke4 qi5"
+    },
+    {
+      "id": "duibuqi",
+      "words": [
+        "duibuqi"
+      ],
+      "audio": "/audio/mandarin/polly-duibuqi.mp3",
+      "slowAudio": "/audio/mandarin/polly-duibuqi-slow.mp3",
+      "learning": {
+        "function": "social",
+        "order": 7,
+        "prerequisites": [
+          "qing"
+        ],
+        "writing": false,
+        "note": "Entschuldigung, wenn du jemanden gestört hast oder dir ein Fehler passiert ist.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "meiguanxi",
+      "words": [
+        "meiguanxi"
+      ],
+      "audio": "/audio/mandarin/polly-meiguanxi.mp3",
+      "slowAudio": "/audio/mandarin/polly-meiguanxi-slow.mp3",
+      "learning": {
+        "function": "social",
+        "order": 8,
+        "prerequisites": [
+          "duibuqi"
+        ],
+        "writing": false,
+        "note": "Eine freundliche Antwort auf eine Entschuldigung: „Macht nichts.“",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "wanan",
+      "words": [
+        "wanan"
+      ],
+      "audio": "/audio/mandarin/polly-wanan.mp3",
+      "slowAudio": "/audio/mandarin/polly-wanan-slow.mp3",
+      "learning": {
+        "function": "social",
+        "order": 9,
+        "prerequisites": [
+          "zaijian"
+        ],
+        "writing": false,
+        "note": "Zum Abschied am späten Abend oder vor dem Schlafengehen, kein allgemeines „Guten Abend“.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "how-are-you",
+      "words": [
+        "ni",
+        "hao",
+        "ma"
+      ],
+      "audio": "/audio/mandarin/polly-how-are-you.mp3",
+      "slowAudio": "/audio/mandarin/polly-how-are-you-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 10,
+        "prerequisites": [
+          "nihao"
+        ],
+        "writing": false,
+        "note": "Eine wirkliche Frage nach dem Befinden, etwa bei jemandem, den du kennst. Kein nötiger Zusatz bei jeder Begrüßung.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "wie geht es dir",
+          "geht es dir gut"
+        ],
+        "en": [
+          "how are you",
+          "are you well"
+        ]
+      },
+      "surfaceToneNumbers": "ni2 hao3 ma5"
+    },
+    {
+      "id": "im-fine",
+      "words": [
+        "wo",
+        "hen",
+        "hao"
+      ],
+      "audio": "/audio/mandarin/polly-im-fine.mp3",
+      "slowAudio": "/audio/mandarin/polly-im-fine-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 11,
+        "prerequisites": [
+          "how-are-you"
+        ],
+        "writing": false,
+        "note": "很 verbindet hier Subjekt und Adjektiv; es muss nicht stark „sehr“ betonen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "mir geht es gut",
+          "mir geht es sehr gut"
+        ],
+        "en": [
+          "I am fine",
+          "I am well"
+        ]
+      },
+      "surfaceToneNumbers": "wo3 hen2 hao3"
+    },
+    {
+      "id": "and-you",
+      "words": [
+        "ni",
+        "ne"
+      ],
+      "audio": "/audio/mandarin/polly-and-you.mp3",
+      "slowAudio": "/audio/mandarin/polly-and-you-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 12,
+        "prerequisites": [
+          "im-fine"
+        ],
+        "writing": false,
+        "note": "Gib die vorherige Frage zurück. 呢 wird leicht gesprochen; du musst den Neutralton noch nicht kennzeichnen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "und du",
+          "und dir"
+        ],
+        "en": [
+          "and you"
+        ]
+      }
+    },
+    {
+      "id": "ren",
+      "words": [
+        "ren"
+      ],
+      "audio": "/audio/mandarin/polly-ren.mp3",
+      "slowAudio": "/audio/mandarin/polly-ren-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 13,
+        "prerequisites": [
+          "and-you"
+        ],
+        "writing": true,
+        "note": "Mit einem Ländernamen wird daraus eine Herkunftsbezeichnung.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "deguo",
+      "words": [
+        "deguo"
+      ],
+      "audio": "/audio/mandarin/polly-deguo.mp3",
+      "slowAudio": "/audio/mandarin/polly-deguo-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 14,
+        "prerequisites": [
+          "ren"
+        ],
+        "writing": false,
+        "note": "Deutschland. Als Eigenname üblicherweise Déguó; Großschreibung wird nicht geprüft.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "zhongguo",
+      "words": [
+        "zhongguo"
+      ],
+      "audio": "/audio/mandarin/polly-zhongguo.mp3",
+      "slowAudio": "/audio/mandarin/polly-zhongguo-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 15,
+        "prerequisites": [
+          "deguo"
+        ],
+        "writing": false,
+        "note": "China. Als Eigenname üblicherweise Zhōngguó.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "nationality",
+      "words": [
+        "ni",
+        "shi",
+        "na",
+        "guo",
+        "ren"
+      ],
+      "audio": "/audio/mandarin/polly-nationality.mp3",
+      "slowAudio": "/audio/mandarin/polly-nationality-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 16,
+        "prerequisites": [
+          "ren",
+          "deguo"
+        ],
+        "writing": false,
+        "note": "Fragt nach Land/Nationalität, nicht nach dem letzten Wohnort.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "aus welchem land kommst du",
+          "welche nationalität hast du",
+          "woher kommst du"
+        ],
+        "en": [
+          "what country are you from",
+          "what nationality are you"
+        ]
+      }
+    },
+    {
+      "id": "im-german",
+      "words": [
+        "wo",
+        "shi",
+        "deguo",
+        "ren"
+      ],
+      "audio": "/audio/mandarin/polly-im-german.mp3",
+      "slowAudio": "/audio/mandarin/polly-im-german-slow.mp3",
+      "learning": {
+        "function": "personal",
+        "order": 17,
+        "prerequisites": [
+          "nationality"
+        ],
+        "writing": false,
+        "note": "Ein kurzer Ausdruck für dein nächstes Gespräch.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked",
+        "discovery": "Land + 人 = eine Person aus diesem Land. 德国 + 人 → 德国人. Du brauchst dafür kein neues Wort für jede Nationalität."
+      },
+      "meaning": {
+        "de": [
+          "ich bin deutsch",
+          "ich bin deutscher",
+          "ich bin deutsche",
+          "ich komme aus deutschland"
+        ],
+        "en": [
+          "I am German"
+        ]
+      }
+    },
+    {
+      "id": "yi",
+      "words": [
+        "yi"
+      ],
+      "audio": "/audio/mandarin/polly-yi.mp3",
+      "slowAudio": "/audio/mandarin/polly-yi-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 18,
+        "prerequisites": [
+          "ren"
+        ],
+        "writing": true,
+        "note": "1 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "er",
+      "words": [
+        "er"
+      ],
+      "audio": "/audio/mandarin/polly-er.mp3",
+      "slowAudio": "/audio/mandarin/polly-er-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 19,
+        "prerequisites": [
+          "yi"
+        ],
+        "writing": true,
+        "note": "2 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "san",
+      "words": [
+        "san"
+      ],
+      "audio": "/audio/mandarin/polly-san.mp3",
+      "slowAudio": "/audio/mandarin/polly-san-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 20,
+        "prerequisites": [
+          "er"
+        ],
+        "writing": true,
+        "note": "一、二、三: erst ein Strich, dann zwei, dann drei. Ab 四 wird nicht einfach weitergezählt.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked",
+        "discovery": "Ein, zwei, drei Striche – so weit zählt das Auge mit. Vier wäre zu einfach: 四 hat eine eigene Form."
+      }
+    },
+    {
+      "id": "si",
+      "words": [
+        "si"
+      ],
+      "audio": "/audio/mandarin/polly-si.mp3",
+      "slowAudio": "/audio/mandarin/polly-si-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 21,
+        "prerequisites": [
+          "san"
+        ],
+        "writing": false,
+        "note": "4 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "wu",
+      "words": [
+        "wu"
+      ],
+      "audio": "/audio/mandarin/polly-wu.mp3",
+      "slowAudio": "/audio/mandarin/polly-wu-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 22,
+        "prerequisites": [
+          "si"
+        ],
+        "writing": false,
+        "note": "5 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "liu",
+      "words": [
+        "liu"
+      ],
+      "audio": "/audio/mandarin/polly-liu.mp3",
+      "slowAudio": "/audio/mandarin/polly-liu-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 23,
+        "prerequisites": [
+          "wu"
+        ],
+        "writing": false,
+        "note": "6 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "qi",
+      "words": [
+        "qi"
+      ],
+      "audio": "/audio/mandarin/polly-qi.mp3",
+      "slowAudio": "/audio/mandarin/polly-qi-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 24,
+        "prerequisites": [
+          "liu"
+        ],
+        "writing": false,
+        "note": "7 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "ba",
+      "words": [
+        "ba"
+      ],
+      "audio": "/audio/mandarin/polly-ba.mp3",
+      "slowAudio": "/audio/mandarin/polly-ba-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 25,
+        "prerequisites": [
+          "qi"
+        ],
+        "writing": false,
+        "note": "8 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "jiu",
+      "words": [
+        "jiu"
+      ],
+      "audio": "/audio/mandarin/polly-jiu.mp3",
+      "slowAudio": "/audio/mandarin/polly-jiu-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 26,
+        "prerequisites": [
+          "ba"
+        ],
+        "writing": false,
+        "note": "9 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "shi-number",
+      "words": [
+        "shi-number"
+      ],
+      "audio": "/audio/mandarin/polly-shi-number.mp3",
+      "slowAudio": "/audio/mandarin/polly-shi-number-slow.mp3",
+      "learning": {
+        "function": "numbers",
+        "order": 27,
+        "prerequisites": [
+          "jiu"
+        ],
+        "writing": true,
+        "note": "10 als Zahl beim Zählen.",
+        "concepts": [
+          "chunks"
+        ],
+        "reviewStatus": "source_checked"
+      }
+    }
+  ]
+}

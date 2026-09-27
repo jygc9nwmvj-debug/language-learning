@@ -1017,3 +1017,13 @@ DB transitions; no new scheduler. Existing audio and Build-B writing remain unch
 now verifies the active worker's actual asset cache and offers retry. See
 `BUILD_C_INTERACTION_FLOW.md`. The learner-facing entry is Weiterlernen; existing content remains
 bounded and non-adaptive. No Lesson 2, Continuous Learning, Identity/Sync or Research Mode.
+
+
+## 38. Build D checkpoint — 2026-09-27
+
+The explicit Build D instruction supersedes the earlier hold on content expansion. A small continuous
+Weiterlernen planner mixes bounded recall/consolidation/new exposure with 28 new communicative/number
+objects. No learner-facing lesson numbering or long-term adaptive claim. Five additional writing
+targets reuse B's engine; C's progressive surface remains. All production audio is Polly-only; accepted
+A2 files unchanged, new audio provisional. See BUILD_D_CONTINUOUS_LEARNING.md and the review report.
+No Identity/Sync, Research Mode, accounts, exam system or efficiency dashboard.

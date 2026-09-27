@@ -4,8 +4,8 @@ import {readFileSync} from 'node:fs';
 import {content} from '../src/languages/mandarin/content/index.ts';
 import {validateProductionAudio} from '../scripts/production-audio.mjs';
 const manifest=JSON.parse(readFileSync('docs/A2_AUDIO_MANIFEST.json'));
-test('production inventory includes 16 item variants and all four canonical tone references',()=>{
- const refs=validateProductionAudio(content,manifest);assert.equal(refs.length,20);assert.equal(new Set(refs.map(r=>r.path)).size,20);
+test('production inventory includes all item variants and all four canonical tone references',()=>{
+ const refs=validateProductionAudio(content,manifest);assert.equal(refs.length,content.items.length*2+4);assert.equal(new Set(refs.map(r=>r.path)).size,refs.length);
 });
 test('unknown or ineligible audio fails even with an existing provenance entry',()=>{
  for(const path of ['/audio/mandarin/nihao.wav','/audio/mandarin/unknown.mp3']){

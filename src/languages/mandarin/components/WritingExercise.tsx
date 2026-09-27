@@ -1,24 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import HanziWriter from 'hanzi-writer';
-import hao from '../data/hao.json';
-import ni from '../data/ni.json';
-import wo from '../data/wo.json';
+import {writingTargets as targets,delayed} from '../writing-targets';
 import { ui } from '../../../core/i18n/de';
 
 type Detail = Record<string, string | number | boolean>;
 export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean };
-type Level = { id: string; category: string; title: string; instruction: string; alpha: number; nextStroke?: boolean; preview?: boolean };
-const guided: Level = { id: 'full_guided', category: 'guided_trace', title: 'Mit voller Vorlage', instruction: 'Ziehe die Striche nach. Die kleine Zahl zeigt den Anfang; der nächste Strich wird vorgemacht.', alpha: .38, nextStroke: true };
-const reduced: Level = { id: 'full_reduced', category: 'reduced_scaffold', title: 'Mit weniger Hilfe', instruction: 'Die Vorlage bleibt. Finde die Strichfolge jetzt selbst.', alpha: .28 };
-const faint: Level = { id: 'faint_outline', category: 'reduced_scaffold', title: 'Mit blasser Vorlage', instruction: 'Schreibe noch einmal. Die blasse Form hilft dir beim Aufbau.', alpha: .12 };
-const memory: Level = { id: 'brief_recall', category: 'free_recall', title: 'Kurz merken, dann schreiben', instruction: 'Schreibe jetzt aus dem Gedächtnis. Hilfe ist jederzeit möglich.', alpha: 0, preview: true };
-const delayed: Level = { id: 'delayed_recall', category: 'free_recall', title: 'Aus dem Gedächtnis', instruction: 'Schreibe ohne Vorlage. Wenn du sie brauchst, kannst du sie einblenden.', alpha: 0 };
-// Authored starting hypothesis, not an adaptive engine or an optimal repetition count.
-const targets = {
-  hao: { character: '好', data: hao, levels: [guided, reduced, faint, memory], intro: 'Schau auf Reihenfolge und Richtung. Danach schreibst du selbst – erst mit viel, dann mit weniger Hilfe.' },
-  ni: { character: '你', data: ni, levels: [{ ...guided, instruction: 'Die Schreibweise kennst du jetzt: erst nachziehen, dann mit weniger Hilfe schreiben.' }, faint, memory], intro: 'Dasselbe Vorgehen für „du“. Schau zuerst auf die sieben Striche.' },
-  wo: { character: '我', data: wo, levels: [guided, { ...faint, alpha: .18, instruction: 'Achte auf die Kreuzungen und den langen gebogenen Strich. Die blasse Vorlage bleibt.' }, memory], intro: 'Jetzt „ich“. Achte besonders auf Richtungen, Kreuzungen und Haken.' },
-};
 export function WritingExercise({ itemId, recall, onEvent, onComplete, disabled }: {
   itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
   onComplete: (result: WritingResult) => Promise<void>; disabled: boolean;

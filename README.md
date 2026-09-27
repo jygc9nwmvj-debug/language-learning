@@ -1,10 +1,12 @@
-# Mandarin — First contact · Build C
+# Mandarin — Continuous learning · Build D
 
 Private German-language, local-first Lesson-1 vertical slice. No account or cloud learning services.
 Scope: `docs/COMPLEXITY_CUT_v0.1.md`, then `docs/BUILD_HANDOFF_v1.1.md` and
 `docs/MANDARIN_APP_MASTER_CURRENT.md`. The old `static-prototype/` is an archived mockup, not the app.
 
-Test deployment: https://language-learning-abk.pages.dev/ . Current build: **C — Interaction & Flow**.
+Test deployment: https://language-learning-abk.pages.dev/ . Current build: **D — Continuous Learning**.
+[Build D report](docs/BUILD_D_CONTINUOUS_LEARNING.md): 28 new objects, small multi-session planner,
+76 Polly-only references and five selective writing targets.
 [Build C report](docs/BUILD_C_INTERACTION_FLOW.md) covers progressive speaking/reading, atomic transitions,
 automatic own-recording playback and verified offline readiness.
 [Build B report](docs/BUILD_B_WRITING_FOUNDATION.md) documents the short 好 → 你 → 我 progression,

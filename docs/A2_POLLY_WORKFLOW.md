@@ -1,3 +1,5 @@
+> Build D supersedes the five legacy exceptions and manual-only generation notes below. Production is Polly-only; see BUILD_D_CONTINUOUS_LEARNING.md. Historical A2 acceptance remains unchanged.
+
 # A2 abgeschlossen – Polly in Lesson 1
 
 App-Integration; Veröffentlichung der normalen Test-App durch den anschließenden Auftrag „A2 — FINALIZE AND SHIP“ freigegeben. 12 vollständig nutzerakzeptierte MP3-Dateien werden bytegenau unverändert verwendet. Akzeptanzquelle: A2_POLLY_USER_ACCEPTANCE.json. Originaler Prüfstand unter tools/polly-controlled. Keine Audio-Normalisierung, kein Trimmen, keine Tonkonturkorrektur und keine Waveform-Tempodehnung.

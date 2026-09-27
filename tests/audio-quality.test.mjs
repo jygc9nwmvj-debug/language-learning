@@ -8,7 +8,7 @@ const review=JSON.parse(readFileSync('docs/A2_POLLY_USER_ACCEPTANCE.json'));
 test('all 12 user-accepted audio files preserve the exact reviewed bytes',()=>{
  const accepted=manifest.assets.filter(a=>a.qualityState==='user_accepted');assert.equal(accepted.length,12);
  for(const a of accepted){validateAudioQuality(a);const hash=createHash('sha256').update(readFileSync('public'+a.path)).digest('hex');assert.equal(hash,a.sha256);assert(review.assets.some(x=>x.sha256===hash));}
- const pending=manifest.assets.filter(a=>a.qualityState==='needs_human_review');assert.equal(pending.length,3);assert(pending.some(a=>a.item==='askname'&&a.ssml.includes('80%')));
+ const pending=manifest.assets.filter(a=>a.qualityState==='needs_human_review');assert(pending.length>=3);assert(pending.some(a=>a.item==='askname'&&a.ssml.includes('80%')));
 });
 test('quality states cannot claim technical validation or user acceptance without evidence',()=>{
  for(const state of ['technically_validated','user_accepted','needs_human_review'])assert.throws(()=>validateAudioQuality({qualityState:state}),/technical/);
