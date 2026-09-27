@@ -9,12 +9,15 @@ const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.wav$/);
 const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma']);
 const word = z.strictObject({ id: text, hant: z.string().regex(/^\p{Script=Han}+$/u), hans: z.string().regex(/^\p{Script=Han}+$/u),
   toneNumbers: z.string().regex(/^[a-zü]+[1-5]( [a-zü]+[1-5])*$/), meaning, review });
+export const assessmentSchema = z.strictObject({ toneNotation: z.boolean(), neutralTone: z.boolean() });
+export type Assessment = z.infer<typeof assessmentSchema>;
 const authoredSchema = z.strictObject({
+  introducedAssessment: assessmentSchema,
   version: text, qaStatus: z.enum(['draft', 'source_checked', 'language_reviewed', 'audio_reviewed', 'published']), audioStatus: z.enum(['prototype', 'reviewed']),
   words: z.array(word).min(1), toneExamples: z.array(text).length(4),
   items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), review })),
   tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'closure']),
-    itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
+    assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
   initialPlan: z.array(text), reviewPlan: z.array(text),
 }).superRefine((c, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: 'custom', message });
@@ -35,6 +38,14 @@ const authoredSchema = z.strictObject({
   c.toneExamples.forEach((id,n) => { if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
   for (const t of c.tasks) {
     const item = items.get(t.itemId ?? '');
+    if (t.kind === 'recall' && !t.assess) issue(`Missing assessment declaration: ${t.id}`);
+    if (t.assess) {
+      if (t.kind !== 'recall') issue(`Assessment declaration only supported for text recall: ${t.id}`);
+      for (const dimension of ['toneNotation', 'neutralTone'] as const) {
+        if (t.assess[dimension] && !c.introducedAssessment[dimension]) issue(`Assessment not introduced: ${t.id}/${dimension}`);
+      }
+      if (t.assess.neutralTone && !t.assess.toneNotation) issue(`Neutral tone requires tone notation: ${t.id}`);
+    }
     if (t.itemId && !item) issue(`Unknown item: ${t.itemId}`);
     if (!['tones','closure'].includes(t.kind) && !t.itemId) issue(`Missing item: ${t.id}`);
     if (['listen','read','recall','writing'].includes(t.kind) && !t.target) issue(`Missing target: ${t.id}`);

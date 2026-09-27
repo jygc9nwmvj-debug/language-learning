@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { content, taskMap, itemMap } from '../languages/mandarin/content';
 import { Exercise } from '../languages/mandarin/components/Exercise';
-import { interpretAnswer, answerFeedback, type Interpretation } from '../languages/mandarin/answer';
+import { evaluateAnswer, answerFeedback, type Interpretation } from '../languages/mandarin/answer';
 
 const tasks = content.tasks.filter(task => task.kind !== 'closure');
 export function A1Harness() {
@@ -36,11 +36,11 @@ export function A1Harness() {
     <details><summary>Lokale Test-Ereignisse ({events.length})</summary><pre data-testid="test-events" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(events, null, 2)}</pre></details>
     <section aria-label="Direkter Answer Interpreter" style={{ marginTop: 32 }}>
       <h2>Answer Interpreter direkt testen</h2>
-      <p>Prüft Mandarin-Texteingaben, auch für Wörter ohne eigene Text-Recall-Aufgabe. Keine Bewertung gesprochener Aussprache.</p>
+      <p>Prüft Mandarin-Texteingaben, auch für Wörter ohne eigene Text-Recall-Aufgabe. Keine Bewertung gesprochener Aussprache. Aktueller Prüfstand: Tonnotation 1–4 aktiv, neutraler Ton noch nicht bewertet.</p>
       <label className="fieldLabel">Erwartetes Item<select style={{ width: '100%', minWidth: 0, padding: 8 }} value={itemId} onChange={event => { setItemId(event.target.value); setInput(''); setResult(null); }}>
         {content.items.map(item => <option key={item.id} value={item.id}>{item.hans} — {item.pinyin}{item.slot ? ' …' : ''}</option>)}
       </select></label>
-      <form onSubmit={event => { event.preventDefault(); setResult(interpretAnswer(input, itemMap.get(itemId)!, name)); }}>
+      <form onSubmit={event => { event.preventDefault(); setResult(evaluateAnswer(input, itemMap.get(itemId)!, content.introducedAssessment, name)); }}>
         <label className="fieldLabel">Testeingabe<input value={input} onChange={event => { setInput(event.target.value); setResult(null); }} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck={false} /></label>
         <button type="submit">Interpreter prüfen</button>{' '}<button type="button" onClick={() => { setInput(''); setResult(null); }}>Interpreter zurücksetzen</button>
       </form>

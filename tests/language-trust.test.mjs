@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import raw from '../src/languages/mandarin/content/lesson-001.json' with { type: 'json' };
 import { contentSchema } from '../src/languages/mandarin/schema/content.ts';
 import { itemMap, content } from '../src/languages/mandarin/content/index.ts';
-import { interpretAnswer, answerFeedback } from '../src/languages/mandarin/answer.ts';
+import { interpretAnswer, evaluateAnswer, answerFeedback } from '../src/languages/mandarin/answer.ts';
 
 const cases = [
  ['wo','wo3','correct'],['wo','wǒ','correct'],['wo','wo','omitted'],
@@ -57,4 +57,40 @@ test('canonical validator rejects malformed words, contradictory copies and brok
   d=>{d.initialPlan.push('absent');},
  ];
  for(const mutate of mutations) { const d=structuredClone(raw);mutate(d);assert.equal(contentSchema.safeParse(d).success,false,String(mutate)); }
+});
+
+
+test('curriculum assessment accepts untaught neutral distinctions without weakening taught tones', () => {
+ const assess=content.introducedAssessment;
+ for(const input of ['xie4 xie5','xièxie','谢谢','xie4 xie','xie4 xie4']) {
+  const r=evaluateAnswer(input,itemMap.get('xiexie'),assess);
+  assert.equal(r.fullyCorrect,true,input); assert.equal(r.correction,''); assert.equal(r.spokenTones,'unknown');
+ }
+ for(const [input,notation] of [['wo3','correct'],['wo2','different'],['wo','omitted']]) {
+  const r=evaluateAnswer(input,itemMap.get('wo'),assess);
+  assert.equal(r.content,'correct');assert.equal(r.toneNotation,notation);assert.equal(r.spokenTones,'unknown');
+  if(notation!=='correct') assert.match(r.correction,/wo3/);
+ }
+ for(const input of ['xie xie4','xie2 xie4','xie4 xia4','nonsense']) {
+  const r=evaluateAnswer(input,itemMap.get('xiexie'),assess);
+  assert.equal(r.fullyCorrect,false);assert.doesNotMatch(answerFeedback(r),/xie5/);
+ }
+ assert.equal(evaluateAnswer('ni3 jiao4 shen2 me4 ming2 zi4',itemMap.get('askname'),assess).fullyCorrect,true);
+ assert.equal(interpretAnswer('xie4 xie4',itemMap.get('xiexie')).toneNotation,'different');
+ const strict=evaluateAnswer('xie4 xie4',itemMap.get('xiexie'),{toneNotation:true,neutralTone:true});
+ assert.equal(strict.fullyCorrect,false);assert.match(strict.correction,/xie5/);
+ assert.equal(evaluateAnswer('wo2',itemMap.get('wo'),{toneNotation:false,neutralTone:false}).fullyCorrect,true);
+ assert.equal(itemMap.get('xiexie').toneNumbers,'xie4 xie5');
+});
+
+test('validator rejects undeclared or unintroduced assessment dimensions', () => {
+ for(const change of [
+  c=>delete c.tasks.find(t=>t.kind==='recall').assess,
+  c=>c.tasks.find(t=>t.kind==='recall').assess.neutralTone=true,
+  c=>c.introducedAssessment.toneNotation=false,
+  c=>c.tasks.find(t=>t.kind==='recall').assess.toneSandhi=true,
+ ]) {const c=structuredClone(raw);change(c);assert.equal(contentSchema.safeParse(c).success,false);}
+ const future=structuredClone(raw);future.introducedAssessment.neutralTone=true;
+ future.tasks.find(t=>t.id==='recall-xiexie').assess.neutralTone=true;
+ assert.equal(contentSchema.safeParse(future).success,true);
 });

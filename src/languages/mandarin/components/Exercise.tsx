@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import type { Item, Task } from '../schema/content';
 import { itemMap } from '../content';
-import { normalizeText, interpretAnswer, answerFeedback, type Interpretation } from '../answer';
+import { normalizeText, evaluateAnswer, answerFeedback, type Interpretation } from '../answer';
 import { AudioButton } from '../../../core/exercises/AudioButton';
 import { Recorder } from '../../../core/audio/Recorder';
 import { ui } from '../../../core/i18n/de';
@@ -29,8 +29,8 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       if (retryEvidence) result = retryEvidence;
       else {
         if (task.kind === 'recall') {
-          interpreted = interpretAnswer(input, item, name);
-          result = { result: interpreted.result, assisted: help, detail: { ...interpreted } };
+          interpreted = evaluateAnswer(input, item, task.assess!, name);
+          result = { result: interpreted.result, assisted: help, detail: { ...interpreted, assessToneNotation: task.assess!.toneNotation, assessNeutralTone: task.assess!.neutralTone } };
         } else result = { result: item.answers.some(a => normalizeText(a) === normalizeText(input)) ? 'success' : 'failure', assisted: help };
         setRetryEvidence(result);
       }

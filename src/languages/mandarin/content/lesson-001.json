@@ -1,5 +1,5 @@
 {
-  "version": "lesson1-a1",
+  "version": "lesson1-a1-curriculum",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
@@ -264,7 +264,11 @@
         "de": "Begrüße jemanden."
       },
       "itemId": "nihao",
-      "target": "production"
+      "target": "production",
+      "assess": {
+        "toneNotation": true,
+        "neutralTone": false
+      }
     },
     {
       "id": "recall-wojiao",
@@ -273,7 +277,11 @@
         "de": "Stelle dich mit deinem Namen vor."
       },
       "itemId": "wojiao",
-      "target": "production"
+      "target": "production",
+      "assess": {
+        "toneNotation": true,
+        "neutralTone": false
+      }
     },
     {
       "id": "recall-askname",
@@ -282,7 +290,11 @@
         "de": "Frage nach dem Namen."
       },
       "itemId": "askname",
-      "target": "production"
+      "target": "production",
+      "assess": {
+        "toneNotation": true,
+        "neutralTone": false
+      }
     },
     {
       "id": "recall-xiexie",
@@ -291,7 +303,11 @@
         "de": "Bedanke dich."
       },
       "itemId": "xiexie",
-      "target": "production"
+      "target": "production",
+      "assess": {
+        "toneNotation": true,
+        "neutralTone": false
+      }
     },
     {
       "id": "recall-zaijian",
@@ -300,7 +316,11 @@
         "de": "Verabschiede dich."
       },
       "itemId": "zaijian",
-      "target": "production"
+      "target": "production",
+      "assess": {
+        "toneNotation": true,
+        "neutralTone": false
+      }
     },
     {
       "id": "closure",
@@ -558,5 +578,9 @@
     "ma2",
     "ma3",
     "ma4"
-  ]
+  ],
+  "introducedAssessment": {
+    "toneNotation": true,
+    "neutralTone": false
+  }
 }

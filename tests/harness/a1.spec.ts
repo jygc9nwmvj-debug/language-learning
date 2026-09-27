@@ -50,3 +50,27 @@ test('all recalls, repeatable evaluation, interpreter and no persistence', async
   await expect(page.getByLabel('Testeingabe', { exact: true })).toHaveValue('');
   await expect(page.getByTestId('test-events')).toHaveText('[]');
 });
+
+
+test('current curriculum uses the same policy in exercises and the direct interpreter', async ({page}) => {
+ await page.goto('/__test/a1');
+ await page.getByLabel('Lernschritt',{exact:true}).selectOption('recall-xiexie');
+ await page.getByLabel('Erwartetes Item').selectOption('xiexie');
+ for(const input of ['xie4 xie5','xièxie','谢谢','xie4 xie','xie4 xie4']) {
+  await page.getByLabel('Deine Antwort',{exact:true}).fill(input);
+  await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+  await expect(page.getByRole('region',{name:'Ausgewählter Lernschritt'}).getByRole('status')).toHaveText('Richtig.');
+  await page.getByRole('button',{name:'Reset / erneut testen',exact:true}).click();
+  await page.getByLabel('Testeingabe',{exact:true}).fill(input);
+  await page.getByRole('button',{name:'Interpreter prüfen',exact:true}).click();
+  const result=JSON.parse((await page.getByTestId('interpreter-result').textContent())!);
+  expect(result.fullyCorrect).toBe(true);expect(result.correction).toBe('');expect(result.spokenTones).toBe('unknown');
+ }
+ await page.getByLabel('Erwartetes Item').selectOption('wo');
+ for(const [input,tone] of [['wo3','correct'],['wo2','different'],['wo','omitted']]) {
+  await page.getByLabel('Testeingabe',{exact:true}).fill(input);
+  await page.getByRole('button',{name:'Interpreter prüfen',exact:true}).click();
+  const result=JSON.parse((await page.getByTestId('interpreter-result').textContent())!);
+  expect(result.content).toBe('correct');expect(result.toneNotation).toBe(tone);expect(result.spokenTones).toBe('unknown');
+ }
+});

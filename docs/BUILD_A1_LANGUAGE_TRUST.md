@@ -164,3 +164,38 @@ einer abgeschlossenen Runde ist „Lesson 1 erneut durchgehen“ direkt sichtbar
 vorhandenen vollständigen Lesson-1-Neustart und erklärt ausdrücklich, dass die Lektion von vorn beginnt
 und der Verlauf erhalten bleibt. Keine neue Lektion, kein neuer Scheduler und keine tägliche Lernbegrenzung.
 Chrome-/WebKit-Regressionsprüfungen decken beide Einstiege und den Erhalt alter Sessions/Events ab.
+
+## A1 final follow-up: curriculum-aware evaluation
+
+Invariant: **Never grade knowledge before it has been introduced.** Canonical linguistic truth and
+current assessment targets are distinct. This also governs future sandhi, Hanzi production,
+spelling, grammar, stroke order and pronunciation expectations; no new competency engine or A2
+is implemented here.
+
+Root cause: text recall used the strict canonical interpreter directly, so canonical `xie4 xie5`
+produced a neutral-tone correction before neutral tone was taught. Canonical words remain unchanged.
+The lesson now declares `introducedAssessment`; every text-recall task explicitly declares `assess`.
+The two supported flags are `toneNotation` and `neutralTone`. Lexical content and the existing name
+construction remain the fixed targets of these text tasks. Current A1: toneNotation=true,
+neutralTone=false. `evaluateAnswer` requires a policy; Exercise and the direct harness pass it.
+The canonical `interpretAnswer` remains strict by default for internal inspection. `fullyCorrect`
+from learner evaluation means correct for active targets, not proof of canonical or spoken tones.
+Assessment flags are included in attempt detail; content version is `lesson1-a1-curriculum`.
+
+Neutral-target syllables are skipped during tone grading, including in other phrases such as the
+name question. Lexical errors still count. Corrections and fallback models do not leak unexplained
+neutral-tone numbers. Already-taught tone distinctions remain strict. The premature ma5/ma0 aside
+was removed from the four-tone keyboard introduction. Future teaching must explain 5 as an input
+convention for neutral/unstressed tone, **not a fifth lexical tone**; only then activate neutralTone.
+
+Validator: recall tasks must declare their policy; active dimensions must be introduced; neutralTone
+requires toneNotation; unknown flags and policies on unsupported task kinds are rejected. No graph,
+learner migration or automatic competency inference. Introduced targets are currently an authored
+lesson-level declaration, not an individualized model of what a learner has mastered.
+
+Validation: required validate-content and production build; 33 Node tests including all requested
+谢谢 variants, wo3/wo2/wo, other neutral-containing items, no leaked xie5 correction, future strict
+policy and negative validator cases. Four Chrome/WebKit harness tests cover the actual Exercise and
+direct Interpreter, repeated attempts, reset and state isolation. Existing trust regressions rerun.
+Spoken pronunciation remains unknown for every text answer. Real iPhone acceptance remains with the
+user; no audio or new curriculum work is included.
