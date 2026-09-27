@@ -1,0 +1,21 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import 'fake-indexeddb/auto';
+import { db, resetLearningState, exportLearningState, importLearningState } from '../src/core/progress/db.ts';
+test('restart clears all learner tables, backup restores the current session and failed reset rolls back', async () => {
+ await db.open();
+ await db.sessions.put({id:'prior',plannerVersion:'d1',plan:['meet-nihao'],index:0,completed:false,startedAt:1,updatedAt:2,script:'hans'});
+ await db.preferences.put({key:'name',value:'Test'});
+ await db.table('itemProgress').put({id:'legacy'});
+ const backup=await exportLearningState();
+ const last=db.tables.at(-1), clear=last.clear;
+ last.clear=async()=>{throw Error('Storage failure');};
+ await assert.rejects(resetLearningState()); last.clear=clear;
+ assert.equal(await db.sessions.count(),1); assert.equal(await db.preferences.count(),1);
+ await resetLearningState();
+ for(const table of db.tables) assert.equal(await table.count(),0);
+ await importLearningState(backup,new Set(['meet-nihao']));
+ assert.equal((await db.sessions.get('prior')).script,'hans');
+ assert.equal((await db.preferences.get('name')).value,'Test');
+ await db.delete();
+});

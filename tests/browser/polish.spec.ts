@@ -21,7 +21,7 @@ async function captureFixture(page: import('@playwright/test').Page) {
 test('compact recording controls preserve autoplay, pause, replay, retake and the next-step lock', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 }); await captureFixture(page);
   await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
-  await page.getByRole('button', { name: 'Pinyin und Bedeutung', exact: true }).click();
+  await expect(page.locator('.pronunciationMeaning')).toBeVisible();
   await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
   await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Weiter', exact: true })).toBeDisabled();
@@ -42,7 +42,7 @@ test('compact recording controls preserve autoplay, pause, replay, retake and th
   await page.getByRole('button', { name: 'Wiedergabe pausieren' }).click();
   await page.getByRole('button', { name: 'Weiter', exact: true }).click();
   await expect(page.locator('.hanziHero')).toHaveText('我');
-  await expect(page.getByRole('button', { name: 'Anhören', exact: true })).toBeEnabled();
+  await expect(page.locator('.referenceAudio .audioButton').first()).toBeEnabled();
 });
 
 test('compact tones retain comparison, feedback and comfortable named controls at phone widths', async ({ page }) => {

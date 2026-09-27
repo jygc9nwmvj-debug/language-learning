@@ -67,3 +67,11 @@ export async function importLearningState(raw: string, validTasks: Set<string>) 
     for (const p of backup.preferences) if (!(await db.preferences.get(p.key))) await db.preferences.add(p);
   });
 }
+
+// Explicit learner-requested restart. All learner tables, including legacy history,
+// clear together; application/audio caches are intentionally outside this transaction.
+export async function resetLearningState() {
+  await db.transaction('rw', db.tables, async () => {
+    for (const table of db.tables) await table.clear();
+  });
+}

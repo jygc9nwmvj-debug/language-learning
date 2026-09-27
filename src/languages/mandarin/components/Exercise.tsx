@@ -16,13 +16,14 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   onNext: () => void | Promise<void>; disabled: boolean;
 }) {
   const [help, setHelp] = useState(false); const [input, setInput] = useState('');
+  const [referencePlaying, setReferencePlaying] = useState(false);
   const [heard, setHeard] = useState(false); const [feedback, setFeedback] = useState('');
   const [answered, setAnswered] = useState(false);
   const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>('success');
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
   const submitting = useRef(false), writingRecorded = useRef(false);
   const item = itemMap.get(task.itemId ?? '') as Item;
-  const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
+  const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
   const reveal = () => { setHelp(true); onEvent('pinyin_reveal'); };
   async function check() {
     if (submitting.current || answered) return; submitting.current = true;
@@ -48,7 +49,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   if (task.kind === 'tones') return <ToneLab script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } await onNext(); }} />;
   const reference = <div className="reference"><p lang={`zh-${script === 'hant' ? 'Hant' : 'Hans'}`} className="hanziSentence">{item[script]}{item.slot === 'name' ? ' …' : ''}</p><p className="pinyin">{item.pinyin}{item.slot === 'name' ? ' …' : ''}</p><p>{item.meaning.de}</p></div>;
-  if (task.kind === 'encounter') return <SpeakingPractice disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
+  if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
     reference={<><p className="hanziHero" lang="zh">{item[script]}</p>
       {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : <div className="pronunciationMeaning"><p className="pinyin">{item.pinyin}</p><p className="meaning">{item.meaning.de}</p></div>}</>}
     audio={<>{audio()}{item.slowAudio && audio(true)}</>}>

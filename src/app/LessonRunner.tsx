@@ -1,6 +1,6 @@
 import { Icon } from '../core/exercises/Icon';
 import { useEffect, useRef, useState } from 'react';
-import { db, exportLearningState, importLearningState, logEvent, recordAttempt, type Session } from '../core/progress/db';
+import { db, resetLearningState, exportLearningState, importLearningState, logEvent, recordAttempt, type Session } from '../core/progress/db';
 import { ui } from '../core/i18n/de';
 import { content, taskMap } from '../languages/mandarin/content';
 import { composeContinuous, shouldResume, exposure } from '../languages/mandarin/continuous';
@@ -109,6 +109,14 @@ export function LessonRunner() {
       const a = document.createElement('a'); a.href = url; a.download = `mandarin-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch { setError(ui.storageError); }
   }
+  async function restart() {
+    if (lock.current || !window.confirm('Wirklich von vorne beginnen? Dein Lernfortschritt, deine Sitzungen, Forschungsnotizen und Einstellungen werden auf diesem Gerät gelöscht. Ohne heruntergeladene Sicherung lässt sich das nicht rückgängig machen.')) return;
+    await mutation(async () => {
+      await resetLearningState();
+      setSession(null); setName(''); setScript('hant'); setReflection(''); setReflectionSaved(false);
+      setView('home'); setMessage('Dein Lernstand wurde zurückgesetzt. Weiterlernen beginnt wieder mit 你好.');
+    });
+  }
   async function restore(file: File) {
     try { if (file.size > 20_000_000) throw new Error('Too large'); await importLearningState(await file.text(), new Set(taskMap.keys())); await load(); setMessage(ui.backupDone); }
     catch { setMessage(ui.backupError); }
@@ -119,7 +127,8 @@ export function LessonRunner() {
     <div className="settingsActions"><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
       <label className="fileLabel">{ui.restore}<input type="file" accept="application/json,.json" onChange={e => { const file = e.target.files?.[0]; if (file) void restore(file); e.target.value = ''; }} /></label>
       <button type="button" className="textButton" onClick={() => { void navigator.storage?.persist?.().then(ok => setMessage(ok ? ui.persisted : ui.notPersisted)).catch(() => setMessage(ui.notPersisted)); }}>{ui.persist}</button>
-      <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button></div>{message && <p role="status">{message}</p>}
+      <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>
+      <details className="restartLearning"><summary>Von vorne beginnen</summary><p>Setzt deinen gesamten Lernstand einschließlich Verlauf und Einstellungen auf diesem Gerät zurück. Sichere ihn bei Bedarf zuerst über „Lernstand sichern“. Schließe vor dem Zurücksetzen andere geöffnete Fenster dieser App.</p><button type="button" className="textButton" disabled={busy} onClick={() => safe(restart)}>Lernstand zurücksetzen …</button></details></div>{message && <p role="status">{message}</p>}
   </details>;
   const repeatLesson = <button type="button" disabled={busy} onClick={() => safe(() => begin(true))}>Weiterlernen</button>;
   const errorBox = error && <p className="feedback error" role="alert">{error}{!ready && <button type="button" onClick={() => void load()}>{ui.reload}</button>}</p>;
@@ -128,7 +137,7 @@ export function LessonRunner() {
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion C2 · Inhalte D · {ui.prototype}</p></section>}
+      {errorBox}{settings}<p className="prototypeNote">Testversion C2.1 · Inhalte D · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><button type="button" disabled={busy} className="sessionPause" aria-label={ui.pause} title={ui.pause} onClick={() => safe(pause)}><Icon name="close" />Pause</button></header>
       <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'writing' && !task.recall ? 'Schreiben lernen' : task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin' : ui.recall}</p><h2>{task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Eine weitere kurze Mischung aus Bekanntem und Neuem.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>

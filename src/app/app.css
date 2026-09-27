@@ -168,3 +168,9 @@ fieldset { border: 0; padding: 0; margin: 20px 0; }legend { margin-bottom: 10px;
 .toneFeedback.success { color: var(--success-ink); }
 .toneFeedback.attention { color: var(--attention-ink); }
 @media (max-width: 640px) { .lessonCard:not(:has(.writingExercise)) { padding: 12px 12px 20px; }.lessonHeader { margin-bottom: 6px; }.toneRow { gap: 8px; }.toneLanguage { gap: 0 8px; } }
+
+/* C2.1: the main action follows listening, then the learner's own playback. */
+.speakingPractice[data-ready-to-record=true]:not([data-phase=review]) .recordButton:not(.isRecording) { background: #294b3c; color: white; }
+
+.restartLearning { max-width: 38rem; color: #59665c; font-size: .9rem; }
+.restartLearning p { margin: 8px 0 12px; }
