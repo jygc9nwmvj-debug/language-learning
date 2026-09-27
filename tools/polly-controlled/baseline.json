@@ -1,0 +1,54 @@
+[
+  {
+    "toneBySuppliedOrder": 1,
+    "source": "speech_20260927184147172.mp3",
+    "file": "baseline/ma1.mp3",
+    "sha256": "98f6d9b46065db92bafc64727c44c0a1ca441407fae4add8f0d5ef8d854580e2",
+    "reportedSettings": {
+      "engine": "neural",
+      "voice": "Zhiyu"
+    },
+    "settingsIndependentlyVerified": false,
+    "humanFeedback": "User reports substantially better than combined sequence",
+    "status": "candidate"
+  },
+  {
+    "toneBySuppliedOrder": 2,
+    "source": "speech_20260927184155846.mp3",
+    "file": "baseline/ma2.mp3",
+    "sha256": "7dcf7e894caab5e60081998e0ca99ceb5a9ec20504b946b8d98a737a7118f3f5",
+    "reportedSettings": {
+      "engine": "neural",
+      "voice": "Zhiyu"
+    },
+    "settingsIndependentlyVerified": false,
+    "humanFeedback": "User reports substantially better than combined sequence",
+    "status": "candidate"
+  },
+  {
+    "toneBySuppliedOrder": 3,
+    "source": "speech_20260927184205273.mp3",
+    "file": "baseline/ma3.mp3",
+    "sha256": "a39e6bd35b546f9a8eeec50a5f8958fc3eb791f4d7ceba2d75feb56721bce70c",
+    "reportedSettings": {
+      "engine": "neural",
+      "voice": "Zhiyu"
+    },
+    "settingsIndependentlyVerified": false,
+    "humanFeedback": "User reports substantially better than combined sequence",
+    "status": "candidate"
+  },
+  {
+    "toneBySuppliedOrder": 4,
+    "source": "speech_20260927184213554.mp3",
+    "file": "baseline/ma4.mp3",
+    "sha256": "cb8c0ececad893bb85406f96700a6d4673e1b17778b9d7ed22fad6678f8f9c65",
+    "reportedSettings": {
+      "engine": "neural",
+      "voice": "Zhiyu"
+    },
+    "settingsIndependentlyVerified": false,
+    "humanFeedback": "User reports substantially better than combined sequence",
+    "status": "candidate"
+  }
+]

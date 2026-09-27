@@ -1,0 +1,26 @@
+[
+  {
+    "browser": "Chrome",
+    "decoded": 15,
+    "coreCards": 8,
+    "optionalCards": 3,
+    "notesPersistence": true,
+    "export": true,
+    "reset": true,
+    "oneAudioAtATime": true,
+    "mobileOverflow": false,
+    "errors": []
+  },
+  {
+    "browser": "WebKit",
+    "decoded": 15,
+    "coreCards": 8,
+    "optionalCards": 3,
+    "notesPersistence": true,
+    "export": true,
+    "reset": true,
+    "oneAudioAtATime": true,
+    "mobileOverflow": false,
+    "errors": []
+  }
+]

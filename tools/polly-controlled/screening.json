@@ -1,0 +1,635 @@
+[
+  {
+    "id": "ni",
+    "hans": "你",
+    "pinyin": "nǐ",
+    "variant": "isolated",
+    "file": "audio/ni-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3\">你</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "b1957e43a5d1a71deaaa2a3f33a0f95f01dc53b43c71b83c2c09943b1a46158c",
+    "secondsToGenerate": 0.777,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.6,
+      "speechSpanSeconds": 0.36,
+      "syllablesPerSecond": 2.78,
+      "peakDbfs": -12.72,
+      "activeRmsDbfs": -22.14,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.09,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "asrWarningOnly": {
+      "text": "你。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "wo",
+    "hans": "我",
+    "pinyin": "wǒ",
+    "variant": "isolated",
+    "file": "audio/wo-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3\">我</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "eeabf8649e49b2150de06c6867e8f70879fa6fd29f8941e305eddf2b1c9f8a8c",
+    "secondsToGenerate": 0.889,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.624,
+      "speechSpanSeconds": 0.35,
+      "syllablesPerSecond": 2.86,
+      "peakDbfs": -11.01,
+      "activeRmsDbfs": -22.38,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.17,
+      "trailingSeconds": 0.104,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "asrWarningOnly": {
+      "text": "我。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "hao",
+    "hans": "好",
+    "pinyin": "hǎo",
+    "variant": "isolated",
+    "file": "audio/hao-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"hao3\">好</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "78d1fc183733624248141f6af50cccefc095e2ef0bf08ffc86a907182e430c75",
+    "secondsToGenerate": 0.736,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.648,
+      "speechSpanSeconds": 0.38,
+      "syllablesPerSecond": 2.63,
+      "peakDbfs": -11.87,
+      "activeRmsDbfs": -25.06,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.18,
+      "trailingSeconds": 0.088,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "asrWarningOnly": {
+      "text": "好。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "ma1",
+    "hans": "妈",
+    "pinyin": "mā",
+    "variant": "isolated",
+    "file": "audio/ma1-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma1\">妈</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "98f6d9b46065db92bafc64727c44c0a1ca441407fae4add8f0d5ef8d854580e2",
+    "secondsToGenerate": 0.706,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.6,
+      "speechSpanSeconds": 0.31,
+      "syllablesPerSecond": 3.23,
+      "peakDbfs": -11.77,
+      "activeRmsDbfs": -21.84,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.14,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "compatible",
+        "expectedTone": 1,
+        "medianHz": 236.1,
+        "thirdsSemitones": [
+          -0.65,
+          0.0,
+          1.04
+        ],
+        "spanSemitones": 2.08,
+        "frames": 27,
+        "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+      },
+      "issues": []
+    },
+    "fullClipPitch": {
+      "status": "review",
+      "expectedTone": 1,
+      "medianHz": 236.1,
+      "thirdsSemitones": [
+        -0.69,
+        0.04,
+        1.36
+      ],
+      "spanSemitones": 3.06,
+      "frames": 31,
+      "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+    },
+    "asrWarningOnly": {
+      "text": "妈。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "ma2",
+    "hans": "麻",
+    "pinyin": "má",
+    "variant": "isolated",
+    "file": "audio/ma2-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma2\">麻</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "7dcf7e894caab5e60081998e0ca99ceb5a9ec20504b946b8d98a737a7118f3f5",
+    "secondsToGenerate": 0.775,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.6,
+      "speechSpanSeconds": 0.32,
+      "syllablesPerSecond": 3.12,
+      "peakDbfs": -12.87,
+      "activeRmsDbfs": -24.25,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.13,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "compatible",
+        "expectedTone": 2,
+        "medianHz": 183.9,
+        "thirdsSemitones": [
+          -0.0,
+          -1.34,
+          3.37
+        ],
+        "spanSemitones": 5.91,
+        "frames": 28,
+        "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+      },
+      "issues": []
+    },
+    "fullClipPitch": {
+      "status": "compatible",
+      "expectedTone": 2,
+      "medianHz": 188.6,
+      "thirdsSemitones": [
+        0.15,
+        -1.7,
+        4.24
+      ],
+      "spanSemitones": 7.28,
+      "frames": 32,
+      "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+    },
+    "asrWarningOnly": {
+      "text": "码。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "ma3",
+    "hans": "马",
+    "pinyin": "mǎ",
+    "variant": "isolated",
+    "file": "audio/ma3-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma3\">马</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "a39e6bd35b546f9a8eeec50a5f8958fc3eb791f4d7ceba2d75feb56721bce70c",
+    "secondsToGenerate": 0.69,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.672,
+      "speechSpanSeconds": 0.41,
+      "syllablesPerSecond": 2.44,
+      "peakDbfs": -11.5,
+      "activeRmsDbfs": -24.87,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.112,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "compatible",
+        "expectedTone": 3,
+        "medianHz": 172.2,
+        "thirdsSemitones": [
+          1.27,
+          -1.54,
+          1.46
+        ],
+        "spanSemitones": 4.43,
+        "frames": 37,
+        "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+      },
+      "issues": []
+    },
+    "fullClipPitch": {
+      "status": "compatible",
+      "expectedTone": 3,
+      "medianHz": 179.1,
+      "thirdsSemitones": [
+        1.31,
+        -2.15,
+        1.16
+      ],
+      "spanSemitones": 5.06,
+      "frames": 42,
+      "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+    },
+    "asrWarningOnly": {
+      "text": "码。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "ma4",
+    "hans": "骂",
+    "pinyin": "mà",
+    "variant": "isolated",
+    "file": "audio/ma4-isolated.mp3",
+    "ssml": "<speak><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ma4\">骂</phoneme></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "cb8c0ececad893bb85406f96700a6d4673e1b17778b9d7ed22fad6678f8f9c65",
+    "secondsToGenerate": 0.754,
+    "billedCharacters": 1,
+    "humanApproved": false,
+    "surfaceNote": "Isolated lexical tone",
+    "screening": {
+      "durationSeconds": 0.528,
+      "speechSpanSeconds": 0.27,
+      "syllablesPerSecond": 3.7,
+      "peakDbfs": -13.87,
+      "activeRmsDbfs": -22.11,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.108,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "compatible",
+        "expectedTone": 4,
+        "medianHz": 241.4,
+        "thirdsSemitones": [
+          1.51,
+          -0.24,
+          -4.4
+        ],
+        "spanSemitones": 6.43,
+        "frames": 23,
+        "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+      },
+      "issues": []
+    },
+    "fullClipPitch": {
+      "status": "compatible",
+      "expectedTone": 4,
+      "medianHz": 238.7,
+      "thirdsSemitones": [
+        1.27,
+        -0.24,
+        -5.16
+      ],
+      "spanSemitones": 7.59,
+      "frames": 28,
+      "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+    },
+    "asrWarningOnly": {
+      "text": "妈。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "nihao",
+    "hans": "你好",
+    "pinyin": "nǐ hǎo",
+    "variant": "natural",
+    "file": "audio/nihao-natural.mp3",
+    "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni2-hao3\">你好</phoneme></prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "ad2ccd44c543d39de4e2dc41807a0f5229464ad99bf84afdb46b2e7ef8589d2f",
+    "secondsToGenerate": 0.665,
+    "billedCharacters": 2,
+    "humanApproved": false,
+    "surfaceNote": "ni2-hao3 intentionally encodes 3+3 sandhi; canonical pinyin remains ni3 hao3",
+    "screening": {
+      "durationSeconds": 0.816,
+      "speechSpanSeconds": 0.56,
+      "syllablesPerSecond": 3.57,
+      "peakDbfs": -11.96,
+      "activeRmsDbfs": -21.92,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.106,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "slowNaturalRatio": 1.161,
+    "asrWarningOnly": {
+      "text": "您好。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "nihao",
+    "hans": "你好",
+    "pinyin": "nǐ hǎo",
+    "variant": "careful_slow",
+    "file": "audio/nihao-careful_slow.mp3",
+    "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni2-hao3\">你好</phoneme></prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "8ed7fb785378d061cb165608b532e469d01cc8399e3d997c18f68a1fb3cc77f1",
+    "secondsToGenerate": 0.746,
+    "billedCharacters": 2,
+    "humanApproved": false,
+    "surfaceNote": "ni2-hao3 intentionally encodes 3+3 sandhi; canonical pinyin remains ni3 hao3",
+    "screening": {
+      "durationSeconds": 0.912,
+      "speechSpanSeconds": 0.65,
+      "syllablesPerSecond": 3.08,
+      "peakDbfs": -11.95,
+      "activeRmsDbfs": -21.86,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.112,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": [
+        "pace"
+      ]
+    },
+    "slowNaturalRatio": 1.161,
+    "asrWarningOnly": {
+      "text": "您好。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "xiexie",
+    "hans": "谢谢",
+    "pinyin": "xièxie",
+    "variant": "natural",
+    "file": "audio/xiexie-natural.mp3",
+    "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"xie4-xie0\">谢谢</phoneme></prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "d37e0919df6dcedef74694ad28f431be18ca999faf08940df346235d8e1917da",
+    "secondsToGenerate": 0.683,
+    "billedCharacters": 2,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 0.792,
+      "speechSpanSeconds": 0.54,
+      "syllablesPerSecond": 3.7,
+      "peakDbfs": -11.4,
+      "activeRmsDbfs": -23.17,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.16,
+      "trailingSeconds": 0.092,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "slowNaturalRatio": 1.185,
+    "asrWarningOnly": {
+      "text": "谢谢。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "xiexie",
+    "hans": "谢谢",
+    "pinyin": "xièxie",
+    "variant": "careful_slow",
+    "file": "audio/xiexie-careful_slow.mp3",
+    "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"xie4-xie0\">谢谢</phoneme></prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "649c52eaa5b394b8b004ccc8e0b649039439d0f0f028a0f2c00405dea1391512",
+    "secondsToGenerate": 0.712,
+    "billedCharacters": 2,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 0.912,
+      "speechSpanSeconds": 0.64,
+      "syllablesPerSecond": 3.12,
+      "peakDbfs": -11.67,
+      "activeRmsDbfs": -23.05,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.16,
+      "trailingSeconds": 0.112,
+      "maximumInternalPauseSeconds": 0.0,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": [
+        "pace"
+      ]
+    },
+    "slowNaturalRatio": 1.185,
+    "asrWarningOnly": {
+      "text": "谢谢。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "wojiao_name",
+    "hans": "我叫 Wolfram",
+    "pinyin": "wǒ jiào Wolfram",
+    "variant": "natural",
+    "file": "audio/wojiao_name-natural.mp3",
+    "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3-jiao4\">我叫</phoneme> Wolfram</prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "aa1edd2991a7e523a84bf8f200f2bab9a07ef7a55168362961a9a8f9d8b28685",
+    "secondsToGenerate": 0.703,
+    "billedCharacters": 10,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 1.296,
+      "speechSpanSeconds": 1.04,
+      "syllablesPerSecond": null,
+      "peakDbfs": -11.62,
+      "activeRmsDbfs": -22.48,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.106,
+      "maximumInternalPauseSeconds": 0.01,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "slowNaturalRatio": 1.192,
+    "asrWarningOnly": {
+      "text": "我叫乌弗伦。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "wojiao_name",
+    "hans": "我叫 Wolfram",
+    "pinyin": "wǒ jiào Wolfram",
+    "variant": "careful_slow",
+    "file": "audio/wojiao_name-careful_slow.mp3",
+    "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"wo3-jiao4\">我叫</phoneme> Wolfram</prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "20cdfce6010f86e00ed83dd909d3f008cb514428e7efc97e69c9a9c6ae24c3c3",
+    "secondsToGenerate": 0.816,
+    "billedCharacters": 10,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 1.536,
+      "speechSpanSeconds": 1.24,
+      "syllablesPerSecond": null,
+      "peakDbfs": -12.02,
+      "activeRmsDbfs": -22.43,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.146,
+      "maximumInternalPauseSeconds": 0.02,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": []
+    },
+    "slowNaturalRatio": 1.192,
+    "asrWarningOnly": {
+      "text": "我叫乌弗伦。",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "askname",
+    "hans": "你叫什么名字？",
+    "pinyin": "nǐ jiào shénme míngzi?",
+    "variant": "natural",
+    "file": "audio/askname-natural.mp3",
+    "ssml": "<speak><prosody rate=\"90%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3-jiao4-shen2-me0-ming2-zi0\">你叫什么名字</phoneme>？</prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "eafcbff3864d210104b1b5745ca9384e437d9356276856d02c45be857a14394b",
+    "secondsToGenerate": 0.724,
+    "billedCharacters": 8,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 1.44,
+      "speechSpanSeconds": 1.17,
+      "syllablesPerSecond": 5.13,
+      "peakDbfs": -12.71,
+      "activeRmsDbfs": -21.55,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.15,
+      "trailingSeconds": 0.12,
+      "maximumInternalPauseSeconds": 0.02,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": [
+        "pace"
+      ]
+    },
+    "slowNaturalRatio": 1.205,
+    "asrWarningOnly": {
+      "text": "你叫什么名字？",
+      "expectedTextProvided": false
+    }
+  },
+  {
+    "id": "askname",
+    "hans": "你叫什么名字？",
+    "pinyin": "nǐ jiào shénme míngzi?",
+    "variant": "careful_slow",
+    "file": "audio/askname-careful_slow.mp3",
+    "ssml": "<speak><prosody rate=\"75%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ni3-jiao4-shen2-me0-ming2-zi0\">你叫什么名字</phoneme>？</prosody></speak>",
+    "engine": "neural",
+    "voice": "Zhiyu",
+    "region": "eu-central-1",
+    "sha256": "8bac3c3b628be37be6a39a7310c15b1f0243eec065e099ff90ae4a081179c586",
+    "secondsToGenerate": 0.709,
+    "billedCharacters": 8,
+    "humanApproved": false,
+    "surfaceNote": "Neutral syllables explicitly use 0; Wolfram left to voice code-mixing",
+    "screening": {
+      "durationSeconds": 1.704,
+      "speechSpanSeconds": 1.41,
+      "syllablesPerSecond": 4.26,
+      "peakDbfs": -12.69,
+      "activeRmsDbfs": -21.51,
+      "clippedFraction": 0.0,
+      "leadingSeconds": 0.16,
+      "trailingSeconds": 0.134,
+      "maximumInternalPauseSeconds": 0.02,
+      "pitch": {
+        "status": "not_evaluated"
+      },
+      "issues": [
+        "pace"
+      ]
+    },
+    "slowNaturalRatio": 1.205,
+    "asrWarningOnly": {
+      "text": "你叫什么名字？",
+      "expectedTextProvided": false
+    }
+  }
+]
