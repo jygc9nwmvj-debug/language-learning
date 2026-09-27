@@ -1,5 +1,5 @@
 {
-  "version": "lesson1-v0.1.1",
+  "version": "lesson1-v0.1.2",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
@@ -17,6 +17,10 @@
       "tones": [
         3,
         3
+      ],
+      "syllables": [
+        "ni",
+        "hao"
       ]
     },
     {
@@ -32,6 +36,9 @@
       "slowAudio": "/audio/mandarin/wo-slow.wav",
       "tones": [
         3
+      ],
+      "syllables": [
+        "wo"
       ]
     },
     {
@@ -47,6 +54,9 @@
       "slowAudio": "/audio/mandarin/ni-slow.wav",
       "tones": [
         3
+      ],
+      "syllables": [
+        "ni"
       ]
     },
     {
@@ -62,6 +72,9 @@
       "slowAudio": "/audio/mandarin/hao-slow.wav",
       "tones": [
         3
+      ],
+      "syllables": [
+        "hao"
       ]
     },
     {
@@ -78,6 +91,10 @@
       "tones": [
         3,
         4
+      ],
+      "syllables": [
+        "wo",
+        "jiao"
       ]
     },
     {
@@ -98,6 +115,14 @@
         5,
         2,
         5
+      ],
+      "syllables": [
+        "ni",
+        "jiao",
+        "shen",
+        "me",
+        "ming",
+        "zi"
       ]
     },
     {
@@ -114,6 +139,10 @@
       "tones": [
         4,
         5
+      ],
+      "syllables": [
+        "xie",
+        "xie"
       ]
     },
     {
@@ -130,6 +159,10 @@
       "tones": [
         4,
         4
+      ],
+      "syllables": [
+        "zai",
+        "jian"
       ]
     }
   ],
@@ -375,6 +408,39 @@
       "prompt": {
         "de": "Gut für heute."
       }
+    },
+    {
+      "id": "tone-wo",
+      "kind": "tone-recall",
+      "itemId": "wo",
+      "target": "perception",
+      "prompt": {
+        "de": "Erinnere dich: Welchen Ton hat „ich“?"
+      },
+      "toneIndex": 0,
+      "tone": 3
+    },
+    {
+      "id": "tone-jiao",
+      "kind": "tone-recall",
+      "itemId": "wojiao",
+      "target": "perception",
+      "prompt": {
+        "de": "Welchen Ton hat jiao in „ich heiße …“?"
+      },
+      "toneIndex": 1,
+      "tone": 4
+    },
+    {
+      "id": "tone-xie",
+      "kind": "tone-recall",
+      "itemId": "xiexie",
+      "target": "perception",
+      "prompt": {
+        "de": "Welchen Ton hat die erste Silbe von „danke“?"
+      },
+      "toneIndex": 0,
+      "tone": 4
     }
   ],
   "initialPlan": [
@@ -386,15 +452,18 @@
     "write-guided",
     "hear-nihao",
     "meet-wojiao",
+    "tone-wo",
     "meet-askname",
     "read-wo",
     "read-ni",
     "meet-xiexie",
     "meet-zaijian",
+    "tone-jiao",
     "recall-wojiao",
     "hear-askname",
     "read-hao",
     "recall-nihao",
+    "tone-xie",
     "recall-xiexie",
     "recall-zaijian",
     "write-recall",

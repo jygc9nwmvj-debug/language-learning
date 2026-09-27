@@ -1,4 +1,7 @@
-# Local V0.1 implementation — 2026-09-27
+# Initial local V0.1 implementation — historical build record
+
+**Superseded for current status:** see [V0.1.2 repairs and second test](RETEST_v0.1.2.md) and
+[Cloudflare deployment](DEPLOY_CLOUDFLARE.md). The notes below describe the initial pre-deployment build.
 
 ## Scope
 

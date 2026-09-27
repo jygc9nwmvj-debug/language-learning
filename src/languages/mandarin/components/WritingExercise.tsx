@@ -21,17 +21,21 @@ export function WritingExercise({ recall, onEvent, onComplete, disabled }: {
     }); writer.current = instance;
     return () => { instance.cancelQuiz(); node.replaceChildren(); writer.current = null; };
   }, [mode]);
-  function hint() { setReference(true); setAssisted(true); onEvent('writing_hint'); }
+  function hint() {
+    const shown = !reference; setReference(shown);
+    if (shown) { setAssisted(true); onEvent('writing_hint'); }
+    if (mode === 'guided') { writer.current?.cancelQuiz(); void (shown ? writer.current?.showCharacter() : writer.current?.hideCharacter()); }
+  }
   return <section className="stepStack">
+    {reference && mode !== 'guided' && <div className="reference" role="status"><span>Vorlage</span><p className="hanziLarge" lang="zh">好</p></div>}
     {mode === 'guided' && <><div className="hanziWriter" ref={target} />
-      <div className="buttonRow"><button type="button" className="secondaryButton" onClick={() => { setAssisted(true); onEvent('stroke_animation'); void writer.current?.animateCharacter(); }}>{ui.animate}</button>
-        <button type="button" className="secondaryButton" onClick={() => { setAssisted(true); onEvent('guided_start'); void writer.current?.quiz({ onMistake: () => event.current('stroke_hint'), onComplete: () => { setDrawn(true); event.current('guided_complete'); } }); }}>{ui.writeGuide}</button>
+      <div className="buttonRow"><button type="button" className="secondaryButton" onClick={() => { setAssisted(true); onEvent('stroke_animation'); setReference(false); void writer.current?.animateCharacter(); }}>{ui.animate}</button>
+        <button type="button" className="secondaryButton" onClick={() => { setAssisted(true); onEvent('guided_start'); setReference(false); void writer.current?.showOutline(); void writer.current?.quiz({ onCorrectStroke: () => event.current('stroke_correct'), onMistake: () => event.current('stroke_hint'), onComplete: () => { setDrawn(true); event.current('guided_complete'); } }); }}>{ui.writeGuide}</button>
         <button type="button" className="textButton" onClick={() => setMode('blank')}>{ui.blank}</button></div></>}
     {mode === 'blank' && <WritingPad onDraw={() => setDrawn(true)} />}
     {mode === 'paper' && <button type="button" className="secondaryButton" onClick={() => setDrawn(true)}>{ui.written}</button>}
-    {reference && <p className="hanziLarge" lang="zh">好</p>}
     {!compared && <div className="buttonRow">
-      <button type="button" className="textButton" onClick={hint}>{ui.writingHint}</button>
+      <button type="button" className="textButton" aria-pressed={reference} onClick={hint}>{reference ? 'Vorlage ausblenden' : ui.writingHint}</button>
       <button type="button" className="textButton" onClick={() => { setMode(mode === 'paper' ? 'blank' : 'paper'); setDrawn(false); onEvent('writing_mode'); }}>{mode === 'paper' ? ui.screen : ui.paper}</button>
       {!recall && <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>}
     </div>}

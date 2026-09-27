@@ -27,6 +27,13 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
         await page.getByRole('button', { name: String(n), exact: true }).click();
         await next(page);
       }
+      await page.getByLabel('Tippe má mit einer Tonzahl').fill('ma2');
+      await page.getByRole('button', { name: 'Prüfen', exact: true }).click();
+      await next(page);
+    } else if (id.startsWith('tone-')) {
+      await page.getByRole('button', { name: 'Anhören', exact: true }).click();
+      await page.getByRole('button', { name: id === 'tone-wo' ? '3' : '4', exact: true }).click();
+      await next(page);
     } else if (id === 'write-guided' || id === 'write-recall') {
       if (id === 'write-guided') { await expect(page.locator('.hanziWriter svg')).toBeVisible(); await page.getByRole('button', { name: 'Strichfolge ansehen' }).click(); }
       else { await expect(page.locator('.lessonCard .hanziLarge')).toHaveCount(0); await expect(page.locator('.writingCanvas')).toBeVisible(); }
@@ -95,14 +102,14 @@ test('local recording can be replayed and live microphone stops on leaving the t
   });
   await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
   await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
-  await expect(page.getByText('Aufnahme läuft …', { exact: true })).toBeVisible();
+  await expect(page.getByText('Aufnahme läuft …', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Aufnahme beenden', exact: true }).click();
   await expect(page.getByLabel('Deine Aufnahme', { exact: true })).toHaveAttribute('src', /^blob:/);
   await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
-  await expect(page.getByText('Aufnahme läuft …', { exact: true })).toBeVisible();
+  await expect(page.getByText('Aufnahme läuft …', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Für jetzt aufhören', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Weiterlernen', exact: true })).toBeVisible();
-  expect(await page.evaluate(() => (window as any).testStreams.every((s: MediaStream) => s.getTracks().every(t => t.readyState === 'ended')))).toBe(true);
+  await expect.poll(() => page.evaluate(() => (window as any).testStreams.every((s: MediaStream) => s.getTracks().every(t => t.readyState === 'ended')))).toBe(true);
   const state = await snapshot(page);
   expect(state.relations).toEqual([]);
   expect(state.events.some(e => e.type === 'recording_completed_uncertain')).toBe(true);

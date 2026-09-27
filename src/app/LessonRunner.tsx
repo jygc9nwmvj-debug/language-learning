@@ -32,17 +32,17 @@ export function LessonRunner() {
     if (!session) return;
     void logEvent({ sessionId: session.id, taskId: task?.id ?? 'home', type, detail: { ...detail, index: session.index } }).catch(() => setError(ui.storageError));
   }
-  async function begin() {
+  async function begin(replay = false) {
     await mutation(async () => {
       let next = session;
-      if (!next || next.completed) {
-        const plan = !next ? content.initialPlan : composeReview(await db.relations.toArray(), script, Date.now());
+      if (replay || !next || next.completed) {
+        const plan = replay || !next ? content.initialPlan : composeReview(await db.relations.toArray(), script, Date.now());
         next = { id: crypto.randomUUID(), plan, index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now(), script };
       }
       const chosen = next;
       await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
         await db.sessions.put(chosen); await db.preferences.put({ key: 'script', value: chosen.script });
-        await logEvent({ sessionId: chosen.id, taskId: chosen.plan[chosen.index], type: session && !session.completed ? 'session_resume' : 'session_start', detail: { script: chosen.script } });
+        await logEvent({ sessionId: chosen.id, taskId: chosen.plan[chosen.index], type: replay ? 'lesson_retest' : session && !session.completed ? 'session_resume' : 'session_start', detail: { script: chosen.script } });
       });
       setSession(chosen); setScript(chosen.script); setReflectionSaved(false); setView('learn');
     });
@@ -98,7 +98,7 @@ export function LessonRunner() {
   const safe = (action: () => Promise<void>) => { void action().catch(() => {}); };
   const settings = <details className="settings"><summary>{ui.settings}</summary>
     <fieldset disabled={busy || (!!session && !session.completed)}><legend>{ui.script}</legend><div className="segmented">{(['hant', 'hans'] as const).map(s => <button type="button" key={s} aria-pressed={script === s} className={script === s ? 'selected' : ''} onClick={() => { setScript(s); }}>{ui[s]}</button>)}</div></fieldset>
-    <div className="settingsActions"><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
+    <div className="settingsActions"><button type="button" className="textButton" disabled={busy} onClick={() => safe(() => begin(true))}>Lesson 1 vollständig erneut testen</button><p className="muted">Beginnt eine neue Testrunde. Dein bisheriger Lernverlauf bleibt erhalten.</p><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
       <label className="fileLabel">{ui.restore}<input type="file" accept="application/json,.json" onChange={e => { const file = e.target.files?.[0]; if (file) void restore(file); e.target.value = ''; }} /></label>
       <button type="button" className="textButton" onClick={() => { void navigator.storage?.persist?.().then(ok => setMessage(ok ? ui.persisted : ui.notPersisted)).catch(() => setMessage(ui.notPersisted)); }}>{ui.persist}</button>
       <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button></div>{message && <p role="status">{message}</p>}
@@ -107,9 +107,9 @@ export function LessonRunner() {
   if (!ready) return <main className="shell"><div className="card">{errorBox || <p>{ui.loading}</p>}</div></main>;
   return <><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin · Foundation 01</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
-      <button type="button" disabled={busy} onClick={() => safe(begin)}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
+      <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><span role="status">{offline === 'development' ? ui.offlineDevelopment : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span></div>
-      {errorBox}{settings}<p className="prototypeNote">{ui.prototype}</p></section>}
+      {errorBox}{settings}<p className="prototypeNote">Testversion 0.1.2 · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><button type="button" disabled={busy} className="textButton" onClick={() => safe(pause)}>{ui.pause}</button></header>
       <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin · 01' : ui.recall}</p><h2>{task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>

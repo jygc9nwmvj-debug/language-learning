@@ -5,7 +5,7 @@ import { updateRelation, DAY } from '../src/core/progress/model.ts';
 import { db, recordAttempt, exportLearningState, importLearningState } from '../src/core/progress/db.ts';
 import { content, itemMap, taskMap } from '../src/languages/mandarin/content/index.ts';
 import { contentSchema } from '../src/languages/mandarin/schema/content.ts';
-import { interpretAnswer } from '../src/languages/mandarin/answer.ts';
+import { interpretAnswer, numberedToPinyin } from '../src/languages/mandarin/answer.ts';
 import { composeReview, objectFor, withSpacedRetry } from '../src/languages/mandarin/session.ts';
 
 test('Pinyin variants preserve content and never claim spoken tone evidence', () => {
@@ -77,4 +77,24 @@ test('audio validation rejects header-only files even when the TTS command exits
   assert.ok(validateWav(readFileSync('public/audio/mandarin/nihao.wav')) > .1);
   const wav = Buffer.alloc(44); wav.write('RIFF'); wav.writeUInt32LE(36, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16); wav.writeUInt32LE(44100, 28); wav.write('data', 36);
   assert.throws(() => validateWav(wav), /Empty or silent/);
+});
+
+test('tone numbers convert and incomplete, wrong, neutral and misplaced notation stay distinct', () => {
+  assert.equal(numberedToPinyin('ma1 ma2 ma3 ma4 ma5 ma0'), 'mā má mǎ mà ma ma');
+  assert.equal(numberedToPinyin('ni3hao3 liu2 gui4 dou1 nv3 nu:3'), 'nǐhǎo liú guì dōu nǚ nǚ');
+  for (const [value, expected] of [['ni hao','omitted'], ['ni3 hao','omitted'], ['ni hao3','omitted'], ['ni3hao3','correct'], ['nǐhǎo','correct'], ['ni2 hao','different'], ['n3ihao3','different'], ['ni33 hao3','different']]) {
+    const result = interpretAnswer(value,itemMap.get('nihao'));
+    assert.equal(result.content,'correct',value); assert.equal(result.toneNotation,expected,value); assert.equal(result.spokenTones,'unknown');
+  }
+  for (const v of ['xie4xie0','xie4 xie5','xièxie','xie4xie']) assert.equal(interpretAnswer(v,itemMap.get('xiexie')).toneNotation,'correct',v);
+});
+
+test('every careful_slow asset is materially longer than natural speech, excluding playback margins', async () => {
+  const { validateWav } = await import('../scripts/audio-validation.mjs');
+  const { readFileSync } = await import('node:fs');
+  for (const item of content.items) {
+    const natural=readFileSync('public'+item.audio), slow=readFileSync('public'+item.slowAudio);
+    assert.notDeepEqual(natural,slow,item.id);
+    assert.ok((validateWav(slow)-.25)/(validateWav(natural)-.25)>1.5,item.id);
+  }
 });

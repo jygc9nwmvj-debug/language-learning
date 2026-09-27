@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
 import type { Item, Task } from '../schema/content';
 import { itemMap } from '../content';
-import { normalizeText, interpretAnswer, type Interpretation } from '../answer';
+import { normalizeText, interpretAnswer, numberedToPinyin, type Interpretation } from '../answer';
 import { AudioButton } from '../../../core/exercises/AudioButton';
 import { Recorder } from '../../../core/audio/Recorder';
 import { ui } from '../../../core/i18n/de';
 import { WritingExercise } from './WritingExercise';
-import { ToneLab } from './ToneLab';
+import { ToneLab, ToneRecall } from './ToneLab';
 export type Evidence = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
 export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled }: {
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
@@ -41,6 +41,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       setAnswered(true);
     } finally { submitting.current = false; }
   }
+  if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'writing') return <WritingExercise recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={r => { void onAttempt({ ...r, detail: { mode: r.mode, selfReport: true } }).then(onNext).catch(() => {}); }} />;
   const reference = <div className="reference"><p lang={`zh-${script === 'hant' ? 'Hant' : 'Hans'}`} className="hanziSentence">{item[script]}{item.id === 'wojiao' ? ` ${name || '…'}` : ''}</p><p className="pinyin">{item.pinyin}</p><p>{item.meaning.de}</p></div>;
@@ -57,7 +58,8 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     {task.kind === 'read' && <p className="hanziHero" lang="zh">{item[script]}</p>}
     <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" spellCheck={false} maxLength={160} disabled={answered || disabled || !!retryEvidence} /></label>
-      {task.kind === 'recall' && <p className="muted">{ui.typeHint}</p>}
+      {task.kind === 'recall' && <p className="muted">{ui.typeHint} Zum Beispiel ni3 hao3 → nǐ hǎo.</p>}
+      {task.kind === 'recall' && /[0-5]/.test(input) && <p className="muted">Mit Tonzeichen: <output>{numberedToPinyin(input)}</output></p>}
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>
     {feedback && <p role="status" className="feedback">{feedback}</p>}
