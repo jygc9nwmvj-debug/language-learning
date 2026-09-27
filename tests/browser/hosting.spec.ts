@@ -20,8 +20,8 @@ test('Cloudflare-style index redirect: reload and offline navigation use the unr
   const port=(server.address() as {port:number}).port;
   try {
     await page.goto(`http://127.0.0.1:${port}/`);
-    await expect(page.getByText('Für offline bereit',{exact:true})).toBeVisible();
-    await page.reload(); await expect(page.getByText(/Testversion B/)).toBeVisible();
+    await expect(page.getByText('Bereit zum Lernen',{exact:true})).toBeVisible();
+    await page.reload(); await expect(page.getByText(/Testversion C/)).toBeVisible();
     // Stop the origin instead of WebKit's broken offline-emulation switch (Playwright #42775).
     server.closeAllConnections();await new Promise<void>(resolve=>server.close(()=>resolve()));
     await page.reload();
@@ -63,10 +63,19 @@ test('legacy offline app updates with two open tabs and preserves learner Indexe
     await expect.poll(()=>page.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration();return r?.active?.state==='activated' && !r.installing && !r.waiting ? caches.has('mandarin-v01-legacy').then(async()=> (await caches.keys()).filter(k=>k.startsWith('mandarin-v01-')).length===2) : false;})).toBe(true);
     // Neither open tab is closed and no automatic reload loses the typed answer.
     await expect(other.getByLabel('Ungespeicherte Antwort')).toHaveValue('wo3');
-    await page.reload();await expect(page.getByText(/Testversion B/)).toBeVisible();
+    await page.reload();await expect(page.getByText(/Testversion C/)).toBeVisible();
     expect(await other.evaluate(()=>fetch('/assets/old.js').then(r=>r.text()))).toBe('legacy-asset');
     expect(await page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('learner-update-proof');q.onsuccess=()=>r(q.result);});return new Promise(r=>{const q=db.transaction('progress').objectStore('progress').get('sentinel');q.onsuccess=()=>{r(q.result);db.close();};});})).toBe('keep-my-progress');
     server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));
-    await page.reload();await expect(page.getByText(/Testversion B/)).toBeVisible();
+    await page.reload();await expect(page.getByText(/Testversion C/)).toBeVisible();
   }finally{await other.close();await page.close();server.closeAllConnections();if(server.listening)await new Promise<void>(r=>server.close(()=>r()));}
+});
+
+test('incomplete offline cache reports failure and retry repairs the missing asset', async({page})=>{
+ await page.goto('/');await expect(page.getByText('Bereit zum Lernen',{exact:true})).toBeVisible();
+ await page.evaluate(async()=>{const keys=(await caches.keys()).filter(k=>k.startsWith('mandarin-v01-'));for(const key of keys)await(await caches.open(key)).delete('/audio/mandarin/polly-nihao.mp3');});
+ await page.reload();await expect(page.getByText('Noch nicht offline bereit. Prüfe die Internetverbindung und versuche es erneut.',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Vorbereitung erneut versuchen',exact:true}).click();
+ await expect(page.getByText('Bereit zum Lernen',{exact:true})).toBeVisible();
+ expect(await page.evaluate(async()=>!!(await caches.match('/audio/mandarin/polly-nihao.mp3')))).toBe(true);
 });

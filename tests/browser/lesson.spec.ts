@@ -11,7 +11,7 @@ const next = (page: Page) => page.getByRole('button', { name: 'Weiter', exact: t
 test('complete Lesson 1, honest evidence, backup, offline cold reopen and delayed review', async ({ page, context }) => {
   test.setTimeout(150000);
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
-  await page.goto('/'); await expect(page.getByText('Für offline bereit', { exact: true })).toBeVisible();
+  await page.goto('/'); await expect(page.getByText('Bereit zum Lernen', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
   let safety = 0;
   while (safety++ < 40) {

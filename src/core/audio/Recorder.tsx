@@ -1,23 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
+import { useInteraction } from '../exercises/InteractionScope';
 import { ui } from '../i18n/de';
 import { stopReferenceAudio, acquireAudioCapture } from '../exercises/AudioButton';
 type Status = 'idle' | 'requesting' | 'preparing' | 'recording' | 'finalizing';
 // Keep the input alive until the recorder has delivered its final dataavailable + stop.
 export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void }) {
+  const interaction = useInteraction();
+  const releaseInteraction = useRef<() => void>(() => {});
+  const autoPlayed = useRef('');
+  const [playbackNotice, setPlaybackNotice] = useState('');
+  const [playing, setPlaying] = useState(false);
   const [status, setStatus] = useState<Status>('idle');
   const [url, setUrl] = useState(''), [error, setError] = useState('');
   const generation = useRef(0), busy = useRef(false), currentURL = useRef('');
   const releaseCaptureRef = useRef<() => void>(() => {});
   const cleanup = useRef<() => void>(() => {}), stop = useRef<() => void>(() => {});
   const playback = useRef<HTMLAudioElement>(null);
-  useEffect(() => () => { generation.current++; cleanup.current(); releaseCaptureRef.current(); URL.revokeObjectURL(currentURL.current); }, []);
+  useEffect(() => () => { generation.current++; cleanup.current(); releaseCaptureRef.current(); releaseInteraction.current(); playback.current?.pause(); URL.revokeObjectURL(currentURL.current); }, []);
+  useEffect(() => {
+    if (!url || status !== 'idle' || autoPlayed.current === url) return;
+    autoPlayed.current = url;
+    const audio = playback.current, token = generation.current;
+    if (!audio) { releaseInteraction.current(); return; }
+    if (document.hidden) { releaseInteraction.current(); setPlaybackNotice('Deine Aufnahme ist bereit. Du kannst sie hier abspielen.'); return; }
+    void audio.play().catch((error: unknown) => {
+      if (token !== generation.current) return;
+      setPlaying(false); releaseInteraction.current();
+      setPlaybackNotice(error instanceof DOMException && error.name === 'NotAllowedError' ? 'Automatisches Abspielen ist hier gesperrt. Tippe auf Wiedergabe.' : 'Automatisches Abspielen hat nicht geklappt. Tippe auf Wiedergabe oder nimm erneut auf.');
+      onEvent('recording_autoplay_blocked');
+    });
+  }, [url, status]);
+  function playbackFinished() {
+    if (busy.current || currentURL.current !== url) return;
+    setPlaying(false); releaseInteraction.current(); setPlaybackNotice('Zum Vergleichen kannst du beide Aufnahmen noch einmal hören.');
+  }
   async function start() {
-    if (busy.current) return;
+    if (busy.current || !interaction.canStart()) return;
     busy.current = true;
+    playback.current?.pause(); releaseInteraction.current();
+    releaseInteraction.current = interaction.acquire();
+    setPlaying(false); setPlaybackNotice('');
     const token = ++generation.current;
     const current = () => token === generation.current;
     const releaseCapture = acquireAudioCapture(); releaseCaptureRef.current = releaseCapture; setStatus('requesting'); setError(''); stopReferenceAudio(); playback.current?.pause();
-    URL.revokeObjectURL(currentURL.current); setUrl('');
+    URL.revokeObjectURL(currentURL.current); currentURL.current = ''; setUrl('');
     let stream: MediaStream | undefined;
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: {
@@ -45,7 +71,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
         if (current()) setStatus('finalizing');
         later(() => { if (recorder.state !== 'inactive') recorder.stop(); }, tail ? 200 : 0);
         // A broken browser must not leave the microphone active forever.
-        later(() => { release(); if (current()) { busy.current = false; setStatus('idle'); setError(ui.recordingFailed); generation.current++; } }, 5000);
+        later(() => { release(); if (current()) { busy.current = false; setStatus('idle'); setError(ui.recordingFailed); releaseInteraction.current(); generation.current++; } }, 5000);
       };
       cleanup.current = () => finish(false);
       stop.current = () => finish();
@@ -92,7 +118,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
           setError(interrupted ? ui.recordingInterrupted : activeMs < 80 ? ui.recordingQuiet : '');
           onEvent('recording_completed_uncertain', { durationMs: Math.round(decoded.duration * 1000), activeMs, chunks: chunks.length, bytes: blob.size, mimeType: blob.type, interrupted });
         } catch { if (current()) { setError(interrupted ? ui.recordingInterrupted : ui.recordingFailed); onEvent('recording_failed', { interrupted }); } }
-        finally { if (context) await context.close(); if (current()) { setStatus('idle'); busy.current = false; } }
+        finally { if (context) await context.close(); if (current()) { setStatus('idle'); busy.current = false; if (!currentURL.current) releaseInteraction.current(); } }
       };
       setStatus('preparing');
       const startTimeout = later(() => { interrupted = true; finish(false); }, 10000);
@@ -100,14 +126,18 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
     } catch {
       cleanup.current();
       stream?.getTracks().forEach(t => t.stop()); releaseCapture();
-      if (current()) { busy.current = false; setError(ui.micError); setStatus('idle'); onEvent('microphone_unavailable'); }
+      if (current()) { busy.current = false; releaseInteraction.current(); setError(ui.micError); setStatus('idle'); onEvent('microphone_unavailable'); }
     }
   }
   return <section className="toolPanel">
-    <button className="secondaryButton" type="button" disabled={status !== 'idle' && status !== 'recording'} onClick={() => status === 'recording' ? stop.current() : void start()}>{status === 'recording' ? ui.stop : status === 'requesting' ? ui.requesting : status === 'preparing' ? ui.preparing : status === 'finalizing' ? ui.finalizing : ui.record}</button>
-    <p role="status">{status === 'recording' ? ui.recording : status === 'preparing' ? ui.recordingWait : status === 'finalizing' ? ui.finalizing : ''}</p>
-    {url && <audio ref={playback} aria-label={ui.replayOwn} controls src={url} onPlay={() => stopReferenceAudio(playback.current)} onError={() => setError(ui.recordingPlaybackError)} />}
-    {error && <p role="status">{error}</p>}
+    <button className={url ? "secondaryButton" : "primaryButton"} type="button" disabled={(status === 'idle' && !interaction.canStart()) || (status !== 'idle' && status !== 'recording')} onClick={() => status === 'recording' ? stop.current() : void start()}>{status === 'recording' ? ui.stop : status === 'requesting' ? ui.requesting : status === 'preparing' ? ui.preparing : status === 'finalizing' ? ui.finalizing : ui.record}</button>
+    <p role="status" className="captureStatus">{status === 'recording' ? ui.recording : status === 'preparing' ? ui.recordingWait : status === 'finalizing' ? ui.finalizing : ''}</p>
+    {url && <div className="ownRecording"><strong>Deine Aufnahme</strong><audio ref={playback} aria-label={ui.replayOwn} controls src={url}
+      onPlay={() => { stopReferenceAudio(playback.current); setPlaying(true); setPlaybackNotice(''); if (!busy.current) { releaseInteraction.current(); releaseInteraction.current = interaction.acquire(); } }}
+      onPause={playbackFinished} onEnded={playbackFinished}
+      onError={() => { setError(ui.recordingPlaybackError); playbackFinished(); }} />
+      <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice}</p></div>}
+    {error && <p role="status" className="feedback attention">{error}</p>}
     <p className="privacyNote">{ui.micNote}</p>
   </section>;
 }

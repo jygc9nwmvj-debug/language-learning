@@ -40,7 +40,7 @@ test('meaning exercises use canonical answers and keep exact learner input',asyn
  for(const [id,input,ok] of [['read-wo','mich',true],['read-hao','gut',true],['read-hao','schlecht',false]] as const) {
   await task(page,id);await page.getByLabel('Deine Antwort',{exact:true}).fill(input);await page.getByRole('button',{name:'Prüfen',exact:true}).click();
   await expect(page.getByRole('status').filter({hasText:ok?'Richtig.':'Die Bedeutung ist: gut.'})).toBeVisible();
-  await expect(page.getByLabel('Deine Antwort',{exact:true})).toHaveValue(input);await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toHaveCount(0);
+  await expect(page.locator('.answerSummary')).toContainText(input);await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toHaveCount(0);
  }
 });
 test('tone typing practice ends evaluation and offers only an explicit retry after a mistake',async({page})=>{

@@ -4,8 +4,11 @@ import { ui } from '../core/i18n/de';
 import { content, taskMap } from '../languages/mandarin/content';
 import { composeReview, objectFor, withSpacedRetry } from '../languages/mandarin/session';
 import { Exercise, type Evidence } from '../languages/mandarin/components/Exercise';
+import { InteractionContext, useInteractionScope } from '../core/exercises/InteractionScope';
+import { prepareOffline } from '../core/offline/prepare';
 import { Worksheet } from '../languages/mandarin/components/Worksheet';
 export function LessonRunner() {
+  const interaction = useInteractionScope();
   const [ready, setReady] = useState(false), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const [view, setView] = useState<'home' | 'learn' | 'done'>('home');
   const [session, setSession] = useState<Session | null>(null);
@@ -48,7 +51,7 @@ export function LessonRunner() {
     });
   }
   async function next(skip = false) {
-    if (!session || !task) return;
+    if (!session || !task || !interaction.canAdvance()) return;
     await mutation(async () => {
       const completed = session.index >= session.plan.length - 1;
       const updated = { ...session, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
@@ -98,27 +101,27 @@ export function LessonRunner() {
   const safe = (action: () => Promise<void>) => { void action().catch(() => {}); };
   const settings = <details className="settings"><summary>{ui.settings}</summary>
     <fieldset disabled={busy || (!!session && !session.completed)}><legend>{ui.script}</legend><div className="segmented">{(['hant', 'hans'] as const).map(s => <button type="button" key={s} aria-pressed={script === s} className={script === s ? 'selected' : ''} onClick={() => { setScript(s); }}>{ui[s]}</button>)}</div></fieldset>
-    <div className="settingsActions"><button type="button" className="textButton" disabled={busy} onClick={() => safe(() => begin(true))}>Lesson 1 vollständig erneut testen</button><p className="muted">Beginnt eine neue Testrunde. Dein bisheriger Lernverlauf bleibt erhalten.</p><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
+    <div className="settingsActions"><button type="button" className="textButton" disabled={busy} onClick={() => safe(() => begin(true))}>Bisherige Inhalte wiederholen</button><p className="muted">Übe die bisherigen Wörter und Zeichen noch einmal. Dein Lernverlauf bleibt erhalten.</p><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
       <label className="fileLabel">{ui.restore}<input type="file" accept="application/json,.json" onChange={e => { const file = e.target.files?.[0]; if (file) void restore(file); e.target.value = ''; }} /></label>
       <button type="button" className="textButton" onClick={() => { void navigator.storage?.persist?.().then(ok => setMessage(ok ? ui.persisted : ui.notPersisted)).catch(() => setMessage(ui.notPersisted)); }}>{ui.persist}</button>
       <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button></div>{message && <p role="status">{message}</p>}
   </details>;
-  const repeatLesson = <button type="button" disabled={busy} onClick={() => safe(() => begin(true))}>Lesson 1 erneut durchgehen</button>;
+  const repeatLesson = <button type="button" disabled={busy} onClick={() => safe(() => begin(true))}>Weiterüben</button>;
   const errorBox = error && <p className="feedback error" role="alert">{error}{!ready && <button type="button" onClick={() => void load()}>{ui.reload}</button>}</p>;
   if (!ready) return <main className="shell"><div className="card">{errorBox || <p>{ui.loading}</p>}</div></main>;
-  return <><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
-    {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin · Foundation 01</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
+  return <InteractionContext.Provider value={{ ...interaction, canStart: () => !lock.current }}><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
+    {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
-      <div className="homeMeta"><span>{ui.saved}</span><span role="status">{offline === 'development' ? ui.offlineDevelopment : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion B · {ui.prototype}</p></section>}
+      <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
+      {errorBox}{settings}<p className="prototypeNote">Testversion C · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><button type="button" disabled={busy} className="textButton" onClick={() => safe(pause)}>{ui.pause}</button></header>
-      <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'writing' && !task.recall ? 'Schreiben lernen' : task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin · 01' : ui.recall}</p><h2>{task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
-        {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Die Lektion beginnt von vorn. Dein bisheriger Lernverlauf bleibt erhalten.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
-          : <><Exercise key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} />
-            <button type="button" className="skipButton" disabled={busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
+      <section className="lessonCard" aria-busy={busy}><p className="eyebrow">{task.kind === 'writing' && !task.recall ? 'Schreiben lernen' : task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin' : ui.recall}</p><h2>{task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
+        {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Die bisherigen Wörter und Zeichen noch einmal üben.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
+          : <><Exercise key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} />
+            <button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
       </section></>}
-    {view === 'done' && <section className="card"><p className="eyebrow">Mandarin · 01</p><h1>{ui.closeTitle}</h1><p className="lead">{ui.closeBody}</p>{errorBox}{repeatLesson}<p className="muted">Die Lektion beginnt von vorn. Dein bisheriger Lernverlauf bleibt erhalten.</p>
+    {view === 'done' && <section className="card"><p className="eyebrow">Mandarin</p><h1>{ui.closeTitle}</h1><p className="lead">{ui.closeBody}</p>{errorBox}{repeatLesson}<p className="muted">Die bisherigen Wörter und Zeichen noch einmal üben.</p>
       {!reflectionSaved ? <div className="stepStack"><label className="fieldLabel">{ui.note}<textarea maxLength={500} value={reflection} onChange={e => setReflection(e.target.value)} /></label><p>{ui.reflect}</p><div className="buttonRow">{[ui.easy, ui.right, ui.much].map(r => <button type="button" className="secondaryButton" key={r} disabled={busy} onClick={() => safe(() => mutation(async () => { await logEvent({ sessionId: session!.id, taskId: 'closure', type: 'reflection', detail: { rating: r, note: reflection } }); setReflectionSaved(true); }))}>{r}</button>)}</div></div> : <p role="status">{ui.reflectionSaved}</p>}
       <button type="button" className="textButton" onClick={() => setView('home')}>{ui.home}</button>{settings}</section>}
-  </main><Worksheet /></>;
+  </main><Worksheet /></InteractionContext.Provider>;
 }

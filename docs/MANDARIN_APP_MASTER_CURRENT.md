@@ -1007,3 +1007,13 @@ See `BUILD_B_WRITING_FOUNDATION.md`: fixed gradual guidance, real learner SVG st
 Hanzi Writer recognition and animation, immediate feedback, and the unchanged paper worksheet.
 Four/three immediate productions are a test hypothesis. No new vocabulary, adaptive engine,
 Continuous Learning, Identity/Sync or Research Mode was added. Lesson 2 remains on hold.
+
+
+## 37. Build C checkpoint — 2026-09-27
+
+The explicitly authorized Interaction & Flow build improves two existing sequence types: encounter
+and reading → speaking. Small shared interaction locks protect recording/finalization/playback and
+DB transitions; no new scheduler. Existing audio and Build-B writing remain unchanged. Offline ready
+now verifies the active worker's actual asset cache and offers retry. See
+`BUILD_C_INTERACTION_FLOW.md`. The learner-facing entry is Weiterlernen; existing content remains
+bounded and non-adaptive. No Lesson 2, Continuous Learning, Identity/Sync or Research Mode.

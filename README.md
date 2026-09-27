@@ -1,10 +1,12 @@
-# Mandarin — First contact · Build B
+# Mandarin — First contact · Build C
 
 Private German-language, local-first Lesson-1 vertical slice. No account or cloud learning services.
 Scope: `docs/COMPLEXITY_CUT_v0.1.md`, then `docs/BUILD_HANDOFF_v1.1.md` and
 `docs/MANDARIN_APP_MASTER_CURRENT.md`. The old `static-prototype/` is an archived mockup, not the app.
 
-Test deployment: https://language-learning-abk.pages.dev/ . Current build: **B — Writing Foundation**.
+Test deployment: https://language-learning-abk.pages.dev/ . Current build: **C — Interaction & Flow**.
+[Build C report](docs/BUILD_C_INTERACTION_FLOW.md) covers progressive speaking/reading, atomic transitions,
+automatic own-recording playback and verified offline readiness.
 [Build B report](docs/BUILD_B_WRITING_FOUNDATION.md) documents the short 好 → 你 → 我 progression,
 honest SVG ink, established patterns, recognition limits and internal tests.
 A1 Language Trust and A2 Audio Trust remain in place. Lesson 2 is untouched.
@@ -25,7 +27,7 @@ npm run build
 npm run preview -- --host localhost --port 4173
 ```
 
-Open http://localhost:4173. Wait for “Für offline bereit”. Development mode intentionally does not
+Open http://localhost:4173. Wait for “Bereit zum Lernen”. Development mode intentionally does not
 register a worker. The build generates a content-addressed worker that precaches all compiled code,
 styles, audio and licenses. Deployments must serve at the origin root. Service-worker updates activate after complete precaching, even with old tabs open. Reload to display
 the downloaded update; active exercises are never reloaded automatically. One prior asset bundle is retained. Microphone requires localhost or HTTPS.

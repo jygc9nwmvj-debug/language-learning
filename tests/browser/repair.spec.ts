@@ -74,7 +74,7 @@ test('first writing reference visibly toggles in place and retest preserves hist
   await expect(page.getByRole('button',{name:'Vorlage zeigen',exact:true})).toHaveAttribute('aria-pressed','false');
   await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();
   await page.getByText('Einstellungen & Sicherung',{exact:true}).click();
-  await page.getByRole('button',{name:'Lesson 1 vollständig erneut testen',exact:true}).click();
+  await page.getByRole('button',{name:'Bisherige Inhalte wiederholen',exact:true}).click();
   await expect(page.locator('.hanziHero')).toHaveText('你好');
   const counts = await page.evaluate(async()=>{
     const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result)});
