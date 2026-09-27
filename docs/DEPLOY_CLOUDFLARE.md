@@ -1,5 +1,13 @@
 # Local → GitHub → Cloudflare Pages
 
+## Active deployment — 2026-09-27
+
+Live test app: https://language-learning-abk.pages.dev/
+Cloudflare Pages project: `language-learning`. Git integration: `main`.
+Initial successful deployment: `de46e7d85343004be7f133f40cf67fa7753a5caf`.
+Verified in the browser: HTTPS app loads and reports “Für offline bereit”.
+Actual phone installation and airplane-mode tests remain user device checks.
+
 ## Prepared repository
 
 GitHub: https://github.com/jygc9nwmvj-debug/language-learning
