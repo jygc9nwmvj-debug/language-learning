@@ -13,7 +13,7 @@ test('ten Mandarin reference captures keep speech envelopes and play to completi
  for(const [file,repeats] of [['wo',1],['ni',1],['hao',1],['xiexie',1],['wojiao',1],['nijiaoshenmemingzi',3],['nihao',1],['zaijian',1],['nijiaoshenmemingzi',4],['wo',1]] as const){
   await page.getByRole('button',{name:'Aufnehmen',exact:true}).click();await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
   await page.evaluate(async({file,repeats})=>{
-   const {ctx,dest}=(window as any).speechInput;const data=await ctx.decodeAudioData(await(await fetch(`/audio/mandarin/${file}.wav`)).arrayBuffer());
+   const {ctx,dest}=(window as any).speechInput;const data=await ctx.decodeAudioData(await(await fetch(file==='zaijian'?'/audio/mandarin/zaijian.wav':`/audio/mandarin/polly-${file==='nijiaoshenmemingzi'?'askname':file}.mp3`)).arrayBuffer());
    const buffer=ctx.createBuffer(1,data.length*repeats,ctx.sampleRate);for(let n=0;n<repeats;n++)buffer.copyToChannel(data.getChannelData(0),0,n*data.length);
    (window as any).originalSpeech=Array.from(buffer.getChannelData(0));
    const source=ctx.createBufferSource();source.buffer=buffer;source.connect(dest);source.start();await new Promise(r=>source.onended=r);

@@ -1,6 +1,6 @@
 # A2 abgeschlossen – Polly in Lesson 1
 
-Lokale App-Integration, kein Deployment. 12 vollständig nutzerakzeptierte MP3-Dateien werden bytegenau unverändert verwendet. Akzeptanzquelle: A2_POLLY_USER_ACCEPTANCE.json. Originaler Prüfstand unter tools/polly-controlled. Keine Audio-Normalisierung, kein Trimmen, keine Tonkonturkorrektur und keine Waveform-Tempodehnung.
+App-Integration; Veröffentlichung der normalen Test-App durch den anschließenden Auftrag „A2 — FINALIZE AND SHIP“ freigegeben. 12 vollständig nutzerakzeptierte MP3-Dateien werden bytegenau unverändert verwendet. Akzeptanzquelle: A2_POLLY_USER_ACCEPTANCE.json. Originaler Prüfstand unter tools/polly-controlled. Keine Audio-Normalisierung, kein Trimmen, keine Tonkonturkorrektur und keine Waveform-Tempodehnung.
 
 ## Aktive Dateien und Zustände
 
@@ -40,6 +40,14 @@ Quellen: https://docs.aws.amazon.com/polly/latest/dg/ph-table-mandarin.html · h
 
 ## Abschluss
 
-A2-Umsetzung abgeschlossen mit drei ausdrücklich vorläufigen Polly-Referenzen und fünf unveränderten Legacy-Referenzen außerhalb dieser Abnahme. Keine weitere Nutzer-Testschleife. Kein Deployment, keine Änderungen an Writing, Lesson 2 oder Learner State.
+A2-Umsetzung abgeschlossen mit drei ausdrücklich vorläufigen Polly-Referenzen und fünf unveränderten Legacy-Referenzen außerhalb dieser Abnahme. Keine weitere Nutzer-Testschleife. Keine Änderungen an Writing, Lesson 2 oder Learner State.
 
 Validierung: 37/37 Tests, Content-Validierung und Produktionsbuild erfolgreich. Chrome und WebKit: normale App gestartet, Referenzbutton betätigt, alle 20 aktiven Audios decodiert und bei tatsächlich gestopptem Testserver offline abgerufen. Kein Browserfehler. Die WebKit-Netzwerkemulation wurde durch den echten Serverstopp ersetzt (bekannte Testwerkzeug-Einschränkung).
+
+## Freigabe zum normalen Testbetrieb
+
+Amazon Polly ist der vorläufig akzeptierte Generator dieses Prototyps. Der Lerninhalt verweist ausschließlich auf Asset-Pfade; Provider, Stimme und SSML gehören zum separaten Herkunftsmanifest. Andere TTS-Quellen oder genehmigte menschliche Aufnahmen können später dieselbe Schnittstelle verwenden. Zusätzliche Statuswerte wie human_expert_approved sind später erweiterbar, aktuell nicht implementiert.
+
+Der veröffentlichte Build enthält nur aktuell referenzierte Audio-Dateien. Archivierte/abgelehnte Qwen-, Melo-, CosyVoice- oder alte Tonexperimente werden nicht mitkopiert. Fünf bereits vorhandene Legacy-Referenzen bleiben ausdrücklich generated und sind keine akzeptierten Polly-Dateien. Kein pauschales Audio-Qualitätssiegel für den gesamten Inhalt.
+
+Aufnahme: Browser-onstart plus lebende, nicht stummgeschaltete Tracks steuern die Bereitschaft. Keine feste 500-ms-Verzögerung und kein Warten auf den ersten Datenblock. Alle nichtleeren Chunks inklusive Finalchunk werden gesammelt; Streamfreigabe nach onstop; 200-ms-Auslauf beim normalen Beenden bleibt bestehen. Unterbrechungen und leere/zu leise Aufnahmen werden erkannt. Kein Redesign des Players.

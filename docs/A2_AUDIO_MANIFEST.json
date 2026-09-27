@@ -54,7 +54,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "ni",
+        "hans": "你",
+        "hant": "你",
+        "toneNumbers": "ni3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "wo",
@@ -102,7 +115,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "wo",
+        "hans": "我",
+        "hant": "我",
+        "toneNumbers": "wo3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "hao",
@@ -150,7 +176,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "hao",
+        "hans": "好",
+        "hant": "好",
+        "toneNumbers": "hao3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "ma1",
@@ -208,7 +247,20 @@
         "generated",
         "technically_validated",
         "needs_human_review"
-      ]
+      ],
+      "canonical": {
+        "item": "ma1",
+        "hans": "妈",
+        "hant": "媽",
+        "toneNumbers": "ma1"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "ma2",
@@ -266,7 +318,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "ma2",
+        "hans": "麻",
+        "hant": "麻",
+        "toneNumbers": "ma2"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "ma3",
@@ -324,7 +389,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "ma3",
+        "hans": "马",
+        "hant": "馬",
+        "toneNumbers": "ma3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "ma4",
@@ -382,7 +460,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "ma4",
+        "hans": "骂",
+        "hant": "罵",
+        "toneNumbers": "ma4"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 100
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "nihao",
@@ -430,7 +521,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "nihao",
+        "hans": "你好",
+        "hant": "你好",
+        "toneNumbers": "ni3 hao3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 90
+      },
+      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained"
     },
     {
       "item": "nihao",
@@ -480,7 +584,20 @@
         "generated",
         "technically_validated",
         "needs_human_review"
-      ]
+      ],
+      "canonical": {
+        "item": "nihao",
+        "hans": "你好",
+        "hant": "你好",
+        "toneNumbers": "ni3 hao3"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 75
+      },
+      "surfacePronunciationNote": "Contextual ni2-hao3 in SSML; lexical ni3 hao3 retained"
     },
     {
       "item": "xiexie",
@@ -528,7 +645,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "xiexie",
+        "hans": "谢谢",
+        "hant": "謝謝",
+        "toneNumbers": "xie4 xie5"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 90
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "xiexie",
@@ -578,7 +708,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "xiexie",
+        "hans": "谢谢",
+        "hant": "謝謝",
+        "toneNumbers": "xie4 xie5"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 75
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "wojiao",
@@ -626,7 +769,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "wojiao",
+        "hans": "我叫",
+        "hant": "我叫",
+        "toneNumbers": "wo3 jiao4"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 90
+      },
+      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example"
     },
     {
       "item": "wojiao",
@@ -674,7 +830,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "wojiao",
+        "hans": "我叫",
+        "hant": "我叫",
+        "toneNumbers": "wo3 jiao4"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 75
+      },
+      "surfacePronunciationNote": "SSML records actual requested pronunciation; neutral tone uses 0; name is open-slot example"
     },
     {
       "item": "askname",
@@ -728,7 +897,20 @@
         "generated",
         "technically_validated",
         "needs_human_review"
-      ]
+      ],
+      "canonical": {
+        "item": "askname",
+        "hans": "你叫什么名字",
+        "hant": "你叫什麼名字",
+        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 80
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "askname",
@@ -778,7 +960,20 @@
         "generated",
         "technically_validated",
         "user_accepted"
-      ]
+      ],
+      "canonical": {
+        "item": "askname",
+        "hans": "你叫什么名字",
+        "hant": "你叫什麼名字",
+        "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5"
+      },
+      "synthesisParameters": {
+        "format": "mp3",
+        "sampleRate": 24000,
+        "textType": "ssml",
+        "ratePercent": 75
+      },
+      "surfacePronunciationNote": "See explicit phoneme sequence in SSML"
     },
     {
       "item": "wo",
