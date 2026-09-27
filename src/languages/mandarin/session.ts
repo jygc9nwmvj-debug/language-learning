@@ -4,16 +4,20 @@ import type { Task } from './schema/content.ts';
 export function objectFor(task: Task, script: 'hant' | 'hans') {
   return task.target === 'writing' || task.target === 'reading' ? `cmn:${task.itemId}:${script}` : `cmn:${task.itemId}`;
 }
-export function composeReview(relations: Relation[], script: 'hant' | 'hans', now: number) {
+export function composeReview(relations: Relation[], script: 'hant' | 'hans', now: number, firstWritingReview = false) {
   const byId = new Map(relations.map(r => [r.id, r]));
   const candidates = content.reviewPlan.map(id => {
     const task = taskMap.get(id)!;
     const relation = byId.get(relationId(objectFor(task, script), task.target!));
     return { id, relation };
   });
-  // HYPOTHESIS: at most six due relations; no artificial review/new ratio.
-  return [...candidates.filter(c => !c.relation || c.relation.dueAt <= now)
-    .sort((a, b) => (a.relation?.dueAt ?? 0) - (b.relation?.dueAt ?? 0)).slice(0, 6).map(c => c.id), 'closure'];
+  // Reserve one of the six slots for the first next-session recall; later use due dates.
+  const due = candidates.filter(c => !c.relation || c.relation.dueAt <= now)
+    .sort((a, b) => (a.relation?.dueAt ?? 0) - (b.relation?.dueAt ?? 0));
+  const writing = candidates.find(c => c.id === 'write-recall');
+  const includeWriting = !!writing && (firstWritingReview || due.includes(writing));
+  const selected = due.filter(c => c.id !== 'write-recall').slice(0, includeWriting ? 5 : 6).map(c => c.id);
+  return [...selected, ...(includeWriting ? ['write-recall'] : []), 'closure'];
 }
 export function withSpacedRetry(plan: string[], index: number, taskId: string) {
   if (plan.slice(index + 1).includes(taskId) || plan.filter(id => id === taskId).length >= 2) return plan;

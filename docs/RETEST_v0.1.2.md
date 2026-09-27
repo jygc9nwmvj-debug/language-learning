@@ -1,5 +1,7 @@
 # Lesson 1 — second-test version 0.1.2
 
+**Current extension:** [Writing fading 0.1.3](WRITING_FADING_v0.1.3.md) supersedes the writing progression below; other repairs remain.
+
 Scope: repairs to V0.1 only. Lesson 2 untouched. No pitch grading, speech recognition, handwriting OCR,
 new engine, accounts or curriculum expansion.
 
@@ -93,7 +95,7 @@ cases to 21; the affected lesson/offline checks are rerun after the repair.
 ## Second learner test
 
 URL: https://language-learning-abk.pages.dev/
-Close every old app tab/window and reopen online; confirm **Testversion 0.1.2** on the home screen.
+Close every old app tab/window and reopen online; confirm **Testversion 0.1.3** on the home screen.
 Use Einstellungen & Sicherung → Lesson 1 vollständig erneut testen. Earlier research/history remains.
 Wait for “Aufnahme läuft … Jetzt sprechen” each time. Suggested ten recordings:
 wǒ, nǐ, wǒ jiào Wolfram, 謝謝, one 5–10 second sentence; repeat those five once.

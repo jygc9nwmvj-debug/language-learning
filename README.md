@@ -1,11 +1,12 @@
-# Mandarin — First contact · V0.1.2
+# Mandarin — First contact · V0.1.3
 
 Private German-language, local-first Lesson-1 vertical slice. No account or cloud learning services.
 Scope: `docs/COMPLEXITY_CUT_v0.1.md`, then `docs/BUILD_HANDOFF_v1.1.md` and
 `docs/MANDARIN_APP_MASTER_CURRENT.md`. The old `static-prototype/` is an archived mockup, not the app.
 
 Test deployment: https://language-learning-abk.pages.dev/ . Current repair notes and second-run instructions:
-[RETEST_v0.1.2](docs/RETEST_v0.1.2.md). Lesson 2 remains untouched.
+[WRITING_FADING_v0.1.3](docs/WRITING_FADING_v0.1.3.md), including evidence boundaries and research fields;
+[RETEST_v0.1.2](docs/RETEST_v0.1.2.md) documents the retained capture/audio/typing repairs. Lesson 2 remains untouched.
 
 ## Run
 
@@ -36,7 +37,8 @@ until the old app is closed. Microphone requires localhost or HTTPS.
   tones are distinct from content, and never imply spoken tone ability. Ambiguous typos ask for clarification.
 - Only real answers/self-checks update `(object, target)` state. Continue/reveal/recording never imply mastery.
 - Simple due-based review, hidden initial recall answers, help logging and at most one spaced retry.
-- Hanzi Writer for 好 only, blank recall canvas, equal paper self-check, grouped A4 worksheet.
+- Hanzi Writer for 好 only: observe, three fading productions, brief blank recall, later and next-session recall.
+  Per-stage errors/hints/results in the research log; free writing and paper remain self-report. Grouped A4 worksheet.
 - Microphone record/play/compare; ready/finalizing states, up to 60 seconds, interruption notices and cleanup on exit. No automatic speech scoring.
 - IndexedDB transactions for state/evidence, resume, export and validated non-destructive backup merge.
 - Local research log: task events, help, audio, self-checks, skips, durations and optional reflection.

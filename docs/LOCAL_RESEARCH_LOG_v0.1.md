@@ -117,3 +117,7 @@ Analyze:
 **Local by default, explicit export by choice.**
 
 Public product analytics, if ever considered, require a separate product/privacy decision and are not implied by this development log.
+
+## Implemented writing stages in 0.1.3
+
+See [writing progression](WRITING_FADING_v0.1.3.md#research-log) for concrete scaffold, error, hint and result fields. Guided stroke acceptance, free-writing self-report and interrupted attempts are separate. The four-production sequence is a hypothesis; evaluate it against later recall rather than tracing completion.

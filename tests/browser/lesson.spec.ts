@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { paperIntroduction } from './writing-helpers';
 async function snapshot(page: Page) {
   return page.evaluate(async () => {
     const db = await new Promise<IDBDatabase>((resolve, reject) => { const r = indexedDB.open('language-learning-local'); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); });
@@ -8,6 +9,7 @@ async function snapshot(page: Page) {
 }
 const next = (page: Page) => page.getByRole('button', { name: 'Weiter', exact: true }).click();
 test('complete Lesson 1, honest evidence, backup, offline cold reopen and delayed review', async ({ page, context }) => {
+  test.setTimeout(90000);
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('/'); await expect(page.getByText('Für offline bereit', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
@@ -35,9 +37,9 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
       await page.getByRole('button', { name: id === 'tone-wo' ? '3' : '4', exact: true }).click();
       await next(page);
     } else if (id === 'write-guided' || id === 'write-recall') {
-      if (id === 'write-guided') { await expect(page.locator('.hanziWriter svg')).toBeVisible(); await page.getByRole('button', { name: 'Strichfolge ansehen' }).click(); }
+      if (id === 'write-guided') await paperIntroduction(page);
       else { await expect(page.locator('.lessonCard .hanziLarge')).toHaveCount(0); await expect(page.locator('.writingCanvas')).toBeVisible(); }
-      await page.getByRole('button', { name: 'Auf Papier schreiben' }).click();
+      if (id === 'write-recall') await page.getByRole('button', { name: 'Auf Papier schreiben' }).click();
       await page.getByRole('button', { name: 'Ich habe geschrieben' }).click();
       await page.getByRole('button', { name: 'Mit der Vorlage vergleichen' }).click();
       await page.getByRole('button', { name: 'Sicher', exact: true }).click();

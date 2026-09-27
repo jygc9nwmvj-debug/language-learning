@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { observe } from './writing-helpers';
 import { readFileSync } from 'node:fs';
 const hao = JSON.parse(readFileSync('src/languages/mandarin/data/hao.json', 'utf8'));
 
@@ -61,6 +62,7 @@ test('first writing reference visibly toggles in place and retest preserves hist
   await page.goto('/'); await page.getByRole('button', { name:'Weiterlernen',exact:true }).click();
   for (let n=0;n<5;n++) await page.getByRole('button',{name:'Überspringen',exact:true}).click();
   await expect(page.locator('.hanziWriter svg')).toBeVisible();
+  await observe(page);
   await page.screenshot({path:'test-results/writing-before.png',fullPage:true});
   const before = await page.locator('.hanziWriter').screenshot();
   await page.getByRole('button',{name:'Vorlage zeigen',exact:true}).click();

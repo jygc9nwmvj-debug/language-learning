@@ -21,7 +21,7 @@ test('Cloudflare-style index redirect: reload and offline navigation use the unr
   try {
     await page.goto(`http://127.0.0.1:${port}/`);
     await expect(page.getByText('Für offline bereit',{exact:true})).toBeVisible();
-    await page.reload(); await expect(page.getByText(/Testversion 0.1.2/)).toBeVisible();
+    await page.reload(); await expect(page.getByText(/Testversion 0.1.3/)).toBeVisible();
     // Stop the origin instead of WebKit's broken offline-emulation switch (Playwright #42775).
     server.closeAllConnections();await new Promise<void>(resolve=>server.close(()=>resolve()));
     await page.reload();

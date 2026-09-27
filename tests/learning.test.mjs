@@ -98,3 +98,14 @@ test('every careful_slow asset is materially longer than natural speech, excludi
     assert.ok((validateWav(slow)-.25)/(validateWav(natural)-.25)>1.5,item.id);
   }
 });
+
+
+test('first next-session writing recall has a reserved slot without adding extra workload', () => {
+  const now = 5 * DAY;
+  const relations = content.reviewPlan.map(id => { const task = taskMap.get(id); return updateRelation(undefined, { objectId: objectFor(task, 'hant'), target: task.target, result: 'success', assisted: false, sessionId: 'first', at: now }); });
+  assert.deepEqual(composeReview(relations, 'hant', now, true), ['write-recall', 'closure']);
+  const due = composeReview(relations, 'hant', now + DAY, true);
+  assert.equal(due.length, 7); assert.equal(due.at(-2), 'write-recall');
+  assert.deepEqual(composeReview(relations, 'hant', now, false), ['closure']);
+  assert.ok(content.initialPlan.indexOf('write-recall') - content.initialPlan.indexOf('write-guided') > 2);
+});

@@ -1,5 +1,5 @@
 {
-  "version": "lesson1-v0.1.2",
+  "version": "lesson1-v0.1.3",
   "qaStatus": "draft",
   "audioStatus": "prototype",
   "items": [
@@ -242,7 +242,7 @@
       "id": "write-guided",
       "kind": "writing",
       "prompt": {
-        "de": "好: links 女, rechts 子. Schau zu und schreibe mit."
+        "de": "Schreiben lernen: das Zeichen für „gut“."
       },
       "itemId": "hao",
       "target": "writing",
