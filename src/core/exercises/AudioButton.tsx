@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { Icon } from './Icon';
 import { ui } from '../i18n/de';
 let active: HTMLAudioElement | undefined;
 let captures = 0;
@@ -23,5 +24,5 @@ export function AudioButton({ src, label = ui.listen, onPlay }: { src: string; l
     setError(false);
     try { await audio.play(); onPlay?.(); } catch { setError(true); }
   }
-  return <span className="audioControl"><button className="utilityButton" type="button" disabled={blocked} onClick={() => void play()}><span aria-hidden="true">▶ </span>{label}</button>{error && <span role="status">{ui.audioError}</span>}</span>;
+  return <span className="audioControl"><button className="utilityButton audioButton" type="button" aria-label={label} title={label} disabled={blocked} onClick={() => void play()}><Icon name="play" />{label !== ui.listen && <span>{label === ui.slow ? 'langsam' : label}</span>}</button>{error && <span role="status">{ui.audioError}</span>}</span>;
 }

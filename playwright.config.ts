@@ -4,7 +4,7 @@ export default defineConfig({
   use: { baseURL: 'http://localhost:4173', headless: true, screenshot: 'only-on-failure' },
   projects: [
     { name: 'chrome', use: { browserName: 'chromium', channel: 'chrome', launchOptions: { args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', '--mute-audio'] } } },
-    { name: 'webkit', testMatch: ['continuous.spec.ts', 'flow.spec.ts', 'audio-speech.spec.ts', 'audio.spec.ts', 'repair.spec.ts', 'hosting.spec.ts', 'writing.spec.ts', 'trust.spec.ts', 'continue.spec.ts'], use: { browserName: 'webkit' } },
+    { name: 'webkit', testMatch: ['polish.spec.ts', 'continuous.spec.ts', 'flow.spec.ts', 'audio-speech.spec.ts', 'audio.spec.ts', 'repair.spec.ts', 'hosting.spec.ts', 'writing.spec.ts', 'trust.spec.ts', 'continue.spec.ts'], use: { browserName: 'webkit' } },
   ],
   webServer: { command: 'npm run preview -- --host localhost --port 4173 --strictPort', url: 'http://localhost:4173', reuseExistingServer: true },
 });

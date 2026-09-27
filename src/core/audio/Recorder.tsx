@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInteraction } from '../exercises/InteractionScope';
+import { Icon } from '../exercises/Icon';
 import { ui } from '../i18n/de';
 import { stopReferenceAudio, acquireAudioCapture } from '../exercises/AudioButton';
 type Status = 'idle' | 'requesting' | 'preparing' | 'recording' | 'finalizing';
@@ -129,15 +130,26 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
       if (current()) { busy.current = false; releaseInteraction.current(); setError(ui.micError); setStatus('idle'); onEvent('microphone_unavailable'); }
     }
   }
-  return <section className="toolPanel">
-    <button className={url ? "secondaryButton" : "primaryButton"} type="button" disabled={(status === 'idle' && !interaction.canStart()) || (status !== 'idle' && status !== 'recording')} onClick={() => status === 'recording' ? stop.current() : void start()}>{status === 'recording' ? ui.stop : status === 'requesting' ? ui.requesting : status === 'preparing' ? ui.preparing : status === 'finalizing' ? ui.finalizing : ui.record}</button>
+  async function replay() {
+    const audio = playback.current, token = generation.current;
+    if (!audio || busy.current) return;
+    if (playing) { audio.pause(); return; }
+    audio.currentTime = 0;
+    try { await audio.play(); }
+    catch { if (token === generation.current) { setError(ui.recordingPlaybackError); playbackFinished(); } }
+  }
+  const recordLabel = status === 'recording' ? ui.stop : status === 'requesting' ? ui.requesting : status === 'preparing' ? ui.preparing : status === 'finalizing' ? ui.finalizing : url ? 'Neu aufnehmen' : ui.record;
+  const recordControl = <button className={`recordButton ${status === 'recording' ? 'isRecording' : ''}`} type="button" aria-label={recordLabel} title={recordLabel} disabled={(status === 'idle' && !interaction.canStart()) || (status !== 'idle' && status !== 'recording')} onClick={() => status === 'recording' ? stop.current() : void start()}><Icon name={status === 'recording' ? 'stop' : 'mic'} /><span>{status === 'recording' ? 'Stopp' : recordLabel}</span></button>;
+  return <section className="toolPanel recordingPanel">
+    {!url && recordControl}
     <p role="status" className="captureStatus">{status === 'recording' ? ui.recording : status === 'preparing' ? ui.recordingWait : status === 'finalizing' ? ui.finalizing : ''}</p>
-    {url && <div className="ownRecording"><strong>Deine Aufnahme</strong><audio ref={playback} aria-label={ui.replayOwn} controls src={url}
+    {url && <div className="ownRecording"><strong>Deine Aufnahme</strong><audio ref={playback} aria-label={ui.replayOwn} hidden src={url}
       onPlay={() => { stopReferenceAudio(playback.current); setPlaying(true); setPlaybackNotice(''); if (!busy.current) { releaseInteraction.current(); releaseInteraction.current = interaction.acquire(); } }}
       onPause={playbackFinished} onEnded={playbackFinished}
       onError={() => { setError(ui.recordingPlaybackError); playbackFinished(); }} />
-      <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice}</p></div>}
+      <div className="buttonRow"><button className="utilityButton" type="button" aria-label={playing ? 'Wiedergabe pausieren' : 'Deine Aufnahme wiedergeben'} title={playing ? 'Wiedergabe pausieren' : 'Deine Aufnahme wiedergeben'} onClick={() => void replay()}><Icon name={playing ? 'pause' : 'replay'} /><span>{playing ? 'Pause' : 'Wiedergabe'}</span></button>{recordControl}</div>
+      <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice === 'Zum Vergleichen kannst du beide Aufnahmen noch einmal hören.' ? '' : playbackNotice}</p></div>}
     {error && <p role="status" className="feedback attention">{error}</p>}
-    <p className="privacyNote">{ui.micNote}</p>
+    <details className="recordingInfo"><summary>Zur Aufnahme</summary><p>{ui.micNote}</p></details>
   </section>;
 }
