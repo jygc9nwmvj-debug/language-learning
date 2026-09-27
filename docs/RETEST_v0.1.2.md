@@ -79,6 +79,17 @@ MediaRecorder: 0.45, 0.8, 1.2, 3, 6 seconds, twice. Distinct beginning/middle/en
 This isolates the browser capture chain; it does not certify the physical microphone, OS processing,
 Bluetooth, the learner’s voice, every browser version or long background recording.
 
+## Production navigation repair
+
+Cloudflare returns HTTP 308 from /index.html to /. The previous worker precached /index.html;
+WebKit reproduced the production reload failure: “Response served by service worker has redirections”.
+The worker now precaches the unredirected root / and uses that response for navigation. Its own source
+also contributes to the cache identity, so worker-strategy changes get a separate cache. A local server
+reproducing Cloudflare’s redirect verifies online reload followed by reload with the origin server
+shut down in Chrome and WebKit. This uses server unavailability because WebKit offline emulation
+itself has an upstream navigation bug: https://github.com/microsoft/playwright/issues/42775 . No learner database or history is cleared. These two added checks bring the distinct browser
+cases to 21; the affected lesson/offline checks are rerun after the repair.
+
 ## Second learner test
 
 URL: https://language-learning-abk.pages.dev/
