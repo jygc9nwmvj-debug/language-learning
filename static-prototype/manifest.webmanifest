@@ -1,0 +1,9 @@
+{
+  "name": "Language Learning Lab — Mandarin Prototype",
+  "short_name": "Mandarin Lab",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f1eb",
+  "theme_color": "#f3f1eb",
+  "icons": []
+}
