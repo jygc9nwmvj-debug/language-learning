@@ -12,6 +12,7 @@ const addedTasks = buffer.items.flatMap(i => [
  ] : []),
 ]);
 export const content = contentSchema.parse({...raw,version:'build-d-1',words:[...raw.words,...buffer.words],items:[...raw.items,...buffer.items],tasks:[...raw.tasks,...addedTasks,
+ {id:'read-nihao',kind:'read',itemId:'nihao',target:'reading',prompt:{de:'Was bedeutet dieser Ausdruck?'}},
  {id:'d-sequence-123',kind:'sequence',itemId:'san',target:'reading',sequence:['yi','er','san'],prompt:{de:'Setze die bekannten Zahlen in die Reihenfolge eins → zwei → drei.'}},
  {id:'d-sequence-456',kind:'sequence',itemId:'liu',target:'reading',sequence:['si','wu','liu'],prompt:{de:'Zähle weiter: vier → fünf → sechs.'}},
  {id:'d-sequence-78910',kind:'sequence',itemId:'shi-number',target:'reading',sequence:['qi','ba','jiu','shi-number'],prompt:{de:'Vervollständige die Folge: sieben → acht → neun → zehn.'}},

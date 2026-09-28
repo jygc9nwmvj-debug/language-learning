@@ -65,7 +65,7 @@ A cited study does not automatically validate our UI, population, timing or thre
 
 **Build while learning.** The primary human evaluator is also a real learner. Use proportionate automation for technical correctness; judge learning experience primarily through normal use, including later recall, rather than repeated artificial QA scripts. Individual observations guide iteration but are not controlled scientific proof.
 
-## Current C2.2 pilot
+## C2.2 pilot and C2.3 generalization
 
 Only **你好 and 好** currently pilot:
 
@@ -74,6 +74,8 @@ Only **你好 and 好** currently pilot:
 The focus changes occur within one surface. Two deliberate acknowledgements precede the existing Continue action; recording remains optional. Explicit tone acknowledgement is stored separately from ordinary Pinyin display. Tone-notation assessment additionally requires the notation introduction. Later acknowledged encounters use the compact presentation. 你好 is a recognition target in this pilot; 好 connects to the existing writing flow.
 
 This is a **C — HYPOTHESIS**, not a universal mandatory sequence or proof that a click caused attention. Judge usefulness, retention, repetition burden and click cost through real learning before broader rollout. Do not extend the pilot merely because its technical tests pass. See [C2.2 implementation and limits](BUILD_C2_2_ATTENTION_PILOT.md).
+
+The explicitly requested **C2.3 consolidated addition** now generalizes the underlying mechanism to all current items through canonical, relevant introduction dimensions. It does not mandate the pilot's exact click sequence. Focused listening can advance automatically; visual targets receive Pinyin-free form focus followed by form/sound/meaning association; familiar whole-word components can reuse prior visual introduction. Per-dimension introduction evidence gates assessment; visual recognition never implies writing. All 28 D objects and the existing scheduler remain. This remains a product hypothesis to evaluate through normal use. See [C2.3 implementation and limits](BUILD_C2_3_PHRASE_COMPREHENSION.md). The preceding C2.2 description records the original pilot, not a restriction on the subsequently authorized generalization.
 
 ## Evidence and references
 

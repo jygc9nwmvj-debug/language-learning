@@ -31,13 +31,13 @@ for(const item of ['nihao','hao'])test(`${item}: one surface separates hearing, 
   await page.getByRole('button',{name:'Aufnehmen',exact:true}).click();await page.getByRole('button',{name:'Aufnahme beenden',exact:true}).click();
   await expect(page.getByRole('button',{name:'Wiedergabe pausieren',exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeDisabled();await page.getByRole('button',{name:'Wiedergabe pausieren',exact:true}).click();await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeEnabled();
  }
- const saved=await events(page);expect(saved.filter(e=>e.type==='tone_attention_confirmed')).toHaveLength(1);expect(saved.find(e=>e.type==='item_attention_completed').detail.role).toBe(item==='hao'?'writing':'recognition');
- await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.pronunciationMeaning')).toBeVisible();await expect(surface).toHaveCount(0);
+ const saved=await events(page);expect(saved.filter(e=>e.type==='tone_attention_confirmed')).toHaveLength(1);expect(saved.find(e=>e.type==='hanzi_attention_confirmed').detail.form).toBe(item==='hao'?'好':'你好');
+ await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.pronunciationMeaning')).toBeVisible();await expect(surface).toHaveAttribute('data-focus','connect');
 });
 test('old Pinyin exposure does not enable grading, explicit item plus notation introduction does',async({page})=>{
  const old={id:'old',at:1,sessionId:'prior',taskId:'meet-nihao',type:'pinyin_reveal',contentVersion:'old',detail:{item:'nihao'}};
  const notation={...old,id:'notation',taskId:'tones',type:'task_completed'};
- await plan(page,'recall-nihao',[old,notation]);await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni2 hao3');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.feedback')).toHaveText('Richtig.');expect((await events(page)).find(e=>e.type==='attempt').detail.assessToneNotation).toBe(false);
+ await plan(page,'recall-nihao',[old,notation,{...old,id:'introduced',type:'introduction_dimensions',detail:{item:'nihao',script:'hant',form:'你好',toneNumbers:'ni3 hao3',dimensions:'meaning,pronunciation',introductionVersion:1}}]);await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni2 hao3');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.feedback')).toHaveText('Richtig.');expect((await events(page)).find(e=>e.type==='attempt').detail.assessToneNotation).toBe(false);
  await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();
  await plan(page,'recall-nihao',[{...old,id:'tone-focus',type:'tone_attention_confirmed',detail:{item:'nihao',toneNumbers:'ni3 hao3',attentionVersion:1}}]);await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni2 hao3');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.feedback')).toContainText('Diese Tonnotation braucht eine Korrektur:');await expect(page.locator('.feedback')).toContainText('Deine Aussprache wurde nicht bewertet.');
 });

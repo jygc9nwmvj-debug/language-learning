@@ -8,7 +8,7 @@ const encounters=content.tasks.filter(t=>t.kind==='encounter');
 export function exposure(events:ResearchEvent[]){
  const seen=new Map<string,number>();
  for(const e of events){const t=taskMap.get(e.taskId);if(!t?.itemId)continue;
-  if(['task_completed','attempt','audio_replay','pinyin_reveal'].includes(e.type))seen.set(t.itemId,Math.max(seen.get(t.itemId)??0,e.at));
+  if(['task_completed','attempt','audio_replay','pinyin_reveal'].includes(e.type)||(e.type==='introduction_dimensions' && String(e.detail.dimensions).split(',').includes('meaning')))seen.set(t.itemId,Math.max(seen.get(t.itemId)??0,e.at));
  }
  return seen;
 }

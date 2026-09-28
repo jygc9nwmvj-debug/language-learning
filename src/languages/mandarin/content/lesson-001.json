@@ -46,6 +46,17 @@
             ]
           }
         ]
+      },
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition",
+        "toneNote": "Geschrieben werden beide Silben mit dem 3. Ton. Zusammen gesprochen steigt die erste Silbe: ní hǎo. Das ist kein Widerspruch zum geschriebenen nǐ hǎo."
       }
     },
     {
@@ -54,7 +65,17 @@
       "slowAudio": "/audio/mandarin/polly-wo-slow.mp3",
       "words": [
         "wo"
-      ]
+      ],
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "hanzi",
+          "writing"
+        ],
+        "role": "writing"
+      }
     },
     {
       "id": "ni",
@@ -62,7 +83,17 @@
       "slowAudio": "/audio/mandarin/polly-ni-slow.mp3",
       "words": [
         "ni"
-      ]
+      ],
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "hanzi",
+          "writing"
+        ],
+        "role": "writing"
+      }
     },
     {
       "id": "hao",
@@ -70,7 +101,18 @@
       "slowAudio": "/audio/mandarin/polly-hao-slow.mp3",
       "words": [
         "hao"
-      ]
+      ],
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "hanzi",
+          "writing"
+        ],
+        "role": "writing",
+        "toneNote": "hǎo hat den 3. Ton. Achte auf die tiefe Stimme. Die volle Einzelkontur fällt und steigt; im Gespräch bleibt der Ton oft tief."
+      }
     },
     {
       "id": "wojiao",
@@ -112,6 +154,15 @@
             "gloss": "heißen – danach folgt dein Name"
           }
         ]
+      },
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "segmentation"
+        ],
+        "role": "spoken"
       }
     },
     {
@@ -188,6 +239,15 @@
             ]
           }
         ]
+      },
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone",
+          "segmentation"
+        ],
+        "role": "spoken"
       }
     },
     {
@@ -196,7 +256,15 @@
       "slowAudio": "/audio/mandarin/polly-xiexie-slow.mp3",
       "words": [
         "xiexie"
-      ]
+      ],
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone"
+        ],
+        "role": "spoken"
+      }
     },
     {
       "id": "zaijian",
@@ -204,7 +272,15 @@
       "slowAudio": "/audio/mandarin/polly-zaijian-slow.mp3",
       "words": [
         "zaijian"
-      ]
+      ],
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "tone"
+        ],
+        "role": "spoken"
+      }
     }
   ],
   "tasks": [

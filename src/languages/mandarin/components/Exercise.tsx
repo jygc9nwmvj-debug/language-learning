@@ -1,7 +1,7 @@
 import { PhraseForm, ExplanationText } from './PhraseForm';
-import { familiarItem } from '../phrase';
+import { introductionForTask, introduced, introductionDetail } from '../introduction';
 import type { ResearchEvent } from '../../../core/progress/db';
-import { attentionPilots, hasItemAttention, hasToneAttention, attentionAssessment } from '../attention';
+import { hasToneAttention, attentionAssessment } from '../attention';
 import { AttentionIntroduction, ToneFocus, type Introduce } from './AttentionIntroduction';
 import { useRef, useState } from 'react';
 import type { Item, Task } from '../schema/content';
@@ -29,9 +29,12 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>('success');
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
   const submitting = useRef(false), writingRecorded = useRef(false);
-  const [introAtEntry] = useState(() => !!(['encounter', 'read'].includes(task.kind) && attentionPilots[task.itemId ?? ''] && attentionHistory && !hasItemAttention(itemMap.get(task.itemId!)!, script, attentionHistory)));
+  const [introItem] = useState(() => attentionHistory && onIntroduce ? introductionForTask(task,script,attentionHistory) : undefined);
   const item = itemMap.get(task.itemId ?? '') as Item;
-  const known = familiarItem(item,attentionHistory);
+  // Freeze the writing mode for this occurrence: saving introduction evidence must not
+  // replace a running guided sequence with its one-stage recall configuration.
+  const [writingRecall] = useState(() => !!task.recall && (!attentionHistory || introduced(item,'writing',script,attentionHistory)));
+  const known = !!item && !!attentionHistory && introduced(item,'meaning',script,attentionHistory);
   const effectiveAssessment = task.assess && (attentionHistory ? attentionAssessment(task.assess, item, attentionHistory) : task.assess);
   const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
   const reveal = () => { setHelp(true); setPinyinVisible(true); onEvent('pinyin_reveal'); };
@@ -54,12 +57,12 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       setAnswered(true);
     } finally { submitting.current = false; }
   }
-  if (introAtEntry && onIntroduce) return <AttentionIntroduction item={item} script={script} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
+  if (introItem && onIntroduce) return <AttentionIntroduction item={introItem} script={script} history={attentionHistory} name={name} setName={setName} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
   if (task.kind === 'tone-recall' && attentionHistory && !hasToneAttention(item, attentionHistory) && onIntroduce) return <div className="stepStack"><p>Diesen Ton schauen wir zuerst gemeinsam an.</p><ToneFocus item={item} />{audio()}<button disabled={disabled} onClick={() => void onIntroduce('tone_attention_confirmed', { item: item.id, toneNumbers: item.toneNumbers, attentionVersion: 1 }).then(onNext).catch(() => {})}>Weiter</button></div>;
   if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } }} />;
+  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } }} />;
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;

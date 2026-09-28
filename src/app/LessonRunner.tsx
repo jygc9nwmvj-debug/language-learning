@@ -1,3 +1,5 @@
+import { introductionForTask, introduced } from '../languages/mandarin/introduction';
+import { itemMap } from '../languages/mandarin/content';
 import { stopReferenceAudio } from '../core/exercises/AudioButton';
 import { previousObjectIndex, inspectionEvent } from '../core/progress/optionalPractice';
 import { Icon } from '../core/exercises/Icon';
@@ -51,6 +53,9 @@ export function LessonRunner() {
     finally { lock.current = false; setBusy(false); }
   }
   const task = session ? taskMap.get(session.plan[session.index]) : undefined;
+  const history = attentionSnapshot?.events ?? [];
+  const encoding = !!task && !!session && !!introductionForTask(task,session.script,history);
+  const writingIntroduction = task?.kind==='writing' && (!task.recall || (!!session && !introduced(itemMap.get(task.itemId!)!,'writing',session.script,history)));
   const previousIndex = session ? previousObjectIndex(session.index) : null;
   const previousTask = session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
   async function inspectEvent(type: string, detail: Record<string, string | number | boolean> = {}) {
@@ -166,9 +171,9 @@ export function LessonRunner() {
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion C2.3 · Inhalte D · {ui.prototype}</p></section>}
+      {errorBox}{settings}<p className="prototypeNote">Testversion C2.3+ · Inhalte D · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <button type="button" className="utilityButton" disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}>{inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'}</button>}<button type="button" disabled={busy} className="sessionPause" aria-label={ui.pause} title={ui.pause} onClick={() => safe(pause)}><Icon name="close" />Pause</button></div></header>
-      <section className="lessonCard" hidden={inspecting} aria-busy={busy}><p className="eyebrow">{task.kind === 'writing' && !task.recall ? 'Schreiben lernen' : task.kind === 'encounter' ? ui.encounter : task.kind === 'read' ? ui.recognition : task.kind === 'closure' ? 'Mandarin' : ui.recall}</p><h2>{task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
+      <section className="lessonCard" hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Eine weitere kurze Mischung aus Bekanntem und Neuem.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
           : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise attentionHistory={attentionSnapshot.events} onIntroduce={introduce} key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy || inspecting} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} /> : <p role="status">{ui.loading}</p>}
             <button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}

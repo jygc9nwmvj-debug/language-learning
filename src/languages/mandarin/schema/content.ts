@@ -6,6 +6,9 @@ const text = z.string().trim().min(1);
 const prose = z.string().refine(value => value.trim().length > 0, 'Empty explanation').refine(value => !/\p{Script=Han}/u.test(value), 'Chinese explanation tokens require a canonical reference');
 const explanation = z.union([prose, z.array(z.union([prose, z.strictObject({ word: text, gloss: prose })])).min(1)]);
 export type Explanation = z.infer<typeof explanation>;
+export const introductionDimension = z.enum(['meaning','pronunciation','tone','hanzi','segmentation','writing']);
+export type IntroductionDimension = z.infer<typeof introductionDimension>;
+const introduction = z.strictObject({ dimensions: z.array(introductionDimension).min(2), role: z.enum(['spoken','recognition','writing']), toneNote: prose.optional() });
 const exploration = z.strictObject({ pronunciation: z.enum(['lexical', 'surface']), units: z.array(z.strictObject({
   words: z.array(text).min(1), syllables: z.array(z.string().regex(/^[a-zü]+[1-5]$/)).min(1), gloss: prose,
   audioItem: text.optional(), characters: z.array(z.strictObject({ index: z.number().int().nonnegative(), note: prose })).optional(),
@@ -23,7 +26,7 @@ const authoredSchema = z.strictObject({
   introducedAssessment: assessmentSchema,
   version: text, qaStatus: z.enum(['draft', 'source_checked', 'language_reviewed', 'audio_reviewed', 'published']), audioStatus: z.enum(['prototype', 'reviewed']),
   words: z.array(word).min(1), toneExamples: z.array(text).length(4),
-  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), exploration: exploration.optional(), learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: explanation, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: explanation.optional() }).optional(), review })),
+  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), exploration: exploration.optional(), introduction, learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: explanation, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: explanation.optional() }).optional(), review })),
   tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'sequence', 'closure']),
     sequence: z.array(text).min(2).optional(), assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
   initialPlan: z.array(text), reviewPlan: z.array(text),
@@ -41,6 +44,12 @@ const authoredSchema = z.strictObject({
     for (const token of tokens) if (!lessonSyllables.has(token.slice(0,-1))) issue(`Invalid Lesson-1 Pinyin syllable: ${token}`);
   }
   for (const i of c.items) {
+    const dimensions = i.introduction.dimensions;
+    if (new Set(dimensions).size !== dimensions.length || !dimensions.includes('meaning') || !dimensions.includes('pronunciation')) issue(`Introduction dimensions: ${i.id}`);
+    if (dimensions.includes('segmentation') && !i.exploration) issue(`Introduction needs segmentation: ${i.id}`);
+    if ((i.introduction.role !== 'spoken') !== dimensions.includes('hanzi')) issue(`Recognition introduction: ${i.id}`);
+    if ((i.introduction.role === 'writing') !== dimensions.includes('writing')) issue(`Writing introduction: ${i.id}`);
+    if (i.learning && i.learning.writing !== dimensions.includes('writing')) issue(`Writing eligibility mismatch: ${i.id}`);
     const lexical = i.words.flatMap(id => words.get(id)?.toneNumbers.split(' ') ?? []);
     if (lexical.length > 1 && !i.exploration && !legacyUnsegmented.includes(i.id)) issue(`Missing canonical phrase segmentation: ${i.id}`);
     for (const copy of [i.learning?.note, i.learning?.discovery]) if (Array.isArray(copy)) for (const part of copy) if (typeof part !== 'string' && !words.has(part.word)) issue(`Unknown explanation word: ${i.id}/${part.word}`);
@@ -85,10 +94,14 @@ const authoredSchema = z.strictObject({
   c.toneExamples.forEach((id,n) => { if (!words.get(id)?.audio) issue(`Missing tone audio: ${id}`); if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
   for (const t of c.tasks) {
     const item = items.get(t.itemId ?? '');
+    if(t.kind==='sequence' && t.sequence?.some(id=>!items.get(id)?.introduction.dimensions.includes('hanzi'))) issue(`Sequence requires Hanzi introduction: ${t.id}`);
     if(t.kind==='sequence' && (!t.sequence || t.sequence.some(id=>!items.has(id)))) issue(`Invalid sequence: ${t.id}`);
+    if(t.kind==='writing' && item && item.introduction.role!=='writing') issue(`Not a writing target: ${t.id}`);
+    if(t.kind==='read' && item && !item.introduction.dimensions.includes('hanzi')) issue(`Reading needs Hanzi introduction: ${t.id}`);
     if(t.kind==='writing' && item?.learning && !item.learning.writing) issue(`Writing not introduced: ${t.id}`);
     if (t.kind === 'recall' && !t.assess) issue(`Missing assessment declaration: ${t.id}`);
     if (t.assess) {
+      if(item && t.assess.toneNotation && !item.introduction.dimensions.includes('tone'))issue(`Tone assessment needs declared introduction: ${t.id}`);
       if(item?.learning && t.assess.toneNotation && !item.learning.concepts.includes('tone_notation'))issue(`Untaught item assessment: ${t.id}`);
       if (t.kind !== 'recall') issue(`Assessment declaration only supported for text recall: ${t.id}`);
       for (const dimension of ['toneNotation', 'neutralTone'] as const) {
