@@ -14,7 +14,8 @@
     "build:test": "npm run validate-content && tsc -b && node scripts/build-app.mjs test && node scripts/build-sw.mjs",
     "test:harness": "playwright test --config playwright.harness.config.ts",
     "generate-audio": "node scripts/generate-audio.mjs",
-    "review-content": "node scripts/review-content.mjs"
+    "review-content": "node scripts/review-content.mjs",
+    "learning-report": "node scripts/learning-report.mjs"
   },
   "dependencies": {
     "dexie": "4.4.6",

@@ -38,7 +38,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
   }
   async function start() {
     if (busy.current || !interaction.canStart()) return;
-    busy.current = true;
+    busy.current = true; onEvent('recording_preparing');
     playback.current?.pause(); releaseInteraction.current();
     releaseInteraction.current = interaction.acquire();
     setPlaying(false); setPlaybackNotice('');
@@ -70,10 +70,10 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
       };
       const finish = (tail = true) => {
         if (ending) return; ending = true; clearTimers();
-        if (current()) setStatus('finalizing');
+        if (current()) { setStatus('finalizing'); onEvent('recording_finalizing'); }
         later(() => { if (recorder.state !== 'inactive') recorder.stop(); }, tail ? 200 : 0);
         // A broken browser must not leave the microphone active forever.
-        later(() => { release(); if (current()) { busy.current = false; setStatus('idle'); setError(ui.recordingFailed); releaseInteraction.current(); generation.current++; } }, 5000);
+        later(() => { release(); if (current()) { busy.current = false; setStatus('idle'); setError(ui.recordingFailed); onEvent('recording_failed', { interrupted: true }); releaseInteraction.current(); generation.current++; } }, 5000);
       };
       cleanup.current = () => finish(false);
       stop.current = () => finish();

@@ -1,3 +1,5 @@
+import { ActiveTime } from '../core/observability/activeTime';
+import { attemptContext } from '../core/observability/evidence';
 import { screenlessFor, paperFor, meaningfulStop, screenlessEvidence } from '../languages/mandarin/hybrid';
 import { ScreenlessRecall, PaperRecall } from '../languages/mandarin/components/HybridRecall';
 import { introductionForTask, introduced } from '../languages/mandarin/introduction';
@@ -35,32 +37,43 @@ export function LessonRunner() {
   }
   useEffect(() => { void load(); const listener = () => setOffline(document.documentElement.dataset.offline ?? 'waiting'); window.addEventListener('offline-ready', listener); return () => window.removeEventListener('offline-ready', listener); }, []);
   useEffect(() => { taskStarted.current = Date.now(); }, [session?.index, session?.id]);
-  const active = useRef({total:0,since:Date.now(),paused:false});
-  function activeTime(){return active.current.total+(document.hidden||active.current.paused?0:Date.now()-active.current.since);}
+  const active = useRef(new ActiveTime(performance.now()));
+  const activeVisit = useRef('');
+  function activeTime(){return active.current.read(performance.now());}
+  function timing(){return {observabilityVersion:1,activeVisitId:activeVisit.current,activeTaskMs:activeTime(),script};}
   useEffect(()=>{
     if(view!=='learn'||!session)return;
     const t=taskMap.get(session.plan[session.index]); if(!t)return;
-    active.current={total:0,since:Date.now(),paused:false};
-    const change=()=>{if(document.hidden && !active.current.paused)active.current.total+=Date.now()-active.current.since;else active.current.since=Date.now();};
+    const clock=new ActiveTime(performance.now()), visit=crypto.randomUUID();
+    active.current=clock;activeVisit.current=visit;
+    clock.block('hidden',document.hidden,performance.now());
+    clock.block('loading',true,performance.now());
+    const checkpoint=()=>{void logEvent({sessionId:session.id,taskId:t.id,type:'active_time',detail:{observabilityVersion:1,activeVisitId:visit,activeTaskMs:clock.read(performance.now()),index:session.index,script:session.script}}).catch(()=>{});};
+    const touch=()=>clock.touch(performance.now());
+    const change=()=>{clock.block('hidden',document.hidden,performance.now());if(document.hidden)checkpoint();};
     document.addEventListener('visibilitychange',change);
+    document.addEventListener('pointerdown',touch,{passive:true});document.addEventListener('keydown',touch);document.addEventListener('input',touch);
+    window.addEventListener('pagehide',checkpoint);
     let cancelled = false;
     void db.events.toArray().then(async history=>{if(cancelled)return;
       const screenless=screenlessFor(session,history,Date.now()), paper=paperFor(session,history,Date.now());
       const offered=screenless?'screenless_offered':paper.length?'paper_offered':null;
+      clock.block('non_learning',t.kind==='closure'&&!paper.length,performance.now());
       if(offered && !history.some(e=>e.sessionId===session.id&&e.detail.index===session.index&&e.type===offered)) {
         await logEvent({sessionId:session.id,taskId:t.id,type:offered,detail:{index:session.index,items:paper.join(','),item:t.itemId??''}});
         history=await db.events.toArray();
       }
+      if(meaningfulStop(session,history) && !paper.length && !history.some(e=>e.sessionId===session.id&&e.type==='meaningful_stop_offered'))await logEvent({sessionId:session.id,taskId:t.id,type:'meaningful_stop_offered',detail:{index:session.index}});
       if(cancelled)return;
-      setAttentionSnapshot({key:`${session.id}:${session.index}`,events:history}); const previous=t.itemId?exposure(history).get(t.itemId):undefined;
-      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{item:t.itemId??'',modality:t.kind,role:previous===undefined?'new':'recall',elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
+      clock.block('loading',false,performance.now());setAttentionSnapshot({key:`${session.id}:${session.index}`,events:history}); const previous=t.itemId?exposure(history).get(t.itemId):undefined;
+      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:t.kind,role:introductionForTask(t,session.script,history)?'introduction':t.kind==='encounter'?'practice':'recall',elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
     }).catch(()=>setError(ui.storageError));
-    return ()=>{cancelled=true; document.removeEventListener('visibilitychange',change);};
+    return ()=>{cancelled=true;checkpoint();document.removeEventListener('visibilitychange',change);document.removeEventListener('pointerdown',touch);document.removeEventListener('keydown',touch);document.removeEventListener('input',touch);window.removeEventListener('pagehide',checkpoint);};
   },[view,session?.id,session?.index]);
   async function mutation(action: () => Promise<void>) {
-    if (lock.current) throw new Error('A save is already pending'); lock.current = true; setBusy(true); setError('');
+    if (lock.current) throw new Error('A save is already pending'); lock.current = true; active.current.block('saving',true,performance.now()); setBusy(true); setError('');
     try { await action(); } catch (e) { setError(ui.storageError); throw e; }
-    finally { lock.current = false; setBusy(false); }
+    finally { lock.current = false; active.current.block('saving',false,performance.now()); setBusy(false); }
   }
   const task = session ? taskMap.get(session.plan[session.index]) : undefined;
   const history = attentionSnapshot?.events ?? [];
@@ -75,27 +88,30 @@ export function LessonRunner() {
   const previousTask = session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
   async function inspectEvent(type: string, detail: Record<string, string | number | boolean> = {}) {
     if (!session || !previousTask) return;
-    await logEvent({ sessionId: session.id, taskId: previousTask.id, type: inspectionEvent(type), detail: { ...detail, optionalPractice: true, item: previousTask.itemId ?? '', index: previousIndex! } });
+    const {correction:_correction,...safeDetail}=detail;
+    await logEvent({ sessionId: session.id, taskId: previousTask.id, type: inspectionEvent(type), detail: { ...timing(), ...safeDetail, optionalPractice: true, item: previousTask.itemId ?? '', index: previousIndex! } });
   }
   async function togglePrevious() {
     if (!session || previousIndex === null || lock.current || !interaction.canAdvance()) return;
     stopReferenceAudio();
-    if (inspecting) { active.current.paused=false; active.current.since=Date.now(); setInspecting(false); return; }
+    if (inspecting) { active.current.block('inspection',false,performance.now()); setInspecting(false); return; }
     await mutation(async () => {
       await inspectEvent('opened');
       // Looking back during retrieval is explicit assistance, never an extra failure or success.
       if (task && ['read','listen','recall','tone-recall'].includes(task.kind)) await logEvent({sessionId:session.id,taskId:task.id,type:'previous_object_help',detail:{index:session.index}});
-      active.current.total=activeTime(); active.current.paused=true; setInspectionName(name); setInspecting(true);
+      active.current.block('inspection',true,performance.now()); setInspectionName(name); setInspecting(true);
     });
   }
   function event(type: string, detail: Record<string, string | number | boolean> = {}) {
     if (!session) return;
-    void logEvent({ sessionId: session.id, taskId: task?.id ?? 'home', type, detail: { item:task?.itemId??'',modality:task?.kind??'',activeMs:activeTime(),...detail, index: session.index } }).catch(() => setError(ui.storageError));
+    if(type==='recording_preparing'||type==='recording_finalizing')active.current.block('capture_wait',true,performance.now());
+    if(['recording_started','recording_completed_uncertain','recording_failed','microphone_unavailable'].includes(type))active.current.block('capture_wait',false,performance.now());
+    void logEvent({ sessionId: session.id, taskId: task?.id ?? 'home', type, detail: { ...timing(), item:task?.itemId??'',modality:task?.kind??'',activeMs:activeTime(),...detail, index: session.index } }).catch(() => setError(ui.storageError));
   }
   async function introduce(type: string, detail: Record<string, string | number | boolean>) {
     if (!session || !task) return;
     await mutation(async () => {
-      await logEvent({ sessionId: session.id, taskId: task.id, type, detail: { ...detail, index: session.index } });
+      await logEvent({ sessionId: session.id, taskId: task.id, type, detail: { ...timing(), ...detail, index: session.index } });
       setAttentionSnapshot({ key: `${session.id}:${session.index}`, events: await db.events.toArray() });
     });
   }
@@ -121,7 +137,7 @@ export function LessonRunner() {
       const updated = { ...session, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
       await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
         await db.sessions.put(updated); await db.preferences.put({ key: 'name', value: name.trim() });
-        await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { activeMs: activeTime(), durationMs: Date.now() - taskStarted.current } });
+        await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { ...timing(), activeMs: activeTime(), durationMs: Date.now() - taskStarted.current } });
       });
       setAttentionSnapshot(null); setSession(updated); if (completed) setView('done'); window.scrollTo({ top: 0 });
     });
@@ -138,8 +154,8 @@ export function LessonRunner() {
       const updated = { ...session, plan, updatedAt: Date.now() };
       await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
         await recordAttempt({ objectId, target, result: e.result, assisted, sessionId: session.id, at: Date.now() }, {
-          sessionId: session.id, taskId: task.id, type: 'attempt', detail: { objectId, target, result: e.result, assisted, index: session.index,
-            item:task.itemId??'',modality:task.kind,activeMs:activeTime(),responseTimeMs: Date.now() - taskStarted.current, ...e.detail },
+          sessionId: session.id, taskId: task.id, type: 'attempt', detail: { ...timing(), objectId, target, result: e.result, assisted, index: session.index,
+            item:task.itemId??'',modality:task.kind,activeMs:activeTime(),responseTimeMs: Date.now() - taskStarted.current, ...attemptContext(task,e.detail) },
         }); await db.sessions.put(updated);
       });
       setSession(updated);
@@ -149,13 +165,13 @@ export function LessonRunner() {
     if (!session) return;
     await mutation(async () => {
       await db.preferences.put({ key: 'name', value: name.trim() });
-      await logEvent({ sessionId: session.id, taskId: task?.id ?? '', type: 'session_pause', detail: { activeMs: activeTime() } });
+      await logEvent({ sessionId: session.id, taskId: task?.id ?? '', type: 'session_pause', detail: { ...timing(), activeMs: activeTime() } });
       setInspecting(false); setView('home');
     });
   }
   async function hybridReveal(type: string) {
     if(!session||!task)return;
-    await mutation(()=>logEvent({sessionId:session.id,taskId:task.id,type,detail:{index:session.index}}));
+    await mutation(()=>logEvent({sessionId:session.id,taskId:task.id,type,detail:{...timing(),index:session.index}}));
   }
   async function screenlessResult(choice:'known'|'unsure'|'revealed') {
     if(!session||!task||!screenless||!interaction.canAdvance())return;
@@ -167,7 +183,7 @@ export function LessonRunner() {
       const updated={...session,index:session.index+1,updatedAt:Date.now()};
       await db.transaction('rw',db.relations,db.events,db.sessions,async()=>{
         await recordAttempt({objectId,target:'meaning',result:evidence.result,assisted,sessionId:session.id,at:Date.now()},
-          {sessionId:session.id,taskId:task.id,type:'screenless_recall',detail:{...evidence,assisted,objectId,target:'meaning',item:task.itemId!,index:session.index,modality:'screenless',activeMs:activeTime()}});
+          {sessionId:session.id,taskId:task.id,type:'screenless_recall',detail:{...timing(),...evidence,assisted,objectId,target:'meaning',item:task.itemId!,index:session.index,modality:'screenless',activeMs:activeTime()}});
         await logEvent({sessionId:session.id,taskId:task.id,type:'task_completed',detail:{index:session.index,modality:'screenless'}});
         await db.sessions.put(updated);
       });
@@ -177,10 +193,13 @@ export function LessonRunner() {
   async function paperResult(result:'success'|'unsure'|'skip') {
     if(!session||!paper.length)return;
     await mutation(async()=>{
-      await logEvent({sessionId:session.id,taskId:'closure',type:result==='skip'?'paper_skipped':'paper_recall',detail:{items:paper.join(','),index:session.index,result,evidence:'self_report',handwriting:'unknown',assisted:false}});
+      await logEvent({sessionId:session.id,taskId:'closure',type:result==='skip'?'paper_skipped':'paper_recall',detail:{...timing(),items:paper.join(','),index:session.index,result,evidence:'self_report',handwriting:'unknown',assisted:false}});
       // A group answer cannot identify which individual character failed. Keep it as
       // honest group evidence, without promoting or penalizing any writing relation.
-      setAttentionSnapshot({key:`${session.id}:${session.index}`,events:await db.events.toArray()});
+      active.current.block('non_learning',true,performance.now());
+      const updatedHistory=await db.events.toArray();
+      if(meaningfulStop(session,updatedHistory)&&!updatedHistory.some(e=>e.sessionId===session.id&&e.type==='meaningful_stop_offered'))await logEvent({sessionId:session.id,taskId:'closure',type:'meaningful_stop_offered',detail:{index:session.index}});
+      setAttentionSnapshot({key:`${session.id}:${session.index}`,events:updatedHistory});
     });
   }
   async function stopChoice(keepGoing:boolean) {
@@ -189,7 +208,7 @@ export function LessonRunner() {
       const updated={...session,completed:true,updatedAt:Date.now()};
       await db.transaction('rw',db.sessions,db.events,async()=>{
         await db.sessions.put(updated);
-        await logEvent({sessionId:session.id,taskId:'closure',type:keepGoing?'voluntary_continue_after_stop':'session_stop_accepted',detail:{}});
+        await logEvent({sessionId:session.id,taskId:'closure',type:keepGoing?'voluntary_continue_after_stop':'session_stop_accepted',detail:{...timing()}});
         await logEvent({sessionId:session.id,taskId:'closure',type:'session_end',detail:{}});
       });
       setSession(updated);setAttentionSnapshot(null);setView('home');
@@ -229,7 +248,7 @@ export function LessonRunner() {
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion E · UI1 · C2.3+ · Inhalte D · {ui.prototype}</p></section>}
+      {errorBox}{settings}<p className="prototypeNote">Testversion F-light · E · UI1 · C2.3+ · Inhalte D · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
       <section className="lessonCard" data-learning-state={encoding ? 'introduction' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : goodStop ? 'Guter Punkt für eine Pause.' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : goodStop ? <div className="stepStack meaningfulStop"><p className="lead">Du hast Bekanntes abgerufen und weitergelernt. Wir bringen es später wieder.</p><button type="button" disabled={busy} onClick={()=>safe(()=>stopChoice(false))}>Für jetzt beenden</button><button type="button" className="secondaryButton" disabled={busy} onClick={()=>safe(()=>stopChoice(true))}>Weiterüben</button></div> : task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Eine weitere kurze Mischung aus Bekanntem und Neuem.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>

@@ -33,7 +33,7 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
  await page.screenshot({path:'work/e-paper.png',fullPage:true,animations:'disabled'});
  await page.getByRole('button',{name:'Später',exact:true}).click();
  await expect(page.getByRole('button',{name:'Für jetzt beenden',exact:true})).toBeVisible();
- const skipped=await state(page);expect(skipped.relations).toEqual(before.relations);expect(skipped.events.filter((e:any)=>e.type==='paper_skipped')).toHaveLength(1);
+ const skipped=await state(page);expect(skipped.relations).toEqual(before.relations);expect(skipped.events.filter((e:any)=>e.type==='paper_skipped')).toHaveLength(1);expect(skipped.events.filter((e:any)=>e.type==='meaningful_stop_offered')).toHaveLength(1);
  await page.screenshot({path:'work/e-stop.png',fullPage:true,animations:'disabled'});
  await page.getByRole('button',{name:'Für jetzt beenden',exact:true}).click();await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeEnabled();
  expect((await state(page)).events.some((e:any)=>e.type==='session_stop_accepted')).toBe(true);
