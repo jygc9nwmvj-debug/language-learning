@@ -289,3 +289,31 @@ languages/
 ```
 
 No new language should require copying the core.
+
+## 9. Implemented Mandarin phrase authoring contract (C2.3, 2026-09-28)
+
+This section describes the current executable schema (`src/languages/mandarin/schema/content.ts`), rather than the conceptual entity sketches above. Follow `LEARNING_ARCHITECTURE.md` for assessment and scaffolding.
+
+Every **new multi-character item** must include authored `exploration` metadata. Nothing is segmented or translated by runtime NLP. Example for the existing `speak-slowly` item:
+
+```json
+{
+  "pronunciation": "surface",
+  "units": [
+    { "words": ["qing"], "syllables": ["qing3"], "gloss": "bitte", "audioItem": "qing" },
+    { "words": ["shuo"], "syllables": ["shuo1"], "gloss": "sprechen / sagen" },
+    { "words": ["man"], "syllables": ["man4"], "gloss": "langsam" },
+    { "words": ["yidian"], "syllables": ["yi4", "dian3"], "gloss": "ein bisschen / etwas" }
+  ]
+}
+```
+
+- Each UI unit groups one or more **existing canonical word IDs**. Flattening all unit references must equal `item.words` exactly, in order. A meaningful unit can contain multiple Hanzi; neither characters nor legacy canonical word boundaries necessarily equal the desired explanation unit.
+- Forms come only from those canonical references in the session's `hant`/`hans` script. Each Hanzi has one authored syllable in this deliberately restricted content model. Neutral tone uses `5`, rendered without an accent; punctuation is outside the syllable mapping. Unsupported forms require an explicit future schema change, not guessing.
+- `pronunciation: lexical` must match canonical word tones; `surface` must match the item's existing explicit `surfaceToneNumbers`. Syllable bases/counts must match either way. Surface display does not change canonical truth or unlock tone assessment.
+- A `gloss` describes this unit **in context**. Optional `characters: [{index, note}]` explains selected characters' roles without mechanically summing literal meanings. Index is zero-based within the resolved unit; duplicate/out-of-range indices fail validation.
+- Optional `audioItem` references an existing item with exactly the same canonical word sequence. Reuse its production natural audio. No new paths, slicing, inference or synthesis. Absence simply means no unit audio control.
+- `learning.note` and `learning.discovery` accept plain prose without Hanzi, or an array of prose and `{word, gloss}` references. Example: `[{"word":"qing","gloss":"bitte"}," macht die Aufforderung höflicher."]`. Rendering supplies primary-script Hanzi + canonical Pinyin + gloss. Raw Hanzi in these prose fields or exploration notes/glosses are rejected; referenced words must exist. Preserve authored spaces around reference tokens.
+- Script-pair, mapping, coverage, reference and production-audio checks run at build time. They prove structural integrity, not linguistic correctness of editorial segmentation/glosses; content review still owns semantics.
+
+`legacy-unsegmented.json` explicitly grandfathers 15 existing items. Do not add new content to this allowlist as a normal authoring shortcut. Remove an ID when its metadata is authored. Existing unmigrated items retain their prior plain display; they do not acquire inferred glosses. See the C2.3 report for the exact migrated and pending sets.

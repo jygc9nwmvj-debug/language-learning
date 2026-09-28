@@ -19,6 +19,33 @@
         "en": [
           "hello"
         ]
+      },
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "ni",
+              "hao"
+            ],
+            "syllables": [
+              "ni3",
+              "hao3"
+            ],
+            "gloss": "hallo – als ganze Begrüßung",
+            "audioItem": "nihao",
+            "characters": [
+              {
+                "index": 0,
+                "note": "Bedeutet für sich „du“. Hier Teil der Begrüßung."
+              },
+              {
+                "index": 1,
+                "note": "Bedeutet für sich „gut“. Die ganze Verbindung ist die Begrüßung „hallo“."
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -61,7 +88,31 @@
           "my name is"
         ]
       },
-      "slot": "name"
+      "slot": "name",
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "wo"
+            ],
+            "syllables": [
+              "wo3"
+            ],
+            "gloss": "ich",
+            "audioItem": "wo"
+          },
+          {
+            "words": [
+              "jiao"
+            ],
+            "syllables": [
+              "jiao4"
+            ],
+            "gloss": "heißen – danach folgt dein Name"
+          }
+        ]
+      }
     },
     {
       "id": "askname",
@@ -83,7 +134,61 @@
           "What is your name?"
         ]
       },
-      "punctuation": "？"
+      "punctuation": "？",
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "ni"
+            ],
+            "syllables": [
+              "ni3"
+            ],
+            "gloss": "du",
+            "audioItem": "ni"
+          },
+          {
+            "words": [
+              "jiao"
+            ],
+            "syllables": [
+              "jiao4"
+            ],
+            "gloss": "heißen"
+          },
+          {
+            "words": [
+              "shenme"
+            ],
+            "syllables": [
+              "shen2",
+              "me5"
+            ],
+            "gloss": "was / welcher"
+          },
+          {
+            "words": [
+              "mingzi"
+            ],
+            "syllables": [
+              "ming2",
+              "zi5"
+            ],
+            "gloss": "Name",
+            "characters": [
+              {
+                "index": 0,
+                "note": "Teil des Wortes „Name“."
+              },
+              {
+                "index": 1,
+                "note": "Hier Teil des Wortes „Name“; nicht getrennt übersetzen."
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "xiexie",

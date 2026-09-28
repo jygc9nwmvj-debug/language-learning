@@ -1,3 +1,4 @@
+import { optionalWritingEvent } from '../../../core/progress/optionalPractice';
 import { useEffect, useRef, useState } from 'react';
 import HanziWriter from 'hanzi-writer';
 import {writingTargets as targets,delayed} from '../writing-targets';
@@ -5,9 +6,9 @@ import { ui } from '../../../core/i18n/de';
 
 type Detail = Record<string, string | number | boolean>;
 export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean };
-export function WritingExercise({ itemId, recall, onEvent, onComplete, disabled }: {
+export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, disabled }: {
   itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
-  onComplete: (result: WritingResult) => Promise<void>; disabled: boolean;
+  onComplete: (result: WritingResult) => Promise<void>; onNext: () => void | Promise<void>; disabled: boolean;
 }) {
   const model = targets[itemId as keyof typeof targets];
   const levels = recall ? [delayed] : model.levels;
@@ -21,14 +22,15 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, disabled 
   const target = useRef<HTMLDivElement>(null), writer = useRef<HanziWriter | null>(null);
   const callbacks = useRef({ onEvent, onComplete }); callbacks.current = { onEvent, onComplete };
   const stats = useRef({ errors: 0, hints: 0, correctStrokes: 0, templateUsed: false, demoUsed: !recall });
+  const optionalRepeat = useRef(false);
   const seenDemo = useRef(!recall), resetNotice = useRef('');
   const assisted = useRef(!recall), nextStroke = useRef(0), lastResult = useRef<WritingResult | null>(null);
   const hintAction = useRef<() => void>(() => {}), finishAction = useRef<(result: WritingResult['result']) => void>(() => {});
   const level = levels[stage];
-  const detail = (extra: Detail = {}): Detail => ({ itemId, scaffold: level.id, category: level.category, stage, mode, ...stats.current, errors: mode === 'paper' ? 'unknown' : stats.current.errors, ...extra });
+  const detail = (extra: Detail = {}): Detail => ({ itemId, optionalPractice: optionalRepeat.current, scaffold: level.id, category: level.category, stage, mode, ...stats.current, errors: mode === 'paper' ? 'unknown' : stats.current.errors, ...extra });
   async function save(result: WritingResult) {
     lastResult.current = result;
-    try { await callbacks.current.onComplete(result); setPhase('saved'); }
+    try { if (!optionalRepeat.current) await callbacks.current.onComplete(result); else callbacks.current.onEvent('optional_writing_result', detail({ result: result.result, assisted: result.assisted })); setPhase('saved'); }
     catch { setPhase('save_error'); setStatus('Noch nicht gespeichert. Bitte erneut versuchen.'); }
   }
   useEffect(() => {
@@ -51,7 +53,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, disabled 
       charDataLoader: () => model.data,
     });
     writer.current = instance;
-    const emit = (type: string, extra: Detail = {}) => callbacks.current.onEvent(type, detail(extra));
+    const emit = (type: string, extra: Detail = {}) => callbacks.current.onEvent(optionalRepeat.current ? optionalWritingEvent(type) : type, detail(extra));
     function hint(automatic = false) {
       if (!active || completed || nextStroke.current >= model.data.strokes.length) return;
       stats.current.hints++; assisted.current = true;
@@ -178,7 +180,10 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, disabled 
       <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_mode', detail()); setMode(mode === 'paper' ? 'screen' : 'paper'); }}>{mode === 'paper' ? ui.screen : ui.paper}</button>
       <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>
     </div>
-    {phase === 'save_error' && <button type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</button>}
+    {phase === 'saved' && <div className="buttonRow"><button type="button" disabled={disabled} onClick={onNext}>Weiter</button>{lastResult.current?.result === 'success' && <button type="button" className="secondaryButton" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}>Noch einmal</button>}</div>}
+    {optionalRepeat.current && phase !== 'saved' && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}
+    {optionalRepeat.current && <p className="muted">Freiwillige Wiederholung · ohne neue Lernbewertung.</p>}
+    {phase === 'save_error'  && <button type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</button>}
     {mode === 'paper' && <p className="muted">Auf Papier schätzt du Form und Strichfolge selbst ein. Das Druckblatt bleibt die Übung für 好; 你 und 我 kannst du in freie Felder schreiben.</p>}
   </section>;
 }

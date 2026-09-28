@@ -1,3 +1,5 @@
+import { PhraseForm, ExplanationText } from './PhraseForm';
+import { familiarItem } from '../phrase';
 import type { ResearchEvent } from '../../../core/progress/db';
 import { attentionPilots, hasItemAttention, hasToneAttention, attentionAssessment } from '../attention';
 import { AttentionIntroduction, ToneFocus, type Introduce } from './AttentionIntroduction';
@@ -19,6 +21,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   onAttempt: (e: Evidence) => Promise<void>; onTone: (tone: number, correct: boolean) => Promise<void>;
   onNext: () => void | Promise<void>; disabled: boolean;
 }) {
+  const [pinyinVisible,setPinyinVisible] = useState(false);
   const [help, setHelp] = useState(false); const [input, setInput] = useState('');
   const [referencePlaying, setReferencePlaying] = useState(false);
   const [heard, setHeard] = useState(false); const [feedback, setFeedback] = useState('');
@@ -28,9 +31,10 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const submitting = useRef(false), writingRecorded = useRef(false);
   const [introAtEntry] = useState(() => !!(['encounter', 'read'].includes(task.kind) && attentionPilots[task.itemId ?? ''] && attentionHistory && !hasItemAttention(itemMap.get(task.itemId!)!, script, attentionHistory)));
   const item = itemMap.get(task.itemId ?? '') as Item;
+  const known = familiarItem(item,attentionHistory);
   const effectiveAssessment = task.assess && (attentionHistory ? attentionAssessment(task.assess, item, attentionHistory) : task.assess);
   const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
-  const reveal = () => { setHelp(true); onEvent('pinyin_reveal'); };
+  const reveal = () => { setHelp(true); setPinyinVisible(true); onEvent('pinyin_reveal'); };
   async function check() {
     if (submitting.current || answered) return; submitting.current = true;
     try {
@@ -55,26 +59,28 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } await onNext(); }} />;
-  const reference = <div className="reference"><p lang={`zh-${script === 'hant' ? 'Hant' : 'Hans'}`} className="hanziSentence">{item[script]}{item.slot === 'name' ? ' …' : ''}</p><p className="pinyin">{item.pinyin}{item.slot === 'name' ? ' …' : ''}</p><p>{item.meaning.de}</p></div>;
+  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } }} />;
+  const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
+  const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
+  const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
-    reference={<><p className="hanziHero" lang="zh">{item[script]}</p>
-      {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : <div className="pronunciationMeaning"><p className="pinyin">{item.pinyin}</p><p className="meaning">{item.meaning.de}</p></div>}</>}
+    reference={<>{form(help && (!known || pinyinVisible),help)}
+      {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : pronunciation}</>}
     audio={<>{audio()}{item.slowAudio && audio(true)}</>}>
-    {item.learning && <p className='muted'>{item.learning.note}</p>}
-    {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p>{item.learning.discovery}</p></details>}
+    {item.learning && <p className='muted'><ExplanationText value={item.learning.note} script={script} /></p>}
+    {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script} /></p></details>}
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
   if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise">
     <div className="answerSummary"><span className="controlLabel">Deine Antwort</span><span>{input}</span></div>
     <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>
     <SpeakingPractice compact disabled={disabled} onEvent={onEvent} onNext={onNext}
-      reference={<><p className="hanziHero" lang="zh">{item[script]}</p><div className="pronunciationMeaning"><p className="pinyin">{item.pinyin}</p><p className="meaning">{item.meaning.de}</p></div></>}
+      reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>}
       audio={<>{audio()}{item.slowAudio && audio(true)}</>} />
   </div>;
   return <div className="stepStack">
     {task.kind === 'listen' && audio()}
-    {task.kind === 'read' && <p className="hanziHero" lang="zh">{item[script]}</p>}
+    {task.kind === 'read' && form(false,false)}
     <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
       {task.kind === 'recall' && <><p className="muted">{ui.typeHint}</p>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
@@ -82,6 +88,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     </form>
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="buttonRow">{audio()}{item.slowAudio && audio(true)}</div></>}
+    {answered && item.exploration && form(false,true)}
     {answered && <button type="button" disabled={disabled} onClick={onNext}>{ui.continue}</button>}
   </div>;
 }

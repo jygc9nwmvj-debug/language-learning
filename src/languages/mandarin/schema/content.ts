@@ -1,7 +1,15 @@
+import legacyUnsegmented from '../content/legacy-unsegmented.json' with { type: 'json' };
 import { z } from 'zod';
 import { targetSchema } from '../../../core/progress/model.ts';
 import { numberedToPinyin } from '../pinyin.ts';
 const text = z.string().trim().min(1);
+const prose = z.string().refine(value => value.trim().length > 0, 'Empty explanation').refine(value => !/\p{Script=Han}/u.test(value), 'Chinese explanation tokens require a canonical reference');
+const explanation = z.union([prose, z.array(z.union([prose, z.strictObject({ word: text, gloss: prose })])).min(1)]);
+export type Explanation = z.infer<typeof explanation>;
+const exploration = z.strictObject({ pronunciation: z.enum(['lexical', 'surface']), units: z.array(z.strictObject({
+  words: z.array(text).min(1), syllables: z.array(z.string().regex(/^[a-zü]+[1-5]$/)).min(1), gloss: prose,
+  audioItem: text.optional(), characters: z.array(z.strictObject({ index: z.number().int().nonnegative(), note: prose })).optional(),
+})).min(1) });
 const meaning = z.strictObject({ de: z.array(text).min(1), en: z.array(text).min(1) });
 const review = z.strictObject({ reviewStatus: text.optional(), sources: z.array(z.string().url()).optional(), reviewDate: text.optional(), notes: text.optional() }).optional();
 const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.(?:wav|mp3)$/);
@@ -15,7 +23,7 @@ const authoredSchema = z.strictObject({
   introducedAssessment: assessmentSchema,
   version: text, qaStatus: z.enum(['draft', 'source_checked', 'language_reviewed', 'audio_reviewed', 'published']), audioStatus: z.enum(['prototype', 'reviewed']),
   words: z.array(word).min(1), toneExamples: z.array(text).length(4),
-  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: text, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: text.optional() }).optional(), review })),
+  items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), exploration: exploration.optional(), learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: explanation, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: explanation.optional() }).optional(), review })),
   tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'sequence', 'closure']),
     sequence: z.array(text).min(2).optional(), assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
   initialPlan: z.array(text), reviewPlan: z.array(text),
@@ -33,6 +41,29 @@ const authoredSchema = z.strictObject({
     for (const token of tokens) if (!lessonSyllables.has(token.slice(0,-1))) issue(`Invalid Lesson-1 Pinyin syllable: ${token}`);
   }
   for (const i of c.items) {
+    const lexical = i.words.flatMap(id => words.get(id)?.toneNumbers.split(' ') ?? []);
+    if (lexical.length > 1 && !i.exploration && !legacyUnsegmented.includes(i.id)) issue(`Missing canonical phrase segmentation: ${i.id}`);
+    for (const copy of [i.learning?.note, i.learning?.discovery]) if (Array.isArray(copy)) for (const part of copy) if (typeof part !== 'string' && !words.has(part.word)) issue(`Unknown explanation word: ${i.id}/${part.word}`);
+    if (i.exploration) {
+      const units = i.exploration.units;
+      if (units.flatMap(u => u.words).join('|') !== i.words.join('|')) issue(`Phrase segmentation coverage/order: ${i.id}`);
+      const expected = i.exploration.pronunciation === 'surface' ? i.surfaceToneNumbers?.split(' ') : lexical;
+      if (!expected || units.flatMap(u => u.syllables).join(' ') !== expected.join(' ')) issue(`Phrase pronunciation mapping: ${i.id}`);
+      for (const unit of units) {
+        const parts = unit.words.map(id => words.get(id));
+        if (parts.some(w => !w)) { issue(`Unknown lexical reference: ${i.id}`); continue; }
+        const tokens = parts.flatMap(w => w!.toneNumbers.split(' '));
+        if (unit.syllables.length !== tokens.length || unit.syllables.some((s,n) => s.slice(0,-1) !== tokens[n]?.slice(0,-1))) issue(`Hanzi/syllable mapping: ${i.id}`);
+        if (parts.some(w => [...w!.hant].length !== [...w!.hans].length)) issue(`Exploration script mapping: ${i.id}`);
+        const positions = unit.characters?.map(char => char.index) ?? [];
+        if (new Set(positions).size !== positions.length || positions.some(n => n >= tokens.length)) issue(`Character exploration index: ${i.id}`);
+        if (unit.audioItem) {
+          const source = items.get(unit.audioItem);
+          if (!source || source.words.join('|') !== unit.words.join('|')) issue(`Lexical audio mismatch: ${i.id}/${unit.audioItem}`);
+        }
+      }
+    }
+
     if(i.learning) {
       for(const id of i.learning.prerequisites) {
         const prerequisite=items.get(id);

@@ -1,3 +1,4 @@
+import { PhraseForm } from './PhraseForm';
 import { useState } from 'react';
 import { AudioButton, stopReferenceAudio } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
@@ -34,7 +35,7 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
       {phase === 'hear' && <><h3>Erst nur hören.</h3><p className="muted">Achte auf den Klang. Die Schrift kommt gleich dazu.</p></>}
       {phase === 'tone' && <ToneFocus item={item} />}
       {phase === 'hanzi' && <><p className="controlLabel">Jetzt nur das Schriftbild</p><p className="hanziHero" lang="zh">{item[script]}</p><p className="focusNote">Schau auf Form und Anordnung.{config.role === 'writing' ? ' Dieses Zeichen übst du später auch beim Schreiben.' : ' Hier geht es ums Wiedererkennen, nicht ums Schreiben.'}</p></>}
-      {phase === 'connect' && <><p className="hanziHero" lang="zh">{item[script]}</p><div className="pronunciationMeaning"><p className="pinyin">{item.pinyin}</p><p className="meaning">{item.meaning.de}</p></div></>}
+      {phase === 'connect' && <><PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
     </div>}>
     {phase === 'hear' && <button className="utilityButton" onClick={() => { stopReferenceAudio(); setPhase('tone'); }}>Schrift ohne Warten ansehen</button>}
     {phase === 'tone' && <button disabled={disabled || saving} onClick={() => void notice('tone_attention_confirmed', 'hanzi')}>Schriftbild ansehen</button>}

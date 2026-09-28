@@ -496,7 +496,33 @@
           "I don't understand"
         ]
       },
-      "surfaceToneNumbers": "wo3 ting1 bu5 dong3"
+      "surfaceToneNumbers": "wo3 ting1 bu5 dong3",
+      "exploration": {
+        "pronunciation": "surface",
+        "units": [
+          {
+            "words": [
+              "wo"
+            ],
+            "syllables": [
+              "wo3"
+            ],
+            "gloss": "ich",
+            "audioItem": "wo"
+          },
+          {
+            "words": [
+              "tingbudong"
+            ],
+            "syllables": [
+              "ting1",
+              "bu5",
+              "dong3"
+            ],
+            "gloss": "das Gehörte nicht verstehen"
+          }
+        ]
+      }
     },
     {
       "id": "say-again",
@@ -532,7 +558,51 @@
           "please say that again"
         ]
       },
-      "surfaceToneNumbers": "qing3 zai4 shuo1 yi2 bian4"
+      "surfaceToneNumbers": "qing3 zai4 shuo1 yi2 bian4",
+      "exploration": {
+        "pronunciation": "surface",
+        "units": [
+          {
+            "words": [
+              "qing"
+            ],
+            "syllables": [
+              "qing3"
+            ],
+            "gloss": "bitte",
+            "audioItem": "qing"
+          },
+          {
+            "words": [
+              "zai"
+            ],
+            "syllables": [
+              "zai4"
+            ],
+            "gloss": "noch einmal"
+          },
+          {
+            "words": [
+              "shuo"
+            ],
+            "syllables": [
+              "shuo1"
+            ],
+            "gloss": "sagen"
+          },
+          {
+            "words": [
+              "yi",
+              "bian"
+            ],
+            "syllables": [
+              "yi2",
+              "bian4"
+            ],
+            "gloss": "einmal – das Gesagte vollständig wiederholen"
+          }
+        ]
+      }
     },
     {
       "id": "speak-slowly",
@@ -551,7 +621,13 @@
           "say-again"
         ],
         "writing": false,
-        "note": "Die Bitte ist direkt, mit 请 aber höflich. Ein Satz reicht.",
+        "note": [
+          {
+            "word": "qing",
+            "gloss": "bitte"
+          },
+          " macht die Aufforderung höflicher. Ein Satz reicht."
+        ],
         "concepts": [
           "chunks"
         ],
@@ -567,7 +643,60 @@
           "please speak a little slower"
         ]
       },
-      "surfaceToneNumbers": "qing3 shuo1 man4 yi4 dian3"
+      "surfaceToneNumbers": "qing3 shuo1 man4 yi4 dian3",
+      "exploration": {
+        "pronunciation": "surface",
+        "units": [
+          {
+            "words": [
+              "qing"
+            ],
+            "syllables": [
+              "qing3"
+            ],
+            "gloss": "bitte",
+            "audioItem": "qing"
+          },
+          {
+            "words": [
+              "shuo"
+            ],
+            "syllables": [
+              "shuo1"
+            ],
+            "gloss": "sprechen / sagen"
+          },
+          {
+            "words": [
+              "man"
+            ],
+            "syllables": [
+              "man4"
+            ],
+            "gloss": "langsam"
+          },
+          {
+            "words": [
+              "yidian"
+            ],
+            "syllables": [
+              "yi4",
+              "dian3"
+            ],
+            "gloss": "ein bisschen / etwas",
+            "characters": [
+              {
+                "index": 0,
+                "note": "Teil des Ausdrucks „ein bisschen“. Hier nicht als einzelne Zahl übersetzen."
+              },
+              {
+                "index": 1,
+                "note": "Teil der Mengenangabe „ein bisschen“; hier kein eigenständiges Wort."
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "what",
@@ -639,7 +768,13 @@
           "say-again"
         ],
         "writing": false,
-        "note": "请 steht vor einer Bitte: 请 + Handlung. Es ist keine Antwort auf „Danke“.",
+        "note": [
+          {
+            "word": "qing",
+            "gloss": "bitte"
+          },
+          " steht vor der gewünschten Handlung. Es ist keine Antwort auf „Danke“."
+        ],
         "concepts": [
           "chunks"
         ],
@@ -661,7 +796,14 @@
           "xiexie"
         ],
         "writing": false,
-        "note": "Die Antwort auf 谢谢. Hier hörst du bú vor kè; geschrieben bleibt die Grundform bù.",
+        "note": [
+          "Die Antwort auf ",
+          {
+            "word": "xiexie",
+            "gloss": "danke"
+          },
+          ". Hier hörst du bú vor kè; geschrieben bleibt die Grundform bù."
+        ],
         "concepts": [
           "chunks"
         ],
@@ -795,7 +937,13 @@
           "how-are-you"
         ],
         "writing": false,
-        "note": "很 verbindet hier Subjekt und Adjektiv; es muss nicht stark „sehr“ betonen.",
+        "note": [
+          {
+            "word": "hen",
+            "gloss": "hier Verbindung zwischen Subjekt und Eigenschaft"
+          },
+          " muss hier nicht stark „sehr“ betonen."
+        ],
         "concepts": [
           "chunks"
         ],
@@ -828,7 +976,14 @@
           "im-fine"
         ],
         "writing": false,
-        "note": "Gib die vorherige Frage zurück. 呢 wird leicht gesprochen; du musst den Neutralton noch nicht kennzeichnen.",
+        "note": [
+          "Gib die vorherige Frage zurück. ",
+          {
+            "word": "ne",
+            "gloss": "hier: und du?"
+          },
+          " wird leicht gesprochen; du musst den Neutralton noch nicht kennzeichnen."
+        ],
         "concepts": [
           "chunks"
         ],
@@ -961,12 +1116,26 @@
           "nationality"
         ],
         "writing": false,
-        "note": "Ein kurzer Ausdruck für dein nächstes Gespräch.",
+        "note": [
+          "Ein kurzer Ausdruck für dein nächstes Gespräch."
+        ],
         "concepts": [
           "chunks"
         ],
         "reviewStatus": "source_checked",
-        "discovery": "Land + 人 = eine Person aus diesem Land. 德国 + 人 → 德国人. Du brauchst dafür kein neues Wort für jede Nationalität."
+        "discovery": [
+          "Ein Ländername wie ",
+          {
+            "word": "deguo",
+            "gloss": "Deutschland"
+          },
+          " zusammen mit ",
+          {
+            "word": "ren",
+            "gloss": "Mensch / Person"
+          },
+          " bezeichnet jemanden aus diesem Land. Du brauchst dafür kein neues Wort für jede Nationalität."
+        ]
       },
       "meaning": {
         "de": [
@@ -1036,12 +1205,35 @@
           "er"
         ],
         "writing": true,
-        "note": "一、二、三: erst ein Strich, dann zwei, dann drei. Ab 四 wird nicht einfach weitergezählt.",
+        "note": [
+          {
+            "word": "yi",
+            "gloss": "eins"
+          },
+          ", ",
+          {
+            "word": "er",
+            "gloss": "zwei"
+          },
+          ", ",
+          {
+            "word": "san",
+            "gloss": "drei"
+          },
+          ": erst ein Strich, dann zwei, dann drei. ",
+          {
+            "word": "si",
+            "gloss": "vier"
+          },
+          " hat eine eigene Form."
+        ],
         "concepts": [
           "chunks"
         ],
         "reviewStatus": "source_checked",
-        "discovery": "Ein, zwei, drei Striche – so weit zählt das Auge mit. Vier wäre zu einfach: 四 hat eine eigene Form."
+        "discovery": [
+          "Ein, zwei, drei Striche – so weit zählt das Auge mit. Vier hat eine eigene Form."
+        ]
       }
     },
     {

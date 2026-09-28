@@ -193,3 +193,27 @@ fieldset { border: 0; padding: 0; margin: 20px 0; }legend { margin-bottom: 10px;
 .toneRow em { font-style: normal; }
 .focusNote, .assessmentNote { font-size: .9rem; color: #59665c; max-width: 35rem; }
 .toneRow[data-active=true] { border-left: 3px solid #79521c; padding-left: 9px; background: #eeede3; }
+
+/* C2.3: lexical units wrap together; each authored Hanzi/syllable pair stays aligned. */
+.phraseUnits { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 20px; }
+.phraseUnitWrap { display: inline-flex; align-items: flex-start; max-width: 100%; }
+.phraseUnit { display: inline-flex; flex-wrap: wrap; gap: 4px; max-width: 100%; background: transparent; color: #25332d; border: 0; border-radius: 3px; padding: 2px 0 6px; font-weight: 400; line-height: 1.25; }
+button.phraseUnit { border-bottom: 1px solid #bcc5b8; }
+button.phraseUnit[aria-expanded=true] { border-color: #79521c; background: #eeede3; }
+.alignedCharacter { display: inline-grid; text-align: center; gap: 7px; min-width: 44px; }
+.unitHanzi, .phrasePunctuation { font-family: "Songti TC", "Songti SC", serif; font-size: clamp(2.5rem, 10vw, 3.6rem); line-height: 1.2; }
+.unitPinyin { font-size: .95rem; color: #59665c; }
+.unitExplanation { border-left: 2px solid #b8c3b0; margin-top: 14px; padding: 4px 0 4px 12px; display: grid; gap: 8px; font-size: .94rem; }
+.unitTitle { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.unitTitle strong { font-family: "Songti TC", "Songti SC", serif; font-size: 1.6rem; font-weight: 500; }
+.unitExplanation summary { min-height: 44px; padding: 8px 0; cursor: pointer; }
+.unitExplanation .utilityButton { min-width: 44px; min-height: 44px; }
+.unitExplanation > button { justify-self: start; border: 0; }
+.characterNote { margin-top: 8px; }
+.explainedToken { color: #365642; }
+.explainedToken [lang=zh] { font-size: 1.12em; }
+.sessionTools { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px; }
+.sessionTools .utilityButton { min-height: 44px; border: 0; }
+.inspectionNote { font-size: .85rem; color: #59665c; margin-bottom: 12px; }
+.lessonCard[hidden] { display: none; }
+.isCondensed .unitHanzi { font-size: 2.3rem; }

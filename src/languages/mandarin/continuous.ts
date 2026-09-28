@@ -13,6 +13,8 @@ export function exposure(events:ResearchEvent[]){
  return seen;
 }
 export function composeContinuous(relations:Relation[],events:ResearchEvent[],script:'hant'|'hans',now:number){
+ // Optional inspection/practice never changes due dates, exposure or recall eligibility.
+ events=events.filter(e=>e.detail.optionalPractice!==true && !e.type.startsWith('inspection_') && !e.type.startsWith('optional_'));
  const seen=exposure(events),plan:string[]=[];const chosen=new Set<string>();
  const recent=events.filter(e=>e.type==='attempt').sort((a,b)=>b.at-a.at).slice(0,6);
  const weak=recent.filter(e=>e.detail.result!=='success'||e.detail.assisted===true).length>=2;
