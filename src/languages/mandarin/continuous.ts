@@ -8,7 +8,7 @@ const encounters=content.tasks.filter(t=>t.kind==='encounter');
 export function exposure(events:ResearchEvent[]){
  const seen=new Map<string,number>();
  for(const e of events){const t=taskMap.get(e.taskId);if(!t?.itemId)continue;
-  if(['task_completed','attempt','audio_replay','pinyin_reveal'].includes(e.type)||(e.type==='introduction_dimensions' && String(e.detail.dimensions).split(',').includes('meaning')))seen.set(t.itemId,Math.max(seen.get(t.itemId)??0,e.at));
+  if(['task_completed','attempt','screenless_recall','audio_replay','pinyin_reveal'].includes(e.type)||(e.type==='introduction_dimensions' && String(e.detail.dimensions).split(',').includes('meaning')))seen.set(t.itemId,Math.max(seen.get(t.itemId)??0,e.at));
  }
  return seen;
 }
@@ -16,14 +16,14 @@ export function composeContinuous(relations:Relation[],events:ResearchEvent[],sc
  // Optional inspection/practice never changes due dates, exposure or recall eligibility.
  events=events.filter(e=>e.detail.optionalPractice!==true && !e.type.startsWith('inspection_') && !e.type.startsWith('optional_'));
  const seen=exposure(events),plan:string[]=[];const chosen=new Set<string>();
- const recent=events.filter(e=>e.type==='attempt').sort((a,b)=>b.at-a.at).slice(0,6);
+ const recent=events.filter(e=>['attempt','screenless_recall'].includes(e.type)).sort((a,b)=>b.at-a.at).slice(0,6);
  const weak=recent.filter(e=>e.detail.result!=='success'||e.detail.assisted===true).length>=2;
  const tonesIntroduced=events.some(e=>e.taskId==='tones'&&['task_completed','tone_notation_practice'].includes(e.type));
  const newLimit=weak?DOSING.newFragile:DOSING.newStable;
  // Review is chosen only from exposed objects; unsupported modalities never become due by accident.
  const candidates=content.items.filter(i=>seen.has(i.id)).map(item=>{
   const history=events.filter(e=>taskMap.get(e.taskId)?.itemId===item.id);
-  const lastAttempt=history.filter(e=>e.type==='attempt').sort((a,b)=>b.at-a.at)[0];
+  const lastAttempt=history.filter(e=>['attempt','screenless_recall'].includes(e.type)).sort((a,b)=>b.at-a.at)[0];
   const options=content.tasks.filter(t=>t.itemId===item.id&&['read','listen','recall'].includes(t.kind)&&(!t.assess?.toneNotation||tonesIntroduced));
   const previous=lastAttempt?taskMap.get(lastAttempt.taskId)?.kind:undefined;
   const choice=options.find(t=>t.kind!==previous && t.kind===(previous==='listen'?'recall':previous==='recall'?'read':'listen'))??options.find(t=>t.kind!==previous)??options[0];

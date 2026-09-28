@@ -77,6 +77,14 @@ This is a **C — HYPOTHESIS**, not a universal mandatory sequence or proof that
 
 The explicitly requested **C2.3 consolidated addition** now generalizes the underlying mechanism to all current items through canonical, relevant introduction dimensions. It does not mandate the pilot's exact click sequence. Focused listening can advance automatically; visual targets receive Pinyin-free form focus followed by form/sound/meaning association; familiar whole-word components can reuse prior visual introduction. Per-dimension introduction evidence gates assessment; visual recognition never implies writing. All 28 D objects and the existing scheduler remain. This remains a product hypothesis to evaluate through normal use. See [C2.3 implementation and limits](BUILD_C2_3_PHRASE_COMPREHENSION.md). The preceding C2.2 description records the original pilot, not a restriction on the subsequently authorized generalization.
 
+## HYBRID LEARNING / DIGITAL COUNTERMEASURES
+
+The app optimizes learning, not screen time. Digital scaffolds are temporary: retrieval should sometimes happen without visible screen support. Off-screen learning is a first-class activity; physical handwriting may complement digital writing. Scheduling and feedback support memory rather than replacing the learner's reconstruction. Digital guidance can teach movement; occasional paper recall can invite less supported reconstruction. This is a working hypothesis, not a universal division of labour.
+
+The app may suggest a good stopping point while always allowing continued learning. No scientifically optimal fixed session duration is assumed. Paper is not universally superior to screens. Hybrid mechanisms, their frequency and stopping thresholds are **C — HYPOTHESES**, with indirect evidence; evaluate them through normal multi-session use. Self-reported recall is not verified pronunciation or handwriting accuracy. Skipping paper is not failure.
+
+The retrieval, spacing and Hanzi references below remain applicable. [Risko & Gilbert (2016), Cognitive Offloading](https://doi.org/10.1016/j.tics.2016.07.002) describes how external aids redistribute cognitive work; it does not establish our exact interface. [Sana, Weston & Cepeda (2013)](https://pure.athabascau.ca/en/publications/laptop-multitasking-hinders-classroom-learning-for-both-users-and/) studied classroom multitasking, not this app. [Delgado et al. (2018)](https://www.geidai.ac.jp/~marui/course_enshu_2024/delgado_vargas_ackerman_ladislao_salmerona_201805.pdf) synthesized paper/screen reading comprehension; that evidence does not establish a universal paper advantage for Mandarin handwriting. These motivate questions, not promises of learning gains or digital-detox messaging.
+
 ## Evidence and references
 
 A short selection from existing project research, supplemented by a primary SLA feedback meta-analysis. These support broad principles, not this exact architecture's effectiveness:

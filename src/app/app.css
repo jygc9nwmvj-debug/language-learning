@@ -190,3 +190,12 @@ button.phraseUnit[aria-expanded=true] { border-bottom: 2px solid var(--attention
   :root, body { background: white; color: black; }
   main { display: none !important; }.worksheet { display: block; font-size: 11pt; line-height: 1.5; }.worksheet h1 { font-size: 24pt; margin: 4mm 0; }.worksheet h2 { font-size: 12pt; margin: 8mm 0 4mm; }.sheetCharacter { font-size: 32pt; }.sheetGrid { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid #aaa; border-left: 1px solid #aaa; }.sheetGrid span { display: grid; place-items: center; aspect-ratio: 1; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; }.sheetGrid span:before { content: ''; position: absolute; left: 50%; height: 100%; border-left: 1px dashed #bbb; }.sheetGrid span:after { content: ''; position: absolute; top: 50%; width: 100%; border-top: 1px dashed #bbb; }.sheetGrid b { font: 40pt "Songti TC", serif; }.worksheet > p:last-child { margin-top: 10mm; }
 }
+/* Build E uses the same open surface; no new cards or navigation. */
+.hybridRecall { gap: var(--space-5); }
+.hybridRecall > .meaning { font-size: 1.65rem; line-height: 1.4; }
+.paperPrompts { margin: 0; padding-left: 1.3rem; font-size: 1.35rem; }
+.paperPrompts li + li { margin-top: 12px; }
+.paperAnswers { display: flex; flex-wrap: wrap; gap: 24px; }
+.paperAnswers > div { display: grid; gap: 4px; }
+.paperAnswers .hanziHero { font-size: 4rem; }
+.meaningfulStop { padding: 24px 0; gap: 24px; }
