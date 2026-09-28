@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { Icon } from './Icon';
+import { IconButton } from './Controls';
 import { ui } from '../i18n/de';
 let active: HTMLAudioElement | undefined;
 let captures = 0;
@@ -44,5 +44,5 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
   }, [src, autoPlay]);
   const canPause = autoPlay && playing;
   const accessibleLabel = canPause ? 'Vorlage pausieren' : label;
-  return <span className="audioControl"><button className="utilityButton audioButton" type="button" aria-label={accessibleLabel} title={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}><Icon name={canPause ? 'pause' : 'play'} />{label !== ui.listen ? <span>{label === ui.slow ? 'langsam' : label}</span> : error && <span>Anhören</span>}</button>{error && <span role="status">{error}</span>}</span>;
+  return <span className="audioControl"><IconButton className="audioButton" icon={canPause ? 'pause' : 'play'} label={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}>{label !== ui.listen ? <span>{label === ui.slow ? 'langsam' : label}</span> : error && <span>Anhören</span>}</IconButton>{error && <span role="status">{error}</span>}</span>;
 }

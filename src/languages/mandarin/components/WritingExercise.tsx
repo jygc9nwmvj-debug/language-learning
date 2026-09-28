@@ -1,3 +1,4 @@
+import { IconButton } from '../../../core/exercises/Controls';
 import { optionalWritingEvent } from '../../../core/progress/optionalPractice';
 import { useEffect, useRef, useState } from 'react';
 import HanziWriter from 'hanzi-writer';
@@ -171,14 +172,14 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
       : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
     </div>}
     <div className="writingControls">
-      <button type="button" className="textButton" disabled={!writing || disabled || compared} aria-pressed={reference} onClick={toggleReference}>{reference ? 'Vorlage ausblenden' : 'Vorlage zeigen'}</button>
-      <button type="button" className="textButton" disabled={!writing || disabled || compared || mode === 'paper'} onClick={() => hintAction.current()}>Nächster Strich</button>
-      <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { assisted.current = true; seenDemo.current = true; setBoosted(true); setDemo(true); }}>Noch einmal ansehen</button>
-      <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_clear', detail()); setRevision(value => value + 1); }}>Neu ansetzen</button>
+      <IconButton icon="eye" label={reference ? 'Vorlage ausblenden' : 'Vorlage zeigen'} disabled={!writing || disabled || compared} aria-pressed={reference} onClick={toggleReference}><span>Vorlage</span></IconButton>
+      <IconButton icon="stroke" label="Nächster Strich" disabled={!writing || disabled || compared || mode === 'paper'} onClick={() => hintAction.current()}><span>Strich</span></IconButton>
+      <IconButton icon="play" label="Noch einmal ansehen" disabled={!writing || disabled} onClick={() => { assisted.current = true; seenDemo.current = true; setBoosted(true); setDemo(true); }}><span>Ablauf</span></IconButton>
+      <IconButton icon="replay" label="Neu ansetzen" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_clear', detail()); setRevision(value => value + 1); }}><span>Neu</span></IconButton>
     </div>
     <div className="buttonRow writingSecondary">
       <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_mode', detail()); setMode(mode === 'paper' ? 'screen' : 'paper'); }}>{mode === 'paper' ? ui.screen : ui.paper}</button>
-      <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>
+      <IconButton icon="print" label={ui.worksheet} onClick={() => window.print()}/>
     </div>
     {phase === 'saved' && <div className="buttonRow"><button type="button" disabled={disabled} onClick={onNext}>Weiter</button>{lastResult.current?.result === 'success' && <button type="button" className="secondaryButton" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}>Noch einmal</button>}</div>}
     {optionalRepeat.current && phase !== 'saved' && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}

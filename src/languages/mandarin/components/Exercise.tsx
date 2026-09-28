@@ -1,3 +1,4 @@
+import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
 import { PhraseForm, ExplanationText } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
 import type { ResearchEvent } from '../../../core/progress/db';
@@ -75,7 +76,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
   if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise">
-    <div className="answerSummary"><span className="controlLabel">Deine Antwort</span><span>{input}</span></div>
+    <AnswerSummary value={input}/>
     <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>
     <SpeakingPractice compact disabled={disabled} onEvent={onEvent} onNext={onNext}
       reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>}
@@ -84,11 +85,11 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   return <div className="stepStack">
     {task.kind === 'listen' && audio()}
     {task.kind === 'read' && form(false,false)}
-    <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
+    {answered ? <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
-      {task.kind === 'recall' && <><p className="muted">{ui.typeHint}</p>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
+      {task.kind === 'recall' && <><InfoDisclosure label="Zur Texteingabe"><p>{ui.typeHint}</p></InfoDisclosure>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
-    </form>
+    </form>}
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="buttonRow">{audio()}{item.slowAudio && audio(true)}</div></>}
     {answered && item.exploration && form(false,true)}

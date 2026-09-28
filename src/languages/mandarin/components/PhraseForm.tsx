@@ -1,3 +1,4 @@
+import { IconButton } from '../../../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import type { Explanation, Item } from '../schema/content';
 import { phraseUnits, explanationParts } from '../phrase';
@@ -29,10 +30,9 @@ export function PhraseForm({ item, script, showPinyin = false, interactive = fal
         return <span className="phraseUnitWrap" key={n}>{interactive ? <button type="button" className="phraseUnit" aria-label={`${unit.form} erkunden`} aria-expanded={selected===n} onClick={() => { setSelected(selected===n?null:n);setCharacter(null);if(selected!==n)onExplore?.('phrase_explore',{unit:n,words:unit.words.join(' ')}); }}>{text}</button> : <span className="phraseUnit">{text}</span>}{n===units.length-1 && item.punctuation && <span className="phrasePunctuation" lang="zh">{item.punctuation}</span>}</span>;
       })}
     </div>
-    {interactive && current && <div className="unitExplanation" role="region" aria-label="Worterklärung"><div className="unitTitle"><strong lang="zh">{current.form}</strong><span>{current.characters.map(c=>c.pinyin).join(' ')}</span>{current.audio && <AudioButton src={current.audio} />}</div><p>{current.gloss}</p>
+    {interactive && current && <div className="unitExplanation" role="region" aria-label="Worterklärung"><div className="unitTitle"><strong lang="zh">{current.form}</strong><span>{current.characters.map(c=>c.pinyin).join(' ')}</span>{current.audio && <AudioButton src={current.audio} />}<IconButton className="explorationClose" icon="close" label="Schließen" onClick={()=>{setSelected(null);setCharacter(null);}}/></div><p>{current.gloss}</p>
       {current.characters.some(c=>c.note) && <details><summary>Zeichen ansehen</summary><div className="buttonRow">{current.characters.map((char,n)=>char.note && <button type="button" className="utilityButton" key={n} aria-label={`${char.hanzi} ansehen`} aria-pressed={character===n} onClick={()=>{setCharacter(n);onExplore?.('character_explore',{unit:selected!,character:n});}}>{char.hanzi}</button>)}</div>
         {character !== null && <p className="characterNote"><span lang="zh">{current.characters[character].hanzi}</span> · {current.characters[character].pinyin} — {current.characters[character].note}{current.characters[character].writingTarget && ' Auch ein Schreibziel.'}</p>}</details>}
-      <button type="button" className="utilityButton" onClick={()=>{setSelected(null);setCharacter(null);}}>Schließen</button>
     </div>}
   </div>;
 }
