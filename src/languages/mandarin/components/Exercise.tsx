@@ -1,3 +1,6 @@
+import type { ResearchEvent } from '../../../core/progress/db';
+import { attentionPilots, hasItemAttention, hasToneAttention, attentionAssessment } from '../attention';
+import { AttentionIntroduction, ToneFocus, type Introduce } from './AttentionIntroduction';
 import { useRef, useState } from 'react';
 import type { Item, Task } from '../schema/content';
 import { itemMap } from '../content';
@@ -9,7 +12,8 @@ import { WritingExercise } from './WritingExercise';
 import { NumberSequence } from './NumberSequence';
 import { ToneLab, ToneRecall } from './ToneLab';
 export type Evidence = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
-export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled }: {
+export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce }: {
+  attentionHistory?: ResearchEvent[]; onIntroduce?: Introduce;
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
   onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void;
   onAttempt: (e: Evidence) => Promise<void>; onTone: (tone: number, correct: boolean) => Promise<void>;
@@ -22,7 +26,9 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>('success');
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
   const submitting = useRef(false), writingRecorded = useRef(false);
+  const [introAtEntry] = useState(() => !!(['encounter', 'read'].includes(task.kind) && attentionPilots[task.itemId ?? ''] && attentionHistory && !hasItemAttention(itemMap.get(task.itemId!)!, script, attentionHistory)));
   const item = itemMap.get(task.itemId ?? '') as Item;
+  const effectiveAssessment = task.assess && (attentionHistory ? attentionAssessment(task.assess, item, attentionHistory) : task.assess);
   const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
   const reveal = () => { setHelp(true); onEvent('pinyin_reveal'); };
   async function check() {
@@ -32,8 +38,8 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       if (retryEvidence) result = retryEvidence;
       else {
         if (task.kind === 'recall') {
-          interpreted = evaluateAnswer(input, item, task.assess!, name);
-          result = { result: interpreted.result, assisted: help, detail: { ...interpreted, assessToneNotation: task.assess!.toneNotation, assessNeutralTone: task.assess!.neutralTone } };
+          interpreted = evaluateAnswer(input, item, effectiveAssessment!, name);
+          result = { result: interpreted.result, assisted: help, detail: { ...interpreted, assessToneNotation: effectiveAssessment!.toneNotation, assessNeutralTone: effectiveAssessment!.neutralTone } };
         } else result = { result: item.answers.some(a => normalizeText(a) === normalizeText(input)) ? 'success' : 'failure', assisted: help };
         setRetryEvidence(result);
       }
@@ -44,9 +50,11 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       setAnswered(true);
     } finally { submitting.current = false; }
   }
+  if (introAtEntry && onIntroduce) return <AttentionIntroduction item={item} script={script} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
+  if (task.kind === 'tone-recall' && attentionHistory && !hasToneAttention(item, attentionHistory) && onIntroduce) return <div className="stepStack"><p>Diesen Ton schauen wir zuerst gemeinsam an.</p><ToneFocus item={item} />{audio()}<button disabled={disabled} onClick={() => void onIntroduce('tone_attention_confirmed', { item: item.id, toneNumbers: item.toneNumbers, attentionVersion: 1 }).then(onNext).catch(() => {})}>Weiter</button></div>;
   if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'tones') return <ToneLab script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
+  if (task.kind === 'tones') return <ToneLab familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={!!task.recall} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport } }); writingRecorded.current = true; } await onNext(); }} />;
   const reference = <div className="reference"><p lang={`zh-${script === 'hant' ? 'Hant' : 'Hans'}`} className="hanziSentence">{item[script]}{item.slot === 'name' ? ' …' : ''}</p><p className="pinyin">{item.pinyin}{item.slot === 'name' ? ' …' : ''}</p><p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
@@ -69,7 +77,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     {task.kind === 'read' && <p className="hanziHero" lang="zh">{item[script]}</p>}
     <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
-      {task.kind === 'recall' && <p className="muted">{ui.typeHint}</p>}
+      {task.kind === 'recall' && <><p className="muted">{ui.typeHint}</p>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}

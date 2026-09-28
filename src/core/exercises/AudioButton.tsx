@@ -12,9 +12,9 @@ export function acquireAudioCapture() {
   return () => { if (released) return; released = true; captures--; window.dispatchEvent(new Event('audio-capture')); };
 }
 export function stopReferenceAudio(except?: HTMLAudioElement | null) { active?.pause(); document.querySelectorAll('audio').forEach(a => { if (a !== except) a.pause(); }); }
-export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, onPlaybackChange }: { src: string; label?: string; onPlay?: () => void; autoPlay?: boolean; onPlaybackChange?: (playing: boolean) => void }) {
+export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, onPlaybackChange, onEnded }: { src: string; label?: string; onPlay?: () => void; autoPlay?: boolean; onPlaybackChange?: (playing: boolean) => void; onEnded?: () => void }) {
   const ref = useRef<HTMLAudioElement | null>(null);
-  const callbacks = useRef({ onPlay, onPlaybackChange }); callbacks.current = { onPlay, onPlaybackChange };
+  const callbacks = useRef({ onPlay, onPlaybackChange, onEnded }); callbacks.current = { onPlay, onPlaybackChange, onEnded };
   const blocked = useSyncExternalStore(subscribeCapture, () => captures > 0, () => false);
   const [error, setError] = useState('');
   const [playing, setPlaying] = useState(false);
@@ -36,7 +36,7 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
   useEffect(() => {
     const audio = new Audio(src); ref.current = audio; setError(''); setPlaying(false);
     const changed = (value: boolean) => { if (ref.current === audio) { setPlaying(value); callbacks.current.onPlaybackChange?.(value); } };
-    audio.onplaying = () => changed(true); audio.onpause = () => changed(false); audio.onended = () => changed(false);
+    audio.onplaying = () => changed(true); audio.onpause = () => changed(false); audio.onended = () => { changed(false); if (ref.current === audio) callbacks.current.onEnded?.(); };
     audio.onerror = () => { changed(false); if (ref.current === audio) setError(ui.audioError); };
     // Defer once so StrictMode's setup/cleanup probe cannot play twice. Never retry on rerender.
     const timer = autoPlay ? window.setTimeout(() => void play(true), 0) : undefined;

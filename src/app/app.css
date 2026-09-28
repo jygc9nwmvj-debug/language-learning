@@ -174,3 +174,22 @@ fieldset { border: 0; padding: 0; margin: 20px 0; }legend { margin-bottom: 10px;
 
 .restartLearning { max-width: 38rem; color: #59665c; font-size: .9rem; }
 .restartLearning p { margin: 8px 0 12px; }
+
+/* C2.2: one object, changing focus; no timed or animated progression. */
+.attentionIntroduction { display: grid; gap: 16px; }
+.attentionIntroduction .speakingPractice > button { justify-self: start; min-height: 44px; }
+.attentionFocus { display: grid; gap: 14px; }
+.attentionFocus:empty { display: none; }
+.attentionFocus h3 { font-size: 1.45rem; font-weight: 500; }
+.attentionIntroduction[data-focus=hear] .attentionFocus { padding: 24px 0; }
+.attentionIntroduction[data-focus=hanzi] .hanziHero { font-size: clamp(4.5rem, 20vw, 7rem); padding: 8px 0 20px; }
+.attentionIntroduction[data-focus=hanzi] .referenceAudio { display: none; }
+.toneFocus { display: grid; gap: 14px; }
+.focusedSyllables { display: flex; flex-wrap: wrap; gap: 16px 28px; }
+.focusedSyllables > div { display: grid; gap: 4px; }
+.focusedSyllables strong { font-size: clamp(2.4rem, 10vw, 3.2rem); font-weight: 500; line-height: 1.35; }
+.focusedSyllables > div > span { color: #79521c; font-size: .95rem; }
+.focusedSyllables em, .toneRow[data-active=true] em { color: #79521c; font-style: normal; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.toneRow em { font-style: normal; }
+.focusNote, .assessmentNote { font-size: .9rem; color: #59665c; max-width: 35rem; }
+.toneRow[data-active=true] { border-left: 3px solid #79521c; padding-left: 9px; background: #eeede3; }

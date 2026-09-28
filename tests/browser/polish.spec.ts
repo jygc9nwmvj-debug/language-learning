@@ -1,3 +1,4 @@
+import { finishAttention } from './helpers/attention';
 import { test, expect } from '@playwright/test';
 
 async function captureFixture(page: import('@playwright/test').Page) {
@@ -21,8 +22,8 @@ async function captureFixture(page: import('@playwright/test').Page) {
 test('compact recording controls preserve autoplay, pause, replay, retake and the next-step lock', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 }); await captureFixture(page);
   await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
-  await expect(page.locator('.pronunciationMeaning')).toBeVisible();
-  await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
+  await finishAttention(page);await expect(page.locator('.pronunciationMeaning')).toBeVisible();
+  await finishAttention(page);await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
   await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Weiter', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: 'Aufnahme beenden', exact: true }).click();
@@ -52,6 +53,7 @@ test('compact tones retain comparison, feedback and comfortable named controls a
     await new Promise<void>(resolve => { const transaction = db.transaction('sessions', 'readwrite'); transaction.objectStore('sessions').put({ id: 'c2-tones', plannerVersion: 'd1', plan: ['tones', 'closure'], index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now() + 100, script: 'hant' }); transaction.oncomplete = () => resolve(); }); db.close();
   });
   await page.reload(); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
+  for(const n of [1,2,3,4]) await page.getByRole('button', {name:`Ton ${n}`,exact:true}).click();
   await page.getByRole('button', { name: 'Bedeutungen aufdecken', exact: true }).click();
   await expect(page.locator('.toneLanguage strong')).toHaveText(['mā', 'má', 'mǎ', 'mà']);
   for (const width of [390, 320]) {
@@ -85,7 +87,7 @@ test('blocked autoplay leaves a usable manual replay control', async ({ page }) 
     };
   });
   await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
-  await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
+  await finishAttention(page);await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
   await page.getByRole('button', { name: 'Aufnahme beenden', exact: true }).click();
   await expect(page.getByText('Automatisches Abspielen ist hier gesperrt. Tippe auf Wiedergabe.')).toBeVisible();
   await page.getByRole('button', { name: 'Deine Aufnahme wiedergeben' }).click();
