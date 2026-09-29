@@ -26,12 +26,14 @@ export function LessonRunner() {
   const [session, setSession] = useState<Session | null>(null);
   const [script, setScript] = useState<'hant' | 'hans'>('hant'); const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const [hasStoredLearning, setHasStoredLearning] = useState(false);
   const [offline, setOffline] = useState(document.documentElement.dataset.offline ?? 'waiting');
   const lock = useRef(false), taskStarted = useRef(Date.now());
   async function load() {
     try {
       await db.open();
-      const [latest, storedScript, storedName] = await Promise.all([db.sessions.orderBy('updatedAt').last(), db.preferences.get('script'), db.preferences.get('name')]);
+      const [latest, storedScript, storedName, relationCount, eventCount] = await Promise.all([db.sessions.orderBy('updatedAt').last(), db.preferences.get('script'), db.preferences.get('name'), db.relations.count(), db.events.count()]);
+      setHasStoredLearning(!!latest || relationCount > 0 || eventCount > 0);
       setSession(latest ?? null); setScript(storedScript?.value === 'hans' ? 'hans' : 'hant'); setName(storedName?.value ?? ''); setReady(true); setError('');
     } catch { setError(ui.storageError); }
   }
@@ -261,7 +263,7 @@ export function LessonRunner() {
     if (lock.current || !window.confirm('Wirklich von vorne beginnen? Dein Lernfortschritt, deine Sitzungen, Forschungsnotizen und Einstellungen werden auf diesem Gerät gelöscht. Ohne heruntergeladene Sicherung lässt sich das nicht rückgängig machen.')) return;
     await mutation(async () => {
       await resetLearningState();
-      setSession(null); setName(''); setScript('hant');
+      setSession(null); setHasStoredLearning(false); setName(''); setScript('hant');
       setView('home'); setMessage('Dein Lernstand wurde zurückgesetzt. Weiterlernen beginnt wieder mit 你好.');
     });
   }
@@ -271,8 +273,8 @@ export function LessonRunner() {
   }
   const safe = (action: () => Promise<void>) => { void action().catch(() => {}); };
   const settings = <details className="settings"><summary>{ui.settings}</summary>
-    <fieldset disabled={busy || (!!session && !session.completed)}><legend>{ui.script}</legend><div className="segmented">{(['hant', 'hans'] as const).map(s => <button type="button" key={s} aria-pressed={script === s} className={script === s ? 'selected' : ''} onClick={() => { setScript(s); }}>{ui[s]}</button>)}</div></fieldset>
-    <div className="settingsActions"><button type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
+    <fieldset disabled={busy || (!!session && !session.completed)}><legend>{ui.script}</legend><div className="segmented">{(['hant', 'hans'] as const).map(s => <button type="button" key={s} aria-pressed={script === s} className={script === s ? 'selected' : ''} onClick={() => { setScript(s); }}>{ui[s]}</button>)}</div></fieldset>{session && !session.completed && <p className="muted">Die Schriftwahl bleibt während deines laufenden Lernverlaufs gleich, damit Aufgaben und Lernstand zusammenpassen.</p>}
+    <div className="settingsActions"><p className="muted" id="backupNote">Dein Lernstand ist nur in diesem Browser gespeichert. Beim Löschen der Browserdaten geht er verloren; in einem anderen Browser ist er nicht automatisch verfügbar. Lade dafür eine Sicherung herunter.</p><button aria-describedby="backupNote" type="button" className="textButton" onClick={() => void backup()}>{ui.backup}</button>
       <label className="fileLabel">{ui.restore}<input type="file" accept="application/json,.json" onChange={e => { const file = e.target.files?.[0]; if (file) void restore(file); e.target.value = ''; }} /></label>
       <button type="button" className="textButton" onClick={() => { void navigator.storage?.persist?.().then(ok => setMessage(ok ? ui.persisted : ui.notPersisted)).catch(() => setMessage(ui.notPersisted)); }}>{ui.persist}</button>
       <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>
@@ -282,7 +284,7 @@ export function LessonRunner() {
   if (!ready) return <main className="shell"><div className="card">{errorBox || <p>{ui.loading}</p>}</div></main>;
   return <InteractionContext.Provider value={{ ...interaction, canStart: () => !lock.current }}><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
-      <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{ui.learn}</button><p className="muted">{ui.noScores}</p>
+      <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{session || hasStoredLearning ? ui.learn : 'Lernen starten'}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
       {errorBox}{settings}<p className="prototypeNote">Testversion v0.5 · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>

@@ -14,7 +14,7 @@ export const ui = {
   clear: 'Neu schreiben', paper: 'Auf Papier schreiben', screen: 'Am Bildschirm schreiben',
   writingHint: 'Vorlage zeigen', writingNote: 'Vergleiche Form und Aufbau selbst. Freies Schreiben wird nicht automatisch bewertet.',
   written: 'Ich habe geschrieben', worksheet: 'Schreibblatt drucken',
-  record: 'Aufnehmen', stop: 'Aufnahme beenden', recording: 'Aufnahme läuft … Jetzt sprechen (bis zu 60 Sekunden).', requesting: 'Mikrofon wird angefragt …',
+  record: 'Aufnehmen · freiwillig', stop: 'Aufnahme beenden', recording: 'Aufnahme läuft … Jetzt sprechen (bis zu 60 Sekunden).', requesting: 'Mikrofon wird angefragt …',
   preparing: 'Aufnahme wird vorbereitet …', finalizing: 'Aufnahme wird gespeichert …',
   recordingWait: 'Bitte noch warten. Gleich erscheint das Startsignal.',
   recordingFailed: 'Die Aufnahme konnte nicht vollständig erstellt werden. Bitte erneut aufnehmen.',
