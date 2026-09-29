@@ -287,3 +287,5 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .correctionReference .unitHanzi,.correctionReference .phrasePunctuation { font-size: clamp(2rem,8vw,3rem); }
 .correctionReference .pinyin,.correctionReference .unitPinyin { font-size: 1.125rem; }
 .correctionReference > p { order: 0; }
+
+.correctionPair { display: inline-flex; align-items: baseline; gap: .35em; flex-wrap: wrap; max-width: 100%; }
