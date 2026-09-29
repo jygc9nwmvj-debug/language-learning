@@ -1,17 +1,10 @@
-# Mandarin — Continuous learning · Build D
+# Mandarin — real learning pilot
 
-Private German-language, local-first Lesson-1 vertical slice. No account or cloud learning services.
-Scope: `docs/COMPLEXITY_CUT_v0.1.md`, then `docs/BUILD_HANDOFF_v1.1.md` and
-`docs/MANDARIN_APP_MASTER_CURRENT.md`. The old `static-prototype/` is an archived mockup, not the app.
+Private German-language, local-first Mandarin app. No account or cloud learning service. Production is frozen except genuine bugs; current behavior includes recording replay completion, corrected assessment intent and uninterrupted continuation across internal batches. No automatic pronunciation scorer, English release or Paper Writing v2 integration.
 
-Test deployment: https://language-learning-abk.pages.dev/ . Current build: **D — Continuous Learning**.
-[Build D report](docs/BUILD_D_CONTINUOUS_LEARNING.md): 28 new objects, small multi-session planner,
-76 Polly-only references and five selective writing targets.
-[Build C report](docs/BUILD_C_INTERACTION_FLOW.md) covers progressive speaking/reading, atomic transitions,
-automatic own-recording playback and verified offline readiness.
-[Build B report](docs/BUILD_B_WRITING_FOUNDATION.md) documents the short 好 → 你 → 我 progression,
-honest SVG ink, established patterns, recognition limits and internal tests.
-A1 Language Trust and A2 Audio Trust remain in place. Lesson 2 is untouched.
+Fresh Work chats: read [Learning Architecture](docs/LEARNING_ARCHITECTURE.md), [Product Observations](docs/PRODUCT_OBSERVATIONS.md), [Roadmap](docs/ROADMAP.md), [research index](docs/research/README.md), relevant research notes and [Pilot Evaluation Protocol](docs/PILOT_EVALUATION_PROTOCOL.md). Main preserves project knowledge; Lab artifacts stay isolated. Historical build reports and `static-prototype/` are not current priorities.
+
+Test deployment: [Mandarin pilot](https://language-learning-abk.pages.dev/). Behavior baseline: `b229877`; served-asset verification and branch inventory are in the roadmap. Existing F-light is sufficient for the bounded pilot; no additional production measurement is required.
 
 ## Run
 
@@ -34,10 +27,10 @@ register a worker. The build generates a content-addressed worker that precaches
 styles, audio and licenses. Deployments must serve at the origin root. Service-worker updates activate after complete precaching, even with old tabs open. Reload to display
 the downloaded update; active exercises are never reloaded automatically. One prior asset bundle is retained. Microphone requires localhost or HTTPS.
 
-## What works
+## Implemented foundation (later scope and corrections in the roadmap)
 
 - Authored and Zod-validated Lesson 1, Traditional/Simplified; German UI strings use semantic IDs.
-- Eight expressions/characters, audio normal/slow, tone introduction plus three spaced tone retrievals.
+- Eight foundation items plus 28 Build D objects; 44 canonical words, 36 items, 131 resolved tasks and 76 audio references.
 - Free recall with deterministic Pinyin/number/diacritic normalization. Missing or different written
   tones are distinct from content, and never imply spoken tone ability. Ambiguous typos ask for clarification.
 - Only real answers/self-checks update `(object, target)` state. Continue/reveal/recording never imply mastery.
@@ -64,7 +57,7 @@ They cover the lesson loop, saved evidence, export, denied microphone, pause/res
 print layout, a cold offline reopen with a simulated next-day review, a 10-take capture continuity series
 per engine, interruption/pending-permission cleanup and controlled Hanzi Writer pointer tests.
 
-## Limits before real learning / release
+## Continuing review limits
 
 Audio provenance and the remaining human-review flags are documented in `docs/A2_POLLY_WORKFLOW.md`
 and the A2 manifest. Build B does not modify audio assets. There is no automatic speech scoring.

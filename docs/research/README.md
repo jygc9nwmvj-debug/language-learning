@@ -1,6 +1,12 @@
-# Research Knowledge Base v0.1
+# Research Knowledge Base
 
 Reviewed: 2026-09-29. Curated evidence notes, not a systematic review or a new implementation specification. No papers, model weights or datasets are vendored here.
+
+## Current orientation
+
+Start with [Learning Architecture](../LEARNING_ARCHITECTURE.md), [Product Observations](../PRODUCT_OBSERVATIONS.md), [Roadmap](../ROADMAP.md), the relevant research note and [Pilot Evaluation Protocol](../PILOT_EVALUATION_PROTOCOL.md). Main carries the knowledge; prototype code remains isolated. The pilot needs **no critical additional production instrumentation**.
+
+Distinguish external research, architecture decisions, qualitative observations, measured learner evidence, product hypotheses, experimental prototypes and deployed behavior. The four-input model below organizes decisions, not equivalent kinds of proof.
 
 ## Four distinct inputs to decisions
 
@@ -22,6 +28,10 @@ All four matter. Research does not automatically authorize a build; an Inbox sug
 | [Hanzi recognition and writing](hanzi-recognition-writing.md) | Different outcomes, selective writing, components, stroke guidance and target selection |
 | [Hybrid digital/paper](hybrid-digital-paper.md) | Media limits, offloading/distraction/rest, proposed Paper Writing v2 |
 | [Curriculum progression](curriculum-progression.md) | Communication, separate skill speeds, standards and university examples |
+| [Paper Writing v2](paper-writing-v2.md) | Completed handwriting/media/grid review; physical-validation observations and product hypotheses, not integrated |
+| [JIT Meta-Learning](meta-learning.md) | Eight candidate moments, evidence levels and wording limits; no approved JIT feature |
+| [Speaking v2 benchmark](pronunciation-assessment-rd.md) | Reproducible negative F0 result, OMPAL audit and candidate limitations; no pronunciation scorer approved |
+| [English v0 architecture](../I18N_ENGLISH_V0_ARCHITECTURE.md) | One Mandarin canon, localized presentation, independent state and locale-specific answers; not an English release |
 | [Product patterns](product-patterns.md) | Documented interaction patterns, not product efficacy rankings |
 
 ## Evidence discipline
@@ -52,8 +62,8 @@ Source abstracts or relevant original passages were checked, not merely citation
 - **Assessment:** Charsiu alignment is not pronunciation grading. OMPAL is an annotated corpus, not a ready scorer. ToneForge's current repository/license could not be verified. Azure's documented prosody assessment is en-US-only, not a Mandarin tone-quality guarantee.
 - **Access limits:** Delgado et al.'s publisher text was unavailable in this pass; its broad reading-media finding was checked against the research team's university report. Do not use it for detailed effect estimates or Hanzi motor-learning claims. Yao et al. (2025; DOI 10.1044/2024_JSLHR-24-00432) remains an existing citation, but its full abstract could not be retrieved reliably here; numerical claims are not carried forward. The accessible HVPT review supports the narrower phonetic finding below. Nation's Four Strands remains a pedagogical framework, not an experimentally established allocation ratio; see curriculum note for access limits.
 
-Historical build reports remain historical. This consolidation does not rewrite their claims or alter application code, content, scheduler, writing targets, analytics or deployment.
+Historical build reports remain historical. This consolidation imports completed research with its recorded source/access limits; it does not claim a new literature review or benchmark rerun. Earlier findings above are qualified by the later Paper and Speaking notes. No application code, content, scheduler, writing targets, analytics or deployment changes.
 
 ## Open questions
 
-Which uncertainty is actually preventing a product decision? Start with the relevant note's questions and real-use evidence; do not expand this into an exhaustive bibliography. The meta-learning backlog is in [curriculum progression](curriculum-progression.md#future-research-meta-learning).
+Which uncertainty is actually preventing a product decision? Start with the relevant note's questions and real-use evidence; do not expand this into an exhaustive bibliography. Meta-learning research is now [completed](meta-learning.md); implementation remains an unselected backlog item. [Roadmap](../ROADMAP.md) records branch provenance and current status.

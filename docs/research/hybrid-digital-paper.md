@@ -26,7 +26,7 @@ Reviewed: 2026-09-29. **The app optimizes learning, not screen time.** This is a
 
 **Evidence.** Humiston et al.'s preregistered replication did not find the predicted benefit of eyes-closed rest. Their accompanying meta-analysis of ten similar studies nevertheless found a positive aggregate verbal-memory effect. This combination supports uncertainty and bounded potential, not a guaranteed rest intervention.
 
-**Product interpretation — LOW / HYPOTHESIS.** Offer a voluntary stopping point while allowing continuation. Do not pretend to detect neural consolidation from task completion.
+**Product interpretation — LOW / HYPOTHESIS.** A future non-intrusive stopping recommendation remains open. Current production lets the learner stop voluntarily and continues across internal batches automatically; the proactive Meaningful Stop screen was removed in `b229877`. Rest evidence does not validate that historical intervention or authorize a replacement. Do not pretend to detect neural consolidation from task completion.
 
 **Limits.** Quiet waking rest differs from paper writing, an app closure screen or ordinary activity after a session. This evidence supplies no optimal session duration, daily lockout or mandatory break schedule.
 
@@ -38,13 +38,15 @@ Reviewed: 2026-09-29. **The app optimizes learning, not screen time.** This is a
 
 No strong comparative evidence for one universally optimal grid, grid size or sequence was established in this review. This is an evidence gap, not proof that none exists. Guidance can orient production; too much simultaneous visual information may compete for attention, but [Hanzi visual-load evidence](hanzi-recognition-writing.md) does not directly compare these grids.
 
-**Proposed sequence, not implemented:** digital introduction/stroke guidance → paper production with stronger grid support → reduced support → later paper recall with the target hidden → self-comparison and later scheduled retrieval. One candidate is **米字格 → 田字格 → reduced/plain square → freer recall**. Its fading direction, duration and usefulness require real-use evaluation.
+**Proposed sequence, not implemented:** digital introduction/stroke guidance → paper production with stronger grid support → reduced support → later paper recall with the target hidden → self-comparison and later scheduled retrieval. The earlier candidate **米字格 → 田字格 → reduced/plain square → freer recall** is not a mandatory ladder. The [isolated Paper Writing v2 prototype](paper-writing-v2.md) tests only **田字格 → plain square**, removing the model before the internal guides while retaining field size. Plain-square recall is still spatially supported. Neither sequence has established efficacy.
 
 **Proposed policy:** Paper writing may become **curricularly expected for active Writing Targets**, while remaining **situationally deferrable** (“Später / kein Papier”). This is a future proposal, not a change to current optional Build E behavior. Deferral must not become failure or block unrelated spoken progress.
 
 [Handwriting evidence](hanzi-recognition-writing.md) motivates active production, while [retrieval/spacing evidence](learning-science.md) cautions against treating many immediate copies as delayed recall. No cited evidence establishes massed copying as optimal; no fixed copy quota is justified. Self-comparison is useful practice but not automatic objective handwriting grading.
 
 ## Open questions
+
+The [2026-09-29 R&D note](paper-writing-v2.md) now records targeted primary-source checks, grid comparisons, evidence limits and a physical test plan. The PDF is separate from the app. Status is now PHYSICAL VALIDATION: initial physical use is recorded in that note. Any off-app practice during the pilot changes learning exposure and must be reported as context, not treated as a controlled intervention. Paper as a normal but deferrable step remains a future policy decision.
 
 - Does the proposed grid progression help this learner, or should some stages be skipped?
 - How should grid size and support change independently?

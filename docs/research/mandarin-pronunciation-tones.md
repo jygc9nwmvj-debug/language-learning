@@ -30,7 +30,7 @@ Wang, Jongman & Sereno (2003) compared productions before/after perceptual tone 
 
 ## Open pronunciation-assessment R&D inventory
 
-Confidence in pedagogical scoring for our learner: **LOW / HYPOTHESIS for every candidate**. Repository descriptions establish advertised capabilities, not independent validity. No code, model or corpus was downloaded into this project.
+Confidence in pedagogical scoring for our learner: **LOW / HYPOTHESIS for every candidate**. Repository descriptions establish advertised capabilities, not independent validity. This initial inventory did not download code, models or corpora. The subsequent isolated benchmark below did download and inspect research resources; none is production scoring.
 
 | Candidate | Verified source/status/license | Potential role and limits |
 | --- | --- | --- |
@@ -49,3 +49,7 @@ Any later spike must first specify the outcome: tone category, intelligibility, 
 - Is ToneForge still accessible under a usable license?
 - What feedback helps repair speech without teaching an exaggerated contour?
 - When should varied voices be introduced without overwhelming an absolute beginner?
+
+## Subsequent isolated Speaking v2 benchmark — RESEARCH DONE
+
+The [preserved benchmark report](pronunciation-assessment-rd.md) supersedes the availability-only inventory for the tested candidates. OMPAL was audited and MFA alignment plus context-specific F0 templates were run on speaker-separated data. **NO-GO for the tested approach:** at the strict point only 22/264 test instances were judged, with 12 false alarms among 16 rejections. This does not establish that local assessment is impossible. Native/device validity and broader pronunciation remain open research. Tone Coach inspection found MMS-300m defaults, a checkpoint and unresolved provenance/licensing limits; no independent score is claimed for unrun candidates. Reopen only for a materially better candidate or a separately authorized validity question. No learner pronunciation score is deployed.

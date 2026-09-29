@@ -5,6 +5,12 @@
 
 This contract consolidates the project's evidence-informed direction. Where older design guidance conflicts, this document governs future work. It is not a claim that every principle is fully implemented, nor authorization for an unrequested implementation build. Build D is already deployed with 28 additional learning objects; preserve its content and Continuous Learning system.
 
+## Current implementation and research boundary — 2026-09-29
+
+[Roadmap](ROADMAP.md) records the verified production baseline, pilot freeze and branch inventory. [Pilot Evaluation Protocol](PILOT_EVALUATION_PROTOCOL.md) governs the bounded evaluation: **no critical production-instrumentation gap**. Existing F-light is sufficient for that protocol; no new probes or report-code work is needed.
+
+Selective writing and separate skill outcomes remain the design direction. [Paper research](research/paper-writing-v2.md) now supports narrower evidence claims; its ~21 mm physical prototype and Look → Cover → Write → Check hypothesis are not integrated. [Meta-learning](research/meta-learning.md) proposes eight explanation moments, not production triggers. [English architecture](I18N_ENGLISH_V0_ARCHITECTURE.md) proposes one canon plus locale presentation and answer sets, not deployed English. [Speaking v2](research/pronunciation-assessment-rd.md) rejects the tested F0 baseline, not all possible local assessment.
+
 ## Learning states
 
 **ENCODING / INTRODUCTION → GUIDED PRODUCTION → RETRIEVAL → SPACED RETRIEVAL → TRANSFER**

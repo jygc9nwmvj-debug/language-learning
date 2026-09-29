@@ -1,6 +1,6 @@
 # Product Observation Workflow
 
-Date: 2026-09-28
+Updated: 2026-09-29 · current priorities: [Roadmap](ROADMAP.md)
 
 Real-use observations are evidence to examine, not automatic patch requests. The normal cycle is:
 
@@ -42,7 +42,7 @@ Entry template:
 - **OBSERVATION:** Repeated real use: own recording finalizes and replays audibly to the end, but playback UI and Continue remain blocked. Manual Pause clears the state.
 - **Context:** Safari on MacBook Pro; current F-light pilot. User report, independently reproduced with real MediaRecorder output in automated WebKit against the production baseline.
 - **Category:** Audio/Speaking · Bug · Flow/UI.
-- **Status:** Reproduced and fixed with focused Chrome/WebKit validation; production release authorized by the recording-reliability brief.
+- **Status:** **DONE / RESOLVED**, deployed in `183c342` and present in verified production baseline `b229877`. Focused Chrome/WebKit validation; microphone-level issue B is separate.
 - **Established cause:** WebKit replay can report `ended=true` without dispatching ended/pause and retain `paused=false`; event-only completion leaves the app lock held. Completion now also observes actual ended state on timeupdate, with current-source guards. No duration timeout.
 - **Details:** [Recording reliability report](RECORDING_RELIABILITY.md).
 
@@ -63,7 +63,7 @@ Entry template:
 - **Category:** Learning/Didactics · Flow/UI · Bug.
 - **Established intent:** This step teaches notation conversion; its visible mark is legitimate source information. Conversion previously emitted practice/introduction events, not lexical-tone attempts. The wording and enclosing recall label obscured that distinction.
 - **Related clear findings:** Three audio-perception prompts used memory wording; guided-writing/completion presentation roles were mislabeled recall. Paper recall of 好 exposed 好 in its footer and did not classify an opened answer-bearing worksheet as help.
-- **Status:** Corrected within the narrow production correctness fix; focused verification and release authorized in the brief. No historical evidence rewritten.
+- **Status:** **DONE / RESOLVED**, deployed in `bc0e5c6` and present in verified baseline `b229877`. No historical evidence rewritten; option-ordering editorial review remains open.
 - **Principle:** Learner-facing instruction, cognitive task, validator and learning evidence must refer to the same skill. Retrieval withholds its target; a transformation may show its required source.
 - **Audit:** [All 131 definitions, classifications, corrections and limits](ASSESSMENT_INTENT_AUDIT.md). Three number-ordering tasks remain editorial REVIEW because predictable option placement may permit a shortcut; no speculative redesign.
 
@@ -74,7 +74,29 @@ Entry template:
 - **Cluster:** CONTINUOUS LEARNING / SESSION FRAGMENTATION.
 - **Decision:** Remove proactive stop and batch-completion interruption during the pilot. Motivated longer sessions continue through the existing scheduler; short sessions remain possible through voluntary exit. The stop heuristic was an unvalidated product hypothesis, not an established optimal duration.
 - **Future question — OPEN:** Can a useful stopping opportunity avoid interrupting motivated flow, arbitrary session lengths and claims about an individual's optimal duration? Observe natural use before revisiting; no replacement heuristic now.
+- **Status:** **DONE / RESOLVED**, removal deployed in `b229877`; no replacement stop recommendation is implemented.
 - **Implementation/verification:** [Continuous-flow correction](CONTINUOUS_FLOW_CORRECTION.md).
+
+### OBS-2026-09-29-E — Natural / careful_slow distinction
+
+- **OBSERVATION:** The learner sometimes perceives Natural and `careful_slow` as barely distinguishable.
+- **Category:** Audio/Speaking.
+- **Status:** **WATCH**; reported experience, no new acoustic or native assessment.
+- **Future QA question:** Evaluate pairs for functional differentiation as well as linguistic correctness: does `careful_slow` offer a genuinely useful listening aid relative to Natural?
+- **Possible response:** Human pairwise review and native review; not an instruction to regenerate audio. Existing provisional/human-review flags remain open.
+
+### OBS-2026-09-29-F — Paper Writing physical scaffold
+
+- **OBSERVATION:** Initial physical use favors ~21 mm cells over 28 mm and slightly more immediate production. Earlier delayed-recall prompts lacked confirmed prior Writing introduction. For 好, the transition from visible copying to free recall may be too abrupt.
+- **Category:** Writing/Hanzi · Learning/Didactics.
+- **Status:** **PHYSICAL VALIDATION / WATCH**; qualitative physical-use report, not measured retention evidence.
+- **Prerequisite:** Delayed Writing recall requires prior Writing introduction; recognition or target-list membership is insufficient. Latest isolated sheet omits unqualified recall.
+- **HYPOTHESIS:** Earlier Look → Cover → Write → Check cycles may help more than simply adding visible copying. No optimum repetition count or benefit has been established.
+- **Scope:** [Paper research](research/paper-writing-v2.md); artifacts remain isolated. No Paper Writing v3 or production integration. Physical practice during the pilot is additional exposure to disclose.
+
+### Continuing editorial / content WATCH
+
+Beginner explanation clarity, digital writing-grid/stroke-number legibility, provisional audio/native review and [C2.3's 15 unsegmented expressions](BUILD_C2_3_PHRASE_COMPREHENSION.md) remain open. These are distinct review questions, not measured learner deficits or automatically selected tasks. Preserve the assessment audit's three number-ordering editorial REVIEW cases.
 
 ## 2. CLUSTERS
 
@@ -138,6 +160,6 @@ Candidate template:
 
 One build should normally address one coherent problem cluster. Once completed, freeze the scope, return to learning and capture new observations rather than extending the build opportunistically.
 
-**Selected and bounded:** OBS-2026-09-29-A replay lifecycle repair, explicitly authorized for production after verification. OBS-2026-09-29-B remains investigation only; no audio-level correction is selected without evidence. After this repair, freeze scope and return to ordinary pilot use.
+**Completed, no longer a build candidate:** OBS-2026-09-29-A replay lifecycle repair is deployed. OBS-2026-09-29-B remains investigation only; no audio-level correction is selected without evidence. After this repair, freeze scope and return to ordinary pilot use.
 
-**Selected and bounded:** OBS-2026-09-29-C assessment-intent correctness fix, including clear paper-answer leakage and future validation. Deploy after focused verification, then freeze scope. Sequence-layout questions remain review only.
+**Completed, no longer a build candidate:** OBS-2026-09-29-C assessment-intent and paper-answer leakage fix is deployed, as is D’s continuous-flow correction. Production is frozen except genuine bugs. Sequence-layout questions remain review only. See [roadmap](ROADMAP.md) for WIP limits; no new implementation is selected here.

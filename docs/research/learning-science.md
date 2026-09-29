@@ -48,6 +48,8 @@ Offloading, distraction/task switching and rest are covered once in [hybrid lear
 
 ## Open questions
 
+**Hanzi-specific extension (2026-09-29):** [Paper Writing v2](paper-writing-v2.md#evidence-ledger) adds Kang's visual-form retrieval study and Lu et al.'s handwriting/time-allocation comparison. These narrow the application to this task without establishing a repetition quota, optimal feedback delay or a paper-medium advantage. General guidance fading remains indirect evidence for the physical grid sequence.
+
 - Which intervals and amount of new material support this learner without excessive assistance?
 - When does a cue help reconstruction, and when does repeated retry become frustrating?
 - Does our particular modality mix help retention or merely create task-switching cost?

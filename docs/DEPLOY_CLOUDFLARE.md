@@ -1,6 +1,10 @@
 # Local → GitHub → Cloudflare Pages
 
-## Active deployment — 2026-09-27
+## Current deployment and documentation-only maintenance — 2026-09-29
+
+Production behavior remains `b229877`; see [verified assets](ROADMAP.md#verified-main-and-served-baseline). Documentation-only commits use the `[CF-Pages-Skip]` prefix so Git integration does not build or deploy them, per [Cloudflare documentation](https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/#skipping-a-build-via-a-commit-message). This consolidation does not run a product build or deployment.
+
+## Initial deployment — historical, 2026-09-27
 
 Live test app: https://language-learning-abk.pages.dev/
 Cloudflare Pages project: `language-learning`. Git integration: `main`.

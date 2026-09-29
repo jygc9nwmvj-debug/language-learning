@@ -26,6 +26,8 @@ Reviewed: 2026-09-29. Standards and university syllabi are references, not causa
 
 ## Multi-speed progression — LOW / HYPOTHESIS for the policy
 
+**Verification update, 2026-09-29:** the relevant official GF0025-2021 passages are now directly checked in the rendered PDF. Band 1 distinguishes a 300-character benchmark from 100 handwriting characters. This is a descriptive curricular precedent for different scopes, not a recommended fixed proportion or today's exam specification. [Paper Writing v2](paper-writing-v2.md#writing-target-selection-and-different-progression-speeds) records the exact source/pages and separates external support for each Writing Target criterion from product hypotheses. The earlier access limitation above records the first review, not the current access status of these passages.
+
 Research on [different handwriting/typing outcomes](hanzi-recognition-writing.md) and the curricular examples support distinguishing skills. They do not prove one universal ordering or speed ratio.
 
 Our proposed interpretation is:
@@ -36,13 +38,9 @@ Our proposed interpretation is:
 
 Weak writing retention should not automatically block spoken-language progression. Strong recognition should not automatically count as writing mastery. Each target needs deliberate introduction and appropriate evidence. This is a product policy hypothesis; it does not change today's scheduler or promise that every learner's recognition will exceed production at every point. Exact new-character load and Writing Target selection remain open.
 
-## FUTURE RESEARCH: meta-learning
+## Meta-learning research completed; presentation remains a hypothesis
 
-**Question:** What are the 8–10 things an adult Mandarin beginner should actually know early about Mandarin and effective learning?
-
-This is a research backlog, not an approved lesson list or generic study-advice script. Candidate questions include what tones distinguish, what Hanzi represent, why Pinyin support later recedes, why answer-withheld retrieval feels difficult, why repetitions are spaced, and why some characters become writing targets while others remain recognition targets.
-
-Before creating just-in-time explanations, verify each factual claim, identify the misconception it addresses, choose the moment it becomes useful, and observe whether the explanation helps rather than interrupts. The correct number, wording and timing are not established. Do not implement this backlog during the pilot freeze.
+The [just-in-time meta-learning note](meta-learning.md) now develops eight candidate moments, their evidence levels and conceptual architecture mappings. It separates linguistic facts and learning evidence from product rationales and presentation hypotheses. Consult it before proposing learner-facing explanations; it is not a front-loaded course, final copy library or authorization to implement during the pilot freeze. The number, wording and timing of explanations remain open.
 
 ## Open questions
 

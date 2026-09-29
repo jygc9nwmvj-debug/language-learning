@@ -1,11 +1,11 @@
 # Language Learning Platform — MASTER v1.0
 
 **Date:** 2026-09-26  
-**Status:** CURRENT / normative Single Source of Truth  
+**Status:** Product foundations and historical checkpoints; current status in [Roadmap](ROADMAP.md)
 **First language:** Mandarin Chinese  
-**Stage:** Ready for first real-device vertical slice
+**Stage:** Real multi-day pilot; production freeze except genuine bugs
 
-> If an older planning document conflicts with this Master, this Master wins unless a later explicitly approved decision supersedes it.
+> Current precedence: [Learning Architecture](LEARNING_ARCHITECTURE.md) for learning-design decisions; [Roadmap](ROADMAP.md) and verified remote main/served assets for current state; [Pilot Evaluation Protocol](PILOT_EVALUATION_PROTOCOL.md) for evaluation. The dated build-ready instructions and checkpoints below are historical. They do not restart implementation or override current corrections. Research and observations remain separate evidence sources.
 
 ## 1. Product thesis
 
