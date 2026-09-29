@@ -7,10 +7,11 @@ import type { Item, Task } from '../schema/content';
 import { ui } from '../../../core/i18n/de';
 import { content, itemMap } from '../content';
 const tones = content.toneExamples.map(id => content.words.find(w => w.id === id)!);
-export function ToneLab({ script, onEvent, onResult, onNext, disabled, familiar = false }: {
-  familiar?: boolean; script: 'hant' | 'hans'; onEvent: (type: string) => void;
+export function ToneLab({ notationPractice, script, onEvent, onResult, onNext, disabled, familiar = false }: {
+  notationPractice: NonNullable<Task['notationPractice']>; familiar?: boolean; script: 'hant' | 'hans'; onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void;
   onResult: (tone: number, correct: boolean) => Promise<void>; onNext: () => void; disabled: boolean;
 }) {
+  const notationSource = content.words.find(word => word.id === notationPractice.sourceWord)!;
   const [noticed, setNoticed] = useState<number[]>(familiar ? [1, 2, 3, 4] : []);
   const [activeTone, setActiveTone] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false); const [question, setQuestion] = useState(0);
@@ -27,9 +28,10 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled, familiar 
       <div className="toneChoices">{[1, 2, 3, 4].map(n => <button className={answer === n ? 'toneChoice isSelected' : 'toneChoice'} aria-pressed={answer === n} aria-label={`Ton ${n} wählen`} key={n} type="button" disabled={!heard || answer !== null || disabled} onClick={() => void onResult(target, n === target).then(() => setAnswer(n)).catch(() => {})}>{n}</button>)}</div>
       {answer !== null && <><p className={`toneFeedback ${answer === target ? 'success' : 'attention'}`} role="status">{answer === target ? ui.toneCorrect : ui.toneWrong} {tones[target - 1].pinyin} · Ton {target}</p>
         <button type="button" disabled={disabled} onClick={() => { setQuestion(q => q + 1); setAnswer(null); setHeard(false); }}>{ui.continue}</button></>}
-    </div> : <form className="quizBox stepStack" onSubmit={e => { e.preventDefault(); if (practiceChecked) return; setPracticeChecked(true); const ok = practice.trim().toLowerCase() === tones[1].toneNumbers; setPracticed(ok); setPracticeFeedback(ok ? `${tones[1].toneNumbers} → ${tones[1].pinyin}. Genau: Die 2 steht nach der Silbe.` : 'Tippe ma und direkt dahinter die Zahl 2.'); onEvent('tone_notation_practice'); if (ok) onEvent('tone_notation_introduced'); }}>
-      <h3>Töne mit der Tastatur</h3><p>Die Zahl kommt direkt nach der Silbe: {tones.map(t => `${t.toneNumbers} → ${t.pinyin}`).join(', ')}. In Wörtern zum Beispiel {itemMap.get('nihao')!.toneNumbers} → {itemMap.get('nihao')!.pinyin}.</p>
-      {practiceChecked ? <AnswerSummary value={practice} /> : <label className="fieldLabel">Tippe {tones[1].pinyin} mit einer Tonzahl<input value={practice} onChange={e => { setPractice(e.target.value); setPracticed(false); }} readOnly={practiceChecked} autoCorrect="off" autoCapitalize="off" spellCheck={false} maxLength={20} /></label>}
+    </div> : <form className="quizBox stepStack" onSubmit={e => { e.preventDefault(); if (practiceChecked) return; setPracticeChecked(true); const ok = practice.trim().toLowerCase() === notationSource.toneNumbers; setPracticed(ok); setPracticeFeedback(ok ? `Genau: Das Tonzeichen in „${notationSource.pinyin}“ wird als ${notationSource.toneNumbers} geschrieben.` : `Das Tonzeichen in „${notationSource.pinyin}“ steht für Ton ${notationSource.toneNumbers.at(-1)}. Schreibe ${notationSource.toneNumbers}.`); const detail = { assessmentIntent: notationPractice.intent, sourceWord: notationSource.id, phase: 'guided_practice', evidence: 'app_checked', result: ok ? 'success' : 'failure' }; onEvent('tone_notation_practice', detail); if (ok) onEvent('tone_notation_introduced', detail); }}>
+      <h3>Vom Tonzeichen zur Tonzahl</h3><p>Die Zahl kommt direkt nach der Silbe: {tones.map(t => `${t.toneNumbers} → ${t.pinyin}`).join(', ')}. In Wörtern zum Beispiel {itemMap.get('nihao')!.toneNumbers} → {itemMap.get('nihao')!.pinyin}.</p>
+      <p>{notationSource.pinyin} → {notationSource.toneNumbers.slice(0, -1)}_</p>
+      {practiceChecked ? <AnswerSummary value={practice} /> : <label className="fieldLabel">Schreib denselben Ton jetzt als Zahl.<input value={practice} onChange={e => { setPractice(e.target.value); setPracticed(false); }} readOnly={practiceChecked} autoCorrect="off" autoCapitalize="off" spellCheck={false} maxLength={20} /></label>}
       {!practiceChecked && <button type="submit" disabled={!practice.trim() || disabled}>Prüfen</button>}{practiceChecked && !practiced && <button type="button" onClick={() => { setPracticeChecked(false); setPracticeFeedback(''); }}>Noch einmal versuchen</button>}{practiceFeedback && <p role="status">{practiceFeedback}</p>}
       {practiced && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}
     </form>}<Recorder onEvent={onEvent} /></>}
@@ -37,7 +39,7 @@ export function ToneLab({ script, onEvent, onResult, onNext, disabled, familiar 
 }
 
 export function ToneRecall({ item, task, onResult, onEvent, onNext, disabled }: {
-  item: Item; task: Task; onResult: (correct: boolean) => Promise<void>; onEvent: (type: string) => void; onNext: () => void; disabled: boolean;
+  item: Item; task: Task; onResult: (correct: boolean) => Promise<void>; onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void; onNext: () => void; disabled: boolean;
 }) {
   const [heard, setHeard] = useState(false), [answer, setAnswer] = useState<number | null>(null);
   return <div className="stepStack"><p>Höre den bekannten Ausdruck. Wähle den Ton {item.syllables.length > 1 ? `der ${task.toneIndex! + 1}. Silbe` : 'der Silbe'}.</p>

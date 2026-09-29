@@ -11,6 +11,8 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
   onComplete: (result: WritingResult) => Promise<void>; onNext: () => void | Promise<void>; disabled: boolean;
 }) {
+  // The existing fixed worksheet shows these characters, including its context line.
+  const worksheetHasTarget = ['hao','ni','wo'].includes(itemId);
   const model = targets[itemId as keyof typeof targets];
   const levels = recall ? [delayed] : model.levels;
   const [stage, setStage] = useState(0), [revision, setRevision] = useState(0);
@@ -179,12 +181,12 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     </div>
     <div className="buttonRow writingSecondary">
       <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_mode', detail()); setMode(mode === 'paper' ? 'screen' : 'paper'); }}>{mode === 'paper' ? ui.screen : ui.paper}</button>
-      <IconButton icon="print" label={ui.worksheet} onClick={() => window.print()}/>
+      <IconButton icon="print" label={ui.worksheet} onClick={() => { if (recall && writing && !compared && worksheetHasTarget) { assisted.current = true; callbacks.current.onEvent('writing_hint', detail({ source: 'worksheet' })); } window.print(); }}/>
     </div>
     {phase === 'saved' && <div className="buttonRow"><button type="button" disabled={disabled} onClick={onNext}>Weiter</button>{lastResult.current?.result === 'success' && <button type="button" className="secondaryButton" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}>Noch einmal</button>}</div>}
     {optionalRepeat.current && phase !== 'saved' && <button type="button" disabled={disabled} onClick={onNext}>Weiter</button>}
     {optionalRepeat.current && <p className="muted">Freiwillige Wiederholung · ohne neue Lernbewertung.</p>}
     {phase === 'save_error'  && <button type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</button>}
-    {mode === 'paper' && <p className="muted">Auf Papier schätzt du Form und Strichfolge selbst ein. Das Druckblatt bleibt die Übung für 好; 你 und 我 kannst du in freie Felder schreiben.</p>}
+    {mode === 'paper' && <p className="muted">Auf Papier schätzt du Form und Strichfolge selbst ein.{(!recall || !worksheetHasTarget) && <> Das Druckblatt bleibt die Übung für 好; 你 und 我 kannst du in freie Felder schreiben.</>}</p>}
   </section>;
 }

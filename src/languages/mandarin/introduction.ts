@@ -38,3 +38,12 @@ export function introductionForTask(task:Task,script:'hant'|'hans',events:Resear
  const items=(task.sequence??[task.itemId!]).map(id=>itemMap.get(id)!);
  return items.find(item=>missingIntroduction(item,script,events,task.kind==='encounter'?item.introduction.dimensions:requiredDimensions(task)).length>0);
 }
+
+// Presentation provenance only: no scheduler or assessment changes. Missing
+// prerequisites still replace a test with teaching through introductionForTask.
+export function taskPresentationRole(task:Task,script:'hant'|'hans',events:ResearchEvent[]) {
+ if(introductionForTask(task,script,events))return 'introduction';
+ if(task.kind==='closure')return 'completion';
+ if(task.kind==='tones'||task.kind==='encounter'||task.kind==='writing'&&(!task.recall||!introduced(itemMap.get(task.itemId!)!,'writing',script,events)))return 'practice';
+ return 'recall';
+}

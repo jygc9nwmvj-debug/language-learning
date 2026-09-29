@@ -28,6 +28,7 @@ const authoredSchema = z.strictObject({
   words: z.array(word).min(1), toneExamples: z.array(text).length(4),
   items: z.array(z.strictObject({ id: text, words: z.array(text).min(1), meaning: meaning.optional(), punctuation: z.enum(['？']).optional(), slot: z.literal('name').optional(), audio: asset, slowAudio: asset.optional(), surfaceToneNumbers: text.optional(), exploration: exploration.optional(), introduction, learning: z.strictObject({ function: z.enum(['repair','personal','social','numbers']), order: z.number().int().nonnegative(), prerequisites: z.array(text), writing: z.boolean(), note: explanation, concepts: z.array(text), reviewStatus: z.literal('source_checked'), discovery: explanation.optional() }).optional(), review })),
   tasks: z.array(z.strictObject({ id: text, kind: z.enum(['encounter', 'listen', 'read', 'recall', 'writing', 'tones', 'tone-recall', 'sequence', 'closure']),
+    notationPractice: z.strictObject({ intent: z.literal('tone_notation_conversion'), sourceWord: text }).optional(),
     sequence: z.array(text).min(2).optional(), assess: assessmentSchema.optional(), itemId: text.optional(), target: targetSchema.optional(), prompt: z.strictObject({ de: text, en: text.optional() }), toneIndex: z.number().int().min(0).optional(), recall: z.boolean().optional() })),
   initialPlan: z.array(text), reviewPlan: z.array(text),
 }).superRefine((c, ctx) => {
@@ -94,6 +95,14 @@ const authoredSchema = z.strictObject({
   c.toneExamples.forEach((id,n) => { if (!words.get(id)?.audio) issue(`Missing tone audio: ${id}`); if (words.get(id)?.toneNumbers !== `ma${n+1}`) issue(`Invalid tone example: ${id}`); });
   for (const t of c.tasks) {
     const item = items.get(t.itemId ?? '');
+    // The renderer supplies the cue associated with its kind. A transformation
+    // source is valid only in teaching/practice, never as a retrieval shortcut.
+    const targets: Partial<Record<typeof t.kind, z.infer<typeof targetSchema>>> = {listen:'listening',read:'reading',recall:'production',writing:'writing','tone-recall':'perception',sequence:'reading'};
+    const expectedTarget = targets[t.kind];
+    if (t.target !== expectedTarget) issue(`Task kind/assessment target mismatch: ${t.id}`);
+    if (t.kind === 'tones') {
+      if (!t.notationPractice || !c.toneExamples.includes(t.notationPractice.sourceWord)) issue(`Tone notation practice needs a canonical tone-example source: ${t.id}`);
+    } else if (t.notationPractice) issue(`Notation conversion source is not a retrieval cue: ${t.id}`);
     if(t.kind==='sequence' && t.sequence?.some(id=>!items.get(id)?.introduction.dimensions.includes('hanzi'))) issue(`Sequence requires Hanzi introduction: ${t.id}`);
     if(t.kind==='sequence' && (!t.sequence || t.sequence.some(id=>!items.has(id)))) issue(`Invalid sequence: ${t.id}`);
     if(t.kind==='writing' && item && item.introduction.role!=='writing') issue(`Not a writing target: ${t.id}`);

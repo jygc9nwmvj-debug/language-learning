@@ -327,3 +327,17 @@ Production records `introduction_dimensions` with item, exact tone numbers, vers
 Only the missing relevant dimensions receive focus. An existing read/listen/recall/number task whose prerequisites are missing becomes an ungraded introduction on that occurrence, with no scheduled attempt. Independent writing requires prior guided-writing introduction; otherwise reuse the existing guided writing. Historical actual completed guided-writing evidence and completed C2.2 focus-plus-connection records have narrow compatibility bridges; arbitrary old display, Pinyin or completion logs do not become dimensional evidence. Thus some previously seen D material may receive one deliberate introduction after this upgrade; learner history is not erased.
 
 Known-component reuse requires separately introduced whole canonical words in the same script. Do not infer standalone-character knowledge from having introduced an entire phrase. Reused components do not imply the new phrase's meaning or tones. Primary script matters for visual/writing evidence; no competency graph or separate Hanzi scheduler is introduced.
+
+## Pilot correctness contract — assessment intent (2026-09-29)
+
+Task kind plus target already distinguish listening/meaning, Hanzi recognition, written production, writing and tone perception. The legacy ID/kind `tone-recall` is **audio-based perception**, not lexical-tone recall. Its target remains `perception`.
+
+The Tone Lab now declares its previously implicit conversion subtask:
+
+```json
+"notationPractice": { "intent": "tone_notation_conversion", "sourceWord": "ma2" }
+```
+
+This source is mandatory for `tones`, must be a canonical tone example, and is prohibited on other task kinds. The renderer derives visible Pinyin and expected numbered notation from the same word. The schema also rejects kind/assessment-target mismatches. No whole-task mastery target is attached to the introduction/practice bundle.
+
+Retrieval must withhold its target information; transformation and recognition may show their necessary sources. Help that reveals a target must remain assisted evidence. Current renderer visibility is covered by focused tests; arbitrary prose remains editorial QA, not heuristic semantic validation. See [the 131-task audit and limits](ASSESSMENT_INTENT_AUDIT.md).

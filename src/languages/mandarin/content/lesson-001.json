@@ -351,6 +351,7 @@
     {
       "id": "tones",
       "kind": "tones",
+      "notationPractice": { "intent": "tone_notation_conversion", "sourceWord": "ma2" },
       "prompt": {
         "de": "Ein Laut, vier verschiedene Wörter."
       }
@@ -516,7 +517,7 @@
       "itemId": "wo",
       "target": "perception",
       "prompt": {
-        "de": "Erinnere dich: Welchen Ton hat „ich“?"
+        "de": "Höre zu: Welchen Ton hörst du im Wort für „ich“?"
       },
       "toneIndex": 0
     },
@@ -526,7 +527,7 @@
       "itemId": "wojiao",
       "target": "perception",
       "prompt": {
-        "de": "Welchen Ton hat die zweite Silbe dieses Ausdrucks?"
+        "de": "Welchen Ton hörst du in der zweiten Silbe dieses Ausdrucks?"
       },
       "toneIndex": 1
     },
@@ -536,7 +537,7 @@
       "itemId": "xiexie",
       "target": "perception",
       "prompt": {
-        "de": "Welchen Ton hat die erste Silbe von „danke“?"
+        "de": "Welchen Ton hörst du in der ersten Silbe von „danke“?"
       },
       "toneIndex": 0
     },

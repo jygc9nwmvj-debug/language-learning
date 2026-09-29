@@ -46,7 +46,7 @@ test('meaning exercises use canonical answers and keep exact learner input',asyn
 test('tone typing practice ends evaluation and offers only an explicit retry after a mistake',async({page})=>{
  await task(page,'tones');await page.getByRole('button',{name:'Bedeutungen aufdecken'}).click();
  for(const n of [2,4,3]) {await page.getByRole('button',{name:'Anhören',exact:true}).click();await page.getByRole('button',{name:String(n),exact:true}).click();await page.getByRole('button',{name:'Weiter',exact:true}).click();}
- const field=page.getByLabel('Tippe má mit einer Tonzahl');await field.fill('ma4');await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+ const field=page.getByLabel('Schreib denselben Ton jetzt als Zahl.');await field.fill('ma4');await page.getByRole('button',{name:'Prüfen',exact:true}).click();
  await expect(field).toHaveValue('ma4');await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toHaveCount(0);
  await page.getByRole('button',{name:'Noch einmal versuchen'}).click();await field.fill('ma2');await page.getByRole('button',{name:'Prüfen',exact:true}).click();
  await expect(field).toHaveValue('ma2');await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeVisible();

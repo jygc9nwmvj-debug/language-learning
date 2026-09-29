@@ -37,6 +37,8 @@ Preserve the learner's actual stroke geometry. Do not beautify it into ideal cha
 
 **Retrieval is learning, not merely examination.** After initial encoding/guidance, provide genuine reconstruction with the answer withheld. Recognition, assisted production and independent retrieval provide different evidence.
 
+**Assessment intent and cues must agree.** An unassisted retrieval task must withhold the information it claims is retrieved. A transformation may show its required source (má → ma2), and recognition must show the form being recognized. Neither is automatically independent recall. Instruction, validator and recorded evidence must describe the same skill. Answer-revealing help remains assistance. Current deterministic checks and editorial limits are documented in [the assessment-intent audit](ASSESSMENT_INTENT_AUDIT.md).
+
 **After failure, prefer specific feedback and another attempt before exposing the entire solution.** Start with the smallest useful cue; strengthen scaffolding when needed. If the prerequisite was never introduced, teach it rather than marking its absence as failure. Do not trap the learner in endless identical retries. Provide a model when necessary, then return to independent retrieval later. This preference is a design rule, not a universal empirical claim about optimal feedback timing. Some current tasks still reveal a full correction; this document does not silently change them.
 
 ## Spacing, transfer and modalities

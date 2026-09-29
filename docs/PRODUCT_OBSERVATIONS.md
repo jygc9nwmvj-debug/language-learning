@@ -57,6 +57,16 @@ Entry template:
 - **Next evidence:** Local input → blob → output diagnostic during a representative affected Safari take. No speculative level change, gain or AGC is shipped.
 - **Details:** [Recording reliability report](RECORDING_RELIABILITY.md) and [local diagnostic](../tools/recording-diagnostic/README.md).
 
+### OBS-2026-09-29-C — assessment intent / answer leakage
+
+- **OBSERVATION:** In “Töne mit der Tastatur”, the learner entered `ma4` for “Tippe má mit einer Tonzahl” and received “Tippe ma und direkt dahinter die Zahl 2.” The learner could not tell whether tone knowledge or notation conversion was requested.
+- **Category:** Learning/Didactics · Flow/UI · Bug.
+- **Established intent:** This step teaches notation conversion; its visible mark is legitimate source information. Conversion previously emitted practice/introduction events, not lexical-tone attempts. The wording and enclosing recall label obscured that distinction.
+- **Related clear findings:** Three audio-perception prompts used memory wording; guided-writing/completion presentation roles were mislabeled recall. Paper recall of 好 exposed 好 in its footer and did not classify an opened answer-bearing worksheet as help.
+- **Status:** Corrected within the narrow production correctness fix; focused verification and release authorized in the brief. No historical evidence rewritten.
+- **Principle:** Learner-facing instruction, cognitive task, validator and learning evidence must refer to the same skill. Retrieval withholds its target; a transformation may show its required source.
+- **Audit:** [All 131 definitions, classifications, corrections and limits](ASSESSMENT_INTENT_AUDIT.md). Three number-ordering tasks remain editorial REVIEW because predictable option placement may permit a shortcut; no speculative redesign.
+
 ## 2. CLUSTERS
 
 Group repeated or related observations around an underlying problem. Retain links to the original observations so that differing contexts or contradictory evidence remain visible. Do not create a separate cluster for every symptom, and do not treat a suspected common cause as established fact.
@@ -70,6 +80,8 @@ Cluster template:
 - **Evidence to inspect:** Existing learning data, reproducibility or relevant research.
 
 Recording reliability contains two distinct findings, OBS-2026-09-29-A and -B. A shared cause is not established; the replay repair does not resolve the level report.
+
+**ASSESSMENT INTENT / ANSWER LEAKAGE:** OBS-2026-09-29-C. Align instructional wording and supplied cues with the actual assessed skill and evidence; preserve teaching and distinguish requested assistance.
 
 ## 3. VALIDATED PROBLEMS
 
@@ -95,6 +107,8 @@ Validated-problem template:
 
 **OBS-2026-09-29-B:** Repeated real-use low-level problem is retained as valid observational evidence. Source of level loss is unvalidated; keep WATCH pending a representative hardware measurement.
 
+**OBS-2026-09-29-C:** Real-use ambiguity plus inspected/reproducible instruction, visible-answer and presentation-provenance mismatches. Conversion itself was not falsely scored as lexical recall. The bounded fix preserves existing assessment gates and progression.
+
 ## 4. BUILD CANDIDATES
 
 Only validated problems warranting high priority become possible builds. Validation alone does not require immediate implementation. Compare impact, reach and cost before choosing work; a candidate remains a proposal until explicitly selected.
@@ -112,3 +126,5 @@ Candidate template:
 One build should normally address one coherent problem cluster. Once completed, freeze the scope, return to learning and capture new observations rather than extending the build opportunistically.
 
 **Selected and bounded:** OBS-2026-09-29-A replay lifecycle repair, explicitly authorized for production after verification. OBS-2026-09-29-B remains investigation only; no audio-level correction is selected without evidence. After this repair, freeze scope and return to ordinary pilot use.
+
+**Selected and bounded:** OBS-2026-09-29-C assessment-intent correctness fix, including clear paper-answer leakage and future validation. Deploy after focused verification, then freeze scope. Sequence-layout questions remain review only.

@@ -29,7 +29,7 @@ test('complete Lesson 1, honest evidence, backup, offline cold reopen and delaye
         await page.getByRole('button', { name: String(n), exact: true }).click();
         await next(page);
       }
-      await page.getByLabel('Tippe má mit einer Tonzahl').fill('ma2');
+      await page.getByLabel('Schreib denselben Ton jetzt als Zahl.').fill('ma2');
       await page.getByRole('button', { name: 'Prüfen', exact: true }).click();
       await next(page);
     } else if (id.startsWith('tone-')) {
