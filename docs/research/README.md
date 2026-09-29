@@ -20,6 +20,7 @@ All four matter. Research does not automatically authorize a build; an Inbox sug
 | [Learning science](learning-science.md) | Retrieval, spacing, fading, feedback, explicit instruction, cognitive load and interleaving |
 | [Mandarin pronunciation and tones](mandarin-pronunciation-tones.md) | Perception versus production, contextual tones, assessment R&D and licenses |
 | [Hanzi recognition and writing](hanzi-recognition-writing.md) | Different outcomes, selective writing, components, stroke guidance and target selection |
+| [Paper Writing v2 R&D](paper-writing-v2.md) | Copying/retrieval trade-offs, repetition uncertainty, grid and target-selection evidence, and one isolated A4 physical prototype |
 | [Hybrid digital/paper](hybrid-digital-paper.md) | Media limits, offloading/distraction/rest, proposed Paper Writing v2 |
 | [Curriculum progression](curriculum-progression.md) | Communication, separate skill speeds, standards and university examples |
 | [Product patterns](product-patterns.md) | Documented interaction patterns, not product efficacy rankings |
@@ -51,6 +52,8 @@ Source abstracts or relevant original passages were checked, not merely citation
 - **Product documentation:** Skritter has raw-stroke modes; its default also supports stroke snapping. Raw writing is not its universal default. Glossika's cited mode guide is explicitly legacy documentation.
 - **Assessment:** Charsiu alignment is not pronunciation grading. OMPAL is an annotated corpus, not a ready scorer. ToneForge's current repository/license could not be verified. Azure's documented prosody assessment is en-US-only, not a Mandarin tone-quality guarantee.
 - **Access limits:** Delgado et al.'s publisher text was unavailable in this pass; its broad reading-media finding was checked against the research team's university report. Do not use it for detailed effect estimates or Hanzi motor-learning claims. Yao et al. (2025; DOI 10.1044/2024_JSLHR-24-00432) remains an existing citation, but its full abstract could not be retrieved reliably here; numerical claims are not carried forward. The accessible HVPT review supports the narrower phonetic finding below. Nation's Four Strands remains a pedagogical framework, not an experimentally established allocation ratio; see curriculum note for access limits.
+
+**Paper Writing v2 follow-up (2026-09-29):** the official GF0025-2021 PDF's relevant reading/handwriting passages were now verified visually; the earlier full-standard access limitation no longer applies to those specific passages. Character-form retrieval (Kang), time-allocation trade-offs (Lu et al.), and mixed stroke-order findings (Hsiung; Sun et al.) are documented in the new R&D note. Hou & Jiang's immediate effects must not be presented as demonstrated one-week effects. The prototype is not an implementation decision or efficacy result.
 
 Historical build reports remain historical. This consolidation does not rewrite their claims or alter application code, content, scheduler, writing targets, analytics or deployment.
 

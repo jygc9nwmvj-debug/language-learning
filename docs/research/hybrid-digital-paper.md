@@ -38,13 +38,15 @@ Reviewed: 2026-09-29. **The app optimizes learning, not screen time.** This is a
 
 No strong comparative evidence for one universally optimal grid, grid size or sequence was established in this review. This is an evidence gap, not proof that none exists. Guidance can orient production; too much simultaneous visual information may compete for attention, but [Hanzi visual-load evidence](hanzi-recognition-writing.md) does not directly compare these grids.
 
-**Proposed sequence, not implemented:** digital introduction/stroke guidance → paper production with stronger grid support → reduced support → later paper recall with the target hidden → self-comparison and later scheduled retrieval. One candidate is **米字格 → 田字格 → reduced/plain square → freer recall**. Its fading direction, duration and usefulness require real-use evaluation.
+**Proposed sequence, not implemented:** digital introduction/stroke guidance → paper production with stronger grid support → reduced support → later paper recall with the target hidden → self-comparison and later scheduled retrieval. The earlier candidate **米字格 → 田字格 → reduced/plain square → freer recall** is not a mandatory ladder. The [isolated Paper Writing v2 prototype](paper-writing-v2.md) tests only **田字格 → plain square**, removing the model before the internal guides while retaining field size. Plain-square recall is still spatially supported. Neither sequence has established efficacy.
 
 **Proposed policy:** Paper writing may become **curricularly expected for active Writing Targets**, while remaining **situationally deferrable** (“Später / kein Papier”). This is a future proposal, not a change to current optional Build E behavior. Deferral must not become failure or block unrelated spoken progress.
 
 [Handwriting evidence](hanzi-recognition-writing.md) motivates active production, while [retrieval/spacing evidence](learning-science.md) cautions against treating many immediate copies as delayed recall. No cited evidence establishes massed copying as optimal; no fixed copy quota is justified. Self-comparison is useful practice but not automatic objective handwriting grading.
 
 ## Open questions
+
+The [2026-09-29 R&D note](paper-writing-v2.md) now records targeted primary-source checks, grid comparisons, evidence limits and a physical test plan. The PDF is separate from the app. Test after the frozen pilot; adding off-app practice during it would still change learning exposure. Paper as a normal but deferrable step remains a future policy decision.
 
 - Does the proposed grid progression help this learner, or should some stages be skipped?
 - How should grid size and support change independently?

@@ -26,6 +26,8 @@ Reviewed: 2026-09-29. Standards and university syllabi are references, not causa
 
 ## Multi-speed progression — LOW / HYPOTHESIS for the policy
 
+**Verification update, 2026-09-29:** the relevant official GF0025-2021 passages are now directly checked in the rendered PDF. Band 1 distinguishes a 300-character benchmark from 100 handwriting characters. This is a descriptive curricular precedent for different scopes, not a recommended fixed proportion or today's exam specification. [Paper Writing v2](paper-writing-v2.md#writing-target-selection-and-different-progression-speeds) records the exact source/pages and separates external support for each Writing Target criterion from product hypotheses. The earlier access limitation above records the first review, not the current access status of these passages.
+
 Research on [different handwriting/typing outcomes](hanzi-recognition-writing.md) and the curricular examples support distinguishing skills. They do not prove one universal ordering or speed ratio.
 
 Our proposed interpretation is:

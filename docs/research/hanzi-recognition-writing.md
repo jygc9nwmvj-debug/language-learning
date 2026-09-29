@@ -24,7 +24,7 @@ Reviewed: 2026-09-29. Recognition, copying, guided tracing and independent handw
 
 ## 3. Stroke/component aids can help a goal and interfere with another — MODERATE
 
-**Evidence.** Hou & Jiang's adult L2 experiment found poorer recognition accuracy or slower responses with radical coloring/stroke-order animation in the studied conditions; character–meaning matching did not significantly differ. The proposed cognitive-load explanation is an interpretation, not evidence that every animation overloads every learner.
+**Evidence.** Hou & Jiang's adult L2 experiment found poorer immediate recognition accuracy or slower responses with radical coloring/stroke-order animation in the studied conditions; character–meaning matching did not significantly differ. Separate one-week analyses found no significant presentation-condition effects. The proposed cognitive-load explanation is an interpretation, not evidence that every animation overloads every learner.
 
 Chen & Zhao synthesize associations of phonological, morphological and orthographic skills with Chinese L2 reading. Such associations do not show that teaching an isolated radical list causes better reading.
 
@@ -47,7 +47,11 @@ Give a character higher priority when several factors align:
 
 These are reasoned selection criteria, not validated weights. **Factor 6 is a future data-informed product hypothesis, not established causal evidence:** weak recall might reflect poor introduction, workload or measurement rather than a need for more handwriting. No formula, mandatory recognition-to-writing percentage or automatic gate on spoken progress is proposed.
 
-For selected targets, the current observe → guided → reduced scaffold → independent → later recall sequence is informed indirectly by [guidance fading](learning-science.md). Three or four immediate productions are a test hypothesis. Paper sequencing is separate [future work](hybrid-digital-paper.md#paper-writing-v2--low--hypothesis).
+For selected targets, the current observe → guided → reduced scaffold → independent → later recall sequence is informed indirectly by [guidance fading](learning-science.md). Three or four immediate productions are a test hypothesis. Paper sequencing is separate [R&D](paper-writing-v2.md).
+
+## Paper Writing v2 verification
+
+The [new evidence ledger](paper-writing-v2.md#evidence-ledger) adds relevant visual-form retrieval evidence, a preregistered study of handwriting's opportunity costs, and conflicting stroke-order results. It distinguishes form-only from order-sensitive assessment and immediate from delayed outcomes. The [selection table](paper-writing-v2.md#writing-target-selection-and-different-progression-speeds) assesses each of the six criteria separately: curricular support is strongest for frequent, useful and representative forms; word reuse is indirectly supported; learner-specific benefit and adaptive selection remain hypotheses. No optimal immediate repetition count or paper-over-stylus advantage is established. Current targets are unchanged.
 
 ## Open questions
 
