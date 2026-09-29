@@ -15,7 +15,7 @@ test('mobile authored units, contextual character roles, scripts and known Pinyi
  await plan(page,['d-meet-speak-slowly']);
  const unit=page.getByRole('button',{name:'一點 erkunden',exact:true});await expect(unit).toBeVisible();
  await expect(page.locator('.unitPinyin')).toHaveText(['qǐng','shuō','màn','yì','diǎn']);
- await unit.click();const gloss=page.getByRole('region',{name:'Worterklärung'});await expect(gloss).toContainText('ein bisschen');await expect(gloss.locator('audio')).toHaveCount(0);
+ await unit.click();const gloss=page.getByRole('region',{name:'Worterklärung'});await expect(gloss).toContainText('ein bisschen');await expect(gloss.locator('.audioButton')).toHaveCount(1);
  await gloss.getByText('Zeichen ansehen',{exact:true}).click();await gloss.getByRole('button',{name:'點 ansehen'}).click();await expect(gloss.locator('.characterNote')).toContainText('Mengen');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`work/c23-${info.project.name}-320.png`,fullPage:true});

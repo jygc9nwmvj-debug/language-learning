@@ -23,6 +23,6 @@ for(const item of content.items) for(const [variant,path] of [['natural',item.au
 }
 
 for(const entry of manifest.assets){
- const item=content.items.find(i=>i.id===entry.item)??content.words.find(w=>w.id===entry.item);
+ const item=[...content.items,...content.detailAudio].find(i=>i.id===entry.item)??content.words.find(w=>w.id===entry.item);
  if(!item || entry.canonical?.toneNumbers!==item.toneNumbers || entry.canonical?.hans.replace(/[？。！？]/g,'')!==item.hans.replace(/[？。！？]/g,'') || entry.canonical?.hant.replace(/[？。！？]/g,'')!==item.hant.replace(/[？。！？]/g,''))throw Error(`Canonical audio mismatch: ${entry.item}`);
 }

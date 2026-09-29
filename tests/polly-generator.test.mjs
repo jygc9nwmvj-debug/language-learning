@@ -10,5 +10,5 @@ test('unchanged accepted bytes cannot regenerate and corruption does not silentl
 });
 test('production is Polly-only and all newly generated requests are idempotent',()=>{
  validateProductionAudio(content,manifest);assert(manifest.assets.every(a=>a.provider==='Amazon Polly'&&a.productionUse==='polly_reference'));
- for(const e of manifest.assets.filter(a=>a.inputFingerprint)){const i=itemMap.get(e.item),bytes=readFileSync('public'+e.path);assert.equal(hash(bytes),e.sha256);assert.equal(shouldGenerate(e,i,pollyRequest(i,e.variant),bytes),false);assert.equal(e.qualityState,'needs_human_review');}
+ for(const e of manifest.assets.filter(a=>a.inputFingerprint)){const i=itemMap.get(e.item)??content.detailAudio.find(a=>a.id===e.item),bytes=readFileSync('public'+e.path);assert.equal(hash(bytes),e.sha256);assert.equal(shouldGenerate(e,i,pollyRequest(i,e.variant),bytes),false);assert.equal(e.qualityState,'needs_human_review');}
 });

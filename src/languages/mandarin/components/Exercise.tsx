@@ -75,6 +75,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   if (task.kind === 'writing') return <WritingExercise restored={restored} itemId={task.itemId!} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, feedback: { value: '', message: r.result === 'success' ? 'Geschafft. Die Strichfolge ist vollständig.' : 'Danke für deine Einschätzung. Wir gehen weiter.', kind: r.result === 'success' ? 'success' : 'attention', result: r.result, help: r.assisted, mode: r.mode, selfReport: r.selfReport, ink: r.ink, inkSize: r.inkSize, stage: r.stage }, detail: { mode: r.mode, selfReport: r.selfReport, writingRecall } }); writingRecorded.current = true; } }} />;
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
+  const needsCorrection = answered && task.kind === 'recall' && feedbackKind !== 'success';
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
     reference={<>{form(help && (!known || pinyinVisible),help)}
@@ -101,7 +102,13 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     </form>}
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
-    {answered && item.exploration && form(false,true)}
+    {needsCorrection ? <div className="reference">
+      {form(true,true)}<p>{item.meaning.de}</p>
+      <div className="referenceAudio" role="group" aria-label="Korrekte Zielphrase anhören">
+        <AudioButton src={item.audio} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'natural' })} />
+        {item.slowAudio && <AudioButton src={item.slowAudio} label={ui.slow} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'careful_slow' })} />}
+      </div>
+    </div> : answered && item.exploration && form(false,true)}
     {answered && <ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton>}
   </div>;
 }

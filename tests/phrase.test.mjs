@@ -13,7 +13,7 @@ test('authored units align both scripts, contextual surface tones and neutral sy
  assert.deepEqual(phraseUnits(slow,'hans').map(u=>u.form),['请','说','慢','一点']);
  assert.deepEqual(phraseUnits(slow,'hant').at(-1).characters.map(c=>c.pinyin),['yì','diǎn']);
  assert.equal(phraseUnits(slow,'hant')[0].audio,itemMap.get('qing').audio);
- assert.equal(phraseUnits(slow,'hant').at(-1).audio,undefined);
+ assert.equal(phraseUnits(slow,'hant').at(-1).audio,'/audio/mandarin/polly-detail-yidian.mp3');
  assert.deepEqual(phraseUnits(itemMap.get('askname'),'hant').slice(-2).flatMap(u=>u.characters.map(c=>c.pinyin)),['shén','me','míng','zi']);
  assert.equal(itemMap.get('askname').punctuation,'？');
  assert.match(explanationText(slow.learning.note,'hant'),/請 qǐng \(bitte\) macht/);
@@ -27,7 +27,7 @@ test('reject incomplete/reordered segmentation, wrong syllables, unknown referen
  i=>i.exploration.units[0].syllables=['ni3'],
  i=>i.exploration.units[0].syllables=['qing1'],
  i=>i.exploration.units[0].words=['unknown'],
- i=>i.exploration.units[0].audioItem='ni',
+ i=>i.exploration.units[0].audio={kind:'item',item:'ni'},
  i=>i.exploration.units[0].characters=[{index:2,note:'bitte'}],
  i=>i.learning.note=[{word:'unknown',gloss:'bitte'}],
  i=>i.learning.note='Mit 请 höflicher.',
@@ -46,6 +46,6 @@ test('familiarity is not inferred from exploration; optional events cannot chang
  const now=100_000_000;
  const history=[{...e,taskId:'write-guided',type:'attempt',detail:{item:'hao',result:'success'}},{...e,id:'y',taskId:'meet-hao',type:'task_completed',detail:{item:'hao'}}];
  const base=composeContinuous([],history,'hant',now);
- const extras=['inspection_opened','inspection_practice_attempt','optional_writing_result'].map((type,n)=>({...e,id:`opt${n}`,at:now,taskId:'write-recall',type,detail:{item:'hao',optionalPractice:true,result:'success'}}));
+ const extras=['inspection_opened','inspection_practice_attempt','optional_writing_result','optional_reference_audio'].map((type,n)=>({...e,id:`opt${n}`,at:now,taskId:'write-recall',type,detail:{item:'hao',optionalPractice:true,result:'success'}}));
  assert.deepEqual(composeContinuous([],history.concat(extras),'hant',now),base);
 });

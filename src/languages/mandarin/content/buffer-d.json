@@ -508,7 +508,10 @@
               "wo3"
             ],
             "gloss": "ich",
-            "audioItem": "wo"
+            "audio": {
+              "kind": "item",
+              "item": "wo"
+            }
           },
           {
             "words": [
@@ -519,7 +522,12 @@
               "bu5",
               "dong3"
             ],
-            "gloss": "das Gehörte nicht verstehen"
+            "gloss": "das Gehörte nicht verstehen",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-tingbudong",
+              "src": "/audio/mandarin/polly-detail-tingbudong.mp3"
+            }
           }
         ]
       },
@@ -578,7 +586,10 @@
               "qing3"
             ],
             "gloss": "bitte",
-            "audioItem": "qing"
+            "audio": {
+              "kind": "item",
+              "item": "qing"
+            }
           },
           {
             "words": [
@@ -587,7 +598,12 @@
             "syllables": [
               "zai4"
             ],
-            "gloss": "noch einmal"
+            "gloss": "noch einmal",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-zai",
+              "src": "/audio/mandarin/polly-detail-zai.mp3"
+            }
           },
           {
             "words": [
@@ -596,7 +612,12 @@
             "syllables": [
               "shuo1"
             ],
-            "gloss": "sagen"
+            "gloss": "sagen",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-shuo",
+              "src": "/audio/mandarin/polly-detail-shuo.mp3"
+            }
           },
           {
             "words": [
@@ -607,7 +628,12 @@
               "yi2",
               "bian4"
             ],
-            "gloss": "einmal – das Gesagte vollständig wiederholen"
+            "gloss": "einmal – das Gesagte vollständig wiederholen",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-yibian",
+              "src": "/audio/mandarin/polly-detail-yibian.mp3"
+            }
           }
         ]
       },
@@ -671,7 +697,10 @@
               "qing3"
             ],
             "gloss": "bitte",
-            "audioItem": "qing"
+            "audio": {
+              "kind": "item",
+              "item": "qing"
+            }
           },
           {
             "words": [
@@ -680,7 +709,12 @@
             "syllables": [
               "shuo1"
             ],
-            "gloss": "sprechen / sagen"
+            "gloss": "sprechen / sagen",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-shuo",
+              "src": "/audio/mandarin/polly-detail-shuo.mp3"
+            }
           },
           {
             "words": [
@@ -689,7 +723,12 @@
             "syllables": [
               "man4"
             ],
-            "gloss": "langsam"
+            "gloss": "langsam",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-man",
+              "src": "/audio/mandarin/polly-detail-man.mp3"
+            }
           },
           {
             "words": [
@@ -709,7 +748,12 @@
                 "index": 1,
                 "note": "Teil der Mengenangabe „ein bisschen“; hier kein eigenständiges Wort."
               }
-            ]
+            ],
+            "audio": {
+              "kind": "reference",
+              "id": "detail-yidian",
+              "src": "/audio/mandarin/polly-detail-yidian.mp3"
+            }
           }
         ]
       },

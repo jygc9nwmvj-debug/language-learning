@@ -1,7 +1,7 @@
 // Explicit production eligibility is separate from perceived speech quality.
 export function productionAudioReferences(content) {
  return [
-  ...content.items.flatMap(i=>[['natural',i.audio],['careful_slow',i.slowAudio]].filter(([,path])=>path).map(([variant,path])=>({item:i.id,variant,path}))),
+  ...[...content.items,...content.detailAudio].flatMap(i=>[['natural',i.audio],['careful_slow',i.slowAudio]].filter(([,path])=>path).map(([variant,path])=>({item:i.id,variant,path}))),
   ...content.words.filter(w=>w.audio).map(w=>({item:w.id,variant:'natural',path:w.audio})),
  ];
 }
@@ -11,6 +11,8 @@ export function validateProductionAudio(content,manifest) {
   const entries=manifest.assets.filter(a=>a.path===ref.path);
   if(entries.length!==1)throw Error(`Unknown/duplicate production audio: ${ref.path}`);
   const entry=entries[0];
+  const detail=content.detailAudio.find(a=>a.id===ref.item);
+  if(detail && entry.surfaceToneNumbers!==detail.surfaceToneNumbers)throw Error(`Detail pronunciation differs from authored context: ${ref.item}`);
   if(entry.item!==ref.item || entry.variant!==ref.variant)throw Error(`Production audio mapping: ${ref.item}/${ref.variant}`);
   const polly=entry.productionUse==='polly_reference' && entry.provider==='Amazon Polly' &&
    ['technically_validated','user_accepted','needs_human_review'].includes(entry.qualityState);

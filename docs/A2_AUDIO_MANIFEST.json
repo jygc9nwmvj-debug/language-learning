@@ -4366,6 +4366,482 @@
         "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
       },
       "generatedAt": "2026-09-27T20:30:33.308Z"
+    },
+    {
+      "item": "detail-jiao",
+      "variant": "natural",
+      "text": "叫",
+      "pinyin": "jiào",
+      "path": "/audio/mandarin/polly-detail-jiao.mp3",
+      "sha256": "13fbffe3b5dbbb67914836f48c18ce76c93fd4c1e2f97f009a31f4f53cbae33f",
+      "seconds": 0.648,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"jiao4\">叫</phoneme></prosody></speak>",
+      "inputFingerprint": "913d820878c2a6443487729ea00d535cff4ac38a8ff0b47db987a3e1d63725ef",
+      "canonical": {
+        "item": "detail-jiao",
+        "hans": "叫",
+        "hant": "叫",
+        "toneNumbers": "jiao4"
+      },
+      "surfaceToneNumbers": "jiao4",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.648,
+          "speechSpanSeconds": 0.37,
+          "syllablesPerSecond": 2.7,
+          "peakDbfs": -12.22,
+          "activeRmsDbfs": -23.52,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.128,
+          "maximumInternalPauseSeconds": 0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 4,
+            "medianHz": 244.2,
+            "thirdsSemitones": [
+              2.72,
+              0,
+              -4.63
+            ],
+            "spanSemitones": 8.17,
+            "frames": 27,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:26.695Z",
+      "source": {
+        "item": "askname",
+        "unit": 1
+      }
+    },
+    {
+      "item": "detail-mingzi",
+      "variant": "natural",
+      "text": "名字",
+      "pinyin": "míng zi",
+      "path": "/audio/mandarin/polly-detail-mingzi.mp3",
+      "sha256": "5629b5d28f14dbf75c9f6ea87beb37baff862699add48dbcbc70908cf214df55",
+      "seconds": 0.816,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ming2-zi0\">名字</phoneme></prosody></speak>",
+      "inputFingerprint": "6a859d801d232ae4f8f89c14280ad12ee91530da838b7f6b53549b32fb92938c",
+      "canonical": {
+        "item": "detail-mingzi",
+        "hans": "名字",
+        "hant": "名字",
+        "toneNumbers": "ming2 zi5"
+      },
+      "surfaceToneNumbers": "ming2 zi5",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.816,
+          "speechSpanSeconds": 0.56,
+          "syllablesPerSecond": 3.57,
+          "peakDbfs": -12.2,
+          "activeRmsDbfs": -20.81,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.106,
+          "maximumInternalPauseSeconds": 0.01,
+          "pitch": {
+            "status": "not_applicable",
+            "reason": "connected_speech_not_graded_as_citation_tones"
+          },
+          "issues": []
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:27.559Z",
+      "source": {
+        "item": "askname",
+        "unit": 3
+      }
+    },
+    {
+      "item": "detail-tingbudong",
+      "variant": "natural",
+      "text": "听不懂",
+      "pinyin": "tīng bu dǒng",
+      "path": "/audio/mandarin/polly-detail-tingbudong.mp3",
+      "sha256": "7634947e9ded2a674c42fa34d20d1801fe8611cc1a3be95f91e4a699afed53d2",
+      "seconds": 0.96,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"ting1-bu0-dong3\">听不懂</phoneme></prosody></speak>",
+      "inputFingerprint": "b1067429daca7e5f034f25c5866fffa6e61484e26e383fa01ca0cab49154a1f2",
+      "canonical": {
+        "item": "detail-tingbudong",
+        "hans": "听不懂",
+        "hant": "聽不懂",
+        "toneNumbers": "ting1 bu4 dong3"
+      },
+      "surfaceToneNumbers": "ting1 bu5 dong3",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.96,
+          "speechSpanSeconds": 0.69,
+          "syllablesPerSecond": 4.35,
+          "peakDbfs": -11.07,
+          "activeRmsDbfs": -20.45,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.12,
+          "maximumInternalPauseSeconds": 0.02,
+          "pitch": {
+            "status": "not_applicable",
+            "reason": "connected_speech_not_graded_as_citation_tones"
+          },
+          "issues": [
+            "pace"
+          ]
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:28.460Z",
+      "source": {
+        "item": "dont-understand",
+        "unit": 1
+      }
+    },
+    {
+      "item": "detail-zai",
+      "variant": "natural",
+      "text": "再",
+      "pinyin": "zài",
+      "path": "/audio/mandarin/polly-detail-zai.mp3",
+      "sha256": "0183e684663f4795e03c9f9987c45dcb369c9974bd06911e4f1d1463dab9710e",
+      "seconds": 0.624,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"zai4\">再</phoneme></prosody></speak>",
+      "inputFingerprint": "82619f20870e97aa3f18d36842d7eab1432099bdf86386ba4ac8ed8c25c9f6d9",
+      "canonical": {
+        "item": "detail-zai",
+        "hans": "再",
+        "hant": "再",
+        "toneNumbers": "zai4"
+      },
+      "surfaceToneNumbers": "zai4",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.624,
+          "speechSpanSeconds": 0.33,
+          "syllablesPerSecond": 3.03,
+          "peakDbfs": -10.09,
+          "activeRmsDbfs": -21.95,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.17,
+          "trailingSeconds": 0.124,
+          "maximumInternalPauseSeconds": 0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 4,
+            "medianHz": 257.1,
+            "thirdsSemitones": [
+              1.76,
+              0,
+              -3.68
+            ],
+            "spanSemitones": 6.27,
+            "frames": 24,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": [
+            "pace"
+          ]
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:29.329Z",
+      "source": {
+        "item": "say-again",
+        "unit": 1
+      }
+    },
+    {
+      "item": "detail-shuo",
+      "variant": "natural",
+      "text": "说",
+      "pinyin": "shuō",
+      "path": "/audio/mandarin/polly-detail-shuo.mp3",
+      "sha256": "d85b258e0b67c612be90edf11a20da47dc76ca721a7f920c1d5cf41fc04bbcc0",
+      "seconds": 0.72,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"shuo1\">说</phoneme></prosody></speak>",
+      "inputFingerprint": "1b2de16f3c0a61073363742aa71f380d0ee4b3aebca96736bf0b17fbfc8b61bd",
+      "canonical": {
+        "item": "detail-shuo",
+        "hans": "说",
+        "hant": "說",
+        "toneNumbers": "shuo1"
+      },
+      "surfaceToneNumbers": "shuo1",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.72,
+          "speechSpanSeconds": 0.45,
+          "syllablesPerSecond": 2.22,
+          "peakDbfs": -12.83,
+          "activeRmsDbfs": -25.51,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.16,
+          "trailingSeconds": 0.11,
+          "maximumInternalPauseSeconds": 0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 1,
+            "medianHz": 198.9,
+            "thirdsSemitones": [
+              0.88,
+              -0.25,
+              0.01
+            ],
+            "spanSemitones": 1.63,
+            "frames": 26,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": []
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:30.231Z",
+      "source": {
+        "item": "speak-slowly",
+        "unit": 1
+      }
+    },
+    {
+      "item": "detail-yibian",
+      "variant": "natural",
+      "text": "一遍",
+      "pinyin": "yí biàn",
+      "path": "/audio/mandarin/polly-detail-yibian.mp3",
+      "sha256": "dab4f24ceb85f681774798ca5aff3cbd3dd4c762e94e174623e69e16b7c6b2fb",
+      "seconds": 0.816,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"yi2-bian4\">一遍</phoneme></prosody></speak>",
+      "inputFingerprint": "0f62aa188fe1f9988c3297fafca585a5365d949e8e5cc7bffa15ca83c012bc84",
+      "canonical": {
+        "item": "detail-yibian",
+        "hans": "一遍",
+        "hant": "一遍",
+        "toneNumbers": "yi1 bian4"
+      },
+      "surfaceToneNumbers": "yi2 bian4",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.816,
+          "speechSpanSeconds": 0.56,
+          "syllablesPerSecond": 3.57,
+          "peakDbfs": -11.36,
+          "activeRmsDbfs": -21.63,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.106,
+          "maximumInternalPauseSeconds": 0.07,
+          "pitch": {
+            "status": "not_applicable",
+            "reason": "connected_speech_not_graded_as_citation_tones"
+          },
+          "issues": []
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:31.084Z",
+      "source": {
+        "item": "say-again",
+        "unit": 3
+      }
+    },
+    {
+      "item": "detail-man",
+      "variant": "natural",
+      "text": "慢",
+      "pinyin": "màn",
+      "path": "/audio/mandarin/polly-detail-man.mp3",
+      "sha256": "b09fb210a7e849fc658d93058250f5548f4fb1e84f918f0590df9666f3cd7497",
+      "seconds": 0.576,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"man4\">慢</phoneme></prosody></speak>",
+      "inputFingerprint": "33c303bf998684c8a4242bf75dc9f6e6d7135ddae21ee76b671d6c0e0e2a3f9a",
+      "canonical": {
+        "item": "detail-man",
+        "hans": "慢",
+        "hant": "慢",
+        "toneNumbers": "man4"
+      },
+      "surfaceToneNumbers": "man4",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.576,
+          "speechSpanSeconds": 0.31,
+          "syllablesPerSecond": 3.23,
+          "peakDbfs": -14.19,
+          "activeRmsDbfs": -21.9,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.15,
+          "trailingSeconds": 0.116,
+          "maximumInternalPauseSeconds": 0,
+          "pitch": {
+            "status": "compatible",
+            "expectedTone": 4,
+            "medianHz": 259.4,
+            "thirdsSemitones": [
+              0.54,
+              0.75,
+              -3.45
+            ],
+            "spanSemitones": 5.74,
+            "frames": 27,
+            "note": "Coarse contour signal only; not phoneme correctness or a pronunciation score."
+          },
+          "issues": [
+            "pace"
+          ]
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:31.947Z",
+      "source": {
+        "item": "speak-slowly",
+        "unit": 2
+      }
+    },
+    {
+      "item": "detail-yidian",
+      "variant": "natural",
+      "text": "一点",
+      "pinyin": "yì diǎn",
+      "path": "/audio/mandarin/polly-detail-yidian.mp3",
+      "sha256": "20e890e141a1b7934731d77caaf07eb43fdb3b1fa7e069ab235a2ea0756ce469",
+      "seconds": 0.792,
+      "provider": "Amazon Polly",
+      "productionUse": "polly_reference",
+      "engine": "neural",
+      "voice": "Zhiyu",
+      "region": "eu-central-1",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"yi4-dian3\">一点</phoneme></prosody></speak>",
+      "inputFingerprint": "4a63c40e4b79b50af36b46f620b1964b46b6b333da7121cd50b4789d06f25533",
+      "canonical": {
+        "item": "detail-yidian",
+        "hans": "一点",
+        "hant": "一點",
+        "toneNumbers": "yi1 dian3"
+      },
+      "surfaceToneNumbers": "yi4 dian3",
+      "qualityState": "needs_human_review",
+      "stateHistory": [
+        "generated",
+        "technically_validated",
+        "needs_human_review"
+      ],
+      "technicalValidation": {
+        "status": "passed",
+        "measurements": {
+          "durationSeconds": 0.792,
+          "speechSpanSeconds": 0.51,
+          "syllablesPerSecond": 3.92,
+          "peakDbfs": -11.24,
+          "activeRmsDbfs": -19.03,
+          "clippedFraction": 0,
+          "leadingSeconds": 0.17,
+          "trailingSeconds": 0.112,
+          "maximumInternalPauseSeconds": 0.04,
+          "pitch": {
+            "status": "not_applicable",
+            "reason": "connected_speech_not_graded_as_citation_tones"
+          },
+          "issues": [
+            "pace"
+          ]
+        },
+        "scope": "A2 decode/duration/clipping/silence; level, tempo and isolated F0 are warnings, not linguistic approval"
+      },
+      "generatedAt": "2026-09-29T19:05:32.815Z",
+      "source": {
+        "item": "speak-slowly",
+        "unit": 3
+      }
     }
   ]
 }

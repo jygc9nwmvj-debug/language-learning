@@ -7,7 +7,7 @@ export function phraseUnits(item: Item, script: 'hant' | 'hans') {
   return item.exploration?.units.map(unit => {
     const form = unit.words.map(id => words.get(id)![script]).join('');
     return { ...unit, form, characters: [...form].map((hanzi,index) => ({ hanzi, pinyin: numberedToPinyin(unit.syllables[index]), note: unit.characters?.find(c => c.index === index)?.note,
-      writingTarget: content.tasks.some(t => t.kind === 'writing' && !t.recall && itemMap.get(t.itemId!)?.[script] === hanzi) })), audio: unit.audioItem ? itemMap.get(unit.audioItem)!.audio : undefined };
+      writingTarget: content.tasks.some(t => t.kind === 'writing' && !t.recall && itemMap.get(t.itemId!)?.[script] === hanzi) })), audio: unit.audio.kind === 'item' ? itemMap.get(unit.audio.item)!.audio : unit.audio.kind === 'reference' ? unit.audio.src : undefined, audioContext: unit.audio.kind === 'phrase' ? unit.audio.reason : undefined };
   });
 }
 export function familiarItem(item: Item | undefined, history: ResearchEvent[] = []) {

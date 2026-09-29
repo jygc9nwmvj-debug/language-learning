@@ -33,7 +33,6 @@
               "hao3"
             ],
             "gloss": "hallo – als ganze Begrüßung",
-            "audioItem": "nihao",
             "characters": [
               {
                 "index": 0,
@@ -43,7 +42,11 @@
                 "index": 1,
                 "note": "Bedeutet für sich „gut“. Die ganze Verbindung ist die Begrüßung „hallo“."
               }
-            ]
+            ],
+            "audio": {
+              "kind": "item",
+              "item": "nihao"
+            }
           }
         ]
       },
@@ -142,7 +145,10 @@
               "wo3"
             ],
             "gloss": "ich",
-            "audioItem": "wo"
+            "audio": {
+              "kind": "item",
+              "item": "wo"
+            }
           },
           {
             "words": [
@@ -151,7 +157,12 @@
             "syllables": [
               "jiao4"
             ],
-            "gloss": "heißen – danach folgt dein Name"
+            "gloss": "heißen – danach folgt dein Name",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-jiao",
+              "src": "/audio/mandarin/polly-detail-jiao.mp3"
+            }
           }
         ]
       },
@@ -197,7 +208,10 @@
               "ni3"
             ],
             "gloss": "du",
-            "audioItem": "ni"
+            "audio": {
+              "kind": "item",
+              "item": "ni"
+            }
           },
           {
             "words": [
@@ -206,7 +220,12 @@
             "syllables": [
               "jiao4"
             ],
-            "gloss": "heißen"
+            "gloss": "heißen",
+            "audio": {
+              "kind": "reference",
+              "id": "detail-jiao",
+              "src": "/audio/mandarin/polly-detail-jiao.mp3"
+            }
           },
           {
             "words": [
@@ -216,7 +235,11 @@
               "shen2",
               "me5"
             ],
-            "gloss": "was / welcher"
+            "gloss": "was / welcher",
+            "audio": {
+              "kind": "item",
+              "item": "what"
+            }
           },
           {
             "words": [
@@ -236,7 +259,12 @@
                 "index": 1,
                 "note": "Hier Teil des Wortes „Name“; nicht getrennt übersetzen."
               }
-            ]
+            ],
+            "audio": {
+              "kind": "reference",
+              "id": "detail-mingzi",
+              "src": "/audio/mandarin/polly-detail-mingzi.mp3"
+            }
           }
         ]
       },
@@ -351,7 +379,10 @@
     {
       "id": "tones",
       "kind": "tones",
-      "notationPractice": { "intent": "tone_notation_conversion", "sourceWord": "ma2" },
+      "notationPractice": {
+        "intent": "tone_notation_conversion",
+        "sourceWord": "ma2"
+      },
       "prompt": {
         "de": "Ein Laut, vier verschiedene Wörter."
       }

@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import raw from '../src/languages/mandarin/content/lesson-001.json' with { type: 'json' };
+import lesson from '../src/languages/mandarin/content/lesson-001.json' with { type: 'json' };
+import buffer from '../src/languages/mandarin/content/buffer-d.json' with {type:'json'};
+const raw={...lesson,words:[...lesson.words,...buffer.words],items:[...lesson.items,...buffer.items]};
 import { contentSchema } from '../src/languages/mandarin/schema/content.ts';
 import { itemMap, content } from '../src/languages/mandarin/content/index.ts';
 import { interpretAnswer, evaluateAnswer, answerFeedback } from '../src/languages/mandarin/answer.ts';

@@ -8,8 +8,10 @@ const manifest=JSON.parse(readFileSync(manifestPath));
 const dry=process.argv.includes('--dry-run');const python=process.env.AUDIO_QA_PYTHON||'python3';
 const profile=process.env.AWS_PROFILE||'mandarin-a2';let count=0;
 if(!dry)execFileSync(python,['-c','import soundfile,numpy,parselmouth'],{stdio:['ignore','pipe','pipe']});
-mkdirSync('work/polly-d',{recursive:true});
-for(const item of content.items)for(const variant of ['natural','careful_slow']){
+if(!dry)mkdirSync('work/polly-d',{recursive:true});
+// A targeted detail run must never regenerate established phrase recordings.
+const selected = process.argv.includes('--details-only') ? content.detailAudio : [...content.items,...content.detailAudio];
+for(const item of selected)for(const variant of ['natural','careful_slow']){
  const path=variant==='natural'?item.audio:item.slowAudio;if(!path)continue;
  const entry=manifest.assets.find(a=>a.item===item.id&&a.variant===variant);
  const request=pollyRequest(item,variant);const file='public'+path;
@@ -20,9 +22,9 @@ for(const item of content.items)for(const variant of ['natural','careful_slow'])
  writeFileSync(ssmlFile,request.ssml);
  try{execFileSync('aws',['polly','synthesize-speech','--profile',profile,'--region',request.region,'--engine',request.engine,'--voice-id',request.voice,'--language-code','cmn-CN','--output-format','mp3','--sample-rate',request.sampleRate,'--text-type','ssml','--text',`file://${ssmlFile}`,temp,'--no-cli-pager'],{stdio:['ignore','pipe','pipe']});}catch{throw Error(`Polly request failed for ${item.id}/${variant}. Check local AWS login/permissions; credentials are never logged.`);}
  const bytes=readFileSync(temp);validateAudio(bytes,path);
- const technicalValidation=JSON.parse(execFileSync(python,['scripts/screen-polly.py'],{input:JSON.stringify({file:temp,tones:item.toneNumbers,variant}),encoding:'utf8',stdio:['pipe','pipe','pipe']}));
+ const technicalValidation=JSON.parse(execFileSync(python,['scripts/screen-polly.py'],{input:JSON.stringify({file:temp,tones:item.surfaceToneNumbers??item.toneNumbers,variant}),encoding:'utf8',stdio:['pipe','pipe','pipe']}));
  if(technicalValidation.status!=='passed'){rmSync(temp);throw Error(`Technical validation failed for ${item.id}/${variant}`);}
- const next={item:item.id,variant,text:item.hans,pinyin:item.pinyin,path,sha256:hash(bytes),seconds:technicalValidation.measurements.durationSeconds,provider:'Amazon Polly',productionUse:'polly_reference',engine:request.engine,voice:request.voice,region:request.region,ssml:request.ssml,inputFingerprint:request.fingerprint,canonical:{item:item.id,hans:item.hans,hant:item.hant,toneNumbers:item.toneNumbers},surfaceToneNumbers:item.surfaceToneNumbers??item.toneNumbers,qualityState:'needs_human_review',stateHistory:['generated','technically_validated','needs_human_review'],technicalValidation,generatedAt:new Date().toISOString()};
+ const next={item:item.id,variant,text:item.hans,pinyin:item.pinyin,path,sha256:hash(bytes),seconds:technicalValidation.measurements.durationSeconds,provider:'Amazon Polly',productionUse:'polly_reference',engine:request.engine,voice:request.voice,region:request.region,ssml:request.ssml,inputFingerprint:request.fingerprint,canonical:{item:item.id,hans:item.hans,hant:item.hant,toneNumbers:item.toneNumbers},surfaceToneNumbers:item.surfaceToneNumbers??item.toneNumbers,qualityState:'needs_human_review',stateHistory:['generated','technically_validated','needs_human_review'],technicalValidation,generatedAt:new Date().toISOString(),...(item.sourceItem ? {source:{item:item.sourceItem,unit:item.sourceUnit}} : {})};
  renameSync(temp,file);manifest.assets=manifest.assets.filter(a=>!(a.item===item.id&&a.variant===variant));manifest.assets.push(next);
  writeFileSync(manifestPath+'.tmp',JSON.stringify(manifest,null,2)+'\n');renameSync(manifestPath+'.tmp',manifestPath);
  console.log(`Validated provisional: ${item.id}/${variant}; warnings: ${technicalValidation.measurements.issues.join(',')||'none'}`);

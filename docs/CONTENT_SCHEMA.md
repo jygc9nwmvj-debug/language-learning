@@ -290,7 +290,7 @@ languages/
 
 No new language should require copying the core.
 
-## 9. Implemented Mandarin phrase authoring contract (C2.3, 2026-09-28)
+## 9. Implemented Mandarin phrase authoring contract (C2.3; audio updated for v0.5)
 
 This section describes the current executable schema (`src/languages/mandarin/schema/content.ts`), rather than the conceptual entity sketches above. Follow `LEARNING_ARCHITECTURE.md` for assessment and scaffolding.
 
@@ -300,10 +300,10 @@ Every **new multi-character item** must include authored `exploration` metadata.
 {
   "pronunciation": "surface",
   "units": [
-    { "words": ["qing"], "syllables": ["qing3"], "gloss": "bitte", "audioItem": "qing" },
-    { "words": ["shuo"], "syllables": ["shuo1"], "gloss": "sprechen / sagen" },
-    { "words": ["man"], "syllables": ["man4"], "gloss": "langsam" },
-    { "words": ["yidian"], "syllables": ["yi4", "dian3"], "gloss": "ein bisschen / etwas" }
+    { "words": ["qing"], "syllables": ["qing3"], "gloss": "bitte", "audio": { "kind": "item", "item": "qing" } },
+    { "words": ["shuo"], "syllables": ["shuo1"], "gloss": "sprechen / sagen", "audio": { "kind": "reference", "id": "detail-shuo", "src": "/audio/mandarin/polly-detail-shuo.mp3" } },
+    { "words": ["man"], "syllables": ["man4"], "gloss": "langsam", "audio": { "kind": "reference", "id": "detail-man", "src": "/audio/mandarin/polly-detail-man.mp3" } },
+    { "words": ["yidian"], "syllables": ["yi4", "dian3"], "gloss": "ein bisschen / etwas", "audio": { "kind": "reference", "id": "detail-yidian", "src": "/audio/mandarin/polly-detail-yidian.mp3" } }
   ]
 }
 ```
@@ -312,7 +312,7 @@ Every **new multi-character item** must include authored `exploration` metadata.
 - Forms come only from those canonical references in the session's `hant`/`hans` script. Each Hanzi has one authored syllable in this deliberately restricted content model. Neutral tone uses `5`, rendered without an accent; punctuation is outside the syllable mapping. Unsupported forms require an explicit future schema change, not guessing.
 - `pronunciation: lexical` must match canonical word tones; `surface` must match the item's existing explicit `surfaceToneNumbers`. Syllable bases/counts must match either way. Surface display does not change canonical truth or unlock tone assessment.
 - A `gloss` describes this unit **in context**. Optional `characters: [{index, note}]` explains selected characters' roles without mechanically summing literal meanings. Index is zero-based within the resolved unit; duplicate/out-of-range indices fail validation.
-- Optional `audioItem` references an existing item with exactly the same canonical word sequence. Reuse its production natural audio. No new paths, slicing, inference or synthesis. Absence simply means no unit audio control.
+- Required `audio` distinguishes existing-item reuse, a required independent detail reference, and a deliberate phrase-only model with a reason. See the v0.5 audio availability contract below. Missing audio decisions fail validation; audio is never inferred or sliced at runtime.
 - `learning.note` and `learning.discovery` accept plain prose without Hanzi, or an array of prose and `{word, gloss}` references. Example: `[{"word":"qing","gloss":"bitte"}," macht die Aufforderung höflicher."]`. Rendering supplies primary-script Hanzi + canonical Pinyin + gloss. Raw Hanzi in these prose fields or exploration notes/glosses are rejected; referenced words must exist. Preserve authored spaces around reference tokens.
 - Script-pair, mapping, coverage, reference and production-audio checks run at build time. They prove structural integrity, not linguistic correctness of editorial segmentation/glosses; content review still owns semantics.
 
@@ -341,3 +341,17 @@ The Tone Lab now declares its previously implicit conversion subtask:
 This source is mandatory for `tones`, must be a canonical tone example, and is prohibited on other task kinds. The renderer derives visible Pinyin and expected numbered notation from the same word. The schema also rejects kind/assessment-target mismatches. No whole-task mastery target is attached to the introduction/practice bundle.
 
 Retrieval must withhold its target information; transformation and recognition may show their necessary sources. Help that reveals a target must remain assisted evidence. Current renderer visibility is covered by focused tests; arbitrary prose remains editorial QA, not heuristic semantic validation. See [the 131-task audit and limits](ASSESSMENT_INTENT_AUDIT.md).
+
+## v0.5 audio availability
+
+Every `exploration.units[]` entry now requires an explicit `audio` decision:
+
+- `{ "kind": "item", "item": "what" }`: reuse an existing learning item's normal reference; words and pronunciation must match the declared lexical/surface context.
+- `{ "kind": "reference", "id": "detail-tingbudong", "src": "/audio/mandarin/polly-detail-tingbudong.mp3" }`: required normal detail audio. Repeated occurrences share the same ID/path; conflicting words, contextual syllables or paths are rejected.
+- `{ "kind": "phrase", "reason": "…" }`: intentionally no isolated model. Explain why in German; the opened detail offers the explicitly labelled whole phrase instead. This is not a missing-asset fallback.
+
+The old optional `audioItem` is replaced, with no change to unit boundaries or authored Pinyin. `content.detailAudio` is derived from reference-bearing units, deduplicated by media ID. Hanzi and lexical tones come from canonical words; spoken tones and synthesis Pinyin come from **the authored unit's syllables**. There is no spelling-to-pronunciation guess and no duplicate pronunciation field to maintain. These media references are not items, tasks, prerequisites or mastery objects.
+
+`generate-audio.mjs --details-only` selects only these normal detail references. A dry run also accepts `--dry-run`. Existing request fingerprinting, provenance, technical checks and review states apply. No slow detail variants are generated. Production inventory, build filtering and validation include detail files. Validation rejects missing decisions, unknown items, conflicting reuse, absent manifest entries/files and mismatched contextual pronunciation.
+
+Corrective text-production feedback uses the existing phrase normal/slow pair without autoplay, including `attention` results that count as success but require notation correction. Fully correct feedback gets no new phrase control. Reference replay emits `optional_reference_audio` with `optionalPractice: true`, context and variant; it never invokes reveal/assessment or the existing `audio_replay` path. Scheduling already excludes optional events.

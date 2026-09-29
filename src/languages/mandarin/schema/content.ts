@@ -9,13 +9,18 @@ export type Explanation = z.infer<typeof explanation>;
 export const introductionDimension = z.enum(['meaning','pronunciation','tone','hanzi','segmentation','writing']);
 export type IntroductionDimension = z.infer<typeof introductionDimension>;
 const introduction = z.strictObject({ dimensions: z.array(introductionDimension).min(2), role: z.enum(['spoken','recognition','writing']), toneNote: prose.optional() });
+const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.(?:wav|mp3)$/);
+const unitAudio = z.discriminatedUnion('kind', [
+  z.strictObject({ kind: z.literal('item'), item: text }),
+  z.strictObject({ kind: z.literal('reference'), id: text, src: asset }),
+  z.strictObject({ kind: z.literal('phrase'), reason: prose }),
+]);
 const exploration = z.strictObject({ pronunciation: z.enum(['lexical', 'surface']), units: z.array(z.strictObject({
   words: z.array(text).min(1), syllables: z.array(z.string().regex(/^[a-zü]+[1-5]$/)).min(1), gloss: prose,
-  audioItem: text.optional(), characters: z.array(z.strictObject({ index: z.number().int().nonnegative(), note: prose })).optional(),
+  audio: unitAudio, characters: z.array(z.strictObject({ index: z.number().int().nonnegative(), note: prose })).optional(),
 })).min(1) });
 const meaning = z.strictObject({ de: z.array(text).min(1), en: z.array(text).min(1) });
 const review = z.strictObject({ reviewStatus: text.optional(), sources: z.array(z.string().url()).optional(), reviewDate: text.optional(), notes: text.optional() }).optional();
-const asset = z.string().regex(/^\/audio\/mandarin\/[a-z0-9-]+\.(?:wav|mp3)$/);
 // Deliberately limited to the existing lesson, not a general Mandarin dictionary.
 const lessonSyllables = new Set(['wo','ni','hao','jiao','shen','me','ming','zi','xie','zai','jian','ma','ting','bu','dong','qing','zai','shuo','yi','bian','man','dian','zhi','dao','hen','ne','shi','na','guo','ren','de','zhong','ke','qi','dui','mei','guan','xi','wan','an','er','san','si','wu','liu','ba','jiu']);
 const word = z.strictObject({ id: text, hant: z.string().regex(/^\p{Script=Han}+$/u), hans: z.string().regex(/^\p{Script=Han}+$/u),
@@ -35,6 +40,8 @@ const authoredSchema = z.strictObject({
   const issue = (message: string) => ctx.addIssue({ code: 'custom', message });
   const words = new Map(c.words.map(w => [w.id,w])), items = new Map(c.items.map(i => [i.id,i])), tasks = new Set(c.tasks.map(t => t.id));
   if (words.size !== c.words.length || items.size !== c.items.length || tasks.size !== c.tasks.length) issue('Duplicate ID');
+  const detailReferences = new Map<string, string>();
+  const detailPaths = new Map<string, string>();
   const forms = new Set<string>();
   for (const w of c.words) {
     const form = `${w.hant}|${w.hans}`; if (forms.has(form)) issue(`Duplicate canonical word: ${w.id}`); forms.add(form);
@@ -67,9 +74,22 @@ const authoredSchema = z.strictObject({
         if (parts.some(w => [...w!.hant].length !== [...w!.hans].length)) issue(`Exploration script mapping: ${i.id}`);
         const positions = unit.characters?.map(char => char.index) ?? [];
         if (new Set(positions).size !== positions.length || positions.some(n => n >= tokens.length)) issue(`Character exploration index: ${i.id}`);
-        if (unit.audioItem) {
-          const source = items.get(unit.audioItem);
-          if (!source || source.words.join('|') !== unit.words.join('|')) issue(`Lexical audio mismatch: ${i.id}/${unit.audioItem}`);
+        if (unit.audio.kind === 'item') {
+          const source = items.get(unit.audio.item);
+          if (!source || source.words.join('|') !== unit.words.join('|')) issue(`Lexical audio mismatch: ${i.id}/${unit.audio.item}`);
+          // Lexical display (e.g. ni3 hao3) may accompany its authored surface model.
+          const lexicalSource = source?.words.flatMap(id => words.get(id)?.toneNumbers.split(' ') ?? []).join(' ');
+          const expectedAudio = unit.syllables.join(' ');
+          const sourceTones = i.exploration.pronunciation === 'surface' ? source?.surfaceToneNumbers ?? lexicalSource : lexicalSource;
+          if (source && sourceTones !== expectedAudio) issue(`Contextual audio mismatch: ${i.id}/${unit.audio.item}`);
+        } else if (unit.audio.kind === 'reference') {
+          const { id, src } = unit.audio;
+          if (items.has(id) || words.has(id)) issue(`Detail audio ID collides with learning content: ${id}`);
+          const signature = JSON.stringify([unit.words, unit.syllables, src]);
+          if (detailReferences.has(id) && detailReferences.get(id) !== signature) issue(`Conflicting detail audio: ${id}`);
+          if (detailPaths.has(src) && detailPaths.get(src) !== id) issue(`Duplicate detail audio path: ${src}`);
+          if (c.items.some(item => item.audio === src || item.slowAudio === src) || c.words.some(word => word.audio === src)) issue(`Detail audio must reuse its existing source: ${src}`);
+          detailReferences.set(id, signature); detailPaths.set(src, id);
         }
       }
     }
@@ -138,7 +158,16 @@ export const contentSchema = authoredSchema.transform(c => {
       pinyin: parts.map(w => w.pinyin).join(' '), toneNumbers: tokens.join(' '), syllables: tokens.map(s => s.slice(0,-1)), tones: tokens.map(s => Number(s.at(-1))),
       meaning: { de: meanings.de[0], en: meanings.en[0] }, answers: [...meanings.de,...meanings.en] };
   });
-  return { ...c, words, items, tasks: c.tasks.map(t => ({ ...t, tone: t.toneIndex === undefined ? undefined : items.find(i => i.id === t.itemId)!.tones[t.toneIndex] })) };
+  // Derived media references, never learning items: pronunciation comes only from
+  // the authored unit. Shared IDs must have identical content (validated above).
+  const detailAudio = [...new Map(c.items.flatMap(item => (item.exploration?.units ?? []).flatMap((unit, index) => unit.audio.kind === 'reference' ? [[unit.audio.id, {
+    id: unit.audio.id, audio: unit.audio.src,
+    words: unit.words, hant: unit.words.map(id => map.get(id)!.hant).join(''), hans: unit.words.map(id => map.get(id)!.hans).join(''),
+    toneNumbers: unit.words.flatMap(id => map.get(id)!.toneNumbers.split(' ')).join(' '),
+    surfaceToneNumbers: unit.syllables.join(' '), pinyin: numberedToPinyin(unit.syllables.join(' ')),
+    sourceItem: item.id, sourceUnit: index,
+  }] as const] : []))).values()];
+  return { ...c, words, items, detailAudio, tasks: c.tasks.map(t => ({ ...t, tone: t.toneIndex === undefined ? undefined : items.find(i => i.id === t.itemId)!.tones[t.toneIndex] })) };
 });
 export type Content = z.infer<typeof contentSchema>;
 export type Task = Content['tasks'][number];
