@@ -1,11 +1,15 @@
-# Paper Writing v2: one A4 physical prototype
+# Paper Writing v2: physical prototypes
 
 2026-09-29. Isolated research artifact. [Evidence and design decisions](../../docs/research/paper-writing-v2.md).
 
+**Current iteration:** [prototype v2 and comparison notes](ITERATION_2.md), [new A4 PDF](../../output/pdf/paper-writing-prototype-v2-a4.pdf), [new source](make_sheet_v2.py). It uses 21 mm fields and four productions per target. Delayed recall is omitted: the learner has confirmed that v1's 你/我 were recognized but not introduced for active writing. Do not use v1's lower section as a writing test for this learner. The original PDF and source remain byte-for-byte unchanged for comparison.
+
+The remainder records **prototype v1** and its original rationale; its earlier unknown-status assumption is superseded by the learner report in iteration 2.
+
 ## Deliverables
 
-- [Print-ready single-page A4 PDF](../../output/pdf/paper-writing-v2-a4.pdf)
-- [Fixed source/template](make_sheet.py)
+- [Preserved v1 single-page A4 PDF](../../output/pdf/paper-writing-v2-a4.pdf)
+- [Preserved v1 source/template](make_sheet.py)
 - [Research note](../../docs/research/paper-writing-v2.md), with evidence ledger, eleven design questions, grid comparison, target-selection criteria, separate progression speeds and the deferrable-paper assessment.
 
 No worksheet engine, application import, network call, scheduler hook, learner-state read/write, QR code, OCR or camera facility is added.

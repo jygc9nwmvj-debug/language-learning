@@ -2,6 +2,8 @@
 
 Verified: 2026-09-29. **R&D only. No learning-architecture decision or production change.** This is a targeted evidence review, not a systematic review. Read the [baseline and artifact instructions](../../tools/paper-writing-v2/README.md) with this note.
 
+**Physical iteration 2:** the learner reports that 28 mm feels too large, three initial productions too sparse, and v1's 你/我 recall prompts had no prior active-writing introduction. [The separate v2 prototype](../../tools/paper-writing-v2/ITERATION_2.md) tries 21 mm and four progressively less-supported productions; it omits delayed recall because no eligible prior-writing set is confirmed. Recognition and active-target inventory membership cannot establish personal writing introduction. These are reported observations plus revised design hypotheses, not new efficacy findings. V1 remains preserved; its recall prompts are not suitable for this learner. The original three-production design below is historical.
+
 ## Decision in brief
 
 Prototype **selected active writing, a short supported start, answer-hidden reconstruction, self-comparison and a later return**. The strongest reason to use paper is the opportunity to practise the intended pen-and-paper production with fewer automatic aids. A unique paper-induced memory advantage over matched stylus practice is unestablished.
