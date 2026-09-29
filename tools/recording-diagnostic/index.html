@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Local recording diagnostic</title>
+<style>body{font:16px system-ui;max-width:850px;margin:40px auto;padding:20px}button{padding:10px;margin:5px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eee;padding:15px}</style>
+<h1>Local recording diagnostic</h1>
+<p>Use Safari on the affected MacBook Pro. Speak a short normal phrase, stop, then replay. Uses the production capture constraints and codec selection. Audio stays in memory, is never uploaded or saved, and is discarded on a new take or when you close this page. Maximum 15 seconds. JSON below contains settings and measurements only; no device identifiers.</p>
+<button id="start">Record</button><button id="stop" disabled>Stop</button><button id="play" disabled>Replay</button><button id="discard">Discard</button>
+<p id="status">Ready</p><audio id="audio" controls></audio><pre id="report"></pre>
+<script type="module">
+const $=id=>document.getElementById(id);
+const constraints={audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}};
+let ctx,stream,recorder,url,timer,inputTap,report={},chunks=[],generation=0;
+const exposed=x=>Object.fromEntries(['autoGainControl','noiseSuppression','echoCancellation','sampleRate','sampleSize','channelCount','latency','volume'].filter(k=>k in x).map(k=>[k,x[k]]));
+const db=x=>x>0?20*Math.log10(x):null;
+function stats(){return {peak:0,energy:0,samples:0,clipped:0,quietWindows:0,windows:0};}
+function add(s,a){let sum=0;for(const v of a){s.peak=Math.max(s.peak,Math.abs(v));sum+=v*v;if(Math.abs(v)>=.999)s.clipped++;}s.energy+=sum;s.samples+=a.length;s.windows++;if(Math.sqrt(sum/a.length)<.004)s.quietWindows++;}
+function result(s){return {peakDbFS:db(s.peak),rmsDbFS:db(Math.sqrt(s.energy/(s.samples||1))),clippingSampleFraction:s.clipped/(s.samples||1),quietWindowFraction:s.quietWindows/(s.windows||1),sampledWindows:s.windows};}
+function tap(source){const analyser=ctx.createAnalyser();analyser.fftSize=1024;source.connect(analyser);const s=stats(),data=new Float32Array(analyser.fftSize);const id=setInterval(()=>{analyser.getFloatTimeDomainData(data);add(s,data);},20);return ()=>{clearInterval(id);source.disconnect(analyser);return result(s);};}
+function show(){ $('report').textContent=JSON.stringify(report,null,2); }
+function release(){clearTimeout(timer);stream?.getTracks().forEach(t=>t.stop());stream=undefined;}
+async function discard(){generation++;if(recorder?.state==='recording')await new Promise(r=>{recorder.addEventListener('stop',r,{once:true});recorder.stop();});release();$('audio').pause();$('audio').removeAttribute('src');$('audio').load();if(url)URL.revokeObjectURL(url);url=undefined;inputTap?.();inputTap=undefined;if(ctx)await ctx.close();ctx=undefined;chunks=[];recorder=undefined;$('play').disabled=true;$('stop').disabled=true;$('start').disabled=false;}
+$('start').onclick=async()=>{await discard();$('start').disabled=true;const token=generation;try{
+ report={browser:navigator.userAgent,requested:constraints,method:'Input is periodic 1024-sample mono analyser windows. Native playback reports settings only; output sound level is not measured. Blob metrics cover every decoded channel in 20ms windows. Quiet threshold RMS < .004 (-48 dBFS); not speech scoring.'};
+ ctx=new AudioContext();await ctx.resume();const acquired=await navigator.mediaDevices.getUserMedia(constraints);if(token!==generation){acquired.getTracks().forEach(t=>t.stop());return;}stream=acquired;
+ const track=stream.getAudioTracks()[0];report.actualSettings=exposed(track.getSettings());report.capabilities=track.getCapabilities?exposed(track.getCapabilities()):'not exposed';
+ inputTap=tap(ctx.createMediaStreamSource(stream));
+ const mimeType=['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus'].find(t=>MediaRecorder.isTypeSupported(t));
+ recorder=new MediaRecorder(stream,mimeType?{mimeType}:undefined);chunks=[];report.recorder={mimeType:recorder.mimeType,audioBitsPerSecond:recorder.audioBitsPerSecond};
+ recorder.ondataavailable=e=>{if(token===generation&&e.data.size)chunks.push(e.data);};
+ recorder.onstop=async()=>{if(token!==generation)return;report.input=resultSafe(inputTap);inputTap=undefined;release();try{const blob=new Blob(chunks,{type:chunks[0]?.type||recorder.mimeType});const decoded=await ctx.decodeAudioData(await blob.arrayBuffer());if(token!==generation)return;const s=stats();for(let c=0;c<decoded.numberOfChannels;c++){const a=decoded.getChannelData(c),n=Math.round(decoded.sampleRate*.02);for(let i=0;i<a.length;i+=n)add(s,a.subarray(i,i+n));}report.blob={...result(s),bytes:blob.size,type:blob.type,duration:decoded.duration,sampleRate:decoded.sampleRate,channels:decoded.numberOfChannels};url=URL.createObjectURL(blob);$('audio').src=url;$('play').disabled=false;$('status').textContent='Ready to replay';}catch(e){if(token===generation)report.error=String(e);}finally{if(token!==generation)return;$('start').disabled=false;$('stop').disabled=true;show();}};
+ recorder.onstart=()=>{$('status').textContent='Recording — speak now';$('stop').disabled=false;};recorder.start(200);timer=setTimeout(stop,15000);show();
+ }catch(e){report.error=String(e);await discard();show();}};
+function resultSafe(fn){return fn?fn():null;}
+function stop(){if(recorder?.state==='recording'){clearTimeout(timer);$('stop').disabled=true;const ending=recorder;setTimeout(()=>{if(ending.state==='recording')ending.stop();},200);}}
+$('stop').onclick=stop;
+$('play').onclick=async()=>{const a=$('audio');a.currentTime=0;try{await a.play();}catch(e){report.playbackError=String(e);show();}};
+$('audio').onplay=()=>{const a=$('audio');report.playback={volume:a.volume,muted:a.muted,playbackRate:a.playbackRate,sameBlob:a.src===url,outputLevel:'not measured; native playback without Web Audio rerouting'};show();};
+$('discard').onclick=async()=>{await discard();report={};show();$('status').textContent='Discarded';};
+window.addEventListener('pagehide',()=>{release();if(url)URL.revokeObjectURL(url);});
+</script></html>

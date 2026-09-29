@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import { finishAttention } from './helpers/attention';
 test('readiness does not wait for a timeslice; final chunks precede stream release', async({page})=>{
  await page.addInitScript(()=>{
   Object.defineProperty(navigator,'mediaDevices',{value:{getUserMedia:async()=>{
@@ -22,7 +23,7 @@ test('readiness does not wait for a timeslice; final chunks precede stream relea
   }
   (window as any).MediaRecorder=FixtureRecorder;
  });
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+ await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await finishAttention(page);
  await page.getByRole('button',{name:'Aufnehmen',exact:true}).click();
  await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
  await page.getByRole('button',{name:'Aufnahme beenden',exact:true}).click();

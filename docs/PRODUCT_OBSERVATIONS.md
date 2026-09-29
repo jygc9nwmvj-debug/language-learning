@@ -37,7 +37,25 @@ Entry template:
 - **POSSIBLE SOLUTION (optional):** An idea to consider, not an implementation instruction.
 - **Related observation / cluster (if any):**
 
-No observations have been entered yet. Do not reinterpret earlier resolved work as a new open problem without checking its current status.
+### OBS-2026-09-29-A — replay remains active after audible end
+
+- **OBSERVATION:** Repeated real use: own recording finalizes and replays audibly to the end, but playback UI and Continue remain blocked. Manual Pause clears the state.
+- **Context:** Safari on MacBook Pro; current F-light pilot. User report, independently reproduced with real MediaRecorder output in automated WebKit against the production baseline.
+- **Category:** Audio/Speaking · Bug · Flow/UI.
+- **Status:** Reproduced and fixed with focused Chrome/WebKit validation; production release authorized by the recording-reliability brief.
+- **Established cause:** WebKit replay can report `ended=true` without dispatching ended/pause and retain `paused=false`; event-only completion leaves the app lock held. Completion now also observes actual ended state on timeupdate, with current-source guards. No duration timeout.
+- **Details:** [Recording reliability report](RECORDING_RELIABILITY.md).
+
+### OBS-2026-09-29-B — intermittently very quiet microphone recordings
+
+- **OBSERVATION:** Repeated app recordings through the built-in MacBook Pro microphone can be extremely quiet despite healthy macOS input indication; not identical on every take.
+- **Context:** Safari; actual hardware settings and a representative quiet take remain unmeasured.
+- **Category:** Audio/Speaking · Bug.
+- **Status:** **WATCH / active bug investigation — unresolved.**
+- **HYPOTHESIS:** Browser/device processing may differ from the macOS meter. This is not an established cause. Production requests echo cancellation, noise suppression and AGC off; actual hardware settings must be measured.
+- **Evidence:** App pipeline has no gain/conversion/normalization stage and uses the same original blob for auto playback/replay. Controlled synthetic measurements test the pipeline and diagnostic only, not physical microphone behavior.
+- **Next evidence:** Local input → blob → output diagnostic during a representative affected Safari take. No speculative level change, gain or AGC is shipped.
+- **Details:** [Recording reliability report](RECORDING_RELIABILITY.md) and [local diagnostic](../tools/recording-diagnostic/README.md).
 
 ## 2. CLUSTERS
 
@@ -51,7 +69,7 @@ Cluster template:
 - **Hypotheses / uncertainties:**
 - **Evidence to inspect:** Existing learning data, reproducibility or relevant research.
 
-No clusters yet.
+Recording reliability contains two distinct findings, OBS-2026-09-29-A and -B. A shared cause is not established; the replay repair does not resolve the level report.
 
 ## 3. VALIDATED PROBLEMS
 
@@ -73,7 +91,9 @@ Validated-problem template:
 - **What remains uncertain or contradictory:**
 - **Priority / reason:** Include whether an immediate-interruption criterion applies.
 
-No validated problems recorded yet.
+**OBS-2026-09-29-A:** Reproducible blocked-learning-flow defect, eligible for immediate interruption. WebKit media state/event trace establishes the missing completion signal and retained lock. Focused regression covers real encoded playback and state safety; the exact user's Safari session was not instrumented.
+
+**OBS-2026-09-29-B:** Repeated real-use low-level problem is retained as valid observational evidence. Source of level loss is unvalidated; keep WATCH pending a representative hardware measurement.
 
 ## 4. BUILD CANDIDATES
 
@@ -91,4 +111,4 @@ Candidate template:
 
 One build should normally address one coherent problem cluster. Once completed, freeze the scope, return to learning and capture new observations rather than extending the build opportunistically.
 
-No build candidates yet.
+**Selected and bounded:** OBS-2026-09-29-A replay lifecycle repair, explicitly authorized for production after verification. OBS-2026-09-29-B remains investigation only; no audio-level correction is selected without evidence. After this repair, freeze scope and return to ordinary pilot use.
