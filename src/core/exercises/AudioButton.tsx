@@ -44,5 +44,5 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
   }, [src, autoPlay]);
   const canPause = autoPlay && playing;
   const accessibleLabel = canPause ? 'Vorlage pausieren' : label;
-  return <span className="audioControl" data-playing={playing} data-variant={label === ui.slow ? 'slow' : 'normal'}><IconButton className="audioButton" icon={canPause ? 'pause' : 'play'} label={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}>{label !== ui.listen ? <span>{label === ui.slow ? 'langsam' : label}</span> : error && <span>Anhören</span>}</IconButton>{error && <span role="status">{error}</span>}</span>;
+  return <span className="audioControl" data-playing={playing} data-variant={label === ui.slow ? 'slow' : 'normal'}><IconButton className="audioButton" icon={canPause ? 'pause' : 'play'} label={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}><span className="audioCaption">{canPause ? 'Pause' : label === ui.slow ? 'Langsam' : label === ui.listen ? 'Anhören' : label}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
 }

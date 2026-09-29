@@ -23,7 +23,7 @@ export function PhraseForm({ item, script, showPinyin = false, interactive = fal
   },[]);
   if (!units) return <><p className="hanziHero" lang="zh">{item[script]}</p>{showPinyin && <p className="pinyin">{item.pinyin}</p>}</>;
   const current = selected === null ? undefined : units[selected];
-  return <div className="phraseForm" data-expanded={selected !== null} ref={root}>
+  return <div className="phraseForm" data-expanded={selected !== null} data-depth={character !== null ? 'character' : selected !== null ? 'chunk' : 'whole'} ref={root}>
     <div className="phraseUnits" aria-label="Ausdruck">
       {units.map((unit,n) => {
         const text = <>{unit.characters.map((char,k) => <span className="alignedCharacter" key={k}><span className="unitHanzi" lang="zh">{char.hanzi}</span>{showPinyin && <span className="unitPinyin">{char.pinyin}</span>}</span>)}</>;
@@ -32,7 +32,7 @@ export function PhraseForm({ item, script, showPinyin = false, interactive = fal
     </div>
     {interactive && current && <div className="unitExplanation" role="region" aria-label="Worterklärung"><div className="unitTitle"><strong lang="zh">{current.form}</strong><span>{current.characters.map(c=>c.pinyin).join(' ')}</span>{current.audio && <AudioButton src={current.audio} />}<IconButton className="explorationClose" icon="close" label="Schließen" onClick={()=>{setSelected(null);setCharacter(null);}}/></div><p>{current.gloss}</p>
       {current.characters.some(c=>c.note) && <details><summary>Zeichen ansehen</summary><div className="buttonRow">{current.characters.map((char,n)=>char.note && <button type="button" className="utilityButton" key={n} aria-label={`${char.hanzi} ansehen`} aria-pressed={character===n} onClick={()=>{setCharacter(n);onExplore?.('character_explore',{unit:selected!,character:n});}}>{char.hanzi}</button>)}</div>
-        {character !== null && <p className="characterNote"><span lang="zh">{current.characters[character].hanzi}</span> · {current.characters[character].pinyin} — {current.characters[character].note}{current.characters[character].writingTarget && ' Auch ein Schreibziel.'}</p>}</details>}
+        {character !== null && <p className="characterNote"><span className="characterForm" lang="zh">{current.characters[character].hanzi}</span> · {current.characters[character].pinyin} — {current.characters[character].note}{current.characters[character].writingTarget && ' Auch ein Schreibziel.'}</p>}</details>}
     </div>}
   </div>;
 }

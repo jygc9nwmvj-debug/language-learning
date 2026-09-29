@@ -32,12 +32,14 @@ test('notation conversion teaches the visible mark, explains errors and records 
   await page.getByRole('button',{name:'Weiter',exact:true}).click();
  }
  await expect(page.getByRole('heading',{name:'Vom Tonzeichen zur Tonzahl'})).toBeVisible();
- await expect(page.getByText('má → ma_', {exact:true})).toBeVisible();
+ await expect(page.locator('.notationExample')).toContainText('mǎ');
+ await expect(page.locator('.notationEquation')).toContainText('má');
+ await expect(page.locator('.notationEquation input')).toHaveAttribute('placeholder','ma_');
  const before=await stored(page,'relations');const attempts=(await stored(page)).filter(e=>e.type==='attempt').length;
  const field=page.getByRole('textbox',{name:'Schreib denselben Ton jetzt als Zahl.',exact:true});
  await field.fill('ma4');await page.getByRole('button',{name:'Prüfen',exact:true}).click();
  await expect(page.locator('form.quizBox [role=status]')).toHaveText('Das Tonzeichen in „má“ steht für Ton 2. Schreibe ma2.');
- await expect(page.locator('.answerSummary')).toContainText('ma4');
+ await expect(page.locator('.notationResponse')).toContainText('ma4');
  expect((await stored(page)).some(e=>e.type==='tone_notation_introduced')).toBe(false);
  await page.getByRole('button',{name:'Noch einmal versuchen',exact:true}).click();
  await field.fill('ma2');await page.getByRole('button',{name:'Prüfen',exact:true}).click();

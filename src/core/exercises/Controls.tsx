@@ -10,3 +10,8 @@ export function InfoDisclosure({ label, children, className = '' }: { label: str
 export function AnswerSummary({ value }: {value:string}) {
   return <div className="answerSummary"><span className="controlLabel">Deine Antwort</span><span>{value}</span></div>;
 }
+
+// The same continuation affordance in every learning state; callbacks stay with callers.
+export function ContinueButton({ children = 'Weiter', className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <button type="button" {...props} className={`continueButton ${className}`}><span>{children}</span><Icon name="forward"/></button>;
+}

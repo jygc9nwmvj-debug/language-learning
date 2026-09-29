@@ -106,10 +106,6 @@ fieldset { min-width: 0; border: 0; padding: 0; margin: var(--space-4) 0; } lege
 .isCondensed .practiceReference { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5); padding-bottom: var(--space-4); border-bottom: 1px solid var(--line); }
 .isCondensed .hanziHero { font-size: 3rem; }.isCondensed .meaning { font-size: var(--text-body); }
 .practiceNext { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-3); }
-.practiceNext > button { min-width: var(--touch); padding-inline: 0; background: transparent; color: var(--blue); border: 0; gap: var(--space-4); }
-.practiceNext > button::after { content: ""; width: var(--icon); height: var(--icon); background: currentColor; clip-path: polygon(0 46%,76% 46%,49% 19%,55% 13%,92% 50%,55% 87%,49% 81%,76% 54%,0 54%); }
-.speakingPractice[data-phase=reference]:has(.recordingPanel[data-state=ready]) .practiceNext > button { color: var(--ink-muted); }
-.practiceNext > button:disabled { background: transparent; color: var(--ink-muted); }
 .practiceNext .muted { flex: 1 1 150px; font-size: var(--text-meta); }
 .namePractice { display: grid; gap: var(--space-3); }.namePractice .personalSentence { font-size: 1.8rem; }
 .fieldLabel { display: grid; gap: var(--space-2); color: var(--ink-muted); font-size: var(--text-small); }
@@ -184,6 +180,78 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 }
 @media (max-width:359px) { .shell,.lessonShell { padding-inline: var(--space-4); }.lessonHeader { margin-bottom: var(--space-6); }.phraseForm[data-expanded=true] .phraseUnits { column-gap: var(--space-4); } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* v0.5 follow-up: emphasis follows the current interaction, not its accumulated history. */
+.continueButton { background: transparent; border: 0; color: var(--blue); min-width: var(--touch); padding-inline: 0; gap: var(--space-3); justify-self: start; }
+.continueButton:disabled { background: transparent; color: var(--ink-muted); }
+.continueButton .controlIcon { flex-shrink: 0; }
+.referenceContent { display: contents; }
+.practiceReference .phraseForm,.attentionIntroduction[data-focus=connect] .practiceReference .attentionFocus { display: contents; }
+.practiceReference .pronunciationMeaning { order: 1; }
+.practiceReference .referenceAudio { order: 2; }
+.practiceReference .unitExplanation { order: 3; }
+.speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .focusNote,.speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .muted { font-size: var(--text-meta); }
+.practiceReference > .referenceContent > .utilityButton { justify-self: start; }
+.practiceReference { gap: var(--space-2); }
+.referenceAudio { gap: var(--space-2); align-items: start; width: fit-content; max-width: 100%; }
+.referenceAudio .audioButton { min-height: var(--touch); padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-control); gap: var(--space-2); }
+.referenceAudio .audioControl[data-variant=slow] .audioButton { border-color: transparent; }
+.audioControl { justify-self: start; width: fit-content; }
+.audioCaption { font-size: var(--text-meta); }
+.practiceContext > summary { font-size: var(--text-meta); }
+.speakingPractice:not(.isCondensed) > .practiceContext > summary { display: none; }
+.practiceContext:not(:has(> :not(summary))) { display: none; }
+.practiceContext > .muted,.practiceContext > .focusNote,.practiceContext > .fieldLabel { margin-block: var(--space-2); }
+.isCondensed .practiceReference { display: grid; gap: var(--space-2); padding-bottom: 0; border: 0; }
+.isCondensed .attentionFocus { gap: var(--space-2); }
+.isCondensed .attentionFocus > .controlLabel { font-size: .75rem; }
+.isCondensed .pronunciationMeaning { font-size: var(--text-small); }
+.isCondensed .recordingPanel { padding-top: var(--space-3); }
+.speakingPractice[data-phase=practice] .recordingPanel,.speakingPractice[data-phase=review] .recordingPanel { border-top-color: var(--line-strong); }
+/* Commit-complete markers affect presentation only. Failed saves never set them. */
+.lessonCard:has([data-task-complete=true]) > .skipButton { display: none; }
+.lessonCard:has([data-task-complete=true]) > h2 { font-size: var(--text-small); color: var(--ink-muted); margin-bottom: var(--space-3); }
+.responseExercise,.toneRecall,.notationPractice { max-width: 34rem; }
+.responseExercise > form { gap: var(--space-3); }
+.responseExercise[data-task-complete=true],.resolvedExercise { row-gap: var(--space-3); }
+[data-task-complete=true] > .answerSummary { display: flex; flex-wrap: wrap; gap: var(--space-2); border: 0; padding: 0; align-items: baseline; }
+[data-task-complete=true] > .answerSummary > span:last-child { font-size: var(--text-small); }
+[data-outcome=success] > .feedback { border: 0; padding: 0; font-size: var(--text-small); }
+[data-task-complete=true] > .phraseForm,[data-task-complete=true] > .speakingPractice { margin-top: var(--space-4); }
+/* Keep the whole accessible as a compact context while its detail takes the stage. */
+.phraseForm[data-expanded=true] > .phraseUnits .unitHanzi { font-size: 2rem; }
+.phraseForm[data-expanded=true] > .phraseUnits .unitPinyin { font-size: var(--text-meta); }
+.phraseForm[data-expanded=true] > .phraseUnits { gap: var(--space-2) var(--space-4); }
+.unitExplanation { margin-top: var(--space-3); padding-top: var(--space-3); }
+.unitTitle strong { font-size: clamp(2.5rem,10vw,4rem); }
+.unitTitle .audioButton { padding-inline: var(--space-2); }
+.unitTitle .audioCaption { display: none; }
+.phraseForm[data-depth=character]:has(.unitExplanation details[open]) .unitTitle strong { font-size: 2rem; }
+.characterNote { display: block; font-size: var(--text-small); }
+.characterForm { display: block; font: 400 4rem/1.3 var(--font-hanzi); color: var(--blue); margin-bottom: var(--space-2); }
+.toneExamples > p { margin-bottom: var(--space-3); }
+.toneLab[data-focus=examples] > .toneExamples > summary { display: none; }
+.toneLab:not([data-focus=examples]) .toneExamples { border-bottom: 1px solid var(--line); padding-bottom: var(--space-2); }
+.toneLab:not([data-focus=examples]) .toneRow { min-height: 56px; }
+.toneLab:not([data-focus=examples]) .toneLanguage strong { font-size: 1.5rem; }
+.toneComparison { max-width: 34rem; }
+.toneRow { justify-content: flex-start; }.toneLanguage { flex: 0 1 auto; min-width: 190px; }
+.toneQuiz { display: grid; grid-template-columns: 1fr; width: fit-content; max-width: 100%; border-top: 0; padding-top: var(--space-2); }
+.toneQuiz > * { grid-column: 1 !important; }
+.questionAudio { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.questionAudio h3 { font-size: var(--text-prompt); }
+.questionAudio .audioCaption { display: none; }
+.notationExample,.notationEquation { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
+.notationExample { color: var(--ink-muted); font-size: 1.5rem; }
+.notationEquation { font-size: clamp(1.75rem,6vw,2.5rem); color: var(--blue); }
+.notationEquation .fieldLabel { flex: 0 1 8rem; min-width: 0; }
+.notationEquation input { font-size: 1.75rem; }
+.notationResponse { overflow-wrap: anywhere; max-width: 100%; }
+.notationCorrect { white-space: nowrap; }
+.notationPractice { border-top: 0; padding-top: var(--space-2); gap: var(--space-3); }
+.toneLab > .recordingPanel { max-width: 34rem; margin-top: var(--space-3); }
+@media (max-width:359px) { .toneLanguage { min-width: 0; flex: 1; }.questionAudio h3 { font-size: 1.25rem; } }
+
 .worksheet { display: none; }
 @page { size: A4 portrait; margin: 16mm; }
 @media print {

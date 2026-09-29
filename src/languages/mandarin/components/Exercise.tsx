@@ -1,3 +1,4 @@
+import { ContinueButton } from '../../../core/exercises/Controls';
 import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
 import { PhraseForm, ExplanationText } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
@@ -59,7 +60,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     } finally { submitting.current = false; }
   }
   if (introItem && onIntroduce) return <AttentionIntroduction item={introItem} script={script} history={attentionHistory} name={name} setName={setName} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
-  if (task.kind === 'tone-recall' && attentionHistory && !hasToneAttention(item, attentionHistory) && onIntroduce) return <div className="stepStack"><p>Diesen Ton schauen wir zuerst gemeinsam an.</p><ToneFocus item={item} />{audio()}<button disabled={disabled} onClick={() => void onIntroduce('tone_attention_confirmed', { item: item.id, toneNumbers: item.toneNumbers, attentionVersion: 1 }).then(onNext).catch(() => {})}>Weiter</button></div>;
+  if (task.kind === 'tone-recall' && attentionHistory && !hasToneAttention(item, attentionHistory) && onIntroduce) return <div className="stepStack"><p>Diesen Ton schauen wir zuerst gemeinsam an.</p><ToneFocus item={item} />{audio()}<ContinueButton disabled={disabled} onClick={() => void onIntroduce('tone_attention_confirmed', { item: item.id, toneNumbers: item.toneNumbers, attentionVersion: 1 }).then(onNext).catch(() => {})}>Weiter</ContinueButton></div>;
   if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab notationPractice={task.notationPractice!} familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
@@ -75,14 +76,14 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script} /></p></details>}
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
-  if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise">
+  if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise" data-task-complete={answered} data-outcome={feedbackKind}>
     <AnswerSummary value={input}/>
     <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>
-    <SpeakingPractice compact disabled={disabled} onEvent={onEvent} onNext={onNext}
+    <SpeakingPractice disabled={disabled} onEvent={onEvent} onNext={onNext}
       reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>}
       audio={<>{audio()}{item.slowAudio && audio(true)}</>} />
   </div>;
-  return <div className="stepStack">
+  return <div className="stepStack responseExercise" data-task-complete={answered} data-outcome={answered ? feedbackKind : undefined}>
     {task.kind === 'listen' && audio()}
     {task.kind === 'read' && form(false,false)}
     {answered ? <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
@@ -93,6 +94,6 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="buttonRow">{audio()}{item.slowAudio && audio(true)}</div></>}
     {answered && item.exploration && form(false,true)}
-    {answered && <button type="button" disabled={disabled} onClick={onNext}>{ui.continue}</button>}
+    {answered && <ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton>}
   </div>;
 }
