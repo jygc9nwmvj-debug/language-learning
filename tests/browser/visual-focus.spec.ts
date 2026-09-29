@@ -27,7 +27,7 @@ test('resolved recall changes focus and removes only its completed skip action',
 });
 test('tone examples recede for quiz, audio stays beside question, notation resolves visually',async({page},info)=>{
  await page.setViewportSize({width:1280,height:900});await plan(page,'tones');
- for(const n of [1,2,3,4])await page.getByRole('button',{name:`Ton ${n}`,exact:true}).click();
+ for(const n of [1,2,3,4]){await page.getByRole('button',{name:`Ton ${n}`,exact:true}).click();await expect(page.locator('.toneLab > [role=status]')).toContainText(n<4 ? `(${n}/4)` : 'Alle vier Töne gehört');}
  await page.getByRole('button',{name:'Bedeutungen aufdecken',exact:true}).click();await expect(page.locator('.toneComparison')).toBeVisible();
  for(const n of [2,4,3]){
   const play=page.locator('.toneQuiz').getByRole('button',{name:'Anhören',exact:true});
@@ -61,4 +61,40 @@ test('speaking UI groups reference controls and folds guidance only after record
  await page.screenshot({path:`work/focus-${info.project.name}-speaking.png`,fullPage:true,animations:'disabled'});
  await page.getByText('Hinweise zum Ausdruck',{exact:true}).click();await expect(page.locator('.practiceContext .focusNote')).toBeVisible();
  await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();
+});
+
+
+test('audio stimulus is primary and reference help stays a coherent secondary pair',async({page},info)=>{
+ await page.setViewportSize({width:1280,height:900});await plan(page,'hear-nihao','nihao');
+ const stimulus=page.locator('.responseExercise > .audioControl');
+ await expect(stimulus).toHaveAttribute('data-emphasis','stimulus');
+ const play=stimulus.getByRole('button',{name:'Anhören',exact:true});
+ expect((await play.boundingBox())!.height).toBeGreaterThanOrEqual(72);
+ expect((await play.locator('svg').boundingBox())!.width).toBe(52);
+ await play.focus();await expect(play).toBeFocused();await page.keyboard.press('Enter');
+ await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('Hallo');
+ await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toBeEnabled();
+ await page.screenshot({path:`work/audio-final-${info.project.name}-stimulus.png`,fullPage:true});
+ await page.getByRole('button',{name:'Hilfe zeigen',exact:true}).click();
+ const pair=page.getByRole('group',{name:'Referenz anhören'});await expect(pair.locator('button')).toHaveCount(2);
+ await page.setViewportSize({width:320,height:740});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+test('reference pair hierarchy and introduction caption remain semantic',async({page},info)=>{
+ await page.setViewportSize({width:390,height:844});await plan(page,'meet-xiexie','xiexie');
+ const connect=page.getByRole('button',{name:'Bedeutung dazunehmen',exact:true});
+ await connect.click();
+ await expect(page.locator('.pronunciationMeaning')).toBeVisible();
+ await expect(page.getByText('So verwendest du den Ausdruck',{exact:true})).toHaveCount(0);
+ const pair=page.getByRole('group',{name:'Referenz anhören'}), normal=pair.locator('[data-variant=normal] button'),slow=pair.getByRole('button',{name:'Langsam gesprochen',exact:true});
+ expect((await normal.locator('svg').boundingBox())!.width).toBe(32);
+ expect((await slow.locator('svg').boundingBox())!.width).toBe(22);
+ for(const button of [normal,slow]){
+  expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(48);
+  expect(await button.evaluate(e=>getComputedStyle(e).borderTopWidth)).toBe('0px');
+ }
+ const a=(await normal.boundingBox())!,b=(await slow.boundingBox())!;expect(b.x-a.x-a.width).toBeLessThanOrEqual(24);
+ await slow.click();await expect(pair.locator('[data-variant=slow]')).toHaveAttribute('data-playing','true');
+ await page.screenshot({path:`work/audio-final-${info.project.name}-pair.png`,fullPage:true});
+ await page.setViewportSize({width:320,height:740});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

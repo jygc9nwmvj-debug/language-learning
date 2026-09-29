@@ -44,13 +44,13 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
       await onNext();
     });
   }
-  const audio = <><AudioButton src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
+  const audio = <><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
   return <div className="attentionIntroduction" data-focus={phase}>
     <SpeakingPractice allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
       {phase==='hear'&&<><h3>Erst nur hören.</h3><p className="muted">{knownParts?'Die Wörter kennst du schon. Achte auf ihren Klang zusammen.':'Lerne den Klang kennen. Die Bedeutung kommt gleich dazu.'}</p></>}
       {phase==='tone'&&<ToneFocus item={item} />}
       {phase==='hanzi'&&<><p className="controlLabel">Jetzt nur das Schriftbild</p><p className="hanziHero" lang="zh">{item[script]}</p><p className="focusNote">Schau auf Form und Anordnung.{item.introduction.role==='writing'?' Dieses Zeichen übst du später auch beim Schreiben.':' Hier geht es ums Wiedererkennen, nicht ums Schreiben.'}</p></>}
-      {phase==='connect'&&<><p className="controlLabel">{knownParts?'Bekannte Wörter, neue Verbindung':missing.includes('hanzi')?'Verbinde Schrift, Klang und Bedeutung':'So verwendest du den Ausdruck'}</p><PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
+      {phase==='connect'&&<>{(knownParts || missing.includes('hanzi')) && <p className="controlLabel">{knownParts?'Bekannte Wörter, neue Verbindung':'Verbinde Schrift, Klang und Bedeutung'}</p>}<PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
     </div>}>
       {phase==='hear'&&<button className="utilityButton" disabled={disabled||saving} onClick={()=>{stopReferenceAudio();setPhase(followingAudio);}}>Schrift ohne Warten ansehen</button>}
       {phase==='tone'&&<button disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('tone_attention_confirmed',{item:item.id,toneNumbers:item.toneNumbers,attentionVersion:1});setPhase(formPhase);})}>{formPhase==='hanzi'?'Schriftbild ansehen':'Bedeutung dazunehmen'}</button>}

@@ -102,7 +102,7 @@ fieldset { min-width: 0; border: 0; padding: 0; margin: var(--space-4) 0; } lege
 .audioControl > span { font-size: var(--text-meta); color: var(--error-ink); }
 .audioButton { border-radius: var(--radius-control); color: var(--blue); }
 .audioControl[data-variant=slow] .audioButton { color: var(--ink-muted); }
-.audioControl[data-playing=true] .audioButton { color: var(--blue); background: var(--success-surface); }
+
 .isCondensed .practiceReference { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5); padding-bottom: var(--space-4); border-bottom: 1px solid var(--line); }
 .isCondensed .hanziHero { font-size: 3rem; }.isCondensed .meaning { font-size: var(--text-body); }
 .practiceNext { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-3); }
@@ -193,11 +193,25 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .focusNote,.speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .muted { font-size: var(--text-meta); }
 .practiceReference > .referenceContent > .utilityButton { justify-self: start; }
 .practiceReference { gap: var(--space-2); }
-.referenceAudio { gap: var(--space-2); align-items: start; width: fit-content; max-width: 100%; }
-.referenceAudio .audioButton { min-height: var(--touch); padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-control); gap: var(--space-2); }
-.referenceAudio .audioControl[data-variant=slow] .audioButton { border-color: transparent; }
+/* One audio vocabulary: exposed play silhouette, no button container.
+   Stimuli are primary; paired slow playback remains a distinct, full-size target. */
+.referenceAudio { gap: var(--space-3); align-items: center; width: fit-content; max-width: 100%; }
 .audioControl { justify-self: start; width: fit-content; }
-.audioCaption { font-size: var(--text-meta); }
+.audioControl .audioButton { min-width: 48px; min-height: 52px; padding: 4px 6px; gap: 10px; border: 0; border-radius: 0; background: transparent; color: var(--blue); }
+.audioButton .controlIcon { width: 32px; height: 32px; flex: 0 0 auto; }
+.audioCaption { font-size: var(--text-small); font-weight: 500; }
+.audioControl[data-emphasis=stimulus] .audioButton { min-height: 72px; gap: 14px; }
+.audioControl[data-emphasis=stimulus] .controlIcon { width: 52px; height: 52px; }
+.audioControl[data-emphasis=stimulus] .audioCaption { font-size: 1.25rem; }
+.audioControl[data-variant=slow] .audioButton { min-height: 48px; color: var(--ink-muted); }
+.audioControl[data-variant=slow] .controlIcon { width: 22px; height: 22px; }
+.audioControl[data-variant=slow] .audioCaption { font-size: var(--text-meta); font-weight: 400; }
+.audioControl .audioButton:hover:not(:disabled) { background: transparent; color: var(--green); }
+.audioButton:hover:not(:disabled) .audioCaption { text-decoration: underline; text-underline-offset: 5px; }
+.audioControl[data-playing=true] .audioButton { color: var(--blue); }
+.audioControl[data-playing=true] .audioCaption { text-decoration: underline; text-underline-offset: 5px; }
+.audioControl .audioButton:disabled { background: transparent; color: var(--ink-muted); }
+
 .practiceContext > summary { font-size: var(--text-meta); }
 .speakingPractice:not(.isCondensed) > .practiceContext > summary { display: none; }
 .practiceContext:not(:has(> :not(summary))) { display: none; }
@@ -240,7 +254,7 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .toneQuiz > * { grid-column: 1 !important; }
 .questionAudio { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
 .questionAudio h3 { font-size: var(--text-prompt); }
-.questionAudio .audioCaption { display: none; }
+
 .notationExample,.notationEquation { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
 .notationExample { color: var(--ink-muted); font-size: 1.5rem; }
 .notationEquation { font-size: clamp(1.75rem,6vw,2.5rem); color: var(--blue); }

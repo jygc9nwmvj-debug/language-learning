@@ -12,7 +12,7 @@ export function acquireAudioCapture() {
   return () => { if (released) return; released = true; captures--; window.dispatchEvent(new Event('audio-capture')); };
 }
 export function stopReferenceAudio(except?: HTMLAudioElement | null) { active?.pause(); document.querySelectorAll('audio').forEach(a => { if (a !== except) a.pause(); }); }
-export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, onPlaybackChange, onEnded }: { src: string; label?: string; onPlay?: () => void; autoPlay?: boolean; onPlaybackChange?: (playing: boolean) => void; onEnded?: () => void }) {
+export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, emphasis = 'reference', onPlaybackChange, onEnded }: { src: string; emphasis?: 'reference' | 'stimulus'; label?: string; onPlay?: () => void; autoPlay?: boolean; onPlaybackChange?: (playing: boolean) => void; onEnded?: () => void }) {
   const ref = useRef<HTMLAudioElement | null>(null);
   const callbacks = useRef({ onPlay, onPlaybackChange, onEnded }); callbacks.current = { onPlay, onPlaybackChange, onEnded };
   const blocked = useSyncExternalStore(subscribeCapture, () => captures > 0, () => false);
@@ -44,5 +44,5 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
   }, [src, autoPlay]);
   const canPause = autoPlay && playing;
   const accessibleLabel = canPause ? 'Vorlage pausieren' : label;
-  return <span className="audioControl" data-playing={playing} data-variant={label === ui.slow ? 'slow' : 'normal'}><IconButton className="audioButton" icon={canPause ? 'pause' : 'play'} label={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}><span className="audioCaption">{canPause ? 'Pause' : label === ui.slow ? 'Langsam' : label === ui.listen ? 'Anhören' : label}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
+  return <span className="audioControl" data-emphasis={emphasis} data-playing={playing} data-variant={label === ui.slow ? 'slow' : 'normal'}><IconButton className="audioButton" icon={canPause ? 'pause' : 'play'} label={accessibleLabel} disabled={blocked} onClick={() => canPause ? ref.current?.pause() : void play()}><span className="audioCaption">{canPause ? 'Pause' : label === ui.slow ? 'Langsam' : label === ui.listen ? 'Anhören' : label}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
 }

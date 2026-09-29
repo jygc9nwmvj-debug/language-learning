@@ -38,7 +38,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const [writingRecall] = useState(() => !!task.recall && (!attentionHistory || introduced(item,'writing',script,attentionHistory)));
   const known = !!item && !!attentionHistory && introduced(item,'meaning',script,attentionHistory);
   const effectiveAssessment = task.assess && (attentionHistory ? attentionAssessment(task.assess, item, attentionHistory) : task.assess);
-  const audio = (slow = false) => <AudioButton src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
+  const audio = (slow = false, stimulus = false) => <AudioButton emphasis={stimulus ? 'stimulus' : 'reference'} src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
   const reveal = () => { setHelp(true); setPinyinVisible(true); onEvent('pinyin_reveal'); };
   async function check() {
     if (submitting.current || answered) return; submitting.current = true;
@@ -84,7 +84,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       audio={<>{audio()}{item.slowAudio && audio(true)}</>} />
   </div>;
   return <div className="stepStack responseExercise" data-task-complete={answered} data-outcome={answered ? feedbackKind : undefined}>
-    {task.kind === 'listen' && audio()}
+    {task.kind === 'listen' && audio(false, !answered)}
     {task.kind === 'read' && form(false,false)}
     {answered ? <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
@@ -92,7 +92,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>}
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
-    {(help && !answered) && <>{reference}<div className="buttonRow">{audio()}{item.slowAudio && audio(true)}</div></>}
+    {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
     {answered && item.exploration && form(false,true)}
     {answered && <ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton>}
   </div>;
