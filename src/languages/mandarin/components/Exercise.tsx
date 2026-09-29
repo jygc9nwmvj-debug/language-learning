@@ -102,7 +102,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     </form>}
     {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
-    {needsCorrection ? <div className="reference">
+    {needsCorrection ? <div className="reference correctionReference">
       {form(true,true)}<p>{item.meaning.de}</p>
       <div className="referenceAudio" role="group" aria-label="Korrekte Zielphrase anhören">
         <AudioButton src={item.audio} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'natural' })} />
