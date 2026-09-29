@@ -2,10 +2,25 @@ import Dexie, { type Table } from 'dexie';
 import { z } from 'zod';
 import { relationSchema, relationId, updateRelation, type Attempt, type Relation } from './model.ts';
 
+// UI feedback belongs to the current occurrence, not to the research log.
+const feedbackSchema = z.object({
+  value: z.string(), message: z.string(), kind: z.enum(['success', 'attention', 'error']),
+  help: z.boolean().optional(), result: z.enum(['success','failure','unsure']).optional(),
+  ink: z.array(z.string()).optional(), inkSize: z.number().positive().optional(), stage: z.number().int().nonnegative().optional(),
+  mode: z.string().optional(), selfReport: z.boolean().optional(),
+});
+export type FeedbackEvent = { type: string; detail: Record<string, string | number | boolean> };
+export type Checkpoint = (step: string, feedback?: SavedFeedback, events?: FeedbackEvent[]) => Promise<void>;
+export type SavedFeedback = z.infer<typeof feedbackSchema>;
+const evaluationSchema = z.object({
+  index: z.number().int().nonnegative(), taskId: z.string(), step: z.string(),
+  results: z.record(z.string(), feedbackSchema),
+});
+export type SavedEvaluation = z.infer<typeof evaluationSchema>;
 export const sessionSchema = z.object({
   id: z.string(), plannerVersion: z.literal('d1').optional(), plan: z.array(z.string()).max(100), index: z.number().int().nonnegative(),
   completed: z.boolean(), startedAt: z.number(), updatedAt: z.number(),
-  script: z.enum(['hant', 'hans']),
+  script: z.enum(['hant', 'hans']), evaluation: evaluationSchema.optional(),
 }).refine(s => s.plan.length > 0 && s.index < s.plan.length, 'Invalid session cursor');
 export type Session = z.infer<typeof sessionSchema>;
 const eventSchema = z.object({

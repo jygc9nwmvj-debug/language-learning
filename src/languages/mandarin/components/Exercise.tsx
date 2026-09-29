@@ -2,7 +2,7 @@ import { ContinueButton } from '../../../core/exercises/Controls';
 import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
 import { PhraseForm, ExplanationText } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
-import type { ResearchEvent } from '../../../core/progress/db';
+import type { ResearchEvent, SavedFeedback, SavedEvaluation, Checkpoint } from '../../../core/progress/db';
 import { hasToneAttention, attentionAssessment } from '../attention';
 import { AttentionIntroduction, ToneFocus, type Introduce } from './AttentionIntroduction';
 import { useRef, useState } from 'react';
@@ -15,31 +15,34 @@ import { ui } from '../../../core/i18n/de';
 import { WritingExercise } from './WritingExercise';
 import { NumberSequence } from './NumberSequence';
 import { ToneLab, ToneRecall } from './ToneLab';
-export type Evidence = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
-export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce }: {
+export type Evidence = { feedback?: SavedFeedback; part?: string; result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
+export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce, savedEvaluation, onCheckpoint }: {
+  savedEvaluation?: SavedEvaluation; onCheckpoint?: Checkpoint;
   attentionHistory?: ResearchEvent[]; onIntroduce?: Introduce;
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
   onEvent: (type: string, detail?: Record<string, string | number | boolean>) => void;
-  onAttempt: (e: Evidence) => Promise<void>; onTone: (tone: number, correct: boolean) => Promise<void>;
+  onAttempt: (e: Evidence) => Promise<void>; onTone: (tone: number, correct: boolean, part: string, feedback: SavedFeedback) => Promise<void>;
   onNext: () => void | Promise<void>; disabled: boolean;
 }) {
-  const [pinyinVisible,setPinyinVisible] = useState(false);
-  const [help, setHelp] = useState(false); const [input, setInput] = useState('');
+  const [restored] = useState(savedEvaluation?.results.main);
+  const revealed = useRef(!!restored?.help);
+  const [pinyinVisible,setPinyinVisible] = useState(!!restored?.help);
+  const [help, setHelp] = useState(!!restored?.help); const [input, setInput] = useState(restored?.value ?? '');
   const [referencePlaying, setReferencePlaying] = useState(false);
-  const [heard, setHeard] = useState(false); const [feedback, setFeedback] = useState('');
-  const [answered, setAnswered] = useState(false);
-  const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>('success');
+  const [heard, setHeard] = useState(false); const [feedback, setFeedback] = useState(restored?.message ?? '');
+  const [answered, setAnswered] = useState(!!restored);
+  const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>(restored?.kind ?? 'success');
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
   const submitting = useRef(false), writingRecorded = useRef(false);
   const [introItem] = useState(() => attentionHistory && onIntroduce ? introductionForTask(task,script,attentionHistory) : undefined);
   const item = itemMap.get(task.itemId ?? '') as Item;
   // Freeze the writing mode for this occurrence: saving introduction evidence must not
   // replace a running guided sequence with its one-stage recall configuration.
-  const [writingRecall] = useState(() => !!task.recall && (!attentionHistory || introduced(item,'writing',script,attentionHistory)));
+  const [writingRecall] = useState(() => restored?.stage !== undefined && restored.stage > 0 ? false : !!task.recall && (!attentionHistory || introduced(item,'writing',script,attentionHistory)));
   const known = !!item && !!attentionHistory && introduced(item,'meaning',script,attentionHistory);
   const effectiveAssessment = task.assess && (attentionHistory ? attentionAssessment(task.assess, item, attentionHistory) : task.assess);
-  const audio = (slow = false, stimulus = false) => <AudioButton emphasis={stimulus ? 'stimulus' : 'reference'} src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !help) { setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
-  const reveal = () => { setHelp(true); setPinyinVisible(true); onEvent('pinyin_reveal'); };
+  const audio = (slow = false, stimulus = false) => <AudioButton emphasis={stimulus ? 'stimulus' : 'reference'} src={(slow ? item.slowAudio : item.audio)!} label={slow ? ui.slow : ui.listen} autoPlay={task.kind === 'encounter' && !slow} onPlaybackChange={task.kind === 'encounter' ? setReferencePlaying : undefined} onPlay={() => { setHeard(true); if (task.kind === 'encounter' && !revealed.current) { revealed.current = true; setHelp(true); onEvent('pinyin_reveal'); } onEvent(slow ? 'slow_audio' : 'audio_replay'); }} />;
+  const reveal = () => { setHelp(true); setPinyinVisible(true); if (!revealed.current) { revealed.current = true; onEvent('pinyin_reveal'); } };
   async function check() {
     if (submitting.current || answered) return; submitting.current = true;
     try {
@@ -52,19 +55,24 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
         } else result = { result: item.answers.some(a => normalizeText(a) === normalizeText(input)) ? 'success' : 'failure', assisted: help };
         setRetryEvidence(result);
       }
-      await onAttempt(result); setRetryEvidence(null);
-      setFeedback(task.kind === 'recall' ? answerFeedback(interpreted ?? result.detail as Interpretation) : result.result === 'success' ? 'Richtig.' : `Die Bedeutung ist: ${item.meaning.de}.`);
       const interpretation = interpreted ?? result.detail as Interpretation | undefined;
-      setFeedbackKind(result.result === 'failure' ? 'error' : interpretation && !interpretation.fullyCorrect ? 'attention' : 'success');
+      const feedback: SavedFeedback = result.feedback ?? {
+        value: input, help,
+        message: task.kind === 'recall' ? answerFeedback(interpretation!) : result.result === 'success' ? 'Richtig.' : `Die Bedeutung ist: ${item.meaning.de}.`,
+        kind: result.result === 'failure' ? 'error' : interpretation && !interpretation.fullyCorrect ? 'attention' : 'success',
+      };
+      result = { ...result, feedback }; setRetryEvidence(result);
+      await onAttempt(result); setRetryEvidence(null);
+      setFeedback(feedback.message); setFeedbackKind(feedback.kind);
       setAnswered(true);
     } finally { submitting.current = false; }
   }
-  if (introItem && onIntroduce) return <AttentionIntroduction item={introItem} script={script} history={attentionHistory} name={name} setName={setName} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
+  if (!restored && introItem && onIntroduce) return <AttentionIntroduction item={introItem} script={script} history={attentionHistory} name={name} setName={setName} disabled={disabled} onIntroduce={onIntroduce} onEvent={onEvent} onNext={onNext} />;
   if (task.kind === 'tone-recall' && attentionHistory && !hasToneAttention(item, attentionHistory) && onIntroduce) return <div className="stepStack"><p>Diesen Ton schauen wir zuerst gemeinsam an.</p><ToneFocus item={item} />{audio()}<ContinueButton disabled={disabled} onClick={() => void onIntroduce('tone_attention_confirmed', { item: item.id, toneNumbers: item.toneNumbers, attentionVersion: 1 }).then(onNext).catch(() => {})}>Weiter</ContinueButton></div>;
-  if(task.kind==='sequence')return <NumberSequence task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
-  if (task.kind === 'tone-recall') return <ToneRecall item={item} task={task} onResult={correct => onAttempt({ result: correct ? 'success' : 'failure', assisted: false })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'tones') return <ToneLab notationPractice={task.notationPractice!} familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'writing') return <WritingExercise itemId={task.itemId!} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, detail: { mode: r.mode, selfReport: r.selfReport, writingRecall } }); writingRecorded.current = true; } }} />;
+  if(task.kind==='sequence')return <NumberSequence restored={restored} task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
+  if (task.kind === 'tone-recall') return <ToneRecall restored={restored} item={item} task={task} onResult={(correct, feedback) => onAttempt({ result: correct ? 'success' : 'failure', assisted: false, feedback })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
+  if (task.kind === 'tones') return <ToneLab saved={savedEvaluation} onCheckpoint={onCheckpoint} notationPractice={task.notationPractice!} familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
+  if (task.kind === 'writing') return <WritingExercise restored={restored} itemId={task.itemId!} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, feedback: { value: '', message: r.result === 'success' ? 'Geschafft. Die Strichfolge ist vollständig.' : 'Danke für deine Einschätzung. Wir gehen weiter.', kind: r.result === 'success' ? 'success' : 'attention', result: r.result, help: r.assisted, mode: r.mode, selfReport: r.selfReport, ink: r.ink, inkSize: r.inkSize, stage: r.stage }, detail: { mode: r.mode, selfReport: r.selfReport, writingRecall } }); writingRecorded.current = true; } }} />;
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;

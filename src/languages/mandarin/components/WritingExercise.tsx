@@ -1,3 +1,4 @@
+import type { SavedFeedback } from '../../../core/progress/db';
 import { ContinueButton } from '../../../core/exercises/Controls';
 import { IconButton } from '../../../core/exercises/Controls';
 import { optionalWritingEvent } from '../../../core/progress/optionalPractice';
@@ -15,30 +16,31 @@ function writingColor(token: string, alpha?: number) {
 }
 
 type Detail = Record<string, string | number | boolean>;
-export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean };
-export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, disabled }: {
-  itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
+export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean; ink?: string[]; inkSize?: number; stage?: number };
+export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, disabled, restored }: {
+  restored?: SavedFeedback; itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
   onComplete: (result: WritingResult) => Promise<void>; onNext: () => void | Promise<void>; disabled: boolean;
 }) {
   // The existing fixed worksheet shows these characters, including its context line.
   const worksheetHasTarget = ['hao','ni','wo'].includes(itemId);
   const model = targets[itemId as keyof typeof targets];
   const levels = recall ? [delayed] : model.levels;
-  const [stage, setStage] = useState(0), [revision, setRevision] = useState(0);
-  const [demo, setDemo] = useState(!recall), [boosted, setBoosted] = useState(false);
-  const [mode, setMode] = useState<'screen' | 'paper'>('screen');
-  const [phase, setPhase] = useState<'demo' | 'preview' | 'writing' | 'success' | 'saved' | 'save_error'>(recall ? 'writing' : 'demo');
-  const [ink, setInk] = useState<string[]>([]), [wrongInk, setWrongInk] = useState('');
+  const [stage, setStage] = useState(restored?.stage ?? 0), [revision, setRevision] = useState(0);
+  const [demo, setDemo] = useState(!restored && !recall), [boosted, setBoosted] = useState(false);
+  const [mode, setMode] = useState<'screen' | 'paper'>(restored?.mode === 'paper' ? 'paper' : 'screen');
+  const [phase, setPhase] = useState<'demo' | 'preview' | 'writing' | 'success' | 'saved' | 'save_error'>(restored ? 'saved' : recall ? 'writing' : 'demo');
+  const [ink, setInk] = useState<string[]>(restored?.ink ?? []), [wrongInk, setWrongInk] = useState('');
   const [reference, setReference] = useState(false), [compared, setCompared] = useState(false);
-  const [status, setStatus] = useState(''), [size, setSize] = useState(320);
+  const [status, setStatus] = useState(restored?.message ?? ''), [size, setSize] = useState(320);
   const target = useRef<HTMLDivElement>(null), writer = useRef<HanziWriter | null>(null);
   const callbacks = useRef({ onEvent, onComplete }); callbacks.current = { onEvent, onComplete };
   const stats = useRef({ errors: 0, hints: 0, correctStrokes: 0, templateUsed: false, demoUsed: !recall });
   const optionalRepeat = useRef(false);
   const seenDemo = useRef(!recall), resetNotice = useRef('');
-  const assisted = useRef(!recall), nextStroke = useRef(0), lastResult = useRef<WritingResult | null>(null);
+  const assisted = useRef(!recall), nextStroke = useRef(0), lastResult = useRef<WritingResult | null>(restored ? { result: restored.result ?? 'unsure', assisted: !!restored.help, mode: restored.mode ?? 'screen', selfReport: !!restored.selfReport } : null);
   const hintAction = useRef<() => void>(() => {}), finishAction = useRef<(result: WritingResult['result']) => void>(() => {});
   const level = levels[stage];
+  const drawn = useRef<string[]>(restored?.ink ?? []);
   const detail = (extra: Detail = {}): Detail => ({ itemId, optionalPractice: optionalRepeat.current, scaffold: level.id, category: level.category, stage, mode, ...stats.current, errors: mode === 'paper' ? 'unknown' : stats.current.errors, ...extra });
   async function save(result: WritingResult) {
     lastResult.current = result;
@@ -46,12 +48,13 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     catch { setPhase('save_error'); setStatus('Noch nicht gespeichert. Bitte erneut versuchen.'); }
   }
   useEffect(() => {
+    if (restored && !optionalRepeat.current) { setSize(restored.inkSize ?? target.current!.parentElement!.clientWidth); return; }
     const node = target.current!;
     let active = true, completed = false;
     const timers: number[] = [];
     const later = (fn: () => void, ms: number) => { timers.push(window.setTimeout(() => { if (active) fn(); }, ms)); };
     const width = node.parentElement!.clientWidth;
-    setSize(width); setInk([]); setWrongInk(''); setReference(false); setCompared(false);
+    setSize(width); drawn.current = []; setInk([]); setWrongInk(''); setReference(false); setCompared(false);
     nextStroke.current = 0;
     stats.current = { errors: 0, hints: 0, correctStrokes: 0, templateUsed: false, demoUsed: seenDemo.current || boosted };
     const outline = writingColor('--writing-ink', boosted ? .38 : level.alpha);
@@ -81,7 +84,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
       emit('writing_stage_result', { result, selfReport, assisted: assisted.current });
       later(() => {
         if (stage + 1 < levels.length) { seenDemo.current = false; setBoosted(false); setStage(stage + 1); }
-        else void save({ result, assisted: assisted.current, mode, selfReport });
+        else void save({ result, assisted: assisted.current, mode, selfReport, ink: drawn.current, inkSize: width, stage });
       }, 1100);
     }
     finishAction.current = finish;
@@ -94,7 +97,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
         onCorrectStroke: data => {
           if (!active || completed) return;
           // Public callback returns the actual pointer geometry in display coordinates.
-          setInk(paths => [...paths, data.drawnPath.pathString]); setWrongInk('');
+          drawn.current.push(data.drawnPath.pathString); setInk([...drawn.current]); setWrongInk('');
           stats.current.correctStrokes++; nextStroke.current = data.strokeNum + 1;
           emit('writing_stroke_correct', { stroke: data.strokeNum });
           setStatus(`Strich ${data.strokeNum + 1} von ${model.data.strokes.length} angekommen.`);

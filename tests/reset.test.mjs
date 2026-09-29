@@ -7,6 +7,8 @@ test('restart clears all learner tables, backup restores the current session and
  await db.sessions.put({id:'prior',plannerVersion:'d1',plan:['meet-nihao'],index:0,completed:false,startedAt:1,updatedAt:2,script:'hans'});
  await db.preferences.put({key:'name',value:'Test'});
  await db.table('itemProgress').put({id:'legacy'});
+ const evaluation={index:0,taskId:'meet-nihao',step:'main',results:{main:{value:'ni3 hao3',message:'Richtig.',kind:'success',help:false}}};
+ await db.sessions.update('prior',{evaluation});
  const backup=await exportLearningState();
  const last=db.tables.at(-1), clear=last.clear;
  last.clear=async()=>{throw Error('Storage failure');};
@@ -16,6 +18,7 @@ test('restart clears all learner tables, backup restores the current session and
  for(const table of db.tables) assert.equal(await table.count(),0);
  await importLearningState(backup,new Set(['meet-nihao']));
  assert.equal((await db.sessions.get('prior')).script,'hans');
+ assert.deepEqual((await db.sessions.get('prior')).evaluation,evaluation);
  assert.equal((await db.preferences.get('name')).value,'Test');
  await db.delete();
 });

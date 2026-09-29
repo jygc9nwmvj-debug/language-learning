@@ -8,7 +8,7 @@ import { stopReferenceAudio } from '../core/exercises/AudioButton';
 import { previousObjectIndex, inspectionEvent } from '../core/progress/optionalPractice';
 import { IconButton } from '../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
-import { db, resetLearningState, exportLearningState, importLearningState, logEvent, recordAttempt, type Session, type ResearchEvent } from '../core/progress/db';
+import { db, resetLearningState, exportLearningState, importLearningState, logEvent, recordAttempt, type Session, type ResearchEvent, type SavedFeedback, type FeedbackEvent } from '../core/progress/db';
 import { ui } from '../core/i18n/de';
 import { content, taskMap } from '../languages/mandarin/content';
 import { composeContinuous, shouldResume, exposure } from '../languages/mandarin/continuous';
@@ -133,7 +133,7 @@ export function LessonRunner() {
     if (!session || !task || inspecting || !interaction.canAdvance()) return;
     await mutation(async () => {
       const completed = session.index >= session.plan.length - 1;
-      const updated = { ...session, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
+      const updated = { ...session, evaluation: undefined, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
       await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
         await db.sessions.put(updated); await db.preferences.put({ key: 'name', value: name.trim() });
         await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { ...timing(), activeMs: activeTime(), durationMs: Date.now() - taskStarted.current } });
@@ -150,12 +150,39 @@ export function LessonRunner() {
       const objectId = tone ? `cmn:tone:${tone}` : objectFor(task, session.script);
       const target = tone ? 'perception' as const : task.target!;
       const plan = !tone && ['listen', 'read', 'recall'].includes(task.kind) && (e.result !== 'success' || assisted) ? withSpacedRetry(session.plan, session.index, task.id) : session.plan;
-      const updated = { ...session, plan, updatedAt: Date.now() };
+      let updated = { ...session, plan, updatedAt: Date.now() };
       await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
+        const stored = await db.sessions.get(session.id);
+        if (stored && stored.index !== session.index) { updated = stored; return; }
+        const prior = stored?.evaluation;
+        const current = prior?.index === session.index && prior.taskId === task.id ? prior : undefined;
+        const part = e.part ?? 'main';
+        // Durable guard also covers a reload/second tab with a stale component.
+        if (e.feedback && current?.results[part]) { updated = stored!; return; }
+        if (e.feedback) updated = { ...updated, evaluation: { index: session.index, taskId: task.id,
+          step: part, results: { ...current?.results, [part]: e.feedback } } };
         await recordAttempt({ objectId, target, result: e.result, assisted, sessionId: session.id, at: Date.now() }, {
           sessionId: session.id, taskId: task.id, type: 'attempt', detail: { ...timing(), objectId, target, result: e.result, assisted, index: session.index,
             item:task.itemId??'',modality:task.kind,activeMs:activeTime(),responseTimeMs: Date.now() - taskStarted.current, ...attemptContext(task,e.detail) },
         }); await db.sessions.put(updated);
+      });
+      setSession(updated);
+    });
+  }
+  async function checkpoint(step: string, feedback?: SavedFeedback, events: FeedbackEvent[] = []) {
+    if (!session || !task) return;
+    await mutation(async () => {
+      let updated = session;
+      await db.transaction('rw', db.sessions, db.events, async () => {
+        const stored = await db.sessions.get(session.id);
+        if (stored && stored.index !== session.index) { updated = stored; return; }
+        const prior = stored?.evaluation;
+        const current = prior?.index === session.index && prior.taskId === task.id ? prior : undefined;
+        updated = { ...session, updatedAt: Date.now(), evaluation: { index: session.index, taskId: task.id,
+          step, results: { ...current?.results, ...(feedback ? { [step]: feedback } : {}) } } };
+        await db.sessions.put(updated);
+        for (const { type, detail } of events) await logEvent({sessionId:session.id, taskId:task.id, type,
+          detail:{...timing(), item:task.itemId??'', modality:task.kind, activeMs:activeTime(), ...detail, index:session.index}});
       });
       setSession(updated);
     });
@@ -261,7 +288,7 @@ export function LessonRunner() {
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
       <section className="lessonCard" data-learning-state={encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' ? '' : task.prompt.de}</h2>{errorBox}
         {task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
-          : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise attentionHistory={attentionSnapshot.events} onIntroduce={introduce} key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy || inspecting} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} /> : <p role="status">{ui.loading}</p>}
+          : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise savedEvaluation={session.evaluation?.index === session.index && session.evaluation.taskId === task.id ? session.evaluation : undefined} onCheckpoint={checkpoint} attentionHistory={attentionSnapshot.events} onIntroduce={introduce} key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy || inspecting} onEvent={event} onAttempt={attempt} onTone={(tone, correct, part, feedback) => attempt({ result: correct ? 'success' : 'failure', assisted: true, part, feedback }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} /> : <p role="status">{ui.loading}</p>}
             <button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
       </section>
       {inspecting && previousTask && <section className="lessonCard inspectionSurface"><p className="eyebrow">Noch einmal ansehen</p><p className="inspectionNote">Freiwillige Übung · ohne neue Lernbewertung. Weiter führt zur aktuellen Aufgabe zurück.</p>{task && ['read','listen','recall','tone-recall'].includes(task.kind) && <p className="inspectionNote">Ein noch offener Abruf zählt nach dem Nachschauen als unterstützt.</p>}<h2>{previousTask.prompt.de}</h2>{errorBox}
