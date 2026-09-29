@@ -18,6 +18,7 @@ All four matter. Research does not automatically authorize a build; an Inbox sug
 | File | Questions it answers |
 | --- | --- |
 | [Learning science](learning-science.md) | Retrieval, spacing, fading, feedback, explicit instruction, cognitive load and interleaving |
+| [Just-in-time meta-learning](meta-learning.md) | Eight candidate explanation moments, distinct claim types/evidence levels, presentation limits and Paper Writing research still outside main |
 | [Mandarin pronunciation and tones](mandarin-pronunciation-tones.md) | Perception versus production, contextual tones, assessment R&D and licenses |
 | [Hanzi recognition and writing](hanzi-recognition-writing.md) | Different outcomes, selective writing, components, stroke guidance and target selection |
 | [Hybrid digital/paper](hybrid-digital-paper.md) | Media limits, offloading/distraction/rest, proposed Paper Writing v2 |
@@ -36,6 +37,8 @@ Before proposing or implementing a learning-design change, future Work must:
 4. Distinguish established evidence from product hypothesis.
 5. Document the reason explicitly if departing from high-confidence evidence within its applicable scope.
 6. Avoid researching settled questions again unless new evidence or a different question warrants it.
+
+Future Work proposing learner-facing explanations must first consult [just-in-time meta-learning](meta-learning.md). Distinguish linguistic fact, learning-science evidence, product rationale and product hypothesis; a well-supported learning principle does not establish the benefit or timing of its explanation.
 
 When adding a consequential claim, record population/outcome, confidence, limits, source and verification date. Prefer reviews/meta-analyses, peer-reviewed primary research, official standards/university curricula, then official product documentation. Search snippets and marketing claims are not efficacy evidence. Do not copy copyrighted papers into the repository.
 
@@ -56,4 +59,4 @@ Historical build reports remain historical. This consolidation does not rewrite 
 
 ## Open questions
 
-Which uncertainty is actually preventing a product decision? Start with the relevant note's questions and real-use evidence; do not expand this into an exhaustive bibliography. The meta-learning backlog is in [curriculum progression](curriculum-progression.md#future-research-meta-learning).
+Which uncertainty is actually preventing a product decision? Start with the relevant note's questions and real-use evidence; do not expand this into an exhaustive bibliography. The former meta-learning backlog is developed in [just-in-time meta-learning](meta-learning.md); all presentation/trigger choices remain unimplemented hypotheses.

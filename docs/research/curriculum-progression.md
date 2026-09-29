@@ -38,11 +38,7 @@ Weak writing retention should not automatically block spoken-language progressio
 
 ## FUTURE RESEARCH: meta-learning
 
-**Question:** What are the 8–10 things an adult Mandarin beginner should actually know early about Mandarin and effective learning?
-
-This is a research backlog, not an approved lesson list or generic study-advice script. Candidate questions include what tones distinguish, what Hanzi represent, why Pinyin support later recedes, why answer-withheld retrieval feels difficult, why repetitions are spaced, and why some characters become writing targets while others remain recognition targets.
-
-Before creating just-in-time explanations, verify each factual claim, identify the misconception it addresses, choose the moment it becomes useful, and observe whether the explanation helps rather than interrupts. The correct number, wording and timing are not established. Do not implement this backlog during the pilot freeze.
+The [just-in-time meta-learning note](meta-learning.md) now develops eight candidate moments, their evidence levels and conceptual architecture mappings. It separates linguistic facts and learning evidence from product rationales and presentation hypotheses. Consult it before proposing learner-facing explanations; it is not a front-loaded course, final copy library or authorization to implement during the pilot freeze. The number, wording and timing of explanations remain open.
 
 ## Open questions
 
