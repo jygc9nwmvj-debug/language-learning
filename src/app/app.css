@@ -275,3 +275,15 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .correctionReference > .referenceAudio { order: 1; }
 .correctionReference > p { order: 2; }
 .correctionReference .unitExplanation { order: 3; }
+
+/* Text-production correction only; canonical model and grading stay unchanged. */
+.inlineCorrection { display: grid; gap: var(--space-2); }
+.correctionTokens { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); align-items: start; }
+.correctionToken { font-size: 1.2rem; overflow-wrap: anywhere; max-width: 100%; }
+.correctionToken del { color: var(--error-ink); text-decoration-thickness: 1px; }
+.correctionToken ins { color: var(--blue); text-decoration: none; }
+.correctionToken small { display: block; color: var(--ink-muted); font-size: var(--text-meta); }
+.correctionReference .hanziHero { font-size: clamp(2rem,8vw,3rem); padding-block: var(--space-1); }
+.correctionReference .unitHanzi,.correctionReference .phrasePunctuation { font-size: clamp(2rem,8vw,3rem); }
+.correctionReference .pinyin,.correctionReference .unitPinyin { font-size: 1.125rem; }
+.correctionReference > p { order: 0; }

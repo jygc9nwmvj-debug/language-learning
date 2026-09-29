@@ -11,12 +11,14 @@ import { itemMap } from '../content';
 import { normalizeText, evaluateAnswer, answerFeedback, type Interpretation } from '../answer';
 import { AudioButton } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
+import { displayDiagnosis } from '../displayDiagnosis';
 import { ui } from '../../../core/i18n/de';
 import { WritingExercise } from './WritingExercise';
 import { NumberSequence } from './NumberSequence';
 import { ToneLab, ToneRecall } from './ToneLab';
 export type Evidence = { feedback?: SavedFeedback; part?: string; result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
-export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce, savedEvaluation, onCheckpoint }: {
+export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce, savedEvaluation, onCheckpoint, savedAssessment }: {
+  savedAssessment?: import('../schema/content').Assessment;
   savedEvaluation?: SavedEvaluation; onCheckpoint?: Checkpoint;
   attentionHistory?: ResearchEvent[]; onIntroduce?: Introduce;
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
@@ -33,6 +35,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const [answered, setAnswered] = useState(!!restored);
   const [feedbackKind, setFeedbackKind] = useState<'success' | 'attention' | 'error'>(restored?.kind ?? 'success');
   const [retryEvidence, setRetryEvidence] = useState<Evidence | null>(null);
+  const displayAssessment = useRef(restored ? savedAssessment : undefined);
   const submitting = useRef(false), writingRecorded = useRef(false);
   const [introItem] = useState(() => attentionHistory && onIntroduce ? introductionForTask(task,script,attentionHistory) : undefined);
   const item = itemMap.get(task.itemId ?? '') as Item;
@@ -50,6 +53,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       if (retryEvidence) result = retryEvidence;
       else {
         if (task.kind === 'recall') {
+          displayAssessment.current = effectiveAssessment;
           interpreted = evaluateAnswer(input, item, effectiveAssessment!, name);
           result = { result: interpreted.result, assisted: help, detail: { ...interpreted, assessToneNotation: effectiveAssessment!.toneNotation, assessNeutralTone: effectiveAssessment!.neutralTone } };
         } else result = { result: item.answers.some(a => normalizeText(a) === normalizeText(input)) ? 'success' : 'failure', assisted: help };
@@ -76,6 +80,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const needsCorrection = answered && task.kind === 'recall' && feedbackKind !== 'success';
+  const diagnosis = needsCorrection ? displayDiagnosis(input,item,displayAssessment.current) : undefined;
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
     reference={<>{form(help && (!known || pinyinVisible),help)}
@@ -95,12 +100,12 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   return <div className="stepStack responseExercise" data-task-complete={answered} data-outcome={answered ? feedbackKind : undefined}>
     {task.kind === 'listen' && audio(false, !answered)}
     {task.kind === 'read' && form(false,false)}
-    {answered ? <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
+    {answered ? diagnosis?.mode === 'inline' ? <div className="inlineCorrection" role="status" aria-label="Deine Antwort mit Korrekturen"><span className="controlLabel">Deine Antwort</span><div className="correctionTokens">{diagnosis.elements.map((part,i)=><span className="correctionToken" data-kind={part.kind ?? 'correct'} key={i}>{part.kind ? <><del>{part.original}</del><span aria-hidden="true"> → </span><span className="srOnly"> wird korrigiert zu </span><ins>{part.correction}</ins>{part.kind==='tone' && <small>Ton</small>}</> : part.original}</span>)}</div>{diagnosis.hasTone && <p className="muted">Deine Aussprache wurde nicht bewertet.</p>}</div> : <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
       {task.kind === 'recall' && <><InfoDisclosure label="Zur Texteingabe"><p>{ui.typeHint}</p></InfoDisclosure>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>}
-    {feedback && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
+    {feedback && diagnosis?.mode !== 'inline' && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
     {needsCorrection ? <div className="reference correctionReference">
       {form(true,true)}<p>{item.meaning.de}</p>
