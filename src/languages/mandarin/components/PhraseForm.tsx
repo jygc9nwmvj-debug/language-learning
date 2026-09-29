@@ -23,7 +23,7 @@ export function PhraseForm({ item, script, showPinyin = false, interactive = fal
   },[]);
   if (!units) return <><p className="hanziHero" lang="zh">{item[script]}</p>{showPinyin && <p className="pinyin">{item.pinyin}</p>}</>;
   const current = selected === null ? undefined : units[selected];
-  return <div className="phraseForm" ref={root}>
+  return <div className="phraseForm" data-expanded={selected !== null} ref={root}>
     <div className="phraseUnits" aria-label="Ausdruck">
       {units.map((unit,n) => {
         const text = <>{unit.characters.map((char,k) => <span className="alignedCharacter" key={k}><span className="unitHanzi" lang="zh">{char.hanzi}</span>{showPinyin && <span className="unitPinyin">{char.pinyin}</span>}</span>)}</>;

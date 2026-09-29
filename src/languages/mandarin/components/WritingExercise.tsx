@@ -5,6 +5,14 @@ import HanziWriter from 'hanzi-writer';
 import {writingTargets as targets,delayed} from '../writing-targets';
 import { ui } from '../../../core/i18n/de';
 
+// Hanzi Writer needs concrete colors; SVG learner ink can use CSS variables directly.
+function writingColor(token: string, alpha?: number) {
+  const color = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+  if (alpha === undefined) return color;
+  const rgb = color.replace('#', '').match(/.{2}/g)!.map(value => parseInt(value, 16));
+  return `rgba(${rgb.join(',')},${alpha})`;
+}
+
 type Detail = Record<string, string | number | boolean>;
 export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean };
 export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, disabled }: {
@@ -45,13 +53,13 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     setSize(width); setInk([]); setWrongInk(''); setReference(false); setCompared(false);
     nextStroke.current = 0;
     stats.current = { errors: 0, hints: 0, correctStrokes: 0, templateUsed: false, demoUsed: seenDemo.current || boosted };
-    const outline = `rgba(38,61,51,${boosted ? .38 : level.alpha})`;
+    const outline = writingColor('--writing-ink', boosted ? .38 : level.alpha);
     const instance = HanziWriter.create(node, model.character, {
       width, height: width, padding: 15, showCharacter: false, showOutline: !demo,
       // Quiz accepts strokes internally, but must never redraw them into ideal shapes.
-      strokeColor: demo ? '#263d33' : 'rgba(38,61,51,0)', outlineColor: outline,
-      drawingColor: '#263d33', drawingWidth: 7, drawingFadeDuration: 120,
-      highlightColor: '#718773', highlightOnComplete: false,
+      strokeColor: writingColor('--writing-ink', demo ? 1 : 0), outlineColor: outline,
+      drawingColor: writingColor('--writing-ink'), drawingWidth: 7, drawingFadeDuration: 120,
+      highlightColor: writingColor('--writing-highlight'), highlightOnComplete: false,
       strokeAnimationSpeed: .7, delayBetweenStrokes: 1000, strokeHighlightSpeed: 1,
       charDataLoader: () => model.data,
     });
@@ -112,7 +120,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     } else if (level.preview && !boosted) {
       setPhase('preview'); setStatus('Merke dir die Form. Gleich verschwindet die Vorlage.');
       emit('writing_preview', { previewMs: 2500 });
-      void instance.updateColor('outlineColor', '#53695b', { duration: 0 });
+      void instance.updateColor('outlineColor', writingColor('--writing-outline'), { duration: 0 });
       later(() => {
         void instance.updateColor('outlineColor', outline, { duration: 0 });
         emit('writing_preview_hidden'); start();
@@ -152,7 +160,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   function toggleReference() {
     const shown = !reference; setReference(shown);
     if (shown) { stats.current.templateUsed = true; stats.current.hints++; assisted.current = true; callbacks.current.onEvent('writing_hint', detail()); }
-    void writer.current?.updateColor('outlineColor', shown ? '#708370' : `rgba(38,61,51,${boosted ? .38 : level.alpha})`, { duration: 150 });
+    void writer.current?.updateColor('outlineColor', shown ? writingColor('--writing-outline') : writingColor('--writing-ink', boosted ? .38 : level.alpha), { duration: 150 });
     setStatus(shown ? 'Die Vorlage liegt jetzt unter deinen Strichen.' : 'Die zusätzliche Vorlage ist ausgeblendet.');
   }
   const writing = phase === 'writing';
@@ -163,14 +171,14 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
-        <g fill="none" stroke="#263d33" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" data-testid="learner-ink">{ink.map((d, i) => <path key={i} d={d} />)}</g>
-        {wrongInk && <path d={wrongInk} fill="none" stroke="#9c654f" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />}
+        <g fill="none" stroke="var(--writing-ink)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" data-testid="learner-ink">{ink.map((d, i) => <path key={i} d={d} />)}</g>
+        {wrongInk && <path d={wrongInk} fill="none" stroke="var(--writing-error)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />}
         {numbers && <g className="strokeNumbers" data-testid="stroke-numbers">{model.data.medians.map((points, i) => <text key={i} x={Math.max(10, 15 + points[0][0] * scale - 12)} y={Math.max(14, 15 + (900 - points[0][1]) * scale - 10)}>{i + 1}</text>)}</g>}
       </svg>
     </div>
     <p className={`writingStatus ${phase === 'success' ? 'writingSuccess' : ''}`} role="status" aria-live="polite">{status}</p>
     {mode === 'paper' && writing && <div className="buttonRow">{!compared
-      ? <button type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', '#53695b'); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</button>
+      ? <button type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', writingColor('--writing-outline')); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</button>
       : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
     </div>}
     <div className="writingControls">
