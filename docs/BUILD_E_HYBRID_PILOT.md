@@ -1,5 +1,7 @@
 # Build E — Hybrid Learning Pilot
 
+> Pilot correction, 2026-09-29: proactive Meaningful Stop and round-completion screens are removed. Internal batches now continue automatically, with voluntary exit retained. The descriptions below record the original build; stopping behavior is superseded by [the continuous-flow correction](CONTINUOUS_FLOW_CORRECTION.md). Screenless/Paper eligibility and historical evidence remain unchanged.
+
 2026-09-28 · Basis C2.3+ / Product UI v1 / Inhalte D.
 
 1. **Architektur zuerst:** `LEARNING_ARCHITECTURE.md` um „HYBRID LEARNING / DIGITAL COUNTERMEASURES“ ergänzt. Lernen statt Bildschirmzeit, zeitweilige Hilfen, Abruf ohne sichtbare Antwort, Papier als Ergänzung, freiwilliger guter Abschluss. Keine universelle Papierüberlegenheit oder optimale Sitzungsdauer behauptet. Bestehende Retrieval-/Spacing-/Hanzi-Quellen plus kurze, ausdrücklich indirekte Offloading-, Multitasking- und Papier/Screen-Bezüge.

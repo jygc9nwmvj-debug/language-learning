@@ -67,6 +67,15 @@ Entry template:
 - **Principle:** Learner-facing instruction, cognitive task, validator and learning evidence must refer to the same skill. Retrieval withholds its target; a transformation may show its required source.
 - **Audit:** [All 131 definitions, classifications, corrections and limits](ASSESSMENT_INTENT_AUDIT.md). Three number-ordering tasks remain editorial REVIEW because predictable option placement may permit a shortcut; no speculative redesign.
 
+### OBS-2026-09-29-D — artificial boundaries fragment motivated learning
+
+- **OBSERVATION:** Repeated real use: proactive stopping feels too early, after only a few interactions. “Runde abgeschlossen” appears when the learner feels they have just started. “Weiterlernen” and “Weiter” make continuation confusing.
+- **Category:** Flow/UI · Scheduler.
+- **Cluster:** CONTINUOUS LEARNING / SESSION FRAGMENTATION.
+- **Decision:** Remove proactive stop and batch-completion interruption during the pilot. Motivated longer sessions continue through the existing scheduler; short sessions remain possible through voluntary exit. The stop heuristic was an unvalidated product hypothesis, not an established optimal duration.
+- **Future question — OPEN:** Can a useful stopping opportunity avoid interrupting motivated flow, arbitrary session lengths and claims about an individual's optimal duration? Observe natural use before revisiting; no replacement heuristic now.
+- **Implementation/verification:** [Continuous-flow correction](CONTINUOUS_FLOW_CORRECTION.md).
+
 ## 2. CLUSTERS
 
 Group repeated or related observations around an underlying problem. Retain links to the original observations so that differing contexts or contradictory evidence remain visible. Do not create a separate cluster for every symptom, and do not treat a suspected common cause as established fact.
@@ -82,6 +91,8 @@ Cluster template:
 Recording reliability contains two distinct findings, OBS-2026-09-29-A and -B. A shared cause is not established; the replay repair does not resolve the level report.
 
 **ASSESSMENT INTENT / ANSWER LEAKAGE:** OBS-2026-09-29-C. Align instructional wording and supplied cues with the actual assessed skill and evidence; preserve teaching and distinguish requested assistance.
+
+**CONTINUOUS LEARNING / SESSION FRAGMENTATION:** OBS-2026-09-29-D. Small internal batches and proactive stop suggestions interrupt motivated flow. Current pilot decision removes the intervention; the future usefulness of non-intrusive stopping opportunities remains OPEN.
 
 ## 3. VALIDATED PROBLEMS
 
@@ -108,6 +119,8 @@ Validated-problem template:
 **OBS-2026-09-29-B:** Repeated real-use low-level problem is retained as valid observational evidence. Source of level loss is unvalidated; keep WATCH pending a representative hardware measurement.
 
 **OBS-2026-09-29-C:** Real-use ambiguity plus inspected/reproducible instruction, visible-answer and presentation-provenance mismatches. Conversion itself was not falsely scored as lexical recall. The bounded fix preserves existing assessment gates and progression.
+
+**OBS-2026-09-29-D:** Repeated learner reports establish subjective fragmentation; inspected production code exposes the batch closure and Build E stop heuristic as learner-facing screens. This supports removing the present interruption, not a universal claim about session duration or learning outcomes.
 
 ## 4. BUILD CANDIDATES
 

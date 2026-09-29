@@ -29,6 +29,8 @@ export function paperFor(session: Session, history: ResearchEvent[], now: number
    .slice(0,HYBRID.paperTargets).map(i=>i.id);
  return items.length===HYBRID.paperTargets?items:[];
 }
+// Historical Build E hypothesis, retained for interpreting/testing the pilot rules.
+// Production no longer calls this heuristic or emits proactive stop events.
 export function meaningfulStop(session: Session, history: ResearchEvent[]): boolean {
  const events=real(history), current=events.filter(e=>e.sessionId===session.id);
  if(session.plan[session.index]!=='closure' || current.some(e=>['session_stop_accepted','voluntary_continue_after_stop'].includes(e.type)))return false;

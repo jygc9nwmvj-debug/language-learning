@@ -1,5 +1,7 @@
 # Build F-light — Learning Observability
 
+> Pilot correction, 2026-09-29: proactive Meaningful Stop and round-completion screens are removed. Internal batches now continue automatically, with voluntary exit retained. The descriptions below record the original build; stopping behavior is superseded by [the continuous-flow correction](CONTINUOUS_FLOW_CORRECTION.md). Screenless/Paper eligibility and historical evidence remain unchanged.
+
 2026-09-28 · Ausgangspunkt: veröffentlichter Build E (`f33ac7e`). Instrumentierung, keine Intervention.
 
 1. **Vorhandene Architektur:** dieselbe lokale Dexie-Ereignistabelle, vorhandene Ereignis-IDs/Zeitstempel und dieselbe Lernstand-Sicherung. Keine Migration, zweite Analytics-Datenbank oder Cloud. Scheduler, Build-E-Auswahlregeln, Bewertung, Inhalte, Audios und Oberfläche bleiben unverändert (nur Versionskennung F-light).

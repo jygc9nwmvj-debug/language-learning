@@ -1,5 +1,7 @@
 # Build D — Continuous Learning + content buffer
 
+> Pilot correction, 2026-09-29: proactive Meaningful Stop and round-completion screens are removed. Internal batches now continue automatically, with voluntary exit retained. The descriptions below record the original build; stopping behavior is superseded by [the continuous-flow correction](CONTINUOUS_FLOW_CORRECTION.md). Screenless/Paper eligibility and historical evidence remain unchanged.
+
 2026-09-27. Normal app: https://language-learning-abk.pages.dev/ · Testversion D.
 
 ## Delivered scope

@@ -32,18 +32,17 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
  await expect(page.locator('.paperPrompts')).toContainText('ich');await expect(page.locator('.paperPrompts')).toContainText('gut');
  await page.screenshot({path:'work/e-paper.png',fullPage:true,animations:'disabled'});
  await page.getByRole('button',{name:'Später',exact:true}).click();
- await expect(page.getByRole('button',{name:'Für jetzt beenden',exact:true})).toBeVisible();
- const skipped=await state(page);expect(skipped.relations).toEqual(before.relations);expect(skipped.events.filter((e:any)=>e.type==='paper_skipped')).toHaveLength(1);expect(skipped.events.filter((e:any)=>e.type==='meaningful_stop_offered')).toHaveLength(1);
- await page.screenshot({path:'work/e-stop.png',fullPage:true,animations:'disabled'});
- await page.getByRole('button',{name:'Für jetzt beenden',exact:true}).click();await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeEnabled();
- expect((await state(page)).events.some((e:any)=>e.type==='session_stop_accepted')).toBe(true);
+ await expect(page.locator('.lessonCard')).not.toHaveAttribute('data-task-kind','closure');
+ const skipped=await state(page);expect(skipped.relations).toEqual(before.relations);expect(skipped.events.filter((e:any)=>e.type==='paper_skipped')).toHaveLength(1);expect(skipped.events.filter((e:any)=>e.type==='meaningful_stop_offered')).toHaveLength(0);
+ await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeEnabled();
+ expect((await state(page)).events.some((e:any)=>e.type==='session_pause')).toBe(true);
  await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.lessonCard')).toBeVisible();
  expect((await state(page)).sessions.filter((s:any)=>!s.completed)).toHaveLength(1);
- // Same small pilot fixture, this time compare paper and choose continuation.
+ // Same eligibility fixture, this time finish paper and continue automatically.
  await seed(page,'hybrid-b');await page.getByRole('button',{name:'Aufdecken',exact:true}).click();await page.getByRole('button',{name:'Ja, gewusst',exact:true}).click();
  await page.getByRole('button',{name:'Fertig – vergleichen',exact:true}).click();await expect(page.locator('.paperAnswers')).toContainText('好');
- await page.getByRole('button',{name:'Alle aus dem Gedächtnis geschrieben',exact:true}).click();await page.getByRole('button',{name:'Weiterüben',exact:true}).click();
- await expect(page.locator('.lessonCard')).toBeVisible();expect((await state(page)).events.some((e:any)=>e.type==='voluntary_continue_after_stop')).toBe(true);
+ await page.getByRole('button',{name:'Alle aus dem Gedächtnis geschrieben',exact:true}).click();await expect(page.locator('.lessonCard')).not.toHaveAttribute('data-task-kind','closure');
+ await expect(page.locator('.lessonCard')).toBeVisible();expect((await state(page)).events.some((e:any)=>e.type==='voluntary_continue_after_stop')).toBe(false);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('revealed recall survives pause and remains assisted without pronunciation scoring',async({page})=>{

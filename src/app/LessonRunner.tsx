@@ -1,6 +1,6 @@
 import { ActiveTime } from '../core/observability/activeTime';
 import { attemptContext } from '../core/observability/evidence';
-import { screenlessFor, paperFor, meaningfulStop, screenlessEvidence } from '../languages/mandarin/hybrid';
+import { screenlessFor, paperFor, screenlessEvidence } from '../languages/mandarin/hybrid';
 import { ScreenlessRecall, PaperRecall } from '../languages/mandarin/components/HybridRecall';
 import { introductionForTask, introduced, taskPresentationRole } from '../languages/mandarin/introduction';
 import { itemMap } from '../languages/mandarin/content';
@@ -21,11 +21,11 @@ export function LessonRunner() {
   const interaction = useInteractionScope();
   const [ready, setReady] = useState(false), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const [inspecting, setInspecting] = useState(false), [inspectionName,setInspectionName] = useState('');
-  const [view, setView] = useState<'home' | 'learn' | 'done'>('home');
+  const [view, setView] = useState<'home' | 'learn'>('home');
   const [attentionSnapshot, setAttentionSnapshot] = useState<{key: string; events: ResearchEvent[]} | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [script, setScript] = useState<'hant' | 'hans'>('hant'); const [name, setName] = useState('');
-  const [message, setMessage] = useState(''), [reflection, setReflection] = useState(''), [reflectionSaved, setReflectionSaved] = useState(false);
+  const [message, setMessage] = useState('');
   const [offline, setOffline] = useState(document.documentElement.dataset.offline ?? 'waiting');
   const lock = useRef(false), taskStarted = useRef(Date.now());
   async function load() {
@@ -63,9 +63,9 @@ export function LessonRunner() {
         await logEvent({sessionId:session.id,taskId:t.id,type:offered,detail:{index:session.index,items:paper.join(','),item:t.itemId??''}});
         history=await db.events.toArray();
       }
-      if(meaningfulStop(session,history) && !paper.length && !history.some(e=>e.sessionId===session.id&&e.type==='meaningful_stop_offered'))await logEvent({sessionId:session.id,taskId:t.id,type:'meaningful_stop_offered',detail:{index:session.index}});
       if(cancelled)return;
       clock.block('loading',false,performance.now());setAttentionSnapshot({key:`${session.id}:${session.index}`,events:history}); const previous=t.itemId?exposure(history).get(t.itemId):undefined;
+      if(t.kind==='closure'&&!paper.length)return;
       return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:t.kind,role:taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
     }).catch(()=>setError(ui.storageError));
     return ()=>{cancelled=true;checkpoint();document.removeEventListener('visibilitychange',change);document.removeEventListener('pointerdown',touch);document.removeEventListener('keydown',touch);document.removeEventListener('input',touch);window.removeEventListener('pagehide',checkpoint);};
@@ -80,7 +80,6 @@ export function LessonRunner() {
   const snapshotReady=!!session&&attentionSnapshot?.key===`${session.id}:${session.index}`;
   const screenless=!!session&&snapshotReady&&screenlessFor(session,history,Date.now());
   const paper=session&&snapshotReady?paperFor(session,history,Date.now()):[];
-  const goodStop=!!session&&snapshotReady&&meaningfulStop(session,history);
   const revealed=(type:string)=>history.some(e=>e.sessionId===session?.id&&e.detail.index===session?.index&&e.type===type);
   const encoding = !!task && !!session && !!introductionForTask(task,session.script,history);
   const writingIntroduction = task?.kind==='writing' && (!task.recall || (!!session && !introduced(itemMap.get(task.itemId!)!,'writing',session.script,history)));
@@ -127,7 +126,7 @@ export function LessonRunner() {
         await db.sessions.put(chosen); await db.preferences.put({ key: 'script', value: chosen.script });
         await logEvent({ sessionId: chosen.id, taskId: chosen.plan[chosen.index], type: replay ? 'learning_continue' : chosen.id === session?.id ? 'session_resume' : 'session_start', detail: { script: chosen.script } });
       });
-      setInspecting(false); setAttentionSnapshot(null); setSession(chosen); setScript(chosen.script); setReflectionSaved(false); setReflection(''); setView('learn');
+      setInspecting(false); setAttentionSnapshot(null); setSession(chosen); setScript(chosen.script); setView('learn');
     });
   }
   async function next(skip = false) {
@@ -139,7 +138,7 @@ export function LessonRunner() {
         await db.sessions.put(updated); await db.preferences.put({ key: 'name', value: name.trim() });
         await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { ...timing(), activeMs: activeTime(), durationMs: Date.now() - taskStarted.current } });
       });
-      setAttentionSnapshot(null); setSession(updated); if (completed) setView('done'); window.scrollTo({ top: 0 });
+      setAttentionSnapshot(null); setSession(updated); window.scrollTo({ top: 0 });
     });
   }
   async function attempt(e: Evidence, tone?: number) {
@@ -198,23 +197,34 @@ export function LessonRunner() {
       // honest group evidence, without promoting or penalizing any writing relation.
       active.current.block('non_learning',true,performance.now());
       const updatedHistory=await db.events.toArray();
-      if(meaningfulStop(session,updatedHistory)&&!updatedHistory.some(e=>e.sessionId===session.id&&e.type==='meaningful_stop_offered'))await logEvent({sessionId:session.id,taskId:'closure',type:'meaningful_stop_offered',detail:{index:session.index}});
       setAttentionSnapshot({key:`${session.id}:${session.index}`,events:updatedHistory});
     });
   }
-  async function stopChoice(keepGoing:boolean) {
-    if(!session)return;
-    await mutation(async()=>{
-      const updated={...session,completed:true,updatedAt:Date.now()};
-      await db.transaction('rw',db.sessions,db.events,async()=>{
-        await db.sessions.put(updated);
-        await logEvent({sessionId:session.id,taskId:'closure',type:keepGoing?'voluntary_continue_after_stop':'session_stop_accepted',detail:{...timing()}});
-        await logEvent({sessionId:session.id,taskId:'closure',type:'session_end',detail:{}});
+  // Batches remain persistence/planning units, not learner-facing stopping points.
+  async function continueBatch() {
+    if (!session || task?.kind !== 'closure') return;
+    await mutation(async () => {
+      let chosen: Session | undefined;
+      await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
+        const now = Date.now();
+        const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), session.script, now);
+        if (!plan.some(id => taskMap.get(id)?.kind !== 'closure')) throw new Error('No learning task available');
+        // load() orders by updatedAt: the successor must sort after its completed batch,
+        // even when both writes happen in the same millisecond.
+        chosen = {id:crypto.randomUUID(), plannerVersion:'d1', plan, index:0, completed:false, startedAt:now, updatedAt:now + 1, script:session.script};
+        await db.sessions.put({...session, completed:true, updatedAt:now});
+        await db.sessions.put(chosen);
+        await logEvent({sessionId:session.id, taskId:'closure', type:'session_end', detail:{...timing(), reason:'batch_transition', nextSessionId:chosen.id}});
+        await logEvent({sessionId:chosen.id, taskId:plan[0], type:'learning_continue', detail:{script:chosen.script, reason:'batch_transition', previousSessionId:session.id}});
       });
-      setSession(updated);setAttentionSnapshot(null);setView('home');
+      setInspecting(false); setAttentionSnapshot(null); setSession(chosen!); window.scrollTo({top:0});
     });
-    if(keepGoing)await begin(true);
   }
+  useEffect(() => {
+    if (view==='learn' && task?.kind==='closure' && snapshotReady && !paper.length && !busy && !error && !lock.current) {
+      void continueBatch().catch(() => {});
+    }
+  }, [view, session?.id, session?.index, snapshotReady, paper.length, busy, error]);
   async function backup() {
     try { const url = URL.createObjectURL(new Blob([await exportLearningState()], { type: 'application/json' }));
       const a = document.createElement('a'); a.href = url; a.download = `mandarin-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -224,7 +234,7 @@ export function LessonRunner() {
     if (lock.current || !window.confirm('Wirklich von vorne beginnen? Dein Lernfortschritt, deine Sitzungen, Forschungsnotizen und Einstellungen werden auf diesem Gerät gelöscht. Ohne heruntergeladene Sicherung lässt sich das nicht rückgängig machen.')) return;
     await mutation(async () => {
       await resetLearningState();
-      setSession(null); setName(''); setScript('hant'); setReflection(''); setReflectionSaved(false);
+      setSession(null); setName(''); setScript('hant');
       setView('home'); setMessage('Dein Lernstand wurde zurückgesetzt. Weiterlernen beginnt wieder mit 你好.');
     });
   }
@@ -241,7 +251,6 @@ export function LessonRunner() {
       <button type="button" className="textButton" onClick={() => window.print()}>{ui.worksheet}</button>
       <details className="restartLearning"><summary>Von vorne beginnen</summary><p>Setzt deinen gesamten Lernstand einschließlich Verlauf und Einstellungen auf diesem Gerät zurück. Sichere ihn bei Bedarf zuerst über „Lernstand sichern“. Schließe vor dem Zurücksetzen andere geöffnete Fenster dieser App.</p><button type="button" className="textButton" disabled={busy} onClick={() => safe(restart)}>Lernstand zurücksetzen …</button></details></div>{message && <p role="status">{message}</p>}
   </details>;
-  const repeatLesson = <button type="button" disabled={busy} onClick={() => safe(() => begin(true))}>Weiterlernen</button>;
   const errorBox = error && <p className="feedback error" role="alert">{error}{!ready && <button type="button" onClick={() => void load()}>{ui.reload}</button>}</p>;
   if (!ready) return <main className="shell"><div className="card">{errorBox || <p>{ui.loading}</p>}</div></main>;
   return <InteractionContext.Provider value={{ ...interaction, canStart: () => !lock.current }}><main className={view === 'learn' ? 'lessonShell' : 'shell'}>
@@ -250,16 +259,13 @@ export function LessonRunner() {
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
       {errorBox}{settings}<p className="prototypeNote">Testversion F-light · E · UI1 · C2.3+ · Inhalte D · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
-      <section className="lessonCard" data-learning-state={encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : goodStop ? 'Guter Punkt für eine Pause.' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' && session.plan.length === 1 ? 'Im Moment ist nichts fällig.' : task.prompt.de}</h2>{errorBox}
-        {task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : goodStop ? <div className="stepStack meaningfulStop"><p className="lead">Du hast Bekanntes abgerufen und weitergelernt. Wir bringen es später wieder.</p><button type="button" disabled={busy} onClick={()=>safe(()=>stopChoice(false))}>Für jetzt beenden</button><button type="button" className="secondaryButton" disabled={busy} onClick={()=>safe(()=>stopChoice(true))}>Weiterüben</button></div> : task.kind === 'closure' ? <div className="stepStack"><p className="lead">{session.plan.length === 1 ? ui.nothingDue : ui.closeBody}</p>{repeatLesson}<p className="muted">Eine weitere kurze Mischung aus Bekanntem und Neuem.</p><button type="button" disabled={busy} onClick={() => safe(() => next())}>{ui.continue}</button></div>
+      <section className="lessonCard" data-learning-state={encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' ? '' : task.prompt.de}</h2>{errorBox}
+        {task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
           : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise attentionHistory={attentionSnapshot.events} onIntroduce={introduce} key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy || inspecting} onEvent={event} onAttempt={attempt} onTone={(tone, correct) => attempt({ result: correct ? 'success' : 'failure', assisted: true }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} /> : <p role="status">{ui.loading}</p>}
             <button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
       </section>
       {inspecting && previousTask && <section className="lessonCard inspectionSurface"><p className="eyebrow">Noch einmal ansehen</p><p className="inspectionNote">Freiwillige Übung · ohne neue Lernbewertung. Weiter führt zur aktuellen Aufgabe zurück.</p>{task && ['read','listen','recall','tone-recall'].includes(task.kind) && <p className="inspectionNote">Ein noch offener Abruf zählt nach dem Nachschauen als unterstützt.</p>}<h2>{previousTask.prompt.de}</h2>{errorBox}
         <Exercise key={`inspection:${session.id}:${previousIndex}`} task={previousTask} script={session.script} name={inspectionName} setName={setInspectionName} disabled={busy || interaction.busy} attentionHistory={attentionSnapshot?.events} onEvent={(type,detail)=>{void inspectEvent(type,detail).catch(()=>setError(ui.storageError));}} onIntroduce={(type,detail)=>mutation(()=>inspectEvent(type,detail))} onAttempt={e=>mutation(()=>inspectEvent('practice_attempt',{result:e.result,assisted:e.assisted,...e.detail}))} onTone={(tone,correct)=>mutation(()=>inspectEvent('practice_tone',{tone,correct}))} onNext={()=>safe(togglePrevious)} />
       </section>}</>}
-    {view === 'done' && <section className="card"><p className="eyebrow">Mandarin</p><h1>{ui.closeTitle}</h1><p className="lead">{ui.closeBody}</p>{errorBox}{repeatLesson}<p className="muted">Eine weitere kurze Mischung aus Bekanntem und Neuem.</p>
-      {!reflectionSaved ? <div className="stepStack"><label className="fieldLabel">{ui.note}<textarea maxLength={500} value={reflection} onChange={e => setReflection(e.target.value)} /></label><p>{ui.reflect}</p><div className="buttonRow">{[ui.easy, ui.right, ui.much].map(r => <button type="button" className="secondaryButton" key={r} disabled={busy} onClick={() => safe(() => mutation(async () => { await logEvent({ sessionId: session!.id, taskId: 'closure', type: 'reflection', detail: { rating: r, note: reflection } }); setReflectionSaved(true); }))}>{r}</button>)}</div></div> : <p role="status">{ui.reflectionSaved}</p>}
-      <button type="button" className="textButton" onClick={() => setView('home')}>{ui.home}</button>{settings}</section>}
   </main><Worksheet /></InteractionContext.Provider>;
 }
