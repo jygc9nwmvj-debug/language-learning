@@ -1,7 +1,7 @@
 # v0.5 — verbindlicher Projektstatus
 
 Stand: 2026-09-30. Übernahme des abgeschlossenen DoD-Abgleichs, kein neuer Audit.
-Produktionsbasis: `main` / `f58dddb658ea7d97d6c3b0439a565bd0121f004a` (Mini-Transfer). Beim Abgleich stimmten öffentlich ausgelieferter App-Code und Service Worker bytegenau mit diesem Build überein. Diese Dokumentationsänderung verändert den Produktionsstand nicht.
+Produktionsbasis: `main` / `f58dddb658ea7d97d6c3b0439a565bd0121f004a` (Mini-Transfer). Beim Abgleich stimmten öffentlich ausgelieferter App-Code und Service Worker bytegenau mit diesem Build überein. Der Lern-App-Stand bleibt unverändert. Separates Review-Site-Deployment: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
 
 ## Verbindlichkeit und Pflege
 
@@ -28,7 +28,7 @@ Für den bestehenden Pilot ist keine weitere zwingende v0.5-Implementierung aus 
 | Punkt | Status | Grenze / nächste Voraussetzung |
 | --- | --- | --- |
 | Safari-Aufnahmepegel | needs decision | Bekannter realer offener Befund: Aufnahmen teilweise sehr leise. Ursache nicht abschließend gemessen, keine Pegelkorrektur ausgeliefert. **Nicht automatisch Pilotblocker.** Umfang/Priorität einer weiteren Bearbeitung ausdrücklich entscheiden. |
-| Reviewer-Kompetenz | needs decision | Englische Review-UI genügt nicht zur Prüfung deutscher Übersetzungen. Geeignete DE/Mandarin-Kompetenz bzw. tatsächliche Review-Abdeckung bleibt offen; keine menschlichen Antworten oder Freigaben behaupten. |
+| Reviewer-Besetzung / tatsächliche Abdeckung | needs decision | Die technische Kompetenztrennung ist umgesetzt. Geeignete DE/Mandarin-Reviewer und tatsächliche Antworten fehlen weiterhin; englische UI oder Mandarin-Muttersprachlichkeit belegen keine Deutschkompetenz. Keine menschlichen Freigaben vorhanden. |
 | Zwei neue Content-Chargen | blocked | Echte Reviews, fehlende unabhängige Faktenbelege und gegebenenfalls Quellenwidersprüche auflösen. Keine Freigabe des neuen Contents aus dem Freeze des alten Bestands ableiten. |
 | Hanzi Reconstruction / Zeichenauswahl | deferred | Didaktisch sinnvoll, aber erst bei größerem Bestand **explizit eingeführter Hanzi**. Kein v0.5-Bauauftrag. Diese ausdrückliche Folgeentscheidung ersetzt die Unklarheit des DoD-Abgleichs. |
 
@@ -83,9 +83,10 @@ Belege: [UI-Vertrag](PRODUCT_UI_VISUAL_SYSTEM.md), [v0.5-Design](design/V05_VISU
 | Produktiver Lernbestand | deployed | 44 kanonische Wörter, 36 Lernobjekte, 131 reguläre Aufgaben; Mini-Transfer separat. Keine der neuen Chargen integriert. |
 | Content-/QA-Pipeline | implemented, not deployed | Lokale Autorenwerkzeuge im separaten Checkout `audio-availability`: Plan, Assembler, strukturelle/sprachliche QA, Audiozuordnung, Review, Freigabe. Nicht Teil dieses Main-Builds. |
 | Unabhängige Quellenprüfung | implemented, not deployed | Lokaler `linguistic-sources.mjs`: historische Autorenprovenienz getrennt von heutiger Verifikation; Quellen des konkreten aktuellen Generierungsprozesses dürfen sich nicht selbst bestätigen. |
-| Revisions-/Fingerprint-Release-Gate | implemented, not deployed | Lokaler `batch-release.mjs`, `docs/BATCH_RELEASE.md`: aktuelle Evidenz, Review, Assets und Revision gemeinsam gebunden. Kein automatischer Freigabeersatz. |
+| Revisions-/Fingerprint-Release-Gate | implemented, not deployed | Lokaler `batch-release.mjs`, `docs/BATCH_RELEASE.md`: `mandarin-release-v2-competence`; Evidenz, Review, Assets, Revision und tatsächliche Claim-/Kompetenzzuordnung gebunden. Ergänzende Exporte derselben Paketrevision möglich; kein automatischer Freigabeersatz. |
 | origin-confirmation-v1 | blocked | Zehn neue Objekte, 36 Aufgaben; 30 bestätigte Claims, 22 fehlende Faktenbelege, 24 Reviewfragen. Echte Reviewfreigabe fehlt. |
 | language-ability-v1 | blocked | Zehn neue Objekte, 39 Aufgaben; 38 bestätigte Claims, 39 offene Faktenbelege, ein Quellenwiderspruch, 26 Reviewfragen; zusätzlicher Schriftmapping-Hinweis. |
+| Explizite Review-Kompetenzprofile | deployed (Eva-Seiten); implemented, not deployed (lokales Gate) | `review-competence-v1`: Mandarin + English und Mandarin + German. Öffentliche Seiten verwenden ausschließlich Mandarin + English mit ausdrücklicher Kompetenzbestätigung; deutsches Profil technisch für ergänzende Reviews unterstützt, keine neue deutsche Reviewoberfläche. Keine implizite Freigabe fremdsprachiger Claims. |
 | Öffentliche englische Review-Oberflächen | deployed | Separates Review-Site-Deployment: [Herkunft](https://mandarin-gemeinsam-pruefen.wolfram376883.chatgpt.site/herkunft/) und [Sprachkenntnisse](https://mandarin-gemeinsam-pruefen.wolfram376883.chatgpt.site/sprachkenntnisse/). Deutscher Lerncontent bleibt prüfbar; lokales Speichern/Fortsetzen/JSON-Export, kein Backend. |
 | Größere Contentskalierung vor erstem echtem Review | deferred | Erst tatsächliche Reviewergebnisse und Freigaben; keine weitere Charge aus offenen Infrastrukturfragen ableiten. |
 | Auto-Release ohne Human Review | deferred | Ausdrücklich außerhalb des geltenden Umfangs und vom Gate ausgeschlossen; kein später automatisch nachzulieferndes Pflichtfeature. |
@@ -114,3 +115,10 @@ Die lokalen Pipeline-/Chargenbelege liegen in `audio-availability/content-review
 ## Änderungsnachweis
 
 - **2026-09-30 · Produktionsstand `f58dddb`:** Abgeschlossenen DoD-Abgleich zentral übernommen, ohne neuen Audit. Ausdrückliche Folgeentscheidung: Hanzi Reconstruction deferred bis größerer explizit eingeführter Hanzi-Bestand. Reviewer-Kompetenz offen; Safari-Pegelbefund nicht automatisch Pilotblocker. Pflegepflicht für zukünftige Änderungen festgehalten. Reine Dokumentation, kein Deployment.
+
+- **2026-09-30 · Reviewer-Kompetenz:** Öffentliches Review-Site-Deployment Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`; Lern-App weiterhin `f58dddb`, Dokumentationsbasis `c8cd45e`. Pakete/Exporte Version 2 binden Modus, Kompetenzen, ausdrückliche Bestätigung sowie eligible/assessed/excluded-Claims. Alte ungebundene Exporte werden ohne Migration abgewiesen. Package-Fingerprints bewusst erneuert; zugrunde liegende Claims, Stichprobe, Content-/QA-Revisionen, Mandarin, Aufgaben und Audio unverändert. Noch keine menschlichen Antworten.
+  - `origin-confirmation-v1`: Paket `sha256:034db7f0afb0b223f2d8eb310b7b8af3e4b88ef663d7b64429f2505fbeff0f36`; Eva-Modus 120 prüfbare und 85 explizit ausgeschlossene deutsche Claims; weiterhin 24 Fragen / 29 Audios / blocked.
+  - `language-ability-v1`: Paket `sha256:173b6f55b3f7fd16aab520a95bbea13c7f4898bd56e15844cdab0dd318113ce0`; Eva-Modus 161 prüfbare und 108 ausgeschlossene deutsche Claims; weiterhin 26 Fragen / 40 Audios / blocked.
+  - Deutsche Erklärungen/Glossen und deutsch formulierte Strukturdeklarationen bleiben dem deutschen Profil zugeordnet. Englische Orientierung ermöglicht Mandarin-Kontexturteile, ersetzt aber keine Prüfung des deutschen Textes.
+  - Gate: Keine passende Kompetenz → Claim offen (`REVIEW_COMPETENCE_PENDING`), nicht automatisch unsure. Antworten beeinflussen nur ihre explizit zugeordneten Claims. Positive parallele Reviews verdecken keine negativen/unsicheren Urteile. Quellenbelege und Konfliktauflösung bleiben zusätzlich erforderlich.
+  - QA: 120 fachliche Tests bestanden; drei lokale Browserfälle einschließlich Speichern/Fortsetzen/Export/Import, 320/390 px und Desktop, alle 69 Audioassets byteidentisch und dekodierbar. 154 geschützte App-/Content-/QA-/Audiodateien per Prüfsumme unverändert. Öffentliche Prüfung beider URLs ohne Login ebenfalls erfolgreich; ausschließlich leere Exporte, keine menschlichen Bewertungen simuliert. Details lokal unter `audio-availability/work/reviewer-competence/` und chargenweise `competence-verification.json`.
