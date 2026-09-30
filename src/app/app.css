@@ -295,3 +295,9 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .feedbackAcknowledgement,.correctComparison > span:last-child { color: var(--blue); }
 .correctComparison { display: grid; gap: var(--space-1); font-size: 1.2rem; overflow-wrap: anywhere; }
 .productionFeedback[data-feedback-state=tone] del { color: var(--ink); }
+
+.transferQuestion { border-top: 1px solid var(--line-strong); padding-top: var(--space-5); margin-top: var(--space-3); }
+.transferQuestion h3 { font-size: var(--text-small); letter-spacing: .08em; }
+
+.transferKnown { display: flex; align-items: center; gap: .6rem; font-size: var(--text-small); color: var(--ink-muted); }
+.transferKnown input[type=checkbox] { appearance: auto; -webkit-appearance: checkbox; width: 18px; min-height: 18px; flex: 0 0 18px; }

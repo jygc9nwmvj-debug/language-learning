@@ -1,3 +1,5 @@
+import { MiniTransfer } from '../languages/mandarin/components/MiniTransfer';
+import { reserveTransfer, transferState, atTransfer, saveTransfer, finishTransfer, type TransferState } from '../languages/mandarin/mini-transfer';
 import { ActiveTime } from '../core/observability/activeTime';
 import { attemptContext } from '../core/observability/evidence';
 import { screenlessFor, paperFor, screenlessEvidence } from '../languages/mandarin/hybrid';
@@ -19,6 +21,8 @@ import { prepareOffline } from '../core/offline/prepare';
 import { Worksheet } from '../languages/mandarin/components/Worksheet';
 export function LessonRunner() {
   const interaction = useInteractionScope();
+  const [localTransfer,setLocalTransfer]=useState<TransferState|null>(null);
+  const [transferTestArmed,setTransferTestArmed]=useState(false);
   const [ready, setReady] = useState(false), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const [inspecting, setInspecting] = useState(false), [inspectionName,setInspectionName] = useState('');
   const [view, setView] = useState<'home' | 'learn'>('home');
@@ -34,6 +38,8 @@ export function LessonRunner() {
       await db.open();
       const [latest, storedScript, storedName, relationCount, eventCount] = await Promise.all([db.sessions.orderBy('updatedAt').last(), db.preferences.get('script'), db.preferences.get('name'), db.relations.count(), db.events.count()]);
       setHasStoredLearning(!!latest || relationCount > 0 || eventCount > 0);
+      setLocalTransfer(await transferState());
+      if(import.meta.env.DEV)setTransferTestArmed((await import('../languages/mandarin/mini-transfer-dev')).isArmed());
       setSession(latest ?? null); setScript(storedScript?.value === 'hans' ? 'hans' : 'hant'); setName(storedName?.value ?? ''); setReady(true); setError('');
     } catch { setError(ui.storageError); }
   }
@@ -58,7 +64,8 @@ export function LessonRunner() {
     window.addEventListener('pagehide',checkpoint);
     let cancelled = false;
     void db.events.toArray().then(async history=>{if(cancelled)return;
-      const screenless=screenlessFor(session,history,Date.now()), paper=paperFor(session,history,Date.now());
+      const isTransfer=!!session&&atTransfer(session,localTransfer);
+  const screenless=screenlessFor(session,history,Date.now()), paper=paperFor(session,history,Date.now());
       const offered=screenless?'screenless_offered':paper.length?'paper_offered':null;
       clock.block('non_learning',t.kind==='closure'&&!paper.length,performance.now());
       if(offered && !history.some(e=>e.sessionId===session.id&&e.detail.index===session.index&&e.type===offered)) {
@@ -80,13 +87,14 @@ export function LessonRunner() {
   const task = session ? taskMap.get(session.plan[session.index]) : undefined;
   const history = attentionSnapshot?.events ?? [];
   const snapshotReady=!!session&&attentionSnapshot?.key===`${session.id}:${session.index}`;
+  const isTransfer=!!session&&atTransfer(session,localTransfer);
   const screenless=!!session&&snapshotReady&&screenlessFor(session,history,Date.now());
   const paper=session&&snapshotReady?paperFor(session,history,Date.now()):[];
   const revealed=(type:string)=>history.some(e=>e.sessionId===session?.id&&e.detail.index===session?.index&&e.type===type);
   const encoding = !!task && !!session && !!introductionForTask(task,session.script,history);
   const writingIntroduction = task?.kind==='writing' && (!task.recall || (!!session && !introduced(itemMap.get(task.itemId!)!,'writing',session.script,history)));
   const previousIndex = session ? previousObjectIndex(session.index) : null;
-  const previousTask = session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
+  const previousTask = !isTransfer && session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
   async function inspectEvent(type: string, detail: Record<string, string | number | boolean> = {}) {
     if (!session || !previousTask) return;
     const {correction:_correction,...safeDetail}=detail;
@@ -119,7 +127,10 @@ export function LessonRunner() {
   async function begin(replay = false) {
     await mutation(async () => {
       let next = session;
-      if (replay || !shouldResume(next, Date.now())) {
+      const savedTransfer=await transferState();
+      const pending=savedTransfer&&savedTransfer.phase!=='done'?await db.sessions.get(savedTransfer.sessionId):null;
+      if(pending&&atTransfer(pending,savedTransfer))next=pending;
+      if (!(next&&atTransfer(next,savedTransfer)) && (replay || !shouldResume(next, Date.now()))) {
         const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), script, Date.now());
         next = { id: crypto.randomUUID(), plannerVersion: 'd1', plan, index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now(), script };
       }
@@ -130,6 +141,13 @@ export function LessonRunner() {
       });
       setInspecting(false); setAttentionSnapshot(null); setSession(chosen); setScript(chosen.script); setView('learn');
     });
+  }
+  async function transferSave(patch: Parameters<typeof saveTransfer>[1]) {
+    if(session)setLocalTransfer(await saveTransfer(session,patch));
+  }
+  async function transferNext() {
+    if(!session)return;
+    await mutation(async()=>{await finishTransfer(session);setLocalTransfer(await transferState());window.scrollTo({top:0});});
   }
   async function next(skip = false) {
     if (!session || !task || inspecting || !interaction.canAdvance()) return;
@@ -233,6 +251,10 @@ export function LessonRunner() {
   async function continueBatch() {
     if (!session || task?.kind !== 'closure') return;
     await mutation(async () => {
+      const offered=import.meta.env.DEV ? await (await import('../languages/mandarin/mini-transfer-dev')).reserveLocalTransfer(session,await db.events.toArray()) : await reserveTransfer(session);
+      setLocalTransfer(offered);
+      if(import.meta.env.DEV)setTransferTestArmed((await import('../languages/mandarin/mini-transfer-dev')).isArmed());
+      if(atTransfer(session,offered))return;
       let chosen: Session | undefined;
       await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
         const now = Date.now();
@@ -250,10 +272,10 @@ export function LessonRunner() {
     });
   }
   useEffect(() => {
-    if (view==='learn' && task?.kind==='closure' && snapshotReady && !paper.length && !busy && !error && !lock.current) {
+    if (view==='learn' && !isTransfer && task?.kind==='closure' && snapshotReady && !paper.length && !busy && !error && !lock.current) {
       void continueBatch().catch(() => {});
     }
-  }, [view, session?.id, session?.index, snapshotReady, paper.length, busy, error]);
+  }, [view, session?.id, session?.index, snapshotReady, paper.length, busy, error, isTransfer]);
   async function backup() {
     try { const url = URL.createObjectURL(new Blob([await exportLearningState()], { type: 'application/json' }));
       const a = document.createElement('a'); a.href = url; a.download = `mandarin-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -286,10 +308,10 @@ export function LessonRunner() {
     {view === 'home' && <section className="card startCard"><p className="eyebrow">Mandarin</p><h1 lang="zh">你好</h1><h2>{ui.home}</h2><p className="lead">{ui.homeLead}</p>
       <button type="button" disabled={busy} onClick={() => safe(() => begin())}>{session || hasStoredLearning ? ui.learn : 'Lernen starten'}</button><p className="muted">{ui.noScores}</p>
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'ready' && <small>Funktioniert jetzt auch offline.</small>}{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div></div>
-      {errorBox}{settings}<p className="prototypeNote">Testversion v0.5 · {ui.prototype}</p></section>}
+      {errorBox}{settings}{import.meta.env.DEV && <details className="settings"><summary>Lokale Testfunktion</summary><p>Einmaliger Test an der nächsten Abschnittsgrenze, ohne Änderung des Lernstands.</p><button type="button" disabled={busy || transferTestArmed || !!localTransfer && localTransfer.phase!=='done'} onClick={()=>safe(async()=>{(await import('../languages/mandarin/mini-transfer-dev')).arm();setTransferTestArmed(true);})}>Mini-Transfer im Lernfluss testen</button>{transferTestArmed&&<p role="status">Test vorgemerkt. Lerne normal weiter.</p>}</details>}<p className="prototypeNote">Testversion v0.5 · {ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
-      <section className="lessonCard" data-learning-state={encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' ? '' : task.prompt.de}</h2>{errorBox}
-        {task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
+      <section className="lessonCard" data-learning-state={isTransfer ? 'transfer' : encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={isTransfer ? 'transfer' : task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{isTransfer ? 'IM ZUSAMMENHANG' : encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : 'Aus dem Gedächtnis'}</p><h2>{isTransfer ? 'Hör dir das kurze Gespräch an.' : paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : encoding && task.kind !== 'encounter' ? 'Lerne den Ausdruck zuerst kennen.' : task.kind === 'closure' ? '' : task.prompt.de}</h2>{errorBox}
+        {isTransfer ? <MiniTransfer key={`${localTransfer!.caseId}:${localTransfer!.firstSeenAt}`} state={localTransfer!} script={session.script} onSave={transferSave} onNext={transferNext} disabled={busy}/> : task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
           : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise savedEvaluation={session.evaluation?.index === session.index && session.evaluation.taskId === task.id ? session.evaluation : undefined} onCheckpoint={checkpoint} savedAssessment={(() => {
             const attempts = attentionSnapshot.events.filter(e=>e.type==='attempt' && e.sessionId===session.id && e.taskId===task.id && e.detail.index===session.index);
             const d=attempts.length===1?attempts[0].detail:undefined;
