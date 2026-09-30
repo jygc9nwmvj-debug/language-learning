@@ -19,3 +19,7 @@ Geschützte fachliche Dateien sind gegenüber der Basis unverändert: Contentdat
 Die existierenden UI-Regressionen wurden auf bereits produktive Beschriftungen (Lernen starten, freiwillige Aufnahme), den vorhandenen Gesamtvergleich und vollständige Einführungsvoraussetzungen der Testfixtures angepasst. Veraltete künstliche Rundenabschlüsse werden nicht wiederhergestellt oder als Designziel getestet. Die drei späteren `tone-recall`-Definitionen sind keine neu eingeplanten Continuous-Aufgaben; ihre Logik bleibt unberührt.
 
 Automatisierte UI-Prüfung ersetzt keine neue didaktische Wirksamkeitsbehauptung. Nach Veröffentlichung ist der Block abgeschlossen; weitere Veränderungen entstehen aus normaler Pilotnutzung, nicht aus einer weiteren automatischen Optimierungsrunde.
+
+## Veröffentlichung
+
+Produktionscommit `63e35c4` auf `main`; Deployment am 2026-09-30 bestätigt. Öffentlicher App-Code und Service Worker sind bytegleich zum geprüften Build; Fingerprints in [V05_STATUS.md](V05_STATUS.md). Dies bestätigt die öffentliche Auslieferung, nicht den Cache eines bereits geöffneten Nutzerfensters.

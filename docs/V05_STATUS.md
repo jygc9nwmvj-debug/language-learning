@@ -1,7 +1,7 @@
 # v0.5 — verbindlicher Projektstatus
 
-Stand: 2026-09-30. Übernahme des abgeschlossenen DoD-Abgleichs, kein neuer Audit.
-Produktionsbasis: `main` / `b482fa6` (drei P1-Korrekturen). Öffentlich ausgelieferter App-Code (`App-DNBoL1dE.js`) und Service Worker (`mandarin-v01-a356f735bf509432`) am 2026-09-30 bytegenau gegen den geprüften Produktionsbuild verifiziert. Separates Review-Site-Deployment unverändert: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
+Stand: 2026-09-30. UI-/Interaction-/Feedback-Konsolidierung einschließlich Textökonomie abgeschlossen und deployt.
+Produktionsbasis: `main` / `63e35c4` (UI-/Interaction-/Feedback-Konsolidierung einschließlich Textökonomie; P1-Korrekturen unverändert enthalten). Öffentlich ausgelieferter App-Code (`App-Bwd4uSP1.js`) und Service Worker (`mandarin-v01-e2a61bde915d0d3d`) am 2026-09-30 bytegenau gegen den geprüften Produktionsbuild verifiziert. Separates Review-Site-Deployment unverändert: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
 
 P1-Korrekturstand 2026-09-30: **deployed**; Commit `b482fa6`, Basis `f537a6f`. Ausschließlich die drei bestätigten Auditbefunde: Transfer als Wortmuster-Evidenz statt Verständnisnachweis; Papiervergleich vor erneuter Bildschirmeingabe dauerhaft als Hilfe; bewerteter/abgeschlossener Transferdurchlauf schlägt älteren Entwurf beim Restore und verhindert erneute Bewertung. QA bestanden: 154 Funktionstests, zwölf Browserfälle in Chrome/WebKit (Schreiben, Papiervergleich, Reload, Transfer auf 390/1280 Pixeln), Typprüfung und Produktionsbuild. Auf `main` gepusht, Cloudflare-Deployment durch öffentlichen Datei-Abgleich bestätigt. Die drei P2-Befunde (Antwortlisten, spätere Tonabrufe, Zahlenpositionen) bleiben ausdrücklich unverändert.
 
@@ -25,7 +25,7 @@ Statuswerte:
 
 ## Freeze und offene Entscheidungen
 
-Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock vom 2026-09-30 ist lokal umgesetzt und geprüft (`implemented, not deployed`). Basis: `bebf0f8` / produktiver Code `b482fa6`. [Interaction-Regeln und Zustandsinventar](V05_INTERACTION_RULES.md). Danach zurück in den Pilot; keine automatische weitere Optimierungsrunde.
+Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock samt Textökonomie vom 2026-09-30 ist abgeschlossen (`deployed`, `63e35c4`). Ausgangsbasis: `bebf0f8` / Code `b482fa6`. Kein weiterer Implementierungsblock aktiv. [Interaction-Regeln und Zustandsinventar](V05_INTERACTION_RULES.md). Danach zurück in den Pilot; keine automatische weitere Optimierungsrunde.
 
 | Punkt | Status | Grenze / nächste Voraussetzung |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock vom
 | Feedback direkt bei eigener Antwort, vollständige Referenz danach | deployed | Produktionskorrektur mit Ziel und Audio. |
 | Details ohne Umformatierung des Hauptausdrucks | deployed | `2e32e59`: stabile Schriftgröße, Abstände und Umbrüche. Frühere Verkleinerung beim Öffnen superseded. |
 | Progressive Disclosure / technische Informationen zurückhalten | deployed | Aufklappbare Zusatzinformation, Transfertranskript erst nach Antwort, Teststeuerung nur im Entwicklungsbuild. |
-| Eindeutige, gemeinsame Weiter-Aktion | deployed | Gemeinsamer `ContinueButton` in bisherigen Lernflächen. Mini-Transfer ist im aktuellen Konsolidierungsblock ebenfalls auf `ContinueButton` umgestellt (lokal, noch nicht deployt). |
+| Eindeutige, gemeinsame Weiter-Aktion | deployed | Gemeinsamer `ContinueButton` in bisherigen Lernflächen. Mini-Transfer verwendet seit `63e35c4` ebenfalls `ContinueButton` und das gemeinsame visuelle Wiedergabe-Control. |
 | Responsive Schrift / Mobile | deployed | Gezielte 320-/390-Pixel- und Desktopprüfungen dokumentiert. Kein Ersatz für reale Geräte-/Nutzungsabnahme. |
 | Funktionale Microinteractions / Reduced Motion | deployed | CSS: 140-ms-Kontrollwechsel, 200-ms-Einblendung, Details-Pfeil; reduzierte Bewegung respektiert. Nicht jede Rückmeldung identisch animiert; keine solche allgemeine Pflicht belegt. |
 | Weitergehende Motion Language / neue Aufgabenübergänge | deferred | Ungewählter Backlog; v0.5-Design schließt neue Übergänge zwischen Aufgaben ausdrücklich aus. Keine vergessene v0.5-Animation. |
@@ -130,3 +130,5 @@ Die lokalen Pipeline-/Chargenbelege liegen in `audio-availability/content-review
   - Im selben Block ergänzte Textökonomie: Einstieg und Anweisungen verdichtet, dekorative Füllzeile ausschließlich in der Anzeige unterdrückt, doppelte Überschriften entfernt, aktueller Zustand statt überholter Handlungsaufforderung. Fachliche Lernnotizen, Bewertungsgrenzen, Fehlerhilfen und Speicher-/Löschhinweise erhalten.
 
   - Abschluss-QA bestanden: Produktionsbuild/Typprüfung, 154 Funktionstests, 122 Browserfälle in Chrome/WebKit plus zwölf gezielte Transfer-Nachprüfungen nach der letzten Textkürzung. 320/390/1280 Pixel, Bildprüfung, Details/Tastatur/Reduced Motion, Fading, Papier, Aufnahmebedienung und Reload. [QA-Bericht](V05_INTERACTION_QA.md). Deployment wird separat nach öffentlichem Datei-Abgleich bestätigt.
+
+- **2026-09-30 · Deploymentbestätigung `63e35c4`:** `deployed`. Auf `main` gepusht; öffentliche Dateien bytegleich zum geprüften Produktionsbuild: `assets/App-Bwd4uSP1.js` SHA-256 `56ff7b25727e2563cf51e54ab1cc5f0664f4216fb08efcc0e93c58a595d88494`, `sw.js` SHA-256 `8f564bc2246b756bea9563d94c7c4de96a32a212e9a2aced256688fd8d90a446`, Cache `mandarin-v01-e2a61bde915d0d3d`. Alle oben als lokal beschriebenen Änderungen dieses Blocks sind damit veröffentlicht. Keine weitere automatische UI-/Copy-Optimierungsrunde; zurück zur normalen Pilotnutzung.
