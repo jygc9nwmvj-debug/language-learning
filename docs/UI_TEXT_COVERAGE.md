@@ -99,4 +99,6 @@ By primary functional classification, the 891 comprise **372 learning-content, 3
 
 ## Publication
 
-Implementation and build are verified locally; publication confirmation follows after the authorized push and public artifact comparison. Production cache expected from this build: `mandarin-v01-a8f4e9494f171775`, app `App-CmQsOYd3.js`.
+Production commit **`023c6d7`**, pushed to `main` and deployed on 2026-09-30. Public service worker and application bundle are byte-identical to the tested local build. Cache `mandarin-v01-a8f4e9494f171775`, app `App-CmQsOYd3.js`.
+
+SHA-256: worker `9eb5c818a85a49599a711c365e127f386e665479530bb8643d09600d021735fa`; app `d78ed86d222c14819a4e8693d59c2494587010dfa7bf9a48c56ac52ae9621dab`. This verifies public delivery, not the cache of every already-open user tab.
