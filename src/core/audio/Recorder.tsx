@@ -1,3 +1,4 @@
+import { Resolution } from '../exercises/Resolution';
 import { IconButton, InfoDisclosure } from '../exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import { useInteraction } from '../exercises/InteractionScope';
@@ -151,14 +152,14 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
   return <section className="toolPanel recordingPanel" data-state={status === 'idle' ? url ? playing ? 'playback' : 'complete' : 'ready' : status}>
     <div className="recordingHeading">{url ? <strong>Deine Aufnahme</strong> : recordControl}<InfoDisclosure className="recordingInfo" label="Zur Aufnahme"><p>{ui.micNote}</p></InfoDisclosure></div>
     <p role="status" className="captureStatus">{status === 'recording' ? ui.recording : status === 'preparing' ? ui.recordingWait : status === 'finalizing' ? ui.finalizing : ''}</p>
-    {url && <div className="ownRecording"><audio key={url} ref={playback} aria-label={ui.replayOwn} hidden src={url}
+    {url && <Resolution operation="recording" parts={{recording: <div className="ownRecording"><audio key={url} ref={playback} aria-label={ui.replayOwn} hidden src={url}
       onPlay={event => { const audio = event.currentTarget; if (!isCurrentPlayback(audio) || audio.paused || audio.ended) return; stopReferenceAudio(audio); setPlaying(true); setPlaybackNotice(''); releaseInteraction.current(); releaseInteraction.current = interaction.acquire(); }}
       onPause={event => { if (event.currentTarget.paused) playbackFinished(event.currentTarget); }}
       onEnded={event => { if (event.currentTarget.ended) playbackFinished(event.currentTarget); }}
       onTimeUpdate={event => { if (event.currentTarget.ended) playbackFinished(event.currentTarget); }}
       onError={event => { const audio = event.currentTarget; if (!isCurrentPlayback(audio) || !audio.error) return; setError(ui.recordingPlaybackError); playbackFinished(audio); }} />
       <div className="buttonRow"><IconButton icon={playing ? 'pause' : 'replay'} label={playing ? 'Wiedergabe pausieren' : 'Deine Aufnahme wiedergeben'} onClick={() => void replay()}/>{recordControl}</div>
-      <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice === 'Zum Vergleichen kannst du beide Aufnahmen noch einmal hören.' ? '' : playbackNotice}</p></div>}
+      <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice === 'Zum Vergleichen kannst du beide Aufnahmen noch einmal hören.' ? '' : playbackNotice}</p></div>,}}/>}
     {error && <p role="status" className="feedback attention">{error}</p>}
   </section>;
 }

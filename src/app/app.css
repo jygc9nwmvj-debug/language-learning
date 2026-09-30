@@ -283,8 +283,8 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .correctionToken del { color: var(--error-ink); text-decoration-thickness: 1px; }
 .correctionToken ins { color: var(--blue); text-decoration: none; }
 .correctionToken small { display: block; color: var(--ink-muted); font-size: var(--text-meta); }
-.correctionReference .hanziHero { font-size: clamp(2rem,8vw,3rem); padding-block: var(--space-1); }
-.correctionReference .unitHanzi,.correctionReference .phrasePunctuation { font-size: clamp(2rem,8vw,3rem); }
+.resolutionReference .hanziHero,.correctionReference .hanziHero { font-size: clamp(2rem,8vw,3rem); padding-block: var(--space-1); }
+.resolutionReference .unitHanzi,.resolutionReference .phrasePunctuation,.correctionReference .unitHanzi,.correctionReference .phrasePunctuation { font-size: clamp(2rem,8vw,3rem); }
 .correctionReference .pinyin,.correctionReference .unitPinyin { font-size: 1.125rem; }
 .correctionReference > p { order: 0; }
 

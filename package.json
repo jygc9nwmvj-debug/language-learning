@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run check:ui-text && npm run validate-content && tsc -b && node scripts/build-app.mjs && node scripts/build-sw.mjs",
+    "build": "npm run check:ui-text && npm run check:resolution && npm run validate-content && tsc -b && node scripts/build-app.mjs && node scripts/build-sw.mjs",
     "preview": "vite preview",
     "validate": "npm run validate-content",
-    "test": "npm run check:ui-text && node --test tests/*.test.mjs",
+    "test": "npm run check:ui-text && npm run check:resolution && node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
     "validate-content": "node scripts/validate-content.mjs",
     "build:test": "npm run validate-content && tsc -b && node scripts/build-app.mjs test && node scripts/build-sw.mjs",
@@ -16,7 +16,8 @@
     "generate-audio": "node scripts/generate-audio.mjs",
     "review-content": "node scripts/review-content.mjs",
     "learning-report": "node scripts/learning-report.mjs",
-    "check:ui-text": "node scripts/ui-text-inventory.mjs"
+    "check:ui-text": "node scripts/ui-text-inventory.mjs",
+    "check:resolution": "node scripts/resolution-coverage.mjs"
   },
   "dependencies": {
     "dexie": "4.4.6",

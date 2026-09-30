@@ -29,8 +29,8 @@ for(const width of [320,390,1280]) {
   await expect(page.locator('.transferQuestion h3')).toHaveText(question);
   expect(await page.locator('.answerSummary').evaluate(el=>el.nextElementSibling?.classList.contains('transferSolution'))).toBe(true);
   await expect(page.locator('.transferResult .continueButton')).toBeVisible();
-  await expect(page.getByText(/Wortmuster allein belegen kein Verständnis/)).toBeVisible();
-  await expect(page.getByText(/Das bestätigt nicht, dass/)).toBeHidden();
+  await expect(page.getByText(/Wortmuster|Antwortmerkmale|Das bestätigt nicht/)).toHaveCount(0);
+
   await capture(page,'transfer-result',width,info.project.name);
   await page.reload();await home(page).click();await expect(page.locator('.transferQuestion h3')).toHaveText(question);
   expect((await research(page)).filter(e=>e.type==='transfer_assessed')).toHaveLength(1);

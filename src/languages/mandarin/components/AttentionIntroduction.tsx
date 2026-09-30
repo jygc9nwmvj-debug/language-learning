@@ -1,3 +1,4 @@
+import { SlotExampleNote } from './SlotReference';
 import { PhraseForm, ExplanationText, HanziText, LearningNote, hasLearningNote } from './PhraseForm';
 import { useRef, useState } from 'react';
 import { AudioButton, stopReferenceAudio } from '../../../core/exercises/AudioButton';
@@ -44,7 +45,7 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
       await onNext();
     });
   }
-  const audio = <><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
+  const audio = <><SlotExampleNote item={item}/><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
   return <div className="attentionIntroduction" data-focus={phase}>
     <SpeakingPractice hasContext={missing.includes('segmentation') || hasLearningNote(item.learning?.note) || !!item.learning?.discovery || item.slot === 'name'} allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
       {phase==='hear'&&<><h3>Erst nur hören.</h3>{knownParts&&<p className="muted">Achte auf den gemeinsamen Klang der bekannten Wörter.</p>}</>}

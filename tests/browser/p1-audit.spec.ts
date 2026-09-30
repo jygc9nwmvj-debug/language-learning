@@ -36,9 +36,8 @@ for(const width of [390,1280])test(`P1 transfer conservative feedback and reload
  await page.locator('#transfer-answer').fill(answer);await page.getByRole('button',{name:'Antwort abgeben',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Auflösung',exact:true})).toBeVisible();
  await expect(page.getByText('Vollständig verstanden',{exact:true})).toHaveCount(0);
- await expect(page.getByText(/Wortmuster allein belegen kein Verständnis/)).toBeVisible();
- await page.getByText('Automatisch gefundene Antwortmerkmale',{exact:true}).click();
- await expect(page.getByText(/Das bestätigt nicht, dass deine Antwort inhaltlich richtig ist/)).toBeVisible();
+ await expect(page.getByText(/Wortmuster|Antwortmerkmale|Das bestätigt nicht/)).toHaveCount(0);
+
  expect((await research(page)).find(e=>e.type==='transfer_assessed').detail.outcome).toBe('features-only');
  await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
  await expect(page.getByRole('heading',{name:'Auflösung',exact:true})).toBeVisible();

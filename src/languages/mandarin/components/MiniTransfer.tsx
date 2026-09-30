@@ -1,3 +1,4 @@
+import { Resolution } from '../../../core/exercises/Resolution';
 import { AnswerSummary, ContinueButton, PlaybackControl } from '../../../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import { transferCase } from '../transfer-cases';
@@ -46,14 +47,10 @@ export function MiniTransfer({state,script,onSave,onNext,disabled}:{state:Transf
       <div className="buttonRow"><button disabled={disabled||playing||!answer.trim()}>Antwort abgeben</button><button type="button" className="textButton" disabled={disabled||playing} onClick={()=>void submit()}>Ich weiß es nicht</button></div>
     </form>}
     {state.phase==='result'&&<div className="transferResult">
-      <AnswerSummary value={state.answer||'Ich weiß es nicht.'}/>
-      <div className="transferSolution"><h3>Auflösung</h3><p>{solution}</p></div>
-      <p className="muted">Vergleiche auch die Rollen der Personen. Wortmuster allein belegen kein Verständnis.</p>
-      <details><summary>Automatisch gefundene Antwortmerkmale</summary>
-      <p>Die automatische Suche hat passende Wortmuster für {state.assessment?.recognized.length ?? 0} von {definition.components.length} Antwortmerkmalen gefunden. Das bestätigt nicht, dass deine Antwort inhaltlich richtig ist. Auch eine richtige Antwort kann unerkannt bleiben.</p>
-      </details>
-      <details open={transcript} onToggle={e=>setTranscript(e.currentTarget.open)}><summary>Transkript ansehen</summary>{transcript&&turns.map(t=><div className="reference" key={t.speaker}><strong>Person {t.speaker}</strong><p className="hanziSentence" lang="zh">{t.item[script]}</p><p>{numberedToPinyin(t.item.surfaceToneNumbers??t.item.toneNumbers)}</p><p>{t.item.meaning.de}</p></div>)}</details>
-      <ContinueButton disabled={disabled||playing} onClick={()=>void onNext().catch(()=>setError('Bitte versuche es noch einmal.'))}>Weiter</ContinueButton>
+      <Resolution operation="transfer" parts={{response: <AnswerSummary value={state.answer||'Ich weiß es nicht.'}/>,
+      reference: <div className="transferSolution"><h3>Auflösung</h3><p>{solution}</p></div>,
+      enrichment: <details open={transcript} onToggle={e=>setTranscript(e.currentTarget.open)}><summary>Transkript ansehen</summary>{transcript&&turns.map(t=><div className="reference" key={t.speaker}><strong>Person {t.speaker}</strong><p className="hanziSentence" lang="zh">{t.item[script]}</p><p>{numberedToPinyin(t.item.surfaceToneNumbers??t.item.toneNumbers)}</p><p>{t.item.meaning.de}</p></div>)}</details>,
+      next: <ContinueButton disabled={disabled||playing} onClick={()=>void onNext().catch(()=>setError('Bitte versuche es noch einmal.'))}>Weiter</ContinueButton>,}}/>
     </div>}
     {error&&<p className="feedback error" role="alert">{error}</p>}
   </div>;

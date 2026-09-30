@@ -62,3 +62,9 @@ Alle produktiven Textquellen geprüft: `de.ts`, `LessonRunner`, Einführung/Enco
 | Einstellungen | Browserbindung/Sicherung verdichtet; gesperrte Schriftwahl, Importergebnis und Löschwarnung erhalten. Destruktive Bestätigung ist bewusst keine zu entfernende Dopplung. |
 
 „Verstehen. Sprechen. Erklären.“ ist im geprüften produktiven Bestand nicht vorhanden; es wurde keine neue Ersatz-Unterzeile dafür eingeführt.
+
+## Verbindliche Durchsetzung der Auflösung
+
+Seit dem Resolution-Auftrag: [Resolution Contract](RESOLUTION_CONTRACT.md) übersetzt bestehende Zustände in verpflichtende Grundauflösung, optionale Lernergänzung und ausschließlich interne Evidenz. Die bisherigen Regeln bleiben; der neue Contract ersetzt keine Zustands- oder Assessmentlogik.
+
+Bei variablen/personalisierten Slots hängt die Referenz zusätzlich von ihrer Rolle ab: vollständiges Einführungsbeispiel ausdrücklich als Beispiel, eigene Produktion nur mit festem Mandarin-Anteil und offenem Slot. Ein Beispielname ist keine Zielvorgabe. Bestehende Audios werden nicht umgeschrieben.

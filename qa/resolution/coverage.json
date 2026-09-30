@@ -1,0 +1,3908 @@
+{
+  "tasks": [
+    {
+      "slotReference": null,
+      "id": "meet-nihao",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-wo",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-ni",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-hao",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": {
+        "slot": "name",
+        "role": "example",
+        "fixedParts": [
+          {
+            "id": "wo",
+            "audio": "/audio/mandarin/polly-wo.mp3",
+            "hant": "我",
+            "hans": "我",
+            "words": [
+              "wo"
+            ]
+          },
+          {
+            "id": "detail-jiao",
+            "audio": "/audio/mandarin/polly-detail-jiao.mp3",
+            "hant": "叫",
+            "hans": "叫",
+            "words": [
+              "jiao"
+            ]
+          }
+        ],
+        "introduction": "explicit example",
+        "screenless": "renderer-level fixed-components; eligibility unchanged",
+        "states": [
+          "prompt",
+          "help",
+          "resolved",
+          "reload"
+        ]
+      },
+      "id": "meet-wojiao",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "slot",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-askname",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "punctuation",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-xiexie",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "meet-zaijian",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "tones",
+      "kind": "tones",
+      "operation": "tone",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "next"
+      ],
+      "reference": "correct tone/Pinyin in feedback; selected response and audio remain in quiz",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [],
+      "taskOptionalFields": [
+        "notationPractice"
+      ],
+      "introductionReplacement": false,
+      "additionalContracts": [
+        "notation",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "write-guided",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "write-recall",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "hear-nihao",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "hear-askname",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "punctuation",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "hear-xiexie",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "hear-zaijian",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "read-wo",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "read-ni",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "read-hao",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "recall-nihao",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": {
+        "slot": "name",
+        "role": "fixed-components",
+        "fixedParts": [
+          {
+            "id": "wo",
+            "audio": "/audio/mandarin/polly-wo.mp3",
+            "hant": "我",
+            "hans": "我",
+            "words": [
+              "wo"
+            ]
+          },
+          {
+            "id": "detail-jiao",
+            "audio": "/audio/mandarin/polly-detail-jiao.mp3",
+            "hant": "叫",
+            "hans": "叫",
+            "words": [
+              "jiao"
+            ]
+          }
+        ],
+        "introduction": "explicit example",
+        "screenless": "renderer-level fixed-components; eligibility unchanged",
+        "states": [
+          "prompt",
+          "help",
+          "resolved",
+          "reload"
+        ]
+      },
+      "id": "recall-wojiao",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "slot",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "recall-askname",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "punctuation",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "recall-xiexie",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "recall-zaijian",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "closure",
+      "kind": "closure",
+      "operation": null,
+      "states": [],
+      "base": [],
+      "reference": "No graded resolution; continuous boundary routes paper/transfer or next batch.",
+      "reachability": "orchestration boundary",
+      "optionalFields": [],
+      "taskOptionalFields": [],
+      "introductionReplacement": false,
+      "additionalContracts": [
+        "paper",
+        "transfer"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "tone-wo",
+      "kind": "tone-recall",
+      "operation": "tone",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "next"
+      ],
+      "reference": "correct tone/Pinyin in feedback; selected response and audio remain in quiz",
+      "reachability": "restorable compatibility; not newly planned",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "toneIndex"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": {
+        "slot": "name",
+        "role": "example",
+        "fixedParts": [
+          {
+            "id": "wo",
+            "audio": "/audio/mandarin/polly-wo.mp3",
+            "hant": "我",
+            "hans": "我",
+            "words": [
+              "wo"
+            ]
+          },
+          {
+            "id": "detail-jiao",
+            "audio": "/audio/mandarin/polly-detail-jiao.mp3",
+            "hant": "叫",
+            "hans": "叫",
+            "words": [
+              "jiao"
+            ]
+          }
+        ],
+        "introduction": "explicit example",
+        "screenless": "renderer-level fixed-components; eligibility unchanged",
+        "states": [
+          "prompt",
+          "help",
+          "resolved",
+          "reload"
+        ]
+      },
+      "id": "tone-jiao",
+      "kind": "tone-recall",
+      "operation": "tone",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "next"
+      ],
+      "reference": "correct tone/Pinyin in feedback; selected response and audio remain in quiz",
+      "reachability": "restorable compatibility; not newly planned",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "slot",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "toneIndex"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "tone-xie",
+      "kind": "tone-recall",
+      "operation": "tone",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "next"
+      ],
+      "reference": "correct tone/Pinyin in feedback; selected response and audio remain in quiz",
+      "reachability": "restorable compatibility; not newly planned",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "toneIndex"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "write-ni",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "write-wo",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-dont-understand",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-dont-understand",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-dont-understand",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-say-again",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-say-again",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-say-again",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-speak-slowly",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-speak-slowly",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-speak-slowly",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-what",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-what",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-what",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-dont-know",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-dont-know",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-dont-know",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-qing",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-qing",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-qing",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-qing",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-welcome",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-welcome",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-welcome",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-duibuqi",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-duibuqi",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-duibuqi",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-meiguanxi",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-meiguanxi",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-meiguanxi",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-wanan",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-wanan",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-wanan",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-how-are-you",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-how-are-you",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-how-are-you",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-im-fine",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-im-fine",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-im-fine",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "surfaceToneNumbers",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-and-you",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-and-you",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-and-you",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-ren",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-ren",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-ren",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-ren",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-ren",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-recall-ren",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-deguo",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-deguo",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-deguo",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-deguo",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-zhongguo",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-zhongguo",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-zhongguo",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-zhongguo",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-nationality",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-nationality",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-nationality",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-im-german",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-im-german",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-recall-im-german",
+      "kind": "recall",
+      "operation": "production",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form/meaning; existing correction grammar and Pinyin policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "assess",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-yi",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-yi",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-yi",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-yi",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-recall-yi",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-er",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-er",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-er",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-er",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-recall-er",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-san",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-san",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-san",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-san",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-recall-san",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-si",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-si",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-si",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-wu",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-wu",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-wu",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-liu",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-liu",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-liu",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-qi",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-qi",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-qi",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-ba",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-ba",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-ba",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-jiu",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-jiu",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-jiu",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-meet-shi-number",
+      "kind": "encounter",
+      "operation": "encounter",
+      "states": [
+        "revealed"
+      ],
+      "base": [
+        "reference",
+        "next"
+      ],
+      "reference": "introduced form/meaning; existing Pinyin reveal policy",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-read-shi-number",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-hear-shi-number",
+      "kind": "listen",
+      "operation": "listen",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference",
+        "next"
+      ],
+      "reference": "target form and meaning; no dependency on exploration",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-shi-number",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-write-recall-shi-number",
+      "kind": "writing",
+      "operation": "writing",
+      "states": [
+        "saved"
+      ],
+      "base": [
+        "reference",
+        "feedback",
+        "next"
+      ],
+      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target",
+        "recall"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "read-nihao",
+      "kind": "read",
+      "operation": "read",
+      "states": [
+        "success",
+        "attention",
+        "error"
+      ],
+      "base": [
+        "response",
+        "reference"
+      ],
+      "reference": "target form/meaning in practice reference; nested practice supplies audio/next",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "exploration",
+        "slowAudio",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": [
+        "target",
+        "recording"
+      ]
+    },
+    {
+      "slotReference": null,
+      "id": "d-sequence-123",
+      "kind": "sequence",
+      "operation": "sequence",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "reference",
+        "next"
+      ],
+      "reference": "correct ordered characters/Pinyin; own sequence remains above; no new audio sequence",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "sequence",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-sequence-456",
+      "kind": "sequence",
+      "operation": "sequence",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "reference",
+        "next"
+      ],
+      "reference": "correct ordered characters/Pinyin; own sequence remains above; no new audio sequence",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "sequence",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    },
+    {
+      "slotReference": null,
+      "id": "d-sequence-78910",
+      "kind": "sequence",
+      "operation": "sequence",
+      "states": [
+        "answered"
+      ],
+      "base": [
+        "feedback",
+        "reference",
+        "next"
+      ],
+      "reference": "correct ordered characters/Pinyin; own sequence remains above; no new audio sequence",
+      "reachability": "continuous task or prerequisite introduction",
+      "optionalFields": [
+        "slowAudio",
+        "learning",
+        "meaning"
+      ],
+      "taskOptionalFields": [
+        "sequence",
+        "itemId",
+        "target"
+      ],
+      "introductionReplacement": true,
+      "additionalContracts": []
+    }
+  ],
+  "sources": {
+    "src/languages/mandarin/reference-role.ts": "70f9ad865f11e21af4d337a72f68437dd8145ef97f788a52e1861757dd35503f",
+    "src/languages/mandarin/components/SlotReference.tsx": "ed602aab2e33e9462c356d091ca01306828fe0e71d61c7d5755b6d17fc0762e1",
+    "src/languages/mandarin/components/Exercise.tsx": "b4964c145cf70f35fbedde7b8788d2405a552f708f6ca3666137e13daac686dd",
+    "src/core/exercises/SpeakingPractice.tsx": "fa28c7e0d9680858a328d4985837b38c9529aea08fdad7f31e1b59cc92005de4",
+    "src/languages/mandarin/components/AttentionIntroduction.tsx": "c86040cfffec3f46fd29d02f38929a9a15eb12ce9be8145cbd1e2814b1017ad5",
+    "src/languages/mandarin/components/WritingExercise.tsx": "c19d8ad470a09f306e13042e668ac9addbf790494784bd6e9c82d994deb790b3",
+    "src/languages/mandarin/components/HybridRecall.tsx": "0ba3c56e8c06c4a337c6efe051d01aec93e3a7fd19e2b7aaf7bf3f1b9a0d640b",
+    "src/languages/mandarin/components/ToneLab.tsx": "694cbd8ea5233b026a275c70f9e7804bebfa3fd91e485cf1aeb93b1303b94431",
+    "src/core/audio/Recorder.tsx": "3f2016feaa7f19f140501737f7c245186e5a9a10c149584cc37605fef76a4966",
+    "src/languages/mandarin/components/NumberSequence.tsx": "48cd05410e870e6cd25931ede355f537fdf7b7a73478ed41e86240f865d5a567",
+    "src/languages/mandarin/components/MiniTransfer.tsx": "09ae531ab9a1ca48027c8877e3d566f820aea22996cebd0366a79ba8c2e32485",
+    "src/languages/mandarin/components/PhraseForm.tsx": "ae4d9bac9b234668193638542fdb15a15b5d73eec294ae8ef4c9b8f468fbba05",
+    "src/languages/mandarin/components/ProductionFeedback.tsx": "6a713735f41a840503b4c18b9cde411ef62ccee6de57239518449327291a4709",
+    "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
+    "src/core/exercises/resolution-contract.ts": "5b0c4df7133252e23208650b24ee2115db1709f626d2aaf61cb9efcf0d36308d",
+    "src/app/LessonRunner.tsx": "fe49a18496eb0053d54fd7df04558caf6c4e13f169216cfc74be9a919044d019",
+    "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
+  }
+}

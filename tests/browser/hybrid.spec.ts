@@ -15,7 +15,7 @@ async function seed(page:Page,id:string){
  },id);await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
 }
 async function state(page:Page){return page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});const out:any={};for(const key of ['events','relations','sessions'])out[key]=await new Promise(r=>{const q=db.transaction(key).objectStore(key).getAll();q.onsuccess=()=>r(q.result);});db.close();return out;});}
-test('mobile screenless evidence, optional paper skip and voluntary stop/continue',async({page})=>{
+test('mobile screenless evidence, optional paper skip and voluntary stop/continue',async({page},info)=>{
  await page.setViewportSize({width:390,height:844});await seed(page,'hybrid-a');
  await expect(page.getByRole('button',{name:'Aufdecken',exact:true})).toBeVisible();
  const surface=page.locator('.hybridRecall');await expect(surface).toContainText('bitte sprich etwas langsamer');await expect(surface).not.toContainText(/\p{Script=Han}/u);
@@ -23,6 +23,7 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
  await page.screenshot({path:'work/e-screenless.png',fullPage:true,animations:'disabled'});
  await page.getByRole('button',{name:'Aufdecken',exact:true}).click();
  await expect(surface.locator('.phraseUnits')).toBeVisible();await expect(surface.locator('.audioButton').first()).toBeEnabled();
+ for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`work/resolution/${info.project.name}-${width}-screenless-result.png`,fullPage:true});}
  await page.getByRole('button',{name:'Ja, gewusst',exact:true}).click();
  await expect(page.getByRole('button',{name:'Fertig – vergleichen',exact:true})).toBeVisible();
  const before=await state(page);const result=before.events.find((e:any)=>e.type==='screenless_recall');
@@ -41,6 +42,7 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
  // Same eligibility fixture, this time finish paper and continue automatically.
  await seed(page,'hybrid-b');await page.getByRole('button',{name:'Aufdecken',exact:true}).click();await page.getByRole('button',{name:'Ja, gewusst',exact:true}).click();
  await page.getByRole('button',{name:'Fertig – vergleichen',exact:true}).click();await expect(page.locator('.paperAnswers')).toContainText('好');
+ for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`work/resolution/${info.project.name}-${width}-paper-result.png`,fullPage:true});}
  await page.getByRole('button',{name:'Alle aus dem Gedächtnis geschrieben',exact:true}).click();await expect(page.locator('.lessonCard')).not.toHaveAttribute('data-task-kind','closure');
  await expect(page.locator('.lessonCard')).toBeVisible();expect((await state(page)).events.some((e:any)=>e.type==='voluntary_continue_after_stop')).toBe(false);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

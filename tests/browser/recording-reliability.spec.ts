@@ -1,6 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { finishAttention } from './helpers/attention';
 
 async function setup(page: Page, diagnostic = false, blockAutoplay = false) {
   const readFileContent = diagnostic ? await readFile('tools/recording-diagnostic/index.html','utf8') : '';
@@ -32,11 +31,18 @@ async function setup(page: Page, diagnostic = false, blockAutoplay = false) {
     await page.goto('/recording-diagnostic'); return;
   }
   await page.goto('/');
-  await page.getByRole('button', {name:'Weiterlernen',exact:true}).click();
-  await finishAttention(page);
+  await page.getByRole('button', {name:/^(Lernen starten|Weiterlernen)$/}).click();
+  const intro=page.locator('.attentionIntroduction');
+  await expect(intro).toBeVisible();
+  await expect(intro).not.toHaveAttribute('data-focus','hear',{timeout:15000});
+  while(await intro.getAttribute('data-focus')!=='connect'){
+    const phase=await intro.getAttribute('data-focus');
+    await page.getByRole('button',{name:/^(Schriftbild ansehen|Bedeutung dazunehmen)$/}).click();
+    await expect(intro).not.toHaveAttribute('data-focus',phase!);
+  }
 }
 async function record(page: Page, retake = false) {
-  await page.getByRole('button', {name:retake?'Neu aufnehmen':'Aufnehmen',exact:true}).click();
+  await page.getByRole('button', {name:retake?'Neu aufnehmen':'Aufnehmen · freiwillig',exact:true}).click();
   await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
   await page.waitForTimeout(700); // fixture audio length, not a production completion timer
   await page.getByRole('button', {name:'Aufnahme beenden',exact:true}).click();
@@ -49,6 +55,7 @@ async function complete(page: Page) {
 test('real recorded blob: automatic end, replay end, manual pause and repeat unlock Continue', async ({page}, info) => {
   await setup(page); await record(page);
   await complete(page);
+  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`work/resolution/${info.project.name}-${width}-recording-result.png`,fullPage:true});}
   const source = await page.locator('.ownRecording audio').getAttribute('src');
   for (let i=0;i<2;i++) {
     await page.getByRole('button',{name:'Deine Aufnahme wiedergeben',exact:true}).click();
@@ -78,10 +85,10 @@ test('old playback events cannot release a new capture or affect an exited compo
   await page.getByRole('button',{name:'Deine Aufnahme wiedergeben',exact:true}).click();
   await page.evaluate(() => { (window as any).exitedAudio = document.querySelector('.ownRecording audio'); });
   await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();
-  await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:/^(Lernen starten|Weiterlernen)$/})).toBeVisible();
   expect(await page.evaluate(()=>(window as any).exitedAudio.paused)).toBe(true);
   await page.evaluate(() => { for(const type of ['ended','pause','play','error']) (window as any).exitedAudio.dispatchEvent(new Event(type)); });
-  await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+  await page.getByRole('button',{name:/^(Lernen starten|Weiterlernen)$/}).click();
   await expect(page.locator('.recordingPanel')).toHaveAttribute('data-state','ready');
 });
 
