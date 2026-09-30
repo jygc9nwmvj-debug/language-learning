@@ -44,10 +44,10 @@ export function MiniTransfer({state,script,onSave,onNext,disabled}:{state:Transf
       <div className="buttonRow"><button disabled={disabled||playing||!answer.trim()}>Antwort abgeben</button><button type="button" className="textButton" disabled={disabled||playing} onClick={()=>void submit()}>Ich weiß es nicht</button></div>
     </form>}
     {state.phase==='result'&&<>
-      <h3>{state.assessment?.outcome==='complete'?'Vollständig verstanden':state.assessment?.outcome==='partial'?'Teilweise verstanden':'Nicht nachgewiesen'}</h3>
+      <h3>Vergleiche deine Antwort</h3>
       <p><strong>Deine Antwort:</strong> {state.answer||'Ich weiß es nicht.'}</p>
-      {state.assessment?.recognized.length ? <div><strong>In deiner Antwort erkannt:</strong><ul>{definition.components.filter(c=>state.assessment!.recognized.includes(c.id)).map(c=><li key={c.id}>{c.label}</li>)}</ul></div> : null}
-      {state.assessment?.missing.length ? <div><strong>Noch nicht zuverlässig erkannt:</strong><ul>{definition.components.filter(c=>state.assessment!.missing.includes(c.id)).map(c=><li key={c.id}>{c.label}</li>)}</ul><p className="muted">Die automatische Prüfung ist begrenzt. Eine anders formulierte Antwort kann richtig sein. Vergleiche sie mit der Auflösung.</p></div> : null}
+      <p>Die automatische Suche hat passende Wortmuster für {state.assessment?.recognized.length ?? 0} von {definition.components.length} Antwortmerkmalen gefunden. Das bestätigt nicht, dass deine Antwort inhaltlich richtig ist. Auch eine richtige Antwort kann unerkannt bleiben.</p>
+      <p>Vergleiche den Zusammenhang und die Rollen der Personen mit der Auflösung.</p>
       <h3>Auflösung</h3><p>{solution}</p>
       <details open={transcript} onToggle={e=>setTranscript(e.currentTarget.open)}><summary>Transkript ansehen</summary>{transcript&&turns.map(t=><div className="reference" key={t.speaker}><strong>Person {t.speaker}</strong><p className="hanziSentence" lang="zh">{t.item[script]}</p><p>{numberedToPinyin(t.item.surfaceToneNumbers??t.item.toneNumbers)}</p><p>{t.item.meaning.de}</p></div>)}</details>
       <div><button disabled={disabled||playing} onClick={()=>void onNext().catch(()=>setError('Bitte versuche es noch einmal.'))}>Weiter</button></div>

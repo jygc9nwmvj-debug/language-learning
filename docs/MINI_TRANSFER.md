@@ -19,9 +19,9 @@ The ordinary planner and session plan remain unchanged. Transfer is additional; 
 
 ## Assessment
 
-Two authored semantic-cue groups per case accept a bounded range of German paraphrases. Correct cue groups produce `complete`; one produces `partial`; none produces `not-demonstrated`. Guards reject uncertainty, selected contradictions and reversed speaker roles. Components, not literal answer-string equality, determine the result. Recognized and missing components are shown explicitly, followed by the solution. Before submission no transcript, Pinyin, translation or solution is rendered. Transcript is optional after submission.
+Two authored cue groups per case detect bounded German word patterns. Every automatic result is `features-only`; `cueCoverage` (`all`, `some`, `none`) describes pattern coverage, never comprehension or correctness. Recognized/missing IDs and uncertainty remain available for analysis. Even all matches may occur in a contradictory answer. The UI always explains this limit and asks the learner to compare their response with the solution. No additional semantic heuristics or NLP service were added. Before submission no transcript, Pinyin, translation or solution is rendered; transcript remains optional afterward.
 
-This is conservative deterministic assessment, not unrestricted German semantic understanding. Unsupported paraphrases can be under-recognized. Missing-component feedback explicitly states this limit; `not-demonstrated` does not mean a learner definitely failed to understand. No pronunciation or individual-word competence is inferred. Tests contain full, partial, unrelated, negated, uncertain and role-reversed examples for every case; the fixture is `tests/fixtures/transfer-answers.mjs`.
+Existing historical event classifications remain untouched. Restored results are presented as cue evidence, never as the earlier “fully/partly understood” assertion. No pronunciation, individual-word competence or mastery is inferred.
 
 ## Evidence, novelty and recovery
 
@@ -34,3 +34,7 @@ Reload returns to the home screen; Weiterlernen resumes the active transfer, inc
 ## Verification
 
 Full content validator, TypeScript, production build and all unit tests pass. Focused tests verify source reuse, prerequisites, novelty, minimum work/cooldown, all answer categories, atomic reservation, draft/result recovery, known-before evidence and unchanged relations/plans/planner output. A separate local production-build origin was tested through the ordinary backup/learning UI with synthetic data: unchanged preceding listening task, additional transfer, audio-only prompt, German paraphrase feedback, optional transcript, reload before/after submission, and continuation into normal recall. Desktop and 320/390 CSS-pixel layouts have no horizontal overflow. No physical-phone test and no real learner outcome are claimed.
+
+## P1 recovery correction — 2026-09-30
+
+For the same occurrence (case/revision, session, index and first-seen time), a submitted result or completion takes precedence over an older draft during import. Existing assessment/completion events also guard against resubmitting a stale draft after a previous import. New assessment events include the submitted response; historical events remain append-only. Unrelated preferences and occurrences retain the existing merge policy. Regression coverage: `tests/p1-transfer.test.mjs` and `tests/browser/p1-audit.spec.ts`.

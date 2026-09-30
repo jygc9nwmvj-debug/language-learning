@@ -16,7 +16,7 @@ const history=[...new Set(transferCases.flatMap(c=>c.turns.map(t=>t.itemId)))].f
  {id:crypto.randomUUID(),sessionId:'earlier',at:now-3600000,contentVersion:'build-d-1',taskId:content.tasks.find(t=>t.kind==='listen'&&t.itemId===id).id,type:'attempt',detail:{result:'success',assisted:false}},
 ]);
 const completed=Array.from({length:8},(_,i)=>({id:'complete'+i,sessionId:'earlier',at:now-10000+i,contentVersion:'build-d-1',taskId:'hear-nihao',type:'task_completed',detail:{}}));
-for(const c of transferCases)for(const [outcome,examples] of Object.entries(answers[c.id]))for(const answer of examples)test(`${c.id}: ${outcome}: ${answer}`,()=>assert.equal(assessTransfer(c,answer).outcome,outcome));
+for(const c of transferCases)for(const [outcome,examples] of Object.entries(answers[c.id]))for(const answer of examples)test(`${c.id}: ${outcome}: ${answer}`,()=>assert.equal(assessTransfer(c,answer).cueCoverage,({complete:'all',partial:'some','not-demonstrated':'none'})[outcome]));
 test('pool consists exclusively of current canonical audio/items and unique non-item sequences',()=>{
  const sequences=new Set();
  for(const c of transferCases){
@@ -56,7 +56,7 @@ test('transactional seen, scored evidence, reload and continuation leave plan, s
  await saveTransfer(session,{knownBefore:true});
  await saveTransfer(session,{phase:'result'});await saveTransfer(session,{phase:'result'});
  assert.equal((await db.events.toArray()).filter(e=>e.type==='transfer_assessed').length,1);
- assert.equal((await transferState()).assessment.outcome,'complete');
+ assert.equal((await transferState()).assessment.outcome,'features-only');
  const assessed=(await db.events.toArray()).find(e=>e.type==='transfer_assessed');assert.equal(assessed.detail.firstAppExposure,false);assert.equal(assessed.detail.knownBefore,true);
  await saveTransfer(session,{answer:'stale draft',phase:'answer'});assert.equal((await transferState()).phase,'result');
  assert.deepEqual(await finishTransfer(session),session);assert.deepEqual(await db.sessions.get(session.id),session);

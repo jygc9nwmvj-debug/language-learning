@@ -3,6 +3,9 @@
 Stand: 2026-09-30. Übernahme des abgeschlossenen DoD-Abgleichs, kein neuer Audit.
 Produktionsbasis: `main` / `f58dddb658ea7d97d6c3b0439a565bd0121f004a` (Mini-Transfer). Beim Abgleich stimmten öffentlich ausgelieferter App-Code und Service Worker bytegenau mit diesem Build überein. Der Lern-App-Stand bleibt unverändert. Separates Review-Site-Deployment: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
 
+P1-Korrekturstand 2026-09-30: **implemented, not deployed**; Basis `f537a6f`. Ausschließlich die drei bestätigten Auditbefunde: Transfer als Wortmuster-Evidenz statt Verständnisnachweis; Papiervergleich vor erneuter Bildschirmeingabe dauerhaft als Hilfe; bewerteter/abgeschlossener Transferdurchlauf schlägt älteren Entwurf beim Restore und verhindert erneute Bewertung. QA bestanden: 154 Funktionstests, zwölf Browserfälle in Chrome/WebKit (Schreiben, Papiervergleich, Reload, Transfer auf 390/1280 Pixeln), Typprüfung und Produktionsbuild. Deployment noch ausstehend. Die drei P2-Befunde (Antwortlisten, spätere Tonabrufe, Zahlenpositionen) bleiben ausdrücklich unverändert.
+
+
 ## Verbindlichkeit und Pflege
 
 Diese Datei ist die zentrale Referenz für den aktuellen Umsetzungs-, Freigabe- und Zurückstellungsstatus. Ältere Roadmaps, Buildberichte und Auditberichte bleiben historische Belege und werden nicht rückwirkend umgeschrieben. Bei widersprüchlichen Statusangaben gilt diese Datei; fachliche Verträge gelten weiter, soweit keine spätere ausdrückliche Entscheidung sie ersetzt.

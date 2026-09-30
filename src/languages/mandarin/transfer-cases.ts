@@ -34,13 +34,13 @@ export function readyForTransfer(c:TransferCase,events:ResearchEvent[]) {
    && real.some(e=>e.type==='attempt'&&taskMap.get(e.taskId)?.itemId===itemId&&taskMap.get(e.taskId)?.kind==='listen'&&e.detail.result==='success'&&e.detail.assisted===false);
  });
 }
-export type TransferAssessment={outcome:'complete'|'partial'|'not-demonstrated';recognized:string[];missing:string[];uncertain:boolean};
+export type TransferAssessment={outcome:'features-only';cueCoverage:'all'|'some'|'none';recognized:string[];missing:string[];uncertain:boolean};
 export function assessTransfer(c:TransferCase,answer:string):TransferAssessment {
  const text=answer.toLocaleLowerCase('de').normalize('NFKC').replace(/[’']/g,'').replace(/person\s+([ab])\b/g,'$1').replace(/\s+/g,' ').trim();
  // These are bounded semantic cues, not an open-ended German language model.
- // Contradiction, uncertain assertions and reversed roles never earn a complete result.
+ // Even all cue matches are not evidence that the answer is semantically correct.
  const uncertain=/\b(vielleicht|eventuell|möglicherweise|vermutlich|oder|keine ahnung)\b|weiß nicht|weiss nicht|nicht sicher/.test(text)||c.reject.some(r=>r.test(text));
  const recognized=uncertain?[]:c.components.filter(part=>part.patterns.some(r=>r.test(text))&&!part.reject?.some(r=>r.test(text))).map(p=>p.id);
  const missing=c.components.filter(p=>!recognized.includes(p.id)).map(p=>p.id);
- return {outcome:recognized.length===c.components.length?'complete':recognized.length?'partial':'not-demonstrated',recognized,missing,uncertain};
+ return {outcome:'features-only',cueCoverage:recognized.length===c.components.length?'all':recognized.length?'some':'none',recognized,missing,uncertain};
 }

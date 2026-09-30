@@ -166,7 +166,8 @@ export function LessonRunner() {
     await mutation(async () => {
       const history = await db.events.where('sessionId').equals(session.id).toArray();
       const exposed = history.some(event => event.taskId === task.id && event.detail.index === session.index && ['pinyin_reveal', 'writing_hint', 'writing_stroke_hint', 'writing_preview', 'stroke_animation', 'guided_start', 'answer_clarification', 'previous_object_help', 'attempt'].includes(event.type));
-      const assisted = e.assisted || exposed;
+      const comparedBeforeScreenInput = e.detail?.mode === 'screen' && history.some(event => event.taskId === task.id && event.detail.index === session.index && event.type === 'writing_compare');
+      const assisted = e.assisted || exposed || comparedBeforeScreenInput;
       const objectId = tone ? `cmn:tone:${tone}` : objectFor(task, session.script);
       const target = tone ? 'perception' as const : task.target!;
       const plan = !tone && ['listen', 'read', 'recall'].includes(task.kind) && (e.result !== 'success' || assisted) ? withSpacedRetry(session.plan, session.index, task.id) : session.plan;

@@ -1,3 +1,4 @@
+import { transferKey, reconcileTransfer } from '../../languages/mandarin/transfer-persistence.ts';
 import Dexie, { type Table } from 'dexie';
 import { z } from 'zod';
 import { relationSchema, relationId, updateRelation, type Attempt, type Relation } from './model.ts';
@@ -79,7 +80,13 @@ export async function importLearningState(raw: string, validTasks: Set<string>) 
       if (!current || current.updatedAt < s.updatedAt) await db.sessions.put(s);
     }
     for (const e of backup.events) if (!(await db.events.get(e.id))) await db.events.add(e);
-    for (const p of backup.preferences) if (!(await db.preferences.get(p.key))) await db.preferences.add(p);
+    for (const p of backup.preferences) {
+      const current = await db.preferences.get(p.key);
+      if (p.key === transferKey) {
+        const merged = reconcileTransfer(current ? JSON.parse(current.value) : null, JSON.parse(p.value), await db.events.toArray());
+        if (merged) await db.preferences.put({ key: transferKey, value: JSON.stringify(merged) });
+      } else if (!current) await db.preferences.add(p);
+    }
   });
 }
 
