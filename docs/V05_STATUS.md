@@ -25,7 +25,7 @@ Statuswerte:
 
 ## Freeze und offene Entscheidungen
 
-Für den bestehenden Pilot ist keine weitere zwingende v0.5-Implementierung aus dem abgeschlossenen Abgleich belegt. Keine neue Optimierungsrunde eröffnen. Aktuell kein laufender Implementierungsblock (`in progress`) belegt.
+Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock vom 2026-09-30 ist lokal umgesetzt und geprüft (`implemented, not deployed`). Basis: `bebf0f8` / produktiver Code `b482fa6`. [Interaction-Regeln und Zustandsinventar](V05_INTERACTION_RULES.md). Danach zurück in den Pilot; keine automatische weitere Optimierungsrunde.
 
 | Punkt | Status | Grenze / nächste Voraussetzung |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ Für den bestehenden Pilot ist keine weitere zwingende v0.5-Implementierung aus 
 | Feedback direkt bei eigener Antwort, vollständige Referenz danach | deployed | Produktionskorrektur mit Ziel und Audio. |
 | Details ohne Umformatierung des Hauptausdrucks | deployed | `2e32e59`: stabile Schriftgröße, Abstände und Umbrüche. Frühere Verkleinerung beim Öffnen superseded. |
 | Progressive Disclosure / technische Informationen zurückhalten | deployed | Aufklappbare Zusatzinformation, Transfertranskript erst nach Antwort, Teststeuerung nur im Entwicklungsbuild. |
-| Eindeutige, gemeinsame Weiter-Aktion | deployed | Gemeinsamer `ContinueButton` in bisherigen Lernflächen. Belegte kleine Abweichung: Mini-Transfer verwendet eigenen einfachen Weiter-Button; kein belegter Pilotblocker und kein neuer Korrekturauftrag. |
+| Eindeutige, gemeinsame Weiter-Aktion | deployed | Gemeinsamer `ContinueButton` in bisherigen Lernflächen. Mini-Transfer ist im aktuellen Konsolidierungsblock ebenfalls auf `ContinueButton` umgestellt (lokal, noch nicht deployt). |
 | Responsive Schrift / Mobile | deployed | Gezielte 320-/390-Pixel- und Desktopprüfungen dokumentiert. Kein Ersatz für reale Geräte-/Nutzungsabnahme. |
 | Funktionale Microinteractions / Reduced Motion | deployed | CSS: 140-ms-Kontrollwechsel, 200-ms-Einblendung, Details-Pfeil; reduzierte Bewegung respektiert. Nicht jede Rückmeldung identisch animiert; keine solche allgemeine Pflicht belegt. |
 | Weitergehende Motion Language / neue Aufgabenübergänge | deferred | Ungewählter Backlog; v0.5-Design schließt neue Übergänge zwischen Aufgaben ausdrücklich aus. Keine vergessene v0.5-Animation. |
@@ -124,3 +124,9 @@ Die lokalen Pipeline-/Chargenbelege liegen in `audio-availability/content-review
   - Deutsche Erklärungen/Glossen und deutsch formulierte Strukturdeklarationen bleiben dem deutschen Profil zugeordnet. Englische Orientierung ermöglicht Mandarin-Kontexturteile, ersetzt aber keine Prüfung des deutschen Textes.
   - Gate: Keine passende Kompetenz → Claim offen (`REVIEW_COMPETENCE_PENDING`), nicht automatisch unsure. Antworten beeinflussen nur ihre explizit zugeordneten Claims. Positive parallele Reviews verdecken keine negativen/unsicheren Urteile. Quellenbelege und Konfliktauflösung bleiben zusätzlich erforderlich.
   - QA: 120 fachliche Tests bestanden; drei lokale Browserfälle einschließlich Speichern/Fortsetzen/Export/Import, 320/390 px und Desktop, alle 69 Audioassets byteidentisch und dekodierbar. 154 geschützte App-/Content-/QA-/Audiodateien per Prüfsumme unverändert. Öffentliche Prüfung beider URLs ohne Login ebenfalls erfolgreich; ausschließlich leere Exporte, keine menschlichen Bewertungen simuliert. Details lokal unter `audio-availability/work/reviewer-competence/` und chargenweise `competence-verification.json`.
+
+- **2026-09-30 · UI-/Interaction-Konsolidierung, Basis `bebf0f8`:** `implemented, not deployed`. Gemeinsame Wiedergabe-/Weiter-Controls im Transfer; konkrete Frage bleibt bei Antwort/Auflösung; Wortmustergrenzen sichtbar, ausführliche Erklärung aufklappbar. Vorhandene Hilfe nach Textantwort benannt. Schreibabschluss und Zahlenfolge zeigen keine überholte Handlungsanweisung; deaktivierte Schreibwerkzeuge treten zurück. Selbstbericht-Optionen gleichgewichtet. Stabile Tonbeispiele und Tastatur-Fokusrückgabe bei Phrasendetails. Unsegmentierte Phrasen passen in ihre Referenzbreite. Bestehende 140/200-ms-Bewegung konsolidiert, Reduced Motion erhalten. Lernlogik, Antworten, Evidenz, Speicherung, Mandarin, Audio und Schriftwahl unverändert. Regeln/Inventar: [V05_INTERACTION_RULES.md](V05_INTERACTION_RULES.md).
+
+  - Im selben Block ergänzte Textökonomie: Einstieg und Anweisungen verdichtet, dekorative Füllzeile ausschließlich in der Anzeige unterdrückt, doppelte Überschriften entfernt, aktueller Zustand statt überholter Handlungsaufforderung. Fachliche Lernnotizen, Bewertungsgrenzen, Fehlerhilfen und Speicher-/Löschhinweise erhalten.
+
+  - Abschluss-QA bestanden: Produktionsbuild/Typprüfung, 154 Funktionstests, 122 Browserfälle in Chrome/WebKit plus zwölf gezielte Transfer-Nachprüfungen nach der letzten Textkürzung. 320/390/1280 Pixel, Bildprüfung, Details/Tastatur/Reduced Motion, Fading, Papier, Aufnahmebedienung und Reload. [QA-Bericht](V05_INTERACTION_QA.md). Deployment wird separat nach öffentlichem Datei-Abgleich bestätigt.

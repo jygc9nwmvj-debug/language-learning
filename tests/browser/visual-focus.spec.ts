@@ -2,7 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {itemMap} from '../../src/languages/mandarin/content';
 import {finishAttention} from './helpers/attention';
 async function plan(page:Page,task:string,itemId?:string){
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.goto('/');await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).waitFor();
  const item=itemId?itemMap.get(itemId):undefined;
  await page.evaluate(async({task,item})=>{
   const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
@@ -10,7 +10,7 @@ async function plan(page:Page,task:string,itemId?:string){
    t.objectStore('sessions').put({id:'focus',plannerVersion:'d1',plan:[task,'meet-wo','closure'],index:0,completed:false,startedAt:now,updatedAt:now+100,script:'hant'});
    if(item)t.objectStore('events').put({id:'introduced',at:1,sessionId:'prior',taskId:'fixture',type:'introduction_dimensions',detail:{item:item.id,form:item.hant,toneNumbers:item.toneNumbers,script:'hant',dimensions:'meaning,pronunciation,hanzi,writing',introductionVersion:1}});
    t.oncomplete=()=>r();});db.close();
- },{task,item});await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+ },{task,item});await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
 }
 test('resolved recall changes focus and removes only its completed skip action',async({page},info)=>{
  await page.setViewportSize({width:1280,height:900});await plan(page,'recall-nihao','nihao');
@@ -52,10 +52,10 @@ test('speaking UI groups reference controls and folds guidance only after record
   class UIRecorder { static isTypeSupported(){return true;}state='inactive';mimeType='audio/webm';onstart?:()=>void;onstop?:()=>void;start(){this.state='recording';setTimeout(()=>this.onstart?.(),0);}stop(){this.state='inactive';this.onstop?.();} }
   Object.assign(window,{MediaRecorder:UIRecorder});
  });
- await page.setViewportSize({width:390,height:844});await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await finishAttention(page);
+ await page.setViewportSize({width:390,height:844});await page.goto('/');await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();await finishAttention(page);
  const pair=page.getByRole('group',{name:'Referenz anhören'});await expect(pair.getByRole('button',{name:'Anhören',exact:true})).toBeVisible();await expect(pair.getByRole('button',{name:'Langsam gesprochen',exact:true})).toBeVisible();
  await expect(page.locator('.practiceContext .focusNote')).toBeVisible();
- await page.getByRole('button',{name:'Aufnehmen',exact:true}).click();await expect(page.locator('.recordingPanel')).toHaveAttribute('data-state','recording');
+ await page.getByRole('button',{name:'Aufnehmen · freiwillig',exact:true}).click();await expect(page.locator('.recordingPanel')).toHaveAttribute('data-state','recording');
  await expect(page.locator('.practiceContext')).not.toHaveAttribute('open','');await expect(page.locator('.practiceContext .focusNote')).toBeHidden();
  await expect(pair.locator('button').first()).toBeDisabled();await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeDisabled();
  await page.screenshot({path:`work/focus-${info.project.name}-speaking.png`,fullPage:true,animations:'disabled'});

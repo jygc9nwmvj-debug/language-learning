@@ -21,9 +21,9 @@ async function captureFixture(page: import('@playwright/test').Page) {
 
 test('compact recording controls preserve autoplay, pause, replay, retake and the next-step lock', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 }); await captureFixture(page);
-  await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
+  await page.goto('/'); await page.getByRole('button', { name: /^(Weiterlernen|Lernen starten)$/ }).click();
   await page.getByRole('button',{name:'Schriftbild ansehen',exact:true}).click(); await page.screenshot({path:'work/ui1-introduction.png',fullPage:true,animations:'disabled'}); await page.getByRole('button',{name:'Bedeutung dazunehmen',exact:true}).click(); await expect(page.locator('.pronunciationMeaning')).toBeVisible();
-  await finishAttention(page);await page.getByRole('button', { name: 'Aufnehmen', exact: true }).click();
+  await finishAttention(page);await page.getByRole('button', { name: 'Aufnehmen · freiwillig', exact: true }).click();
   await expect(page.getByText(/^Aufnahme läuft/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Weiter', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: 'Aufnahme beenden', exact: true }).click();
@@ -47,12 +47,12 @@ test('compact recording controls preserve autoplay, pause, replay, retake and th
 });
 
 test('compact tones retain comparison, feedback and comfortable named controls at phone widths', async ({ page }) => {
-  await page.goto('/'); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).waitFor();
+  await page.goto('/'); await page.getByRole('button', { name: /^(Weiterlernen|Lernen starten)$/ }).waitFor();
   await page.evaluate(async () => {
     const db = await new Promise<IDBDatabase>(resolve => { const request = indexedDB.open('language-learning-local'); request.onsuccess = () => resolve(request.result); });
     await new Promise<void>(resolve => { const transaction = db.transaction('sessions', 'readwrite'); transaction.objectStore('sessions').put({ id: 'c2-tones', plannerVersion: 'd1', plan: ['tones', 'closure'], index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now() + 100, script: 'hant' }); transaction.oncomplete = () => resolve(); }); db.close();
   });
-  await page.reload(); await page.getByRole('button', { name: 'Weiterlernen', exact: true }).click();
+  await page.reload(); await page.getByRole('button', { name: /^(Weiterlernen|Lernen starten)$/ }).click();
   for(const n of [1,2,3,4]) { await page.getByRole('button', {name:`Ton ${n}`,exact:true}).click(); await expect(page.locator('.toneLab > .controlLabel')).toContainText(n === 4 ? 'Alle vier' : `${n}/4`); }
   await page.getByRole('button', { name: 'Bedeutungen aufdecken', exact: true }).click();
   await expect(page.locator('.toneLanguage strong')).toHaveText(['mā', 'má', 'mǎ', 'mà']);
@@ -80,14 +80,14 @@ test('compact tones retain comparison, feedback and comfortable named controls a
 
 test('open language surface, resolved answer and writing tools remain accessible', async ({page}, info) => {
  await page.setViewportSize({width:390,height:844});
- await page.goto('/'); await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.goto('/'); await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).waitFor();
  await page.screenshot({path:`work/ui1-${info.project.name}-start.png`,fullPage:true,animations:'disabled'});
  async function seed(tasks:string[]) {
   await page.evaluate(async tasks=>{
    const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
    await new Promise<void>(r=>{const t=db.transaction(['sessions','events'],'readwrite');t.objectStore('sessions').clear();t.objectStore('sessions').put({id:'ui',plannerVersion:'d1',plan:[...tasks,'closure'],index:0,completed:false,startedAt:Date.now(),updatedAt:Date.now()+100,script:'hant'});
-   for(const [item,form,toneNumbers] of [['nihao','你好','ni3 hao3'],['hao','好','hao3']])t.objectStore('events').put({id:'ui-'+item,at:1,sessionId:'prior',taskId:'fixture',type:'introduction_dimensions',detail:{item,form,toneNumbers,script:'hant',dimensions:'meaning,pronunciation,hanzi,writing',introductionVersion:1}});t.oncomplete=()=>r();});db.close();
-  },tasks);await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+   for(const [item,form,toneNumbers] of [['nihao','你好','ni3 hao3'],['hao','好','hao3'],['speak-slowly','請說慢一點','qing3 shuo1 man4 yi1 dian3']])t.objectStore('events').put({id:'ui-'+item,at:1,sessionId:'prior',taskId:'fixture',type:'introduction_dimensions',detail:{item,form,toneNumbers,script:'hant',dimensions:'meaning,pronunciation,hanzi,writing',introductionVersion:1}});t.oncomplete=()=>r();});db.close();
+  },tasks);await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
  }
  await seed(['recall-nihao']);
  await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni3 hao3');

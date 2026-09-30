@@ -1,3 +1,4 @@
+import { AnswerSummary, ContinueButton, PlaybackControl } from '../../../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import { transferCase } from '../transfer-cases';
 import { itemMap } from '../content';
@@ -34,24 +35,26 @@ export function MiniTransfer({state,script,onSave,onNext,disabled}:{state:Transf
     if(lock.current||disabled)return;lock.current=true;setError('');
     try{await persist({answer,phase:'result'});}catch{setError('Deine Antwort konnte nicht gespeichert werden. Bitte erneut abgeben.');}finally{lock.current=false;}
   }
-  return <div className="stepStack" data-mini-transfer={state.caseId}>
-    <div><button type="button" disabled={disabled} onClick={()=>playing?stop():void play()}>{playing?'Anhalten':state.heard?'Gespräch noch einmal hören':'Gespräch anhören'}</button></div>
-    {playing&&<p role="status">Person {speaker} spricht …</p>}
+  return <div className="stepStack miniTransfer" data-mini-transfer={state.caseId} data-task-complete={state.phase==='result'}>
+    <PlaybackControl emphasis={state.heard?'reference':'stimulus'} playing={playing} icon={playing?'stop':'play'} disabled={disabled} onClick={()=>playing?stop():void play()} label={playing?'Anhalten':state.heard?'Gespräch noch einmal hören':'Gespräch anhören'}/>
+    <p className="transferPlaybackStatus controlLabel" role="status">{playing ? `Person ${speaker} spricht …` : ''}</p>
+    {state.phase!=='listen'&&<div className="transferQuestion"><h3>{question}</h3>{state.phase==='answer'&&<p className="muted" id="transfer-instruction">Beschreibe auf Deutsch den Zusammenhang, nicht die Mandarin-Formulierung.</p>}</div>}
     {state.phase==='answer'&&<form className="stepStack" onSubmit={e=>{e.preventDefault();void submit();}}>
-      <div className="transferQuestion"><h3>WAS HAST DU VERSTANDEN?</h3><p>Antworte auf Deutsch. Beschreibe den Zusammenhang im Gespräch, nicht die Mandarin-Formulierung.</p><label className="fieldLabel" htmlFor="transfer-answer">{question}</label></div>
-      <textarea id="transfer-answer" rows={3} maxLength={500} placeholder="Antworte kurz auf Deutsch." value={answer} disabled={disabled} onChange={e=>{const value=e.target.value;setAnswer(value);void persist({answer:value}).catch(()=>setError('Deine Eingabe konnte nicht gespeichert werden.'));}}/>
+      <label className="srOnly" htmlFor="transfer-answer">{question}</label>
+      <textarea aria-describedby="transfer-instruction" id="transfer-answer" rows={3} maxLength={500} placeholder="Deine Antwort" value={answer} disabled={disabled} onChange={e=>{const value=e.target.value;setAnswer(value);void persist({answer:value}).catch(()=>setError('Deine Eingabe konnte nicht gespeichert werden.'));}}/>
       <label className="transferKnown"><input type="checkbox" checked={!!state.knownBefore} disabled={disabled||playing} onChange={e=>void persist({knownBefore:e.target.checked}).catch(()=>setError('Bitte versuche es noch einmal.'))}/> Dieses Gespräch kenne ich schon.</label>
       <div className="buttonRow"><button disabled={disabled||playing||!answer.trim()}>Antwort abgeben</button><button type="button" className="textButton" disabled={disabled||playing} onClick={()=>void submit()}>Ich weiß es nicht</button></div>
     </form>}
-    {state.phase==='result'&&<>
-      <h3>Vergleiche deine Antwort</h3>
-      <p><strong>Deine Antwort:</strong> {state.answer||'Ich weiß es nicht.'}</p>
+    {state.phase==='result'&&<div className="transferResult">
+      <AnswerSummary value={state.answer||'Ich weiß es nicht.'}/>
+      <div className="transferSolution"><h3>Auflösung</h3><p>{solution}</p></div>
+      <p className="muted">Vergleiche auch die Rollen der Personen. Wortmuster allein belegen kein Verständnis.</p>
+      <details><summary>Automatisch gefundene Antwortmerkmale</summary>
       <p>Die automatische Suche hat passende Wortmuster für {state.assessment?.recognized.length ?? 0} von {definition.components.length} Antwortmerkmalen gefunden. Das bestätigt nicht, dass deine Antwort inhaltlich richtig ist. Auch eine richtige Antwort kann unerkannt bleiben.</p>
-      <p>Vergleiche den Zusammenhang und die Rollen der Personen mit der Auflösung.</p>
-      <h3>Auflösung</h3><p>{solution}</p>
+      </details>
       <details open={transcript} onToggle={e=>setTranscript(e.currentTarget.open)}><summary>Transkript ansehen</summary>{transcript&&turns.map(t=><div className="reference" key={t.speaker}><strong>Person {t.speaker}</strong><p className="hanziSentence" lang="zh">{t.item[script]}</p><p>{numberedToPinyin(t.item.surfaceToneNumbers??t.item.toneNumbers)}</p><p>{t.item.meaning.de}</p></div>)}</details>
-      <div><button disabled={disabled||playing} onClick={()=>void onNext().catch(()=>setError('Bitte versuche es noch einmal.'))}>Weiter</button></div>
-    </>}
+      <ContinueButton disabled={disabled||playing} onClick={()=>void onNext().catch(()=>setError('Bitte versuche es noch einmal.'))}>Weiter</ContinueButton>
+    </div>}
     {error&&<p className="feedback error" role="alert">{error}</p>}
   </div>;
 }

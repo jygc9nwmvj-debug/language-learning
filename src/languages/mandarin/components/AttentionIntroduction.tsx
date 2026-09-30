@@ -1,4 +1,4 @@
-import { PhraseForm, ExplanationText } from './PhraseForm';
+import { PhraseForm, ExplanationText, HanziText, LearningNote } from './PhraseForm';
 import { useRef, useState } from 'react';
 import { AudioButton, stopReferenceAudio } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
@@ -47,15 +47,15 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
   const audio = <><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
   return <div className="attentionIntroduction" data-focus={phase}>
     <SpeakingPractice allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
-      {phase==='hear'&&<><h3>Erst nur hören.</h3><p className="muted">{knownParts?'Die Wörter kennst du schon. Achte auf ihren Klang zusammen.':'Lerne den Klang kennen. Die Bedeutung kommt gleich dazu.'}</p></>}
+      {phase==='hear'&&<><h3>Erst nur hören.</h3>{knownParts&&<p className="muted">Achte auf den gemeinsamen Klang der bekannten Wörter.</p>}</>}
       {phase==='tone'&&<ToneFocus item={item} />}
-      {phase==='hanzi'&&<><p className="controlLabel">Jetzt nur das Schriftbild</p><p className="hanziHero" lang="zh">{item[script]}</p><p className="focusNote">Schau auf Form und Anordnung.{item.introduction.role==='writing'?' Dieses Zeichen übst du später auch beim Schreiben.':' Hier geht es ums Wiedererkennen, nicht ums Schreiben.'}</p></>}
-      {phase==='connect'&&<>{(knownParts || missing.includes('hanzi')) && <p className="controlLabel">{knownParts?'Bekannte Wörter, neue Verbindung':'Verbinde Schrift, Klang und Bedeutung'}</p>}<PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
+      {phase==='hanzi'&&<><p className="controlLabel">Jetzt nur das Schriftbild</p><HanziText value={item[script]}/><p className="focusNote">Schau auf Form und Anordnung.{item.introduction.role==='writing'?' Dieses Zeichen übst du später auch beim Schreiben.':' Hier geht es ums Wiedererkennen, nicht ums Schreiben.'}</p></>}
+      {phase==='connect'&&<>{knownParts && <p className="controlLabel">Bekannte Wörter, neue Verbindung</p>}<PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
     </div>}>
       {phase==='hear'&&<button className="utilityButton" disabled={disabled||saving} onClick={()=>{stopReferenceAudio();setPhase(followingAudio);}}>Schrift ohne Warten ansehen</button>}
       {phase==='tone'&&<button disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('tone_attention_confirmed',{item:item.id,toneNumbers:item.toneNumbers,attentionVersion:1});setPhase(formPhase);})}>{formPhase==='hanzi'?'Schriftbild ansehen':'Bedeutung dazunehmen'}</button>}
       {phase==='hanzi'&&<button disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('hanzi_attention_confirmed',introductionDetail(item,script,[],'visual_focus'));setPhase('connect');})}>Bedeutung dazunehmen</button>}
-      {phase==='connect'&&<>{missing.includes('segmentation')&&<p className="focusNote">Lies die Wortgruppen mit: Jede Silbe steht bei ihrem Zeichen. Tippe eine Gruppe an, wenn du sie genauer verstehen möchtest.</p>}{item.learning&&<p className="muted"><ExplanationText value={item.learning.note} script={script}/></p>}{item.learning?.discovery&&<details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script}/></p></details>}{item.slot==='name'&&setName&&<label className="fieldLabel">Dein Name<input value={name} onChange={e=>setName(e.target.value)} maxLength={60} autoComplete="given-name"/></label>}</>}
+      {phase==='connect'&&<>{missing.includes('segmentation')&&<p className="focusNote">Jede Silbe steht bei ihrem Zeichen. Tippe eine Wortgruppe für Details an.</p>}{item.learning&&<LearningNote value={item.learning.note} script={script}/>}{item.learning?.discovery&&<details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script}/></p></details>}{item.slot==='name'&&setName&&<label className="fieldLabel">Dein Name<input value={name} onChange={e=>setName(e.target.value)} maxLength={60} autoComplete="given-name"/></label>}</>}
     </SpeakingPractice>
   </div>;
 }

@@ -3,7 +3,7 @@ import {finishAttention} from './helpers/attention';
 
 test('v0.5 tokens, controls, settings, print and responsive entry',async({page},info)=>{
  await page.goto('/');
- const learn=page.getByRole('button',{name:'Weiterlernen',exact:true});await expect(learn).toBeVisible();
+ const learn=page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/});await expect(learn).toBeVisible();
  const colors=await page.evaluate(()=>{const s=getComputedStyle(document.documentElement);return Object.fromEntries(['--green','--paper','--ink','--ink-muted','--blue','--coral','--surface'].map(k=>[k,s.getPropertyValue(k).trim()]));});
  expect(colors['--green']).toBe('#294b3c');
  const luminance=(hex:string)=>{const c=hex.slice(1).match(/../g)!.map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
@@ -28,7 +28,7 @@ test('v0.5 tokens, controls, settings, print and responsive entry',async({page},
 
 test('v0.5 unfolds authored chunks without adding actions or losing reduced-motion/focus',async({page},info)=>{
  await page.setViewportSize({width:320,height:740});await page.emulateMedia({reducedMotion:'reduce'});
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await finishAttention(page);
+ await page.goto('/');await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();await finishAttention(page);
  const phrase=page.locator('.phraseForm');await expect(phrase).toHaveAttribute('data-expanded','false');
  const chunk=page.getByRole('button',{name:'你好 erkunden',exact:true});await chunk.focus();await page.keyboard.press('Enter');
  await expect(phrase).toHaveAttribute('data-expanded','true');
@@ -48,7 +48,7 @@ test('v0.5 writer palette preserves real ink, template help and completion on a 
  const {readFileSync}=await import('node:fs');
  const hao=JSON.parse(readFileSync('src/languages/mandarin/data/hao.json','utf8'));
  await page.setViewportSize({width:320,height:740});await page.goto('/');
- await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).waitFor();
  await page.evaluate(async()=>{
   const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
   await new Promise<void>(r=>{const t=db.transaction(['sessions','events'],'readwrite');
@@ -56,7 +56,7 @@ test('v0.5 writer palette preserves real ink, template help and completion on a 
    t.objectStore('events').put({id:'v05-writing-introduction',at:1,sessionId:'prior',taskId:'fixture',type:'introduction_dimensions',detail:{item:'hao',form:'好',toneNumbers:'hao3',script:'hant',dimensions:'meaning,pronunciation,hanzi,writing',introductionVersion:1}});
    t.oncomplete=()=>r();});db.close();
  });
- await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+ await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-scaffold','delayed_recall');
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
  const surface=await page.locator('.writingSurface').boundingBox();expect(surface!.width).toBeLessThanOrEqual(320);expect(surface!.width).toBe(surface!.height);

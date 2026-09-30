@@ -171,7 +171,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   const numbers = !recall && (demo || level.nextStroke) && !compared;
   const scale = (size - 30) / 1024;
   return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-task-complete={phase === 'saved' || optionalRepeat.current}>
-    <div className="writingIntro"><h3>{demo ? 'Erst zuschauen' : level.title}</h3><p>{demo ? model.intro : phase === 'preview' ? 'Schau dir die Form kurz an. Danach verschwindet die Vorlage.' : level.instruction}</p></div>
+    <div className="writingIntro"><h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>{phase !== 'saved' && <p>{demo ? model.intro : phase === 'preview' ? 'Schau dir die Form kurz an. Danach verschwindet die Vorlage.' : level.instruction}</p>}</div>
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
@@ -183,7 +183,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     <p className={`writingStatus ${phase === 'success' ? 'writingSuccess' : ''}`} role="status" aria-live="polite">{status}</p>
     {mode === 'paper' && writing && <div className="buttonRow">{!compared
       ? <button type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', writingColor('--writing-outline')); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</button>
-      : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
+      : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" className="secondaryButton" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
     </div>}
     <div className="writingControls">
       <IconButton icon="eye" label={reference ? 'Vorlage ausblenden' : 'Vorlage zeigen'} disabled={!writing || disabled || compared} aria-pressed={reference} onClick={toggleReference}><span>Vorlage</span></IconButton>

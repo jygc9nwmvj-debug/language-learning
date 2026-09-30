@@ -1,6 +1,6 @@
 import { ContinueButton } from '../../../core/exercises/Controls';
 import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
-import { PhraseForm, ExplanationText } from './PhraseForm';
+import { PhraseForm, ExplanationText, LearningNote } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
 import type { ResearchEvent, SavedFeedback, SavedEvaluation, Checkpoint } from '../../../core/progress/db';
 import { hasToneAttention, attentionAssessment } from '../attention';
@@ -85,13 +85,14 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
     reference={<>{form(help && (!known || pinyinVisible),help)}
       {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : pronunciation}</>}
     audio={<>{audio()}{item.slowAudio && audio(true)}</>}>
-    {item.learning && <p className='muted'><ExplanationText value={item.learning.note} script={script} /></p>}
+    {item.learning && <LearningNote value={item.learning.note} script={script}/>}
     {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script} /></p></details>}
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
   if (task.kind === 'read' && answered) return <div className="stepStack resolvedExercise" data-task-complete={answered} data-outcome={feedbackKind}>
     <AnswerSummary value={input}/>
     <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>
+    {help && <p className="assistanceNote muted">Mit Hilfe beantwortet.</p>}
     <SpeakingPractice disabled={disabled} onEvent={onEvent} onNext={onNext}
       reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>}
       audio={<>{audio()}{item.slowAudio && audio(true)}</>} />
@@ -105,6 +106,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>}
     {feedback && !needsCorrection && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
+    {answered && help && <p className="assistanceNote muted">Mit Hilfe beantwortet.</p>}
     {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
     {needsCorrection ? <div className="reference correctionReference">
       {form(true,true)}<p>{item.meaning.de}</p>

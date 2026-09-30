@@ -1,6 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
 async function seed(page:Page,id:string){
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.goto('/');await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).waitFor();
  await page.evaluate(async id=>{
  const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
  const now=Date.now(),old=now-2*86_400_000;
@@ -12,7 +12,7 @@ async function seed(page:Page,id:string){
  for(const item of ['nihao','xiexie'])put('attempt',{result:'success',assisted:false,objectId:'cmn:'+item},'read-'+item,id,now-900);
  put('introduction_dimensions',{item:'nihao'},'meet-nihao',id,now-800);
  tx.oncomplete=()=>r();});db.close();
- },id);await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();
+ },id);await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
 }
 async function state(page:Page){return page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});const out:any={};for(const key of ['events','relations','sessions'])out[key]=await new Promise(r=>{const q=db.transaction(key).objectStore(key).getAll();q.onsuccess=()=>r(q.result);});db.close();return out;});}
 test('mobile screenless evidence, optional paper skip and voluntary stop/continue',async({page})=>{
@@ -34,9 +34,9 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
  await page.getByRole('button',{name:'Später',exact:true}).click();
  await expect(page.locator('.lessonCard')).not.toHaveAttribute('data-task-kind','closure');
  const skipped=await state(page);expect(skipped.relations).toEqual(before.relations);expect(skipped.events.filter((e:any)=>e.type==='paper_skipped')).toHaveLength(1);expect(skipped.events.filter((e:any)=>e.type==='meaningful_stop_offered')).toHaveLength(0);
- await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeEnabled();
+ await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();await expect(page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/})).toBeEnabled();
  expect((await state(page)).events.some((e:any)=>e.type==='session_pause')).toBe(true);
- await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.lessonCard')).toBeVisible();
+ await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();await expect(page.locator('.lessonCard')).toBeVisible();
  expect((await state(page)).sessions.filter((s:any)=>!s.completed)).toHaveLength(1);
  // Same eligibility fixture, this time finish paper and continue automatically.
  await seed(page,'hybrid-b');await page.getByRole('button',{name:'Aufdecken',exact:true}).click();await page.getByRole('button',{name:'Ja, gewusst',exact:true}).click();
@@ -48,7 +48,7 @@ test('mobile screenless evidence, optional paper skip and voluntary stop/continu
 test('revealed recall survives pause and remains assisted without pronunciation scoring',async({page})=>{
  await page.setViewportSize({width:320,height:844});await seed(page,'hybrid-reveal');
  await page.getByRole('button',{name:'Aufdecken',exact:true}).click();await page.getByRole('button',{name:'Für jetzt aufhören',exact:true}).click();
- await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.getByRole('button',{name:'Direkt nachgesehen',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();await expect(page.getByRole('button',{name:'Direkt nachgesehen',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Direkt nachgesehen',exact:true}).click();
  const saved=await state(page);expect(saved.events.find((e:any)=>e.type==='screenless_recall').detail).toMatchObject({assisted:true,revealedBeforeAttempt:true,pronunciation:'unknown',result:'unsure'});
  await page.getByRole('button',{name:'Später',exact:true}).click();await expect(page.getByRole('button',{name:'Für jetzt beenden',exact:true})).toHaveCount(0);

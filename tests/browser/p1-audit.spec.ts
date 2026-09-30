@@ -26,6 +26,7 @@ for(const variant of ['screen','paper','compare-switch','compare-reload'])test(`
  const attempt=(await research(page)).find(e=>e.type==='attempt'&&e.taskId==='write-recall');
  expect(attempt.detail.assisted, JSON.stringify((await research(page)).filter(e=>e.type==='writing_compare'||e.type==='attempt'))).toBe(variant.startsWith('compare'));
  expect(attempt.detail.selfReport).toBe(variant==='paper');
+ await expect(page.locator('.writingIntro h3')).toHaveText(variant==='paper'?'Vorlage zum Vergleich':'Dein geschriebenes Zeichen');
  const relation=await page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});return new Promise<any[]>(r=>{const q=db.transaction('relations').objectStore('relations').getAll();q.onsuccess=()=>{r(q.result);db.close();};});});
  expect(relation.find(r=>r.target==='writing').state).toBe(variant.startsWith('compare')?'FRAGILE':'DEVELOPING');
 });
@@ -33,12 +34,14 @@ for(const width of [390,1280])test(`P1 transfer conservative feedback and reload
  await page.setViewportSize({width,height:844});await seed(page,true);
  const answer='A soll langsam sprechen. Mit Bs Herkunft hat das nichts zu tun.';
  await page.locator('#transfer-answer').fill(answer);await page.getByRole('button',{name:'Antwort abgeben',exact:true}).click();
- await expect(page.getByRole('heading',{name:'Vergleiche deine Antwort',exact:true})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Auflösung',exact:true})).toBeVisible();
  await expect(page.getByText('Vollständig verstanden',{exact:true})).toHaveCount(0);
+ await expect(page.getByText(/Wortmuster allein belegen kein Verständnis/)).toBeVisible();
+ await page.getByText('Automatisch gefundene Antwortmerkmale',{exact:true}).click();
  await expect(page.getByText(/Das bestätigt nicht, dass deine Antwort inhaltlich richtig ist/)).toBeVisible();
  expect((await research(page)).find(e=>e.type==='transfer_assessed').detail.outcome).toBe('features-only');
  await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();
- await expect(page.getByRole('heading',{name:'Vergleiche deine Antwort',exact:true})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Auflösung',exact:true})).toBeVisible();
  await page.getByText('Transkript ansehen',{exact:true}).click();await expect(page.locator('.reference')).toHaveCount(2);
  expect((await research(page)).filter(e=>e.type==='transfer_assessed')).toHaveLength(1);
 });

@@ -15,3 +15,8 @@ export function AnswerSummary({ value }: {value:string}) {
 export function ContinueButton({ children = 'Weiter', className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return <button type="button" {...props} className={`continueButton ${className}`}><span>{children}</span><Icon name="forward"/></button>;
 }
+
+// Visual audio control shared by single clips and multi-turn playback. Media ownership stays with the caller.
+export function PlaybackControl({ label, caption = label, icon = 'play', emphasis = 'reference', variant = 'normal', playing = false, error, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { label: string; caption?: string; icon?: IconName; emphasis?: 'reference' | 'stimulus'; variant?: 'normal' | 'slow'; playing?: boolean; error?: string }) {
+  return <span className="audioControl" data-emphasis={emphasis} data-playing={playing} data-variant={variant}><IconButton {...props} className="audioButton" icon={icon} label={label}><span className="audioCaption">{caption}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
+}
