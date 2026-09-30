@@ -1,5 +1,7 @@
 # Mandarin — real learning pilot
 
+**Current status / required maintenance:** [v0.5 central status](docs/V05_STATUS.md) is authoritative for deployed, blocked, deferred and undecided work. Read it before planning changes; update it with date and commit/state after every implemented, deployed or explicitly deferred change. Older reports below remain historical evidence.
+
 Private German-language, local-first Mandarin app. No account or cloud learning service. Production is frozen except genuine bugs; current behavior includes recording replay completion, corrected assessment intent and uninterrupted continuation across internal batches. No automatic pronunciation scorer, English release or Paper Writing v2 integration.
 
 Fresh Work chats: read [Learning Architecture](docs/LEARNING_ARCHITECTURE.md), [Product Observations](docs/PRODUCT_OBSERVATIONS.md), [Roadmap](docs/ROADMAP.md), [research index](docs/research/README.md), relevant research notes and [Pilot Evaluation Protocol](docs/PILOT_EVALUATION_PROTOCOL.md). Main preserves project knowledge; Lab artifacts stay isolated. Historical build reports and `static-prototype/` are not current priorities.
