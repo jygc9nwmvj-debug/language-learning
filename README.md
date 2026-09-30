@@ -72,3 +72,7 @@ pretending progress was saved. Backups include entered display name and voluntar
 Real iPad Safari + Pencil, actual microphone sound quality, airplane-mode installation, and human
 next-day retention still require device testing. Cloudflare Pages auto-deploys the main branch; see `docs/DEPLOY_CLOUDFLARE.md`. Read
 `docs/BUILD_B_WRITING_FOUNDATION.md` for the current writing behavior. Do not implement Lesson 2 yet.
+
+## Audit / QA coverage
+
+The project-wide [Coverage Contract](docs/COVERAGE_CONTRACT.md) distinguishes exhaustive inventories from representative testing. Production text inventory: `npm run check:ui-text`; see [scope and evidence](docs/UI_TEXT_COVERAGE.md).

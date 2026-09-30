@@ -5,8 +5,8 @@ import { useInteraction } from './InteractionScope';
 type Detail = Record<string, string | number | boolean>;
 // Content-independent pattern: keep the reference, condense it when speaking,
 // and leave replay/retake versus continuing as an explicit learner decision.
-export function SpeakingPractice({ reference, audio, children, compact = false, readyToRecord = true, allowPractice = true, disabled, onEvent, onStarted, onNext }: {
-  reference: ReactNode; audio: ReactNode; children?: ReactNode; compact?: boolean; readyToRecord?: boolean; allowPractice?: boolean; disabled: boolean;
+export function SpeakingPractice({ reference, audio, children, hasContext = !!children, compact = false, readyToRecord = true, allowPractice = true, disabled, onEvent, onStarted, onNext }: {
+  reference: ReactNode; audio: ReactNode; children?: ReactNode; hasContext?: boolean; compact?: boolean; readyToRecord?: boolean; allowPractice?: boolean; disabled: boolean;
   onEvent: (type: string, detail?: Detail) => void; onStarted?: () => void; onNext: () => void | Promise<void>;
 }) {
   const [practicing, setPracticing] = useState(false), [recorded, setRecorded] = useState(false);
@@ -16,7 +16,7 @@ export function SpeakingPractice({ reference, audio, children, compact = false, 
     <div className="practiceReference"><div className="referenceContent">{reference}</div>
       {audio && <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio}</div>}
     </div>
-    {allowPractice ? <details className="practiceContext" open={contextOpen} onToggle={e=>setContextOpen(e.currentTarget.open)}><summary>Hinweise zum Ausdruck</summary>{children}</details> : children}
+    {allowPractice ? hasContext && <details className="practiceContext" open={contextOpen} onToggle={e=>setContextOpen(e.currentTarget.open)}><summary>Hinweise zum Ausdruck</summary>{children}</details> : children}
     {allowPractice && <><Recorder onEvent={(type, detail) => {
       if (type === 'recording_started') { setPracticing(true); setContextOpen(false); onStarted?.(); }
       if (type === 'recording_completed_uncertain') setRecorded(true);

@@ -74,6 +74,7 @@ test('writing fading, completion controls and optional repeat',async({page},info
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing',{timeout:25000});
  for(const level of ['full_guided','full_reduced','faint_outline','brief_recall']){
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-scaffold',level);
+  if(level==='brief_recall'){await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','preview');await expect(page.locator('.writingIntro p')).toHaveCount(0);await expect(page.locator('.writingStatus')).toHaveText('Merke dir die Form. Gleich verschwindet die Vorlage.');await capture(page,'writing-preview',390,info.project.name);}
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
   await capture(page,level,390,info.project.name);await writeHao(page);
  }

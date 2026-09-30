@@ -171,7 +171,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   const numbers = !recall && (demo || level.nextStroke) && !compared;
   const scale = (size - 30) / 1024;
   return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-task-complete={phase === 'saved' || optionalRepeat.current}>
-    <div className="writingIntro"><h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>{phase !== 'saved' && <p>{demo ? model.intro : phase === 'preview' ? 'Schau dir die Form kurz an. Danach verschwindet die Vorlage.' : level.instruction}</p>}</div>
+    <div className="writingIntro"><h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>{phase !== 'saved' && phase !== 'preview' && <p>{demo ? model.intro : level.instruction}</p>}</div>
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">

@@ -29,7 +29,7 @@ export const ui = {
   backupDone: 'Die Sicherung wurde eingelesen. Vorhandene neuere Einträge bleiben erhalten.', backupError: 'Diese Datei ist keine passende Sicherung. Es wurde nichts geändert.',
   persist: 'Speicherung absichern', persisted: 'Der Browser schützt die lokalen Daten vor automatischer Bereinigung.',
   notPersisted: 'Dauerhafte Speicherung ist hier nicht zugesichert. Exportiere gelegentlich eine Sicherung.',
-  offlineDevelopment: 'Online-Vorschau · Offlinebetrieb nicht aktiviert', offlineReady: 'Bereit zum Lernen', offlineWaiting: 'Wird vorbereitet …', offlineFailed: 'Noch nicht offline bereit. Prüfe die Internetverbindung und versuche es erneut.',
+  offlineDevelopment: 'Online-Vorschau · Offlinebetrieb nicht aktiviert', offlineReady: 'Funktioniert jetzt auch offline.', offlineWaiting: 'Wird vorbereitet …', offlineFailed: 'Noch nicht offline bereit. Prüfe die Internetverbindung und versuche es erneut.',
   settings: 'Einstellungen & Sicherung', script: 'Schriftzeichen', hant: 'Traditionell', hans: 'Vereinfacht',
   homeLead: 'Mandarin hören, verstehen und selbst üben.',
   closeTitle: 'Runde abgeschlossen.', closeBody: 'Ein guter Moment für eine Pause. Wenn du möchtest, geht es mit einer neuen Mischung weiter.',

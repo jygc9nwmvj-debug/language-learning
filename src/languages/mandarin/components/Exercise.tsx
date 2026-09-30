@@ -1,6 +1,6 @@
 import { ContinueButton } from '../../../core/exercises/Controls';
 import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
-import { PhraseForm, ExplanationText, LearningNote } from './PhraseForm';
+import { PhraseForm, ExplanationText, LearningNote, hasLearningNote } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
 import type { ResearchEvent, SavedFeedback, SavedEvaluation, Checkpoint } from '../../../core/progress/db';
 import { hasToneAttention, attentionAssessment } from '../attention';
@@ -81,7 +81,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const needsCorrection = answered && task.kind === 'recall' && feedbackKind !== 'success';
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;
-  if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
+  if (task.kind === 'encounter') return <SpeakingPractice hasContext={hasLearningNote(item.learning?.note) || !!item.learning?.discovery || item.slot === 'name'} readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
     reference={<>{form(help && (!known || pinyinVisible),help)}
       {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : pronunciation}</>}
     audio={<>{audio()}{item.slowAudio && audio(true)}</>}>

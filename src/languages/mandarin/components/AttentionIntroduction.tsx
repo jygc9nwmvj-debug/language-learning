@@ -1,4 +1,4 @@
-import { PhraseForm, ExplanationText, HanziText, LearningNote } from './PhraseForm';
+import { PhraseForm, ExplanationText, HanziText, LearningNote, hasLearningNote } from './PhraseForm';
 import { useRef, useState } from 'react';
 import { AudioButton, stopReferenceAudio } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
@@ -46,7 +46,7 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
   }
   const audio = <><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
   return <div className="attentionIntroduction" data-focus={phase}>
-    <SpeakingPractice allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
+    <SpeakingPractice hasContext={missing.includes('segmentation') || hasLearningNote(item.learning?.note) || !!item.learning?.discovery || item.slot === 'name'} allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
       {phase==='hear'&&<><h3>Erst nur hören.</h3>{knownParts&&<p className="muted">Achte auf den gemeinsamen Klang der bekannten Wörter.</p>}</>}
       {phase==='tone'&&<ToneFocus item={item} />}
       {phase==='hanzi'&&<><p className="controlLabel">Jetzt nur das Schriftbild</p><HanziText value={item[script]}/><p className="focusNote">Schau auf Form und Anordnung.{item.introduction.role==='writing'?' Dieses Zeichen übst du später auch beim Schreiben.':' Hier geht es ums Wiedererkennen, nicht ums Schreiben.'}</p></>}

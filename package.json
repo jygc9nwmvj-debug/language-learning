@@ -5,17 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate-content && tsc -b && node scripts/build-app.mjs && node scripts/build-sw.mjs",
+    "build": "npm run check:ui-text && npm run validate-content && tsc -b && node scripts/build-app.mjs && node scripts/build-sw.mjs",
     "preview": "vite preview",
     "validate": "npm run validate-content",
-    "test": "node --test tests/*.test.mjs",
+    "test": "npm run check:ui-text && node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
     "validate-content": "node scripts/validate-content.mjs",
     "build:test": "npm run validate-content && tsc -b && node scripts/build-app.mjs test && node scripts/build-sw.mjs",
     "test:harness": "playwright test --config playwright.harness.config.ts",
     "generate-audio": "node scripts/generate-audio.mjs",
     "review-content": "node scripts/review-content.mjs",
-    "learning-report": "node scripts/learning-report.mjs"
+    "learning-report": "node scripts/learning-report.mjs",
+    "check:ui-text": "node scripts/ui-text-inventory.mjs"
   },
   "dependencies": {
     "dexie": "4.4.6",
@@ -31,7 +32,8 @@
     "@vitejs/plugin-react": "6.1.1",
     "fake-indexeddb": "6.2.5",
     "typescript": "7.0.2",
-    "vite": "8.3.1"
+    "vite": "8.3.1",
+    "rolldown": "1.2.11"
   },
   "engines": {
     "node": ">=22.18.0"

@@ -1,9 +1,15 @@
 # v0.5 — verbindlicher Projektstatus
 
-Stand: 2026-09-30. UI-/Interaction-/Feedback-Konsolidierung einschließlich Textökonomie abgeschlossen und deployt.
+Stand: 2026-09-30. Textinventar-/Coverage-Korrektur lokal abgeschlossen, Veröffentlichung läuft. Bisherige UI-Konsolidierung bleibt historische Basis.
 Produktionsbasis: `main` / `63e35c4` (UI-/Interaction-/Feedback-Konsolidierung einschließlich Textökonomie; P1-Korrekturen unverändert enthalten). Öffentlich ausgelieferter App-Code (`App-Bwd4uSP1.js`) und Service Worker (`mandarin-v01-e2a61bde915d0d3d`) am 2026-09-30 bytegenau gegen den geprüften Produktionsbuild verifiziert. Separates Review-Site-Deployment unverändert: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
 
 P1-Korrekturstand 2026-09-30: **deployed**; Commit `b482fa6`, Basis `f537a6f`. Ausschließlich die drei bestätigten Auditbefunde: Transfer als Wortmuster-Evidenz statt Verständnisnachweis; Papiervergleich vor erneuter Bildschirmeingabe dauerhaft als Hilfe; bewerteter/abgeschlossener Transferdurchlauf schlägt älteren Entwurf beim Restore und verhindert erneute Bewertung. QA bestanden: 154 Funktionstests, zwölf Browserfälle in Chrome/WebKit (Schreiben, Papiervergleich, Reload, Transfer auf 390/1280 Pixeln), Typprüfung und Produktionsbuild. Auf `main` gepusht, Cloudflare-Deployment durch öffentlichen Datei-Abgleich bestätigt. Die drei P2-Befunde (Antwortlisten, spätere Tonabrufe, Zahlenpositionen) bleiben ausdrücklich unverändert.
+
+## Textinventar-/Coverage-Korrektur — 2026-09-30
+
+Basis `b3663de` / Produktion `63e35c4`. **implemented, not deployed**: elf kontextuelle Copy-Entscheidungen (neun Entfernungen, zwei Verdichtungen), keine fachlichen Änderungen. Exhaustive Quelleninventarisierung: 3.418/3.418 Einträge in 63 Dateien, davon 891 aktive Text-/Ausgabeeinträge und 125 zusätzliche Rendering-Familien; 0 unklassifiziert. 131/131 aufgelöste Aufgabenprompts erfasst. Browser-/Sichtprüfung ausdrücklich repräsentativ. 159 Funktionstests bestanden; 134 ausgewählte Browserfälle nach Korrektur alter Hosting-Selektoren ohne offenen Fehler; Produktionsbuild bestanden.
+
+Die frühere Aussage „Alle produktiven Textquellen geprüft“ war nicht durch ein vollständiges Inventar belegt. Historische Berichte bleiben unverändert. [Befund, Population, Zahlen und QA](UI_TEXT_COVERAGE.md). [Projektweiter Coverage Contract](COVERAGE_CONTRACT.md), verbindlich über `AGENTS.md`; automatischer Check in Tests und Produktionsbuild.
 
 ## Verbindlichkeit und Pflege
 
@@ -25,7 +31,7 @@ Statuswerte:
 
 ## Freeze und offene Entscheidungen
 
-Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock samt Textökonomie vom 2026-09-30 ist abgeschlossen (`deployed`, `63e35c4`). Ausgangsbasis: `bebf0f8` / Code `b482fa6`. Kein weiterer Implementierungsblock aktiv. [Interaction-Regeln und Zustandsinventar](V05_INTERACTION_RULES.md). Danach zurück in den Pilot; keine automatische weitere Optimierungsrunde.
+Der ausdrücklich beauftragte UI-/Interaction-/Feedback-Konsolidierungsblock samt Textökonomie vom 2026-09-30 ist abgeschlossen (`deployed`, `63e35c4`). Ausgangsbasis: `bebf0f8` / Code `b482fa6`. Anschließender ausdrücklich beauftragter Block: Textökonomie-/Coverage-Korrektur, lokal geprüft (`implemented, not deployed`). [Interaction-Regeln und Zustandsinventar](V05_INTERACTION_RULES.md). Danach zurück in den Pilot; keine automatische weitere Optimierungsrunde.
 
 | Punkt | Status | Grenze / nächste Voraussetzung |
 | --- | --- | --- |

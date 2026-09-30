@@ -7,9 +7,13 @@ export function ExplanationText({ value, script }: { value: Explanation; script:
   return <>{explanationParts(value,script).map((part,n) => typeof part === 'string' ? part : <span className="explainedToken" key={n}><span lang="zh">{part.form}</span> {part.pinyin} · {part.gloss}</span>)}</>;
 }
 // Suppress only the known non-instructional filler in presentation; authored content stays intact.
-export function LearningNote({value,script}:{value:Explanation;script:'hant'|'hans'}) {
+export function hasLearningNote(value?:Explanation) {
+  if (value === undefined) return false;
   const plain = typeof value === 'string' ? value : value.every(part=>typeof part==='string') ? value.join('') : undefined;
-  if (plain === 'Ein kurzer Ausdruck für dein nächstes Gespräch.') return null;
+  return plain !== 'Ein kurzer Ausdruck für dein nächstes Gespräch.';
+}
+export function LearningNote({value,script}:{value:Explanation;script:'hant'|'hans'}) {
+  if (!hasLearningNote(value)) return null;
   return <p className="muted"><ExplanationText value={value} script={script}/></p>;
 }
 export function HanziText({value}:{value:string}) {
