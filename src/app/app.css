@@ -289,3 +289,9 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .correctionReference > p { order: 0; }
 
 .correctionPair { display: inline-flex; align-items: baseline; gap: .35em; flex-wrap: wrap; max-width: 100%; }
+.productionFeedback { display: grid; gap: var(--space-3); }
+.productionFeedback .answerSummary { border: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
+.productionFeedback .answerSummary > span:last-child { font-size: 1.2rem; }
+.feedbackAcknowledgement,.correctComparison > span:last-child { color: var(--blue); }
+.correctComparison { display: grid; gap: var(--space-1); font-size: 1.2rem; overflow-wrap: anywhere; }
+.productionFeedback[data-feedback-state=tone] del { color: var(--ink); }

@@ -2,7 +2,7 @@ import { evaluateAnswer, normalizeText } from './answer.ts';
 import { numberedToPinyin } from './pinyin.ts';
 import type { Assessment, Item } from './schema/content';
 
-export type DisplayElement = { original: string; target: string; correction: string; kind: 'spelling' | 'tone' | 'missing' | 'extra' | null };
+export type DisplayElement = { toneOmitted?: boolean; original: string; target: string; correction: string; kind: 'spelling' | 'tone' | 'missing' | 'extra' | null };
 export type DisplayDiagnosis = { mode: 'inline'; elements: DisplayElement[]; hasTone: boolean } | { mode: 'comparison' };
 // Presentation only. Never consumed by scoring, persistence or telemetry.
 export function displayDiagnosis(input: string, item: Item, assessment?: Assessment): DisplayDiagnosis {
@@ -25,6 +25,7 @@ export function displayDiagnosis(input: string, item: Item, assessment?: Assessm
     if(row[target.length]>2) return fallback;
   }
   const elements = tokens.map((original,i):DisplayElement=>({original,target:item.syllables[i],correction:parts[i].pinyin,
+    toneOmitted:checks[i].toneNotation==='omitted',
     kind:checks[i].content!=='correct'?'spelling':!checks[i].fullyCorrect?'tone':null}));
   if(!elements.some(e=>e.kind)) return fallback;
   return {mode:'inline',elements,hasTone:elements.some(e=>e.kind==='tone')};

@@ -11,7 +11,7 @@ import { itemMap } from '../content';
 import { normalizeText, evaluateAnswer, answerFeedback, type Interpretation } from '../answer';
 import { AudioButton } from '../../../core/exercises/AudioButton';
 import { SpeakingPractice } from '../../../core/exercises/SpeakingPractice';
-import { displayDiagnosis } from '../displayDiagnosis';
+import { ProductionFeedback } from './ProductionFeedback';
 import { ui } from '../../../core/i18n/de';
 import { WritingExercise } from './WritingExercise';
 import { NumberSequence } from './NumberSequence';
@@ -80,7 +80,6 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const needsCorrection = answered && task.kind === 'recall' && feedbackKind !== 'success';
-  const diagnosis = needsCorrection ? displayDiagnosis(input,item,displayAssessment.current) : undefined;
   const reference = <div className="reference">{form(true,true)}<p>{item.meaning.de}</p></div>;
   if (task.kind === 'encounter') return <SpeakingPractice readyToRecord={help && !referencePlaying} disabled={disabled || !help || (item.slot === 'name' && !name.trim())} onEvent={onEvent} onStarted={() => { if (!help) reveal(); }} onNext={() => { if (!disabled && help && (item.slot !== 'name' || name.trim())) return onNext(); }}
     reference={<>{form(help && (!known || pinyinVisible),help)}
@@ -100,12 +99,12 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   return <div className="stepStack responseExercise" data-task-complete={answered} data-outcome={answered ? feedbackKind : undefined}>
     {task.kind === 'listen' && audio(false, !answered)}
     {task.kind === 'read' && form(false,false)}
-    {answered ? diagnosis?.mode === 'inline' ? <div className="inlineCorrection" role="status" aria-label="Deine Antwort mit Korrekturen"><span className="controlLabel">Deine Antwort</span><div className="correctionTokens">{diagnosis.elements.map((part,i)=><span className="correctionToken" data-kind={part.kind ?? 'correct'} key={i}>{part.kind ? <><span className="correctionPair"><del>{part.original}</del><span className="srOnly"> wird korrigiert zu </span><ins>{part.correction}</ins></span>{part.kind==='tone' && <small>Ton</small>}</> : part.original}</span>)}</div>{diagnosis.hasTone && <p className="muted">Deine Aussprache wurde nicht bewertet.</p>}</div> : <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
+    {answered ? needsCorrection ? <ProductionFeedback input={input} item={item} assessment={displayAssessment.current} legacyMessage={feedback}/> : <AnswerSummary value={input}/> : <form onSubmit={e => { e.preventDefault(); void check().catch(() => {}); }} className="stepStack">
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
       {task.kind === 'recall' && <><InfoDisclosure label="Zur Texteingabe"><p>{ui.typeHint}</p></InfoDisclosure>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
       {!answered && <div className="buttonRow"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>}
-    {feedback && diagnosis?.mode !== 'inline' && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
+    {feedback && !needsCorrection && <p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p>}
     {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
     {needsCorrection ? <div className="reference correctionReference">
       {form(true,true)}<p>{item.meaning.de}</p>

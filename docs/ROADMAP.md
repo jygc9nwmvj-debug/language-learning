@@ -34,7 +34,7 @@ Protocol gate remains **7 elapsed days + 5 confirmed learning bouts + 120 valid 
 
 | Group | Unselected work |
 | --- | --- |
-| Learning / curriculum | Multi-speed skill progression; selective Writing curriculum; Learning Engine v2 only after pilot evidence; larger multi-week content/curriculum. |
+| Learning / curriculum | Separate assessment of expression recall and tone knowledge (future decision; current grading unchanged); Multi-speed skill progression; selective Writing curriculum; Learning Engine v2 only after pilot evidence; larger multi-week content/curriculum. |
 | Writing / paper | Paper integration after physical validation; digital grid and stroke-number legibility; audit current Writing Targets after pilot. |
 | Content / explanations | Beginner editorial pass; future JIT Meta-Learning; remaining segmentation/content QA. |
 | Audio / speaking | Physical microphone-level diagnosis; human pairwise Natural vs Slow review; native audio review; pronunciation-assessment research if a materially better candidate appears. |
