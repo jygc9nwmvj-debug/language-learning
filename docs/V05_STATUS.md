@@ -1,10 +1,9 @@
 # v0.5 — verbindlicher Projektstatus
 
 Stand: 2026-09-30. Übernahme des abgeschlossenen DoD-Abgleichs, kein neuer Audit.
-Produktionsbasis: `main` / `f58dddb658ea7d97d6c3b0439a565bd0121f004a` (Mini-Transfer). Beim Abgleich stimmten öffentlich ausgelieferter App-Code und Service Worker bytegenau mit diesem Build überein. Der Lern-App-Stand bleibt unverändert. Separates Review-Site-Deployment: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
+Produktionsbasis: `main` / `b482fa6` (drei P1-Korrekturen). Öffentlich ausgelieferter App-Code (`App-DNBoL1dE.js`) und Service Worker (`mandarin-v01-a356f735bf509432`) am 2026-09-30 bytegenau gegen den geprüften Produktionsbuild verifiziert. Separates Review-Site-Deployment unverändert: Version 5, Quellcommit `ef5f120c204dff98a55aad3a848afe3476698417`, veröffentlicht am 2026-09-30.
 
-P1-Korrekturstand 2026-09-30: **implemented, not deployed**; Basis `f537a6f`. Ausschließlich die drei bestätigten Auditbefunde: Transfer als Wortmuster-Evidenz statt Verständnisnachweis; Papiervergleich vor erneuter Bildschirmeingabe dauerhaft als Hilfe; bewerteter/abgeschlossener Transferdurchlauf schlägt älteren Entwurf beim Restore und verhindert erneute Bewertung. QA bestanden: 154 Funktionstests, zwölf Browserfälle in Chrome/WebKit (Schreiben, Papiervergleich, Reload, Transfer auf 390/1280 Pixeln), Typprüfung und Produktionsbuild. Deployment noch ausstehend. Die drei P2-Befunde (Antwortlisten, spätere Tonabrufe, Zahlenpositionen) bleiben ausdrücklich unverändert.
-
+P1-Korrekturstand 2026-09-30: **deployed**; Commit `b482fa6`, Basis `f537a6f`. Ausschließlich die drei bestätigten Auditbefunde: Transfer als Wortmuster-Evidenz statt Verständnisnachweis; Papiervergleich vor erneuter Bildschirmeingabe dauerhaft als Hilfe; bewerteter/abgeschlossener Transferdurchlauf schlägt älteren Entwurf beim Restore und verhindert erneute Bewertung. QA bestanden: 154 Funktionstests, zwölf Browserfälle in Chrome/WebKit (Schreiben, Papiervergleich, Reload, Transfer auf 390/1280 Pixeln), Typprüfung und Produktionsbuild. Auf `main` gepusht, Cloudflare-Deployment durch öffentlichen Datei-Abgleich bestätigt. Die drei P2-Befunde (Antwortlisten, spätere Tonabrufe, Zahlenpositionen) bleiben ausdrücklich unverändert.
 
 ## Verbindlichkeit und Pflege
 
@@ -46,7 +45,7 @@ Für den bestehenden Pilot ist keine weitere zwingende v0.5-Implementierung aus 
 | Selektives Schreiben / Fading | deployed | Acht Schreibziele; echte Strichgeometrie, reduzierte Hilfen und verzögerter Abruf. `writing-targets.ts`, `WritingExercise`. |
 | Hilfen / Progressive Disclosure | deployed | Einführungsschritte, Pinyin-Rücknahme bei bekanntem Material, Unterstützung getrennt von unabhängigem Erfolg. Keine allgemeine adaptive Fading-Engine. |
 | Kleinster hilfreicher Fehlerhinweis vor voller Lösung | decided, not implemented | Allgemeine Richtung der Lernarchitektur, nicht durchgängig umgesetzt. Bestehende Vollkorrekturen ausdrücklich anerkannt; kein verpflichtender v0.5-Nachbau. Weitere Umsetzung deferred. |
-| Mini-Transfer | deployed | `f58dddb`: vier feste neue Gesprächskombinationen aus vorhandenem Content, voraussetzungsgebunden und sparsam zusätzlich; getrennte Bewertung/Evidenz ohne Mastery- oder Fälligkeitswirkung. [Vertrag und Grenzen](MINI_TRANSFER.md). |
+| Mini-Transfer | deployed | `f58dddb`: vier feste neue Gesprächskombinationen aus vorhandenem Content, voraussetzungsgebunden und sparsam zusätzlich; getrennte Evidenz ohne Mastery- oder Fälligkeitswirkung. `b482fa6`: ausschließlich Wortmuster-Evidenz (`features-only`), kein automatischer Verständnisnachweis; abgeschlossene Durchläufe bleiben auch beim Restore vor erneuter Bewertung geschützt. [Vertrag und Grenzen](MINI_TRANSFER.md). |
 | Alter Transfer-Prototyp | superseded | Ein unbewerteter Dialog als Ersatz einer Wiederholung wurde durch den finalen Auftrag ersetzt: mehrere bewertete Fälle sparsam zusätzlich. |
 | Optionale Entdeckungen | deployed | Zwei Entdeckungen im D-Content; aufklappbar. Keine erzwungene Poesie oder neue Entdeckungspflicht. |
 | Papier / bildschirmfreier Abruf | deployed | Bestehendes optionales Build E; getrennt vom Forschungsprototyp Paper Writing v2. |
