@@ -6,7 +6,7 @@ import {updateRelation,DAY} from '../src/core/progress/model.ts';
 import {writingTargets} from '../src/languages/mandarin/writing-targets.ts';
 const event=(taskId,type,at,detail={})=>({id:crypto.randomUUID(),at,sessionId:'s'+at,taskId,type,detail,contentVersion:'test'});
 function simulation(errors=false){let events=[],relations=[];const introduced=[];let now=DAY*100;
- for(let session=0;session<16;session++){
+ for(let session=0;session<20;session++){
   const plan=composeContinuous(relations,events,'hant',now),known=new Set(exposure(events).keys());
   assert(plan.length<=DOSING.tasks+1);assert(plan.includes('closure'));
   assert(plan.filter(id=>taskMap.get(id).kind==='encounter').length<=3);

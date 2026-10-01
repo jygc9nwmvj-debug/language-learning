@@ -183,7 +183,7 @@
       "reason": "Conservative source envelope: enumerate text candidates and dynamic display expressions; classify non-display internals separately."
     },
     "src/languages/mandarin/continuous.ts": {
-      "sha256": "b1ddd59ac4f6b42c1202f3699ea16eaf858aa0dc35bd19d1c12d7260b31de79d",
+      "sha256": "3bcd6274cdd3f8921618f2b286516b7fc39edc74be8b0a6ca1f31d31af6cd515",
       "scope": "production-source",
       "reason": "Conservative source envelope: enumerate text candidates and dynamic display expressions; classify non-display internals separately."
     },
