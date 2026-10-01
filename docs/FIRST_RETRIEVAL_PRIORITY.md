@@ -35,3 +35,37 @@ Each number below is the mean of the 50 run-level metrics at 120 tasks. Delay me
 The seven-task effect is present for safe/mixed profiles, without increased short repetition. It is not a seven-task guarantee: weak learners remain dominated by failure/help, and their observed median is worse even though far more objects receive a first attempt and the long tail is much shorter. This is not an exact numerical reproduction of the earlier window overlay (which stopped promotion after the first attempt and used different selection mechanics). It is the outcome of the production rule with its safeguards. No cap or ratio was added to force agreement.
 
 Unchanged: content, UI, audio, accepted answers, assessment/mastery semantics, interval calculation, transfer evidence, `DOSING`, retry insertion/distance, database and logging. Only planner selection and its tests/documentation changed.
+
+## Bounded weak-profile comparability audit — 2026-10-01
+
+No application/code change or deployment. Re-examined the original simulation and repeated only the existing 50 weak-profile seeds, with three planners: baseline `40273a3`, that baseline plus the original `windowPlan(...,7,...)` overlay, and deployed selection `a72797e`. Baseline planner source is unchanged from the original `1fdf425`. Temporary diagnostic artifacts used for this bounded comparison were not retained; repository simulation source remained unchanged.
+
+Definitions match: first target-bearing attempt per introduced item, excluding guided writing, regardless of that attempt's success or assistance. This statistic is NOT first successful independent retrieval. Production priority termination is separately based on successful independent evidence. Both reported medians were means of run-level medians, not pooled medians. Original run count was 1,000 with variant-dependent seed offsets; implementation follow-up used 50 paired seeds. In this bounded comparison all three use the exact same 50 seeds. The original overlay's 5.76 is reproduced as 5.82, so sampling is not the main explanation.
+
+Conditions match: 5% independent success, 20% help, 75% failure; 120 regular tasks; one minute/task; 30 minutes between batches, one day after every fourth; identical relation updates and `withSpacedRetry`. Same RNG stream by attempt ordinal, not a guaranteed same outcome for each item after schedules diverge. Retry *function* is identical, but actual insertions and resulting batch lengths differ with the chosen plan. No optional/transfer actions are simulated.
+
+| All observed first attempts, 50 runs | Baseline | Original 7-overlay | Production |
+|---|---:|---:|---:|
+| Introduced seed-item pairs | 967 | 855 | 744 |
+| Reached first attempts | 276 | 308 | 685 |
+| Mean per-run count | 5.52 | 6.16 | 13.70 |
+| Mean run median | 8.75 | 5.82 | 11.31 |
+| Pooled median | 7 | 6 | 11 |
+
+The common introduced population across all three contains 744 seed-item pairs. Of those, 276 / 299 / 685 respectively reach a first attempt; missing outcomes are censored at task 120, not treated as zero or silently timed. Hence the original summary columns compare different observed cohorts.
+
+For exactly the same 237 seed-item pairs reaching a first attempt in **all three**:
+
+| Pooled observed delay | Baseline | Original 7-overlay | Production |
+|---|---:|---:|---:|
+| P50 | 7 | 6 | 7 |
+| P90 | 26 | 10 | 15 |
+| Actual maximum | 103 | 87 | 15 |
+
+Additional pairwise check, without the third-arm restriction: all 276 baseline-observed pairs are also observed in production. P50 7 → 7, P90 68 → 15, maximum 106 → 17. Production is faster for 92, equal for 184, slower for zero. The additional 409 production first attempts lift its own-cohort median; they were missing from baseline's delay distribution. This establishes the cohort explanation for the rise relative to baseline, not a general proof for censored or unseen objects.
+
+There is ALSO a real behavioral difference versus the original overlay. On their 292 jointly observed pairs, overlay → production is P50 6 → 7, P90 10 → 15, max 87 → 20 (11 faster, 158 equal, 123 slower). The overlay protects only the leading contiguous repair block; later interleaved repairs can be overtaken. Production puts all already-selected, spacing-eligible repairs before pending first retrievals. The overlay can only replace an eligible encounter when inserting an absent first retrieval; production can admit multiple waiting candidates and shifts/truncates the remaining encounter queue. Production also enforces cross-batch spacing and existing task eligibility/rotation instead of selecting the first unfiltered modality. Its pending state closes on success; the overlay stops special promotion after any first attempt. These are genuinely different selection policies, not equivalent implementations measured differently.
+
+Concrete paired trace, seed 776: `wojiao` introduced at task 8. Overlay first retrieval at 15 (lag 7); production at 20 (lag 12). In that batch production moves the already-selected `read-wo` repair to task 15 ahead of `recall-wojiao`; unchanged retry insertion then places intervening repairs at 17–19. The overlay leaves `read-wo` until 21. The different repair precedence is already visible before the paths diverge further.
+
+Conclusion: the baseline median increase is explained by broader retrieval coverage; the earlier claimed reproduction of the original weak-profile seven-window behavior is too strong. Production materially differs from that overlay, particularly in repair precedence and admission of waiting objects. This is consistent with prioritizing repairs, but is not merely a metric artifact. No repair, tuning, new rule or deployment resulted from this audit.
