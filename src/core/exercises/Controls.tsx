@@ -20,3 +20,8 @@ export function ContinueButton({ children = 'Weiter', className = '', ...props }
 export function PlaybackControl({ label, caption = label, icon = 'play', emphasis = 'reference', variant = 'normal', playing = false, error, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { label: string; caption?: string; icon?: IconName; emphasis?: 'reference' | 'stimulus'; variant?: 'normal' | 'slow'; playing?: boolean; error?: string }) {
   return <span className="audioControl" data-emphasis={emphasis} data-playing={playing} data-variant={variant}><IconButton {...props} className="audioButton" icon={icon} label={label}><span className="audioCaption">{caption}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
 }
+
+// Only the representation just produced is compared. Both rows share an axis and type scale.
+export function ResponseComparison({ answer, reference }: { answer: ReactNode; reference: ReactNode }) {
+  return <div className="responseComparison"><div className="comparisonRow"><span className="controlLabel">Deine Antwort</span><div className="comparisonValue">{answer}</div></div><div className="comparisonRow correctComparison"><span className="controlLabel">Referenz</span><div className="comparisonValue">{reference}</div></div></div>;
+}

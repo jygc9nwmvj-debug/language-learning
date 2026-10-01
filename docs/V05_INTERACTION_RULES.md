@@ -68,3 +68,9 @@ Alle produktiven Textquellen geprüft: `de.ts`, `LessonRunner`, Einführung/Enco
 Seit dem Resolution-Auftrag: [Resolution Contract](RESOLUTION_CONTRACT.md) übersetzt bestehende Zustände in verpflichtende Grundauflösung, optionale Lernergänzung und ausschließlich interne Evidenz. Die bisherigen Regeln bleiben; der neue Contract ersetzt keine Zustands- oder Assessmentlogik.
 
 Bei variablen/personalisierten Slots hängt die Referenz zusätzlich von ihrer Rolle ab: vollständiges Einführungsbeispiel ausdrücklich als Beispiel, eigene Produktion nur mit festem Mandarin-Anteil und offenem Slot. Ein Beispielname ist keine Zielvorgabe. Bestehende Audios werden nicht umgeschrieben.
+
+## Ergonomie-Ergänzung — 2026-10-01
+
+Vom Nutzer freigegebene Regeln: Bei bewerteter Textproduktion stehen eigene Eingabe und kanonisches Pinyin im gemeinsamen zweizeiligen Vergleich auf einer Achse, auch bei Erfolg. Erkannte lokale Abweichungen bleiben in der Eingabe markiert; Erklärung folgt dem Vergleich. Der persönliche Namensslot bleibt offen. Zahlenfolgen verwenden dasselbe Vergleichsmuster mit positionsgleichen Zeichen/Pinyin. Keine zusätzliche Schreibkontur.
+
+Recall verwendet einen mit dem Inhalt wachsenden Arbeitsbereich und die folgende Hauptaktion; zusätzliche Hanzi-/Audio-/Detailreferenz verschiebt die Hauptaktion nicht mehr. Kein fixes Overlay, kein Auto-Advance. Lesen mit anschließender freiwilliger Sprechübung behält seine eigene Fortsetzungsstruktur. Lokale Schreibwerkzeuge und freiwilliges Wiederholen gehören unmittelbar an die Fläche; Wiederholen nutzt das zugänglich benannte Replay-Icon. Die wiederholte Zwischenüberschrift beim freien Schreiben entfällt.

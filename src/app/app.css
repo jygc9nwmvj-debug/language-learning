@@ -324,3 +324,23 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 /* Fit an unsegmented whole phrase to its actual reference width, not the viewport. */
 .practiceReference { container-type: inline-size; }
 .speakingPractice:not(.isCondensed) .practiceReference .hanziHero { font-size: min(var(--text-hero), calc(100cqi / var(--hanzi-count, 1))); }
+
+/* Compare the assessed representation first; explanations follow, never split the pair. */
+.responseComparison { display: grid; gap: var(--space-3); min-width: 0; }
+.comparisonRow { display: grid; grid-template-columns: 6.5rem minmax(0,1fr); align-items: baseline; gap: var(--space-2); }
+.comparisonValue { font-size: 1.2rem; line-height: 1.55; overflow-wrap: anywhere; min-width: 0; }
+.comparisonRow.correctComparison { color: var(--blue); }
+.comparisonValue .inlineCorrection { display: inline; }
+.comparisonValue del { text-decoration-thickness: 1px; text-decoration-color: var(--error-ink); }
+.sequenceComparison { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-2); font-size: clamp(1.8rem,6vw,2.5rem); }
+.sequenceComparison small { display: block; font-size: 1rem; }
+.sequenceComparison [data-different=true] { text-decoration: underline; text-decoration-color: var(--error-ink); text-underline-offset: .2em; }
+/* Shared working area: long content can grow, optional references no longer move Next. */
+.responseWork { min-block-size: 12rem; display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); }
+.responseWork .productionFeedback { gap: var(--space-2); }
+.responseActions { align-self: start; }
+.writingLocal { width: min(100%,320px); margin-inline: auto; }
+.writingLocalActions { display: flex; justify-content: center; }
+.writingControls { margin-inline: auto; max-width: 320px; }
+.writingStatus { max-width: 320px; margin-inline: auto; }
+@media (max-width: 359px) { .comparisonRow { grid-template-columns: 5.5rem minmax(0,1fr); } }

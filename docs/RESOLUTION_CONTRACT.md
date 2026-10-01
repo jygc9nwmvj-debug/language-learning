@@ -90,3 +90,9 @@ Regression: every slot has a reviewed, complete fixed-word mapping with no full-
 - Scope comparison with `ca959d5`: Mandarin content, accepted-answer and production diagnostic rules, progress/storage, scheduling, hybrid eligibility, transfer evidence/cases and audio files unchanged. The three recorded P2 findings are untouched. No learner data used for test fixtures.
 
 Production publication is recorded separately in `V05_STATUS.md` after public asset verification.
+
+## Authorized UX amendment — 2026-10-01
+
+This supersedes the earlier successful-production Pinyin policy: the assessed production form now has an immediate own-response/canonical-Pinyin comparison on success as well as correction. Explanation follows that pair. Optional target exploration remains available without duplicating the always-visible Pinyin. Number sequences use the same paired representation with matching positions and type scale. Personal slots remain ungraded and open. Controls.tsx is now included in the reviewed resolution-renderer boundary.
+
+For listening/text recall the next action follows the working comparison/feedback area, before supplementary reference exploration. The area has a responsive minimum size, not fixed positioning; longer content grows without overlap. Reading's nested speaking continuation remains unchanged. Writing repeat and tools are local to the existing ink surface; no new model overlay or evidence. Existing assessment, persistence, audio, callbacks, mastery and scheduling are unchanged.

@@ -14,6 +14,7 @@ async function plan(page:Page,task:string,itemId?:string){
 const cases=[
  ['d-recall-dont-know','dont-know','wo3 bu4 zhi1 dap',true],
  ['d-recall-dont-know','dont-know','wo3 bu4 dzi dap',true],
+ ['recall-nihao','nihao','ni3 hao3',false],
  ['recall-nihao','nihao','ni2 hao3',true],
  ['recall-nihao','nihao','ni hao',false],
  ['d-recall-dont-know','dont-know','wo3 bu4',false],
@@ -25,14 +26,20 @@ const cases=[
 ] as const;
 for(const width of [320,390,1280]) for(const [task,item,input,inline] of cases) test(`${width}: ${input}`,async({page})=>{
  await page.setViewportSize({width,height:900});await plan(page,task,item);
- await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill(input);await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+ await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill(input);const actionBefore=await page.getByRole('button',{name:'Prüfen',exact:true}).boundingBox();await page.getByRole('button',{name:'Prüfen',exact:true}).click();
  await expect(page.locator('.responseExercise')).toHaveAttribute('data-task-complete','true');
+ const rows=page.locator('.responseComparison .comparisonValue');
+ await expect(rows).toHaveCount(2);await expect(rows.nth(0)).toHaveText(input);
+ await expect(rows.nth(1)).toContainText(itemMap.get(item)!.pinyin);
+ const a=await rows.nth(0).boundingBox(),b=await rows.nth(1).boundingBox();expect(Math.abs(a!.x-b!.x)).toBeLessThan(1);
+ const actionAfter=await page.getByRole('button',{name:'Weiter',exact:true}).boundingBox();expect(Math.abs(actionAfter!.y-actionBefore!.y)).toBeLessThan(65);
+ expect(await page.locator('.responseActions').evaluate(el=>!!el.nextElementSibling)).toBe(true);
  await expect(page.locator('.inlineCorrection')).toHaveCount(inline?1:0);
  if(inline){await expect(page.locator('.feedback')).toHaveCount(0);await expect(page.locator('.inlineCorrection')).toContainText(input.split(' ')[0]);}
  else if(await page.locator('.productionFeedback').count()) await expect(page.locator('.correctComparison')).toBeVisible();
  else await expect(page.locator('.feedback')).toBeVisible();
  if(await page.locator('.productionFeedback').count()) {
-  expect(await page.locator('.productionFeedback').evaluate(el=>el.previousElementSibling===null && el.nextElementSibling?.classList.contains('correctionReference'))).toBe(true);
+  expect(await page.locator('.productionFeedback').evaluate(el=>el.parentElement?.classList.contains('responseWork'))).toBe(true);
  }
  await expect(page.getByRole('button',{name:'Überspringen',exact:true})).toBeHidden();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -42,7 +49,7 @@ for(const width of [320,390,1280]) for(const [task,item,input,inline] of cases) 
  const saved=before.sessions.find((s:any)=>s.id==='focus').evaluation.results.main;
  expect(saved.value).toBe(input);expect(Object.keys(saved).sort()).toEqual(['help','kind','message','value']);
  if(input==='wo3 bu4 dzi dap'){
-  await expect(page.locator('.inlineCorrection')).toContainText('zhī');await expect(page.locator('.inlineCorrection')).toContainText('dao');
+  await expect(page.locator('.correctComparison')).toContainText('zhī');await expect(page.locator('.correctComparison')).toContainText('dao');
   const phrase=page.locator('.correctionReference .hanziHero');expect((await phrase.boundingBox())!.height).toBeLessThan(70);
   await page.screenshot({path:`work/inline-${width}.png`,fullPage:true});
  }

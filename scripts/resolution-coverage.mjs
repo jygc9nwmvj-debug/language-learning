@@ -6,6 +6,7 @@ import {content,itemMap} from '../src/languages/mandarin/content/index.ts';
 import {operationForTask,resolutionContracts} from '../src/core/exercises/resolution-contract.ts';
 import {referenceRole,fixedReferenceParts} from '../src/languages/mandarin/reference-role.ts';
 export const renderers={
+ 'src/core/exercises/Controls.tsx':['production','sequence'],
  'src/languages/mandarin/reference-role.ts':['target'],
  'src/languages/mandarin/components/SlotReference.tsx':['target'],
  'src/languages/mandarin/components/Exercise.tsx':['listen','read','production'],

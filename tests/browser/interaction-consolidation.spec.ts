@@ -44,7 +44,7 @@ for(const width of [320,390,1280]) {
  test(`existing learning surfaces and supported responses ${width}`,async({page},info)=>{
   test.setTimeout(90000);await page.setViewportSize({width,height:900});
   for(const [task,response] of [['read-hao','falsch'],['hear-nihao','hallo'],['recall-nihao','ni3 hao3']]){
-   await seed(page,task);if(task.startsWith('hear'))await page.locator('.responseExercise > .audioControl button').click();
+   await seed(page,task);if(task.startsWith('hear'))await page.locator('.responseExercise .audioControl[data-emphasis=stimulus] button').click();
    if(task.startsWith('recall'))await page.getByRole('button',{name:'Hilfe zeigen',exact:true}).click();
    await capture(page,task+'-open',width,info.project.name);
    await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill(response);await page.getByRole('button',{name:'Prüfen',exact:true}).click();
@@ -62,7 +62,9 @@ for(const width of [320,390,1280]) {
    await seed(page,'d-sequence-123');const ids=taskMap.get('d-sequence-123')!.sequence!;
    for(const id of correct?ids:[...ids].reverse())await page.getByRole('button',{name:itemMap.get(id)!.hant,exact:true}).click();
    await capture(page,'sequence-selected-'+correct,width,info.project.name);
-   await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.sequenceReference')).toBeVisible();
+   await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.correctComparison')).toBeVisible();
+   const rows=page.locator('.sequenceComparison');await expect(rows).toHaveCount(2);
+   for(let i=0;i<ids.length;i++) { const own=await rows.nth(0).locator(':scope > span').nth(i).boundingBox(),reference=await rows.nth(1).locator(':scope > span').nth(i).boundingBox();expect(Math.abs(own!.x-reference!.x)).toBeLessThan(1);expect(own!.width).toBe(reference!.width); }
    await capture(page,'sequence-result-'+correct,width,info.project.name);
    const text=await page.locator('.numberSequence').innerText();await page.reload();await home(page).click();expect(await page.locator('.numberSequence').innerText()).toBe(text);
   }
@@ -76,10 +78,11 @@ test('writing fading, completion controls and optional repeat',async({page},info
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-scaffold',level);
   if(level==='brief_recall'){await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','preview');await expect(page.locator('.writingIntro p')).toHaveCount(0);await expect(page.locator('.writingStatus')).toHaveText('Merke dir die Form. Gleich verschwindet die Vorlage.');await capture(page,'writing-preview',390,info.project.name);}
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
+  const field=await page.locator('.writingSurface').boundingBox(),tools=await page.locator('.writingControls').boundingBox();expect(tools!.y-field!.y-field!.height).toBeLessThan(20);
   await capture(page,level,390,info.project.name);await writeHao(page);
  }
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');
- for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});await capture(page,'writing-saved',width,info.project.name);}
+ for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});const field=await page.locator('.writingSurface').boundingBox(),repeat=await page.getByRole('button',{name:'Noch einmal',exact:true}).boundingBox();expect(repeat!.y-field!.y-field!.height).toBeLessThan(20);expect(repeat!.x).toBeGreaterThanOrEqual(field!.x);expect(repeat!.x+repeat!.width).toBeLessThanOrEqual(field!.x+field!.width);await capture(page,'writing-saved',width,info.project.name);}
  await expect(page.locator('.writingControls')).toBeHidden();
  await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'Noch einmal',exact:true}).click();await expect(page.locator('.writingControls')).toBeVisible();
@@ -102,4 +105,14 @@ test('transfer listening uses shared control and reveals the existing answer ste
  await expect(page.locator('.transferPlaybackStatus')).toContainText('Person');
  await expect(page.locator('textarea')).toBeVisible({timeout:20000});
  await expect(page.getByRole('button',{name:'Gespräch noch einmal hören',exact:true})).toBeVisible();
+});
+
+for(const width of [320,390,1280])test(`free writing local controls and single instruction ${width}`,async({page},info)=>{
+ await page.setViewportSize({width,height:900});await seed(page,'write-recall');
+ await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
+ await expect(page.locator('.writingIntro h3')).toHaveCount(0);
+ const field=await page.locator('.writingSurface').boundingBox(),tools=await page.locator('.writingControls').boundingBox();
+ expect(tools!.y-field!.y-field!.height).toBeLessThan(20);
+ await page.getByRole('button',{name:'Vorlage zeigen',exact:true}).click();await expect(page.getByRole('button',{name:'Vorlage ausblenden',exact:true})).toHaveAttribute('aria-pressed','true');
+ await capture(page,'free-writing-local',width,info.project.name);
 });

@@ -173,7 +173,8 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   const scale = (size - 30) / 1024;
   return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-task-complete={phase === 'saved' || optionalRepeat.current}>
     <Resolution operation="writing" resolved={phase === 'saved'} assisted={!!(lastResult.current?.assisted || assisted.current)} parts={{reference: <>
-    <div className="writingIntro"><h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>{phase !== 'saved' && phase !== 'preview' && <p>{demo ? model.intro : level.instruction}</p>}</div>
+    <div className="writingIntro">{(!recall || phase === 'saved' || demo) && <h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>}{phase !== 'saved' && phase !== 'preview' && <p>{demo ? model.intro : level.instruction}</p>}</div>
+    <div className="writingLocal">
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
@@ -182,6 +183,14 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
         {numbers && <g className="strokeNumbers" data-testid="stroke-numbers">{model.data.medians.map((points, i) => <text key={i} x={Math.max(10, 15 + points[0][0] * scale - 12)} y={Math.max(14, 15 + (900 - points[0][1]) * scale - 10)}>{i + 1}</text>)}</g>}
       </svg>
     </div>
+    <div className="writingControls">
+      <IconButton icon="eye" label={reference ? 'Vorlage ausblenden' : 'Vorlage zeigen'} disabled={!writing || disabled || compared} aria-pressed={reference} onClick={toggleReference}><span>Vorlage</span></IconButton>
+      <IconButton icon="stroke" label="Nächster Strich" disabled={!writing || disabled || compared || mode === 'paper'} onClick={() => hintAction.current()}><span>Strich</span></IconButton>
+      <IconButton icon="play" label="Noch einmal ansehen" disabled={!writing || disabled} onClick={() => { assisted.current = true; seenDemo.current = true; setBoosted(true); setDemo(true); }}><span>Ablauf</span></IconButton>
+      <IconButton icon="replay" label="Neu ansetzen" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_clear', detail()); setRevision(value => value + 1); }}><span>Neu</span></IconButton>
+    </div>
+    {phase === 'saved' && <div className="writingLocalActions">{lastResult.current?.result === 'success' && <IconButton icon="replay" label="Noch einmal" className="writingRepeat" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}/>}</div>}
+    </div>
     </>,feedback: <>
     <p className={`writingStatus ${phase === 'success' ? 'writingSuccess' : ''}`} role="status" aria-live="polite">{status}</p>
     </>,assistance: phase === 'saved' && (lastResult.current?.assisted || assisted.current) && <p className="assistanceNote muted">Mit Vorlage oder Hilfe geübt.</p>,enrichment: <>
@@ -189,12 +198,6 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
       ? <button type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', writingColor('--writing-outline')); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</button>
       : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" className="secondaryButton" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
     </div>}
-    <div className="writingControls">
-      <IconButton icon="eye" label={reference ? 'Vorlage ausblenden' : 'Vorlage zeigen'} disabled={!writing || disabled || compared} aria-pressed={reference} onClick={toggleReference}><span>Vorlage</span></IconButton>
-      <IconButton icon="stroke" label="Nächster Strich" disabled={!writing || disabled || compared || mode === 'paper'} onClick={() => hintAction.current()}><span>Strich</span></IconButton>
-      <IconButton icon="play" label="Noch einmal ansehen" disabled={!writing || disabled} onClick={() => { assisted.current = true; seenDemo.current = true; setBoosted(true); setDemo(true); }}><span>Ablauf</span></IconButton>
-      <IconButton icon="replay" label="Neu ansetzen" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_clear', detail()); setRevision(value => value + 1); }}><span>Neu</span></IconButton>
-    </div>
     <div className="buttonRow writingSecondary">
       <button type="button" className="textButton" disabled={!writing || disabled} onClick={() => { if (recall && mode === 'paper' && compared) { assisted.current = true; callbacks.current.onEvent('writing_hint', detail({ source: 'paper_compare_return' })); } callbacks.current.onEvent('writing_mode', detail()); setMode(mode === 'paper' ? 'screen' : 'paper'); }}>{mode === 'paper' ? ui.screen : ui.paper}</button>
       <IconButton icon="print" label={ui.worksheet} onClick={() => { if (recall && writing && !compared && worksheetHasTarget) { assisted.current = true; callbacks.current.onEvent('writing_hint', detail({ source: 'worksheet' })); } window.print(); }}/>
@@ -203,6 +206,6 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     {optionalRepeat.current && <p className="muted">Freiwillige Wiederholung · ohne neue Lernbewertung.</p>}
     {phase === 'save_error'  && <button type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</button>}
     {mode === 'paper' && <p className="muted">Auf Papier schätzt du Form und Strichfolge selbst ein.{(!recall || !worksheetHasTarget) && <> Das Druckblatt bleibt die Übung für 好; 你 und 我 kannst du in freie Felder schreiben.</>}</p>}
-    </>,next: phase === 'saved' && <div className="buttonRow"><ContinueButton type="button" disabled={disabled} onClick={onNext}>Weiter</ContinueButton>{lastResult.current?.result === 'success' && <button type="button" className="secondaryButton" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}>Noch einmal</button>}</div>,}}/>
+    </>,next: phase === 'saved' && <div className="buttonRow"><ContinueButton type="button" disabled={disabled} onClick={onNext}>Weiter</ContinueButton></div>,}}/>
   </section>;
 }
