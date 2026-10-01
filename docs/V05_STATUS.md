@@ -162,3 +162,16 @@ Deployment bestätigt: `920c42b2cf6f1805f3f96aa96224012d420278eb` auf `main`, ht
 96 gezielte Funktionstests und Produktionsbuild einschließlich Quell-/Text-/Resolution-Verträgen bestanden. Kleine Nachsimulation mit 50 gepaarten Seeds je sicherem/gemischtem/unsicherem Profil und 120 Aufgaben: mittlerer Laufmedian des ersten Abrufs 15,32 → 3,97 / 11,16 → 5,87 / 8,75 → 11,31 Aufgaben. Unsicheres Profil überschreitet das Fenster zugunsten Fehler/Hilfe; zugleich mehr Erstabrufe und kürzerer langer Wartebereich. Keine Zunahme kurzfristiger Wiederholungen. Repräsentative Prüfung, keine allgemeine Regression. [Regel, Grenzen, Vergleich und Reproduktion](FIRST_RETRIEVAL_PRIORITY.md). Content, UI, Audio, Assessment/Mastery, Intervalle, Transfer, DOSING, Retry-Mechanismus, Logging und Datenbank unverändert.
 
 Deployment bestätigt: `a72797e` auf `main`, https://language-learning-abk.pages.dev/. Öffentliche Startseite, CSS, Einstiegscode, App-Bundle und Service Worker bytegleich zum geprüften Build. App `App-BHlHztZo.js` SHA-256 `2ce01f6602ca741d1a9f00fb431a71ff922ff2d33e6ff606988907824439fbf3`; Service Worker SHA-256 `769afbe070cd3b35cc13bd8696b3b38147e7eff2061b990da53ef7b1b739883e`, Cache `mandarin-v01-924e033edc712d2a`. Status dieses Blocks: **deployed**. Diese Dokumentationsbestätigung löst kein weiteres Deployment aus.
+
+### Abschließende Klarstellung zum Planner-/Dosierungsblock — 2026-10-01
+
+Produktiv gilt: Noch nicht aktiv abgerufene Items erhalten ab ungefähr sieben regulären Aufgaben erhöhte Priorität. Das ist **keine harte 7-Aufgaben-Garantie**; bereits ausgewählte Fehler-/Hilfereparaturen haben Vorrang. Die produktive Implementierung entspricht deshalb nicht exakt der früheren vereinfachten 7er-Simulation, die nur den zusammenhängenden Reparaturblock am Plananfang schützte.
+
+Der gezielte Vergleich des unsicheren Profils mit denselben 50 Seeds und jeweils 120 regulären Aufgaben klärt die scheinbare Verschlechterung:
+
+- Im direkten Baseline-/Produktionsvergleich derselben **276 beobachteten Seed-Item-Paare** wurde kein Erstabruf später: **92/276 früher, 184/276 unverändert**.
+- Insgesamt wurden **685 Erstabrufe produktiv gegenüber 276 in der Baseline** erreicht. Die zusätzlichen 409 Erstabrufe fehlten zuvor in der Verzögerungsstatistik.
+- Für die **237 gemeinsamen Seed-Item-Paare mit erreichtem Erstabruf in allen drei Varianten** (Baseline, frühere 7er-Simulation, Produktion) sank die lange Wartezeit gegenüber der Baseline deutlich: **P90 26 → 15 Aufgaben, Maximum 103 → 15**. Diese Kohorte ist ausdrücklich von den 276 Paaren des direkten Zweiervergleichs zu unterscheiden.
+- Der scheinbar schlechtere mittlere Laufmedian **8,75 → 11,31** war gegenüber der Baseline wesentlich ein Kohorteneffekt: Produktiv gehen viele zusätzliche, zuvor gar nicht erreichte Erstabrufe in die Statistik ein. Beide Angaben sind Mittelwerte der Laufmediane, keine gepoolten Mediane. Die Metrik erfasst den ersten aktiven Versuch unabhängig von Erfolg/Hilfe, ohne Guided Writing; sie misst nicht den ersten erfolgreichen unassistierten Abruf.
+
+Die reale Abweichung zur vereinfachten 7er-Simulation bleibt damit ausdrücklich dokumentiert. **Keine weitere Planner-Änderung daraus abgeleitet. Dosierungsblock für v0.5 abgeschlossen.** Diese Klarstellung ändert ausschließlich Dokumentation; kein Produktcode und kein Deployment.
