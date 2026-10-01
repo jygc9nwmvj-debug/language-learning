@@ -3918,7 +3918,7 @@
     "src/languages/mandarin/components/NumberSequence.tsx": "9cc8be37a6b1647847324729b6a43be91cb618f8f1d6055e7966e2a56947b752",
     "src/languages/mandarin/components/MiniTransfer.tsx": "09ae531ab9a1ca48027c8877e3d566f820aea22996cebd0366a79ba8c2e32485",
     "src/languages/mandarin/components/PhraseForm.tsx": "ae4d9bac9b234668193638542fdb15a15b5d73eec294ae8ef4c9b8f468fbba05",
-    "src/languages/mandarin/components/ProductionFeedback.tsx": "64bbd7ede4f29b8facaacc1f1c146c0804c55cc03fa060ac1604b27ba3f65de9",
+    "src/languages/mandarin/components/ProductionFeedback.tsx": "a3d33c6cbf52af3ed75229fbd59da87a1d9a228ce20d99c71772c386cd93baa7",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
     "src/core/exercises/resolution-contract.ts": "cafe1c356eaff1454108b99efc64fe2512798eae565164b146e79ea381af133a",
     "src/app/LessonRunner.tsx": "fe49a18496eb0053d54fd7df04558caf6c4e13f169216cfc74be9a919044d019",

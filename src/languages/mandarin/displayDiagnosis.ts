@@ -2,6 +2,16 @@ import { evaluateAnswer, normalizeText } from './answer.ts';
 import { numberedToPinyin } from './pinyin.ts';
 import type { Assessment, Item } from './schema/content';
 
+// Canonical written-tone corrections are presentation, not assessment evidence.
+// Missing tones still follow the occurrence's effective assessment contract.
+export function displayInterpretation(input:string,item:Item,assessment:Assessment){
+  const assessed=evaluateAnswer(input,item,assessment);
+  const canonical=evaluateAnswer(input,item,{toneNotation:true,neutralTone:true});
+  return canonical.content==='correct' && canonical.toneNotation==='different'
+    ? {...assessed,toneNotation:'different' as const,fullyCorrect:false,correction:canonical.correction}
+    : assessed;
+}
+
 export type DisplayElement = { toneOmitted?: boolean; original: string; target: string; correction: string; kind: 'spelling' | 'tone' | 'missing' | 'extra' | null };
 export type DisplayDiagnosis = { mode: 'inline'; elements: DisplayElement[]; hasTone: boolean } | { mode: 'comparison' };
 // Presentation only. Never consumed by scoring, persistence or telemetry.
@@ -11,7 +21,7 @@ export function displayDiagnosis(input: string, item: Item, assessment?: Assessm
   const tokens = input.trim().split(/\s+/);
   if (tokens.length !== item.syllables.length || tokens.some(t => !/^[a-züv:0-5\u0300-\u036f]+$/iu.test(t.normalize('NFD')))) return fallback;
   const parts = item.syllables.map((s,i) => ({...item, syllables:[s],tones:[item.tones[i]],pinyin:numberedToPinyin(s+item.tones[i]),toneNumbers:s+item.tones[i]}));
-  const checks = tokens.map((t,i)=>evaluateAnswer(t,parts[i],assessment));
+  const checks = tokens.map((t,i)=>displayInterpretation(t,parts[i],assessment));
   // No positional explanation for a wholly unrelated answer or a moved known syllable.
   if (!checks.some(c=>c.content==='correct')) return fallback;
   for (let i=0;i<tokens.length;i++) {

@@ -12,7 +12,7 @@ test('unknown historical context, moved syllables, omissions, extra tokens and o
  assert.equal(displayDiagnosis('wo3 bu4 dzi dap',item).mode,'comparison');
  assert.equal(displayDiagnosis('wo jiao Alex',itemMap.get('wojiao'),assessment).mode,'comparison');
 });
-test('unassessed tones stay quiet; assessed tones show a notation correction',()=>{
- const n=itemMap.get('nihao');assert.equal(displayDiagnosis('ni2 hao3',n,assessment).mode,'comparison');
+test('explicit wrong tones are corrected even outside the assessed dimensions',()=>{
+ const n=itemMap.get('nihao');assert.equal(displayDiagnosis('ni2 hao3',n,assessment).mode,'inline');
  const d=displayDiagnosis('ni2 hao3',n,{toneNotation:true,neutralTone:true});assert.equal(d.mode,'inline');assert.equal(d.elements[0].kind,'tone');assert.equal(d.elements[1].kind,null);
 });

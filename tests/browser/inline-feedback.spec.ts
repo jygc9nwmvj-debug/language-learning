@@ -15,6 +15,9 @@ const cases=[
  ['d-recall-dont-know','dont-know','wo3 bu4 zhi1 dap',true],
  ['d-recall-dont-know','dont-know','wo3 bu4 dzi dap',true],
  ['recall-nihao','nihao','ni3 hao3',false],
+ ['d-recall-dont-understand','dont-understand','wo3 ting1 bu4 dong4',true],
+ ['d-recall-dont-understand','dont-understand','wo3 ting1 bu4 dong3',false],
+ ['d-recall-dont-understand','dont-understand','wo ting bu dong',false],
  ['recall-nihao','nihao','ni2 hao3',true],
  ['recall-nihao','nihao','ni hao',false],
  ['d-recall-dont-know','dont-know','wo3 bu4',false],
@@ -22,7 +25,7 @@ const cases=[
  ['d-recall-dont-know','dont-know','wo3 bu4 dao4',false],
  ['d-recall-dont-know','dont-know','wo3 bu4 zhi1 dao4 ma',false],
  ['d-recall-dont-know','dont-know','banana orange',false],
- ['d-recall-dont-know','dont-know','wo3 bu4 zhi1 dao4',false],
+ ['d-recall-dont-know','dont-know','wo3 bu4 zhi1 dao4',true],
 ] as const;
 for(const width of [320,390,1280]) for(const [task,item,input,inline] of cases) test(`${width}: ${input}`,async({page})=>{
  await page.setViewportSize({width,height:900});await plan(page,task,item);
@@ -53,6 +56,8 @@ for(const width of [320,390,1280]) for(const [task,item,input,inline] of cases) 
   const phrase=page.locator('.correctionReference .hanziHero');expect((await phrase.boundingBox())!.height).toBeLessThan(70);
   await page.screenshot({path:`work/inline-${width}.png`,fullPage:true});
  }
+ if(input==='wo3 ting1 bu4 dong4'){expect(saved.kind).toBe('success');expect(saved.message).toBe('Richtig.');await expect(page.locator('.productionFeedback')).toHaveAttribute('data-feedback-state','tone');await expect(page.locator('.productionFeedback')).toContainText('Der Ausdruck stimmt.');await expect(page.locator('.productionFeedback del')).toHaveText('dong4');await expect(page.locator('.correctComparison')).toContainText('dǒng');await expect(page.locator('.productionFeedback .feedback.success')).toHaveCount(0);}
+ if(['wo3 ting1 bu4 dong3','wo ting bu dong'].includes(input)){await expect(page.locator('.productionFeedback')).toHaveAttribute('data-feedback-state','success');await expect(page.locator('.productionFeedback .feedback.success')).toHaveText('Richtig.');}
  if(input==='ni hao'){expect(saved.kind).toBe('attention');await expect(page.locator('.productionFeedback')).toHaveAttribute('data-feedback-state','addition');await expect(page.locator('.productionFeedback del')).toHaveCount(0);await expect(page.locator('.productionFeedback')).toContainText('Richtig. Die Töne fehlen noch:');}
  if(input==='ni2 hao3'){await expect(page.locator('.productionFeedback')).toContainText('Der Ausdruck stimmt.');expect(saved.kind).toBe('attention');}
  if(input==='wo3 bu4 zhi1 dao4'||input==='我不知道'){expect(saved.kind).toBe('success');await expect(page.locator('.correctionReference')).toHaveCount(0);}
