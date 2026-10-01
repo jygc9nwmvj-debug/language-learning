@@ -44,3 +44,11 @@ for(const width of [390,1280])test(`P1 transfer conservative feedback and reload
  await page.getByText('Transkript ansehen',{exact:true}).click();await expect(page.locator('.reference')).toHaveCount(2);
  expect((await research(page)).filter(e=>e.type==='transfer_assessed')).toHaveLength(1);
 });
+test('transfer solution request is assisted and does not award mastery',async({page})=>{
+ await seed(page,true);
+ await page.getByRole('button',{name:'Ich weiß es nicht',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Auflösung',exact:true})).toBeVisible();
+ const assessed=(await research(page)).find(e=>e.type==='transfer_assessed');
+ expect(assessed.detail).toMatchObject({answer:'',assisted:true,cueCoverage:'none'});
+ expect(await page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});return new Promise<number>(r=>{const q=db.transaction('relations').objectStore('relations').count();q.onsuccess=()=>{r(q.result);db.close();};});})).toBe(0);
+});

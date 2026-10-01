@@ -13,7 +13,10 @@ export function selectTransfer(s:Session,events:ResearchEvent[],now:number,legac
  if(seen.some(e=>now-e.at<TRANSFER_SPACING))return null;
  const since=Math.max(0,...seen.map(e=>e.at));
  if(events.filter(e=>e.type==='task_completed'&&e.taskId!=='closure'&&e.detail.optionalPractice!==true&&e.at>since).length<TRANSFER_MIN_TASKS)return null;
- return transferCases.find(c=>!(legacySeen&&c.id==='name-repeat')&&!seen.some(e=>e.detail.caseId===c.id)&&readyForTransfer(c,events))??null;
+ const latestAssessment=new Map<string,ResearchEvent>();
+ for(const e of events.filter(e=>e.type==='transfer_assessed'&&!e.detail.manualTest).sort((a,b)=>a.at-b.at))latestAssessment.set(String(e.detail.caseId),e);
+ const unresolved=transferCases.find(c=>{const d=latestAssessment.get(c.id)?.detail;return !!d&&(d.assisted===true||(d.assisted===undefined&&typeof d.answer==='string'&&!d.answer.trim()))&&readyForTransfer(c,events);});
+ return unresolved??transferCases.find(c=>!(legacySeen&&c.id==='name-repeat')&&!seen.some(e=>e.detail.caseId===c.id)&&readyForTransfer(c,events))??null;
 }
 export async function reserveTransfer(s:Session,now=Date.now(),manualTest=false):Promise<TransferState|null>{
  return db.transaction('rw',db.preferences,db.events,async()=>{
@@ -38,7 +41,7 @@ export async function saveTransfer(s:Session,patch:Partial<Pick<TransferState,'p
   if(patch.phase==='result'){
    if(!current!.heard)throw new Error('Listen before responding');
    next.assessment=assessTransfer(transferCase(next.caseId)!,next.answer);
-   await logEvent({sessionId:s.id,taskId:`transfer:${next.caseId}`,type:'transfer_assessed',detail:{caseId:next.caseId,revision:next.revision,firstSeenAt:next.firstSeenAt,outcome:next.assessment.outcome,cueCoverage:next.assessment.cueCoverage,index:next.index,answer:next.answer,recognized:next.assessment.recognized.join(','),missing:next.assessment.missing.join(','),uncertain:next.assessment.uncertain,evidence:'bounded_cues_v2',manualTest:!!next.manualTest,knownBefore:!!next.knownBefore,firstAppExposure:!next.manualTest&&!next.knownBefore}});
+   await logEvent({sessionId:s.id,taskId:`transfer:${next.caseId}`,type:'transfer_assessed',detail:{caseId:next.caseId,revision:next.revision,firstSeenAt:next.firstSeenAt,outcome:next.assessment.outcome,cueCoverage:next.assessment.cueCoverage,index:next.index,answer:next.answer,assisted:!next.answer.trim(),recognized:next.assessment.recognized.join(','),missing:next.assessment.missing.join(','),uncertain:next.assessment.uncertain,evidence:'bounded_cues_v2',manualTest:!!next.manualTest,knownBefore:!!next.knownBefore,firstAppExposure:!next.manualTest&&!next.knownBefore}});
   }
   await db.preferences.put({key:transferKey,value:JSON.stringify(next)});return next;
  });

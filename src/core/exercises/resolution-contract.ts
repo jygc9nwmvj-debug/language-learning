@@ -3,7 +3,7 @@ export const resolutionContracts = {
  target: { required: ['reference','audio'], optional: [], states: ['reference'], reference: 'form/meaning and audio in their existing reference container' },
  encounter: { required: ['reference','next'], optional: ['enrichment','practice'], states: ['revealed'], reference: 'introduced form/meaning; existing Pinyin reveal policy' },
  listen: { required: ['response','reference','next'], optional: ['enrichment'], states: ['success','attention','error'], reference: 'target form and meaning; no dependency on exploration' },
- read: { required: ['response','reference'], optional: ['assistance'], states: ['success','attention','error'], reference: 'target form/meaning in practice reference; nested practice supplies audio/next' },
+ read: { required: ['response','reference','next'], optional: ['assistance'], states: ['success','attention','error'], reference: 'target form/meaning in optional speaking practice; parent response supplies the stable continuation action' },
  production: { required: ['response','reference','next'], optional: ['enrichment'], states: ['success','attention','error'], reference: 'target form/meaning; existing correction grammar and Pinyin policy' },
  writing: { required: ['reference','feedback','next'], optional: ['enrichment'], states: ['saved'], reference: 'own ink on screen, existing comparison model on paper; no new contour' },
  screenless: { required: ['reference','audio','comparison','next'], optional: [], states: ['revealed'], reference: 'expression with Pinyin; self-report, no automatic pronunciation judgment' },

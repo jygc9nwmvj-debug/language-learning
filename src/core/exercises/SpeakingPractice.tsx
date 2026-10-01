@@ -6,22 +6,22 @@ import { useInteraction } from './InteractionScope';
 type Detail = Record<string, string | number | boolean>;
 // Content-independent pattern: keep the reference, condense it when speaking,
 // and leave replay/retake versus continuing as an explicit learner decision.
-export function SpeakingPractice({ reference, audio, children, hasContext = !!children, compact = false, readyToRecord = true, allowPractice = true, disabled, onEvent, onStarted, onNext }: {
+export function SpeakingPractice({ reference, audio, children, hasContext = !!children, compact = false, readyToRecord = true, allowPractice = true, showContinue = true, disabled, onEvent, onStarted, onNext }: {
   reference: ReactNode; audio: ReactNode; children?: ReactNode; hasContext?: boolean; compact?: boolean; readyToRecord?: boolean; allowPractice?: boolean; disabled: boolean;
-  onEvent: (type: string, detail?: Detail) => void; onStarted?: () => void; onNext: () => void | Promise<void>;
+  showContinue?: boolean; onEvent: (type: string, detail?: Detail) => void; onStarted?: () => void; onNext: () => void | Promise<void>;
 }) {
   const [practicing, setPracticing] = useState(false), [recorded, setRecorded] = useState(false);
   const interaction = useInteraction();
   const [contextOpen, setContextOpen] = useState(true);
   return <section className={`speakingPractice ${compact || practicing ? 'isCondensed' : ''}`} data-ready-to-record={readyToRecord} data-phase={recorded ? 'review' : practicing ? 'practice' : 'reference'}>
-    <Resolution operation="encounter" resolved={allowPractice && readyToRecord} parts={{reference: <div className="practiceReference"><Resolution operation="target" parts={{reference: <div className="referenceContent">{reference}</div>, audio: audio && <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio}</div>}}/></div>,
+    <Resolution operation="encounter" resolved={allowPractice && readyToRecord && showContinue} parts={{reference: <div className="practiceReference"><Resolution operation="target" parts={{reference: <div className="referenceContent">{reference}</div>, audio: audio && <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio}</div>}}/></div>,
     enrichment: allowPractice ? hasContext && <details className="practiceContext" open={contextOpen} onToggle={e=>setContextOpen(e.currentTarget.open)}><summary>Hinweise zum Ausdruck</summary>{children}</details> : children,
     practice: allowPractice && <Recorder onEvent={(type, detail) => {
       if (type === 'recording_started') { setPracticing(true); setContextOpen(false); onStarted?.(); }
       if (type === 'recording_completed_uncertain') setRecorded(true);
       onEvent(type, detail);
     }} />,
-    next: allowPractice && <div className="practiceNext"><ContinueButton type="button" className={recorded ? 'primaryButton' : 'secondaryButton'} disabled={disabled || interaction.busy} onClick={onNext}>Weiter</ContinueButton>
+    next: allowPractice && showContinue && <div className="practiceNext"><ContinueButton type="button" className={recorded ? 'primaryButton' : 'secondaryButton'} disabled={disabled || interaction.busy} onClick={onNext}>Weiter</ContinueButton>
       {interaction.busy && <span className="muted">Beende zuerst die Aufnahme oder Wiedergabe.</span>}
     </div>,}}/>
   </section>;

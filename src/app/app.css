@@ -339,6 +339,9 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .responseWork { min-block-size: 12rem; display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); }
 .responseWork .productionFeedback { gap: var(--space-2); }
 .responseActions { align-self: start; }
+/* Reading starts with a large Hanzi stimulus. Preserve that occupied work area after
+   checking so its task-local continuation does not jump above the former action. */
+.lessonCard[data-task-kind=read] .resolvedExercise .responseWork { min-block-size: calc(12rem + clamp(4rem,13vw,11rem)); }
 .writingLocal { width: min(100%,320px); margin-inline: auto; }
 .writingLocalActions { display: flex; justify-content: center; }
 .writingControls { margin-inline: auto; max-width: 320px; }

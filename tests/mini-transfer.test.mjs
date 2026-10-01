@@ -43,6 +43,17 @@ test('additional boundary operation: minimum work, cooldown, no repeated dialogu
  assert.equal(selectTransfer(session,later,now+TRANSFER_SPACING+2).id,'origin-slower');
  assert.equal(selectTransfer(session,[...history,...completed],now,true).id,'origin-slower');
 });
+test('explicitly revealed transfer solution returns only after spacing and new work',()=>{
+ const seen={id:'seen-help',type:'transfer_seen',taskId:'transfer:name-repeat',sessionId:'prior',at:now,detail:{caseId:'name-repeat',revision:1}};
+ const revealed={id:'assessed-help',type:'transfer_assessed',taskId:'transfer:name-repeat',sessionId:'prior',at:now+1,detail:{caseId:'name-repeat',revision:1,answer:'',assisted:true}};
+ const laterTasks=completed.map((e,i)=>({...e,id:'later-help-'+i,at:now+TRANSFER_SPACING+1+i}));
+ assert.equal(selectTransfer(session,[...history,...completed,seen,revealed],now+TRANSFER_SPACING+2),null);
+ assert.equal(selectTransfer(session,[...history,...completed,seen,revealed,...laterTasks],now+TRANSFER_SPACING+20).id,'name-repeat');
+ const legacyRevealed={...revealed,id:'legacy-help',detail:{caseId:'name-repeat',revision:1,answer:''}};
+ assert.equal(selectTransfer(session,[...history,...completed,seen,legacyRevealed,...laterTasks],now+TRANSFER_SPACING+20).id,'name-repeat');
+ const independent={...revealed,id:'assessed-independent',at:now+TRANSFER_SPACING+21,detail:{...revealed.detail,answer:'A fragt nach dem Namen.',assisted:false}};
+ assert.equal(selectTransfer(session,[...history,...completed,seen,revealed,...laterTasks,independent],now+2*TRANSFER_SPACING+30).id,'origin-slower');
+});
 test('transactional seen, scored evidence, reload and continuation leave plan, scheduler input and relations intact',async()=>{
  await db.delete();await db.open();await db.sessions.put(session);await db.events.bulkAdd([...history,...completed]);
  const relation={id:'cmn:askname|listening',objectId:'cmn:askname',target:'listening',state:'DEVELOPING',attempts:1,delayedSuccesses:0,lastAt:2,lastSession:'earlier',dueAt:999999};await db.relations.put(relation);
@@ -57,7 +68,7 @@ test('transactional seen, scored evidence, reload and continuation leave plan, s
  await saveTransfer(session,{phase:'result'});await saveTransfer(session,{phase:'result'});
  assert.equal((await db.events.toArray()).filter(e=>e.type==='transfer_assessed').length,1);
  assert.equal((await transferState()).assessment.outcome,'features-only');
- const assessed=(await db.events.toArray()).find(e=>e.type==='transfer_assessed');assert.equal(assessed.detail.firstAppExposure,false);assert.equal(assessed.detail.knownBefore,true);
+ const assessed=(await db.events.toArray()).find(e=>e.type==='transfer_assessed');assert.equal(assessed.detail.firstAppExposure,false);assert.equal(assessed.detail.knownBefore,true);assert.equal(assessed.detail.assisted,false);
  await saveTransfer(session,{answer:'stale draft',phase:'answer'});assert.equal((await transferState()).phase,'result');
  assert.deepEqual(await finishTransfer(session),session);assert.deepEqual(await db.sessions.get(session.id),session);
  assert.deepEqual(await db.relations.toArray(),[relation]);
