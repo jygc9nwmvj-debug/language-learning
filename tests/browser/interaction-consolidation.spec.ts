@@ -76,13 +76,23 @@ test('writing fading, completion controls and optional repeat',async({page},info
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing',{timeout:25000});
  for(const level of ['full_guided','full_reduced','faint_outline','brief_recall']){
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-scaffold',level);
+  const cue=page.getByLabel('Schreibziel',{exact:true});await expect(cue).toContainText('gut');await expect(cue).toContainText('hǎo');await expect(cue).not.toContainText('好');
   if(level==='brief_recall'){await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','preview');await expect(page.locator('.writingIntro p')).toHaveCount(0);await expect(page.locator('.writingStatus')).toHaveText('Merke dir die Form. Gleich verschwindet die Vorlage.');await capture(page,'writing-preview',390,info.project.name);}
   await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
+  await expect(page.getByRole('button',{name:'Vorlage vergleichen',exact:true})).toHaveCount(0);
   const field=await page.locator('.writingSurface').boundingBox(),tools=await page.locator('.writingControls').boundingBox();expect(tools!.y-field!.y-field!.height).toBeLessThan(20);
   await capture(page,level,390,info.project.name);await writeHao(page);
  }
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');
- for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});const field=await page.locator('.writingSurface').boundingBox(),repeat=await page.getByRole('button',{name:'Noch einmal',exact:true}).boundingBox();expect(repeat!.y-field!.y-field!.height).toBeLessThan(20);expect(repeat!.x).toBeGreaterThanOrEqual(field!.x);expect(repeat!.x+repeat!.width).toBeLessThanOrEqual(field!.x+field!.width);await capture(page,'writing-saved',width,info.project.name);}
+ await expect(page.getByLabel('Schreibziel',{exact:true})).toContainText('gut');
+ const beforeComparison=await research(page),compare=page.getByRole('button',{name:'Vorlage vergleichen',exact:true});
+ for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});const field=await page.locator('.writingSurface').boundingBox(),actions=await page.locator('.writingLocalActions').boundingBox();expect(actions!.y-field!.y-field!.height).toBeLessThan(20);expect(actions!.x).toBeGreaterThanOrEqual(field!.x);expect(actions!.x+actions!.width).toBeLessThanOrEqual(field!.x+field!.width);await capture(page,'writing-saved',width,info.project.name);
+  await compare.click();await expect(compare).toHaveAttribute('aria-pressed','true');const reference=page.getByTestId('writing-comparison-reference'),learner=page.getByTestId('learner-ink');await expect(reference).toBeVisible();
+  expect(await reference.evaluate(node=>node.nextElementSibling?.getAttribute('data-testid'))).toBe('learner-ink');
+  expect(await reference.evaluate(e=>({fill:getComputedStyle(e).fill,stroke:getComputedStyle(e).stroke}))).toEqual({fill:'rgb(194, 216, 204)',stroke:'rgb(85, 121, 102)'});
+  expect(await learner.evaluate(e=>getComputedStyle(e).stroke)).toBe('rgb(32, 45, 39)');await capture(page,'writing-comparison',width,info.project.name);
+  await compare.click();await expect(reference).toHaveCount(0);await expect(compare).toHaveAttribute('aria-pressed','false');}
+ expect(await research(page)).toEqual(beforeComparison);
  await expect(page.locator('.writingControls')).toBeHidden();
  await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'Noch einmal',exact:true}).click();await expect(page.locator('.writingControls')).toBeVisible();
@@ -111,6 +121,8 @@ for(const width of [320,390,1280])test(`free writing local controls and single i
  await page.setViewportSize({width,height:900});await seed(page,'write-recall');
  await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');
  await expect(page.locator('.writingIntro h3')).toHaveCount(0);
+ const cue=page.getByLabel('Schreibziel',{exact:true});await expect(cue).toContainText('gut');await expect(cue).toContainText('hǎo');await expect(cue).not.toContainText('好');
+ if(width===390){await page.waitForTimeout(3000);await expect(cue).toBeVisible();await expect(cue).toContainText('gut');await expect(page.getByTestId('learner-ink').locator('path')).toHaveCount(0);}
  const field=await page.locator('.writingSurface').boundingBox(),tools=await page.locator('.writingControls').boundingBox();
  expect(tools!.y-field!.y-field!.height).toBeLessThan(20);
  await page.getByRole('button',{name:'Vorlage zeigen',exact:true}).click();await expect(page.getByRole('button',{name:'Vorlage ausblenden',exact:true})).toHaveAttribute('aria-pressed','true');

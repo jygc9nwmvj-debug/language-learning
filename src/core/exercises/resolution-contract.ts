@@ -5,7 +5,7 @@ export const resolutionContracts = {
  listen: { required: ['response','reference','next'], optional: ['enrichment'], states: ['success','attention','error'], reference: 'target form and meaning; no dependency on exploration' },
  read: { required: ['response','reference','next'], optional: ['assistance'], states: ['success','attention','error'], reference: 'target form/meaning in optional speaking practice; parent response supplies the stable continuation action' },
  production: { required: ['response','reference','next'], optional: ['enrichment'], states: ['success','attention','error'], reference: 'target form/meaning; existing correction grammar and Pinyin policy' },
- writing: { required: ['reference','feedback','next'], optional: ['enrichment'], states: ['saved'], reference: 'own ink on screen, existing comparison model on paper; no new contour' },
+ writing: { required: ['reference','feedback','next'], optional: ['enrichment'], states: ['saved'], reference: 'persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper' },
  screenless: { required: ['reference','audio','comparison','next'], optional: [], states: ['revealed'], reference: 'expression with Pinyin; self-report, no automatic pronunciation judgment' },
  paper: { required: ['reference','comparison','next'], optional: [], states: ['revealed'], reference: 'existing characters/meanings to compare with own sheet; no new audio requirement' },
  tone: { required: ['feedback','next'], optional: [], states: ['answered'], reference: 'correct tone/Pinyin in feedback; selected response and audio remain in quiz' },

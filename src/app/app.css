@@ -8,6 +8,7 @@
   --success-ink: var(--blue); --error-ink: var(--coral); --attention-ink: var(--coral);
   --success-surface: #edf3f6; --error-surface: #f8eeea; --attention-surface: var(--error-surface);
   --writing-ink: var(--ink); --writing-outline: #708477; --writing-highlight: var(--blue);
+  --writing-compare-fill: #c2d8cc; --writing-compare-edge: #557966;
   --writing-grid: #d6dbd3; --writing-error: var(--coral);
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 72px;
@@ -131,9 +132,12 @@ details > p,details > .infoContent { padding: var(--space-1) 0 var(--space-3); f
 .recordingPanel[data-state=playback] .ownRecording .iconButton:first-child { color: var(--blue); background: var(--success-surface); }
 /* The writer remains a 320px measured surface: only its palette changes. */
 .writingExercise { gap: var(--space-3); }.writingIntro h3 { margin-bottom: var(--space-1); }.writingIntro p { color: var(--ink-muted); font-size: var(--text-small); }
+.writingTargetCue { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); padding: var(--space-2) var(--space-3); border-left: 2px solid var(--line-strong); background: var(--surface-quiet); }
+.writingTargetValue { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }.writingTargetValue strong { font-weight: 600; }.writingTargetValue .pinyin { font-size: var(--text-small); }
 .writingSurface { position: relative; width: min(100%,320px); aspect-ratio: 1; margin: var(--space-2) auto; background-color: var(--surface); outline: 1px solid var(--line-strong); border-radius: 2px; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; overscroll-behavior: contain; }
 .writingGrid { background-image: linear-gradient(to right,transparent calc(50% - .5px),var(--writing-grid) calc(50% - .5px),var(--writing-grid) calc(50% + .5px),transparent calc(50% + .5px)),linear-gradient(to bottom,transparent calc(50% - .5px),var(--writing-grid) calc(50% - .5px),var(--writing-grid) calc(50% + .5px),transparent calc(50% + .5px)); }
 .writingSurface .hanziWriter { width: 100%; height: 100%; position: absolute; inset: 0; touch-action: none; }.hanziWriter svg { max-width: 100%; height: auto; display: block; }.writingInk { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.writingComparisonReference { fill: var(--writing-compare-fill); stroke: var(--writing-compare-edge); stroke-width: 1.25; stroke-linejoin: round; }
 .strokeNumbers { font: 600 12px -apple-system,sans-serif; fill: var(--ink-muted); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
 .writingStatus { min-height: var(--touch); font-size: var(--text-small); color: var(--ink-muted); padding: var(--space-1) 0; }.writingSuccess { color: var(--success-ink); }
 .writingControls { display: flex; justify-content: center; gap: var(--space-1); }.writingControls .iconButton { flex-direction: column; gap: var(--space-1); width: 60px; padding: var(--space-2) var(--space-1); font-size: .75rem; font-weight: 400; }
@@ -342,8 +346,9 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 /* Reading starts with a large Hanzi stimulus. Preserve that occupied work area after
    checking so its task-local continuation does not jump above the former action. */
 .lessonCard[data-task-kind=read] .resolvedExercise .responseWork { min-block-size: calc(12rem + clamp(4rem,13vw,11rem)); }
-.writingLocal { width: min(100%,320px); margin-inline: auto; }
-.writingLocalActions { display: flex; justify-content: center; }
+.writingLocal { width: min(100%,320px); margin-inline: auto; display: grid; gap: var(--space-1); }
+.writingLocalActions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-2); }
+.writingCompareToggle[aria-pressed=true] { color: var(--blue); background: var(--success-surface); border-color: var(--blue); }
 .writingControls { margin-inline: auto; max-width: 320px; }
 .writingStatus { max-width: 320px; margin-inline: auto; }
 @media (max-width: 359px) { .comparisonRow { grid-template-columns: 5.5rem minmax(0,1fr); } }

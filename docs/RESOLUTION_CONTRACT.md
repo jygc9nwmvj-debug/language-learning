@@ -65,9 +65,9 @@ Reviewed sinks: all JSX families in the bound renderers plus the existing UI tex
 - Production grammar: existing inline-feedback regression suite retained.
 - Representative rendering: Chrome/WebKit, 320/390/1280; existing interaction, hybrid, P1, production fixtures plus dedicated seed/tone/notation fixtures. Exact run results are recorded below. Source accounting is exhaustive for the defined population, visual coverage is representative.
 
-## Explicit open decision
+## Authorized writing comparison — 2026-10-01
 
-Re-showing a model contour after successful screen writing is a separate didactic hypothesis, **needs decision**, not implemented. Existing own ink and paper comparison remain. No accepted answers, Mandarin, transfer evidence, scheduler, mastery, interval, audio asset, human review or content-release-gate behavior changed.
+Screen writing keeps a non-Hanzi target cue (meaning and Pinyin) visible throughout the attempt. After a successful free recall, the learner may optionally place the model contour directly beneath the retained own ink; the comparison is local and changes no evidence. Existing paper comparison remains. No accepted answers, Mandarin, transfer evidence, scheduler, mastery, interval, audio asset, human review or content-release-gate behavior changed.
 
 ## Supplementary slot-reference audit
 
@@ -95,4 +95,4 @@ Production publication is recorded separately in `V05_STATUS.md` after public as
 
 This supersedes the earlier successful-production Pinyin policy: the assessed production form now has an immediate own-response/canonical-Pinyin comparison on success as well as correction. Explanation follows that pair. Optional target exploration remains available without duplicating the always-visible Pinyin. Number sequences use the same paired representation with matching positions and type scale. Personal slots remain ungraded and open. Controls.tsx is now included in the reviewed resolution-renderer boundary.
 
-For listening/text recall the next action follows the working comparison/feedback area, before supplementary reference exploration. The area has a responsive minimum size, not fixed positioning; longer content grows without overlap. Reading's nested speaking continuation remains unchanged. Writing repeat and tools are local to the existing ink surface; no new model overlay or evidence. Existing assessment, persistence, audio, callbacks, mastery and scheduling are unchanged.
+For listening/text recall the next action follows the working comparison/feedback area, before supplementary reference exploration. The area has a responsive minimum size, not fixed positioning; longer content grows without overlap. Reading's nested speaking continuation remains unchanged. Writing target, repeat, comparison and tools are local to the existing ink surface. The optional comparison contour appears only after successful free on-screen recall and emits no evidence. Existing assessment, persistence, audio, callbacks, mastery and scheduling are unchanged.

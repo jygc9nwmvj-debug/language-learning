@@ -18,8 +18,8 @@ function writingColor(token: string, alpha?: number) {
 
 type Detail = Record<string, string | number | boolean>;
 export type WritingResult = { result: 'success' | 'failure' | 'unsure'; assisted: boolean; mode: string; selfReport: boolean; ink?: string[]; inkSize?: number; stage?: number };
-export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, disabled, restored }: {
-  restored?: SavedFeedback; itemId: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
+export function WritingExercise({ itemId, meaning, pinyin, recall, onEvent, onComplete, onNext, disabled, restored }: {
+  restored?: SavedFeedback; itemId: string; meaning: string; pinyin: string; recall: boolean; onEvent: (type: string, detail?: Detail) => void;
   onComplete: (result: WritingResult) => Promise<void>; onNext: () => void | Promise<void>; disabled: boolean;
 }) {
   // The existing fixed worksheet shows these characters, including its context line.
@@ -31,7 +31,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   const [mode, setMode] = useState<'screen' | 'paper'>(restored?.mode === 'paper' ? 'paper' : 'screen');
   const [phase, setPhase] = useState<'demo' | 'preview' | 'writing' | 'success' | 'saved' | 'save_error'>(restored ? 'saved' : recall ? 'writing' : 'demo');
   const [ink, setInk] = useState<string[]>(restored?.ink ?? []), [wrongInk, setWrongInk] = useState('');
-  const [reference, setReference] = useState(false), [compared, setCompared] = useState(false);
+  const [reference, setReference] = useState(false), [compared, setCompared] = useState(false), [resultComparison, setResultComparison] = useState(false);
   const [status, setStatus] = useState(restored?.message ?? ''), [size, setSize] = useState(320);
   const target = useRef<HTMLDivElement>(null), writer = useRef<HanziWriter | null>(null);
   const callbacks = useRef({ onEvent, onComplete }); callbacks.current = { onEvent, onComplete };
@@ -55,7 +55,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
     const timers: number[] = [];
     const later = (fn: () => void, ms: number) => { timers.push(window.setTimeout(() => { if (active) fn(); }, ms)); };
     const width = node.parentElement!.clientWidth;
-    setSize(width); drawn.current = []; setInk([]); setWrongInk(''); setReference(false); setCompared(false);
+    setSize(width); drawn.current = []; setInk([]); setWrongInk(''); setReference(false); setCompared(false); setResultComparison(false);
     nextStroke.current = 0;
     stats.current = { errors: 0, hints: 0, correctStrokes: 0, templateUsed: false, demoUsed: seenDemo.current || boosted };
     const outline = writingColor('--writing-ink', boosted ? .38 : level.alpha);
@@ -171,13 +171,17 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
   const writing = phase === 'writing';
   const numbers = !recall && (demo || level.nextStroke) && !compared;
   const scale = (size - 30) / 1024;
-  return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-task-complete={phase === 'saved' || optionalRepeat.current}>
+  const canCompareResult = phase === 'saved' && lastResult.current?.result === 'success' && lastResult.current.mode === 'screen' && level.category === 'free_recall' && ink.length > 0;
+  const comparisonTransform = HanziWriter.getScalingTransform(size, size, 15).transform;
+  return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-comparison={resultComparison ? 'visible' : 'hidden'} data-task-complete={phase === 'saved' || optionalRepeat.current}>
     <Resolution operation="writing" resolved={phase === 'saved'} assisted={!!(lastResult.current?.assisted || assisted.current)} parts={{reference: <>
     <div className="writingIntro">{(!recall || phase === 'saved' || demo) && <h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>}{phase !== 'saved' && phase !== 'preview' && <p>{demo ? model.intro : level.instruction}</p>}</div>
     <div className="writingLocal">
+    <div className="writingTargetCue" aria-label="Schreibziel"><span className="controlLabel">Schreibziel</span><span className="writingTargetValue"><strong>{meaning}</strong><span className="pinyin" lang="zh-Latn">{pinyin}</span></span></div>
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+        {canCompareResult && resultComparison && <g className="writingComparisonReference" data-testid="writing-comparison-reference" transform={comparisonTransform}>{model.data.strokes.map((d, i) => <path key={i} d={d}/>)}</g>}
         <g fill="none" stroke="var(--writing-ink)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" data-testid="learner-ink">{ink.map((d, i) => <path key={i} d={d} />)}</g>
         {wrongInk && <path d={wrongInk} fill="none" stroke="var(--writing-error)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />}
         {numbers && <g className="strokeNumbers" data-testid="stroke-numbers">{model.data.medians.map((points, i) => <text key={i} x={Math.max(10, 15 + points[0][0] * scale - 12)} y={Math.max(14, 15 + (900 - points[0][1]) * scale - 10)}>{i + 1}</text>)}</g>}
@@ -189,7 +193,7 @@ export function WritingExercise({ itemId, recall, onEvent, onComplete, onNext, d
       <IconButton icon="play" label="Noch einmal ansehen" disabled={!writing || disabled} onClick={() => { assisted.current = true; seenDemo.current = true; setBoosted(true); setDemo(true); }}><span>Ablauf</span></IconButton>
       <IconButton icon="replay" label="Neu ansetzen" disabled={!writing || disabled} onClick={() => { callbacks.current.onEvent('writing_clear', detail()); setRevision(value => value + 1); }}><span>Neu</span></IconButton>
     </div>
-    {phase === 'saved' && <div className="writingLocalActions">{lastResult.current?.result === 'success' && <IconButton icon="replay" label="Noch einmal" className="writingRepeat" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}/>}</div>}
+    {phase === 'saved' && <div className="writingLocalActions">{canCompareResult && <button type="button" className="secondaryButton writingCompareToggle" aria-pressed={resultComparison} disabled={disabled} onClick={() => setResultComparison(value => !value)}>Vorlage vergleichen</button>}{lastResult.current?.result === 'success' && <IconButton icon="replay" label="Noch einmal" className="writingRepeat" disabled={disabled} onClick={() => { optionalRepeat.current = true; callbacks.current.onEvent('optional_writing_start', detail()); seenDemo.current = false; assisted.current = false; setBoosted(false); setDemo(false); setRevision(value => value + 1); }}/>}</div>}
     </div>
     </>,feedback: <>
     <p className={`writingStatus ${phase === 'success' ? 'writingSuccess' : ''}`} role="status" aria-live="polite">{status}</p>

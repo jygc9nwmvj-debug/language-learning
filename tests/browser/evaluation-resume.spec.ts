@@ -7,7 +7,7 @@ async function state(page:Page){return page.evaluate(async()=>{
 });}
 async function resume(page:Page){await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();}
 async function plan(page:Page,task:string,itemId?:string){
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.goto('/');await page.getByRole('button',{name:/^(Lernen starten|Weiterlernen)$/}).waitFor();
  const items=(taskMap.get(task)?.sequence ?? (itemId?[itemId]:[])).map(id=>itemMap.get(id)!);
  await page.evaluate(async({task,items})=>{
  const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result)});
@@ -49,9 +49,9 @@ test('repeated reveal produces one event and preserves assisted assessment',asyn
  await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni3 hao3');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('[data-task-complete=true]')).toBeVisible();
  const saved=await state(page);expect(saved.events.filter((e:any)=>e.type==='pinyin_reveal')).toHaveLength(1);expect(attempts(saved)[0].detail.assisted).toBe(true);
 });
-test('saved writing result resumes without another writing assessment',async({page})=>{
- await plan(page,'write-recall','hao');await writeHao(page);await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');const before=await state(page),ink=await page.getByTestId('learner-ink').innerHTML();
- await resume(page);await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');expect(await page.getByTestId('learner-ink').innerHTML()).toBe(ink);expect((await state(page)).relations).toEqual(before.relations);expect(attempts(await state(page))).toHaveLength(1);
+test('saved writing result resumes with optional comparison and no second assessment',async({page})=>{
+ await plan(page,'write-recall','hao');await expect(page.getByRole('button',{name:'Vorlage vergleichen',exact:true})).toHaveCount(0);await writeHao(page);await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');const before=await state(page),ink=await page.getByTestId('learner-ink').innerHTML();
+ await resume(page);await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','saved');expect(await page.getByTestId('learner-ink').innerHTML()).toBe(ink);const resumed=await state(page),compare=page.getByRole('button',{name:'Vorlage vergleichen',exact:true});await compare.click();await expect(page.getByTestId('writing-comparison-reference')).toBeVisible();await compare.click();await expect(page.getByTestId('writing-comparison-reference')).toHaveCount(0);const compared=await state(page);expect(compared.relations).toEqual(before.relations);expect(attempts(compared)).toHaveLength(1);expect(compared.events).toEqual(resumed.events);
  await page.getByRole('button',{name:'Noch einmal',exact:true}).click();await expect(page.locator('.writingExercise')).toHaveAttribute('data-phase','writing');await page.getByRole('button',{name:'Weiter',exact:true}).click();expect(attempts(await state(page))).toHaveLength(1);
 });
 

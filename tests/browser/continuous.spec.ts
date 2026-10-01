@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 async function seed(page:any,old=false){
- await page.goto('/');await expect(page.getByRole('button',{name:'Weiterlernen',exact:true})).toBeVisible();
+ await page.goto('/');await expect(page.getByRole('button',{name:/^(Lernen starten|Weiterlernen)$/})).toBeVisible();
  await page.evaluate(async(old:boolean)=>{
   const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
   await new Promise<void>(r=>{const t=db.transaction(['events','sessions'],'readwrite');
@@ -26,7 +26,7 @@ test('new repair expression uses progressive reference and available Polly audio
 });
 test('generic new writing model mounts and numeric reconstruction saves one real attempt',async({page})=>{
  await seed(page);
- async function plan(ids:string[]){await page.evaluate(async ids=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});await new Promise<void>(r=>{const t=db.transaction('sessions','readwrite');t.objectStore('sessions').put({id:crypto.randomUUID(),plannerVersion:'d1',plan:[...ids,'closure'],index:0,completed:false,startedAt:Date.now(),updatedAt:Date.now()+100,script:'hant'});t.oncomplete=()=>r();});db.close();},ids);await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.lessonCard')).toBeVisible();await expect(page.locator('.lessonCard')).toHaveAttribute('aria-busy','false');}
- await plan(['d-write-yi','d-sequence-123']);await expect(page.locator('.writingSurface svg').first()).toBeVisible();await page.getByRole('button',{name:'Überspringen',exact:true}).click();
+ async function plan(ids:string[]){await page.evaluate(async ids=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});await new Promise<void>(r=>{const t=db.transaction(['sessions','events'],'readwrite'),now=Date.now();t.objectStore('sessions').put({id:crypto.randomUUID(),plannerVersion:'d1',plan:[...ids,'closure'],index:0,completed:false,startedAt:now,updatedAt:now+100,script:'hant'});for(const [item,form,toneNumbers] of [['yi','一','yi1'],['er','二','er4'],['san','三','san1']])t.objectStore('events').put({id:`intro-${item}`,sessionId:'prior',taskId:'fixture',at:now,contentVersion:'test',type:'introduction_dimensions',detail:{item,form,toneNumbers,script:'hant',dimensions:'meaning,pronunciation,hanzi,writing',introductionVersion:1}});t.oncomplete=()=>r();});db.close();},ids);await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.lessonCard')).toBeVisible();await expect(page.locator('.lessonCard')).toHaveAttribute('aria-busy','false');}
+ await plan(['d-write-yi','d-sequence-123']);await expect(page.locator('.writingSurface svg').first()).toBeVisible();const cue=page.getByLabel('Schreibziel',{exact:true});await expect(cue).toContainText('eins');await expect(cue).toContainText('yī');await expect(cue).not.toContainText('一');await page.getByRole('button',{name:'Überspringen',exact:true}).click();
  for(const name of ['一','二','三'])await page.getByRole('button',{name,exact:true}).click();await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.getByRole('status')).toContainText('Die Reihenfolge stimmt.');
 });

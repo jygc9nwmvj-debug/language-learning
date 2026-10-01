@@ -289,7 +289,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -316,7 +316,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -860,7 +860,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -887,7 +887,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2223,7 +2223,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2250,7 +2250,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2779,7 +2779,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2806,7 +2806,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2923,7 +2923,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -2950,7 +2950,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -3067,7 +3067,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -3094,7 +3094,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -3745,7 +3745,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -3772,7 +3772,7 @@
         "feedback",
         "next"
       ],
-      "reference": "own ink on screen, existing comparison model on paper; no new contour",
+      "reference": "persistent non-Hanzi target cue; own ink on screen with optional post-success contour; existing comparison model on paper",
       "reachability": "continuous task or prerequisite introduction",
       "optionalFields": [
         "slowAudio",
@@ -3908,10 +3908,10 @@
     "src/core/exercises/Controls.tsx": "eccfb47cb77425c9501bb6e3fdddc820ad97bcec0a8faff7bb171ca4e840b52e",
     "src/languages/mandarin/reference-role.ts": "70f9ad865f11e21af4d337a72f68437dd8145ef97f788a52e1861757dd35503f",
     "src/languages/mandarin/components/SlotReference.tsx": "ed602aab2e33e9462c356d091ca01306828fe0e71d61c7d5755b6d17fc0762e1",
-    "src/languages/mandarin/components/Exercise.tsx": "42fa20cd9ffa5f170f5344178973bcf1d5aeaf9143862899489e38bb69a65ede",
+    "src/languages/mandarin/components/Exercise.tsx": "52873d0d862a6f6b4b754c74130c7190402aea83e3256988b5829a6c19a69a9a",
     "src/core/exercises/SpeakingPractice.tsx": "87ff58ba01481ec09a945646f581671f282dc118420909d225f0a2eabc25c6df",
     "src/languages/mandarin/components/AttentionIntroduction.tsx": "c86040cfffec3f46fd29d02f38929a9a15eb12ce9be8145cbd1e2814b1017ad5",
-    "src/languages/mandarin/components/WritingExercise.tsx": "e94b07bf348ef5382fb1586d8840f6bf9f6279cfacbeb986915d59c0974fac0c",
+    "src/languages/mandarin/components/WritingExercise.tsx": "3c4c4871c712a997d3c982a2a905e22bf640c89050128609b62a1640202e7167",
     "src/languages/mandarin/components/HybridRecall.tsx": "0ba3c56e8c06c4a337c6efe051d01aec93e3a7fd19e2b7aaf7bf3f1b9a0d640b",
     "src/languages/mandarin/components/ToneLab.tsx": "694cbd8ea5233b026a275c70f9e7804bebfa3fd91e485cf1aeb93b1303b94431",
     "src/core/audio/Recorder.tsx": "3f2016feaa7f19f140501737f7c245186e5a9a10c149584cc37605fef76a4966",
@@ -3920,7 +3920,7 @@
     "src/languages/mandarin/components/PhraseForm.tsx": "ae4d9bac9b234668193638542fdb15a15b5d73eec294ae8ef4c9b8f468fbba05",
     "src/languages/mandarin/components/ProductionFeedback.tsx": "64bbd7ede4f29b8facaacc1f1c146c0804c55cc03fa060ac1604b27ba3f65de9",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
-    "src/core/exercises/resolution-contract.ts": "1b63ad142ef22f848141925e7d31eb660b6670ce619d051365c10eae53dacac7",
+    "src/core/exercises/resolution-contract.ts": "cafe1c356eaff1454108b99efc64fe2512798eae565164b146e79ea381af133a",
     "src/app/LessonRunner.tsx": "fe49a18496eb0053d54fd7df04558caf6c4e13f169216cfc74be9a919044d019",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
   }
