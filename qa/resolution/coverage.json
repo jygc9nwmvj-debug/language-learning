@@ -1,4 +1,228 @@
 {
+  "matching": [
+    {
+      "id": "people:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "wo",
+        "ni",
+        "ren"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "people:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "wo",
+        "ni",
+        "ren"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "greetings:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "hao",
+        "qing",
+        "nihao"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "greetings:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "hao",
+        "qing",
+        "nihao"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "countries:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "deguo",
+        "zhongguo"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "countries:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "deguo",
+        "zhongguo"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-147:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "yi",
+        "si",
+        "qi"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-147:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "yi",
+        "si",
+        "qi"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-258:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "er",
+        "wu",
+        "ba"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-258:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "er",
+        "wu",
+        "ba"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-369:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "san",
+        "liu",
+        "jiu"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-369:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "san",
+        "liu",
+        "jiu"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-4810:form-meaning",
+      "revision": 1,
+      "relation": "form-meaning",
+      "items": [
+        "si",
+        "ba",
+        "shi-number"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    },
+    {
+      "id": "numbers-4810:audio-form",
+      "revision": 1,
+      "relation": "audio-form",
+      "items": [
+        "si",
+        "ba",
+        "shi-number"
+      ],
+      "operation": "matching",
+      "states": [
+        "matching",
+        "complete"
+      ],
+      "boundary": "additional; ordinary plan unchanged"
+    }
+  ],
   "tasks": [
     {
       "slotReference": null,
@@ -3905,6 +4129,8 @@
     }
   ],
   "sources": {
+    "src/languages/mandarin/components/MatchingExercise.tsx": "6ffa2bae6f931eda548df778d9eb2e91b5cb1af597ba473b9b5e20379475a1f2",
+    "src/languages/mandarin/matching.ts": "f0d365f0ea4b511f2d52e1ec7ed8cb4d90b9d45f0e0ea4cb31c17dd550dba7cb",
     "src/core/exercises/Controls.tsx": "eccfb47cb77425c9501bb6e3fdddc820ad97bcec0a8faff7bb171ca4e840b52e",
     "src/languages/mandarin/reference-role.ts": "70f9ad865f11e21af4d337a72f68437dd8145ef97f788a52e1861757dd35503f",
     "src/languages/mandarin/components/SlotReference.tsx": "ed602aab2e33e9462c356d091ca01306828fe0e71d61c7d5755b6d17fc0762e1",
@@ -3920,8 +4146,8 @@
     "src/languages/mandarin/components/PhraseForm.tsx": "ae4d9bac9b234668193638542fdb15a15b5d73eec294ae8ef4c9b8f468fbba05",
     "src/languages/mandarin/components/ProductionFeedback.tsx": "a3d33c6cbf52af3ed75229fbd59da87a1d9a228ce20d99c71772c386cd93baa7",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
-    "src/core/exercises/resolution-contract.ts": "cafe1c356eaff1454108b99efc64fe2512798eae565164b146e79ea381af133a",
-    "src/app/LessonRunner.tsx": "fe49a18496eb0053d54fd7df04558caf6c4e13f169216cfc74be9a919044d019",
+    "src/core/exercises/resolution-contract.ts": "1b3b4bf6186c3554c91a12ab11783eeee1f42123c0500c34ae025e259caaf012",
+    "src/app/LessonRunner.tsx": "0fd7d824c517c18cc0f5c10d6643c83887d3947709a8428e5d9087d9659b52e0",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
   }
 }

@@ -1,5 +1,6 @@
 // A rendering contract, not task state or assessment. Inputs are existing phases.
 export const resolutionContracts = {
+ matching: { required: ['reference','feedback','next'], optional: [], states: ['complete'], reference: 'committed pairs remain on the board; local pair feedback; no mastery claim' },
  target: { required: ['reference','audio'], optional: [], states: ['reference'], reference: 'form/meaning and audio in their existing reference container' },
  encounter: { required: ['reference','next'], optional: ['enrichment','practice'], states: ['revealed'], reference: 'introduced form/meaning; existing Pinyin reveal policy' },
  listen: { required: ['response','reference','next'], optional: ['enrichment'], states: ['success','attention','error'], reference: 'target form and meaning; no dependency on exploration' },

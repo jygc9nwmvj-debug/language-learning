@@ -1,0 +1,30 @@
+import {test,expect,type Page} from '@playwright/test';
+import {matchingSets} from '../../src/languages/mandarin/matching';
+import {itemMap} from '../../src/languages/mandarin/content';
+import {introductionDetail} from '../../src/languages/mandarin/introduction';
+import {composeContinuous} from '../../src/languages/mandarin/continuous';
+async function state(page:Page){return page.evaluate(async()=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});const out:any={};for(const key of ['sessions','events','relations'])out[key]=await new Promise(r=>{const q=db.transaction(key).objectStore(key).getAll();q.onsuccess=()=>r(q.result);});db.close();return out;});}
+async function start(page:Page,setId:string){
+ await page.goto('/');await page.getByRole('button',{name:'Lernen starten',exact:true}).waitFor();
+ const now=Date.now();const event=(id:string,type:string,detail:any)=>({id,type,detail,at:now-1000,sessionId:'prior',taskId:'fixture',contentVersion:'test'});
+ const events=[...new Set(matchingSets.flatMap(s=>s.items))].map(id=>event('intro-'+id,'introduction_dimensions',introductionDetail(itemMap.get(id)!,'hant',['meaning','hanzi','pronunciation'],'test')));
+ for(const s of matchingSets.filter(s=>s.id!==setId)){events.push(event('old-'+s.id,'matching_started',{setId:s.id,revision:1,script:'hant',left:s.items.join(','),right:s.items.join(','),index:0}),event('done-'+s.id,'matching_completed',{runId:'old-'+s.id}));}
+ await page.evaluate(async({events,now})=>{const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});await new Promise<void>(r=>{const tx=db.transaction(['sessions','events','preferences'],'readwrite');tx.objectStore('sessions').put({id:'boundary',plannerVersion:'d1',plan:['recall-nihao','closure'],index:0,completed:false,startedAt:now,updatedAt:now,script:'hant'});tx.objectStore('preferences').put({key:'name',value:'Pilot'});for(const e of events)tx.objectStore('events').put(e);tx.oncomplete=()=>r();});db.close();},{events,now});
+ await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await page.getByRole('textbox',{name:'Deine Antwort',exact:true}).fill('ni3 hao3');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await page.getByRole('button',{name:'Weiter',exact:true}).click();await expect(page.locator('.matchingExercise')).toBeVisible();
+}
+for(const width of [320,390,1280])for(const relation of ['form-meaning','audio-form'])test(`${relation} ${width}: local pairing, replay, reload, preserved successor`,async({page})=>{
+ await page.setViewportSize({width,height:900});const group=width===390?'countries':'people',setId=group+':'+relation;await start(page,setId);
+ const before=await state(page),run=before.events.find((e:any)=>e.type==='matching_started'&&e.sessionId==='boundary'),left=run.detail.left.split(','),right=run.detail.right.split(',');
+ const plan=composeContinuous(before.relations,before.events,'hant',run.at);
+ const columns=page.locator('.matchingColumn'),choose=async(id:string)=>{const button=columns.nth(0).getByRole('button').nth(left.indexOf(id));const count=(await state(page)).events.filter((e:any)=>e.type==='matching_audio'&&e.detail.runId===run.id).length;await expect(button).toBeEnabled();await button.focus();await button.press('Enter');if(relation==='audio-form')await expect.poll(async()=> (await state(page)).events.filter((e:any)=>e.type==='matching_audio'&&e.detail.runId===run.id).length).toBe(count+1);};
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ for(const box of await columns.locator('button').evaluateAll(bs=>bs.map(b=>({w:b.getBoundingClientRect().width,h:b.getBoundingClientRect().height})))){expect(box.w).toBeGreaterThanOrEqual(44);expect(box.h).toBeGreaterThanOrEqual(44);}
+ await choose(left[0]);await columns.nth(1).getByRole('button').nth(right.indexOf(left[1])).click();await expect(page.getByRole('status')).toContainText('Das passt noch nicht');
+ await page.screenshot({path:`/tmp/matching-${relation}-${width}.png`});
+ await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.locator('.matchingExercise')).toBeVisible();expect((await state(page)).events.filter((e:any)=>e.type==='matching_started'&&e.sessionId==='boundary')).toEqual([run]);
+ if(relation==='audio-form'){await choose(left[0]);await choose(left[0]);await expect.poll(async()=> (await state(page)).events.filter((e:any)=>e.type==='matching_audio'&&e.detail.runId===run.id&&e.detail.item===left[0]).length).toBeGreaterThanOrEqual(3);}
+ for(const id of left){await choose(id);await columns.nth(1).getByRole('button').nth(right.indexOf(id)).press('Enter');await expect.poll(async()=> (await state(page)).events.filter((e:any)=>e.type==='matching_pair'&&e.detail.runId===run.id&&e.detail.correct).length).toBe(left.indexOf(id)+1);}
+ await expect(page.getByRole('status')).toContainText('Alle Paare');await page.reload();await page.getByRole('button',{name:'Weiterlernen',exact:true}).click();await expect(page.getByRole('status')).toContainText('Alle Paare');
+ const completed=await state(page),pairs=completed.events.filter((e:any)=>e.type==='matching_pair'&&e.detail.runId===run.id);expect(pairs).toHaveLength(left.length+1);expect(pairs.slice(1).every((e:any)=>e.detail.assisted&&!e.detail.independent)).toBe(true);expect(pairs.at(-1).detail.elimination).toBe(true);expect(completed.relations).toEqual(before.relations);
+ await page.getByRole('button',{name:'Weiter',exact:true}).click();await expect(page.locator('.matchingExercise')).toHaveCount(0);await expect.poll(async()=> (await state(page)).sessions.length).toBe(2);const after=await state(page);expect(after.sessions.find((s:any)=>s.id!=='boundary').plan).toEqual(plan);expect(after.events.filter((e:any)=>e.type==='matching_completed'&&e.detail.runId===run.id)).toHaveLength(1);expect(after.relations).toEqual(before.relations);
+});

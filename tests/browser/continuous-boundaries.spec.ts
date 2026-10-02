@@ -4,7 +4,7 @@ async function state(page:Page){return page.evaluate(async()=>{
  const out:any={};for(const key of ['sessions','events','relations','preferences'])out[key]=await new Promise(r=>{const q=db.transaction(key).objectStore(key).getAll();q.onsuccess=()=>r(q.result);});db.close();return out;
 });}
 async function start(page:Page){
- await page.goto('/');await page.getByRole('button',{name:'Weiterlernen',exact:true}).waitFor();
+ await page.goto('/');await page.getByRole('button',{name:'Lernen starten',exact:true}).waitFor();
  await page.evaluate(async()=>{
  const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
  await new Promise<void>(r=>{const tx=db.transaction(['sessions','events','preferences'],'readwrite'),now=Date.now();

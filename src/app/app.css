@@ -352,3 +352,16 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .writingControls { margin-inline: auto; max-width: 320px; }
 .writingStatus { max-width: 320px; margin-inline: auto; }
 @media (max-width: 359px) { .comparisonRow { grid-template-columns: 5.5rem minmax(0,1fr); } }
+
+.matchingExercise { display: grid; gap: var(--space-4); }
+.matchingBoard { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
+.matchingColumn { display: grid; gap: var(--space-3); align-content: start; }
+.matchingCell { border: 1px solid var(--line); border-radius: 4px; min-width: 0; padding: var(--space-2); }
+.matchingCell > button,.matchingCell .audioButton { min-height: 44px; width: 100%; }
+.matchingCell > button { background: transparent; color: var(--ink); padding: var(--space-2); overflow-wrap: anywhere; }
+.matchingCell button[lang=zh] { font-size: 1.65rem; }
+.matchingCell[data-selected=true] { border-color: var(--blue); outline: 1px solid var(--blue); }
+.matchingCell[data-wrong=true] { border-color: var(--error-ink); }
+.matchingCell[data-matched=true] { opacity: .6; }
+.matchingConfirmation { display: block; font-size: var(--text-small); color: var(--ink-muted); }
+.matchingFeedback { min-height: 3em; margin: 0; }
