@@ -2,7 +2,9 @@
 
 ## Matching v1 · 2026-10-02
 
-Status: lokal implementiert, gezielt geprüft; Veröffentlichung wird nach öffentlichem Build-Abgleich bestätigt. Ausgangsbasis `main f238fd5` / produktiver App-Code `8247a2b`.
+Deploymentnachweis: https://language-learning-abk.pages.dev/ liefert am 2026-10-02 HTML, App, Einstiegscode, Laufzeitmodul, CSS und Service Worker bytegleich zum geprüften Build. App `App-B_odrDJg.js`, SHA-256 `fb3d70757142e8862f65371baf9e17bc4ecaabf0babe480150ff9f8d74f26068`; Service Worker SHA-256 `af051804fbe6d968ca18caa700180ddcfd705f6b98a2ba17fe2e46295de02350`, Cache `mandarin-v01-9a883e43f847b469`. Dieser Dokumentationsnachtrag löst kein weiteres Deployment aus.
+
+Status: **deployed**, Commit `dcdce42`, auf `main`. Ausgangsbasis `main f238fd5` / vorheriger produktiver App-Code `8247a2b`.
 
 - Gemeinsamer Paarzustand und Renderer für ausschließlich **Form ↔ Bedeutung** und **Audio ↔ Form**. Sieben kuratierte Gruppen / 14 Varianten / 18 ganze Lernobjekte: 我・你・人; 好・請・你好; 德國・中國; 一・四・七; 二・五・八; 三・六・九; 四・八・十. Zwei Paare bei den Ländern, sonst drei. Aktive Schriftvariante folgt der bestehenden Einstellung.
 - Eligibility verwendet vorhandene explizite Einführung je ganzem Item: Bedeutung + passende Schrift, für Audio zusätzlich Aussprache und vorhandenes Audio. Keine Ableitung von Einzelzeichenwissen aus einer Phrase; 媽麻馬罵 ausgeschlossen. Beide Spalten werden unabhängig gemischt und ihre Reihenfolgen für Reload in den vorhandenen Events festgehalten.
