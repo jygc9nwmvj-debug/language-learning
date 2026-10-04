@@ -2,7 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './app/app.css';
 import { prepareOffline } from './core/offline/prepare';
+import { captureInstall } from './core/offline/install';
 const harnessRoute = window.location.pathname.replace(/\/$/, '') === '/__test/a1';
+if (!harnessRoute) captureInstall();
 if (!harnessRoute && import.meta.env.PROD) {
   if (document.readyState === 'complete') prepareOffline();
   else window.addEventListener('load', () => prepareOffline(), { once: true });

@@ -1,5 +1,11 @@
 # v0.5 — verbindlicher Projektstatus
 
+## Optionaler mobiler Installationszugang · 2026-10-04
+
+Status: **implemented, not deployed**, Basis `main` `32bf477`, eigener Branch `codex/pwa-install-hint`. Sekundäre Home-Aktion im vorhandenen Speicher-/Offlinebereich: Chromium nur bei tatsächlich verfügbarem `beforeinstallprompt`, nativer Dialog ausschließlich nach Klick; iOS Safari mit anfänglich geschlossener Inline-Anleitung einschließlich aktueller Web-App-Option. Standalone/Fullscreen/iOS-Standalone und `appinstalled` blenden den Zugang aus; kein mobiler Hinweis auf Desktop. Früher Ereigniseingang vor Lazy-App-Laden wird berücksichtigt. Flüchtiger Dokumentzustand, keine neue Persistenz, Telemetrie oder Abhängigkeit. Manifest, Service Worker, Offline-Strategie, Lerncontent, Planner, Mastery und Lernlogik unverändert.
+
+QA: 235 Funktionstests einschließlich fünf neuer Eligibilitytests, Test-/Produktionsbuild, Typ-/Content-/Text-/Resolution-Verträge bestanden. Browsercoverage **representative**: 24 neue Fälle in Chrome/WebKit bei 320/390 px plus Desktop 320/1280 px; Ereignis vorhanden/fehlend, frühes Ereignis, Klick/Annahme/Ablehnung/Fehler, Safari-Disclosure/Tastatur, First Run/Returning/Reload, installierte Modi und spätere Installation. Zusätzlich 10 bestehende Offline-/Worker-/Wiederaufnahme-/Speicherfehler-Regressionen im Produktionsbuild bestanden. Text-/Quellinventar **exhaustive strukturell für 30/30 neue/geänderte Diff-Kandidaten**, Gesamtledger 71 Quellen / 3.735 Einträge / 0 unklassifiziert; keine neue Vollabnahme des Altbestands. Echte iOS-/Android-Installation und Systemmenüs nicht gerätegeprüft. [Befund, Umsetzung, Entscheidungen und Grenzen](PWA_INSTALL_ACCESS.md). Kein Merge/Deployment; Commit mit `[CF-Pages-Skip]` verhindert automatisches Pages-Preview beim vorgesehenen Branch-Push.
+
 ## Matching v1 · 2026-10-02
 
 Deploymentnachweis: https://language-learning-abk.pages.dev/ liefert am 2026-10-02 HTML, App, Einstiegscode, Laufzeitmodul, CSS und Service Worker bytegleich zum geprüften Build. App `App-B_odrDJg.js`, SHA-256 `fb3d70757142e8862f65371baf9e17bc4ecaabf0babe480150ff9f8d74f26068`; Service Worker SHA-256 `af051804fbe6d968ca18caa700180ddcfd705f6b98a2ba17fe2e46295de02350`, Cache `mandarin-v01-9a883e43f847b469`. Dieser Dokumentationsnachtrag löst kein weiteres Deployment aus.
