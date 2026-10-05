@@ -1,5 +1,7 @@
 # Optionaler mobiler Installationszugang
 
+Aktueller Status 2026-10-05: **deployed** mit `513fbe0e62a9b34136f36ff04d88b5bed3dc3739` auf `main`. Nutzerfreigabe ersetzt die unten dokumentierte ursprüngliche Veröffentlichungsgrenze. [Cloudflare-Erfolg](https://github.com/jygc9nwmvj-debug/language-learning/runs/111936393944) und öffentlicher Byteabgleich von 7/7 Release-Dateien (Root-HTML, Manifest, Worker, vier kompilierte JS-/CSS-Dateien) bestätigt. App SHA-256 `ee63b6cc86fc04181b436f6d74130f0f3dff769faaad283278c3cb847c7df278`, Worker SHA-256 `1cb9e501166e17dd256bb1a79675a5c1c54368eb7dd8c5d16353b4d19cf1bad1`. Produktionsbuild erneut bestanden; Live-Stichprobe in Chrome/WebKit mit Safari-Fallback, Offlinebereitschaft, First Run/Resume/Reload, Standalone und Desktop erfolgreich. Reale Geräteinstallation bleibt ungeprüft. Vollständiger Deploymentnachweis in `V05_STATUS.md`.
+
 2026-10-04 · **implemented, not deployed** · Basis `main` `32bf477` · Branch `codex/pwa-install-hint`.
 
 ## Vorhandener Zustand und Lücke

@@ -1,5 +1,13 @@
 # v0.5 — verbindlicher Projektstatus
 
+## Installationszugang — Deployment bestätigt · 2026-10-05
+
+Status: **deployed**, Release-/Mergecommit `513fbe0e62a9b34136f36ff04d88b5bed3dc3739` auf `main`, Implementierung `94b05fe`. Nutzerfreigabe zum Deployment am 2026-10-05 ersetzt die ursprüngliche Grenze „kein Merge/Deployment“. Main war weiterhin `32bf477`; keine zusätzlichen Produktänderungen oder Mergekonflikte. Produktionsbuild einschließlich Typ-, Content-, Text- und Resolution-Prüfung erneut bestanden. [Produktions-App](https://language-learning-abk.pages.dev/), [erfolgreicher Cloudflare-Check](https://github.com/jygc9nwmvj-debug/language-learning/runs/111936393944).
+
+Öffentlicher Dateiabgleich **exhaustive für die begrenzte Release-Population von 7/7 Dateien**: Root-HTML, Manifest, Service Worker und sämtliche vier kompilierten JS-/CSS-Dateien aus `dist/assets` liefern HTTP 200 und sind bytegleich zum lokalen Produktionsbuild. Keine Behauptung eines neuen Einzelabgleichs aller Audio-/Iconassets. App `App-DG3m8lew.js`, SHA-256 `ee63b6cc86fc04181b436f6d74130f0f3dff769faaad283278c3cb847c7df278`; Worker SHA-256 `1cb9e501166e17dd256bb1a79675a5c1c54368eb7dd8c5d16353b4d19cf1bad1`, Cache `mandarin-v01-8b83febb30fa066c`.
+
+Live-Browserprüfung **representative** in Chrome und Playwright WebKit: simuliertes iOS Safari bei 390 px, Anleitung erst nach Antippen, kein horizontaler Überlauf, Offlinebereitschaft, First Run, Pause/Reload/Weiterlernen, geschlossene Anleitung nach Reload, simuliertes iOS-Standalone ohne Hinweis und Desktop bei 1280 px ohne Hinweis. Keine mobilen Laufzeitfehler in den beiden geprüften Abläufen. Echte iOS-/Android-Installation bleibt Geräteprüfung; vorherige 235 Funktions- und 34 gezielte Browserprüfungen gelten für unveränderten Produktcode weiter. Diese Dokumentationsbestätigung erhält `[CF-Pages-Skip]` und löst kein weiteres Deployment aus.
+
 ## Optionaler mobiler Installationszugang · 2026-10-04
 
 Status: **implemented, not deployed**, Basis `main` `32bf477`, eigener Branch `codex/pwa-install-hint`. Sekundäre Home-Aktion im vorhandenen Speicher-/Offlinebereich: Chromium nur bei tatsächlich verfügbarem `beforeinstallprompt`, nativer Dialog ausschließlich nach Klick; iOS Safari mit anfänglich geschlossener Inline-Anleitung einschließlich aktueller Web-App-Option. Standalone/Fullscreen/iOS-Standalone und `appinstalled` blenden den Zugang aus; kein mobiler Hinweis auf Desktop. Früher Ereigniseingang vor Lazy-App-Laden wird berücksichtigt. Flüchtiger Dokumentzustand, keine neue Persistenz, Telemetrie oder Abhängigkeit. Manifest, Service Worker, Offline-Strategie, Lerncontent, Planner, Mastery und Lernlogik unverändert.
