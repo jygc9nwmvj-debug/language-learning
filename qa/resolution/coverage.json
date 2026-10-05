@@ -4147,7 +4147,7 @@
     "src/languages/mandarin/components/ProductionFeedback.tsx": "a3d33c6cbf52af3ed75229fbd59da87a1d9a228ce20d99c71772c386cd93baa7",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
     "src/core/exercises/resolution-contract.ts": "1b3b4bf6186c3554c91a12ab11783eeee1f42123c0500c34ae025e259caaf012",
-    "src/app/LessonRunner.tsx": "0fd7d824c517c18cc0f5c10d6643c83887d3947709a8428e5d9087d9659b52e0",
+    "src/app/LessonRunner.tsx": "0918a64da9b2dcf5aee0c38090dd19820cace19d62f354a883225aef0e2f7dba",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
   }
 }
