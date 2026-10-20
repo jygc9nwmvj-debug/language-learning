@@ -1,3 +1,4 @@
+import {dialogueDefinitions} from '../src/languages/mandarin/dialogue.ts';
 import {matchingSets} from '../src/languages/mandarin/matching.ts';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -7,6 +8,13 @@ import {content,itemMap} from '../src/languages/mandarin/content/index.ts';
 import {operationForTask,resolutionContracts} from '../src/core/exercises/resolution-contract.ts';
 import {referenceRole,fixedReferenceParts} from '../src/languages/mandarin/reference-role.ts';
 export const renderers={
+ 'src/core/exercises/LearningViewport.tsx':Object.keys(resolutionContracts),
+ 'src/core/exercises/CorrectionVersions.tsx':['production','read','listen'],
+ 'src/languages/mandarin/components/MeaningFeedback.tsx':['read','listen'],
+ 'src/languages/mandarin/components/DialogueExercise.tsx':['dialogue'],
+ 'src/languages/mandarin/dialogue.ts':['dialogue'],
+ 'src/languages/mandarin/correction.ts':['production'],
+ 'src/languages/mandarin/meaning.ts':['read','listen'],
  'src/languages/mandarin/components/MatchingExercise.tsx':['matching'],
  'src/languages/mandarin/matching.ts':['matching'],
  'src/core/exercises/Controls.tsx':['production','sequence'],
@@ -29,7 +37,7 @@ export const renderers={
  'src/languages/mandarin/schema/content.ts':Object.keys(resolutionContracts),
 };
 export function enumerateResolutions(){
- return {matching:matchingSets.map(s=>({id:s.id,revision:s.revision,relation:s.relation,items:s.items,operation:'matching',states:['matching','complete'],boundary:'additional; ordinary plan unchanged'})),tasks:content.tasks.map(t=>{
+ return {dialogues:dialogueDefinitions.map(d=>({id:d.id,revision:d.revision,turns:d.turns.map(t=>({id:t.id,itemId:t.itemId,intent:t.intent,answers:t.answers})),response:d.response,states:['listen','turn','revisit','respond','complete'],evidence:'guided only; no mastery'})),matching:matchingSets.map(s=>({id:s.id,revision:s.revision,relation:s.relation,items:s.items,operation:'matching',states:['matching','complete'],boundary:'additional; ordinary plan unchanged'})),tasks:content.tasks.map(t=>{
   const operation=operationForTask(t.kind), c=operation&&resolutionContracts[operation],item=itemMap.get(t.itemId);
   const purpose=t.kind==='recall'?'production':t.kind==='encounter'?'introduction':'comprehension';
   return {slotReference:item?.slot?{slot:item.slot,role:referenceRole(item,purpose),fixedParts:fixedReferenceParts(item),introduction:'explicit example',screenless:'renderer-level fixed-components; eligibility unchanged',states:['prompt','help','resolved','reload']}:null,id:t.id,kind:t.kind,operation,states:c?c.states:[],base:c?c.required:[],reference:c?c.reference:'No graded resolution; continuous boundary routes paper/transfer or next batch.',
@@ -43,7 +51,8 @@ export function enumerateResolutions(){
 }
 export function checkResolutionCoverage(current,ledger){
  const errors=[];
- if(JSON.stringify(current.matching)!==JSON.stringify(ledger.matching))errors.push('Matching set population changed: review 14 curated variants.');
+ if(JSON.stringify(current.dialogues)!==JSON.stringify(ledger.dialogues))errors.push('Dialogue population changed: review authored definitions and assessment.');
+ if(JSON.stringify(current.matching)!==JSON.stringify(ledger.matching))errors.push('Matching set population changed: review curated variants.');
  if(JSON.stringify(current.tasks)!==JSON.stringify(ledger.tasks))errors.push('Task-to-resolution population changed: review assignments/states/options.');
  for(const f of new Set([...Object.keys(current.sources),...Object.keys(ledger.sources)]))if(current.sources[f]!==ledger.sources[f])errors.push('Resolution renderer routing changed/unreviewed: '+f);
  return errors;

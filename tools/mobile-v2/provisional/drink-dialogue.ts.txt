@@ -1,0 +1,73 @@
+import {z} from 'zod';
+import {content,itemMap} from './content/index.ts';
+import {introduced} from './introduction.ts';
+import {normalizeText} from './answer.ts';
+import {db,type ResearchEvent,type Session} from '../../core/progress/db.ts';
+
+// Closed, authored interpretation checks; no semantic similarity or token-level translation claims.
+const turnSchema=z.object({id:z.string(),speaker:z.enum(['Du','Am Stand']),itemId:z.string(),intent:z.literal('guided_listening_translation'),answers:z.array(z.string().min(1)).min(2)});
+const definitionSchema=z.object({id:z.string(),revision:z.literal(1),title:z.string(),context:z.string(),turns:z.array(turnSchema).min(2),response:z.object({cueItem:z.string(),options:z.array(z.string()).min(3),accepted:z.array(z.string()).min(1),intent:z.literal('contextual_response_recognition')})}).superRefine((d,c)=>{
+ const fail=(message:string)=>c.addIssue({code:'custom',message});
+ if(new Set(d.turns.map(t=>t.id)).size!==d.turns.length)fail('Duplicate dialogue turn');
+ for(const t of d.turns){if(!itemMap.has(t.itemId))fail('Unknown dialogue item');if(new Set(t.answers.map(normalizeText)).size!==t.answers.length)fail('Duplicate dialogue answer');}
+ if(!d.response.options.includes(d.response.cueItem)&&!itemMap.has(d.response.cueItem))fail('Unknown response cue');
+ if(new Set(d.response.options).size!==d.response.options.length||d.response.options.some(id=>!itemMap.has(id))||d.response.accepted.some(id=>!d.response.options.includes(id)))fail('Invalid contextual choices');
+});
+export const drinkDialogue=definitionSchema.parse({id:'drink-counter-v1',revision:1,title:'Am Getränkestand',context:'Du bestellst einen Tee. Am Stand kannst du zwischen heiß und gekühlt wählen. Die Preise sind in Taiwan-Dollar.',turns:[
+ {id:'order',speaker:'Du',itemId:'order-tea',intent:'guided_listening_translation',answers:['Ich möchte eine Tasse Tee','Ich hätte gern eine Tasse Tee','Ich hätte gerne einen Tee','Ich möchte einen Tee','Ich will einen Tee','Ich hätte gern einen Becher Tee']},
+ {id:'temperature',speaker:'Am Stand',itemId:'hot-or-iced',intent:'guided_listening_translation',answers:['Heiß oder kalt','Heiss oder kalt','Warm oder kalt','Möchtest du ihn heiß oder kalt','Möchten Sie den Tee heiß oder kalt','Möchtest du den Tee heiß oder gekühlt']},
+ {id:'iced',speaker:'Du',itemId:'iced-please',intent:'guided_listening_translation',answers:['Kalt danke','Gekühlt danke','Mit Eis danke','Den kalten danke','Ich möchte ihn kalt danke']},
+ {id:'price',speaker:'Du',itemId:'price-question',intent:'guided_listening_translation',answers:['Wie viel kostet das','Was kostet das','Wie teuer ist das','Was macht das']},
+ {id:'amount',speaker:'Am Stand',itemId:'price-thirty',intent:'guided_listening_translation',answers:['Dreißig Dollar','30 Dollar','Dreißig Taiwan-Dollar','30 Taiwan-Dollar','Das kostet dreißig Dollar','Das kostet 30 Taiwan-Dollar']},
+ {id:'thanks',speaker:'Du',itemId:'xiexie',intent:'guided_listening_translation',answers:['Danke','Vielen Dank','Dankeschön','Danke schön']},
+ {id:'welcome',speaker:'Am Stand',itemId:'welcome',intent:'guided_listening_translation',answers:['Gern geschehen','Gerne','Bitte','Bitte schön','Keine Ursache','Nichts zu danken']},
+],response:{cueItem:'hot-or-iced',options:['iced-please','hot-please','price-question','xiexie'],accepted:['iced-please','hot-please'],intent:'contextual_response_recognition'}});
+export type DialoguePhase='listen'|'turn'|'revisit'|'respond'|'complete';
+export type DialogueState={runId:string;sessionId:string;index:number;plannedAt:number;phase:DialoguePhase;turn:number;results:{answer:string;correct:boolean}[];heard:boolean;draft:string;response?:{answer:string;correct:boolean};done:boolean};
+export function dialogueEligible(events:ResearchEvent[],script:'hant'|'hans'){
+ const history=events.filter(e=>e.detail.optionalPractice!==true&&!e.type.startsWith('inspection_')&&!e.type.startsWith('optional_'));
+ return [...new Set([...drinkDialogue.turns.map(t=>t.itemId),...drinkDialogue.response.options])].every(id=>{const i=itemMap.get(id)!;return introduced(i,'meaning',script,history)&&introduced(i,'pronunciation',script,history);});
+}
+export const translationCorrect=(turn:number,answer:string)=>drinkDialogue.turns[turn]?.answers.some(a=>normalizeText(a)===normalizeText(answer))??false;
+export function dialogueState(events:ResearchEvent[],session?:Session):DialogueState|null{
+ for(const start of events.filter(e=>e.type==='dialogue_started'&&e.detail.dialogueId===drinkDialogue.id&&e.detail.revision===drinkDialogue.revision&&(!session||e.sessionId===session.id&&e.detail.index===session.index)).sort((a,b)=>b.at-a.at)){
+  const own=events.filter(e=>e.detail.runId===start.id),done=own.some(e=>e.type==='dialogue_completed');if(!session&&done)continue;
+  const ordered=own.filter(e=>e.type==='dialogue_step').sort((a,b)=>Number(a.detail.sequence)-Number(b.detail.sequence));
+  const phase=(ordered.at(-1)?.detail.phase as DialoguePhase)??'listen',turn=Number(ordered.at(-1)?.detail.turn??0);
+  const results=drinkDialogue.turns.flatMap((_,n)=>{const e=own.find(e=>e.type==='dialogue_answer'&&e.detail.turn===n);return e?[{answer:String(e.detail.answer),correct:e.detail.correct===true}]:[];});
+  const draft=own.filter(e=>e.type==='dialogue_draft'&&e.detail.turn===turn).sort((a,b)=>b.at-a.at)[0];
+  const response=own.find(e=>e.type==='dialogue_response');
+  return {runId:start.id,sessionId:start.sessionId,index:Number(start.detail.index),plannedAt:start.at,phase,turn,results,heard:own.some(e=>e.type==='dialogue_heard'&&e.detail.phase===phase&&e.detail.turn===turn),draft:String(draft?.detail.answer??''),response:response?{answer:String(response.detail.answer),correct:response.detail.correct===true}:undefined,done};
+ }
+ return null;
+}
+export const atDialogue=(s:Session,d:DialogueState|null)=>!!d&&!d.done&&s.id===d.sessionId&&s.index===d.index&&s.plan[s.index]==='closure';
+async function append(s:Session,runId:string,id:string,type:string,detail:ResearchEvent['detail'],at=Date.now()){
+ await db.events.add({id,at,sessionId:s.id,taskId:`dialogue:${drinkDialogue.id}`,type,contentVersion:content.version,detail:{...detail,index:s.index,runId,dialogueId:drinkDialogue.id,revision:drinkDialogue.revision,evidence:'guided_dialogue',masteryEffect:false}});
+}
+export async function reserveDialogue(s:Session,now=Date.now()){
+ return db.transaction('rw',db.events,async()=>{const events=await db.events.toArray(),current=dialogueState(events,s);if(current)return current;
+  if(s.completed||s.plan[s.index]!=='closure'||events.some(e=>e.type==='dialogue_started'&&e.detail.dialogueId===drinkDialogue.id)||!dialogueEligible(events,s.script))return null;
+  const id=crypto.randomUUID();await append(s,id,id,'dialogue_started',{},now);return dialogueState(await db.events.toArray(),s);
+ });
+}
+export async function updateDialogue(s:Session,runId:string,action:'heard'|'draft'|'answer'|'next'|'response',answer='',expectedTurn?:number){
+ return db.transaction('rw',db.events,async()=>{const events=await db.events.toArray(),d=dialogueState(events,s);if(!d||d.runId!==runId||d.done||expectedTurn!==undefined&&d.turn!==expectedTurn)return d;
+  if(action==='draft'&&d.phase==='turn'&&!d.results[d.turn])await append(s,runId,crypto.randomUUID(),'dialogue_draft',{turn:d.turn,answer});
+  if(action==='heard')await append(s,runId,crypto.randomUUID(),'dialogue_heard',{phase:d.phase,turn:d.turn});
+  if(action==='answer'&&d.phase==='turn'&&d.heard&&!d.results[d.turn])await append(s,runId,`${runId}:answer:${d.turn}`,'dialogue_answer',{turn:d.turn,answer,correct:translationCorrect(d.turn,answer),assessmentIntent:drinkDialogue.turns[d.turn].intent,assisted:true,spokenProduction:false});
+  if(action==='response'&&d.phase==='respond'&&!d.response&&drinkDialogue.response.options.includes(answer))await append(s,runId,`${runId}:response`,'dialogue_response',{answer,correct:drinkDialogue.response.accepted.includes(answer),assessmentIntent:drinkDialogue.response.intent,assisted:true,spokenProduction:false});
+  if(action==='next'){
+   let phase:DialoguePhase=d.phase,turn=d.turn;
+   if(d.phase==='listen'&&d.heard){phase='turn';turn=0;}
+   else if(d.phase==='turn'&&d.results[d.turn]){if(d.turn+1<drinkDialogue.turns.length)turn++;else phase='revisit';}
+   else if(d.phase==='revisit'&&d.heard)phase='respond';
+   else if(d.phase==='respond'&&d.response)phase='complete';
+   else if(d.phase==='complete'){await append(s,runId,`${runId}:complete`,'dialogue_completed',{});return dialogueState(await db.events.toArray(),s);}
+   else return d;
+   const sequence=events.filter(e=>e.detail.runId===runId&&e.type==='dialogue_step').length;
+   await append(s,runId,`${runId}:step:${sequence}`,'dialogue_step',{phase,turn,sequence});
+  }
+  return dialogueState(await db.events.toArray(),s);
+ });
+}

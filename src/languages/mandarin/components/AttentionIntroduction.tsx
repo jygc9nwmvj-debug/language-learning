@@ -45,7 +45,7 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
       await onNext();
     });
   }
-  const audio = <><SlotExampleNote item={item}/><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
+  const audio = <><SlotExampleNote item={item}/><AudioButton emphasis={phase==='hear' ? 'stimulus' : 'reference'} src={item.audio} autoPlay={missing.includes('pronunciation')} onEnded={heard} onPlay={()=>onEvent('attention_audio_replay')} /><AudioButton src={item.slowAudio!} slow label="Langsam gesprochen" onEnded={heard} onPlay={()=>onEvent('attention_slow_audio')} /></>;
   return <div className="attentionIntroduction" data-focus={phase}>
     <SpeakingPractice hasContext={missing.includes('segmentation') || hasLearningNote(item.learning?.note) || !!item.learning?.discovery || item.slot === 'name'} allowPractice={phase==='connect'} disabled={disabled||saving||(item.slot==='name'&&!name.trim())} onEvent={onEvent} onNext={finish} audio={audio} reference={<div className="attentionFocus" aria-live="polite">
       {phase==='hear'&&<><h3>Erst nur hören.</h3>{knownParts&&<p className="muted">Achte auf den gemeinsamen Klang der bekannten Wörter.</p>}</>}
@@ -54,8 +54,8 @@ export function AttentionIntroduction({ item, script, disabled, onIntroduce, onE
       {phase==='connect'&&<>{knownParts && <p className="controlLabel">Bekannte Wörter, neue Verbindung</p>}<PhraseForm item={item} script={script} showPinyin interactive onExplore={onEvent} /><div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>}
     </div>}>
       {phase==='hear'&&<button className="utilityButton" disabled={disabled||saving} onClick={()=>{stopReferenceAudio();setPhase(followingAudio);}}>Schrift ohne Warten ansehen</button>}
-      {phase==='tone'&&<button disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('tone_attention_confirmed',{item:item.id,toneNumbers:item.toneNumbers,attentionVersion:1});setPhase(formPhase);})}>{formPhase==='hanzi'?'Schriftbild ansehen':'Bedeutung dazunehmen'}</button>}
-      {phase==='hanzi'&&<button disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('hanzi_attention_confirmed',introductionDetail(item,script,[],'visual_focus'));setPhase('connect');})}>Bedeutung dazunehmen</button>}
+      {phase==='tone'&&<button data-primary-action="true" disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('tone_attention_confirmed',{item:item.id,toneNumbers:item.toneNumbers,attentionVersion:1});setPhase(formPhase);})}>{formPhase==='hanzi'?'Schriftbild ansehen':'Bedeutung dazunehmen'}</button>}
+      {phase==='hanzi'&&<button data-primary-action="true" disabled={disabled||saving} onClick={()=>void save(async()=>{stopReferenceAudio();await onIntroduce('hanzi_attention_confirmed',introductionDetail(item,script,[],'visual_focus'));setPhase('connect');})}>Bedeutung dazunehmen</button>}
       {phase==='connect'&&<>{missing.includes('segmentation')&&<p className="focusNote">Jede Silbe steht bei ihrem Zeichen. Tippe eine Wortgruppe für Details an.</p>}{item.learning&&<LearningNote value={item.learning.note} script={script}/>}{item.learning?.discovery&&<details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script}/></p></details>}{item.slot==='name'&&setName&&<label className="fieldLabel">Dein Name<input value={name} onChange={e=>setName(e.target.value)} maxLength={60} autoComplete="given-name"/></label>}</>}
     </SpeakingPractice>
   </div>;

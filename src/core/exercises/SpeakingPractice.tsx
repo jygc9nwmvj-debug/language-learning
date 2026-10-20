@@ -12,7 +12,7 @@ export function SpeakingPractice({ reference, audio, children, hasContext = !!ch
 }) {
   const [practicing, setPracticing] = useState(false), [recorded, setRecorded] = useState(false);
   const interaction = useInteraction();
-  const [contextOpen, setContextOpen] = useState(true);
+  const [contextOpen, setContextOpen] = useState(false);
   return <section className={`speakingPractice ${compact || practicing ? 'isCondensed' : ''}`} data-ready-to-record={readyToRecord} data-phase={recorded ? 'review' : practicing ? 'practice' : 'reference'}>
     <Resolution operation="encounter" resolved={allowPractice && readyToRecord && showContinue} parts={{reference: <div className="practiceReference"><Resolution operation="target" parts={{reference: <div className="referenceContent">{reference}</div>, audio: audio && <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio}</div>}}/></div>,
     enrichment: allowPractice ? hasContext && <details className="practiceContext" open={contextOpen} onToggle={e=>setContextOpen(e.currentTarget.open)}><summary>Hinweise zum Ausdruck</summary>{children}</details> : children,

@@ -1,0 +1,941 @@
+{
+  "id": "drink-counter-v1",
+  "title": "Am Getränkestand",
+  "outcome": "Einen Tee bestellen, die Temperatur wählen und den Preis verstehen.",
+  "words": [
+    {
+      "id": "cha",
+      "hant": "茶",
+      "hans": "茶",
+      "toneNumbers": "cha2",
+      "meaning": {
+        "de": [
+          "Tee",
+          "ein Tee"
+        ],
+        "en": [
+          "tea"
+        ]
+      }
+    },
+    {
+      "id": "shui",
+      "hant": "水",
+      "hans": "水",
+      "toneNumbers": "shui3",
+      "meaning": {
+        "de": [
+          "Wasser"
+        ],
+        "en": [
+          "water"
+        ]
+      }
+    },
+    {
+      "id": "bei",
+      "hant": "杯",
+      "hans": "杯",
+      "toneNumbers": "bei1",
+      "meaning": {
+        "de": [
+          "Becher",
+          "Tasse",
+          "ein Becher",
+          "eine Tasse"
+        ],
+        "en": [
+          "cup",
+          "a cup"
+        ]
+      }
+    },
+    {
+      "id": "yao",
+      "hant": "要",
+      "hans": "要",
+      "toneNumbers": "yao4",
+      "meaning": {
+        "de": [
+          "möchten",
+          "wollen",
+          "haben wollen"
+        ],
+        "en": [
+          "want",
+          "would like"
+        ]
+      }
+    },
+    {
+      "id": "re",
+      "hant": "熱",
+      "hans": "热",
+      "toneNumbers": "re4",
+      "meaning": {
+        "de": [
+          "heiß",
+          "heiss",
+          "warm"
+        ],
+        "en": [
+          "hot"
+        ]
+      }
+    },
+    {
+      "id": "bing",
+      "hant": "冰",
+      "hans": "冰",
+      "toneNumbers": "bing1",
+      "meaning": {
+        "de": [
+          "Eis",
+          "eiskalt",
+          "gekühlt",
+          "kalt"
+        ],
+        "en": [
+          "ice",
+          "iced"
+        ]
+      }
+    },
+    {
+      "id": "de-particle",
+      "hant": "的",
+      "hans": "的",
+      "toneNumbers": "de5",
+      "meaning": {
+        "de": [
+          "hier: das heiße oder kalte Getränk"
+        ],
+        "en": [
+          "here: the hot or iced one"
+        ]
+      }
+    },
+    {
+      "id": "haishi",
+      "hant": "還是",
+      "hans": "还是",
+      "toneNumbers": "hai2 shi4",
+      "meaning": {
+        "de": [
+          "oder (bei einer Auswahlfrage)"
+        ],
+        "en": [
+          "or (in an alternative question)"
+        ]
+      }
+    },
+    {
+      "id": "duoshao",
+      "hant": "多少",
+      "hans": "多少",
+      "toneNumbers": "duo1 shao3",
+      "meaning": {
+        "de": [
+          "wie viel",
+          "wie viele"
+        ],
+        "en": [
+          "how much",
+          "how many"
+        ]
+      }
+    },
+    {
+      "id": "qian",
+      "hant": "錢",
+      "hans": "钱",
+      "toneNumbers": "qian2",
+      "meaning": {
+        "de": [
+          "Geld"
+        ],
+        "en": [
+          "money"
+        ]
+      }
+    },
+    {
+      "id": "kuai",
+      "hant": "塊",
+      "hans": "块",
+      "toneNumbers": "kuai4",
+      "meaning": {
+        "de": [
+          "Dollar (hier: Taiwan-Dollar)",
+          "Taiwan-Dollar"
+        ],
+        "en": [
+          "dollar (here: Taiwan dollar)"
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "cha",
+      "words": [
+        "cha"
+      ],
+      "audio": "/audio/mandarin/polly-cha-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-cha-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 28,
+        "prerequisites": [
+          "wo",
+          "yi"
+        ],
+        "writing": false,
+        "note": "Für die Bestellung am Getränkestand.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "shui",
+      "words": [
+        "shui"
+      ],
+      "audio": "/audio/mandarin/polly-shui-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-shui-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 29,
+        "prerequisites": [
+          "cha"
+        ],
+        "writing": false,
+        "note": "Eine weitere Getränkewahl.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "bei",
+      "words": [
+        "bei"
+      ],
+      "audio": "/audio/mandarin/polly-bei-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-bei-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 30,
+        "prerequisites": [
+          "shui"
+        ],
+        "writing": false,
+        "note": "Beim Bestellen steht dieses Zählwort zwischen Zahl und Getränk.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "yao",
+      "words": [
+        "yao"
+      ],
+      "audio": "/audio/mandarin/polly-yao-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-yao-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 31,
+        "prerequisites": [
+          "bei"
+        ],
+        "writing": false,
+        "note": "Im Bestellkontext drückt dieses Verb einen Wunsch aus.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "re",
+      "words": [
+        "re"
+      ],
+      "audio": "/audio/mandarin/polly-re-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-re-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 32,
+        "prerequisites": [
+          "yao"
+        ],
+        "writing": false,
+        "note": "Die Temperatur eines Getränks.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "bing",
+      "words": [
+        "bing"
+      ],
+      "audio": "/audio/mandarin/polly-bing-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-bing-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 33,
+        "prerequisites": [
+          "re"
+        ],
+        "writing": false,
+        "note": "Bei Getränken ist damit die gekühlte Variante gemeint.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      }
+    },
+    {
+      "id": "order-tea",
+      "words": [
+        "wo",
+        "yao",
+        "yi",
+        "bei",
+        "cha"
+      ],
+      "audio": "/audio/mandarin/polly-order-tea-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-order-tea-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 34,
+        "prerequisites": [
+          "wo",
+          "yi",
+          "cha",
+          "bei",
+          "yao"
+        ],
+        "writing": false,
+        "note": "Eine vollständige Bestellung. Die Zahl vor dem Zählwort bleibt wiederverwendbar.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Ich möchte eine Tasse Tee",
+          "Ich hätte gern eine Tasse Tee",
+          "Ich hätte gerne einen Tee",
+          "Ich möchte einen Tee",
+          "Ich hätte gern einen Becher Tee",
+          "Ich will eine Tasse Tee"
+        ],
+        "en": [
+          "I would like a cup of tea",
+          "I want a cup of tea"
+        ]
+      },
+      "surfaceToneNumbers": "wo3 yao4 yi4 bei1 cha2",
+      "exploration": {
+        "pronunciation": "surface",
+        "units": [
+          {
+            "words": [
+              "wo"
+            ],
+            "syllables": [
+              "wo3"
+            ],
+            "gloss": "ich",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "yao"
+            ],
+            "syllables": [
+              "yao4"
+            ],
+            "gloss": "möchten",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "yi"
+            ],
+            "syllables": [
+              "yi4"
+            ],
+            "gloss": "eins",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "bei"
+            ],
+            "syllables": [
+              "bei1"
+            ],
+            "gloss": "Becher",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "cha"
+            ],
+            "syllables": [
+              "cha2"
+            ],
+            "gloss": "Tee",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "hot-or-iced",
+      "words": [
+        "yao",
+        "re",
+        "de-particle",
+        "haishi",
+        "bing",
+        "de-particle"
+      ],
+      "audio": "/audio/mandarin/polly-hot-or-iced-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-hot-or-iced-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 35,
+        "prerequisites": [
+          "order-tea",
+          "re",
+          "bing"
+        ],
+        "writing": false,
+        "note": "Eine Auswahlfrage. Antworte mit einer der beiden angebotenen Varianten.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Möchtest du es heiß oder kalt",
+          "Heiß oder kalt",
+          "Heiss oder kalt",
+          "Möchten Sie den Tee heiß oder kalt",
+          "Möchtest du den Tee heiß oder gekühlt",
+          "Warm oder kalt"
+        ],
+        "en": [
+          "Would you like it hot or iced",
+          "Hot or iced"
+        ]
+      },
+      "punctuation": "？",
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "yao"
+            ],
+            "syllables": [
+              "yao4"
+            ],
+            "gloss": "möchten",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "re"
+            ],
+            "syllables": [
+              "re4"
+            ],
+            "gloss": "heiß",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "de-particle"
+            ],
+            "syllables": [
+              "de5"
+            ],
+            "gloss": "hier: das heiße oder kalte Getränk",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "haishi"
+            ],
+            "syllables": [
+              "hai2",
+              "shi4"
+            ],
+            "gloss": "oder (bei einer Auswahlfrage)",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "bing"
+            ],
+            "syllables": [
+              "bing1"
+            ],
+            "gloss": "Eis",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "de-particle"
+            ],
+            "syllables": [
+              "de5"
+            ],
+            "gloss": "hier: das heiße oder kalte Getränk",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "iced-please",
+      "words": [
+        "bing",
+        "de-particle",
+        "xiexie"
+      ],
+      "audio": "/audio/mandarin/polly-iced-please-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-iced-please-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 36,
+        "prerequisites": [
+          "hot-or-iced",
+          "xiexie"
+        ],
+        "writing": false,
+        "note": "Eine kurze passende Antwort auf die Temperaturfrage.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Kalt, danke",
+          "Gekühlt, danke",
+          "Den kalten, danke",
+          "Ich möchte ihn kalt, danke",
+          "Mit Eis, danke"
+        ],
+        "en": [
+          "Iced, thank you",
+          "Cold, thanks"
+        ]
+      },
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "bing"
+            ],
+            "syllables": [
+              "bing1"
+            ],
+            "gloss": "Eis",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "de-particle"
+            ],
+            "syllables": [
+              "de5"
+            ],
+            "gloss": "hier: das heiße oder kalte Getränk",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "xiexie"
+            ],
+            "syllables": [
+              "xie4",
+              "xie5"
+            ],
+            "gloss": "danke",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "hot-please",
+      "words": [
+        "re",
+        "de-particle",
+        "xiexie"
+      ],
+      "audio": "/audio/mandarin/polly-hot-please-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-hot-please-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 37,
+        "prerequisites": [
+          "hot-or-iced",
+          "xiexie"
+        ],
+        "writing": false,
+        "note": "Die andere passende Antwort auf dieselbe Auswahlfrage.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Heiß, danke",
+          "Heiss, danke",
+          "Den heißen, danke",
+          "Ich möchte ihn heiß, danke",
+          "Warm, danke"
+        ],
+        "en": [
+          "Hot, thank you",
+          "Hot, thanks"
+        ]
+      },
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "re"
+            ],
+            "syllables": [
+              "re4"
+            ],
+            "gloss": "heiß",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "de-particle"
+            ],
+            "syllables": [
+              "de5"
+            ],
+            "gloss": "hier: das heiße oder kalte Getränk",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "xiexie"
+            ],
+            "syllables": [
+              "xie4",
+              "xie5"
+            ],
+            "gloss": "danke",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "price-question",
+      "words": [
+        "duoshao",
+        "qian"
+      ],
+      "audio": "/audio/mandarin/polly-price-question-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-price-question-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 38,
+        "prerequisites": [
+          "order-tea"
+        ],
+        "writing": false,
+        "note": "Im Bestellkontext fragst du damit nach dem Preis.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Wie viel kostet das",
+          "Was kostet das",
+          "Wie teuer ist das",
+          "Was macht das",
+          "Wie viel Geld"
+        ],
+        "en": [
+          "How much is it",
+          "How much does it cost"
+        ]
+      },
+      "punctuation": "？",
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "duoshao"
+            ],
+            "syllables": [
+              "duo1",
+              "shao3"
+            ],
+            "gloss": "wie viel",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "qian"
+            ],
+            "syllables": [
+              "qian2"
+            ],
+            "gloss": "Geld",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "price-thirty",
+      "words": [
+        "san",
+        "shi-number",
+        "kuai"
+      ],
+      "audio": "/audio/mandarin/polly-price-thirty-natural.mp3",
+      "slowAudio": "/audio/mandarin/polly-price-thirty-slow.mp3",
+      "introduction": {
+        "dimensions": [
+          "meaning",
+          "pronunciation",
+          "hanzi",
+          "segmentation"
+        ],
+        "role": "recognition"
+      },
+      "learning": {
+        "function": "everyday",
+        "order": 39,
+        "prerequisites": [
+          "san",
+          "shi-number",
+          "price-question"
+        ],
+        "writing": false,
+        "note": "In diesem Gespräch ist der Betrag in Taiwan-Dollar gemeint. Der Preis ist ein Beispiel.",
+        "concepts": [],
+        "reviewStatus": "source_checked"
+      },
+      "meaning": {
+        "de": [
+          "Dreißig Taiwan-Dollar",
+          "30 Taiwan-Dollar",
+          "Dreißig Dollar",
+          "30 Dollar",
+          "Das kostet 30 Dollar",
+          "Das kostet dreißig Taiwan-Dollar"
+        ],
+        "en": [
+          "Thirty Taiwan dollars",
+          "Thirty dollars"
+        ]
+      },
+      "exploration": {
+        "pronunciation": "lexical",
+        "units": [
+          {
+            "words": [
+              "san"
+            ],
+            "syllables": [
+              "san1"
+            ],
+            "gloss": "drei",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "shi-number"
+            ],
+            "syllables": [
+              "shi2"
+            ],
+            "gloss": "zehn",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          },
+          {
+            "words": [
+              "kuai"
+            ],
+            "syllables": [
+              "kuai4"
+            ],
+            "gloss": "Dollar (hier: Taiwan-Dollar)",
+            "audio": {
+              "kind": "phrase",
+              "reason": "Diesen Teil hörst du im zusammenhängenden Ausdruck."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

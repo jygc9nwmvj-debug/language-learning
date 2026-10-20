@@ -1,7 +1,10 @@
 // One geometric SVG vocabulary for transport controls; no font/emoji dependence.
-export type IconName = 'play' | 'pause' | 'stop' | 'replay' | 'mic' | 'close' | 'back' | 'forward' | 'info' | 'eye' | 'stroke' | 'paper' | 'print';
+export type IconName = 'speaker' | 'turtle' | 'loading' | 'play' | 'pause' | 'stop' | 'replay' | 'mic' | 'close' | 'back' | 'forward' | 'info' | 'eye' | 'stroke' | 'paper' | 'print';
 export function Icon({ name }: { name: IconName }) {
-  return <svg className="controlIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+  return <svg data-icon={name} className="controlIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    {name === 'speaker' && <><path d="M3 9h4l5-4v14l-5-4H3Z"/><path d="M16 8a6 6 0 0 1 0 8M19 5a10 10 0 0 1 0 14"/></>}
+    {name === 'turtle' && <><path d="M4 14a7 6 0 0 1 14 0Z"/><path d="M7 14v3M15 14v3M3 12l-1 1M18 11h2a2 2 0 0 1 0 4h-2M9 9l3 3 3-3M12 12v2"/></>}
+    {name === 'loading' && <path className="loadingArc" d="M20 12a8 8 0 1 1-8-8"/>}
     {name === 'play' && <path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none" />}
     {name === 'pause' && <path d="M9 5v14M15 5v14" strokeWidth="3" />}
     {name === 'stop' && <rect x="6" y="6" width="12" height="12" rx="1" fill="currentColor" stroke="none" />}

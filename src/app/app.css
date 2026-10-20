@@ -369,3 +369,100 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .matchingCell[data-matched=true] { opacity: .6; }
 .matchingConfirmation { display: block; font-size: var(--text-small); color: var(--ink-muted); }
 .matchingFeedback { min-height: 3em; margin: 0; }
+
+/* Mobile learning v2: shared visual viewport, fixed action area and internal exception scrolling. */
+.lessonShell:has(.viewportFlow) { min-height: 0; height: var(--learning-height,100dvh); position: relative; top: var(--learning-top,0px); padding: max(8px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left)); display: flex; flex-direction: column; gap: 8px; }
+.lessonShell:has(.viewportFlow) .lessonHeader { margin: 0 auto; min-height: 44px; flex: 0 0 auto; }
+.lessonShell:has(.viewportFlow) .lessonCard { width: min(100%,680px); margin: 0 auto; padding: 0; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.viewportFlow { min-width: 0; display: grid; gap: 10px; align-content: start; }
+.viewportFlow h2 { font-size: clamp(1.125rem,4.8vw,1.5rem); margin: 0; line-height: 1.3; }
+.viewportFlow .eyebrow { margin: 0; }
+.viewportFlow .stepStack,.viewportFlow .speakingPractice,.viewportFlow .productionFeedback,.viewportFlow .responseWork,.viewportFlow .attentionIntroduction { gap: 10px; }
+.viewportFlow .speakingPractice { margin: 0; }
+.viewportFlow .responseWork { min-block-size: 0 !important; }
+.viewportFlow .reference,.viewportFlow .correctionReference,.viewportFlow .resolutionReference { margin: 0; padding: 8px 0; }
+.viewportFlow .phraseForm,.viewportFlow .phraseUnits { margin: 0; }
+.viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2.5rem,10vw,4.5rem) !important; line-height: 1.2; }
+.viewportFlow .phraseForm { --text-hero: 4.5rem; }
+.viewportFlow .unitPinyin { font-size: .95rem; }
+.viewportFlow .practiceContext { margin: 0; padding: 0; }
+.viewportFlow .practiceContext > summary { display: list-item !important; }
+.viewportFlow .referenceAudio { gap: 8px; margin: 0; }
+.viewportFlow .recordingPanel { padding-top: 4px; margin: 0; }
+.viewportFlow .responseComparison { gap: 6px; }
+.viewportFlow .comparisonRow { grid-template-columns: 5rem minmax(0,1fr); gap: 8px; }
+.viewportFlow .fieldLabel { gap: 4px; }
+.viewportFlow .writingSurface { width: 100%; margin: 0; }
+.viewportFlow .writingControls,.viewportFlow .writingStatus,.viewportFlow .writingTargetCue { margin: 0; }
+.viewportFlow .writingStatus { min-height: 0; padding: 0; }
+.viewportFlow .toneRow { min-height: 60px; padding: 4px; }
+.viewportFlow .toneLanguage strong { font-size: 1.5rem; }
+.viewportFlow .matchingExercise { gap: 10px; }
+.viewportFlow .matchingCell { padding: 4px; }
+.viewportFlow .matchingCell button[lang=zh] { font-size: 1.5rem; }
+.viewportFlow .matchingBoard,.viewportFlow .matchingColumn { gap: 8px; }
+.viewportFlow .matchingFeedback { min-height: 0; }
+.viewportFlow .responseActions { margin: 0; }
+.viewportFlow .dialogueHanzi { font: 400 clamp(1.5rem,6vw,2.5rem)/1.4 var(--font-hanzi); overflow-wrap: anywhere; }
+.dialogueModel,.dialogueTranscript,.dialogueCorrection,.dialogueChoices { display: grid; gap: 8px; }
+.dialogueChoices { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.dialogueChoices button { padding: 10px; }
+@media (min-width:760px) { .lessonShell:has(.viewportFlow) { padding: 16px 32px; }.viewportFlow { gap: 16px; }.viewportFlow .writingLocal { width: min(100%,300px); } }
+@media (max-height:420px) { .lessonShell:has(.viewportFlow) .lessonHeader { font-size: .75rem; }.viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: 2rem !important; } }
+/* Viewport placement is updated by LearningViewport; no content clipping or automatic pagination. */
+.lessonShell:has(.viewportFlow) { position: fixed; inset: var(--learning-top,0px) 0 auto; height: var(--learning-height,100dvh); padding-bottom: calc(env(safe-area-inset-bottom,0px) + var(--learning-action-height,64px) + 8px); }
+.lessonShell:has(.viewportFlow) .lessonCard { flex: 1 1 0; }
+.viewportFlow { flex: 1 1 0; min-height: 0; display: block; overflow-y: auto; overflow-x: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 2px 4px 8px; scroll-padding-block: 8px; }
+.viewportFlow > * + * { margin-top: 10px; }
+.viewportFlow [data-primary-dock] { position: fixed; z-index: 20; inset: auto max(16px,env(safe-area-inset-right)) auto max(16px,env(safe-area-inset-left)); top: calc(var(--learning-top,0px) + var(--learning-height,100dvh) - env(safe-area-inset-bottom,0px) - var(--learning-action-height,64px) + 8px); width: auto; max-width: 672px; margin: 0 auto !important; background: var(--paper); box-shadow: 0 -8px 12px var(--paper); min-height: 48px; }
+.viewportFlow .responseActions[data-primary-dock],.viewportFlow .practiceNext[data-primary-dock] { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.viewportFlow .practiceNext[data-primary-dock] > span { display: none; }
+.viewportFlow input,.viewportFlow textarea { min-height: 44px; }
+.viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2rem,9vw,4rem) !important; }
+.viewportFlow .speakingPractice:has(.phraseForm) .practiceReference { min-height: 0; }
+.viewportFlow .correctionVersions { white-space: pre-wrap; overflow-wrap: anywhere; display: grid; gap: 8px; }
+.correctionOriginal,.correctionAccepted { margin: 0; }
+.correctionLeadingSpace { font-size: 0; line-height: 0; }
+.correctionError { color: #a23d32; text-decoration: underline wavy; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.correctionChange { color: #286344; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+@media (forced-colors:active) { .correctionError { text-decoration-style: wavy; }.correctionChange { text-decoration-style: double; } }
+.matchingCell[data-correct-alternative=true],.toneChoice[data-correct-alternative=true] { outline: 2px solid #286344; outline-offset: -2px; }
+.toneChoice[data-wrong=true] { color: var(--error-ink); text-decoration: underline wavy; }
+.viewportFlow .practiceContext:not([open]) > :not(summary) { display: none; }
+.viewportFlow .practiceContext > summary { font-size: var(--text-meta); min-height: 32px; }
+.toneRow[hidden] { display: none !important; }
+.toneExampleNavigation { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.toneExampleNavigation button { padding: 8px 4px; font-size: var(--text-meta); }
+.viewportFlow .toneComparison { margin-block: 0; }
+.viewportFlow .writingLocal { width: min(100%,300px,max(192px,calc(var(--learning-height,100dvh) - 376px))); }
+.viewportFlow .writingIntro { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; }
+.viewportFlow .writingIntro h3 { font-size: 1.125rem; }
+.viewportFlow .writingIntro p { width: 100%; }
+.viewportFlow .writingOptions > summary { font-size: var(--text-meta); min-height: 32px; }
+.viewportFlow:has([data-task-complete=true]) > .skipButton { display: none; }
+.writingActionBar { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.writingActionBar[hidden] { display: none !important; }
+.viewportFlow .writingActionBar .writingControls { display: flex; gap: 0; }
+.viewportFlow .writingActionBar .writingControls .iconButton { width: 48px; padding-inline: 0; font-size: .6875rem; }
+.viewportFlow .writingActionBar > .textButton { font-size: .8125rem; padding: 8px 2px; }
+/* Shared icon-only media controls: visible button surfaces, without redundant captions. */
+.audioControl .audioButton,.audioControl[data-emphasis=stimulus] .audioButton,.audioControl[data-variant=slow] .audioButton,.recordButton,.recordButton.isRetake,.ownRecording .iconButton { width: 52px; height: 52px; min-width: 52px; min-height: 52px; padding: 11px; gap: 0; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); }
+.audioControl .controlIcon,.audioControl[data-emphasis=stimulus] .controlIcon,.audioControl[data-variant=slow] .controlIcon,.recordButton .controlIcon,.ownRecording .controlIcon { width: 28px; height: 28px; flex-basis: 28px; }
+.audioControl[data-playing=true] .audioButton,.recordButton.isRecording { color: var(--error-ink); border-color: var(--error-ink); background: var(--error-surface); }
+.audioControl .audioButton:disabled { background: var(--surface-quiet); }
+.audioControl .audioButton:hover:not(:disabled) { background: var(--surface-quiet); color: var(--blue); }
+.audioControl[data-playing=true] .audioButton:hover:not(:disabled) { background: var(--error-surface); color: var(--error-ink); }
+.audioControl[data-loading=true] .controlIcon,.recordButton[aria-busy=true] .controlIcon { animation: audioBusy 900ms linear infinite; }
+@keyframes audioBusy { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion:reduce) { .audioControl[data-loading=true] .controlIcon,.recordButton[aria-busy=true] .controlIcon { animation: none; } }
+.viewportFlow .recordingPanel { border-top: 0; }
+/* Primary actions and secondary tools remain recognizably different from learning text. */
+:where(.lessonShell:has(.viewportFlow)) .utilityButton,.viewportFlow .textButton { min-height: 48px; min-width: 48px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); text-decoration: none; }
+.viewportFlow .skipButton { min-height: 48px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); text-decoration: none; }
+.viewportFlow .infoDisclosure > summary { width: 48px; height: 48px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); }
+.lessonShell:has(.viewportFlow) .sessionTools { gap: 8px; }
+.viewportFlow .audioButton,.viewportFlow .recordButton,.viewportFlow .ownRecording .iconButton { min-height: 52px; min-width: 52px; }
+.viewportFlow .matchingCell .audioButton { width: 100%; }
+.viewportFlow .toneExampleNavigation button { min-height: 48px; padding: 8px 12px; }
+.viewportFlow .continueButton,.viewportFlow button[data-primary-dock],.viewportFlow .responseActions > button[type=submit] { min-height: 56px; padding: 12px 24px; border: 1px solid var(--green); border-radius: 8px; background: var(--green); color: var(--surface); font-size: 1.125rem; font-weight: 600; justify-content: center; }
+.viewportFlow .continueButton:disabled { background: var(--green); color: var(--surface); }

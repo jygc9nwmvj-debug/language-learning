@@ -1,8 +1,9 @@
+import {MeaningFeedback} from './MeaningFeedback';
 import { FixedSlotAudio, SlotExampleNote } from './SlotReference';
 import { referenceRole } from '../reference-role';
 import { Resolution } from '../../../core/exercises/Resolution';
 import { ContinueButton } from '../../../core/exercises/Controls';
-import { InfoDisclosure, AnswerSummary } from '../../../core/exercises/Controls';
+import { InfoDisclosure } from '../../../core/exercises/Controls';
 import { PhraseForm, ExplanationText, LearningNote, hasLearningNote } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
 import type { ResearchEvent, SavedFeedback, SavedEvaluation, Checkpoint } from '../../../core/progress/db';
@@ -20,8 +21,8 @@ import { WritingExercise } from './WritingExercise';
 import { NumberSequence } from './NumberSequence';
 import { ToneLab, ToneRecall } from './ToneLab';
 export type Evidence = { feedback?: SavedFeedback; part?: string; result: 'success' | 'failure' | 'unsure'; assisted: boolean; detail?: Record<string, string | number | boolean> };
-export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce, savedEvaluation, onCheckpoint, savedAssessment }: {
-  savedAssessment?: import('../schema/content').Assessment;
+export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTone, onNext, disabled, attentionHistory, onIntroduce, savedEvaluation, onCheckpoint, savedAssessment, onSkip }: {
+  onSkip?:()=>void; savedAssessment?: import('../schema/content').Assessment;
   savedEvaluation?: SavedEvaluation; onCheckpoint?: Checkpoint;
   attentionHistory?: ResearchEvent[]; onIntroduce?: Introduce;
   task: Task; script: 'hant' | 'hans'; name: string; setName: (v: string) => void;
@@ -52,6 +53,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   async function check() {
     if (submitting.current || answered) return; submitting.current = true;
     try {
+      (document.activeElement as HTMLElement)?.blur();
       let result: Evidence; let interpreted: Interpretation | undefined;
       if (retryEvidence) result = retryEvidence;
       else {
@@ -79,7 +81,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   if(task.kind==='sequence')return <NumberSequence restored={restored} task={task} script={script} disabled={disabled} onAttempt={onAttempt} onNext={onNext}/>;
   if (task.kind === 'tone-recall') return <ToneRecall restored={restored} item={item} task={task} onResult={(correct, feedback) => onAttempt({ result: correct ? 'success' : 'failure', assisted: false, feedback })} onEvent={onEvent} onNext={onNext} disabled={disabled} />;
   if (task.kind === 'tones') return <ToneLab saved={savedEvaluation} onCheckpoint={onCheckpoint} notationPractice={task.notationPractice!} familiar={attentionHistory?.some(e => e.taskId === 'tones' && e.type === 'task_completed')} script={script} onEvent={onEvent} onResult={onTone} onNext={onNext} disabled={disabled} />;
-  if (task.kind === 'writing') return <WritingExercise restored={restored} itemId={task.itemId!} meaning={item.meaning.de} pinyin={item.pinyin} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, feedback: { value: '', message: r.result === 'success' ? 'Geschafft. Die Strichfolge ist vollständig.' : 'Danke für deine Einschätzung. Wir gehen weiter.', kind: r.result === 'success' ? 'success' : 'attention', result: r.result, help: r.assisted, mode: r.mode, selfReport: r.selfReport, ink: r.ink, inkSize: r.inkSize, stage: r.stage }, detail: { mode: r.mode, selfReport: r.selfReport, writingRecall } }); writingRecorded.current = true; } }} />;
+  if (task.kind === 'writing') return <WritingExercise onSkip={onSkip} restored={restored} itemId={task.itemId!} meaning={item.meaning.de} pinyin={item.pinyin} recall={writingRecall} onNext={onNext} onEvent={onEvent} disabled={disabled} onComplete={async r => { if (!writingRecorded.current) { if(onIntroduce && !writingRecall) await onIntroduce('introduction_dimensions',introductionDetail(item,script,['writing'],'guided_writing_completed')); await onAttempt({ ...r, feedback: { value: '', message: r.result === 'success' ? 'Geschafft. Die Strichfolge ist vollständig.' : 'Danke für deine Einschätzung. Wir gehen weiter.', kind: r.result === 'success' ? 'success' : 'attention', result: r.result, help: r.assisted, mode: r.mode, selfReport: r.selfReport, ink: r.ink, inkSize: r.inkSize, stage: r.stage }, detail: { mode: r.mode, selfReport: r.selfReport, writingRecall } }); writingRecorded.current = true; } }} />;
   const form = (pinyin: boolean, interactive: boolean) => <PhraseForm item={item} script={script} showPinyin={pinyin} interactive={interactive} onExplore={onEvent} />;
   const pronunciation = <>{known && !pinyinVisible && <button className="utilityButton" type="button" onClick={()=>setPinyinVisible(true)}>Pinyin zeigen</button>}<div className="pronunciationMeaning"><p className="meaning">{item.meaning.de}</p></div></>;
   const needsCorrection = answered && task.kind === 'recall' && feedbackKind !== 'success';
@@ -94,11 +96,12 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
   </SpeakingPractice>;
   if (answered) return <div className="stepStack resolvedExercise responseExercise" data-task-complete="true" data-outcome={feedbackKind}>
     <Resolution operation={task.kind === 'read' ? 'read' : task.kind === 'listen' ? 'listen' : 'production'} assisted={help} parts={{
-      response: <div className="responseWork">{task.kind === 'recall' ? <ProductionFeedback input={input} item={item} assessment={displayAssessment.current} legacyMessage={feedback} success={feedbackKind === 'success'}/> : <><AnswerSummary value={input}/><p role="status" className={`feedback ${feedbackKind}`}>{feedback}</p></>}</div>,
-      next: <div className="responseActions"><ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton></div>,
+      response: <div className="responseWork">{task.kind === 'recall' ? <ProductionFeedback input={input} item={item} assessment={displayAssessment.current} legacyMessage={feedback} success={feedbackKind === 'success'}/> : <MeaningFeedback answer={input} accepted={item.answers} reference={item.meaning.de} itemId={item.id}/>}</div>,
+
       assistance: help && <p className="assistanceNote muted">Mit Hilfe beantwortet.</p>,
       reference: task.kind === 'read' ? <SpeakingPractice showContinue={false} disabled={disabled} onEvent={onEvent} onNext={onNext} reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>} audio={<><SlotExampleNote item={item}/>{audio()}{item.slowAudio && audio(true)}</>} /> : <div className={needsCorrection ? "reference correctionReference" : "reference resolutionReference"}><Resolution operation="target" parts={{reference: <>{form(false,true)}<p>{item.meaning.de}</p></>,
         audio: task.kind === 'listen' ? <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div> : <div className="referenceAudio" role="group" aria-label="Korrekte Zielphrase anhören">{item.slot ? <FixedSlotAudio item={item} script={script} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'fixed_components' })}/> : <><AudioButton src={item.audio} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'natural' })}/>{item.slowAudio && <AudioButton src={item.slowAudio} label={ui.slow} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'careful_slow' })}/>}</>}</div>,}}/></div>,
+      next: <div className="responseActions"><ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton></div>,
     }}/>
   </div>;
   return <div className="stepStack responseExercise" data-task-complete={answered} data-outcome={answered ? feedbackKind : undefined}>

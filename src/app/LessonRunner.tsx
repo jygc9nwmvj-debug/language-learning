@@ -1,3 +1,6 @@
+import {LearningViewport} from '../core/exercises/LearningViewport';
+import {DialogueExercise} from '../languages/mandarin/components/DialogueExercise';
+import {atDialogue,dialogueState,reserveDialogue,updateDialogue,type DialogueState} from '../languages/mandarin/dialogue';
 import {MatchingExercise} from '../languages/mandarin/components/MatchingExercise';
 import {matchingState,atMatching,reserveMatching,commitMatchingPair,matchingAudio,finishMatching,type MatchingState} from '../languages/mandarin/matching';
 import { MiniTransfer } from '../languages/mandarin/components/MiniTransfer';
@@ -24,6 +27,7 @@ import { Worksheet } from '../languages/mandarin/components/Worksheet';
 import { InstallAccess } from './InstallAccess';
 export function LessonRunner() {
   const interaction = useInteractionScope();
+  const [localDialogue,setLocalDialogue]=useState<DialogueState|null>(null);
   const [localMatching,setLocalMatching]=useState<MatchingState|null>(null);
   const [localTransfer,setLocalTransfer]=useState<TransferState|null>(null);
   const [transferTestArmed,setTransferTestArmed]=useState(false);
@@ -44,18 +48,21 @@ export function LessonRunner() {
       setHasStoredLearning(!!latest || relationCount > 0 || eventCount > 0);
       setLocalTransfer(await transferState());
       setLocalMatching(matchingState(await db.events.toArray()));
+      setLocalDialogue(dialogueState(await db.events.toArray()));
       if(import.meta.env.DEV)setTransferTestArmed((await import('../languages/mandarin/mini-transfer-dev')).isArmed());
       setSession(latest ?? null); setScript(storedScript?.value === 'hans' ? 'hans' : 'hant'); setName(storedName?.value ?? ''); setReady(true); setError('');
     } catch { setError(ui.storageError); }
   }
   useEffect(() => { void load(); const listener = () => setOffline(document.documentElement.dataset.offline ?? 'waiting'); window.addEventListener('offline-ready', listener); return () => window.removeEventListener('offline-ready', listener); }, []);
   useEffect(() => { taskStarted.current = Date.now(); }, [session?.index, session?.id]);
+  const recognitionActive=!!session&&atMatching(session,localMatching);
   const active = useRef(new ActiveTime(performance.now()));
   const activeVisit = useRef('');
   function activeTime(){return active.current.read(performance.now());}
   function timing(){return {observabilityVersion:1,activeVisitId:activeVisit.current,activeTaskMs:activeTime(),script};}
   useEffect(()=>{
     if(view!=='learn'||!session)return;
+    if(recognitionActive){const clock=new ActiveTime(performance.now());clock.block('recognition',true,performance.now());active.current=clock;activeVisit.current=crypto.randomUUID();return;}
     const t=taskMap.get(session.plan[session.index]); if(!t)return;
     const clock=new ActiveTime(performance.now()), visit=crypto.randomUUID();
     active.current=clock;activeVisit.current=visit;
@@ -83,7 +90,7 @@ export function LessonRunner() {
       return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:t.kind,role:taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
     }).catch(()=>setError(ui.storageError));
     return ()=>{cancelled=true;checkpoint();document.removeEventListener('visibilitychange',change);document.removeEventListener('pointerdown',touch);document.removeEventListener('keydown',touch);document.removeEventListener('input',touch);window.removeEventListener('pagehide',checkpoint);};
-  },[view,session?.id,session?.index]);
+  },[view,session?.id,session?.index,recognitionActive]);
   async function mutation(action: () => Promise<void>) {
     if (lock.current) throw new Error('A save is already pending'); lock.current = true; active.current.block('saving',true,performance.now()); setBusy(true); setError('');
     try { await action(); } catch (e) { setError(ui.storageError); throw e; }
@@ -92,6 +99,7 @@ export function LessonRunner() {
   const task = session ? taskMap.get(session.plan[session.index]) : undefined;
   const history = attentionSnapshot?.events ?? [];
   const snapshotReady=!!session&&attentionSnapshot?.key===`${session.id}:${session.index}`;
+  const isDialogue=!!session&&atDialogue(session,localDialogue);
   const isMatching=!!session&&atMatching(session,localMatching);
   const isTransfer=!!session&&atTransfer(session,localTransfer);
   const screenless=!!session&&snapshotReady&&screenlessFor(session,history,Date.now());
@@ -100,7 +108,7 @@ export function LessonRunner() {
   const encoding = !!task && !!session && !!introductionForTask(task,session.script,history);
   const writingIntroduction = task?.kind==='writing' && (!task.recall || (!!session && !introduced(itemMap.get(task.itemId!)!,'writing',session.script,history)));
   const previousIndex = session ? previousObjectIndex(session.index) : null;
-  const previousTask = !isTransfer && !isMatching && session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
+  const previousTask = !isDialogue && !isTransfer && !isMatching && session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
   async function inspectEvent(type: string, detail: Record<string, string | number | boolean> = {}) {
     if (!session || !previousTask) return;
     const {correction:_correction,...safeDetail}=detail;
@@ -136,10 +144,13 @@ export function LessonRunner() {
       const savedTransfer=await transferState();
       const pending=savedTransfer&&savedTransfer.phase!=='done'?await db.sessions.get(savedTransfer.sessionId):null;
       if(pending&&atTransfer(pending,savedTransfer))next=pending;
+      const savedDialogue=dialogueState(await db.events.toArray());
+      const dialogueSession=savedDialogue?await db.sessions.get(savedDialogue.sessionId):null;
+      if(dialogueSession&&atDialogue(dialogueSession,savedDialogue)){next=dialogueSession;setLocalDialogue(savedDialogue);}
       const savedMatching=matchingState(await db.events.toArray());
       const pendingMatching=savedMatching?await db.sessions.get(savedMatching.sessionId):null;
       if(!pending&&pendingMatching&&atMatching(pendingMatching,savedMatching)){next=pendingMatching;setLocalMatching(savedMatching);}
-      const matchingBoundary=next&&!next.completed&&matchingState(await db.events.toArray(),next);
+      const matchingBoundary=next&&!next.completed&&(next.plan[next.index]==='closure'?(matchingState(await db.events.toArray(),next)||dialogueState(await db.events.toArray(),next)):atMatching(next,savedMatching));
       if (!matchingBoundary && !(next&&atMatching(next,savedMatching)) && !(next&&atTransfer(next,savedTransfer)) && (replay || !shouldResume(next, Date.now()))) {
         const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), script, Date.now());
         next = { id: crypto.randomUUID(), plannerVersion: 'd1', plan, index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now(), script };
@@ -151,6 +162,9 @@ export function LessonRunner() {
       });
       setInspecting(false); setAttentionSnapshot(null); setSession(chosen); setScript(chosen.script); setView('learn');
     });
+  }
+  async function dialogueAction(action:Parameters<typeof updateDialogue>[2],answer='',turn?:number){
+    if(session&&localDialogue)await mutation(async()=>setLocalDialogue(await updateDialogue(session,localDialogue.runId,action,answer,turn,localDialogue.phase)));
   }
   async function matchingPair(left:string,right:string){
     if(session&&localMatching)await mutation(async()=>setLocalMatching(await commitMatchingPair(session,localMatching.runId,localMatching.attempts,left,right)));
@@ -173,10 +187,13 @@ export function LessonRunner() {
     await mutation(async () => {
       const completed = session.index >= session.plan.length - 1;
       const updated = { ...session, evaluation: undefined, completed, index: completed ? session.index : session.index + 1, updatedAt: Date.now() };
-      await db.transaction('rw', db.sessions, db.preferences, db.events, async () => {
+      let matching:MatchingState|null=null;
+      await db.transaction('rw', db.sessions, db.preferences, db.events, db.relations, async () => {
         await db.sessions.put(updated); await db.preferences.put({ key: 'name', value: name.trim() });
         await logEvent({ sessionId: session.id, taskId: task.id, type: completed ? 'session_end' : skip ? 'skip' : 'task_completed', detail: { ...timing(), activeMs: activeTime(), durationMs: Date.now() - taskStarted.current } });
+        if(!skip&&!completed)matching=await reserveMatching(updated,Date.now(),{taskId:task.id,index:session.index});
       });
+      setLocalMatching(matching);
       setAttentionSnapshot(null); setSession(updated); window.scrollTo({ top: 0 });
     });
   }
@@ -272,16 +289,23 @@ export function LessonRunner() {
     if (!session || task?.kind !== 'closure') return;
     await mutation(async () => {
       const priorMatching=matchingState(await db.events.toArray(),session);
-      const offered=priorMatching?await transferState():import.meta.env.DEV ? await (await import('../languages/mandarin/mini-transfer-dev')).reserveLocalTransfer(session,await db.events.toArray()) : await reserveTransfer(session);
+      const priorDialogue=dialogueState(await db.events.toArray(),session);
+      const offered=priorMatching||priorDialogue?await transferState():import.meta.env.DEV ? await (await import('../languages/mandarin/mini-transfer-dev')).reserveLocalTransfer(session,await db.events.toArray()) : await reserveTransfer(session);
       setLocalTransfer(offered);
       if(import.meta.env.DEV)setTransferTestArmed((await import('../languages/mandarin/mini-transfer-dev')).isArmed());
       if(atTransfer(session,offered))return;
-      const matching=await reserveMatching(session);setLocalMatching(matching);
+      // Dialogue is an additional boundary practice; selected repairs retain their existing order.
+      const boundaryEvents=await db.events.toArray();
+      const nextPlan=composeContinuous(await db.relations.toArray(),boundaryEvents,session.script,Date.now());
+      const repairSelected=nextPlan.some(id=>{const item=taskMap.get(id)?.itemId;const last=boundaryEvents.filter(e=>['attempt','screenless_recall'].includes(e.type)&&taskMap.get(e.taskId)?.itemId===item).sort((a,b)=>b.at-a.at)[0];return last&&(last.detail.result!=='success'||last.detail.assisted===true);});
+      const dialogue=priorDialogue??(!repairSelected&&!boundaryEvents.some(e=>e.sessionId===session.id&&['paper_offered','transfer_seen','matching_started'].includes(e.type))?await reserveDialogue(session):null);
+      setLocalDialogue(dialogue);if(atDialogue(session,dialogue))return;
+      const matching=dialogue?null:await reserveMatching(session);setLocalMatching(matching);
       if(atMatching(session,matching))return;
       let chosen: Session | undefined;
       await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
         const now = Date.now();
-        const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), session.script, matching?.plannedAt??now);
+        const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), session.script, dialogue?.plannedAt??matching?.plannedAt??now);
         if (!plan.some(id => taskMap.get(id)?.kind !== 'closure')) throw new Error('No learning task available');
         // load() orders by updatedAt: the successor must sort after its completed batch,
         // even when both writes happen in the same millisecond.
@@ -295,10 +319,10 @@ export function LessonRunner() {
     });
   }
   useEffect(() => {
-    if (view==='learn' && !isTransfer && !isMatching && task?.kind==='closure' && snapshotReady && !paper.length && !busy && !error && !lock.current) {
+    if (view==='learn' && !isDialogue && !isTransfer && !isMatching && task?.kind==='closure' && snapshotReady && !paper.length && !busy && !error && !lock.current) {
       void continueBatch().catch(() => {});
     }
-  }, [view, session?.id, session?.index, snapshotReady, paper.length, busy, error, isTransfer, isMatching]);
+  }, [view, session?.id, session?.index, snapshotReady, paper.length, busy, error, isTransfer, isMatching, isDialogue]);
   async function backup() {
     try { const url = URL.createObjectURL(new Blob([await exportLearningState()], { type: 'application/json' }));
       const a = document.createElement('a'); a.href = url; a.download = `mandarin-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -333,15 +357,15 @@ export function LessonRunner() {
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div><InstallAccess /></div>
       {errorBox}{settings}{import.meta.env.DEV && <details className="settings"><summary>Lokale Testfunktion</summary><p>Einmaliger Test an der nächsten Abschnittsgrenze, ohne Änderung des Lernstands.</p><button type="button" disabled={busy || transferTestArmed || !!localTransfer && localTransfer.phase!=='done'} onClick={()=>safe(async()=>{(await import('../languages/mandarin/mini-transfer-dev')).arm();setTransferTestArmed(true);})}>Mini-Transfer im Lernfluss testen</button>{transferTestArmed&&<p role="status">Test vorgemerkt. Lerne normal weiter.</p>}</details>}<p className="prototypeNote">{ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
-      <section className="lessonCard" data-learning-state={isMatching ? 'practice' : isTransfer ? 'transfer' : encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={isMatching ? 'matching' : isTransfer ? 'transfer' : task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{isMatching ? 'Zuordnen' : isTransfer ? 'IM ZUSAMMENHANG' : encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : task.kind === 'listen' ? 'Hören' : task.kind === 'read' ? 'Lesen' : 'Aus dem Gedächtnis'}</p>{!isMatching && !isTransfer && (paper.length || screenless || (!encoding && task.kind !== 'encounter' && task.kind !== 'closure' && task.prompt.de !== 'Ein Zeichen selbst schreiben.')) ? <h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : task.prompt.de}</h2> : null}{errorBox}
-        {isMatching ? <MatchingExercise key={localMatching!.runId} state={localMatching!} disabled={busy} onPair={matchingPair} onAudio={matchingPlay} onNext={matchingNext}/> : isTransfer ? <MiniTransfer key={`${localTransfer!.caseId}:${localTransfer!.firstSeenAt}`} state={localTransfer!} script={session.script} onSave={transferSave} onNext={transferNext} disabled={busy}/> : task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
-          : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise savedEvaluation={session.evaluation?.index === session.index && session.evaluation.taskId === task.id ? session.evaluation : undefined} onCheckpoint={checkpoint} savedAssessment={(() => {
+      <section className="lessonCard" data-learning-state={isDialogue ? 'practice' : isMatching ? 'practice' : isTransfer ? 'transfer' : encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={isDialogue ? 'dialogue' : isMatching ? 'matching' : isTransfer ? 'transfer' : task.kind} hidden={inspecting} aria-busy={busy}><LearningViewport identity={`${session.id}:${session.index}:${isMatching}:${isDialogue}:${localDialogue?.phase}:${localDialogue?.turn}`}><p className="eyebrow">{isDialogue ? 'Im Gespräch' : isMatching ? 'Zuordnen' : isTransfer ? 'IM ZUSAMMENHANG' : encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : task.kind === 'listen' ? 'Hören' : task.kind === 'read' ? 'Lesen' : 'Aus dem Gedächtnis'}</p>{!isDialogue && !isMatching && !isTransfer && (paper.length || screenless || (!encoding && task.kind !== 'writing' && task.kind !== 'tones' && task.kind !== 'encounter' && task.kind !== 'closure' && task.prompt.de !== 'Ein Zeichen selbst schreiben.')) ? <h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : task.prompt.de}</h2> : null}{errorBox}
+        {isDialogue ? <DialogueExercise state={localDialogue!} script={session.script} disabled={busy} onAction={dialogueAction}/> : isMatching ? <MatchingExercise key={localMatching!.runId} state={localMatching!} disabled={busy} onPair={matchingPair} onAudio={matchingPlay} onNext={matchingNext}/> : isTransfer ? <MiniTransfer key={`${localTransfer!.caseId}:${localTransfer!.firstSeenAt}`} state={localTransfer!} script={session.script} onSave={transferSave} onNext={transferNext} disabled={busy}/> : task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
+          : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise onSkip={()=>safe(()=>next(true))} savedEvaluation={session.evaluation?.index === session.index && session.evaluation.taskId === task.id ? session.evaluation : undefined} onCheckpoint={checkpoint} savedAssessment={(() => {
             const attempts = attentionSnapshot.events.filter(e=>e.type==='attempt' && e.sessionId===session.id && e.taskId===task.id && e.detail.index===session.index);
             const d=attempts.length===1?attempts[0].detail:undefined;
             return d && typeof d.assessToneNotation==='boolean' && typeof d.assessNeutralTone==='boolean' ? {toneNotation:d.assessToneNotation,neutralTone:d.assessNeutralTone} : undefined;
           })()} attentionHistory={attentionSnapshot.events} onIntroduce={introduce} key={`${session.id}:${session.index}:${task.id}`} task={task} script={session.script} name={name} setName={setName} disabled={busy || interaction.busy || inspecting} onEvent={event} onAttempt={attempt} onTone={(tone, correct, part, feedback) => attempt({ result: correct ? 'success' : 'failure', assisted: true, part, feedback }, tone)} onNext={() => task.kind === 'writing' ? next() : safe(() => next())} /> : <p role="status">{ui.loading}</p>}
-            <button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button></>}
-      </section>
+            {(task.kind!=='writing'||encoding)&&<button type="button" className="skipButton" disabled={busy || interaction.busy} onClick={() => safe(() => next(true))}>{ui.skip}</button>}</>}
+      </LearningViewport></section>
       {inspecting && previousTask && <section className="lessonCard inspectionSurface"><p className="eyebrow">Noch einmal ansehen</p><p className="inspectionNote">Freiwillige Übung · ohne neue Lernbewertung. Weiter führt zur aktuellen Aufgabe zurück.</p>{task && ['read','listen','recall','tone-recall'].includes(task.kind) && <p className="inspectionNote">Ein noch offener Abruf zählt nach dem Nachschauen als unterstützt.</p>}{previousTask.kind !== 'encounter' && previousTask.kind !== 'closure' && previousTask.prompt.de !== 'Ein Zeichen selbst schreiben.' && <h2>{previousTask.prompt.de}</h2>}{errorBox}
         <Exercise key={`inspection:${session.id}:${previousIndex}`} task={previousTask} script={session.script} name={inspectionName} setName={setInspectionName} disabled={busy || interaction.busy} attentionHistory={attentionSnapshot?.events} onEvent={(type,detail)=>{void inspectEvent(type,detail).catch(()=>setError(ui.storageError));}} onIntroduce={(type,detail)=>mutation(()=>inspectEvent(type,detail))} onAttempt={e=>mutation(()=>inspectEvent('practice_attempt',{result:e.result,assisted:e.assisted,...e.detail}))} onTone={(tone,correct)=>mutation(()=>inspectEvent('practice_tone',{tone,correct}))} onNext={()=>safe(togglePrevious)} />
       </section>}</>}

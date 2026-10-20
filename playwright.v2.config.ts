@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'./tests/browser',testMatch:'learning-v2.spec.ts',timeout:45000,workers:1,use:{baseURL:'http://localhost:4187',headless:true,screenshot:'only-on-failure'},projects:[{name:'chrome',use:{browserName:'chromium',channel:'chrome',launchOptions:{args:['--mute-audio']}}},{name:'webkit',use:{browserName:'webkit'}}],webServer:{command:'npm run preview -- --host localhost --port 4187 --strictPort',url:'http://localhost:4187',reuseExistingServer:false}});

@@ -3,19 +3,23 @@ import { introduced } from './introduction.ts';
 import { composeContinuous } from './continuous.ts';
 import { db, type ResearchEvent, type Session } from '../../core/progress/db.ts';
 
-export type MatchingRelation='form-meaning'|'audio-form';
+export type MatchingRelation='form-meaning'|'audio-form'|'pinyin-form';
 const groups=[['people',['wo','ni','ren']],['greetings',['hao','qing','nihao']],['countries',['deguo','zhongguo']],['numbers-147',['yi','si','qi']],['numbers-258',['er','wu','ba']],['numbers-369',['san','liu','jiu']],['numbers-4810',['si','ba','shi-number']]] as const;
-export const matchingSets=groups.flatMap(([group,items])=>(['form-meaning','audio-form'] as const).map(relation=>({id:`${group}:${relation}`,relation,items:[...items],revision:1})));
-export type MatchingSet=typeof matchingSets[number];
+export type MatchingSet={id:string;relation:MatchingRelation;items:string[];revision:number};
+export const matchingSets:MatchingSet[]=[
+ ...groups.flatMap(([group,items])=>(['form-meaning','audio-form'] as const).map(relation=>({id:`${group}:${relation}`,relation,items:[...items],revision:1}))),
+ ...([['early-self',['wo','ni']],['early-you',['ni','hao']]] as [string,string[]][]).flatMap(([group,items])=>(['form-meaning','audio-form','pinyin-form'] as const).map(relation=>({id:`${group}:${relation}`,relation,items,revision:1}))),
+];
 export type MatchingState={runId:string;setId:string;sessionId:string;index:number;script:'hant'|'hans';plannedAt:number;left:string[];right:string[];matched:string[];heard:string[];attempts:number;hadError:boolean;done:boolean;last?:{left:string;right:string;correct:boolean};};
 const regular=(events:ResearchEvent[])=>events.filter(e=>e.detail.optionalPractice!==true&&!e.type.startsWith('inspection_')&&!e.type.startsWith('optional_'));
 export function matchingEligible(set:MatchingSet,script:'hant'|'hans',events:ResearchEvent[]){
  const history=regular(events);
- return set.items.every(id=>{const item=itemMap.get(id)!;return introduced(item,'meaning',script,history)&&introduced(item,'hanzi',script,history)&&(set.relation!=='audio-form'||!!item.audio&&introduced(item,'pronunciation',script,history));});
+ return set.items.every(id=>{const item=itemMap.get(id)!;return introduced(item,'meaning',script,history)&&introduced(item,'hanzi',script,history)&&(set.relation==='form-meaning'||!!item.audio&&introduced(item,'pronunciation',script,history));});
 }
 export function shuffled<T>(input:readonly T[],random= Math.random){const out=[...input];for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
-export function selectMatching(s:Session,events:ResearchEvent[],nextPlan:string[],random=Math.random){
- if(s.completed||s.plan[s.index]!=='closure')return null;
+export function selectMatching(s:Session,events:ResearchEvent[],nextPlan:string[],random=Math.random,after?:{taskId:string;index:number}){
+ if(s.completed||!after&&s.plan[s.index]!=='closure')return null;
+ if(after){const item=taskMap.get(after.taskId)?.itemId;if(!item||!events.some(e=>e.type==='introduction_dimensions'&&e.sessionId===s.id&&e.taskId===after.taskId&&e.detail.index===after.index&&String(e.detail.dimensions).split(',').includes('hanzi')))return null;}
  // Existing boundary activities are never pushed behind a new matching set.
  if(events.some(e=>e.sessionId===s.id&&['transfer_seen','paper_offered'].includes(e.type)))return null;
  const history=regular(events);
@@ -25,7 +29,8 @@ export function selectMatching(s:Session,events:ResearchEvent[],nextPlan:string[
  }
  // Finite v1 practice: at most one previously unseen eligible variant at a boundary.
  // No permanent cadence, cap on learning objects, or ordinary planner slot.
- const eligible=matchingSets.filter(set=>!events.some(e=>e.type==='matching_started'&&e.detail.setId===set.id)&&matchingEligible(set,s.script,history));
+ let eligible=matchingSets.filter(set=>(!after||set.id.startsWith('early-')&&set.items.includes(taskMap.get(after.taskId)?.itemId??''))&&!events.some(e=>e.type==='matching_started'&&e.detail.setId===set.id)&&matchingEligible(set,s.script,history));
+ const early=eligible.filter(set=>set.id.startsWith('early-'));if(early.length)eligible=early;
  return eligible.length?eligible[Math.floor(random()*eligible.length)]:null;
 }
 export function matchingState(events:ResearchEvent[],s?:Session):MatchingState|null{
@@ -33,7 +38,7 @@ export function matchingState(events:ResearchEvent[],s?:Session):MatchingState|n
  for(const start of starts){
   const set=matchingSets.find(x=>x.id===start.detail.setId);if(!set)continue;
   const left=String(start.detail.left).split(','),right=String(start.detail.right).split(',');
-  if(start.detail.revision!==set.revision||[left,right].some(side=>side.length!==set.items.length||new Set(side).size!==set.items.length||side.some(id=>!set.items.includes(id as never))))continue;
+  if(start.detail.revision!==set.revision||[left,right].some(side=>side.length!==set.items.length||new Set(side).size!==set.items.length||side.some(id=>!set.items.includes(id))))continue;
   const own=events.filter(e=>e.detail.runId===start.id),done=own.some(e=>e.type==='matching_completed');
   if(!s&&done)continue;
   const pairs=own.filter(e=>e.type==='matching_pair').sort((a,b)=>Number(a.detail.sequence)-Number(b.detail.sequence));
@@ -42,14 +47,14 @@ export function matchingState(events:ResearchEvent[],s?:Session):MatchingState|n
  }
  return null;
 }
-export const atMatching=(s:Session,m:MatchingState|null)=>!!m&&!m.done&&s.plan[s.index]==='closure'&&s.id===m.sessionId&&s.index===m.index;
+export const atMatching=(s:Session,m:MatchingState|null)=>!!m&&!m.done&&s.id===m.sessionId&&s.index===m.index;
 async function append(s:Pick<MatchingState,'sessionId'|'index'|'setId'|'runId'>,id:string,type:string,detail:ResearchEvent['detail'],at=Date.now()){
  await db.events.add({id,at,sessionId:s.sessionId,taskId:`matching:${s.setId}`,type,contentVersion:'build-d-1',detail:{...detail,runId:s.runId,setId:s.setId,index:s.index,evidence:'recognition_practice'}});
 }
-export async function reserveMatching(s:Session,now=Date.now()){
+export async function reserveMatching(s:Session,now=Date.now(),after?:{taskId:string;index:number}){
  return db.transaction('rw',db.events,db.relations,async()=>{
   const events=await db.events.toArray(),current=matchingState(events,s);if(current)return current;
-  const nextPlan=composeContinuous(await db.relations.toArray(),events,s.script,now),set=selectMatching(s,events,nextPlan);
+  const nextPlan=composeContinuous(await db.relations.toArray(),events,s.script,now),set=selectMatching(s,events,after?s.plan.slice(s.index):nextPlan,Math.random,after);
   if(!set)return null;
   const id=crypto.randomUUID();
   await append({sessionId:s.id,index:s.index,setId:set.id,runId:id},id,'matching_started',{revision:set.revision,relation:set.relation,script:s.script,left:shuffled(set.items).join(','),right:shuffled(set.items).join(',')},now);

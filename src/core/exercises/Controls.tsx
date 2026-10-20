@@ -13,12 +13,12 @@ export function AnswerSummary({ value }: {value:string}) {
 
 // The same continuation affordance in every learning state; callbacks stay with callers.
 export function ContinueButton({ children = 'Weiter', className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button type="button" {...props} className={`continueButton ${className}`}><span>{children}</span><Icon name="forward"/></button>;
+  return <button type="button" {...props} data-primary-action="true" className={`continueButton ${className}`}><span>{children}</span><Icon name="forward"/></button>;
 }
 
 // Visual audio control shared by single clips and multi-turn playback. Media ownership stays with the caller.
-export function PlaybackControl({ label, caption = label, icon = 'play', emphasis = 'reference', variant = 'normal', playing = false, error, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { label: string; caption?: string; icon?: IconName; emphasis?: 'reference' | 'stimulus'; variant?: 'normal' | 'slow'; playing?: boolean; error?: string }) {
-  return <span className="audioControl" data-emphasis={emphasis} data-playing={playing} data-variant={variant}><IconButton {...props} className="audioButton" icon={icon} label={label}><span className="audioCaption">{caption}</span></IconButton>{error && <span role="status">{error}</span>}</span>;
+export function PlaybackControl({ label, caption: _caption, icon = 'speaker', emphasis = 'reference', variant = 'normal', playing = false, loading=false, error, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { label: string; caption?: string; icon?: IconName; emphasis?: 'reference' | 'stimulus'; variant?: 'normal' | 'slow'; playing?: boolean; loading?:boolean; error?: string }) {
+  return <span className="audioControl" data-emphasis={emphasis} data-playing={playing} data-loading={loading} data-variant={variant}><IconButton {...props} className="audioButton" aria-busy={loading} aria-pressed={playing} icon={loading?'loading':icon} label={label}/>{error && <span role="status">{error}</span>}</span>;
 }
 
 // Only the representation just produced is compared. Both rows share an axis and type scale.

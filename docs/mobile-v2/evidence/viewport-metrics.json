@@ -1,0 +1,126 @@
+{
+  "coverage": "representative",
+  "source": "Playwright Chrome and WebKit; actual buttons measured without scrolling; not physical iPhone approval",
+  "cases": {
+    "chrome-1280": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": {
+        "x": 304,
+        "y": 736,
+        "width": 672,
+        "height": 56
+      },
+      "after": {
+        "x": 304,
+        "y": 736,
+        "width": 672,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    },
+    "chrome-320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "before": {
+        "x": 16,
+        "y": 504,
+        "width": 288,
+        "height": 56
+      },
+      "after": {
+        "x": 16,
+        "y": 504,
+        "width": 288,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    },
+    "chrome-390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "x": 16,
+        "y": 780,
+        "width": 358,
+        "height": 56
+      },
+      "after": {
+        "x": 16,
+        "y": 780,
+        "width": 358,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    },
+    "webkit-1280": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": {
+        "x": 304,
+        "y": 736,
+        "width": 672,
+        "height": 56
+      },
+      "after": {
+        "x": 304,
+        "y": 736,
+        "width": 672,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    },
+    "webkit-320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "before": {
+        "x": 16,
+        "y": 504,
+        "width": 288,
+        "height": 56
+      },
+      "after": {
+        "x": 16,
+        "y": 504,
+        "width": 288,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    },
+    "webkit-390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "x": 16,
+        "y": 780,
+        "width": 358,
+        "height": 56
+      },
+      "after": {
+        "x": 16,
+        "y": 780,
+        "width": 358,
+        "height": 56
+      },
+      "movementPx": 0,
+      "pageScroll": 0
+    }
+  }
+}

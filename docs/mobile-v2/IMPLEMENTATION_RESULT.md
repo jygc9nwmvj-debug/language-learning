@@ -1,0 +1,44 @@
+# Learning Experience v2 — lokales Umsetzungsergebnis
+
+2026-10-20 · `feature/mobile-learning-v2` · Ausgangspunkt `main f7fbfdb`
+
+Kein Merge, Main-Push oder Deployment. Der bei Arbeitsbeginn gelesene Remote-Main entsprach `f7fbfdb`. Der unveränderte Ausgangsbuild entsprach den gelesenen produktiven HTML-/Service-Worker-Dateien; Hashes stehen im historischen Implementierungsplan. Das Ergebnis bleibt ein isolierter Feature-Stand.
+
+## Umgesetzt
+
+- **Gemeinsamer Lernbereich:** `LearningViewport` verwendet Höhe und Offset des sichtbaren Viewports einschließlich Safe Areas. Bestehende native Formulare und React-Eltern bleiben erhalten. Prüfen/Weiter sitzen in einem festen Aktionsbereich; außergewöhnlich lange Inhalte, große Schrift und Keyboard-Sonderfälle scrollen innerhalb des Inhaltsbereichs. Keine automatische Seitenaufteilung und kein Abschneiden von Inhalt.
+- **Bestehende Familien:** Einführung, Textantworten, Schreiben, Tonübungen und Matching verwenden diesen Bereich. Die vier Tonbeispiele werden einzeln durchlaufen. Die Schreibfläche passt sich dem verfügbaren Raum an; Strichfolge, eigenes Schriftbild und gespeicherte Tinte bleiben erhalten. Zusatzinformationen und Schreiboptionen werden bei Bedarf geöffnet.
+- **Feedback:** zwei vollständige Zeilen im bisherigen Antwortbereich, Original zuerst, akzeptierte Form unmittelbar darunter. Keine sichtbaren Überschriften, Pfeile oder Durchstreichungen. Original inklusive Leerzeichen, Großschreibung und Unicode bleibt erhalten. Eindeutig falsche Stellen sind zurückhaltend rot/wellig unterstrichen; Korrekturen grün/unterstrichen. Zugängliche Bezeichnungen ergänzen die Farbe.
+- **Darstellungsdiagnose:** Graphem-sichere Originalbereiche für Tonvokal oder Tonzahl; kleinste verlässlich zugeordnete Silbe bei Schreibfehlern. Eindeutige fehlende/zusätzliche Silben werden markiert; wiederholte oder verschobene Silben und größere Abweichungen fallen auf vollständigen Vergleich zurück. Keine Rückanalyse deutscher Fehlersätze, kein Edit-Distance-Splitting.
+- **Bedeutungsantworten:** bestehende akzeptierte Varianten bleiben akzeptiert. Wenige explizite, sichere Gegensätze werden als falsch bezeichnet; sonst wird eine unbekannte Paraphrase als nicht sicher beurteilbar erklärt. Kein erfundener Wortvergleich und kein semantischer KI-Prüfer. Bestehende Bewertung und Mastery-Wirkung bleiben davon getrennt.
+- **Frühes Matching:** vorhandene Engine, weiterhin 14 bestehende kuratierte Varianten. Hinzu kommen `early-self` (我/你) und `early-you` (你/好), jeweils Hanzi/Bedeutung, Audio/Hanzi und Pinyin/Hanzi: insgesamt 20 Varianten. Nur nach tatsächlicher Einführung der erforderlichen ganzen Objekte/Dimensionen. Frühe Angebote nach einer passenden Einführung, ohne einen regulären Planplatz zu verbrauchen. Bereits ausgewählte Reparaturen und bestehende Papier-/Transferangebote behalten Vorrang.
+- **Dialog:** vier bestehende, bereits vertonte Äußerungen: „Wie geht es dir?“ → „Mir geht es gut.“ → „Und dir?“ → „Mir geht es gut.“ Vollständig hören, einzelne Sprecherturns mit kuratierten Bedeutungsantworten, vollständiges Wiederhören und kontextuelle Antwortwahl. Entwurf, gehörte Phasen, Antworten und Wiederaufnahme werden durch eigene Ereignisse rekonstruiert; atomare Antwort-IDs und Phasenschutz verhindern doppelte Evidenz.
+- **Mediencontrols:** Sprecher, Schildkröte, Mikrofon, Stop und Wiedergabe eigener Aufnahme, mit deutschen zugänglichen Namen/Tooltips und sichtbaren Zuständen. Nach der zusätzlichen Bedienkorrektur: Medienbuttons 52 × 52 px mit 28-px-Symbolen, dezenter Fläche und Rand; Prüfen/Weiter mindestens 56 px hoch mit gefüllter Fläche, sekundäre Werkzeuge mindestens 48 px. Keine redundanten sichtbaren Audiolabels.
+
+## Ausrichtung des Antwortvergleichs
+
+Beide Zeilen teilen dieselbe linke sichtbare Textkante und Schriftgröße. Führende Leerzeichen bleiben in der Originalzeichenfolge und im kopierbaren DOM-Text erhalten, erzeugen aber keinen sichtbaren Einzug mehr; innere Abstände bleiben erhalten. Der Browsercheck misst die erste sichtbare Glyphe beider Zeilen auch bei führenden Leerzeichen. Tonzahlen und kanonische Tonzeichen beanspruchen weiterhin unterschiedliche Breiten. Es wurde keine künstliche Spaltenzuordnung ergänzt: Bei unklarer Zuordnung würde sie eine diagnostische Sicherheit suggerieren, die nicht vorliegt.
+
+## Evidenz- und Inhaltsgrenzen
+
+Matching schreibt weiterhin eigene Recognition-Ereignisse. Dialog schreibt eigene geführte Hör-/Bedeutungs-/Antwortwahl-Ereignisse, keine regulären Recall-Versuche und keine Relationsaufwertung. Das Restpaar und Versuche nach Fehlern sind keine unabhängige Evidenz. Zusätzliche Matching-Zeit wird nicht der danach wartenden regulären Aufgabe zugerechnet.
+
+Unverändert sind Content- und Aufgaben-IDs, 36 aktive Items, 131 Definitionen, 44 kanonische Wörter und 84 Audioverweise, Bewertungsengine, bestehende akzeptierte Inhaltsantworten, Mastery-/Intervallmodell, `continuous.ts`, Planner-Prioritäten, DB-Schema und Backup-Version 2. Die Integration zusätzlicher Recognition-Angebote verändert weder den regulären Plan noch dessen Cursor. Es wurden keine neuen Audios synthetisiert oder Audio-Manifeste integriert.
+
+Der Getränkeentwurf ist unter `tools/mobile-v2/provisional/` als Entwurf erhalten und nicht importiert. Der separate Curriculum-Entwurf `de7b608` wurde nicht integriert. Die neue Oberfläche bestimmt weder Wortschatz noch Progression eines künftigen Abschnitts. Redaktionelle und sprachliche Freigaben bleiben erforderlich.
+
+## Gezielte Prüfung und Coverage
+
+**Exhaustive strukturelle Population:** die bestehenden 131 Aufgabendefinitionen werden im Resolution-Verzeichnis erfasst, dazu 20 Matchingvarianten und ein vorhandener Dialog mit vier Turns. Alle aktuell hinterlegten Bedeutungsantworten werden auf unveränderte Akzeptanz geprüft. UI-Quellen und neue sichtbare/zugängliche Texte wurden im bestehenden Textverzeichnis überprüft; die Source-Fingerprints wurden nach Prüfung nachgezogen. Inventarisierung ist kein Nachweis vollständiger visueller oder sprachlicher Qualität.
+
+**Representative Funktionsfälle:** 98 gezielte Tests aus `learning-v2`, bestehender Darstellungsdiagnose, Matching, Continuous Learning, explizitem Tonfeedback, Assessment Intent, Observability und Resolution Contract bestanden. Enthalten sind kombinierende Unicode-Zeichen, mehrere Fehler mit Originalabständen/Großschreibung, eindeutiges Fehlend/Zusätzlich, mehrdeutige Wiederholung, akzeptierte/unbekannte Bedeutungsantworten, frühe Einführung/Eligibility, unveränderter regulärer Plan, Dialog-Unterbrechung, doppelte Antworten und Backup-Roundtrip. Der zuvor fehlschlagende Diagnosefall besteht mit erhaltenem Fallback-Vertrag.
+
+**Representative Browserfälle:** isolierte Playwright-Profile für Chrome und WebKit; 320 × 568, 390 × 844 sowie Desktop 1280 × 800 für das Antwort-/Aktionslayout, kleine Einführung, Schreiben und Tonübungen, drei Matchingrelationen, kompletter Dialog mit Reload, große Schrift/lange Antwort sowie modellierte Keyboard-Höhe 350 px und Offset 70 px. Kein Scrollen des Aktionsbuttons vor der Messung. Keine reale Lernerdatenbank und keine Steuerung des persönlichen Safari.
+
+Nach den Buttonkorrekturen bestanden 32 übrige Browserfälle; die beiden betroffenen Medienfälle bestanden nach Hover-Korrektur erneut, dazu zwei neue Desktopfälle. Die anschließend vereinheitlichten Hilfsbuttons wurden in sechs Einführungs-/Schreib-/Tonfällen erneut geprüft. Die gemeinsame sichtbare linke Textkante und Reload wurden abschließend in zehn Vergleichs-/Fallbackfällen geprüft. Damit sind 36 definierte Browserfälle über diese gezielten Läufe abgedeckt; kein einzelner Gesamtlauf aller Fälle nach jeder kleinen CSS-Korrektur wird behauptet. Prüfen/Weiter bewegten sich im gemessenen Antwortfall bei 320/390/1280 px in beiden Browsern jeweils **0 px**; die Dokumentseite scrollte nicht. Die Messwerte des aktuellen Builds und Bilder stehen unter `evidence/`. Browseremulation ersetzt keine Prüfung auf einem echten iPhone. Safari-Browserleisten, installierte PWA, reale Tastatur und physische Safe Areas bleiben als Geräteprüfung offen. Keine allgemeine Audio-/Recording-QA und keine neue Content-QA.
+
+Produktionsbuild einschließlich UI-Text-, Resolution-, Inhalts- und Typprüfung bestanden. Keine Deploymentfreigabe aus den lokalen Tests abgeleitet.
+
+## Integration
+
+Technisch bereit für die anschließende Einbindung sprachlich freigegebener Inhalte: vorhandene Einführung/Matching-Eignung, definierte Dialogturns und Antwortmengen sowie geprüfte bestehende Audioverweise werden benötigt. Es gibt aktuell eine Dialogdefinition, keinen ungeprüften automatischen Import des separaten Curriculum-Drafts und keine neue allgemeine Eligibility-/Distraktorarchitektur.

@@ -11,15 +11,15 @@ const ev=(id,type,detail={},taskId='fixture',at=100)=>({id,type,detail,taskId,at
 const intro=(id,dimensions=['meaning','hanzi','pronunciation'],script='hant')=>ev('intro-'+id,'introduction_dimensions',introductionDetail(itemMap.get(id),script,dimensions,'test'));
 const allIntro=()=>[...new Set(matchingSets.flatMap(s=>s.items))].map(id=>intro(id));
 const baseline=()=>allIntro().concat(ev('complete','task_completed',{},'meet-wo',200));
-test('exhaustive pool: 7 curated whole-object groups, 14 variants, 18 objects; existing assets only',()=>{
- assert.equal(matchingSets.length,14);assert.equal(new Set(matchingSets.map(s=>s.id)).size,14);
+test('exhaustive pool: 7 existing groups plus 2 early groups, 20 variants, 18 objects; existing assets only',()=>{
+ assert.equal(matchingSets.length,20);assert.equal(new Set(matchingSets.map(s=>s.id)).size,20);
  const pool=[...new Set(matchingSets.flatMap(s=>s.items))];assert.equal(pool.length,18);
  assert.deepEqual(pool.map(id=>itemMap.get(id).hant).sort(),['我','你','人','好','請','你好','德國','中國','一','四','七','二','五','八','三','六','九','十'].sort());
- for(const s of matchingSets){assert.equal(s.items.length,s.id.startsWith('countries:')?2:3);assert.equal(new Set(s.items).size,s.items.length);for(const id of s.items)assert(content.items.some(i=>i.id===id&&i.audio));}
+ for(const s of matchingSets){assert.equal(s.items.length,s.id.startsWith('countries:')||s.id.startsWith('early-')?2:3);assert.equal(new Set(s.items).size,s.items.length);for(const id of s.items)assert(content.items.some(i=>i.id===id&&i.audio));}
 });
 for(const set of matchingSets)test(`${set.id}: eligibility requires each whole item's exact introduced dimensions`,()=>{
  const history=set.items.map(id=>intro(id));assert(matchingEligible(set,'hant',history));assert(!matchingEligible(set,'hans',history));
- for(const id of set.items){for(const dimension of ['meaning','hanzi',...(set.relation==='audio-form'?['pronunciation']:[])]){
+ for(const id of set.items){for(const dimension of ['meaning','hanzi',...(set.relation!=='form-meaning'?['pronunciation']:[])]){
   const events=set.items.map(x=>intro(x,x===id?['meaning','hanzi','pronunciation'].filter(d=>d!==dimension):undefined));assert(!matchingEligible(set,'hant',events),`${id} missing ${dimension}`);
  }assert(!matchingEligible(set,'hant',history.filter(e=>e.detail.item!==id)));}
  assert(!matchingEligible(set,'hant',history.map(e=>({...e,detail:{...e.detail,optionalPractice:true}}))));

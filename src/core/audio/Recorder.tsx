@@ -148,7 +148,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
     catch { if (token === generation.current) { setError(ui.recordingPlaybackError); playbackFinished(audio); } }
   }
   const recordLabel = status === 'recording' ? ui.stop : status === 'requesting' ? ui.requesting : status === 'preparing' ? ui.preparing : status === 'finalizing' ? ui.finalizing : url ? 'Neu aufnehmen' : ui.record;
-  const recordControl = <button className={`recordButton ${status === 'recording' ? 'isRecording' : ''} ${url ? 'isRetake' : ''}`} type="button" aria-label={recordLabel} title={recordLabel} disabled={(status === 'idle' && !interaction.canStart()) || (status !== 'idle' && status !== 'recording')} onClick={() => status === 'recording' ? stop.current() : void start()}><Icon name={status === 'recording' ? 'stop' : 'mic'} /><span className={url ? 'srOnly' : undefined}>{status === 'recording' ? 'Stopp' : recordLabel}</span></button>;
+  const recordControl = <button className={`recordButton ${status === 'recording' ? 'isRecording' : ''} ${url ? 'isRetake' : ''}`} type="button" aria-label={recordLabel} title={recordLabel} aria-busy={status!=='idle'&&status!=='recording'} disabled={(status === 'idle' && !interaction.canStart()) || (status !== 'idle' && status !== 'recording')} onClick={() => status === 'recording' ? stop.current() : void start()}><Icon name={status === 'recording'?'stop':status==='idle'?'mic':'loading'} /></button>;
   return <section className="toolPanel recordingPanel" data-state={status === 'idle' ? url ? playing ? 'playback' : 'complete' : 'ready' : status}>
     <div className="recordingHeading">{url ? <strong>Deine Aufnahme</strong> : recordControl}<InfoDisclosure className="recordingInfo" label="Zur Aufnahme"><p>{ui.micNote}</p></InfoDisclosure></div>
     <p role="status" className="captureStatus">{status === 'recording' ? ui.recording : status === 'preparing' ? ui.recordingWait : status === 'finalizing' ? ui.finalizing : ''}</p>
@@ -158,7 +158,7 @@ export function Recorder({ onEvent }: { onEvent: (type: string, detail?: Record<
       onEnded={event => { if (event.currentTarget.ended) playbackFinished(event.currentTarget); }}
       onTimeUpdate={event => { if (event.currentTarget.ended) playbackFinished(event.currentTarget); }}
       onError={event => { const audio = event.currentTarget; if (!isCurrentPlayback(audio) || !audio.error) return; setError(ui.recordingPlaybackError); playbackFinished(audio); }} />
-      <div className="buttonRow"><IconButton icon={playing ? 'pause' : 'replay'} label={playing ? 'Wiedergabe pausieren' : 'Deine Aufnahme wiedergeben'} onClick={() => void replay()}/>{recordControl}</div>
+      <div className="buttonRow"><IconButton icon={playing ? 'pause' : 'play'} label={playing ? 'Wiedergabe pausieren' : 'Deine Aufnahme wiedergeben'} onClick={() => void replay()}/>{recordControl}</div>
       <p className="muted" role="status">{playing ? 'Deine Aufnahme wird abgespielt …' : playbackNotice === 'Zum Vergleichen kannst du beide Aufnahmen noch einmal hören.' ? '' : playbackNotice}</p></div>,}}/>}
     {error && <p role="status" className="feedback attention">{error}</p>}
   </section>;

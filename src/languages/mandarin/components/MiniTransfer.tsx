@@ -37,7 +37,7 @@ export function MiniTransfer({state,script,onSave,onNext,disabled}:{state:Transf
     try{await persist({answer,phase:'result'});}catch{setError('Deine Antwort konnte nicht gespeichert werden. Bitte erneut abgeben.');}finally{lock.current=false;}
   }
   return <div className="stepStack miniTransfer" data-mini-transfer={state.caseId} data-task-complete={state.phase==='result'}>
-    <PlaybackControl emphasis={state.heard?'reference':'stimulus'} playing={playing} icon={playing?'stop':'play'} disabled={disabled} onClick={()=>playing?stop():void play()} label={playing?'Anhalten':state.heard?'Gespräch noch einmal hören':'Gespräch anhören'}/>
+    <PlaybackControl emphasis={state.heard?'reference':'stimulus'} playing={playing} icon={playing?'stop':'speaker'} disabled={disabled} onClick={()=>playing?stop():void play()} label={playing?'Anhalten':state.heard?'Gespräch noch einmal hören':'Gespräch anhören'}/>
     <p className="transferPlaybackStatus controlLabel" role="status">{playing ? `Person ${speaker} spricht …` : ''}</p>
     {state.phase!=='listen'&&<div className="transferQuestion"><h3>{question}</h3>{state.phase==='answer'&&<p className="muted" id="transfer-instruction">Beschreibe auf Deutsch den Zusammenhang, nicht die Mandarin-Formulierung.</p>}</div>}
     {state.phase==='answer'&&<form className="stepStack" onSubmit={e=>{e.preventDefault();void submit();}}>
