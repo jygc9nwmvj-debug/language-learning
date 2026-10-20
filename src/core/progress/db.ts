@@ -43,7 +43,7 @@ export class LearningDatabase extends Dexie {
 }
 export const db = new LearningDatabase();
 export async function logEvent(event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
-  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: 'build-d-1' });
+  await db.events.add({ ...event, id: crypto.randomUUID(), at: Date.now(), contentVersion: event.taskId.startsWith('tw:') ? 'taiwan-text-1' : 'build-d-1' });
 }
 export async function recordAttempt(attempt: Attempt, event: Omit<ResearchEvent, 'id' | 'at' | 'contentVersion'>) {
   await db.transaction('rw', db.relations, db.events, async () => {

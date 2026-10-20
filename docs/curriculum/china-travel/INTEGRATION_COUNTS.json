@@ -1,0 +1,18 @@
+{
+  "objects": 134,
+  "dialogues": 28,
+  "utterances": 176,
+  "exercises": 221,
+  "activities": 273,
+  "matching": 19,
+  "deferredAudioMatching": 19,
+  "writing": 10,
+  "restorableDefinitions": 283,
+  "audioRequestsPrepared": 404,
+  "audioRequestKinds": {
+    "word": 164,
+    "sentence": 240
+  },
+  "dialogueSentenceOccurrences": 291,
+  "sourceEditorialSha256": "a3a76c9943691bcdc59420da9a41b72cbf818134402341d26f25e1fc11cee7d7"
+}

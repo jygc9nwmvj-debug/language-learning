@@ -369,3 +369,25 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .matchingCell[data-matched=true] { opacity: .6; }
 .matchingConfirmation { display: block; font-size: var(--text-small); color: var(--ink-muted); }
 .matchingFeedback { min-height: 3em; margin: 0; }
+
+/* Taiwan text activities share the existing learning surface and controls. */
+.twActivity { display: grid; gap: 1rem; min-width: 0; }
+.twActivity h2, .twActivity p { margin: 0; }
+.twActivity label { display: grid; gap: .5rem; }
+.twActivity input, .twActivity textarea { width: 100%; font: inherit; padding: .75rem; box-sizing: border-box; }
+.twActivity textarea { min-height: 7rem; }
+.twFocus { font-size: clamp(2.5rem, 12vw, 5rem); text-align: center; padding: 1rem; }
+.twHanzi { font-size: 1.6rem; overflow-wrap: anywhere; line-height: 1.7; }
+.twSentence { display: grid; gap: .4rem; }
+.twDialogue { display: grid; gap: .8rem; }
+.twTurn { padding: 1rem; border: 1px solid var(--border, #d7d2c5); border-radius: .7rem; max-width: 92%; }
+.twTurnB { margin-left: auto; }
+.twRole { font-size: .8rem; opacity: .75; }
+.twChoices { display: grid; gap: .6rem; }
+.twChoices button, .twMatching button { white-space: normal; overflow-wrap: anywhere; min-height: 3rem; }
+.twMatching { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.twMatching > div { display: grid; align-content: start; gap: .7rem; }
+.twActivity .selected { outline: 2px solid currentColor; outline-offset: 2px; }
+.twFeedback, .twQuestionContext { display: grid; gap: .7rem; padding: 1rem; border: 1px solid var(--border, #d7d2c5); border-radius: .7rem; }
+.twActivity dl > div { display: grid; grid-template-columns: minmax(3rem, auto) 1fr; gap: .7rem; margin: .6rem 0; }
+.twActivity dd { margin: 0; }

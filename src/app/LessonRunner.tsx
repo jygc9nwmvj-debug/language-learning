@@ -8,14 +8,18 @@ import { screenlessFor, paperFor, screenlessEvidence } from '../languages/mandar
 import { ScreenlessRecall, PaperRecall } from '../languages/mandarin/components/HybridRecall';
 import { introductionForTask, introduced, taskPresentationRole } from '../languages/mandarin/introduction';
 import { itemMap } from '../languages/mandarin/content';
+import { appTaskMap, activityMap, composeLearning } from '../languages/mandarin/taiwan/course';
+import { TaiwanActivity } from '../languages/mandarin/taiwan/TaiwanActivity';
+import type { Target } from '../core/progress/model';
 import { stopReferenceAudio } from '../core/exercises/AudioButton';
 import { previousObjectIndex, inspectionEvent } from '../core/progress/optionalPractice';
 import { IconButton } from '../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import { db, resetLearningState, exportLearningState, importLearningState, logEvent, recordAttempt, type Session, type ResearchEvent, type SavedFeedback, type FeedbackEvent } from '../core/progress/db';
 import { ui } from '../core/i18n/de';
-import { content, taskMap } from '../languages/mandarin/content';
-import { composeContinuous, shouldResume, exposure } from '../languages/mandarin/continuous';
+import { content } from '../languages/mandarin/content';
+const taskMap = appTaskMap;
+import { shouldResume, exposure } from '../languages/mandarin/continuous';
 import { objectFor, withSpacedRetry } from '../languages/mandarin/session';
 import { Exercise, type Evidence } from '../languages/mandarin/components/Exercise';
 import { InteractionContext, useInteractionScope } from '../core/exercises/InteractionScope';
@@ -80,7 +84,7 @@ export function LessonRunner() {
       if(cancelled)return;
       clock.block('loading',false,performance.now());setAttentionSnapshot({key:`${session.id}:${session.index}`,events:history}); const previous=t.itemId?exposure(history).get(t.itemId):undefined;
       if(t.kind==='closure'&&!paper.length)return;
-      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:t.kind,role:taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
+      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:activityMap.has(t.id)?'text':t.kind,role:activityMap.has(t.id)?'text_learning':taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
     }).catch(()=>setError(ui.storageError));
     return ()=>{cancelled=true;checkpoint();document.removeEventListener('visibilitychange',change);document.removeEventListener('pointerdown',touch);document.removeEventListener('keydown',touch);document.removeEventListener('input',touch);window.removeEventListener('pagehide',checkpoint);};
   },[view,session?.id,session?.index]);
@@ -91,16 +95,18 @@ export function LessonRunner() {
   }
   const task = session ? taskMap.get(session.plan[session.index]) : undefined;
   const history = attentionSnapshot?.events ?? [];
+  const taiwanActivity = task ? activityMap.get(task.id) : undefined;
   const snapshotReady=!!session&&attentionSnapshot?.key===`${session.id}:${session.index}`;
   const isMatching=!!session&&atMatching(session,localMatching);
   const isTransfer=!!session&&atTransfer(session,localTransfer);
   const screenless=!!session&&snapshotReady&&screenlessFor(session,history,Date.now());
   const paper=session&&snapshotReady?paperFor(session,history,Date.now()):[];
   const revealed=(type:string)=>history.some(e=>e.sessionId===session?.id&&e.detail.index===session?.index&&e.type===type);
-  const encoding = !!task && !!session && !!introductionForTask(task,session.script,history);
+  const encoding = !taiwanActivity && !!task && !!session && !!introductionForTask(task,session.script,history);
   const writingIntroduction = task?.kind==='writing' && (!task.recall || (!!session && !introduced(itemMap.get(task.itemId!)!,'writing',session.script,history)));
   const previousIndex = session ? previousObjectIndex(session.index) : null;
-  const previousTask = !isTransfer && !isMatching && session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
+  const priorTask = !isTransfer && !isMatching && session && previousIndex !== null ? taskMap.get(session.plan[previousIndex]) : undefined;
+  const previousTask = priorTask && !activityMap.has(priorTask.id) ? priorTask : undefined;
   async function inspectEvent(type: string, detail: Record<string, string | number | boolean> = {}) {
     if (!session || !previousTask) return;
     const {correction:_correction,...safeDetail}=detail;
@@ -140,8 +146,8 @@ export function LessonRunner() {
       const pendingMatching=savedMatching?await db.sessions.get(savedMatching.sessionId):null;
       if(!pending&&pendingMatching&&atMatching(pendingMatching,savedMatching)){next=pendingMatching;setLocalMatching(savedMatching);}
       const matchingBoundary=next&&!next.completed&&matchingState(await db.events.toArray(),next);
-      if (!matchingBoundary && !(next&&atMatching(next,savedMatching)) && !(next&&atTransfer(next,savedTransfer)) && (replay || !shouldResume(next, Date.now()))) {
-        const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), script, Date.now());
+      if (!matchingBoundary && !(next&&atMatching(next,savedMatching)) && !(next&&atTransfer(next,savedTransfer)) && (replay || (!shouldResume(next, Date.now()) && !activityMap.has(next?.plan[next.index]??'')))) {
+        const plan = composeLearning(await db.relations.toArray(), await db.events.toArray(), script, Date.now());
         next = { id: crypto.randomUUID(), plannerVersion: 'd1', plan, index: 0, completed: false, startedAt: Date.now(), updatedAt: Date.now(), script };
       }
       const chosen = next!;
@@ -213,7 +219,7 @@ export function LessonRunner() {
     if (!session || !task) return;
     await mutation(async () => {
       let updated = session;
-      await db.transaction('rw', db.sessions, db.events, async () => {
+      await db.transaction('rw', db.sessions, db.events, db.relations, async () => {
         const stored = await db.sessions.get(session.id);
         if (stored && stored.index !== session.index) { updated = stored; return; }
         const prior = stored?.evaluation;
@@ -221,8 +227,14 @@ export function LessonRunner() {
         updated = { ...session, updatedAt: Date.now(), evaluation: { index: session.index, taskId: task.id,
           step, results: { ...current?.results, ...(feedback ? { [step]: feedback } : {}) } } };
         await db.sessions.put(updated);
-        for (const { type, detail } of events) await logEvent({sessionId:session.id, taskId:task.id, type,
-          detail:{...timing(), item:task.itemId??'', modality:task.kind, activeMs:activeTime(), ...detail, index:session.index}});
+        for (const { type, detail } of events) {
+          const event = {sessionId:session.id, taskId:task.id, type, detail:{...timing(), item:task.itemId??'', modality:taiwanActivity?'text':task.kind, activeMs:activeTime(), ...detail, index:session.index}};
+          if (type === 'taiwan_attempt') {
+            const duplicate = await db.events.where('sessionId').equals(session.id).filter(e=>e.taskId===task.id&&e.type===type&&e.detail.index===session.index&&e.detail.step===detail.step).first();
+            if (!duplicate && detail.objectId) await recordAttempt({objectId:String(detail.objectId),target:detail.target as Target,result:detail.result as 'success'|'failure'|'unsure',assisted:detail.assisted===true,sessionId:session.id,at:Date.now()},event);
+            else if (!duplicate) await logEvent(event);
+          } else await logEvent(event);
+        }
       });
       setSession(updated);
     });
@@ -281,7 +293,7 @@ export function LessonRunner() {
       let chosen: Session | undefined;
       await db.transaction('rw', db.sessions, db.relations, db.events, async () => {
         const now = Date.now();
-        const plan = composeContinuous(await db.relations.toArray(), await db.events.toArray(), session.script, matching?.plannedAt??now);
+        const plan = composeLearning(await db.relations.toArray(), await db.events.toArray(), session.script, matching?.plannedAt??now);
         if (!plan.some(id => taskMap.get(id)?.kind !== 'closure')) throw new Error('No learning task available');
         // load() orders by updatedAt: the successor must sort after its completed batch,
         // even when both writes happen in the same millisecond.
@@ -333,8 +345,8 @@ export function LessonRunner() {
       <div className="homeMeta"><span>{ui.saved}</span><div className={`offlineStatus offline-${offline}`} role="status"><span>{offline === 'development' ? ui.offlineDevelopment : offline === 'unavailable' ? 'Offline-Speicherung ist in diesem Browser nicht verfügbar.' : offline === 'ready' ? ui.offlineReady : offline === 'failed' ? ui.offlineFailed : ui.offlineWaiting}</span>{offline === 'waiting' && <small>Wörter und Audios werden auf diesem Gerät gespeichert. Du kannst schon beginnen.</small>}{offline === 'failed' && <button type="button" className="utilityButton" onClick={() => prepareOffline(true)}>Vorbereitung erneut versuchen</button>}</div><InstallAccess /></div>
       {errorBox}{settings}{import.meta.env.DEV && <details className="settings"><summary>Lokale Testfunktion</summary><p>Einmaliger Test an der nächsten Abschnittsgrenze, ohne Änderung des Lernstands.</p><button type="button" disabled={busy || transferTestArmed || !!localTransfer && localTransfer.phase!=='done'} onClick={()=>safe(async()=>{(await import('../languages/mandarin/mini-transfer-dev')).arm();setTransferTestArmed(true);})}>Mini-Transfer im Lernfluss testen</button>{transferTestArmed&&<p role="status">Test vorgemerkt. Lerne normal weiter.</p>}</details>}<p className="prototypeNote">{ui.prototype}</p></section>}
     {view === 'learn' && task && session && <><header className="lessonHeader"><span>{ui.home}</span><div className="sessionTools">{previousTask && <IconButton icon={inspecting ? 'forward' : 'back'} label={inspecting ? 'Zur aktuellen Aufgabe' : 'Vorheriges'} disabled={busy || interaction.busy} onClick={()=>safe(togglePrevious)}/>}<IconButton icon="close" label={ui.pause} disabled={busy} className="sessionPause" onClick={() => safe(pause)}/></div></header>
-      <section className="lessonCard" data-learning-state={isMatching ? 'practice' : isTransfer ? 'transfer' : encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={isMatching ? 'matching' : isTransfer ? 'transfer' : task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{isMatching ? 'Zuordnen' : isTransfer ? 'IM ZUSAMMENHANG' : encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : task.kind === 'listen' ? 'Hören' : task.kind === 'read' ? 'Lesen' : 'Aus dem Gedächtnis'}</p>{!isMatching && !isTransfer && (paper.length || screenless || (!encoding && task.kind !== 'encounter' && task.kind !== 'closure' && task.prompt.de !== 'Ein Zeichen selbst schreiben.')) ? <h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : task.prompt.de}</h2> : null}{errorBox}
-        {isMatching ? <MatchingExercise key={localMatching!.runId} state={localMatching!} disabled={busy} onPair={matchingPair} onAudio={matchingPlay} onNext={matchingNext}/> : isTransfer ? <MiniTransfer key={`${localTransfer!.caseId}:${localTransfer!.firstSeenAt}`} state={localTransfer!} script={session.script} onSave={transferSave} onNext={transferNext} disabled={busy}/> : task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
+      <section className="lessonCard" data-learning-state={isMatching ? 'practice' : isTransfer ? 'transfer' : encoding ? 'introduction' : task.kind==='tones' ? 'practice' : writingIntroduction ? 'writing' : task.kind==='encounter' ? 'connection' : 'retrieval'} data-task-kind={isMatching ? 'matching' : isTransfer ? 'transfer' : taiwanActivity ? 'taiwan-text' : task.kind} hidden={inspecting} aria-busy={busy}><p className="eyebrow">{isMatching ? 'Zuordnen' : isTransfer ? 'IM ZUSAMMENHANG' : taiwanActivity ? 'REISE NACH TAIWAN' : encoding ? ui.encounter : task.kind==='tones' ? 'Töne kennenlernen und üben' : task.kind==='tone-recall' ? 'Hören und unterscheiden' : writingIntroduction ? 'Schreiben lernen' : task.kind === 'encounter' ? 'Noch einmal verbinden' : task.kind === 'closure' ? 'Mandarin' : task.kind === 'listen' ? 'Hören' : task.kind === 'read' ? 'Lesen' : 'Aus dem Gedächtnis'}</p>{!isMatching && !isTransfer && (paper.length || screenless || (!encoding && task.kind !== 'encounter' && task.kind !== 'closure' && task.prompt.de !== 'Ein Zeichen selbst schreiben.')) ? <h2>{paper.length ? 'Schreiben aus dem Gedächtnis' : screenless ? 'Sag es laut auf Mandarin.' : task.prompt.de}</h2> : null}{errorBox}
+        {taiwanActivity && snapshotReady ? <TaiwanActivity key={`${session.id}:${session.index}:${task.id}`} activity={taiwanActivity} script={session.script} history={history} saved={session.evaluation?.index===session.index?session.evaluation:undefined} onSave={checkpoint} disabled={busy||interaction.busy} onNext={()=>next()}/> : taiwanActivity ? <p role="status">{ui.loading}</p> : isMatching ? <MatchingExercise key={localMatching!.runId} state={localMatching!} disabled={busy} onPair={matchingPair} onAudio={matchingPlay} onNext={matchingNext}/> : isTransfer ? <MiniTransfer key={`${localTransfer!.caseId}:${localTransfer!.firstSeenAt}`} state={localTransfer!} script={session.script} onSave={transferSave} onNext={transferNext} disabled={busy}/> : task.kind === 'closure' && !snapshotReady ? <p role="status">{ui.loading}</p> : paper.length ? <PaperRecall key={`${session.id}:paper`} items={paper} script={session.script} revealedInitially={revealed('paper_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('paper_revealed')} onResult={paperResult}/> : task.kind === 'closure' ? <div role="status">{error ? <button type="button" disabled={busy} onClick={()=>setError('')}>Erneut versuchen</button> : ui.loading}</div>
           : screenless ? <><ScreenlessRecall key={`${session.id}:${session.index}:screenless`} item={itemMap.get(task.itemId!)!} script={session.script} revealedInitially={revealed('screenless_revealed')} disabled={busy||interaction.busy} onReveal={()=>hybridReveal('screenless_revealed')} onResult={screenlessResult} onExplore={event}/><button type="button" className="skipButton" disabled={busy||interaction.busy} onClick={()=>safe(()=>next(true))}>{ui.skip}</button></> : <>{attentionSnapshot?.key === `${session.id}:${session.index}` ? <Exercise savedEvaluation={session.evaluation?.index === session.index && session.evaluation.taskId === task.id ? session.evaluation : undefined} onCheckpoint={checkpoint} savedAssessment={(() => {
             const attempts = attentionSnapshot.events.filter(e=>e.type==='attempt' && e.sessionId===session.id && e.taskId===task.id && e.detail.index===session.index);
             const d=attempts.length===1?attempts[0].detail:undefined;

@@ -4129,6 +4129,10 @@
     }
   ],
   "sources": {
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx": "1a02c862a1dcd2636b2b353e17639b8cb600f760fce02d60e8c04d2f98a77490",
+    "src/languages/mandarin/taiwan/course.ts": "46ff00a9fbecfbbe592eb75920ac0cf08bdac485c95eb8ac093ecd08ad5e04dc",
+    "src/languages/mandarin/taiwan/state.ts": "f4f4c35ffb10092ba0f50cdcc9a96435e28df5e6f58ca6103186e3cb6ee8df03",
+    "src/languages/mandarin/writing-targets.ts": "299bbcdfd4f258c2d51f24c1cf8694205fa1577ab2f2b5b4a9e6a7f2874d48c7",
     "src/languages/mandarin/components/MatchingExercise.tsx": "6ffa2bae6f931eda548df778d9eb2e91b5cb1af597ba473b9b5e20379475a1f2",
     "src/languages/mandarin/matching.ts": "f0d365f0ea4b511f2d52e1ec7ed8cb4d90b9d45f0e0ea4cb31c17dd550dba7cb",
     "src/core/exercises/Controls.tsx": "eccfb47cb77425c9501bb6e3fdddc820ad97bcec0a8faff7bb171ca4e840b52e",
@@ -4146,8 +4150,5471 @@
     "src/languages/mandarin/components/PhraseForm.tsx": "ae4d9bac9b234668193638542fdb15a15b5d73eec294ae8ef4c9b8f468fbba05",
     "src/languages/mandarin/components/ProductionFeedback.tsx": "a3d33c6cbf52af3ed75229fbd59da87a1d9a228ce20d99c71772c386cd93baa7",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
-    "src/core/exercises/resolution-contract.ts": "1b3b4bf6186c3554c91a12ab11783eeee1f42123c0500c34ae025e259caaf012",
-    "src/app/LessonRunner.tsx": "0918a64da9b2dcf5aee0c38090dd19820cace19d62f354a883225aef0e2f7dba",
+    "src/core/exercises/resolution-contract.ts": "a1ad85c490de1ac7d4efad1799ee256a256fcf891ea626161cf679bafc97578d",
+    "src/app/LessonRunner.tsx": "a67bb73b4a03b33311c5928e5d8c4487991a60162e1250c2a00551d09117f84a",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
+  },
+  "taiwan": {
+    "activities": [
+      {
+        "id": "tw:object:E01.L01",
+        "kind": "object",
+        "reference": "E01.L01",
+        "prerequisites": [
+          "kan",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.L02",
+        "kind": "object",
+        "reference": "E01.L02",
+        "prerequisites": [
+          "bangmang",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.L05",
+        "kind": "object",
+        "reference": "E01.L05",
+        "prerequisites": [
+          "kan",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.C03",
+        "kind": "object",
+        "reference": "E01.C03",
+        "prerequisites": [
+          "bangmang",
+          "keyi",
+          "ma",
+          "qing"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.C04",
+        "kind": "object",
+        "reference": "E01.C04",
+        "prerequisites": [
+          "kan",
+          "keyi",
+          "ma",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G01",
+        "kind": "dialogue",
+        "reference": "G01",
+        "prerequisites": [
+          "bangmang",
+          "bu",
+          "hao",
+          "kan",
+          "keqi",
+          "keyi",
+          "ma",
+          "man",
+          "ni",
+          "qing",
+          "shuo",
+          "tingbudong",
+          "wo",
+          "xiexie",
+          "yidian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.L03",
+        "kind": "object",
+        "reference": "E01.L03",
+        "prerequisites": [
+          "qingwen",
+          "shenme",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.L04",
+        "kind": "object",
+        "reference": "E01.L04",
+        "prerequisites": [
+          "na-dem",
+          "shenme",
+          "shi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.C01",
+        "kind": "object",
+        "reference": "E01.C01",
+        "prerequisites": [
+          "qingwen",
+          "shenme",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E01.C02",
+        "kind": "object",
+        "reference": "E01.C02",
+        "prerequisites": [
+          "na-dem",
+          "qingwen",
+          "shenme",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G02",
+        "kind": "dialogue",
+        "reference": "G02",
+        "prerequisites": [
+          "bian",
+          "bu",
+          "deguo",
+          "hao",
+          "keqi",
+          "na-dem",
+          "ni",
+          "qing",
+          "qingwen",
+          "shenme",
+          "shi",
+          "shuo",
+          "taiwan",
+          "xiexie",
+          "yi",
+          "zai",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:taiwan",
+        "kind": "exercise",
+        "reference": "sense:taiwan",
+        "prerequisites": [
+          "taiwan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E01.C01",
+        "kind": "exercise",
+        "reference": "produce:E01.C01",
+        "prerequisites": [
+          "qingwen",
+          "shenme",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E01.C02",
+        "kind": "exercise",
+        "reference": "produce:E01.C02",
+        "prerequisites": [
+          "na-dem",
+          "qingwen",
+          "shenme",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E01.C03",
+        "kind": "exercise",
+        "reference": "produce:E01.C03",
+        "prerequisites": [
+          "bangmang",
+          "keyi",
+          "ma",
+          "qing"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E01.C04",
+        "kind": "exercise",
+        "reference": "produce:E01.C04",
+        "prerequisites": [
+          "kan",
+          "keyi",
+          "ma",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M01:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M01:hanzi-meaning",
+        "prerequisites": [
+          "zhe",
+          "na-dem",
+          "kan",
+          "qingwen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L01",
+        "kind": "object",
+        "reference": "E02.L01",
+        "prerequisites": [
+          "bei",
+          "cha",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L03",
+        "kind": "object",
+        "reference": "E02.L03",
+        "prerequisites": [
+          "bei",
+          "cha",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L04",
+        "kind": "object",
+        "reference": "E02.L04",
+        "prerequisites": [
+          "he",
+          "shenme",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L05",
+        "kind": "object",
+        "reference": "E02.L05",
+        "prerequisites": [
+          "he",
+          "shenme",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.C01",
+        "kind": "object",
+        "reference": "E02.C01",
+        "prerequisites": [
+          "bei",
+          "cha",
+          "kafei",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.C02",
+        "kind": "object",
+        "reference": "E02.C02",
+        "prerequisites": [
+          "he",
+          "shenme",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G03",
+        "kind": "dialogue",
+        "reference": "G03",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "cha",
+          "hao",
+          "he",
+          "keqi",
+          "ni",
+          "shenme",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L06",
+        "kind": "object",
+        "reference": "E02.L06",
+        "prerequisites": [
+          "bing",
+          "de",
+          "haishi",
+          "re",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L07",
+        "kind": "object",
+        "reference": "E02.L07",
+        "prerequisites": [
+          "bing",
+          "de",
+          "haishi",
+          "re",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L08",
+        "kind": "object",
+        "reference": "E02.L08",
+        "prerequisites": [
+          "bei",
+          "kafei",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.C03",
+        "kind": "object",
+        "reference": "E02.C03",
+        "prerequisites": [
+          "bing",
+          "de",
+          "haishi",
+          "kafei",
+          "re",
+          "shui",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.C04",
+        "kind": "object",
+        "reference": "E02.C04",
+        "prerequisites": [
+          "bing",
+          "de",
+          "re",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G04",
+        "kind": "dialogue",
+        "reference": "G04",
+        "prerequisites": [
+          "bei",
+          "bing",
+          "bu",
+          "de",
+          "haishi",
+          "hao",
+          "he",
+          "kafei",
+          "keqi",
+          "ni",
+          "re",
+          "shenme",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.L02",
+        "kind": "object",
+        "reference": "E02.L02",
+        "prerequisites": [
+          "bei",
+          "shui",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E02.C05",
+        "kind": "object",
+        "reference": "E02.C05",
+        "prerequisites": [
+          "bu",
+          "kafei",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G05",
+        "kind": "dialogue",
+        "reference": "G05",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "haishi",
+          "hao",
+          "he",
+          "kafei",
+          "keqi",
+          "ma",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:hot-please",
+        "kind": "exercise",
+        "reference": "sense:hot-please",
+        "prerequisites": [
+          "re",
+          "de",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:no-thanks",
+        "kind": "exercise",
+        "reference": "sense:no-thanks",
+        "prerequisites": [
+          "bu",
+          "yao",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E02.C01",
+        "kind": "exercise",
+        "reference": "produce:E02.C01",
+        "prerequisites": [
+          "bei",
+          "cha",
+          "kafei",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E02.C03",
+        "kind": "exercise",
+        "reference": "produce:E02.C03",
+        "prerequisites": [
+          "bing",
+          "de",
+          "haishi",
+          "kafei",
+          "re",
+          "shui",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E02.C04",
+        "kind": "exercise",
+        "reference": "produce:E02.C04",
+        "prerequisites": [
+          "bing",
+          "de",
+          "re",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E02.C05",
+        "kind": "exercise",
+        "reference": "produce:E02.C05",
+        "prerequisites": [
+          "bu",
+          "kafei",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:reply:temperature",
+        "kind": "exercise",
+        "reference": "reply:temperature",
+        "prerequisites": [
+          "re",
+          "de",
+          "xiexie",
+          "bing"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M02:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M02:hanzi-meaning",
+        "prerequisites": [
+          "cha",
+          "shui",
+          "kafei"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M03:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M03:hanzi-meaning",
+        "prerequisites": [
+          "bei",
+          "re",
+          "bing"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E02.L02",
+        "kind": "writing",
+        "reference": "write:E02.L02",
+        "prerequisites": [
+          "shui"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E02.L03",
+        "kind": "writing",
+        "reference": "write:E02.L03",
+        "prerequisites": [
+          "bei"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L01",
+        "kind": "object",
+        "reference": "E03.L01",
+        "prerequisites": [
+          "duoshao",
+          "qian",
+          "qingwen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L02",
+        "kind": "object",
+        "reference": "E03.L02",
+        "prerequisites": [
+          "kuai",
+          "qian",
+          "san",
+          "shi-number"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.C01",
+        "kind": "object",
+        "reference": "E03.C01",
+        "prerequisites": [
+          "duoshao",
+          "qian",
+          "qingwen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G06",
+        "kind": "dialogue",
+        "reference": "G06",
+        "prerequisites": [
+          "bei",
+          "bian",
+          "bing",
+          "bu",
+          "cha",
+          "de",
+          "duoshao",
+          "haishi",
+          "hao",
+          "he",
+          "keqi",
+          "kuai",
+          "ni",
+          "qian",
+          "qing",
+          "qingwen",
+          "re",
+          "san",
+          "shenme",
+          "shi-number",
+          "shuo",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "zai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L04",
+        "kind": "object",
+        "reference": "E03.L04",
+        "prerequisites": [
+          "bei",
+          "liang",
+          "shui",
+          "wo",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L07",
+        "kind": "object",
+        "reference": "E03.L07",
+        "prerequisites": [
+          "haishi",
+          "xianjin",
+          "xingdongzhifu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L08",
+        "kind": "object",
+        "reference": "E03.L08",
+        "prerequisites": [
+          "keyi",
+          "ma",
+          "shuaka"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.C02",
+        "kind": "object",
+        "reference": "E03.C02",
+        "prerequisites": [
+          "kuai",
+          "liu",
+          "qi",
+          "shi-number",
+          "yigong",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.C04",
+        "kind": "object",
+        "reference": "E03.C04",
+        "prerequisites": [
+          "bei",
+          "liang",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.C05",
+        "kind": "object",
+        "reference": "E03.C05",
+        "prerequisites": [
+          "bai",
+          "gei",
+          "kuai",
+          "liu",
+          "ni",
+          "shi-number",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G07",
+        "kind": "dialogue",
+        "reference": "G07",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "gei",
+          "haishi",
+          "hao",
+          "keqi",
+          "keyi",
+          "kuai",
+          "liang",
+          "liu",
+          "ma",
+          "neng",
+          "ni",
+          "shi-number",
+          "shuaka",
+          "shui",
+          "wo",
+          "xianjin",
+          "xiexie",
+          "xingdongzhifu",
+          "yao",
+          "yigong"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L03",
+        "kind": "object",
+        "reference": "E03.L03",
+        "prerequisites": [
+          "bai",
+          "ling",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L05",
+        "kind": "object",
+        "reference": "E03.L05",
+        "prerequisites": [
+          "bai",
+          "ling",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L06",
+        "kind": "object",
+        "reference": "E03.L06",
+        "prerequisites": [
+          "bai",
+          "gei",
+          "kuai",
+          "ni",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L09",
+        "kind": "object",
+        "reference": "E03.L09",
+        "prerequisites": [
+          "haishi",
+          "xianjin",
+          "xingdongzhifu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.L10",
+        "kind": "object",
+        "reference": "E03.L10",
+        "prerequisites": [
+          "fuqian",
+          "wo",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E03.C03",
+        "kind": "object",
+        "reference": "E03.C03",
+        "prerequisites": [
+          "bai",
+          "er",
+          "kuai",
+          "ling",
+          "qian",
+          "shi-number",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:please-scan",
+        "kind": "exercise",
+        "reference": "sense:please-scan",
+        "prerequisites": [
+          "qing",
+          "saoma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:give-hundred",
+        "kind": "exercise",
+        "reference": "sense:give-hundred",
+        "prerequisites": [
+          "gei",
+          "ni",
+          "yi",
+          "bai",
+          "kuai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:pay",
+        "kind": "exercise",
+        "reference": "sense:pay",
+        "prerequisites": [
+          "wo",
+          "yao",
+          "fuqian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:hundred-one",
+        "kind": "exercise",
+        "reference": "sense:hundred-one",
+        "prerequisites": [
+          "yi",
+          "bai",
+          "ling",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:twelve",
+        "kind": "exercise",
+        "reference": "sense:twelve",
+        "prerequisites": [
+          "shi-number",
+          "er",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:twenty",
+        "kind": "exercise",
+        "reference": "sense:twenty",
+        "prerequisites": [
+          "er",
+          "shi-number",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:twenty-two",
+        "kind": "exercise",
+        "reference": "sense:twenty-two",
+        "prerequisites": [
+          "er",
+          "shi-number",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E03.C01",
+        "kind": "exercise",
+        "reference": "produce:E03.C01",
+        "prerequisites": [
+          "duoshao",
+          "qian",
+          "qingwen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E03.C03",
+        "kind": "exercise",
+        "reference": "produce:E03.C03",
+        "prerequisites": [
+          "bai",
+          "er",
+          "kuai",
+          "ling",
+          "qian",
+          "shi-number",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E03.C04",
+        "kind": "exercise",
+        "reference": "produce:E03.C04",
+        "prerequisites": [
+          "bei",
+          "liang",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E03.C05",
+        "kind": "exercise",
+        "reference": "produce:E03.C05",
+        "prerequisites": [
+          "bai",
+          "gei",
+          "kuai",
+          "liu",
+          "ni",
+          "shi-number",
+          "yi",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:v12",
+        "kind": "exercise",
+        "reference": "value:v12",
+        "prerequisites": [
+          "shi-number",
+          "er",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:v20",
+        "kind": "exercise",
+        "reference": "value:v20",
+        "prerequisites": [
+          "er",
+          "shi-number",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:v22",
+        "kind": "exercise",
+        "reference": "value:v22",
+        "prerequisites": [
+          "er",
+          "shi-number",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:v101",
+        "kind": "exercise",
+        "reference": "value:v101",
+        "prerequisites": [
+          "yi",
+          "bai",
+          "ling",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:v60",
+        "kind": "exercise",
+        "reference": "value:v60",
+        "prerequisites": [
+          "yigong",
+          "liu",
+          "shi-number",
+          "kuai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:mobile-payment",
+        "kind": "exercise",
+        "reference": "sense:mobile-payment",
+        "prerequisites": [
+          "xingdongzhifu",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:reply:payment",
+        "kind": "exercise",
+        "reference": "reply:payment",
+        "prerequisites": [
+          "xianjin",
+          "xingdongzhifu",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M04:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M04:hanzi-meaning",
+        "prerequisites": [
+          "ling",
+          "bai",
+          "liang",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M05:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M05:hanzi-meaning",
+        "prerequisites": [
+          "qian",
+          "kuai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M06:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M06:hanzi-meaning",
+        "prerequisites": [
+          "xianjin",
+          "shuaka",
+          "saoma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E03.L03",
+        "kind": "writing",
+        "reference": "write:E03.L03",
+        "prerequisites": [
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E03.L06",
+        "kind": "writing",
+        "reference": "write:E03.L06",
+        "prerequisites": [
+          "bai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L01",
+        "kind": "object",
+        "reference": "E04.L01",
+        "prerequisites": [
+          "bu",
+          "chi",
+          "niurou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L03",
+        "kind": "object",
+        "reference": "E04.L03",
+        "prerequisites": [
+          "meiyou",
+          "mian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L04",
+        "kind": "object",
+        "reference": "E04.L04",
+        "prerequisites": [
+          "caidan",
+          "gei",
+          "keyi",
+          "ma",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L05",
+        "kind": "object",
+        "reference": "E04.L05",
+        "prerequisites": [
+          "jirou",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L06",
+        "kind": "object",
+        "reference": "E04.L06",
+        "prerequisites": [
+          "bu",
+          "chi",
+          "niurou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L08",
+        "kind": "object",
+        "reference": "E04.L08",
+        "prerequisites": [
+          "la",
+          "ma",
+          "mian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L09",
+        "kind": "object",
+        "reference": "E04.L09",
+        "prerequisites": [
+          "meiyou",
+          "mian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L10",
+        "kind": "object",
+        "reference": "E04.L10",
+        "prerequisites": [
+          "meiyou",
+          "mian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L11",
+        "kind": "object",
+        "reference": "E04.L11",
+        "prerequisites": [
+          "mian",
+          "wan-bowl",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.C01",
+        "kind": "object",
+        "reference": "E04.C01",
+        "prerequisites": [
+          "baifan",
+          "ma",
+          "meiyou",
+          "mian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.C02",
+        "kind": "object",
+        "reference": "E04.C02",
+        "prerequisites": [
+          "la",
+          "ma",
+          "mian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.C03",
+        "kind": "object",
+        "reference": "E04.C03",
+        "prerequisites": [
+          "bu",
+          "chi",
+          "niurou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.C05",
+        "kind": "object",
+        "reference": "E04.C05",
+        "prerequisites": [
+          "ji",
+          "liang",
+          "wei"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G08",
+        "kind": "dialogue",
+        "reference": "G08",
+        "prerequisites": [
+          "bu",
+          "caidan",
+          "chi",
+          "gei",
+          "haishi",
+          "hao",
+          "ji",
+          "jirou",
+          "kan",
+          "keqi",
+          "keyi",
+          "la",
+          "liang",
+          "ma",
+          "meiyou",
+          "mian",
+          "ni",
+          "niurou",
+          "qing",
+          "wan-bowl",
+          "wei",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L07",
+        "kind": "object",
+        "reference": "E04.L07",
+        "prerequisites": [
+          "dui",
+          "guomin",
+          "huasheng",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L12",
+        "kind": "object",
+        "reference": "E04.L12",
+        "prerequisites": [
+          "dui",
+          "guomin",
+          "huasheng",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.C04",
+        "kind": "object",
+        "reference": "E04.C04",
+        "prerequisites": [
+          "dui",
+          "guomin",
+          "huasheng",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G09",
+        "kind": "dialogue",
+        "reference": "G09",
+        "prerequisites": [
+          "bu",
+          "dui",
+          "guomin",
+          "hao",
+          "huasheng",
+          "keqi",
+          "meiyou",
+          "mian",
+          "ni",
+          "wo",
+          "xiexie",
+          "yao",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E04.L02",
+        "kind": "object",
+        "reference": "E04.L02",
+        "prerequisites": [
+          "baifan",
+          "wan-bowl",
+          "wo",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:not-have",
+        "kind": "exercise",
+        "reference": "sense:not-have",
+        "prerequisites": [
+          "meiyou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:rice-bowl",
+        "kind": "exercise",
+        "reference": "sense:rice-bowl",
+        "prerequisites": [
+          "wo",
+          "yao",
+          "yi",
+          "wan-bowl",
+          "baifan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:rice-available",
+        "kind": "exercise",
+        "reference": "sense:rice-available",
+        "prerequisites": [
+          "you",
+          "baifan",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:want-chicken",
+        "kind": "exercise",
+        "reference": "sense:want-chicken",
+        "prerequisites": [
+          "wo",
+          "yao",
+          "jirou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:no-spicy-please",
+        "kind": "exercise",
+        "reference": "sense:no-spicy-please",
+        "prerequisites": [
+          "bu",
+          "yao",
+          "la",
+          "de",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E04.C01",
+        "kind": "exercise",
+        "reference": "produce:E04.C01",
+        "prerequisites": [
+          "baifan",
+          "ma",
+          "meiyou",
+          "mian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E04.C02",
+        "kind": "exercise",
+        "reference": "produce:E04.C02",
+        "prerequisites": [
+          "la",
+          "ma",
+          "mian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E04.C03",
+        "kind": "exercise",
+        "reference": "produce:E04.C03",
+        "prerequisites": [
+          "bu",
+          "chi",
+          "niurou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E04.C04",
+        "kind": "exercise",
+        "reference": "produce:E04.C04",
+        "prerequisites": [
+          "dui",
+          "guomin",
+          "huasheng",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M07:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M07:hanzi-meaning",
+        "prerequisites": [
+          "caidan",
+          "baifan",
+          "mian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M08:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M08:hanzi-meaning",
+        "prerequisites": [
+          "jirou",
+          "niurou",
+          "huasheng",
+          "la"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L01",
+        "kind": "object",
+        "reference": "E05.L01",
+        "prerequisites": [
+          "cesuo",
+          "nali",
+          "qingwen",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L02",
+        "kind": "object",
+        "reference": "E05.L02",
+        "prerequisites": [
+          "cesuo",
+          "nali",
+          "qingwen",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L03",
+        "kind": "object",
+        "reference": "E05.L03",
+        "prerequisites": [
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L04",
+        "kind": "object",
+        "reference": "E05.L04",
+        "prerequisites": [
+          "nali-dem",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L08",
+        "kind": "object",
+        "reference": "E05.L08",
+        "prerequisites": [
+          "cesuo",
+          "nali",
+          "qingwen",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L10",
+        "kind": "object",
+        "reference": "E05.L10",
+        "prerequisites": [
+          "nali",
+          "rukou",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L11",
+        "kind": "object",
+        "reference": "E05.L11",
+        "prerequisites": [
+          "ma",
+          "yuan-far"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.C01",
+        "kind": "object",
+        "reference": "E05.C01",
+        "prerequisites": [
+          "cesuo",
+          "chukou",
+          "nali",
+          "qingwen",
+          "rukou",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G10",
+        "kind": "dialogue",
+        "reference": "G10",
+        "prerequisites": [
+          "bu",
+          "cesuo",
+          "hao",
+          "keqi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "qingwen",
+          "rukou",
+          "xiexie",
+          "yuan-far",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L05",
+        "kind": "object",
+        "reference": "E05.L05",
+        "prerequisites": [
+          "wang",
+          "xian",
+          "zai",
+          "zhizou",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L06",
+        "kind": "object",
+        "reference": "E05.L06",
+        "prerequisites": [
+          "wang",
+          "xian",
+          "you-dir",
+          "zai",
+          "zhizou",
+          "zou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L07",
+        "kind": "object",
+        "reference": "E05.L07",
+        "prerequisites": [
+          "wang",
+          "xian",
+          "zai",
+          "zhizou",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.L09",
+        "kind": "object",
+        "reference": "E05.L09",
+        "prerequisites": [
+          "chukou",
+          "nali",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.C02",
+        "kind": "object",
+        "reference": "E05.C02",
+        "prerequisites": [
+          "chukou",
+          "dao",
+          "qingwen",
+          "zenme",
+          "zou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.C03",
+        "kind": "object",
+        "reference": "E05.C03",
+        "prerequisites": [
+          "ma",
+          "wang",
+          "you-dir",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E05.C04",
+        "kind": "object",
+        "reference": "E05.C04",
+        "prerequisites": [
+          "wang",
+          "xian",
+          "you-dir",
+          "zai",
+          "zhizou",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G11",
+        "kind": "dialogue",
+        "reference": "G11",
+        "prerequisites": [
+          "bu",
+          "budui",
+          "chukou",
+          "dao",
+          "dui",
+          "keqi",
+          "ma",
+          "wang",
+          "xian",
+          "xiexie",
+          "you-dir",
+          "zai",
+          "zenme",
+          "zhizou",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:here",
+        "kind": "exercise",
+        "reference": "sense:here",
+        "prerequisites": [
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:where-exit",
+        "kind": "exercise",
+        "reference": "sense:where-exit",
+        "prerequisites": [
+          "chukou",
+          "zai-loc",
+          "nali"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:straight-left",
+        "kind": "exercise",
+        "reference": "sense:straight-left",
+        "prerequisites": [
+          "xian",
+          "zhizou",
+          "zai",
+          "wang",
+          "zuo-dir",
+          "zou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E05.C01",
+        "kind": "exercise",
+        "reference": "produce:E05.C01",
+        "prerequisites": [
+          "cesuo",
+          "chukou",
+          "nali",
+          "qingwen",
+          "rukou",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E05.C02",
+        "kind": "exercise",
+        "reference": "produce:E05.C02",
+        "prerequisites": [
+          "chukou",
+          "dao",
+          "qingwen",
+          "zenme",
+          "zou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:route:right",
+        "kind": "exercise",
+        "reference": "route:right",
+        "prerequisites": [
+          "xian",
+          "zhizou",
+          "zai",
+          "wang",
+          "you-dir",
+          "zou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M09:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M09:hanzi-meaning",
+        "prerequisites": [
+          "cesuo",
+          "chukou",
+          "rukou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M10:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M10:hanzi-meaning",
+        "prerequisites": [
+          "zuo-dir",
+          "you-dir",
+          "zhizou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E05.L05",
+        "kind": "writing",
+        "reference": "write:E05.L05",
+        "prerequisites": [
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E05.L06",
+        "kind": "writing",
+        "reference": "write:E05.L06",
+        "prerequisites": [
+          "you-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L02",
+        "kind": "object",
+        "reference": "E06.L02",
+        "prerequisites": [
+          "da-ride",
+          "dao",
+          "jichang",
+          "na",
+          "tiao",
+          "xian-line",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L05",
+        "kind": "object",
+        "reference": "E06.L05",
+        "prerequisites": [
+          "chezhan",
+          "nali",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L10",
+        "kind": "object",
+        "reference": "E06.L10",
+        "prerequisites": [
+          "jichang",
+          "ma",
+          "wo",
+          "xiache",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L11",
+        "kind": "object",
+        "reference": "E06.L11",
+        "prerequisites": [
+          "er",
+          "fenzhong",
+          "shi-number",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.C01",
+        "kind": "object",
+        "reference": "E06.C01",
+        "prerequisites": [
+          "chezhan",
+          "da-ride",
+          "dao",
+          "hong",
+          "jichang",
+          "lan",
+          "na",
+          "qingwen",
+          "tiao",
+          "xian-line",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.C02",
+        "kind": "object",
+        "reference": "E06.C02",
+        "prerequisites": [
+          "duojiu",
+          "er",
+          "fenzhong",
+          "shi-number",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.C03",
+        "kind": "object",
+        "reference": "E06.C03",
+        "prerequisites": [
+          "chezhan",
+          "dao",
+          "jichang",
+          "le"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.C04",
+        "kind": "object",
+        "reference": "E06.C04",
+        "prerequisites": [
+          "chezhan",
+          "jichang",
+          "na",
+          "xiache",
+          "zai-loc",
+          "zhan",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G12",
+        "kind": "dialogue",
+        "reference": "G12",
+        "prerequisites": [
+          "bu",
+          "chezhan",
+          "da-ride",
+          "dao",
+          "dui",
+          "duojiu",
+          "er",
+          "fenzhong",
+          "hao",
+          "hong",
+          "keqi",
+          "le",
+          "ma",
+          "na",
+          "shi-number",
+          "tiao",
+          "wo",
+          "xiache",
+          "xian-line",
+          "xiexie",
+          "yao",
+          "yi",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L01",
+        "kind": "object",
+        "reference": "E06.L01",
+        "prerequisites": [
+          "fandian",
+          "qu",
+          "wo",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L03",
+        "kind": "object",
+        "reference": "E06.L03",
+        "prerequisites": [
+          "jichengche",
+          "wo",
+          "yao",
+          "zuo-ride"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L04",
+        "kind": "object",
+        "reference": "E06.L04",
+        "prerequisites": [
+          "jieyun",
+          "ma",
+          "piao",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L06",
+        "kind": "object",
+        "reference": "E06.L06",
+        "prerequisites": [
+          "da-ride",
+          "dao",
+          "jichang",
+          "na",
+          "tiao",
+          "xian-line",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L08",
+        "kind": "object",
+        "reference": "E06.L08",
+        "prerequisites": [
+          "jieyun",
+          "ma",
+          "piao",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L09",
+        "kind": "object",
+        "reference": "E06.L09",
+        "prerequisites": [
+          "na",
+          "xiache",
+          "zai-loc",
+          "zhan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G13",
+        "kind": "dialogue",
+        "reference": "G13",
+        "prerequisites": [
+          "bu",
+          "chezhan",
+          "hao",
+          "jichang",
+          "jieyun",
+          "keqi",
+          "keyi",
+          "ma",
+          "na",
+          "nali",
+          "nali-dem",
+          "ni",
+          "piao",
+          "qu",
+          "shi",
+          "wo",
+          "xiache",
+          "xiexie",
+          "yao",
+          "zai-loc",
+          "zhan",
+          "zhe",
+          "zuo-ride"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L12",
+        "kind": "object",
+        "reference": "E06.L12",
+        "prerequisites": [
+          "jichengche",
+          "wo",
+          "yao",
+          "zuo-ride"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G14A",
+        "kind": "dialogue",
+        "reference": "G14A",
+        "prerequisites": [
+          "bu",
+          "hao",
+          "jichengche",
+          "keqi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "xiexie",
+          "yuan-far",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.L07",
+        "kind": "object",
+        "reference": "E06.L07",
+        "prerequisites": [
+          "fandian",
+          "qu",
+          "wo",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E06.C05",
+        "kind": "object",
+        "reference": "E06.C05",
+        "prerequisites": [
+          "qing",
+          "tingche",
+          "xiexie",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G14",
+        "kind": "dialogue",
+        "reference": "G14",
+        "prerequisites": [
+          "bu",
+          "dao",
+          "dui",
+          "fandian",
+          "hao",
+          "keqi",
+          "ma",
+          "ni",
+          "qing",
+          "qu",
+          "tingche",
+          "wo",
+          "xiexie",
+          "yao",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:which-line",
+        "kind": "exercise",
+        "reference": "sense:which-line",
+        "prerequisites": [
+          "dao",
+          "jichang",
+          "yao",
+          "da-ride",
+          "na",
+          "yi",
+          "tiao",
+          "xian-line"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:blue-line",
+        "kind": "exercise",
+        "reference": "sense:blue-line",
+        "prerequisites": [
+          "lan",
+          "xian-line"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:airport-exit-confirm",
+        "kind": "exercise",
+        "reference": "sense:airport-exit-confirm",
+        "prerequisites": [
+          "wo",
+          "zai-loc",
+          "jichang",
+          "xiache",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:airport-exit",
+        "kind": "exercise",
+        "reference": "sense:airport-exit",
+        "prerequisites": [
+          "zai-loc",
+          "jichang",
+          "xiache"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:arrived-airport",
+        "kind": "exercise",
+        "reference": "sense:arrived-airport",
+        "prerequisites": [
+          "dao",
+          "jichang",
+          "le"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:taxi",
+        "kind": "exercise",
+        "reference": "sense:taxi",
+        "prerequisites": [
+          "wo",
+          "yao",
+          "zuo-ride",
+          "jichengche"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:station-far",
+        "kind": "exercise",
+        "reference": "sense:station-far",
+        "prerequisites": [
+          "chezhan",
+          "yuan-far",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E06.C01",
+        "kind": "exercise",
+        "reference": "produce:E06.C01",
+        "prerequisites": [
+          "chezhan",
+          "da-ride",
+          "dao",
+          "hong",
+          "jichang",
+          "lan",
+          "na",
+          "qingwen",
+          "tiao",
+          "xian-line",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E06.C02",
+        "kind": "exercise",
+        "reference": "produce:E06.C02",
+        "prerequisites": [
+          "duojiu",
+          "er",
+          "fenzhong",
+          "shi-number",
+          "yao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E06.C05",
+        "kind": "exercise",
+        "reference": "produce:E06.C05",
+        "prerequisites": [
+          "qing",
+          "tingche",
+          "xiexie",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:duration20",
+        "kind": "exercise",
+        "reference": "value:duration20",
+        "prerequisites": [
+          "yao",
+          "er",
+          "shi-number",
+          "fenzhong"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M11:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M11:hanzi-meaning",
+        "prerequisites": [
+          "jieyun",
+          "chezhan",
+          "jichang",
+          "fandian",
+          "jichengche"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M12:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M12:hanzi-meaning",
+        "prerequisites": [
+          "piao",
+          "xiache",
+          "qu",
+          "dao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E06.L01",
+        "kind": "writing",
+        "reference": "write:E06.L01",
+        "prerequisites": [
+          "qu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E06.L02",
+        "kind": "writing",
+        "reference": "write:E06.L02",
+        "prerequisites": [
+          "dao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L01",
+        "kind": "object",
+        "reference": "E07.L01",
+        "prerequisites": [
+          "wo",
+          "you",
+          "yuding"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L02",
+        "kind": "object",
+        "reference": "E07.L02",
+        "prerequisites": [
+          "fangjian",
+          "lou",
+          "san",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L03",
+        "kind": "object",
+        "reference": "E07.L03",
+        "prerequisites": [
+          "de",
+          "gei",
+          "huzhao",
+          "kan",
+          "keyi",
+          "ma",
+          "nin",
+          "wo",
+          "yixia"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L04",
+        "kind": "object",
+        "reference": "E07.L04",
+        "prerequisites": [
+          "ji",
+          "wan-night",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L05",
+        "kind": "object",
+        "reference": "E07.L05",
+        "prerequisites": [
+          "ji",
+          "wan-night",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L06",
+        "kind": "object",
+        "reference": "E07.L06",
+        "prerequisites": [
+          "de",
+          "fangka",
+          "nin",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L09",
+        "kind": "object",
+        "reference": "E07.L09",
+        "prerequisites": [
+          "fangjian",
+          "lou",
+          "san",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.C01",
+        "kind": "object",
+        "reference": "E07.C01",
+        "prerequisites": [
+          "wo",
+          "you",
+          "yuding"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.C02",
+        "kind": "object",
+        "reference": "E07.C02",
+        "prerequisites": [
+          "de",
+          "gei",
+          "huzhao",
+          "kan",
+          "keyi",
+          "ma",
+          "nin",
+          "wo",
+          "yixia"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.C03",
+        "kind": "object",
+        "reference": "E07.C03",
+        "prerequisites": [
+          "ji",
+          "liang",
+          "wan-night",
+          "wo",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G15",
+        "kind": "dialogue",
+        "reference": "G15",
+        "prerequisites": [
+          "anna",
+          "bu",
+          "chenghu",
+          "de",
+          "fangjian",
+          "fangka",
+          "gei",
+          "hao",
+          "huzhao",
+          "ji",
+          "jiao",
+          "kan",
+          "keqi",
+          "keyi",
+          "liang",
+          "lou",
+          "ma",
+          "ni",
+          "nin",
+          "qingwen",
+          "san",
+          "shi",
+          "wan-night",
+          "wo",
+          "xiexie",
+          "yixia",
+          "you",
+          "yuding",
+          "zai-loc",
+          "zenme",
+          "zhe",
+          "zheli",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L10",
+        "kind": "object",
+        "reference": "E07.L10",
+        "prerequisites": [
+          "fangka",
+          "huan",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L11",
+        "kind": "object",
+        "reference": "E07.L11",
+        "prerequisites": [
+          "fangka",
+          "huai",
+          "le"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.C04",
+        "kind": "object",
+        "reference": "E07.C04",
+        "prerequisites": [
+          "de",
+          "fangka",
+          "huai",
+          "le",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G16",
+        "kind": "dialogue",
+        "reference": "G16",
+        "prerequisites": [
+          "bu",
+          "de",
+          "duibuqi",
+          "fangka",
+          "hao",
+          "huai",
+          "huan",
+          "keqi",
+          "keyi",
+          "le",
+          "ma",
+          "ni",
+          "nin",
+          "shi",
+          "xiexie",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L07",
+        "kind": "object",
+        "reference": "E07.L07",
+        "prerequisites": [
+          "meiyou",
+          "reshui"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E07.L08",
+        "kind": "object",
+        "reference": "E07.L08",
+        "prerequisites": [
+          "ma",
+          "wanglu",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G17",
+        "kind": "dialogue",
+        "reference": "G17",
+        "prerequisites": [
+          "bu",
+          "duibuqi",
+          "fangjian",
+          "hao",
+          "huan",
+          "keqi",
+          "keyi",
+          "ma",
+          "meiyou",
+          "neng",
+          "ni",
+          "reshui",
+          "shangwang",
+          "wanglu",
+          "xiexie",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G18",
+        "kind": "dialogue",
+        "reference": "G18",
+        "prerequisites": [
+          "baifan",
+          "bei",
+          "bu",
+          "hao",
+          "he",
+          "keqi",
+          "ma",
+          "ni",
+          "shenme",
+          "shui",
+          "wan-bowl",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:where-room",
+        "kind": "exercise",
+        "reference": "sense:where-room",
+        "prerequisites": [
+          "fangjian",
+          "zai-loc",
+          "nali"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:have-hot-water",
+        "kind": "exercise",
+        "reference": "sense:have-hot-water",
+        "prerequisites": [
+          "you",
+          "reshui",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E07.C01",
+        "kind": "exercise",
+        "reference": "produce:E07.C01",
+        "prerequisites": [
+          "wo",
+          "you",
+          "yuding"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E07.C03",
+        "kind": "exercise",
+        "reference": "produce:E07.C03",
+        "prerequisites": [
+          "ji",
+          "liang",
+          "wan-night",
+          "wo",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E07.C04",
+        "kind": "exercise",
+        "reference": "produce:E07.C04",
+        "prerequisites": [
+          "de",
+          "fangka",
+          "huai",
+          "le",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M13:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M13:hanzi-meaning",
+        "prerequisites": [
+          "fangjian",
+          "huzhao",
+          "fangka",
+          "lou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M14:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M14:hanzi-meaning",
+        "prerequisites": [
+          "reshui",
+          "wanglu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L03",
+        "kind": "object",
+        "reference": "E08.L03",
+        "prerequisites": [
+          "dian-clock",
+          "ji",
+          "le",
+          "xianzai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L04",
+        "kind": "object",
+        "reference": "E08.L04",
+        "prerequisites": [
+          "dian-clock",
+          "jiu",
+          "kaimen",
+          "shangwu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L05",
+        "kind": "object",
+        "reference": "E08.L05",
+        "prerequisites": [
+          "dian-clock",
+          "guanmen",
+          "liu",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L07",
+        "kind": "object",
+        "reference": "E08.L07",
+        "prerequisites": [
+          "dian-clock",
+          "ji",
+          "kaimen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L08",
+        "kind": "object",
+        "reference": "E08.L08",
+        "prerequisites": [
+          "dian-clock",
+          "guanmen",
+          "ji"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.C01",
+        "kind": "object",
+        "reference": "E08.C01",
+        "prerequisites": [
+          "dian-clock",
+          "guanmen",
+          "ji",
+          "kaimen",
+          "le",
+          "xianzai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.C02",
+        "kind": "object",
+        "reference": "E08.C02",
+        "prerequisites": [
+          "ban",
+          "dian-clock",
+          "keyi",
+          "liang",
+          "ma",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G19",
+        "kind": "dialogue",
+        "reference": "G19",
+        "prerequisites": [
+          "ban",
+          "bu",
+          "dian-clock",
+          "guanmen",
+          "hao",
+          "ji",
+          "jiu",
+          "kaimen",
+          "keqi",
+          "le",
+          "liang",
+          "liu",
+          "ni",
+          "shangwu",
+          "xianzai",
+          "xiawu",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L01",
+        "kind": "object",
+        "reference": "E08.L01",
+        "prerequisites": [
+          "haishi",
+          "jintian",
+          "mingtian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L02",
+        "kind": "object",
+        "reference": "E08.L02",
+        "prerequisites": [
+          "ban",
+          "dian-clock",
+          "jichang",
+          "liang",
+          "mingtian",
+          "qu",
+          "wo",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L09",
+        "kind": "object",
+        "reference": "E08.L09",
+        "prerequisites": [
+          "dao",
+          "de",
+          "jichang",
+          "mai",
+          "piao",
+          "wo",
+          "yao",
+          "yi",
+          "zhang"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.C04",
+        "kind": "object",
+        "reference": "E08.C04",
+        "prerequisites": [
+          "dao",
+          "de",
+          "jichang",
+          "mai",
+          "piao",
+          "wo",
+          "yao",
+          "yi",
+          "zhang"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G20",
+        "kind": "dialogue",
+        "reference": "G20",
+        "prerequisites": [
+          "ban",
+          "bu",
+          "dao",
+          "de",
+          "dian-clock",
+          "haishi",
+          "jichang",
+          "jintian",
+          "keqi",
+          "keyi",
+          "liang",
+          "ma",
+          "mai",
+          "mingtian",
+          "piao",
+          "qi",
+          "san",
+          "shangwu",
+          "shi-number",
+          "shuaka",
+          "wo",
+          "xiawu",
+          "xiexie",
+          "xing",
+          "yao",
+          "yi",
+          "yigong",
+          "yuan",
+          "zhang"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.L06",
+        "kind": "object",
+        "reference": "E08.L06",
+        "prerequisites": [
+          "ma",
+          "ni",
+          "shijian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E08.C03",
+        "kind": "object",
+        "reference": "E08.C03",
+        "prerequisites": [
+          "ban",
+          "dian-clock",
+          "jichang",
+          "liang",
+          "mingtian",
+          "qu",
+          "wo",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G21",
+        "kind": "dialogue",
+        "reference": "G21",
+        "prerequisites": [
+          "ban",
+          "bangmang",
+          "bu",
+          "dian-clock",
+          "dui",
+          "hao",
+          "jichang",
+          "keqi",
+          "keyi",
+          "liang",
+          "ma",
+          "mingtian",
+          "ni",
+          "qu",
+          "shijian",
+          "wo",
+          "xiawu",
+          "xiexie",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:today-now",
+        "kind": "exercise",
+        "reference": "sense:today-now",
+        "prerequisites": [
+          "xianzai",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E08.C01",
+        "kind": "exercise",
+        "reference": "produce:E08.C01",
+        "prerequisites": [
+          "dian-clock",
+          "guanmen",
+          "ji",
+          "kaimen",
+          "le",
+          "xianzai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E08.C02",
+        "kind": "exercise",
+        "reference": "produce:E08.C02",
+        "prerequisites": [
+          "ban",
+          "dian-clock",
+          "keyi",
+          "liang",
+          "ma",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E08.C03",
+        "kind": "exercise",
+        "reference": "produce:E08.C03",
+        "prerequisites": [
+          "ban",
+          "dian-clock",
+          "jichang",
+          "liang",
+          "mingtian",
+          "qu",
+          "wo",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E08.C04",
+        "kind": "exercise",
+        "reference": "produce:E08.C04",
+        "prerequisites": [
+          "dao",
+          "de",
+          "jichang",
+          "mai",
+          "piao",
+          "wo",
+          "yao",
+          "yi",
+          "zhang"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:t1430",
+        "kind": "exercise",
+        "reference": "value:t1430",
+        "prerequisites": [
+          "xiawu",
+          "liang",
+          "dian-clock",
+          "ban",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:value:t1530",
+        "kind": "exercise",
+        "reference": "value:t1530",
+        "prerequisites": [
+          "xiawu",
+          "san",
+          "dian-clock",
+          "ban",
+          "keyi",
+          "ma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M15:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M15:hanzi-meaning",
+        "prerequisites": [
+          "jintian",
+          "mingtian",
+          "shangwu",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M16:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M16:hanzi-meaning",
+        "prerequisites": [
+          "kaimen",
+          "guanmen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L03",
+        "kind": "object",
+        "reference": "E09.L03",
+        "prerequisites": [
+          "chongdianqi",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L07",
+        "kind": "object",
+        "reference": "E09.L07",
+        "prerequisites": [
+          "gui",
+          "le",
+          "tai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L08",
+        "kind": "object",
+        "reference": "E09.L08",
+        "prerequisites": [
+          "de",
+          "ma",
+          "pianyi",
+          "yidian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L09",
+        "kind": "object",
+        "reference": "E09.L09",
+        "prerequisites": [
+          "dianchi",
+          "ma",
+          "shi",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.C01",
+        "kind": "object",
+        "reference": "E09.C01",
+        "prerequisites": [
+          "de",
+          "ma",
+          "pianyi",
+          "xiao",
+          "yidian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.C02",
+        "kind": "object",
+        "reference": "E09.C02",
+        "prerequisites": [
+          "da",
+          "gui",
+          "le",
+          "tai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G22",
+        "kind": "dialogue",
+        "reference": "G22",
+        "prerequisites": [
+          "bai",
+          "bu",
+          "chongdianqi",
+          "de",
+          "dianchi",
+          "duoshao",
+          "fuqian",
+          "ge",
+          "gui",
+          "haishi",
+          "hao",
+          "keqi",
+          "le",
+          "ling",
+          "ma",
+          "ni",
+          "pianyi",
+          "qi",
+          "qian",
+          "qing",
+          "qingwen",
+          "saoma",
+          "shenme",
+          "shi",
+          "shi-number",
+          "tai",
+          "tingbudong",
+          "wo",
+          "xianjin",
+          "xiexie",
+          "xingdongzhifu",
+          "yao",
+          "yi",
+          "yidian",
+          "you",
+          "yuan",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L04",
+        "kind": "object",
+        "reference": "E09.L04",
+        "prerequisites": [
+          "da",
+          "daizi",
+          "ge",
+          "hen",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L05",
+        "kind": "object",
+        "reference": "E09.L05",
+        "prerequisites": [
+          "da",
+          "daizi",
+          "ge",
+          "hen",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L06",
+        "kind": "object",
+        "reference": "E09.L06",
+        "prerequisites": [
+          "de",
+          "ma",
+          "xiao",
+          "yidian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G23",
+        "kind": "dialogue",
+        "reference": "G23",
+        "prerequisites": [
+          "bu",
+          "da",
+          "daizi",
+          "de",
+          "ge",
+          "hao",
+          "hen",
+          "keqi",
+          "le",
+          "ma",
+          "tai",
+          "wo",
+          "xiao",
+          "xiexie",
+          "yao",
+          "yidian",
+          "you",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L01",
+        "kind": "object",
+        "reference": "E09.L01",
+        "prerequisites": [
+          "chongdian",
+          "gei",
+          "keyi",
+          "ma",
+          "shouji",
+          "wo",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E09.L02",
+        "kind": "object",
+        "reference": "E09.L02",
+        "prerequisites": [
+          "chongdian",
+          "gei",
+          "keyi",
+          "ma",
+          "shouji",
+          "wo",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G24",
+        "kind": "dialogue",
+        "reference": "G24",
+        "prerequisites": [
+          "bu",
+          "chongdian",
+          "chongdianqi",
+          "gei",
+          "hao",
+          "kan",
+          "keqi",
+          "keyi",
+          "ma",
+          "nali",
+          "ni",
+          "qing",
+          "shouji",
+          "wo",
+          "xiexie",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:price-hundred",
+        "kind": "exercise",
+        "reference": "sense:price-hundred",
+        "prerequisites": [
+          "yi",
+          "bai",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E09.C01",
+        "kind": "exercise",
+        "reference": "produce:E09.C01",
+        "prerequisites": [
+          "de",
+          "ma",
+          "pianyi",
+          "xiao",
+          "yidian",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E09.C02",
+        "kind": "exercise",
+        "reference": "produce:E09.C02",
+        "prerequisites": [
+          "da",
+          "gui",
+          "le",
+          "tai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M17:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M17:hanzi-meaning",
+        "prerequisites": [
+          "da",
+          "xiao",
+          "gui",
+          "pianyi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M18:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M18:hanzi-meaning",
+        "prerequisites": [
+          "shouji",
+          "chongdianqi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E09.L05",
+        "kind": "writing",
+        "reference": "write:E09.L05",
+        "prerequisites": [
+          "da"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing:write:E09.L06",
+        "kind": "writing",
+        "reference": "write:E09.L06",
+        "prerequisites": [
+          "xiao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L05",
+        "kind": "object",
+        "reference": "E10.L05",
+        "prerequisites": [
+          "de",
+          "diu",
+          "huzhao",
+          "le",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L06",
+        "kind": "object",
+        "reference": "E10.L06",
+        "prerequisites": [
+          "bang",
+          "jiao",
+          "jingcha",
+          "qing",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.C01",
+        "kind": "object",
+        "reference": "E10.C01",
+        "prerequisites": [
+          "de",
+          "diu",
+          "huzhao",
+          "le",
+          "shouji",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.C03",
+        "kind": "object",
+        "reference": "E10.C03",
+        "prerequisites": [
+          "bang",
+          "jiao",
+          "jingcha",
+          "qing",
+          "wo",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G25",
+        "kind": "dialogue",
+        "reference": "G25",
+        "prerequisites": [
+          "bang",
+          "bangmang",
+          "bu",
+          "de",
+          "diu",
+          "dui",
+          "hao",
+          "huzhao",
+          "jiao",
+          "jingcha",
+          "keqi",
+          "keyi",
+          "le",
+          "ma",
+          "qing",
+          "wo",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L03",
+        "kind": "object",
+        "reference": "E10.L03",
+        "prerequisites": [
+          "bang",
+          "jiao",
+          "qing",
+          "wo",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L04",
+        "kind": "object",
+        "reference": "E10.L04",
+        "prerequisites": [
+          "duzi",
+          "tong",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.C02",
+        "kind": "object",
+        "reference": "E10.C02",
+        "prerequisites": [
+          "duzi",
+          "teng",
+          "tong",
+          "tou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G26",
+        "kind": "dialogue",
+        "reference": "G26",
+        "prerequisites": [
+          "bang",
+          "bangmang",
+          "bu",
+          "duzi",
+          "hao",
+          "jiao",
+          "keqi",
+          "keyi",
+          "ma",
+          "ni",
+          "qing",
+          "tong",
+          "wo",
+          "xiexie",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L01",
+        "kind": "object",
+        "reference": "E10.L01",
+        "prerequisites": [
+          "nali",
+          "yiyuan",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:object:E10.L02",
+        "kind": "object",
+        "reference": "E10.L02",
+        "prerequisites": [
+          "nali",
+          "yaoju",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:dialogue:G27",
+        "kind": "dialogue",
+        "reference": "G27",
+        "prerequisites": [
+          "bangmang",
+          "bu",
+          "hao",
+          "keqi",
+          "keyi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "tong",
+          "tou",
+          "wo",
+          "xiexie",
+          "yaoju",
+          "yiyuan",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:what-lost",
+        "kind": "exercise",
+        "reference": "sense:what-lost",
+        "prerequisites": [
+          "shenme",
+          "diu",
+          "le"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:passport",
+        "kind": "exercise",
+        "reference": "sense:passport",
+        "prerequisites": [
+          "huzhao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:phone-lost",
+        "kind": "exercise",
+        "reference": "sense:phone-lost",
+        "prerequisites": [
+          "wo",
+          "de",
+          "shouji",
+          "diu",
+          "le"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:pain-variant",
+        "kind": "exercise",
+        "reference": "sense:pain-variant",
+        "prerequisites": [
+          "wo",
+          "duzi",
+          "teng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:pharmacy-variant",
+        "kind": "exercise",
+        "reference": "sense:pharmacy-variant",
+        "prerequisites": [
+          "yaodian",
+          "zai-loc",
+          "nali-dem"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E10.C01",
+        "kind": "exercise",
+        "reference": "produce:E10.C01",
+        "prerequisites": [
+          "de",
+          "diu",
+          "huzhao",
+          "le",
+          "shouji",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E10.C02",
+        "kind": "exercise",
+        "reference": "produce:E10.C02",
+        "prerequisites": [
+          "duzi",
+          "teng",
+          "tong",
+          "tou",
+          "wo"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:produce:E10.C03",
+        "kind": "exercise",
+        "reference": "produce:E10.C03",
+        "prerequisites": [
+          "bang",
+          "jiao",
+          "jingcha",
+          "qing",
+          "wo",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:reply:doctor",
+        "kind": "exercise",
+        "reference": "reply:doctor",
+        "prerequisites": [
+          "qing",
+          "bang",
+          "wo",
+          "jiao",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M19:hanzi-meaning",
+        "kind": "matching",
+        "reference": "M19:hanzi-meaning",
+        "prerequisites": [
+          "yiyuan",
+          "yaoju",
+          "jingcha"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:no-problem",
+        "kind": "exercise",
+        "reference": "sense:no-problem",
+        "prerequisites": [
+          "meiguanxi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:exercise:sense:goodnight",
+        "kind": "exercise",
+        "reference": "sense:goodnight",
+        "prerequisites": [
+          "wanan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "prompt",
+          "resolution",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E02.L02",
+        "kind": "writing-recall",
+        "reference": "write:E02.L02",
+        "prerequisites": [
+          "shui"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E02.L03",
+        "kind": "writing-recall",
+        "reference": "write:E02.L03",
+        "prerequisites": [
+          "bei"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E03.L03",
+        "kind": "writing-recall",
+        "reference": "write:E03.L03",
+        "prerequisites": [
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E03.L06",
+        "kind": "writing-recall",
+        "reference": "write:E03.L06",
+        "prerequisites": [
+          "bai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E05.L05",
+        "kind": "writing-recall",
+        "reference": "write:E05.L05",
+        "prerequisites": [
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E05.L06",
+        "kind": "writing-recall",
+        "reference": "write:E05.L06",
+        "prerequisites": [
+          "you-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E06.L01",
+        "kind": "writing-recall",
+        "reference": "write:E06.L01",
+        "prerequisites": [
+          "qu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E06.L02",
+        "kind": "writing-recall",
+        "reference": "write:E06.L02",
+        "prerequisites": [
+          "dao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E09.L05",
+        "kind": "writing-recall",
+        "reference": "write:E09.L05",
+        "prerequisites": [
+          "da"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:writing-recall:write:E09.L06",
+        "kind": "writing-recall",
+        "reference": "write:E09.L06",
+        "prerequisites": [
+          "xiao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "writing",
+          "saved",
+          "complete"
+        ]
+      }
+    ],
+    "exerciseTypes": [
+      "sentence_meaning",
+      "communicative_text_production",
+      "structured_value",
+      "structured_route",
+      "contextual_reply_selection"
+    ],
+    "audio": "deferred; text evidence only"
   }
 }

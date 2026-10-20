@@ -4,6 +4,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseSync } from 'rolldown/utils';
 import { content } from '../src/languages/mandarin/content/index.ts';
+import { taiwan } from '../src/languages/mandarin/taiwan/course.ts';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -62,6 +63,21 @@ export function enumerate(base = root) {
       for(const match of source.matchAll(/>([^<]+)</g))if(match[1].trim())add(file,'html-text',normalized(match[1]),source.slice(0,match.index).split('\n').length);
       for(const match of source.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g))add(file,'html-attribute',match[2] ?? match[3] ?? match[4],source.slice(0,match.index).split('\n').length,{attribute:match[1]});
     } else throw new Error(`New source format needs an inventory adapter: ${file}`);
+  }
+  // Only the approved fields actually consumed by the Taiwan renderer. IDs and
+  // editorial QA metadata are not learner copy. Source hashing binds the entire
+  // canonical file; each displayed member has its own ledger decision.
+  if(base===root) {
+  const canon='docs/curriculum/china-travel/editorial/editorial.json';
+  sources[canon]=hash(readFileSync(resolve(base,canon),'utf8'));
+  const field=(id,key,value)=>{if(typeof value==='string'&&value.trim())add(canon,`taiwan:${id}:${key}`,value,id+'.'+key,{family:'taiwan-learning-content'});};
+  for(const w of taiwan.words)for(const k of ['hant','hans','de','note'])field(w.id,k,w[k]);
+  for(const o of taiwan.objects)for(const k of ['title','learningText'])field(o.id,k,o[k]);
+  for(const u of taiwan.utterances){for(const k of ['hant','hans','pinyinLexical','de','context'])field(u.id,k,u[k]);u.exploration.forEach((p,n)=>field(u.id,`exploration.${n}.gloss`,p.gloss));}
+  for(const d of taiwan.dialogues){for(const k of ['title','context'])field(d.id,k,d[k]);for(const [k,v]of Object.entries(d.roles))field(d.id,'role.'+k,v);field(d.id,'recap.question',d.recap.question);d.recap.expected.forEach((s,n)=>field(d.id,'recap.expected.'+n,s));}
+  for(const x of taiwan.exercises){for(const k of ['prompt','feedback'])field(x.id,k,x[k]);if(x.type==='sentence_meaning')for(const k of ['correct','incorrect'])x[k]?.forEach((s,n)=>field(x.id,k+'.'+n,s));if(x.type==='communicative_text_production')x.expected?.forEach((v,n)=>{if(v&&typeof v==='object')for(const k of ['hant','hans','pinyinLexical'])field(x.id,`expected.${n}.${k}`,v[k]);});}
+  for(const m of taiwan.matching.filter(m=>m.relation==='hanzi-meaning'))m.pairs.forEach((p,n)=>field(m.id,`pair.${n}.de`,p.de));
+  for(const w of taiwan.writing)field(w.id,'meaning',w.meaning);
   }
   for(const task of content.tasks) add('src/languages/mandarin/content/index.ts', `task-prompt:${task.id}`, task.prompt.de, task.id, {taskKind:task.kind});
   return {sources,entries:[...entries.values()].sort((a,b)=>a.id.localeCompare(b.id))};
