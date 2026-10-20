@@ -28389,6 +28389,41 @@
       },
       "qualityState": "needs_human_review",
       "generatedAt": "2026-10-20T11:17:18.737Z"
+    },
+    {
+      "id": "model:produce-E08.C02:natural",
+      "kind": "model",
+      "reference": "produce-E08.C02",
+      "variant": "natural",
+      "provider": "Amazon Polly",
+      "voice": "Zhiyu",
+      "engine": "neural",
+      "region": "eu-central-1",
+      "locale": "cmn-CN",
+      "sampleRate": 16000,
+      "format": "pcm",
+      "hant": "下午兩點半",
+      "hans": "下午两点半",
+      "toneNumbers": "xia4 wu3 liang3 dian3 ban4",
+      "surfaceToneNumbers": "xia4 wu3 liang3 dian3 ban4",
+      "ssml": "<speak><prosody rate=\"85%\"><phoneme alphabet=\"x-amazon-pinyin\" ph=\"xia4-wu3-liang3-dian3-ban4\">下午两点半</phoneme></prosody></speak>",
+      "path": "/audio/mandarin/tw-polly-model-produce-E08.C02-natural.wav",
+      "fingerprint": "6a64af9bcc035903d23c827526ee49e0e2ceec7308877c595c0b4c7a3e0c3b77",
+      "sha256": "64068b40ead9cda50cd4d78cf9173cf403aad19dec8750ffe026282a97a91402",
+      "technicalValidation": {
+        "status": "passed",
+        "scope": "PCM decode, duration, active signal and clipping; levels and margins are warnings. No acoustic or Mandarin-tone certification.",
+        "seconds": 1.4465625,
+        "sampleRate": 16000,
+        "rmsDbfs": -22.71141183088232,
+        "peakDbfs": -11.269627009336144,
+        "clippingRatio": 0,
+        "leadingSeconds": 0.12,
+        "trailingSeconds": 0.09656249999999988,
+        "warnings": []
+      },
+      "qualityState": "needs_human_review",
+      "generatedAt": "2026-10-20T11:34:55.678Z"
     }
   ]
 }

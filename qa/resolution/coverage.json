@@ -4129,11 +4129,12 @@
     }
   ],
   "sources": {
-    "src/languages/mandarin/taiwan/audio.ts": "a027bf1abb6ea96218e570cd8e5d129c0608cc3882d54dce6dca049f72ae79b5",
-    "src/languages/mandarin/taiwan/TaiwanAudio.tsx": "7686998f3ede1436e52368c1c71e55ed05235acdb08ef2b5cff875ee01b6637a",
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx": "d734995def687a2d089184c3003b35656f877ef574d37ac069be5813ada48634",
+    "src/languages/mandarin/taiwan/audio-bindings.ts": "e80d1b9d09eba2aab0228e93e291e4ea2423415036617598e9b167efc89d4d56",
+    "src/languages/mandarin/taiwan/audio.ts": "77bb4056463fa20317ef552f83c415320d007e48c759f8aa1605570300b450f5",
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx": "d67f798e530774f00ffcd1fe03fda68b683ea9e37f2901cf006d59e3f251cc47",
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx": "0877a3dbf264b593975e9f8859dd243e4e3b59ea838522db322bc20ebafacb08",
     "src/languages/mandarin/taiwan/course.ts": "4789a558592223bd66b9ad403874f37ee4ac0e8ce017ef8340fa45552f9e249a",
-    "src/languages/mandarin/taiwan/state.ts": "373e3bdea15c43d6d166960c69cb0e1f7761c51ee143b10c4a8652a1bbabf36e",
+    "src/languages/mandarin/taiwan/state.ts": "d292a13c28f453435e2c276c2499ccd12a02693899e57301d000a010dea6c2e5",
     "src/languages/mandarin/writing-targets.ts": "299bbcdfd4f258c2d51f24c1cf8694205fa1577ab2f2b5b4a9e6a7f2874d48c7",
     "src/languages/mandarin/components/MatchingExercise.tsx": "6ffa2bae6f931eda548df778d9eb2e91b5cb1af597ba473b9b5e20379475a1f2",
     "src/languages/mandarin/matching.ts": "f0d365f0ea4b511f2d52e1ec7ed8cb4d90b9d45f0e0ea4cb31c17dd550dba7cb",

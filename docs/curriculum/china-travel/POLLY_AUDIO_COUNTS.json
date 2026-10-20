@@ -1,5 +1,5 @@
 {
-  "status": "AWS audio integrated locally; no deployment or merge",
+  "status": "Four audio gaps corrected; release authorized",
   "objects": 134,
   "dialogues": 28,
   "utterances": 176,
@@ -9,13 +9,18 @@
   "deferredAudioMatching": 0,
   "writing": 10,
   "restorableDefinitions": 330,
-  "audioReferences": 516,
+  "audioReferences": 517,
   "audioWords": 164,
   "audioSentences": 352,
   "audioDialogues": 56,
-  "totalAudioFiles": 572,
-  "newWavBytes": 47084118,
+  "totalAudioFiles": 573,
+  "newWavBytes": 47130452,
   "sourceEditorialSha256": "a3a76c9943691bcdc59420da9a41b72cbf818134402341d26f25e1fc11cee7d7",
-  "manifestSha256": "596f1fa6304503623b6c91501484d9fbdbdbb20395594a4e8c01f66b1e2710b0",
-  "humanAcousticReview": "pending; no human or native certification claimed"
+  "manifestSha256": "3183a6478fcc91d4ca26e7ba472481bbfc82129966bc6e15a0aef84061b4d499",
+  "humanAcousticReview": "pending; no human or native certification claimed",
+  "audioProductionModels": 1,
+  "productionAudioCoverage": 33,
+  "explorationAudioCoverage": 614,
+  "contextualSentenceBindings": 113,
+  "isolatedWordBindings": 501
 }
