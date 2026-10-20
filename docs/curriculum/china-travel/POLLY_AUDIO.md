@@ -38,3 +38,8 @@ Die Audios sind 16-kHz-/16-bit-/Mono-PCM in WAV. Zugangsdaten bleiben außerhalb
 Befehle zur lokalen Reproduktion: `npm test`, `npm run build`, `npx playwright test --config playwright.taiwan.config.ts`; Dateiprüfung separat über `node scripts/validate-taiwan-audio.mjs`.
 
 Keine Veröffentlichung, kein Push, kein Deployment und kein Merge erfolgt.
+
+
+## Freigabe zur Veröffentlichung · 20. Oktober 2026
+
+Der Nutzer hat ausdrücklich bestätigt, dass keine Person für eine fachliche Audioabnahme verfügbar ist, und Merge sowie Veröffentlichung freigegeben. Die technisch geprüfte Hörfassung wird deshalb im bestehenden persönlichen Testangebot veröffentlicht. Eine menschliche/muttersprachliche Abnahme wird nicht behauptet; der dokumentierte Status `needs_human_review` bleibt erhalten. Diese Freigabe ersetzt keine sprachliche Zertifizierung und löst keine weitere redaktionelle Prüfschleife aus.
