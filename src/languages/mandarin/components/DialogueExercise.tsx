@@ -3,7 +3,7 @@ import {useEffect,useRef,useState} from 'react';
 import {dialogueDefinition,type DialogueState} from '../dialogue';
 import {itemMap} from '../content';
 import {AudioButton,stopReferenceAudio} from '../../../core/exercises/AudioButton';
-import {ContinueButton,PlaybackControl,ResponseComparison} from '../../../core/exercises/Controls';
+import {ContinueButton,PlaybackControl,ResponseComparison, PrimaryAction} from '../../../core/exercises/Controls';
 import {numberedToPinyin} from '../pinyin';
 export function DialogueExercise({state,script,disabled,onAction}:{state:DialogueState;script:'hant'|'hans';disabled:boolean;onAction:(action:'heard'|'draft'|'answer'|'next'|'response',answer?:string,turn?:number)=>Promise<void>}){
  const [answer,setAnswer]=useState(state.results[state.turn]?.answer??state.draft),[playing,setPlaying]=useState(false),[speaker,setSpeaker]=useState(''),[error,setError]=useState('');
@@ -39,7 +39,7 @@ export function DialogueExercise({state,script,disabled,onAction}:{state:Dialogu
    <AudioButton src={item.audio} emphasis="stimulus" onEnded={()=>void act('heard')}/>
    {!result?<form className="stepStack" onSubmit={e=>{e.preventDefault();(document.activeElement as HTMLElement)?.blur();void act('answer',answer);}}>
     <label className="fieldLabel">Auf Deutsch<input maxLength={180} value={answer} disabled={disabled} onChange={e=>{setAnswer(e.target.value);void act('draft',e.target.value);}} autoComplete="off"/></label>
-    <button type="submit" disabled={disabled||!state.heard||!answer.trim()}>Prüfen</button>
+    <PrimaryAction type="submit" disabled={disabled||!state.heard||!answer.trim()}>Prüfen</PrimaryAction>
    </form>:<>
     <div className="dialogueCorrection" role="status"><MeaningFeedback answer={result.answer} accepted={turn.answers} reference={item.meaning.de} itemId={item.id}/></div>
     {model(turn.itemId)}{next}

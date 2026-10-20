@@ -13,14 +13,15 @@ export function SpeakingPractice({ reference, audio, children, hasContext = !!ch
   const [practicing, setPracticing] = useState(false), [recorded, setRecorded] = useState(false);
   const interaction = useInteraction();
   const [contextOpen, setContextOpen] = useState(false);
+  const exampleAudio = audio && <div className="referenceAudio" role="group" aria-label="Beispiel anhören">{audio}</div>;
+  const media = allowPractice ? <Recorder referenceAudio={exampleAudio} onEvent={(type, detail) => {
+    if (type === 'recording_started') { setPracticing(true); setContextOpen(false); onStarted?.(); }
+    if (type === 'recording_completed_uncertain') setRecorded(true);
+    onEvent(type, detail);
+  }}/> : exampleAudio;
   return <section className={`speakingPractice ${compact || practicing ? 'isCondensed' : ''}`} data-ready-to-record={readyToRecord} data-phase={recorded ? 'review' : practicing ? 'practice' : 'reference'}>
-    <Resolution operation="encounter" resolved={allowPractice && readyToRecord && showContinue} parts={{reference: <div className="practiceReference"><Resolution operation="target" parts={{reference: <div className="referenceContent">{reference}</div>, audio: audio && <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio}</div>}}/></div>,
+    <Resolution operation="encounter" resolved={allowPractice && readyToRecord && showContinue} parts={{reference: <div className="practiceReference"><Resolution operation="target" parts={{reference: <div className="referenceContent">{reference}</div>, audio: media}}/></div>,
     enrichment: allowPractice ? hasContext && <details className="practiceContext" open={contextOpen} onToggle={e=>setContextOpen(e.currentTarget.open)}><summary>Hinweise zum Ausdruck</summary>{children}</details> : children,
-    practice: allowPractice && <Recorder onEvent={(type, detail) => {
-      if (type === 'recording_started') { setPracticing(true); setContextOpen(false); onStarted?.(); }
-      if (type === 'recording_completed_uncertain') setRecorded(true);
-      onEvent(type, detail);
-    }} />,
     next: allowPractice && showContinue && <div className="practiceNext"><ContinueButton type="button" className={recorded ? 'primaryButton' : 'secondaryButton'} disabled={disabled || interaction.busy} onClick={onNext}>Weiter</ContinueButton>
       {interaction.busy && <span className="muted">Beende zuerst die Aufnahme oder Wiedergabe.</span>}
     </div>,}}/>

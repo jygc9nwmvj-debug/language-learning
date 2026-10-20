@@ -125,7 +125,17 @@ summary::-webkit-details-marker { display: none; }summary:after { content: '›'
 details > p,details > .infoContent { padding: var(--space-1) 0 var(--space-3); font-size: var(--text-small); color: var(--ink-muted); max-width: 38rem; }
 .infoDisclosure > summary { width: var(--touch); height: var(--touch); display: flex; justify-content: center; align-items: center; padding: 10px; }.infoDisclosure > summary:after { content: none; }.infoDisclosure .infoContent { min-width: 0; }
 .recordingPanel { border-top: 1px solid var(--line); padding-top: var(--space-5); display: grid; gap: var(--space-2); }
-.recordingHeading { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: space-between; align-items: center; }.recordingHeading > strong { font-size: var(--text-small); font-weight: 500; color: var(--blue); }.recordingHeading > .infoDisclosure[open] { flex-basis: 100%; }
+.practiceMedia { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 24px; min-width: 0; }
+.speakingPractice .practiceMedia > .referenceAudio { flex: 0 1 auto; order: 0; }
+.recordingHeading { display: grid; grid-template-columns: 52px 44px; gap: var(--space-2); align-items: center; max-width: 100%; }
+.recordingHeading:has(.recordingInfo[open]),.practiceMedia > .ownRecording:has(.recordingInfo[open]) { flex-basis: 100%; }
+.recordingHeading:has(.recordingInfo[open]) { grid-template-columns: 52px 44px minmax(0,1fr); }
+.recordingInfo[open] { display: contents; }
+.recordingInfo > .infoContent { grid-column: 1 / -1; }
+.ownRecordingLabel { font-size: var(--text-small); font-weight: 500; color: var(--ink-muted); }
+.practiceMedia > .ownRecording { max-width: 100%; }
+.ownRecording .buttonRow { display: grid; grid-template-columns: 52px 52px 44px; align-items: center; gap: var(--space-2); }
+.ownRecording .buttonRow:has(.recordingInfo[open]) { grid-template-columns: 52px 52px 44px minmax(0,1fr); }
 .recordButton { min-height: var(--action-height); gap: var(--space-3); border-radius: var(--radius-control); background: transparent; color: var(--green); font-weight: 500; padding: var(--space-3) var(--space-2); }
 .recordButton.isRecording { background: var(--error-surface); color: var(--coral); }
 .recordButton.isRetake { min-height: var(--touch); width: var(--touch); padding: 10px; color: var(--ink-muted); }
@@ -196,6 +206,7 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .practiceReference .phraseForm,.attentionIntroduction[data-focus=connect] .practiceReference .attentionFocus { display: contents; }
 .practiceReference .pronunciationMeaning { order: 1; }
 .practiceReference .referenceAudio { order: 2; }
+.practiceReference > .recordingPanel { order: 2; }
 .practiceReference .unitExplanation { order: 3; }
 .speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .focusNote,.speakingPractice:has(.phraseForm[data-expanded=true]) .practiceContext .muted { font-size: var(--text-meta); }
 .practiceReference > .referenceContent > .utilityButton { justify-self: start; }
@@ -358,16 +369,24 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 @media (max-width: 359px) { .comparisonRow { grid-template-columns: 5.5rem minmax(0,1fr); } }
 
 .matchingExercise { display: grid; gap: var(--space-4); }
-.matchingBoard { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
-.matchingColumn { display: grid; gap: var(--space-3); align-content: start; }
-.matchingCell { border: 1px solid var(--line); border-radius: 4px; min-width: 0; padding: var(--space-2); }
-.matchingCell > button,.matchingCell .audioButton { min-height: 44px; width: 100%; }
-.matchingCell > button { background: transparent; color: var(--ink); padding: var(--space-2); overflow-wrap: anywhere; }
-.matchingCell button[lang=zh] { font-size: 1.65rem; }
-.matchingCell[data-selected=true] { border-color: var(--blue); outline: 1px solid var(--blue); }
-.matchingCell[data-wrong=true] { border-color: var(--error-ink); }
-.matchingCell[data-matched=true] { opacity: .6; }
-.matchingConfirmation { display: block; font-size: var(--text-small); color: var(--ink-muted); }
+.matchingBoard { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: repeat(var(--matching-count),minmax(96px,auto)); gap: 12px 16px; }
+.matchingColumn { display: grid; grid-row: 1 / -1; grid-template-rows: subgrid; min-width: 0; }
+.matchingCell { position: relative; display: grid; min-width: 0; border: 1px solid var(--line-strong); border-radius: 2px; background: var(--surface); }
+.matchingCell > button,.matchingCell .audioControl .audioButton { width: 100%; height: 100%; min-height: 94px; padding: 12px 10px 24px; border: 0; border-radius: 1px; background: transparent; color: var(--ink); font-size: 1.125rem; overflow-wrap: anywhere; opacity: 1; }
+.matchingCell .audioControl { width: 100%; justify-self: stretch; position: relative; }
+.matchingCell .audioControl > span { padding: 4px 8px; }
+.matchingCell .audioControl .audioButton:disabled { background: transparent; }
+.matchingCell .audioControl .audioButton:hover:not(:disabled) { background: transparent; }
+.matchingCell > button[lang=zh] { font: 400 2.5rem/1.2 var(--font-hanzi); }
+.matchingCell[data-selected=true] { border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); background: var(--success-surface); }
+.matchingCell[data-wrong=true] { border-color: var(--error-ink); background: var(--error-surface); }
+.matchingCell[data-matched=true] { background: var(--surface-quiet); }
+.matchingCell[data-matched=true] > button,.matchingCell[data-matched=true] .audioButton { color: var(--ink-muted); }
+.matchingConfirmation { position: absolute; bottom: 5px; inset-inline: 0; text-align: center; font-size: var(--text-meta); line-height: 1.2; color: var(--ink-muted); pointer-events: none; }
+.matchingMatched { display: flex; justify-content: center; color: var(--green); }
+.matchingMatched .controlIcon { width: 16px; height: 16px; }
+.matchingErrorMark { position: absolute; top: 5px; right: 5px; color: var(--error-ink); pointer-events: none; }
+.matchingErrorMark .controlIcon { width: 16px; height: 16px; }
 .matchingFeedback { min-height: 3em; margin: 0; }
 
 /* Mobile learning v2: shared visual viewport, fixed action area and internal exception scrolling. */
@@ -398,9 +417,6 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .viewportFlow .toneRow { min-height: 60px; padding: 4px; }
 .viewportFlow .toneLanguage strong { font-size: 1.5rem; }
 .viewportFlow .matchingExercise { gap: 10px; }
-.viewportFlow .matchingCell { padding: 4px; }
-.viewportFlow .matchingCell button[lang=zh] { font-size: 1.5rem; }
-.viewportFlow .matchingBoard,.viewportFlow .matchingColumn { gap: 8px; }
 .viewportFlow .matchingFeedback { min-height: 0; }
 .viewportFlow .responseActions { margin: 0; }
 .viewportFlow .dialogueHanzi { font: 400 clamp(1.5rem,6vw,2.5rem)/1.4 var(--font-hanzi); overflow-wrap: anywhere; }
@@ -418,7 +434,7 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .viewportFlow .responseActions[data-primary-dock],.viewportFlow .practiceNext[data-primary-dock] { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
 .viewportFlow .practiceNext[data-primary-dock] > span { display: none; }
 .viewportFlow input,.viewportFlow textarea { min-height: 44px; }
-.viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2rem,9vw,4rem) !important; }
+.viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2.75rem,12vw,4rem) !important; }
 .viewportFlow .speakingPractice:has(.phraseForm) .practiceReference { min-height: 0; }
 .viewportFlow .correctionVersions { white-space: pre-wrap; tab-size: 1; overflow-wrap: anywhere; display: grid; gap: 8px; }
 .correctionOriginal,.correctionAccepted { margin: 0; }
@@ -434,35 +450,62 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .toneExampleNavigation { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
 .toneExampleNavigation button { padding: 8px 4px; font-size: var(--text-meta); }
 .viewportFlow .toneComparison { margin-block: 0; }
-.viewportFlow .writingLocal { width: min(100%,300px,max(192px,calc(var(--learning-height,100dvh) - 376px))); }
+.viewportFlow .writingLocal { min-width: 0; max-width: 100%; width: min(100%,300px,max(192px,calc(var(--learning-height,100dvh) - 376px))); }
 .viewportFlow .writingIntro { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; }
 .viewportFlow .writingIntro h3 { font-size: 1.125rem; }
 .viewportFlow .writingIntro p { width: 100%; }
 .viewportFlow .writingOptions > summary { font-size: var(--text-meta); min-height: 32px; }
 .viewportFlow:has([data-task-complete=true]) > .skipButton { display: none; }
-.writingActionBar { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.writingActionBar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
 .writingActionBar[hidden] { display: none !important; }
 .viewportFlow .writingActionBar .writingControls { display: flex; gap: 0; }
 .viewportFlow .writingActionBar .writingControls .iconButton { width: 48px; padding-inline: 0; font-size: .6875rem; }
 .viewportFlow .writingActionBar > .textButton { font-size: .8125rem; padding: 8px 2px; }
-/* Shared icon-only media controls: visible button surfaces, without redundant captions. */
-.audioControl .audioButton,.audioControl[data-emphasis=stimulus] .audioButton,.audioControl[data-variant=slow] .audioButton,.recordButton,.recordButton.isRetake,.ownRecording .iconButton { width: 52px; height: 52px; min-width: 52px; min-height: 52px; padding: 11px; gap: 0; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); }
+/* Object actions: normal playback is prominent; slow playback stays subordinate. */
+.audioControl .audioButton,.audioControl[data-emphasis=stimulus] .audioButton,.audioControl[data-variant=slow] .audioButton,.recordButton,.recordButton.isRetake,.ownRecording .iconButton { width: 52px; height: 52px; min-width: 52px; min-height: 52px; padding: 11px; gap: 0; border: 0; border-radius: 50%; background: var(--surface-quiet); }
 .audioControl .controlIcon,.audioControl[data-emphasis=stimulus] .controlIcon,.audioControl[data-variant=slow] .controlIcon,.recordButton .controlIcon,.ownRecording .controlIcon { width: 28px; height: 28px; flex-basis: 28px; }
+.audioControl[data-emphasis=stimulus] .audioButton { width: 56px; height: 56px; min-width: 56px; min-height: 56px; }
+.audioControl[data-emphasis=stimulus] .controlIcon { width: 32px; height: 32px; flex-basis: 32px; }
+.audioControl[data-variant=slow] .audioButton { width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 10px; background: transparent; border: 1px solid var(--line-strong); }
+.audioControl[data-variant=slow] .controlIcon { width: 22px; height: 22px; flex-basis: 22px; }
 .audioControl[data-playing=true] .audioButton,.recordButton.isRecording { color: var(--error-ink); border-color: var(--error-ink); background: var(--error-surface); }
 .audioControl .audioButton:disabled { background: var(--surface-quiet); }
+.audioControl[data-variant=slow] .audioButton:disabled { background: transparent; }
 .audioControl .audioButton:hover:not(:disabled) { background: var(--surface-quiet); color: var(--blue); }
 .audioControl[data-playing=true] .audioButton:hover:not(:disabled) { background: var(--error-surface); color: var(--error-ink); }
 .audioControl[data-loading=true] .controlIcon,.recordButton[aria-busy=true] .controlIcon { animation: audioBusy 900ms linear infinite; }
 @keyframes audioBusy { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion:reduce) { .audioControl[data-loading=true] .controlIcon,.recordButton[aria-busy=true] .controlIcon { animation: none; } }
 .viewportFlow .recordingPanel { border-top: 0; }
-/* Primary actions and secondary tools remain recognizably different from learning text. */
-:where(.lessonShell:has(.viewportFlow)) .utilityButton,.viewportFlow .textButton { min-height: 48px; min-width: 48px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); text-decoration: none; }
-.viewportFlow .skipButton { min-height: 48px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); text-decoration: none; }
-.viewportFlow .infoDisclosure > summary { width: 48px; height: 48px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-quiet); }
+/* Context/help is visually quieter than object actions, with full touch targets. */
+:where(.lessonShell:has(.viewportFlow)) .utilityButton:not(.iconButton),.viewportFlow .textButton { min-height: 44px; min-width: 44px; padding: 8px 6px; border: 0; border-radius: 0; background: transparent; font-size: .875rem; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; }
+.viewportFlow .skipButton { min-height: 44px; padding: 8px 6px; border: 0; border-radius: 0; background: transparent; text-decoration: underline; }
+.viewportFlow .infoDisclosure > summary { width: 44px; height: 44px; border: 0; border-radius: 0; background: transparent; }
+.lessonShell:has(.viewportFlow) .sessionTools .iconButton { min-width: 44px; min-height: 44px; border: 0; border-radius: 0; background: transparent; }
 .lessonShell:has(.viewportFlow) .sessionTools { gap: 8px; }
-.viewportFlow .audioButton,.viewportFlow .recordButton,.viewportFlow .ownRecording .iconButton { min-height: 52px; min-width: 52px; }
-.viewportFlow .matchingCell .audioButton { width: 100%; }
+.viewportFlow .recordButton,.viewportFlow .ownRecording .iconButton { min-height: 52px; min-width: 52px; }
 .viewportFlow .toneExampleNavigation button { min-height: 48px; padding: 8px 12px; }
-.viewportFlow .continueButton,.viewportFlow button[data-primary-dock],.viewportFlow .responseActions > button[type=submit] { min-height: 56px; padding: 12px 24px; border: 1px solid var(--green); border-radius: 8px; background: var(--green); color: var(--surface); font-size: 1.125rem; font-weight: 600; justify-content: center; }
-.viewportFlow .continueButton:disabled { background: var(--green); color: var(--surface); }
+/* Open primary action: text and solid arrow are one button, including native submit. */
+button.primaryAction { min-height: 60px; min-width: 44px; max-width: 100%; padding: 2px 0; gap: 12px; border: 0; border-radius: 0; background: transparent; color: var(--green); font-size: 1.25rem; font-weight: 500; justify-content: flex-start; text-align: left; }
+.primaryActionLabel { min-width: 0; overflow-wrap: anywhere; }
+.primaryActionArrow { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; flex: 0 0 56px; border-radius: 50%; background: var(--green); color: var(--surface); }
+.primaryActionArrow .controlIcon { width: 26px; height: 26px; flex-basis: 26px; }
+button.primaryAction:disabled { background: transparent; color: var(--green); }
+@media (hover:hover) { button.primaryAction:hover:not(:disabled) { background: transparent; filter: none; }.primaryAction:hover:not(:disabled) .primaryActionArrow { background: var(--blue); } }
+@media (forced-colors:active) { .primaryActionArrow { border: 1px solid ButtonText; } }
+/* One content axis for header, learning object and actions at every viewport width. */
+.lessonShell:has(.viewportFlow) .lessonHeader { width: min(calc(100% - 8px),672px); }
+.viewportFlow [data-primary-dock] { left: max(20px,env(safe-area-inset-left),calc((100% - 672px)/2)); right: auto; max-width: min(672px,calc(100% - 40px)); margin: 0 !important; }
+.viewportFlow .responseActions[data-primary-dock],.viewportFlow .practiceNext[data-primary-dock] { width: min(672px,calc(100% - 40px)); }
+.viewportFlow input:focus-visible,.viewportFlow textarea:focus-visible { outline-offset: -2px; }
+.viewportFlow .fieldLabel { gap: 8px; }
+.viewportFlow .selfAssessmentActions[data-primary-dock] { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; }
+.viewportFlow .selfAssessmentActions > button { width: 100%; padding: 8px 12px; }
+.viewportFlow .numberSequence .comparisonRow { grid-template-columns: minmax(0,1fr); gap: 4px; }
+.viewportFlow .sequenceComparison { grid-template-columns: repeat(var(--sequence-count,3),minmax(0,1fr)); }
+.viewportFlow .numberSequence > .buttonRow:not(.responseActions) { display: grid; grid-template-columns: repeat(var(--sequence-count,3),minmax(0,1fr)); }
+.viewportFlow .numberSequence > .buttonRow:not(.responseActions) > button { padding: 8px; min-height: 56px; font: 400 2rem/1.2 var(--font-hanzi); }
+.viewportFlow .miniTransfer .transferQuestion h3 { font-size: 1.125rem; }
+.viewportFlow .miniTransfer .transferPlaybackStatus:empty { display: none; }
+.lessonShell:has(.viewportFlow) .inspectionSurface { border: 0; padding-top: 0; }
+@media (min-width:600px) { .viewportFlow .selfAssessmentActions[data-primary-dock] { grid-template-columns: repeat(2,minmax(0,1fr)); }.viewportFlow .selfAssessmentActions > button:last-child:nth-child(3) { grid-column: 1 / -1; } }

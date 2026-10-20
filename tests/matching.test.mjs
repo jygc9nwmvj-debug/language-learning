@@ -72,3 +72,18 @@ test('last pair never independent even without an error',async()=>{
  const pairs=(await db.events.toArray()).filter(e=>e.type==='matching_pair').sort((a,b)=>a.detail.sequence-b.detail.sequence);
  assert(pairs.slice(0,-1).every(e=>e.detail.independent===true));assert.equal(pairs.at(-1).detail.independent,false);assert.equal(pairs.at(-1).detail.elimination,true);await db.delete();
 });
+test('exhaustive 20-set presentation counts derive per source card and run from existing pair events',()=>{
+ for(const set of matchingSets){
+  const [a,b]=set.items,run='view:'+set.id;
+  const start=ev(run,'matching_started',{setId:set.id,revision:set.revision,index:0,script:'hant',left:set.items.join(','),right:[...set.items].reverse().join(',')},'fixture',200);
+  const pair=(id,left,right,correct)=>ev(id,'matching_pair',{runId:run,sequence:Number(id.slice(-1)),left,right,correct},'fixture',201);
+  const events=[ev('old','matching_started',{...start.detail},'fixture',100),ev('old-error','matching_pair',{runId:'old',sequence:0,left:a,right:b,correct:false}),start];
+  assert.deepEqual(matchingState(events).errorsByLeft,{});
+  events.push(pair('p0',a,b,false));assert.deepEqual(matchingState(events).errorsByLeft,{[a]:1});
+  events.push(pair('p1',b,a,false));assert.deepEqual(matchingState(events).errorsByLeft,{[a]:1,[b]:1});
+  events.push(pair('p2',a,b,false));assert.deepEqual(matchingState(events).errorsByLeft,{[a]:2,[b]:1});
+  const restored=matchingState(JSON.parse(JSON.stringify(events)));assert.deepEqual(restored.errorsByLeft,{[a]:2,[b]:1});assert.equal(restored.attempts,3);
+  events.push(pair('p3',a,a,true));const corrected=matchingState(events);assert.deepEqual(corrected.matched,[a]);assert.deepEqual(corrected.errorsByLeft,{[a]:2,[b]:1});
+  assert(events.every(e=>!Object.hasOwn(e.detail,'errorsByLeft')),'presentation counts are not persisted as new event data');
+ }
+});

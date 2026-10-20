@@ -1,6 +1,6 @@
 import { Resolution } from '../../../core/exercises/Resolution';
 import type { SavedFeedback } from '../../../core/progress/db';
-import { ContinueButton, InfoDisclosure } from '../../../core/exercises/Controls';
+import {ContinueButton, InfoDisclosure, PrimaryAction} from '../../../core/exercises/Controls';
 import { IconButton } from '../../../core/exercises/Controls';
 import { optionalWritingEvent } from '../../../core/progress/optionalPractice';
 import { useEffect, useRef, useState } from 'react';
@@ -199,7 +199,7 @@ export function WritingExercise({ itemId, meaning, pinyin, recall, onEvent, onCo
     <p className={`writingStatus ${phase === 'success' ? 'writingSuccess' : ''}`} role="status" aria-live="polite">{status}</p>
     </>,assistance: phase === 'saved' && (lastResult.current?.assisted || assisted.current) && <p className="assistanceNote muted">Mit Vorlage oder Hilfe geübt.</p>,enrichment: <>
     {mode === 'paper' && writing && <div className="buttonRow">{!compared
-      ? <button type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', writingColor('--writing-outline')); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</button>
+      ? <PrimaryAction type="button" onClick={() => { setCompared(true); void writer.current?.updateColor('outlineColor', writingColor('--writing-outline')); callbacks.current.onEvent('writing_compare', detail()); }}>Ich habe geschrieben – vergleichen</PrimaryAction>
       : (['success', 'unsure', 'failure'] as const).map((result, i) => <button key={result} type="button" className="secondaryButton" disabled={disabled} onClick={() => finishAction.current(result)}>{[ui.secure, ui.unsure, ui.retry][i]}</button>)}
     </div>}
     <details className="writingOptions"><summary>Schreiboptionen</summary><div className="buttonRow writingSecondary">
@@ -208,7 +208,7 @@ export function WritingExercise({ itemId, meaning, pinyin, recall, onEvent, onCo
     </div></details>
     {optionalRepeat.current && phase !== 'saved' && <ContinueButton type="button" disabled={disabled} onClick={onNext}>Weiter</ContinueButton>}
     {optionalRepeat.current && <p className="muted">Freiwillige Wiederholung · ohne neue Lernbewertung.</p>}
-    {phase === 'save_error'  && <button type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</button>}
+    {phase === 'save_error'  && <PrimaryAction type="button" disabled={disabled} onClick={() => { if (lastResult.current) void save(lastResult.current); }}>Speichern erneut versuchen</PrimaryAction>}
     {mode === 'paper' && <p className="muted">Auf Papier schätzt du Form und Strichfolge selbst ein.{(!recall || !worksheetHasTarget) && <> Das Druckblatt bleibt die Übung für 好; 你 und 我 kannst du in freie Felder schreiben.</>}</p>}
     </>,next: phase === 'saved' && <div className="buttonRow"><ContinueButton type="button" disabled={disabled} onClick={onNext}>Weiter</ContinueButton></div>,}}/>
   </section>;

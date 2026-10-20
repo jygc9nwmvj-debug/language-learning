@@ -11,9 +11,13 @@ export function AnswerSummary({ value }: {value:string}) {
   return <div className="answerSummary"><span className="controlLabel">Deine Antwort</span><span>{value}</span></div>;
 }
 
+// One native hit target for the label and arrow; form/media ownership stays with callers.
+export function PrimaryAction({ children, className = '', type = 'button', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <button {...props} type={type} data-primary-action="true" className={`primaryAction ${className}`}><span className="primaryActionLabel">{children}</span><span className="primaryActionArrow"><Icon name="forward"/></span></button>;
+}
 // The same continuation affordance in every learning state; callbacks stay with callers.
 export function ContinueButton({ children = 'Weiter', className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button type="button" {...props} data-primary-action="true" className={`continueButton ${className}`}><span>{children}</span><Icon name="forward"/></button>;
+  return <PrimaryAction {...props} className={`continueButton ${className}`}>{children}</PrimaryAction>;
 }
 
 // Visual audio control shared by single clips and multi-turn playback. Media ownership stays with the caller.
@@ -23,5 +27,5 @@ export function PlaybackControl({ label, caption: _caption, icon = 'speaker', em
 
 // Only the representation just produced is compared. Both rows share an axis and type scale.
 export function ResponseComparison({ answer, reference }: { answer: ReactNode; reference: ReactNode }) {
-  return <div className="responseComparison"><div className="comparisonRow"><span className="controlLabel">Deine Antwort</span><div className="comparisonValue">{answer}</div></div><div className="comparisonRow correctComparison"><span className="controlLabel">Referenz</span><div className="comparisonValue">{reference}</div></div></div>;
+  return <div className="responseComparison"><div className="comparisonRow"><span className="controlLabel">Deine Antwort</span><div className="comparisonValue">{answer}</div></div><div className="comparisonRow correctComparison"><span className="controlLabel">Lösung</span><div className="comparisonValue">{reference}</div></div></div>;
 }

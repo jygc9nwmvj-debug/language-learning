@@ -2,7 +2,7 @@ import {MeaningFeedback} from './MeaningFeedback';
 import { FixedSlotAudio, SlotExampleNote } from './SlotReference';
 import { referenceRole } from '../reference-role';
 import { Resolution } from '../../../core/exercises/Resolution';
-import { ContinueButton } from '../../../core/exercises/Controls';
+import {ContinueButton, PrimaryAction} from '../../../core/exercises/Controls';
 import { InfoDisclosure } from '../../../core/exercises/Controls';
 import { PhraseForm, ExplanationText, LearningNote, hasLearningNote } from './PhraseForm';
 import { introductionForTask, introduced, introductionDetail } from '../introduction';
@@ -100,7 +100,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
 
       assistance: help && <p className="assistanceNote muted">Mit Hilfe beantwortet.</p>,
       reference: task.kind === 'read' ? <SpeakingPractice showContinue={false} disabled={disabled} onEvent={onEvent} onNext={onNext} reference={<>{form(!known || pinyinVisible,true)}{pronunciation}</>} audio={<><SlotExampleNote item={item}/>{audio()}{item.slowAudio && audio(true)}</>} /> : <div className={needsCorrection ? "reference correctionReference" : "reference resolutionReference"}><Resolution operation="target" parts={{reference: <>{form(false,true)}<p>{item.meaning.de}</p></>,
-        audio: task.kind === 'listen' ? <div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div> : <div className="referenceAudio" role="group" aria-label="Korrekte Zielphrase anhören">{item.slot ? <FixedSlotAudio item={item} script={script} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'fixed_components' })}/> : <><AudioButton src={item.audio} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'natural' })}/>{item.slowAudio && <AudioButton src={item.slowAudio} label={ui.slow} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'careful_slow' })}/>}</>}</div>,}}/></div>,
+        audio: task.kind === 'listen' ? <div className="referenceAudio" role="group" aria-label="Beispiel anhören">{audio()}{item.slowAudio && audio(true)}</div> : <div className="referenceAudio" role="group" aria-label="Korrekte Zielphrase anhören">{item.slot ? <FixedSlotAudio item={item} script={script} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'fixed_components' })}/> : <><AudioButton src={item.audio} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'natural' })}/>{item.slowAudio && <AudioButton src={item.slowAudio} label={ui.slow} onPlay={() => onEvent('optional_reference_audio', { optionalPractice: true, context: 'correction', variant: 'careful_slow' })}/>}</>}</div>,}}/></div>,
       next: <div className="responseActions"><ContinueButton type="button" disabled={disabled} onClick={onNext}>{ui.continue}</ContinueButton></div>,
     }}/>
   </div>;
@@ -112,9 +112,9 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       <label className="fieldLabel">{ui.answer}<input value={input} onChange={e => setInput(e.target.value)} autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} maxLength={160} readOnly={answered} disabled={disabled || !!retryEvidence} /></label>
       {task.kind === 'recall' && <><InfoDisclosure label="Zur Texteingabe"><p>{ui.typeHint}</p></InfoDisclosure>{task.assess?.toneNotation && !effectiveAssessment?.toneNotation && <p className="assessmentNote">Hier zählt der Ausdruck. Seine Tonnotation wird noch nicht bewertet.</p>}</>}
       </div>
-      {!answered && <div className="buttonRow responseActions"><button type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</button><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
+      {!answered && <div className="buttonRow responseActions"><PrimaryAction type="submit" disabled={disabled || !input.trim() || (task.kind === 'listen' && !heard)}>{ui.check}</PrimaryAction><button type="button" className="textButton" disabled={disabled || !!retryEvidence} onClick={reveal}>{ui.help}</button></div>}
     </form>
-    {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Referenz anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
+    {(help && !answered) && <>{reference}<div className="referenceAudio" role="group" aria-label="Beispiel anhören">{audio()}{item.slowAudio && audio(true)}</div></>}
 
   </div>;
 }

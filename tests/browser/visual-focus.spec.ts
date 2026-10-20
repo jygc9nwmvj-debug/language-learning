@@ -53,7 +53,7 @@ test('speaking UI groups reference controls and folds guidance only after record
   Object.assign(window,{MediaRecorder:UIRecorder});
  });
  await page.setViewportSize({width:390,height:844});await page.goto('/');await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/}).click();await finishAttention(page);
- const pair=page.getByRole('group',{name:'Referenz anhören'});await expect(pair.getByRole('button',{name:'Anhören',exact:true})).toBeVisible();await expect(pair.getByRole('button',{name:'Langsam gesprochen',exact:true})).toBeVisible();
+ const pair=page.getByRole('group',{name:'Beispiel anhören'});await expect(pair.getByRole('button',{name:'Anhören',exact:true})).toBeVisible();await expect(pair.getByRole('button',{name:'Langsam gesprochen',exact:true})).toBeVisible();
  await expect(page.locator('.practiceContext .focusNote')).toBeVisible();
  await page.getByRole('button',{name:'Aufnehmen · freiwillig',exact:true}).click();await expect(page.locator('.recordingPanel')).toHaveAttribute('data-state','recording');
  await expect(page.locator('.practiceContext')).not.toHaveAttribute('open','');await expect(page.locator('.practiceContext .focusNote')).toBeHidden();
@@ -76,7 +76,7 @@ test('audio stimulus is primary and reference help stays a coherent secondary pa
  await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toBeEnabled();
  await page.screenshot({path:`work/audio-final-${info.project.name}-stimulus.png`,fullPage:true});
  await page.getByRole('button',{name:'Hilfe zeigen',exact:true}).click();
- const pair=page.getByRole('group',{name:'Referenz anhören'});await expect(pair.locator('button')).toHaveCount(2);
+ const pair=page.getByRole('group',{name:'Beispiel anhören'});await expect(pair.locator('button')).toHaveCount(2);
  await page.setViewportSize({width:320,height:740});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
@@ -86,7 +86,7 @@ test('reference pair hierarchy and introduction caption remain semantic',async({
  await connect.click();
  await expect(page.locator('.pronunciationMeaning')).toBeVisible();
  await expect(page.getByText('So verwendest du den Ausdruck',{exact:true})).toHaveCount(0);
- const pair=page.getByRole('group',{name:'Referenz anhören'}), normal=pair.locator('[data-variant=normal] button'),slow=pair.getByRole('button',{name:'Langsam gesprochen',exact:true});
+ const pair=page.getByRole('group',{name:'Beispiel anhören'}), normal=pair.locator('[data-variant=normal] button'),slow=pair.getByRole('button',{name:'Langsam gesprochen',exact:true});
  expect((await normal.locator('svg').boundingBox())!.width).toBe(32);
  expect((await slow.locator('svg').boundingBox())!.width).toBe(22);
  for(const button of [normal,slow]){

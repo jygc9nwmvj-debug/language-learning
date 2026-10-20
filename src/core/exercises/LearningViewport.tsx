@@ -9,6 +9,8 @@ export function LearningViewport({children,identity}:{children:ReactNode;identit
   const resize=new ResizeObserver(()=>queue());
   function measure(){
    if(disposed)return;
+   // A previous-item view shares the shell. Only its visible region owns the dock.
+   if(!node.getClientRects().length){node.querySelector('[data-primary-dock]')?.removeAttribute('data-primary-dock');return;}
    const viewport=window.visualViewport,height=viewport?.height??innerHeight,offset=viewport?.offsetTop??0;
    const shell=node.closest<HTMLElement>('main')!;
    shell.style.setProperty('--learning-height',`${height}px`);shell.style.setProperty('--learning-top',`${offset}px`);

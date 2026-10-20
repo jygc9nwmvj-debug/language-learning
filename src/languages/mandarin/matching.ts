@@ -10,7 +10,7 @@ export const matchingSets:MatchingSet[]=[
  ...groups.flatMap(([group,items])=>(['form-meaning','audio-form'] as const).map(relation=>({id:`${group}:${relation}`,relation,items:[...items],revision:1}))),
  ...([['early-self',['wo','ni']],['early-you',['ni','hao']]] as [string,string[]][]).flatMap(([group,items])=>(['form-meaning','audio-form','pinyin-form'] as const).map(relation=>({id:`${group}:${relation}`,relation,items,revision:1}))),
 ];
-export type MatchingState={runId:string;setId:string;sessionId:string;index:number;script:'hant'|'hans';plannedAt:number;left:string[];right:string[];matched:string[];heard:string[];attempts:number;hadError:boolean;done:boolean;last?:{left:string;right:string;correct:boolean};};
+export type MatchingState={runId:string;setId:string;sessionId:string;index:number;script:'hant'|'hans';plannedAt:number;left:string[];right:string[];matched:string[];heard:string[];attempts:number;hadError:boolean;errorsByLeft:Record<string,number>;done:boolean;last?:{left:string;right:string;correct:boolean};};
 const regular=(events:ResearchEvent[])=>events.filter(e=>e.detail.optionalPractice!==true&&!e.type.startsWith('inspection_')&&!e.type.startsWith('optional_'));
 export function matchingEligible(set:MatchingSet,script:'hant'|'hans',events:ResearchEvent[]){
  const history=regular(events);
@@ -43,7 +43,10 @@ export function matchingState(events:ResearchEvent[],s?:Session):MatchingState|n
   if(!s&&done)continue;
   const pairs=own.filter(e=>e.type==='matching_pair').sort((a,b)=>Number(a.detail.sequence)-Number(b.detail.sequence));
   const last=pairs.at(-1);
-  return {runId:start.id,setId:set.id,sessionId:start.sessionId,index:Number(start.detail.index),script:start.detail.script==='hans'?'hans':'hant',plannedAt:start.at,left,right,matched:pairs.filter(e=>e.detail.correct===true).map(e=>String(e.detail.left)),heard:own.filter(e=>e.type==='matching_audio').map(e=>String(e.detail.item)),attempts:pairs.length,hadError:pairs.some(e=>e.detail.correct===false),done,last:last?{left:String(last.detail.left),right:String(last.detail.right),correct:last.detail.correct===true}:undefined};
+  // Presentation only: derive the per-card reveal stage from existing pair events.
+  const errorsByLeft:Record<string,number>={};
+  for(const pair of pairs)if(pair.detail.correct===false){const id=String(pair.detail.left);errorsByLeft[id]=(errorsByLeft[id]??0)+1;}
+  return {runId:start.id,setId:set.id,sessionId:start.sessionId,index:Number(start.detail.index),script:start.detail.script==='hans'?'hans':'hant',plannedAt:start.at,left,right,matched:pairs.filter(e=>e.detail.correct===true).map(e=>String(e.detail.left)),heard:own.filter(e=>e.type==='matching_audio').map(e=>String(e.detail.item)),attempts:pairs.length,hadError:pairs.some(e=>e.detail.correct===false),errorsByLeft,done,last:last?{left:String(last.detail.left),right:String(last.detail.right),correct:last.detail.correct===true}:undefined};
  }
  return null;
 }

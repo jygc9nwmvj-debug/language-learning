@@ -1,5 +1,5 @@
 // One geometric SVG vocabulary for transport controls; no font/emoji dependence.
-export type IconName = 'speaker' | 'turtle' | 'loading' | 'play' | 'pause' | 'stop' | 'replay' | 'mic' | 'close' | 'back' | 'forward' | 'info' | 'eye' | 'stroke' | 'paper' | 'print';
+export type IconName = 'speaker' | 'turtle' | 'loading' | 'play' | 'pause' | 'stop' | 'replay' | 'mic' | 'close' | 'check' | 'back' | 'forward' | 'info' | 'eye' | 'stroke' | 'paper' | 'print';
 export function Icon({ name }: { name: IconName }) {
   return <svg data-icon={name} className="controlIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
     {name === 'speaker' && <><path d="M3 9h4l5-4v14l-5-4H3Z"/><path d="M16 8a6 6 0 0 1 0 8M19 5a10 10 0 0 1 0 14"/></>}
@@ -18,5 +18,6 @@ export function Icon({ name }: { name: IconName }) {
     {name === 'paper' && <><path d="M6 3h8l4 4v14H6ZM14 3v5h4M9 12h6M9 16h6"/></>}
     {name === 'print' && <><path d="M7 8V3h10v5M7 17H4V8h16v9h-3M7 14h10v7H7Z"/><path d="M17 11h.01"/></>}
     {name === 'close' && <path d="m6 6 12 12M6 18 18 6" />}
+    {name === 'check' && <path d="m5 12 4 4L19 6" />}
   </svg>;
 }

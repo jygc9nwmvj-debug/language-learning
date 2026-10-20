@@ -1,5 +1,5 @@
 import { Resolution } from '../../../core/exercises/Resolution';
-import { AnswerSummary, ContinueButton, PlaybackControl } from '../../../core/exercises/Controls';
+import {AnswerSummary, ContinueButton, PlaybackControl, PrimaryAction} from '../../../core/exercises/Controls';
 import { useEffect, useRef, useState } from 'react';
 import { transferCase } from '../transfer-cases';
 import { itemMap } from '../content';
@@ -44,7 +44,7 @@ export function MiniTransfer({state,script,onSave,onNext,disabled}:{state:Transf
       <label className="srOnly" htmlFor="transfer-answer">{question}</label>
       <textarea aria-describedby="transfer-instruction" id="transfer-answer" rows={3} maxLength={500} placeholder="Deine Antwort" value={answer} disabled={disabled} onChange={e=>{const value=e.target.value;setAnswer(value);void persist({answer:value}).catch(()=>setError('Deine Eingabe konnte nicht gespeichert werden.'));}}/>
       <label className="transferKnown"><input type="checkbox" checked={!!state.knownBefore} disabled={disabled||playing} onChange={e=>void persist({knownBefore:e.target.checked}).catch(()=>setError('Bitte versuche es noch einmal.'))}/> Dieses Gespräch kenne ich schon.</label>
-      <div className="buttonRow"><button disabled={disabled||playing||!answer.trim()}>Antwort abgeben</button><button type="button" className="textButton" disabled={disabled||playing} onClick={()=>void submit()}>Ich weiß es nicht</button></div>
+      <div className="buttonRow responseActions"><PrimaryAction type="submit" disabled={disabled||playing||!answer.trim()}>Antwort abgeben</PrimaryAction><button type="button" className="textButton" disabled={disabled||playing} onClick={()=>void submit()}>Ich weiß es nicht</button></div>
     </form>}
     {state.phase==='result'&&<div className="transferResult">
       <Resolution operation="transfer" parts={{response: <AnswerSummary value={state.answer||'Ich weiß es nicht.'}/>,
