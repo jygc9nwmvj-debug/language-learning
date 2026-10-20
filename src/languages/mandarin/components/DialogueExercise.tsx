@@ -25,7 +25,7 @@ export function DialogueExercise({state,script,disabled,onAction}:{state:Dialogu
  const next=<ContinueButton disabled={disabled||playing} onClick={()=>{stopReferenceAudio();void act('next');}}>Weiter</ContinueButton>;
  const model=(id:string)=>{const i=itemMap.get(id)!;return <div className="dialogueModel"><p lang="zh" className="dialogueHanzi">{i[script]}</p><p className="pinyin">{numberedToPinyin(i.surfaceToneNumbers??i.toneNumbers)}</p><p>{i.meaning.de}</p></div>;};
  return <section className="dialogueExercise stepStack" data-dialogue-phase={state.phase}>
-  <p className="controlLabel">{dialogueDefinition.title}{state.phase==='turn'?` · ${state.turn+1}/${turns.length}`:''}</p>
+  <p className="controlLabel" hidden={state.phase!=='turn'}>{state.turn+1}/{turns.length}</p>
   {(state.phase==='listen'||state.phase==='revisit')&&<>
    <h2>{state.phase==='listen'?'Höre das ganze Gespräch.':'Höre das Gespräch noch einmal.'}</h2>
    {state.phase==='listen'&&<p>{dialogueDefinition.context}</p>}
@@ -51,7 +51,7 @@ export function DialogueExercise({state,script,disabled,onAction}:{state:Dialogu
     <div role="status" className="dialogueCorrection"><ResponseComparison answer={state.response.correct?itemMap.get(state.response.answer)![script]:<span className="correctionError">{itemMap.get(state.response.answer)![script]}</span>} reference={dialogueDefinition.response.accepted.map(id=>itemMap.get(id)![script]).join(' / ')}/><p>{state.response.correct?'Das passt zur Rückfrage.':'Die Rückfrage bezieht sich auf dein Befinden.'}</p></div>{next}
    </>}
   </>}
-  {state.phase==='complete'&&<><h2>Ein Gespräch verstehen</h2><p>Du hast die Aussagen und die Rückfrage im Gespräch bearbeitet.</p>{next}</>}
+  {state.phase==='complete'&&<><h2>Gespräch abgeschlossen.</h2>{next}</>}
   {error&&<p role="alert">{error}</p>}
  </section>;
 }

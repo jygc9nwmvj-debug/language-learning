@@ -33,6 +33,7 @@ Do not retrospectively upgrade old evidence. If an earlier report overclaimed, a
 - For a changed source, inspect its diff and text paths, classify new candidates and remove stale decisions, then update that source's reviewed hash. Source hashes intentionally also catch changed output routing, new imports, or reuse of old strings in new contexts. This is conservative and can require review after a non-text change.
 - Allowed functional classifications: `orientation`, `action`, `learning-content`, `feedback`, `necessary-system-information`, `redundant`. Internal identifiers are explicitly `non-display`; they are not invented UI copy. Development, unused, compatibility and suppressed sources remain separately accountable.
 - A reviewer must justify classifications. A green inventory check demonstrates that the current sources match the reviewed ledger; it does not machine-prove that every semantic decision was wise.
+- For retained headings and labels, naming a category such as `orientation` is insufficient. State what the learner would otherwise fail to understand in the actual screen, considering the instruction, layout and controls already present. A label that only names the exercise family or repeats the instruction is not justified merely because it could provide orientation in isolation.
 
 ## State / resolution coverage
 

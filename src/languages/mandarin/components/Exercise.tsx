@@ -91,7 +91,7 @@ export function Exercise({ task, script, name, setName, onEvent, onAttempt, onTo
       {!help ? <button type="button" className="utilityButton" onClick={reveal}>{ui.reveal}</button> : pronunciation}</>}
     audio={<><SlotExampleNote item={item}/>{audio()}{item.slowAudio && audio(true)}</>}>
     {item.learning && <LearningNote value={item.learning.note} script={script}/>}
-    {item.learning?.discovery && <details><summary>Eine kleine Entdeckung</summary><p><ExplanationText value={item.learning.discovery} script={script} /></p></details>}
+    {item.learning?.discovery && <details><summary>Sprachhinweis</summary><p><ExplanationText value={item.learning.discovery} script={script} /></p></details>}
     {item.slot === 'name' && <div className="namePractice"><label className="fieldLabel">{ui.name}<input maxLength={60} value={name} onChange={e => setName(e.target.value)} autoComplete="given-name" disabled={disabled} /></label><p className="personalSentence" lang="zh">{item[script]} {name || '…'}。</p><p className="muted">{ui.nameHint}</p></div>}
   </SpeakingPractice>;
   if (answered) return <div className="stepStack resolvedExercise responseExercise" data-task-complete="true" data-outcome={feedbackKind}>

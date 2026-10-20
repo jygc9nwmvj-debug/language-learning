@@ -46,3 +46,7 @@ Produktionsbuild einschließlich UI-Text-, Resolution-, Inhalts- und Typprüfung
 ## Integration
 
 Technisch bereit für die anschließende Einbindung sprachlich freigegebener Inhalte: vorhandene Einführung/Matching-Eignung, definierte Dialogturns und Antwortmengen sowie geprüfte bestehende Audioverweise werden benötigt. Es gibt aktuell eine Dialogdefinition, keinen ungeprüften automatischen Import des separaten Curriculum-Drafts und keine neue allgemeine Eligibility-/Distraktorarchitektur.
+
+## Nachprüfung der UI-Copy
+
+Der anschließende Auftrag zur gesamten regulären Oberfläche ist in [UI_COPY_REVIEW.md](UI_COPY_REVIEW.md) dokumentiert: redundante Modus-/Scaffold-Titel entfernt, konkrete Anweisungen und erforderliche Labels erhalten. Die beigefügten Ansichten zeigen diesen nachkorrigierten Stand. Kein Deployment.

@@ -38,7 +38,7 @@ for(const width of [320,390,1280])test(`text corrections preserve functional con
   if(task==='meet-nihao'||task==='d-meet-im-fine')await expect(page.locator('.practiceContext')).toHaveCount(0);
   else if(task==='d-meet-qing'){await expect(page.locator('.practiceContext')).toBeVisible();await expect(page.locator('.practiceContext')).toContainText('Es ist keine Antwort auf');}
   else if(task==='d-meet-what'){await expect(page.getByText(/Als Rückfrage: „Was/)).toBeVisible();}
-  else {await expect(page.getByText('Eine kleine Entdeckung',{exact:true})).toBeVisible();await page.getByText('Eine kleine Entdeckung',{exact:true}).click();}
+  else {await expect(page.getByText('Sprachhinweis',{exact:true})).toBeVisible();await page.getByText('Sprachhinweis',{exact:true}).click();}
   await capture(page,task,width,info.project.name);
  }
  await seed(page,'d-write-ren');await expect(page.locator('.writingExercise')).toBeVisible();await expect(page.locator('.lessonCard > h2')).toHaveCount(0);await expect(page.locator('.writingIntro')).toContainText('Erst zuschauen');await capture(page,'generic-writing',width,info.project.name);

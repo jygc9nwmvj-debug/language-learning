@@ -175,9 +175,9 @@ export function WritingExercise({ itemId, meaning, pinyin, recall, onEvent, onCo
   const comparisonTransform = HanziWriter.getScalingTransform(size, size, 15).transform;
   return <section className="stepStack writingExercise" data-character={model.character} data-scaffold={level.id} data-phase={phase} data-comparison={resultComparison ? 'visible' : 'hidden'} data-task-complete={phase === 'saved' || optionalRepeat.current}>
     <Resolution operation="writing" resolved={phase === 'saved'} assisted={!!(lastResult.current?.assisted || assisted.current)} parts={{reference: <>
-    <div className="writingIntro">{(!recall || phase === 'saved' || demo) && <h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : demo ? 'Erst zuschauen' : level.title}</h3>}{phase !== 'saved' && phase !== 'preview' && (demo ? <InfoDisclosure label="Hinweise zur Strichfolge"><p>{model.intro}</p></InfoDisclosure> : <p>{level.instruction}</p>)}</div>
+    <div className="writingIntro">{(phase === 'saved' || demo) && <h3>{phase === 'saved' ? mode === 'paper' ? 'Vorlage zum Vergleich' : 'Dein geschriebenes Zeichen' : 'Erst zuschauen'}</h3>}{phase !== 'saved' && phase !== 'preview' && (demo ? <InfoDisclosure label="Hinweise zur Strichfolge"><p>{model.intro}</p></InfoDisclosure> : <p>{level.instruction}</p>)}</div>
     <div className="writingLocal">
-    <div className="writingTargetCue" aria-label="Schreibziel"><span className="controlLabel">Schreibziel</span><span className="writingTargetValue"><strong>{meaning}</strong><span className="pinyin" lang="zh-Latn">{pinyin}</span></span></div>
+    <div className="writingTargetCue" aria-label="Schreibziel"><span className="writingTargetValue"><strong>{meaning}</strong><span className="pinyin" lang="zh-Latn">{pinyin}</span></span></div>
     <div className="writingSurface writingGrid" aria-label={demo ? 'Strichfolge' : 'Schreibfeld'}>
       <div className="hanziWriter" ref={target} style={{ pointerEvents: writing && mode === 'screen' && !disabled ? 'auto' : 'none' }} />
       <svg className="writingInk" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">

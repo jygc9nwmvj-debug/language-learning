@@ -56,7 +56,7 @@ for(const width of [320,390,1280]) {
    await capture(page,task+'-result',width,info.project.name);
   }
   for(const task of ['d-meet-im-german','d-meet-san']){
-   await seed(page,task);await expect(page.getByText('Ein kurzer Ausdruck für dein nächstes Gespräch.',{exact:true})).toHaveCount(0);const hero=page.locator('.practiceReference .hanziHero');const before=await hero.boundingBox();const disclosure=page.getByText('Eine kleine Entdeckung',{exact:true});await disclosure.click();expect(await hero.boundingBox()).toEqual(before);expect(before!.height).toBeLessThanOrEqual(await hero.evaluate(e=>parseFloat(getComputedStyle(e).fontSize)*1.6+24));await capture(page,task+'-discovery',width,info.project.name);await disclosure.click();
+   await seed(page,task);await expect(page.getByText('Ein kurzer Ausdruck für dein nächstes Gespräch.',{exact:true})).toHaveCount(0);const hero=page.locator('.practiceReference .hanziHero');const before=await hero.boundingBox();const disclosure=page.getByText('Sprachhinweis',{exact:true});await disclosure.click();expect(await hero.boundingBox()).toEqual(before);expect(before!.height).toBeLessThanOrEqual(await hero.evaluate(e=>parseFloat(getComputedStyle(e).fontSize)*1.6+24));await capture(page,task+'-discovery',width,info.project.name);await disclosure.click();
   }
   for(const correct of [false,true]){
    await seed(page,'d-sequence-123');const ids=taskMap.get('d-sequence-123')!.sequence!;

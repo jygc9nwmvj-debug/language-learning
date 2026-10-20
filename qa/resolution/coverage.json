@@ -4293,7 +4293,7 @@
     "src/core/exercises/LearningViewport.tsx": "15e4ba33c68f25ffd16a617993d787cf0b407a9c7b6485df9c8b09ae593a4267",
     "src/core/exercises/CorrectionVersions.tsx": "cf238396551f46b417123355586df0578795e9078d8131dcb5357fc293e6e6df",
     "src/languages/mandarin/components/MeaningFeedback.tsx": "af9ac7528020c63596f60a3fc6100400b28fa53c2f4c96097b342ab98af481f6",
-    "src/languages/mandarin/components/DialogueExercise.tsx": "d615155a0dc64140291ef4dcb118625e4aa6e30d543ccb49bbff11ff419dd135",
+    "src/languages/mandarin/components/DialogueExercise.tsx": "615a7930510da04db797dd7952db5fa19a9ff716135405dcde05614f049e1b43",
     "src/languages/mandarin/dialogue.ts": "5397648463e05359e54fc5a49bb123d2fccf166ce1afbafefe6d09d534edbd9a",
     "src/languages/mandarin/correction.ts": "f82579cb3bcb8fe43ba3fa2a266b6f550b6d2a1f449932d46f4e96a25a166239",
     "src/languages/mandarin/meaning.ts": "3461cf4bb906ff62edfbfd326c6f1cf4128d1b79f283916d2e585a29131bb0f8",
@@ -4302,10 +4302,10 @@
     "src/core/exercises/Controls.tsx": "87dd40fcc7979e7d87f6e1f0392e142db3cb85246aa3d474381b8b415ba88053",
     "src/languages/mandarin/reference-role.ts": "70f9ad865f11e21af4d337a72f68437dd8145ef97f788a52e1861757dd35503f",
     "src/languages/mandarin/components/SlotReference.tsx": "ed602aab2e33e9462c356d091ca01306828fe0e71d61c7d5755b6d17fc0762e1",
-    "src/languages/mandarin/components/Exercise.tsx": "3b29c3af11f9c0cb880015f1b2264a4be47999ac8610e91caefdbd514bac250c",
+    "src/languages/mandarin/components/Exercise.tsx": "5a2e3cb75fc4654a01ad61fc7912fcafa588f0594f56ba7783b21ecd8e45d352",
     "src/core/exercises/SpeakingPractice.tsx": "8c9e3abd0427cab243e2464b25ff4403f4d176b4ef08210cb9e25ff1c632743c",
-    "src/languages/mandarin/components/AttentionIntroduction.tsx": "e2c012229f7e2a1c37d9e543918e534e260874461ea15e1f18a50989bca75812",
-    "src/languages/mandarin/components/WritingExercise.tsx": "357a0d920b385cc6e6689c17eeb3cd11cd760f017ee583afde39dbed005d98ed",
+    "src/languages/mandarin/components/AttentionIntroduction.tsx": "e10aaeffb0fe2ca2b0bf0c9c900e3f45989c23a493437f250a1d604162a85046",
+    "src/languages/mandarin/components/WritingExercise.tsx": "187905050804ee8341109e01f46d9bff54847e2c69e98026cac1a9e188f68b59",
     "src/languages/mandarin/components/HybridRecall.tsx": "723620927ce1efebc1344c840263e89b2ecd56c3ef71eeea3b428035e3da53c2",
     "src/languages/mandarin/components/ToneLab.tsx": "ca10bb811f1c4a452dcc84627a98b2eb7d5d56871d26c0bdf8a55bba07c0ed9e",
     "src/core/audio/Recorder.tsx": "7329c5e2a172bc4815c99aaf66b51861b9a92404e48f434249028420a998e0a4",
@@ -4315,7 +4315,7 @@
     "src/languages/mandarin/components/ProductionFeedback.tsx": "236f00669b474dd1f221c4290c6d5616c4d2dbefae40077a32a7c88ae4073b5a",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
     "src/core/exercises/resolution-contract.ts": "1b3b4bf6186c3554c91a12ab11783eeee1f42123c0500c34ae025e259caaf012",
-    "src/app/LessonRunner.tsx": "4b1e35d7659d3186165071ca9ceabc68ac6dc70390b9ad279b6e33d3fb321526",
+    "src/app/LessonRunner.tsx": "b3d01594ed5e665a0078626dbac90a0b46dcb93088a9ff1236592525db9620f5",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
   }
 }

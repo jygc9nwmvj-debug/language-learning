@@ -22,7 +22,7 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
   async function play(automatic = false) {
     const audio = ref.current;
     if (!audio || captures > 0) return;
-    if (automatic && document.hidden) { setError('Zum Anhören auf Play tippen.'); return; }
+    if (automatic && document.hidden) { setError('Zum Anhören auf das Lautsprechersymbol tippen.'); return; }
     setLoading(true);stopReferenceAudio(); active = audio; audio.currentTime = 0; setError('');
     try {
       await audio.play();
@@ -31,7 +31,7 @@ export function AudioButton({ src, label = ui.listen, onPlay, autoPlay = false, 
     } catch (reason) {
       if (ref.current !== audio) return;
       setLoading(false);setPlaying(false); callbacks.current.onPlaybackChange?.(false);
-      setError(automatic && reason instanceof DOMException && reason.name === 'NotAllowedError' ? 'Zum Anhören auf Play tippen.' : ui.audioError);
+      setError(automatic && reason instanceof DOMException && reason.name === 'NotAllowedError' ? 'Zum Anhören auf das Lautsprechersymbol tippen.' : ui.audioError);
     }
   }
   useEffect(() => {
