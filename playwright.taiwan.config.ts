@@ -1,0 +1,2 @@
+import { defineConfig } from '@playwright/test';
+export default defineConfig({testDir:'./tests/browser',testMatch:'taiwan.spec.ts',timeout:45000,workers:1,use:{baseURL:'http://localhost:4186',headless:true,screenshot:'only-on-failure'},projects:[{name:'chrome',use:{browserName:'chromium',channel:'chrome'}},{name:'webkit',use:{browserName:'webkit'}}],webServer:{command:'npm run preview -- --host localhost --port 4186 --strictPort',url:'http://localhost:4186',reuseExistingServer:false}});

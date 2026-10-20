@@ -1,6 +1,6 @@
 # Lokale Design- und Bedienabnahme v2
 
-2026-10-20 · Arbeitsstand auf `feature/mobile-learning-v2`, ausgehend von `b25d913`. Kein Merge, Push oder Deployment. Die Buttonform **Offene Aktion** wurde gemeinsam ausgewählt und lokal umgesetzt. Die Sichtprüfung des resultierenden App-Stands durch den Nutzer ist noch offen; dieser Bericht ist keine Produktionsfreigabe.
+2026-10-20 · Umsetzung auf `feature/mobile-learning-v2`, ausgehend von `b25d913`. Die Buttonform **Offene Aktion** und der lokale App-Stand wurden vom Nutzer bestätigt. Anschließend wurden Abgleich mit aktuellem `main`, Commit, Main-Push und Deployment ausdrücklich freigegeben. Frühere lokale Grenzen in diesem Bericht dokumentieren die jeweiligen Zwischenstände; der folgende Integrationsnachtrag hält den Release-Abgleich fest.
 
 ## Gezielte Korrekturen
 
@@ -99,3 +99,11 @@ Der gezielte schmale Papier-Schreibvergleich zeigte einen horizontalen Überlauf
 **Gezielte Checks:** 16 Browserfälle bestanden: vier Zustandsdurchläufe, vier Hierarchie-/Mediengruppenfälle, vier gemeinsame Layout-/Inspektionsfälle und vier Audio-Matchingkärtchenfälle mit simulierten Medienereignissen. Geprüft wurden horizontale Passung, sichtbare Hauptaktionen, Text-/Pfeilklick, native Enter-Abgabe, Reload ohne zusätzliche Antwortwertung, Hilfe-/Infozuordnung, ruhige gleichgewichtete Alternativen und die bestehende Karten-/Evidenzgrenze. Build einschließlich Inhalts-/Typprüfung und Quellenverzeichnissen sowie 31 relevante Unit-/Vertragsfälle bestanden. Keine allgemeine Regression, keine reale Mikrofonaufnahme, keine akustische oder Recording-Reliability-QA.
 
 Die lokale Prüfansicht wurde mit dem gebauten App-Code erneuert; ihr realer Weiter-Button wurde zusätzlich als offene Aktion mit 60 px Höhe / 56-px-Pfeil verifiziert. Einstieg: `http://localhost:4192/review.html?case=hierarchy`, dort neu laden. Kein Commit, Push oder Deployment dieses Designblocks. Content, Curriculum, Audioassets, akzeptierte Antworten, Assessment, Mastery, Scheduling, Planner und Logging bleiben durch diesen Button-Schritt unverändert. Ein größeres Redesign wurde diskutiert, gehört aber nicht zu dieser Umsetzung. Nächster Schritt ist die Sichtprüfung des lokalen App-Stands; Veröffentlichung erst nach ausdrücklicher Freigabe.
+
+## Freigabe und Abgleich mit produktivem main
+
+2026-10-20: Nutzer bestätigt den lokalen Stand und beauftragt Veröffentlichung ohne weitere Designänderungen. Gesicherter UI-Commit `d42c051`; drei vorausgehende v2-Commits `737c5d6`, `02ae8b0`, `b25d913`. Aktueller Remote-Main vor Integration: `0a486a5`, produktiver Release `321d2fd` einschließlich Taiwan-Kurs/Audiofixes. Der öffentliche Einstieg lieferte vor der UI-Veröffentlichung `index-Czsy5c30.js`, Worker-Cache `mandarin-v01-b19f9f6c1dda7d55`; der bestehende Cloudflare-Check für `321d2fd` war erfolgreich.
+
+Fünf Konfliktdateien wurden fachlich vereinigt: LessonRunner, CSS, Resolution-Verzeichnis/-Generator und UI-Textledger. Main behält seine Kursauswahl, Taiwan-Wiederaufnahme, Inhalts-/Audio-/Schreibzielmodelle und Ereignisverarbeitung; v2 behält Viewport, zusätzliche Recognition/Dialogue-Praxis, Feedback und die freigegebenen Controls. Main-Kursdaten, öffentliche Assets, Datenmodell und Kurszustandsdateien sind gegenüber `0a486a5` bytegleich. Im Taiwan-Renderer wurden zehn vorhandene Hauptaktionsstellen ausschließlich auf dieselben freigegebenen gemeinsamen Controls umgestellt; nach Rücknormalisierung der Import-/Tag-Namen ist die Datei bytegleich zu main. Kein weiterer Gestaltungs-, Inhalts- oder Audioschritt.
+
+Produktionsbuild einschließlich Content-/Typ-/Quellenverträgen bestanden. 77 vorhandene relevante Unit-/Vertragsfälle bestanden. Der nachfolgende Auslieferungsnachweis steht zentral in `docs/V05_STATUS.md`; keine Produktionsfreigabe allein aus einer Inventarzahl abgeleitet.

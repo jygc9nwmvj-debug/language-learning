@@ -1,5 +1,16 @@
 # v0.5 — verbindlicher Projektstatus
 
+## Learning Experience v2 / freigegebene offene Aktionen · 2026-10-20
+
+Status: **zur Veröffentlichung freigegeben, Integration geprüft**. Lokaler UI-Stand vom Nutzer ausdrücklich bestätigt; Auftrag: aktuelles main übernehmen, committen, auf main pushen und deployen, ohne weitere Designänderungen. UI-Implementierung `d42c051`, vorausgehend `737c5d6`, `02ae8b0`, `b25d913`; integrierter Main-Ausgangspunkt `0a486a5` / produktiver Taiwan-Audiofix `321d2fd`.
+
+Gemeinsamer mobiler Lernbereich, unmittelbarer zweizeiliger Antwortvergleich mit verlässlichen Fehlerbereichen, Kärtchen-Matching mit zwei lokalen Fehlerstufen und offene Hauptaktionen (Beschriftung + grüner Pfeilkreis als eine native Klickfläche). Audio/Aufnahme bleiben gruppiert, langsames Audio zentriert und kleiner, Hilfen zurückhaltend. Vorhandene Antwortoptionen/Selbsteinschätzungen gleich gewichtet. Keine weitere Designänderung aus dem Release-Abgleich.
+
+Produktiver Taiwan-Kurs und seine Audiofixes erhalten: Kursdaten, öffentliche Assets, Datenmodell und Kurszustand gegenüber aktuellem main unverändert. Zehn bestehende Taiwan-Hauptaktionen verwenden dieselben freigegebenen Controls; Disabled-/Hörvoraussetzungen, Callback-Ausdrücke und übriger Renderer bytegleich nach Rücknormalisierung der Control-Tags. Keine neue Audioerzeugung, kein geänderter Content oder Assessment-/Mastery-/Intervallvertrag.
+
+Build mit Content-/Typ-/Text-/Resolution-Verträgen sowie 77 relevante bestehende Unit-/Vertragsfälle bestanden. Vor dem Main-Abgleich: 16 gezielte Browserfälle einschließlich 23 repräsentativer Zustände in vier Browser-/Viewportkonfigurationen; nach dem Main-Abgleich zusätzlich zwölf Integrationsfälle bestanden (23 UI-Zustände plus bestehende Taiwan-Produktions-/Matchingfälle jeweils Chrome 320/390/Desktop und WebKit 390). Die Auslieferungsbestätigung folgt in diesem Eintrag. [Designabnahme und Integrationsgrenzen](mobile-v2/DESIGN_ACCEPTANCE.md). Keine pauschale Geräte-, Audio- oder neue Designabnahme.
+
+
 ## Installationszugang — Deployment bestätigt · 2026-10-05
 
 Status: **deployed**, Release-/Mergecommit `513fbe0e62a9b34136f36ff04d88b5bed3dc3739` auf `main`, Implementierung `94b05fe`. Nutzerfreigabe zum Deployment am 2026-10-05 ersetzt die ursprüngliche Grenze „kein Merge/Deployment“. Main war weiterhin `32bf477`; keine zusätzlichen Produktänderungen oder Mergekonflikte. Produktionsbuild einschließlich Typ-, Content-, Text- und Resolution-Prüfung erneut bestanden. [Produktions-App](https://language-learning-abk.pages.dev/), [erfolgreicher Cloudflare-Check](https://github.com/jygc9nwmvj-debug/language-learning/runs/111936393944).
