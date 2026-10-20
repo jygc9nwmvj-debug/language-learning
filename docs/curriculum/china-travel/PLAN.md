@@ -1,10 +1,12 @@
-# Curriculumplan Reise nach China
+# Curriculumplan Reise nach Taiwan
 
-20. Oktober 2026 · Redaktionelle Freigabevorlage · Branch plan/china-travel-curriculum
+20. Oktober 2026 · Curriculum freigegeben · Branch plan/china-travel-curriculum
 
-Die nächste Lernstrecke erweitert die bestehenden 36 Lernobjekte um **134 sprachliche Lernobjekte**. Ihr Ziel ist, auf einer Reise nach Festlandchina einfache Anliegen auszudrücken, die entscheidenden Antworten zu verstehen und bei Schwierigkeiten nachzufragen. Zehn kommunikative Etappen führen vom ersten Kontakt über Bestellen, Bezahlen, Orientierung und Unterkunft bis zu kleinen Problemen. Sie bilden redaktionelle Zusammenhänge im fortlaufenden Weiterlernen; sie sind keine neuen sichtbaren Lektionen oder Sitzungsgrenzen.
+**Korrektur nach Nutzerrückmeldung:** Der regionale Wechsel zu Festlandmandarin war nicht beauftragt. Der Nutzer legt die Reise nun ausdrücklich auf Taiwan fest. Die Ausarbeitung verwendet Taiwan-bezogenes Mandarin, beide Schriftformen und Taiwan-Dollar. Derselbe Objektumfang wird regional angepasst: 白飯, 捷運, 飯店, 計程車, 網路, 藥局 und 痛 ersetzen die entsprechenden allgemeinen oder festlandgeprägten Formulierungen; der Linienausdruck fragt nach einer Linie statt nach einer vermeintlich überall üblichen Liniennummer. Die nachstehenden Regionalangaben sind entsprechend korrigiert; die Freigabe erlaubt Texte, Dialoge und Übungen, weiterhin keine Audios, App-Änderungen oder Veröffentlichung.
 
-Zur Freigabe stehen Umfang und Progression, das regionale Sprachmodell sowie die Auswahl der Erkennungs- und Schreibziele. Danach folgt die Ausarbeitung auf dieser Grundlage. **Curriculumfreigabe ist keine Audio-, Implementierungs- oder Veröffentlichungsfreigabe.** Bis dahin entstehen kein fertiger Content-Batch und keine Audios; App, Scheduler und UI bleiben unverändert. Es gibt kein Deployment und keinen Merge.
+Die nächste Lernstrecke erweitert die bestehenden 36 Lernobjekte um **134 sprachliche Lernobjekte**. Ihr Ziel ist, auf einer Reise nach Taiwan einfache Anliegen auszudrücken, die entscheidenden Antworten zu verstehen und bei Schwierigkeiten nachzufragen. Zehn kommunikative Etappen führen vom ersten Kontakt über Bestellen, Bezahlen, Orientierung und Unterkunft bis zu kleinen Problemen. Sie bilden redaktionelle Zusammenhänge im fortlaufenden Weiterlernen; sie sind keine neuen sichtbaren Lektionen oder Sitzungsgrenzen.
+
+Freigegeben sind Umfang und Progression sowie die Auswahl der Erkennungs- und Schreibziele. Das regionale Modell ist durch die folgende ausdrückliche Nutzerfestlegung Taiwan. **Beauftragt ist die redaktionelle Ausarbeitung von Texten, Dialogen und Übungen.** Audios, App, Scheduler und UI bleiben unverändert; es gibt keine Veröffentlichung, kein Deployment und keinen Merge.
 
 ## Ausgangspunkt und vorhandenes Material
 
@@ -28,7 +30,7 @@ Maßgeblich bleiben [Lernarchitektur](../../LEARNING_ARCHITECTURE.md), [Lernobje
 | Hanzi-Forschung und dokumentierte Curricula unterscheiden Erkennen und selbständiges Schreiben. | Breiteres Hör-/Sprachrepertoire, ausgewählte Schriftformen, kleinere aktive Schreibauswahl. | Die genaue Auswahl und das Tempo sind redaktionelle Hypothesen. |
 | HSK beschreibt kommunikative Aufgaben sowie Sprache und Schrift auf verschiedenen Ebenen. | Gegenprüfung auf gravierende Anfänger-Lücken; keine Abarbeitung einer HSK-Liste. | Keine HSK-Abdeckung oder Prüfungsvorbereitung behauptet. |
 
-**Redaktionelle Entscheidung:** Standardmandarin für Festland-Reisesituationen, RMB-Kontext, beide Schriftformen aus einem Kanon. Traditional bleibt gleichwertig auswählbar; eine Schriftwahl bestimmt keinen Akzent. Vorrang haben überregional verständliche Wendungen wie 酒店 und 出租車/出租车. Taiwan-Varianten werden bei relevanten Unterschieden erläutert, aber nicht als zweite obligatorische Wortliste eingeschoben. Preise sind ausdrücklich fiktive Übungsbeträge. Bestehende Aussprache- und Reviewgrenzen verschwinden durch Wiederverwendung nicht.
+**Redaktionelle Entscheidung:** Taiwan-bezogenes Standardmandarin, Taiwan-Dollar-Kontext, beide Schriftformen aus einem Kanon. Traditional bleibt gleichwertig auswählbar; eine Schriftwahl bestimmt keinen Akzent. Vorrang haben in Taiwan übliche und verständliche Wendungen wie 飯店/饭店 und 計程車/计程车. Festland-Varianten können bei relevanten Unterschieden erläutert werden, bilden aber keine zweite obligatorische Wortliste. Das regionale Lautmodell ist Taiwan-Mandarin; die vorhandenen Audio-/Aussprachegrenzen bleiben ausdrücklich bestehen. Preise sind ausdrücklich fiktive Übungsbeträge. Bestehende Aussprache- und Reviewgrenzen verschwinden durch Wiederverwendung nicht.
 
 Die Etappenfolge und der konkrete Umfang sind eine begründete redaktionelle Auswahl. Weder zehn Etappen noch 134 Objekte sind wissenschaftliche Sollwerte. Entscheidend ist, ob jedes Objekt eine Gesprächsfunktion, einen notwendigen Kontrast oder eine wiederverwendbare Struktur trägt.
 
@@ -38,7 +40,7 @@ Ein Lernobjekt ist hier entweder ein nützliches selbständig eingeführtes Wort
 
 Eine Konstruktion besitzt einen repräsentativen kanonischen Ausdruck und kuratierte Anwendungsfälle. Der Plan verlangt keinen neuen Generierungsmotor: Ein anderes Getränk, ein anderer Betrag oder ein anderer Name erzeugt kein weiteres identisches Lernziel und keinen eigenen Mastery-Knoten. Wort und Konstruktion werden nur getrennt gezählt, wenn beide gezielt eingeführt und unterschiedlich geprüft werden, etwa 杯 als Zählwort und eine vollständige Bestellung mit Menge und Getränk.
 
-Funktionswörter und gebundene Teile innerhalb eines Ausdrucks benötigen kanonische Referenzen, Pinyin und verständliche Erläuterungen, aber nicht automatisch eine eigene Vokabelkarte. Beispiele sind 的 und 還是/还是 in Etappe 2, 給/给 in Etappe 3, 對/对 in der Allergieformel, 往 und 先 in Wegangaben, 幾/几 und 號/号 in Fragen, 了 beim Ankommen und Zustandswechsel, 張/张 bei Tickets und 太 im Preisurteil. Sie zählen nicht zusätzlich zu den 134 Objekten. Ihre Einführung im jeweiligen Zusammenhang ist zwingend; isoliertes Beherrschen wird daraus nicht abgeleitet. Der spätere kanonische Wortbestand wird daher größer sein als 44 plus 93; eine exakte Wort- oder Zeichenanzahl wäre vor der Segmentierung Scheingenauigkeit.
+Funktionswörter und gebundene Teile innerhalb eines Ausdrucks benötigen kanonische Referenzen, Pinyin und verständliche Erläuterungen, aber nicht automatisch eine eigene Vokabelkarte. Beispiele sind 的 und 還是/还是 in Etappe 2, 給/给 in Etappe 3, 對/对 in der Allergieformel, 往 und 先 in Wegangaben, 幾/几 in Fragen und 條/条 im Linienausdruck, 了 beim Ankommen und Zustandswechsel, 張/张 bei Tickets und 太 im Preisurteil. Sie zählen nicht zusätzlich zu den 134 Objekten. Ihre Einführung im jeweiligen Zusammenhang ist zwingend; isoliertes Beherrschen wird daraus nicht abgeleitet. Der spätere kanonische Wortbestand wird daher größer sein als 44 plus 93; eine exakte Wort- oder Zeichenanzahl wäre vor der Segmentierung Scheingenauigkeit.
 
 Die ausgewiesenen 62 Erkennungsformen und zehn Schreibziele sind Zielrelationen dieser Objekte, keine zusätzlichen Objekte. Dialoge, Satzprüfungen, Detail-Audios und Übungsvarianten erhöhen den Objektzähler ebenfalls nicht. Aufgabenumfang und Audiozahl werden erst aus freigegebenen Texten und sinnvollen Prüfungen abgeleitet; der bisherige Entwurf mit automatisch vier Aufgaben je Item wird nicht als Regel übernommen.
 
@@ -92,7 +94,7 @@ E2 liefert Bestellung und Zählwort; 一 bis 十, say-again und dont-understand 
 
 ### E4 Essen
 
-**Wortobjekte 12:** 吃; 米飯/米饭; 麵/面; 菜單/菜单; 雞肉/鸡肉; 牛肉; 花生; 辣; 有; 沒有/没有; 碗; 過敏/过敏.
+**Wortobjekte 12:** 吃; 白飯/白饭; 麵/面; 菜單/菜单; 雞肉/鸡肉; 牛肉; 花生; 辣; 有; 沒有/没有; 碗; 過敏/过敏.
 
 **Ausdrücke und Konstruktionen 5:** 有沒有[Speise oder Zutat]/有没有; [Gericht]辣嗎/辣吗; 我不吃[Zutat]; 我對[Zutat]過敏/我对[Zutat]过敏; 幾位/几位 als Frage nach der Personenzahl.
 
@@ -112,23 +114,23 @@ E1 liefert Zeigen und Eröffnen. 在 wird von bekanntem 再 unterschieden; in de
 
 ### E6 Unterwegs
 
-**Wortobjekte 12:** 去; 到; 坐; 地鐵/地铁; 車站/车站; 機場/机场; 酒店; 票; 站; 下車/下车; 分鐘/分钟; 出租車/出租车.
+**Wortobjekte 12:** 去; 到; 坐; 捷運/捷运; 車站/车站; 機場/机场; 飯店/饭店; 票; 站; 下車/下车; 分鐘/分钟; 計程車/计程车.
 
-**Ausdrücke und Konstruktionen 5:** 到[Ziel]坐幾號線/到[Ziel]坐几号线; [Fahrt]要多久 mit Antwort 要[Dauer]; 到[Station]了 als Ankunftsmeldung; 在[Station]下車/下车 als Ausstiegsanweisung; 請在[Ort]停車/请在[Ort]停车 als Bitte im Taxi.
+**Ausdrücke und Konstruktionen 5:** 到[Ziel]要搭哪一條線/到[Ziel]要搭哪一条线; [Fahrt]要多久 mit Antwort 要[Dauer]; 到[Station]了 als Ankunftsmeldung; 在[Station]下車/下车 als Ausstiegsanweisung; 請在[Ort]停車/请在[Ort]停车 als Bitte im Taxi.
 
 Gespräch: Reisender nennt Ziel → Auskunft nennt Linie → Reisender fragt Dauer → Dauer wird genannt → Ausstiegsfrage/Bestätigung → Ankunftsmeldung → danken → Abschluss. Die Taxi-Rekombination verlangt Ziel und Haltebitte; sie übernimmt keine U-Bahn-Linienfrage. Station und Stationenanzahl werden getrennt verstanden. Ansageverständnis wird rezeptiv geprüft, ohne den Anfänger zur Ansageproduktion zu verpflichten.
 
-E3 liefert Zahlen, E5 räumliche Ausdrücke; 號/号, 線/线, 幾/几, 多久 und 了 werden innerhalb der Konstruktionen ausdrücklich eingeführt. Ankunfts-了 ist keine vollständige Einführung aller Funktionen von 了. Ein Stationsname wird vorgegeben und hinsichtlich Klang/Schrift erklärt oder bleibt ein sichtbarer Slot; unbekannte reale Toponyme sind keine unbemerkte Voraussetzung. Die App lehrt keine tatsächlichen Linien, Fahrzeiten oder Tarife einer bestimmten Stadt.
+E3 liefert Zahlen, E5 räumliche Ausdrücke; 搭、條/条、線/线、哪、多久 und 了 werden innerhalb der Konstruktionen ausdrücklich eingeführt. Ankunfts-了 ist keine vollständige Einführung aller Funktionen von 了. Ein Stationsname wird vorgegeben und hinsichtlich Klang/Schrift erklärt oder bleibt ein sichtbarer Slot; unbekannte reale Toponyme sind keine unbemerkte Voraussetzung. Die App lehrt keine tatsächlichen Linien, Fahrzeiten oder Tarife einer bestimmten Stadt.
 
 ### E7 Unterkunft
 
-**Wortobjekte 11:** 預訂/预订; 房間/房间; 護照/护照; 住; 晚; 房卡; 熱水/热水; 網絡/网络; 樓/楼; 換/换; 壞/坏.
+**Wortobjekte 11:** 預訂/预订; 房間/房间; 護照/护照; 住; 晚; 房卡; 熱水/热水; 網路/网路; 樓/楼; 換/换; 壞/坏.
 
 **Ausdrücke und Konstruktionen 4:** 我有預訂/我有预订 als Reservierungsmitteilung; 請給我看[Dokument]/请给我看 als rezeptive Aufforderung zur Vorlage; 住幾晚/住几晚; [Einrichtung oder Gegenstand]壞了/坏了 als Meldung eines Defekts.
 
 Gespräch: begrüßen → Reservierung nennen → Name erfragt und genannt → Vorlagebitte verstehen → Pass vorlegen → Aufenthaltsdauer beantworten → Etage/Raum und Karte verstehen → Rückfrage → bestätigen. Eine spätere Rückkehr zur Rezeption meldet fehlendes heißes Wasser oder eine defekte Karte und bittet mit bekanntem 可以 um Tausch. Das sind Fortsetzungen derselben Reise, keine erneute Lektion zu 你好 oder Name.
 
-E1/E3/E5/E6 liefern Erlaubnis, Menge, Ortsangaben und 酒店. Name und Herkunft aktivieren wojiao/askname und bei natürlicher Gelegenheit im-german; eine Nationalitätsfrage wird nicht in jeden Check-in hineingeschrieben. Die neue Bedeutung von 晚 als Nachtzählung ist trotz bekanntem wanan gezielt einzuführen. Reservierungsbestätigung, Pass- und Zimmernummern sind Kontextinformationen, keine Kenntnis von Einreise- oder Meldevorschriften.
+E1/E3/E5/E6 liefern Erlaubnis, Menge, Ortsangaben und 飯店/饭店. Name und Herkunft aktivieren wojiao/askname und bei natürlicher Gelegenheit im-german; eine Nationalitätsfrage wird nicht in jeden Check-in hineingeschrieben. Die neue Bedeutung von 晚 als Nachtzählung ist trotz bekanntem wanan gezielt einzuführen. Reservierungsbestätigung, Pass- und Zimmernummern sind Kontextinformationen, keine Kenntnis von Einreise- oder Meldevorschriften.
 
 ### E8 Zeit und nächste Fahrt
 
@@ -152,9 +154,9 @@ E1/E3/E4 liefern Fragen, Erlaubnis, Preis und 有; E2 liefert 的, der Bestand l
 
 ### E10 Hilfe bei Problemen
 
-**Wortobjekte 6:** 醫院/医院; 藥店/药店; 醫生/医生; 疼; 丟/丢; 警察.
+**Wortobjekte 6:** 醫院/医院; 藥局/药局; 醫生/医生; 痛; 丟/丢; 警察.
 
-**Ausdrücke und Konstruktionen 3:** [Gegenstand]丟了/丢了 als Verlustmeldung; 我[頭 oder 肚子]疼/我[头 oder 肚子]疼 als einfache Beschwerde; 請幫我叫[醫生 oder 警察]/请帮我叫… als konkrete Hilfebitte.
+**Ausdrücke und Konstruktionen 3:** [Gegenstand]丟了/丢了 als Verlustmeldung; 我[頭 oder 肚子]痛/我[头 oder 肚子]痛 als einfache Beschwerde; 請幫我叫[醫生 oder 警察]/请帮我叫… als konkrete Hilfebitte.
 
 Gespräch: Hilfe erbitten → Gegenüber fragt knapp nach → verlorenen Pass oder Beschwerden mitteilen → Nachfrage zur Sache verstehen → passende Hilfe verlangen → Richtung/Anlaufstelle verstehen → wesentliche Angabe bestätigen → Abschluss. Verlust und Beschwerden erhalten getrennte Skriptvarianten; sie werden nicht zu einem unnatürlichen Doppelnotfall zusammengebaut. 頭/头 und 肚子 sowie 幫/帮 werden im jeweiligen Ausdruck bewusst erschlossen, ohne zusätzliche isolierte Karten.
 
@@ -215,11 +217,11 @@ Die Frage-Antwort-Anker unten skizzieren Sprachhandlungen, keine fertig geprüft
 | E3 nach Preisfrage und Zahlen | „多少錢/多少钱?“ → genannter Betrag → Bitte um Wiederholung → wiederholter Betrag | Nach Zahlungswörtern: „可以刷卡嗎/可以刷卡吗?“ → Zustimmung oder anderer eingeführter Weg → Abschluss. |
 | E4 nach 有/沒有 und Speisen | „有沒有麵/有没有面?“ → „有。“ oder „沒有/没有。“ → Wunsch oder neue Auswahl | Nach Zutaten/Allergieformel: Einschränkung nennen → eingeführte Rückfrage → bestätigen; Schärfefrage und Personenfrage bilden weitere natürliche kurze Folgen. |
 | E5 nach Ortsfrage | „廁所在哪裡/厕所在哪里?“ → „在那裡/在那里。“ → Bezug bestätigen | Nach Wegfolge: „到出口怎麼走/到出口怎么走?“ → zwei Schritte → einen Schritt rückfragen → Bestätigung. |
-| E6 nach Linienfrage | „到機場坐幾號線/到机场坐几号线?“ → eingeführte Linie → Dauerfrage → Dauer | Ziel im Taxi nennen → Ziel bestätigen → Haltebitte → Bestätigung; später Ankunft und Ausstieg aus einer U-Bahn-Folge verstehen. |
+| E6 nach Linienfrage | „到機場要搭哪一條線/到机场要搭哪一条线?“ → eingeführte Linie → Dauerfrage → Dauer | Ziel im Taxi nennen → Ziel bestätigen → Haltebitte → Bestätigung; später Ankunft und Ausstieg aus einer U-Bahn-Folge verstehen. |
 | E7 nach Reservierung und Nachtzählung | „我有預訂/我有预订。“ → Name oder „住幾晚/住几晚?“ → passende Antwort | Nach Zimmerwortschatz: fehlendes heißes Wasser oder defekte Karte melden → eingeführte Nachfrage → Tauschbitte → Reaktion. |
 | E8 nach Tages- und Uhrzeitangaben | „幾點開門/几点开门?“ → Öffnungszeit → Zeitpunkt bestätigen | Nach Ticketattribut: Ticketwunsch → „今天還是明天/今天还是明天?“ → Tag und Tageszeit → Zeitvorschlag → Bestätigung/Alternative. |
 | E9 nach Laden und Gerät | „可以充電嗎/可以充电吗?“ → Zustimmung → Dank | Einkauf: Preis → „太貴了/太贵了。“ → „有便宜一點的嗎/有便宜一点的吗?“ → andere Variante und Preis → Entscheidung. |
-| E10 nach Verlustmeldung | „護照丟了/护照丢了。“ → eingeführte Klärung → konkrete Hilfebitte | Eigene getrennte Beschwerdefolge: „我肚子疼。“ → Hilfebitte um einen Arzt → eingeführte Ortsauskunft → Bestätigung. |
+| E10 nach Verlustmeldung | „護照丟了/护照丢了。“ → eingeführte Klärung → konkrete Hilfebitte | Eigene getrennte Beschwerdefolge: „我肚子痛。“ → Hilfebitte um einen Arzt → eingeführte Ortsauskunft → Bestätigung. |
 
 Bei einer Frage nach einem neuen Wort, einer Rückfrage oder einer angebotenen Alternative wird auch die erwartete Antwort bewusst eingeführt. Die Kurzfolgen können anschließend zu längeren, durchgehenden Gesprächen verbunden werden. Unverbundene Frage-Antwort-Paare gelten nicht schon als zusammenhängender Dialog. Der vollständige Beispieldialog weiter unten zeigt eine solche Verbindung; er ist ein ausgearbeitetes Prüfbeispiel für den Gesamtplan und keine Begrenzung auf ein Gespräch.
 
@@ -241,7 +243,7 @@ Satzverständnis und der Zusammenhang über mehrere Sätze sind getrennte Ergebn
 
 ### Vollständiger Beispieldialog nach E3
 
-Situation: Ein Reisender bestellt in einem kleinen Getränkeladen auf dem Festland. Der fiktive Preis beträgt zehn Yuan. A ist der Reisende, B verkauft. Die Preisfrage und die Reparatur gehören zur Bestellung; sie sind kein zweites lose angehängtes Gespräch. Der Text ist ein redaktionelles Beispiel und noch kein sprachlich freigegebenes Audioskript.
+Situation: Ein Reisender bestellt in einem kleinen Getränkeladen in Taiwan. Der fiktive Preis beträgt zehn Taiwan-Dollar; er ist kein realistischer allgemeiner Marktpreis. A ist der Reisende, B verkauft. Die Preisfrage und die Reparatur gehören zur Bestellung; sie sind kein zweites lose angehängtes Gespräch. Der Text ist ein redaktionelles Beispiel und noch kein sprachlich freigegebenes Audioskript.
 
 Das Pinyin zeigt hier lexikalische Töne und Neutralton ohne Akzent. Natürliche Oberflächenformen werden anschließend ausdrücklich erläutert.
 
@@ -254,9 +256,9 @@ Das Pinyin zeigt hier lexikalische Töne und Neutralton ohne Akzent. Natürliche
 | D5 | A | 熱的，謝謝。 | 热的，谢谢。 | Rè de, xièxie. | Heiß, danke. |
 | D6 | B | 好。 | 好。 | Hǎo. | In Ordnung. |
 | D7 | A | 請問，多少錢？ | 请问，多少钱？ | Qǐngwèn, duōshǎo qián? | Wie viel kostet das bitte? |
-| D8 | B | 十塊錢。 | 十块钱。 | Shí kuài qián. | Zehn Yuan. |
+| D8 | B | 十塊錢。 | 十块钱。 | Shí kuài qián. | Zehn Taiwan-Dollar. |
 | D9 | A | 請再說一遍。 | 请再说一遍。 | Qǐng zài shuō yī biàn. | Bitte sag das noch einmal. |
-| D10 | B | 十塊錢。 | 十块钱。 | Shí kuài qián. | Zehn Yuan. |
+| D10 | B | 十塊錢。 | 十块钱。 | Shí kuài qián. | Zehn Taiwan-Dollar. |
 | D11 | A | 好，謝謝。 | 好，谢谢。 | Hǎo, xièxie. | Gut, danke. |
 | D12 | B | 不客氣。 | 不客气。 | Bù kèqi. | Gern geschehen. |
 
@@ -272,15 +274,15 @@ D2 hat zwei Sätze und daher zwei Prüfeinheiten. D11 bleibt eine kurze Zustimmu
 | D5 | Gewählt wird heiß; der Dank gehört zum Satz; kuratierte Satzbedeutung zuordnen | Eisgekühlt; bloß „danke“ |
 | D6 | Bestätigung der Auswahl, kontextuell „okay/in Ordnung“ | Erneute Auswahlfrage |
 | D7 | Höfliche Frage nach dem Preis; vollständige Bedeutungswahl | „Das kostet zehn“ oder Getränkefrage |
-| D8 | Betrag 10 im gesetzten RMB-Kontext; Zahlen-/Einheitsantwort | 3, 13, 30 oder Taiwan-Dollar |
+| D8 | Betrag 10 im gesetzten Taiwan-Dollar-Kontext; Zahlen-/Einheitsantwort | 3, 13, 30 oder ausdrücklich RMB statt Taiwan-Dollar |
 | D9 | Bitte um erneutes Sagen des unmittelbar genannten Preises; Satzbedeutung plus Referenz zuordnen | Bitte um ein weiteres Getränk oder behauptete Ablehnung |
 | D10 | Erneut Betrag 10; satzweise abfragbar, aber wegen Wiederholung keine neue unabhängige Zahlenevidenz | Ergebnis als zwei unabhängige erstmalige Hörleistungen zählen |
 | D11 | Zustimmung/Abschluss + Dank; Vergleich vollständiger Bedeutungen | Neue Bestellung oder reine Ablehnung |
 | D12 | Höfliche Reaktion auf Dank; „gern geschehen/keine Ursache“ | Befehl oder Zurückweisung |
 
-Nach D4 wäre auch 冰的，謝謝 eine angemessene eigene Antwort. Sie ist im Beispieldialog nicht die tatsächlich gehörte Auswahl: **Dialog verstehen und selbst wählen haben unterschiedliche richtige Antworten.** Eine offene Übersetzung wie „Ich hätte gern einen Tee“ ist natürlich, lässt aber das Mengen-/Gefäßdetail implizit; deshalb wird der Detailtest strukturiert gestellt und eine unvollständige Paraphrase nicht als gesamtes Sprachversagen behandelt. Bei D8 ist eine bloße 10 im ausdrücklich gesetzten Währungskontext hinreichend; ein ausgeschriebenes „zehn Yuan“ ist keine zusätzliche Pflicht.
+Nach D4 wäre auch 冰的，謝謝 eine angemessene eigene Antwort. Sie ist im Beispieldialog nicht die tatsächlich gehörte Auswahl: **Dialog verstehen und selbst wählen haben unterschiedliche richtige Antworten.** Eine offene Übersetzung wie „Ich hätte gern einen Tee“ ist natürlich, lässt aber das Mengen-/Gefäßdetail implizit; deshalb wird der Detailtest strukturiert gestellt und eine unvollständige Paraphrase nicht als gesamtes Sprachversagen behandelt. Bei D8 ist eine bloße 10 im ausdrücklich gesetzten Währungskontext hinreichend; ein ausgeschriebenes „zehn Taiwan-Dollar“ ist keine zusätzliche Pflicht.
 
-Gesamtfrage: Was bekommt A, welche Temperatur wurde gewählt, welchen Preis hat B wiederholt? Erwartet werden Tee, heiß und zehn Yuan. Anschließend verwendet ein kurzer anderer Auftrag Wasser beziehungsweise zwei Getränke und einen anderen eingeführten Betrag. Das prüft Rekombination; das Originalskript erneut auswendig wiederzugeben prüft sie nicht.
+Gesamtfrage: Was bekommt A, welche Temperatur wurde gewählt, welchen Preis hat B wiederholt? Erwartet werden Tee, heiß und zehn Taiwan-Dollar. Anschließend verwendet ein kurzer anderer Auftrag Wasser beziehungsweise zwei Getränke und einen anderen eingeführten Betrag. Das prüft Rekombination; das Originalskript erneut auswendig wiederzugeben prüft sie nicht.
 
 ## Hanzi früh verbinden und gezielt schreiben
 
@@ -291,13 +293,13 @@ Ab E1 folgt auf die gezielte Einführung einer ausgewählten Form ihre Verbindun
 | E1 | 這/这; 那; 看; 請問/请问 | 4 |
 | E2 | 茶; 水; 咖啡; 杯; 熱/热; 冰 | 6 |
 | E3 | 零; 百; 兩/两; 錢/钱; 塊/块; 元; 現金/现金; 刷卡; 掃碼/扫码 | 9 |
-| E4 | 菜單/菜单; 米飯/米饭; 麵/面; 雞肉/鸡肉; 牛肉; 花生; 辣 | 7 |
+| E4 | 菜單/菜单; 白飯/白饭; 麵/面; 雞肉/鸡肉; 牛肉; 花生; 辣 | 7 |
 | E5 | 出口; 入口; 廁所/厕所; 左; 右; 直走 | 6 |
-| E6 | 地鐵/地铁; 車站/车站; 機場/机场; 酒店; 票; 下車/下车; 出租車/出租车; 去; 到 | 9 |
-| E7 | 房間/房间; 護照/护照; 房卡; 樓/楼; 熱水/热水; 網絡/网络 | 6 |
+| E6 | 捷運/捷运; 車站/车站; 機場/机场; 飯店/饭店; 票; 下車/下车; 計程車/计程车; 去; 到 | 9 |
+| E7 | 房間/房间; 護照/护照; 房卡; 樓/楼; 熱水/热水; 網路/网路 | 6 |
 | E8 | 今天; 明天; 上午; 下午; 開門/开门; 關門/关门 | 6 |
 | E9 | 大; 小; 貴/贵; 便宜; 手機/手机; 充電器/充电器 | 6 |
-| E10 | 醫院/医院; 藥店/药店; 警察 | 3 |
+| E10 | 醫院/医院; 藥局/药局; 警察 | 3 |
 | **Gesamt** | Ganze Formen, keine behauptete Zahl beherrschter Einzelzeichen | **62** |
 
 Die Auswahl dient realen Schildern, Menüs, Ortsnamenkategorien, Bezahlung und wiederverwendbaren Formen. Weitere Wörter können im Satz sichtbar sein, ohne neue unabhängige Erkennungspflicht. Bei der späteren Textredaktion kann eine begründete Ersetzung erfolgen; sie darf weder unbekannte Prüfziele verstecken noch die Auswahl still zu „alles lesen und schreiben“ erweitern.
@@ -314,7 +316,7 @@ Einführung erfolgt im Kontext: 水/杯 in E2, 元/百 in E3, 左/右 in E5, 去
 
 | Risiko | Konkrete Konsequenz |
 | --- | --- |
-| Region und Pragmatik | 塊/块 steht hier für Yuan, nicht Taiwan-Dollar. 冰的 ist keine kontextfreie Gleichung mit „kalt“. 酒店, 網絡/网络 und Höflichkeit in Bestellungen brauchen Prüfung für das gewählte Sprachmodell. |
+| Region und Pragmatik | 塊/块 steht hier für Taiwan-Dollar. 冰的 ist keine kontextfreie Gleichung mit „kalt“. 飯店/饭店, 網路/网路 und Höflichkeit in Bestellungen brauchen Prüfung für das gewählte Sprachmodell. |
 | Verdeckter neuer Stoff | Jede neue Äußerung wird gegen Bestand und Etappeninventar aufgelöst; gebundene Wörter wie 的, 了, 幾/几, 張/张 und Körperteile bekommen absichtliche Einführung. Eine Glossierung allein erzeugt kein Einzelwortwissen. |
 | Überzählung von Lernobjekten | Wasser-/Tee-/Kaffee- und Preisvarianten bleiben Anwendungen derselben Konstruktion. Keine künstliche Verdoppelung durch jede Antwortpräferenz oder jede Schrift. |
 | Ton, Neutralton und Mehrdeutigkeit | Lexikalische Töne, Oberflächenformen und Notationsziel bleiben getrennt. 一/不, dritte Töne, 的, 謝謝, 客氣 und 便宜 benötigen passende Lautfassungen; Tonzahlen sind keine Aussprachebewertung. |
@@ -336,13 +338,13 @@ Danach gelten die bestehenden QA-Stufen: Form/Pinyin/Bedeutung und Satzinhalt an
 
 Vor einer späteren Integration muss nachvollziehbar sein, dass jedes neue Prüfziel zuvor passend eingeführt wurde, eine sinnvolle Rekombination besitzt und die bestehenden IDs sowie historische Evidenz unangetastet bleiben. Die spätere Abnahme prüft gezielt Erreichbarkeit, Wiederaufnahme und getrennte Ergebnisse für Hören, Erkennen, Produktion und Schreiben. Die 134 Objekte erfordern weder 134 identische Aufgabensätze noch eine neue Dosisquote. Ein Erfolgskriterium ist, dass neue kommunikative Ziele tatsächlich erreicht werden können und spätere Kombinationen gelingen; die bloße Gesamtzahl neuer Karten genügt nicht.
 
-**Jetzt redaktionell zu entscheiden sind drei zusammengehörige Punkte:**
+**Freigegebener redaktioneller Rahmen:**
 
 1. Der Umfang von 134 neuen Objekten und die beschriebene Reiseprogression mit mehreren früh einsetzenden, aufeinander aufbauenden Dialogfolgen bilden den Auftrag für die Ausarbeitung.
-2. Standardmandarin für Festland-Reisesituationen, RMB-Kontext und beide Schriftformen aus einem Kanon bilden das Sprachmodell; der bisherige Taiwan-Ausschnitt wird darauf neu eingeordnet.
+2. Taiwan-bezogenes Standardmandarin, Taiwan-Dollar-Kontext und beide Schriftformen aus einem Kanon bilden das Sprachmodell; der bisherige Taiwan-Ausschnitt wird in die größere Reiseprogression eingeordnet.
 3. Frühe Klang–Schrift–Bedeutung-Verbindung für die ausgewählten 62 Formen und zehn neue aktive Schreibziele bleiben getrennte Lernziele, ohne Schreib-Gate für kommunikatives Weiterlernen.
 
-Alle übrigen beschriebenen Varianten und Prüfkriterien sind redaktionelle Umsetzung innerhalb dieses Rahmens. **An dieser Freigabegrenze endet die Arbeit dieses Branches.**
+Alle übrigen beschriebenen Varianten und Prüfkriterien sind redaktionelle Umsetzung innerhalb dieses Rahmens. **Die Textausarbeitung erfolgt jetzt innerhalb dieses Rahmens. Audio, Implementierung und Veröffentlichung bleiben gesperrt.**
 
 ## Referenzen
 
@@ -352,6 +354,6 @@ Die folgenden offiziellen Curriculumseiten wurden am 20. Oktober 2026 direkt gep
 - [Princeton in Beijing, Curriculum](https://pib.princeton.edu/academics/curriculum): CHI 101C/102C für Nicht-Heritage-Anfänger betont oral-aural facility und integriert vier Fertigkeiten; Essen/Getränke und Orientierung gehören zu den Alltagsthemen. Heritage-Kurse dienen nicht als Anfängermaßstab.
 - [NCSSFL und ACTFL Can-Do Statements](https://www.actfl.org/educator-resources/ncssfl-actfl-can-do-statements): Die aktuelle Seite beschreibt die Ausgabe 2026, unterschiedliche Kommunikationsmodi und wiederholte Evidenz in mehreren Situationen; die Beispiele sind kein vorgeschriebenes Curriculum.
 - [Chinese Tests Service, HSK overview](https://www.chinesetest.cn/HSK): offizieller Standard-/Prüfungsrahmen; keine Annahme über den Rollout einer bestimmten Prüfungsfassung und keine Übernahme einer Wörterquote.
-- [NTU, Drink Bar](https://homepage.ntu.edu.tw/~ntutcsl/affair/%E6%96%90%E7%91%84%E7%9A%84%E7%B6%B2%E9%A0%81/drink.html): institutionelles Beispiel einer Transaktion mit Bestellung, Auswahl, Preis und Rückfragen. Es ist komplexer und Taiwan-spezifisch; es belegt weder die Freigabe unseres Textes noch Festland-Pragmatik.
+- [NTU, Drink Bar](https://homepage.ntu.edu.tw/~ntutcsl/affair/%E6%96%90%E7%91%84%E7%9A%84%E7%B6%B2%E9%A0%81/drink.html): institutionelles Beispiel einer Transaktion mit Bestellung, Auswahl, Preis und Rückfragen. Es ist komplexer; es liefert Kontextbeispiele für Taiwan, aber keine Freigabe unseres eigenen Textes.
 
 Die Forschung zu Abruf, Spacing, Aufmerksamkeit und Schreiben ist mit Populationen und Grenzen in den verlinkten KB-Notizen dokumentiert. Es wurde keine erneute breite Forschungsrecherche zu bereits geklärten Prinzipien eröffnet.

@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "scope": "Exhaustive structural accounting of this editorial batch; not native, acoustic, app or learner QA.",
+  "objects": 134,
+  "words": 171,
+  "newWordEntries": 127,
+  "dialogues": 28,
+  "turnOccurrences": 242,
+  "sentenceOccurrences": 288,
+  "distinctUtterances": 167,
+  "exercises": 211,
+  "exerciseTypes": {
+    "sentence_meaning": 167,
+    "communicative_text_production": 33,
+    "structured_value": 8,
+    "structured_route": 1,
+    "contextual_reply_selection": 2
+  },
+  "matchingVariants": 38,
+  "recognitionForms": 62,
+  "writingTargets": 10,
+  "jsonSha256": "6bf273794b8f1898aed14aea12fd40c4a0f00c1c0e0d519d003c8db44b5b4c6a"
+}
