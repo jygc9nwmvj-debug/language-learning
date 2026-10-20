@@ -1,0 +1,72 @@
+[
+  {
+    "id": "shui",
+    "character": "水",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E6%B0%B4.json",
+    "sha256": "46e262a80f2b7da72ea04788d1c19c40339e18beaba16987cc84d55fc257c9e3",
+    "strokes": 4
+  },
+  {
+    "id": "bei",
+    "character": "杯",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E6%9D%AF.json",
+    "sha256": "6bb07f43f8043a1b36e7e292651e6348092e0777d44815831e01a9d5694da491",
+    "strokes": 8
+  },
+  {
+    "id": "yuan",
+    "character": "元",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%85%83.json",
+    "sha256": "3853b0c44be20d7e40e467d0ee7636bc20e2408620230ec0ddba2c6695a67581",
+    "strokes": 4
+  },
+  {
+    "id": "bai",
+    "character": "百",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E7%99%BE.json",
+    "sha256": "3cc71b969c7cb35878645077365f029ad249eef5c5f80b61683df4bbbf7849b2",
+    "strokes": 6
+  },
+  {
+    "id": "zuo-dir",
+    "character": "左",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%B7%A6.json",
+    "sha256": "a5741d50aea9247117aee3a150b7707ddaf9193b94032e3616cff9415f9dc1ed",
+    "strokes": 5
+  },
+  {
+    "id": "you-dir",
+    "character": "右",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%8F%B3.json",
+    "sha256": "d2483a266cd756c8deb1e4523e54fee29270ad4eb87a3b2bf1d40f9eb68de0cf",
+    "strokes": 5
+  },
+  {
+    "id": "qu",
+    "character": "去",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%8E%BB.json",
+    "sha256": "96e01168e8c76add5a05de734f18ef282451ca9107757977e5d83d8eea2bc281",
+    "strokes": 5
+  },
+  {
+    "id": "dao",
+    "character": "到",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%88%B0.json",
+    "sha256": "6aa5dd0897e0717edeae53ac983a92b81d22845423b59c5d7afe579f8096764d",
+    "strokes": 8
+  },
+  {
+    "id": "da",
+    "character": "大",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%A4%A7.json",
+    "sha256": "83c82950e903c915aa50d0d62b084a2d31c85fe68dce21e0acf39e2f9607e611",
+    "strokes": 3
+  },
+  {
+    "id": "xiao",
+    "character": "小",
+    "source": "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/%E5%B0%8F.json",
+    "sha256": "72bf769c8c3426bffa578502eb8b1532fb1e622ddb6f40ded04e484290c0fe8c",
+    "strokes": 3
+  }
+]
