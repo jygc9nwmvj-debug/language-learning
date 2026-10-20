@@ -39,3 +39,8 @@ Ergebnis: 244/244 Node-Tests bestanden; alle 16 genannten Browserfälle bestande
 Die Textfassung lädt keine erfundenen Taiwan-Audiopfade und wartet nicht auf fehlende Synthese. Bestehende Audioassets und das AWS-Manifest wurden nicht verändert. Die separat beauftragte Azure-Vorbereitung steht in [AZURE_AUDIO.md](AZURE_AUDIO.md). Es wurde keine Taiwan-Sprachdatei erzeugt.
 
 Das vorläufige Material auf feature/mobile-learning-v2 wurde weder übernommen noch bearbeitet. Die Integration liegt ausschließlich im isolierten Implementierungsbranch. Kein Push, Merge, Deployment oder Veröffentlichungsschritt.
+
+
+## Nachtrag vom 20. Oktober 2026: Hörfassung lokal integriert
+
+Auf ausdrücklichen Auftrag wurden die Taiwan-Audios mit AWS Polly erzeugt und eingebunden. Aktueller Umfang, technische Nachweise und Grenzen: [POLLY_AUDIO.md](POLLY_AUDIO.md), [POLLY_AUDIO_COUNTS.json](POLLY_AUDIO_COUNTS.json). Der ursprüngliche Bericht und INTEGRATION_COUNTS.json dokumentieren weiterhin den vorherigen Textstand. Keine Veröffentlichung und kein Merge.

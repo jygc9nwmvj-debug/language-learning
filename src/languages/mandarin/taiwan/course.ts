@@ -1,4 +1,5 @@
 import editorial from '../../../../docs/curriculum/china-travel/editorial/editorial.json' with { type: 'json' };
+import { taiwanAudioReady } from './audio.ts';
 import { content, taskMap as foundationTasks } from '../content/index.ts';
 import { introduced } from '../introduction.ts';
 import { composeContinuous, DOSING } from '../continuous.ts';
@@ -15,7 +16,7 @@ export const utterances = new Map(taiwan.utterances.map(u => [u.id, u]));
 export const dialogues = new Map(taiwan.dialogues.map(d => [d.id, d]));
 export const exercises = new Map(taiwan.exercises.map(x => [x.id, x]));
 export type Script = 'hant' | 'hans';
-export type Activity = { id: string; kind: 'object' | 'dialogue' | 'exercise' | 'matching' | 'writing' | 'writing-recall'; ref: string; stage: number; words: string[] };
+export type Activity = { id: string; kind: 'object' | 'dialogue' | 'exercise' | 'matching' | 'writing' | 'writing-recall' | 'listening-dialogue'; ref: string; stage: number; words: string[] };
 const activities: Activity[] = [];
 const registeredObjects = new Set<string>(), coveredSentences = new Set<string>();
 function add(kind: Activity['kind'], ref: string, stage: number, ids: string[]) {
@@ -43,7 +44,7 @@ for (let stage=1;stage<=10;stage++) {
   const ks=u?.words??o?.contextWords??('correct' in x ? x.correct?.flatMap(k=>utterances.get(k)?.words??[]) : [])??[];
   add('exercise',x.id,stage,ks);
  }
- for (const m of taiwan.matching.filter(m=>m.stage===stage&&m.relation==='hanzi-meaning')) add('matching',m.id,stage,m.pairs.map(p=>p.word));
+ for (const m of taiwan.matching.filter(m=>m.stage===stage&&(m.relation==='hanzi-meaning'||taiwanAudioReady))) add('matching',m.id,stage,m.pairs.map(p=>p.word));
  for (const w of taiwan.writing.filter(w=>w.stage===stage)) add('writing',w.id,stage,[w.word]);
 }
 // Stage-zero baseline expressions not otherwise used remain baseline references,
@@ -80,12 +81,19 @@ export function composeLearning(relations:Relation[],events:ResearchEvent[],scri
  const writingRecall=taiwan.writing.filter(w=>events.some(e=>e.type==='taiwan_completed'&&e.taskId===`tw:writing:${w.id}`&&e.detail.script===script&&now-e.at>=20*3_600_000))
   .map(w=>({id:`tw:writing-recall:${w.id}`,kind:'writing-recall' as const,ref:w.id,stage:w.stage,words:[w.word]}))
   .filter(a=>!events.some(e=>e.taskId===a.id&&e.type==='taiwan_completed'&&e.detail.script===script&&now-e.at<20*3_600_000));
- const sequence=[...due,...review.map(a=>a.id),...writingRecall.map(a=>a.id),...pending.map(a=>a.id)];
+ const hearing=activities.filter(a=>a.kind==='dialogue'&&done.has(a.id)&&!done.has(`tw:listening-dialogue:${a.ref}`)&&!events.some(e=>e.taskId===a.id&&e.type==='taiwan_completed'&&e.detail.script===script&&e.detail.listening===true)).map(a=>`tw:listening-dialogue:${a.ref}`);
+ const sequence=[...due,...(taiwanAudioReady?hearing:[]),...review.map(a=>a.id),...writingRecall.map(a=>a.id),...pending.map(a=>a.id)];
  return [...(sequence.length?sequence:foundation).slice(0,DOSING.tasks),'closure'];
 }
 for (const w of taiwan.writing) {
  const a:Activity={id:`tw:writing-recall:${w.id}`,kind:'writing-recall',ref:w.id,stage:w.stage,words:[w.word]};
  activityMap.set(a.id,a);appTaskMap.set(a.id,{id:a.id,kind:'encounter',tone:undefined,prompt:{de:'Schreiben aus dem Gedächtnis'}});
+}
+for(const d of taiwan.dialogues){const a:Activity={id:`tw:listening-dialogue:${d.id}`,kind:'listening-dialogue',ref:d.id,stage:d.stage,words:d.listeningPrerequisites};activityMap.set(a.id,a);appTaskMap.set(a.id,{id:a.id,kind:'encounter',tone:undefined,prompt:{de:'Ein Gespräch verstehen'}});}
+export function heardWords(events:ResearchEvent[],script:Script){
+ const heard=new Set(events.filter(e=>e.type==='taiwan_word_audio_completed').map(e=>String(e.detail.word)));
+ for(const i of content.items)if(i.words.length===1&&introduced(i,'pronunciation',script,events))heard.add(i.words[0]);
+ return heard;
 }
 export function knownWords(events:ResearchEvent[],script:Script) {
  const known=new Set(events.filter(e=>e.type==='taiwan_word_introduced'&&e.detail.script===script).map(e=>String(e.detail.word)));
@@ -103,6 +111,6 @@ export function checkTaiwanIntegration() {
  const route=taiwan.exercises.find(x=>x.type==='structured_route');
  if(!route||JSON.stringify(route.map)!==JSON.stringify({start:[2,1],facing:'north',straightPoint:[1,1],exit:[1,2],otherDestination:[1,0]}))fail('route renderer map binding');
  if(taiwan.matching.filter(m=>m.relation==='hanzi-meaning').length!==19)fail('text matching population');
- return {objects:objects.size,dialogues:dialogues.size,utterances:utterances.size,exercises:exercises.size,activities:activities.length,matching:19,deferredAudioMatching:19,writing:10};
+ return {objects:objects.size,dialogues:dialogues.size,utterances:utterances.size,exercises:exercises.size,activities:activities.length,matching:taiwanAudioReady?38:19,deferredAudioMatching:taiwanAudioReady?0:19,writing:10};
 }
 checkTaiwanIntegration();

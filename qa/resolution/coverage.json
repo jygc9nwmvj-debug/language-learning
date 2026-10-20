@@ -4129,9 +4129,11 @@
     }
   ],
   "sources": {
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx": "1a02c862a1dcd2636b2b353e17639b8cb600f760fce02d60e8c04d2f98a77490",
-    "src/languages/mandarin/taiwan/course.ts": "46ff00a9fbecfbbe592eb75920ac0cf08bdac485c95eb8ac093ecd08ad5e04dc",
-    "src/languages/mandarin/taiwan/state.ts": "f4f4c35ffb10092ba0f50cdcc9a96435e28df5e6f58ca6103186e3cb6ee8df03",
+    "src/languages/mandarin/taiwan/audio.ts": "a027bf1abb6ea96218e570cd8e5d129c0608cc3882d54dce6dca049f72ae79b5",
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx": "7686998f3ede1436e52368c1c71e55ed05235acdb08ef2b5cff875ee01b6637a",
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx": "d734995def687a2d089184c3003b35656f877ef574d37ac069be5813ada48634",
+    "src/languages/mandarin/taiwan/course.ts": "4789a558592223bd66b9ad403874f37ee4ac0e8ce017ef8340fa45552f9e249a",
+    "src/languages/mandarin/taiwan/state.ts": "373e3bdea15c43d6d166960c69cb0e1f7761c51ee143b10c4a8652a1bbabf36e",
     "src/languages/mandarin/writing-targets.ts": "299bbcdfd4f258c2d51f24c1cf8694205fa1577ab2f2b5b4a9e6a7f2874d48c7",
     "src/languages/mandarin/components/MatchingExercise.tsx": "6ffa2bae6f931eda548df778d9eb2e91b5cb1af597ba473b9b5e20379475a1f2",
     "src/languages/mandarin/matching.ts": "f0d365f0ea4b511f2d52e1ec7ed8cb4d90b9d45f0e0ea4cb31c17dd550dba7cb",
@@ -4151,7 +4153,7 @@
     "src/languages/mandarin/components/ProductionFeedback.tsx": "a3d33c6cbf52af3ed75229fbd59da87a1d9a228ce20d99c71772c386cd93baa7",
     "src/core/exercises/Resolution.tsx": "e5da57f382bb1b3d384c7dc66d559d61bd462f1f62b630b01f0c1019150a5dd7",
     "src/core/exercises/resolution-contract.ts": "a1ad85c490de1ac7d4efad1799ee256a256fcf891ea626161cf679bafc97578d",
-    "src/app/LessonRunner.tsx": "a67bb73b4a03b33311c5928e5d8c4487991a60162e1250c2a00551d09117f84a",
+    "src/app/LessonRunner.tsx": "eb1949f00e864393362b5d526756980e94b9c32fe8d0735f250157a341744c42",
     "src/languages/mandarin/schema/content.ts": "06d3631cb242b9c521b917a3fca2847479930c8a1d4d49e9a53b774702a51ccc"
   },
   "taiwan": {
@@ -4462,6 +4464,23 @@
         "id": "tw:matching:M01:hanzi-meaning",
         "kind": "matching",
         "reference": "M01:hanzi-meaning",
+        "prerequisites": [
+          "zhe",
+          "na-dem",
+          "kan",
+          "qingwen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M01:audio-hanzi",
+        "kind": "matching",
+        "reference": "M01:audio-hanzi",
         "prerequisites": [
           "zhe",
           "na-dem",
@@ -4949,9 +4968,41 @@
         ]
       },
       {
+        "id": "tw:matching:M02:audio-hanzi",
+        "kind": "matching",
+        "reference": "M02:audio-hanzi",
+        "prerequisites": [
+          "cha",
+          "shui",
+          "kafei"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M03:hanzi-meaning",
         "kind": "matching",
         "reference": "M03:hanzi-meaning",
+        "prerequisites": [
+          "bei",
+          "re",
+          "bing"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M03:audio-hanzi",
+        "kind": "matching",
+        "reference": "M03:audio-hanzi",
         "prerequisites": [
           "bei",
           "re",
@@ -5677,6 +5728,23 @@
         ]
       },
       {
+        "id": "tw:matching:M04:audio-hanzi",
+        "kind": "matching",
+        "reference": "M04:audio-hanzi",
+        "prerequisites": [
+          "ling",
+          "bai",
+          "liang",
+          "yuan"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M05:hanzi-meaning",
         "kind": "matching",
         "reference": "M05:hanzi-meaning",
@@ -5692,9 +5760,40 @@
         ]
       },
       {
+        "id": "tw:matching:M05:audio-hanzi",
+        "kind": "matching",
+        "reference": "M05:audio-hanzi",
+        "prerequisites": [
+          "qian",
+          "kuai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M06:hanzi-meaning",
         "kind": "matching",
         "reference": "M06:hanzi-meaning",
+        "prerequisites": [
+          "xianjin",
+          "shuaka",
+          "saoma"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M06:audio-hanzi",
+        "kind": "matching",
+        "reference": "M06:audio-hanzi",
         "prerequisites": [
           "xianjin",
           "shuaka",
@@ -6270,9 +6369,42 @@
         ]
       },
       {
+        "id": "tw:matching:M07:audio-hanzi",
+        "kind": "matching",
+        "reference": "M07:audio-hanzi",
+        "prerequisites": [
+          "caidan",
+          "baifan",
+          "mian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M08:hanzi-meaning",
         "kind": "matching",
         "reference": "M08:hanzi-meaning",
+        "prerequisites": [
+          "jirou",
+          "niurou",
+          "huasheng",
+          "la"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M08:audio-hanzi",
+        "kind": "matching",
+        "reference": "M08:audio-hanzi",
         "prerequisites": [
           "jirou",
           "niurou",
@@ -6737,9 +6869,41 @@
         ]
       },
       {
+        "id": "tw:matching:M09:audio-hanzi",
+        "kind": "matching",
+        "reference": "M09:audio-hanzi",
+        "prerequisites": [
+          "cesuo",
+          "chukou",
+          "rukou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M10:hanzi-meaning",
         "kind": "matching",
         "reference": "M10:hanzi-meaning",
+        "prerequisites": [
+          "zuo-dir",
+          "you-dir",
+          "zhizou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M10:audio-hanzi",
+        "kind": "matching",
+        "reference": "M10:audio-hanzi",
         "prerequisites": [
           "zuo-dir",
           "you-dir",
@@ -7458,9 +7622,44 @@
         ]
       },
       {
+        "id": "tw:matching:M11:audio-hanzi",
+        "kind": "matching",
+        "reference": "M11:audio-hanzi",
+        "prerequisites": [
+          "jieyun",
+          "chezhan",
+          "jichang",
+          "fandian",
+          "jichengche"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M12:hanzi-meaning",
         "kind": "matching",
         "reference": "M12:hanzi-meaning",
+        "prerequisites": [
+          "piao",
+          "xiache",
+          "qu",
+          "dao"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M12:audio-hanzi",
+        "kind": "matching",
+        "reference": "M12:audio-hanzi",
         "prerequisites": [
           "piao",
           "xiache",
@@ -8016,9 +8215,41 @@
         ]
       },
       {
+        "id": "tw:matching:M13:audio-hanzi",
+        "kind": "matching",
+        "reference": "M13:audio-hanzi",
+        "prerequisites": [
+          "fangjian",
+          "huzhao",
+          "fangka",
+          "lou"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M14:hanzi-meaning",
         "kind": "matching",
         "reference": "M14:hanzi-meaning",
+        "prerequisites": [
+          "reshui",
+          "wanglu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M14:audio-hanzi",
+        "kind": "matching",
+        "reference": "M14:audio-hanzi",
         "prerequisites": [
           "reshui",
           "wanglu"
@@ -8543,9 +8774,41 @@
         ]
       },
       {
+        "id": "tw:matching:M15:audio-hanzi",
+        "kind": "matching",
+        "reference": "M15:audio-hanzi",
+        "prerequisites": [
+          "jintian",
+          "mingtian",
+          "shangwu",
+          "xiawu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M16:hanzi-meaning",
         "kind": "matching",
         "reference": "M16:hanzi-meaning",
+        "prerequisites": [
+          "kaimen",
+          "guanmen"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M16:audio-hanzi",
+        "kind": "matching",
+        "reference": "M16:audio-hanzi",
         "prerequisites": [
           "kaimen",
           "guanmen"
@@ -8949,9 +9212,41 @@
         ]
       },
       {
+        "id": "tw:matching:M17:audio-hanzi",
+        "kind": "matching",
+        "reference": "M17:audio-hanzi",
+        "prerequisites": [
+          "da",
+          "xiao",
+          "gui",
+          "pianyi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:matching:M18:hanzi-meaning",
         "kind": "matching",
         "reference": "M18:hanzi-meaning",
+        "prerequisites": [
+          "shouji",
+          "chongdianqi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:matching:M18:audio-hanzi",
+        "kind": "matching",
+        "reference": "M18:audio-hanzi",
         "prerequisites": [
           "shouji",
           "chongdianqi"
@@ -9428,6 +9723,22 @@
         ]
       },
       {
+        "id": "tw:matching:M19:audio-hanzi",
+        "kind": "matching",
+        "reference": "M19:audio-hanzi",
+        "prerequisites": [
+          "yiyuan",
+          "yaoju",
+          "jingcha"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "matching",
+          "complete"
+        ]
+      },
+      {
         "id": "tw:exercise:sense:no-problem",
         "kind": "exercise",
         "reference": "sense:no-problem",
@@ -9606,6 +9917,984 @@
           "saved",
           "complete"
         ]
+      },
+      {
+        "id": "tw:listening-dialogue:G01",
+        "kind": "listening-dialogue",
+        "reference": "G01",
+        "prerequisites": [
+          "bangmang",
+          "bu",
+          "hao",
+          "kan",
+          "keqi",
+          "keyi",
+          "ma",
+          "man",
+          "ni",
+          "qing",
+          "shuo",
+          "tingbudong",
+          "wo",
+          "xiexie",
+          "yidian"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G02",
+        "kind": "listening-dialogue",
+        "reference": "G02",
+        "prerequisites": [
+          "bian",
+          "bu",
+          "deguo",
+          "hao",
+          "keqi",
+          "na-dem",
+          "ni",
+          "qing",
+          "qingwen",
+          "shenme",
+          "shi",
+          "shuo",
+          "taiwan",
+          "xiexie",
+          "yi",
+          "zai",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G03",
+        "kind": "listening-dialogue",
+        "reference": "G03",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "cha",
+          "hao",
+          "he",
+          "keqi",
+          "ni",
+          "shenme",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G04",
+        "kind": "listening-dialogue",
+        "reference": "G04",
+        "prerequisites": [
+          "bei",
+          "bing",
+          "bu",
+          "de",
+          "haishi",
+          "hao",
+          "he",
+          "kafei",
+          "keqi",
+          "ni",
+          "re",
+          "shenme",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G05",
+        "kind": "listening-dialogue",
+        "reference": "G05",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "haishi",
+          "hao",
+          "he",
+          "kafei",
+          "keqi",
+          "ma",
+          "shui",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G06",
+        "kind": "listening-dialogue",
+        "reference": "G06",
+        "prerequisites": [
+          "bei",
+          "bian",
+          "bing",
+          "bu",
+          "cha",
+          "de",
+          "duoshao",
+          "haishi",
+          "hao",
+          "he",
+          "keqi",
+          "kuai",
+          "ni",
+          "qian",
+          "qing",
+          "qingwen",
+          "re",
+          "san",
+          "shenme",
+          "shi-number",
+          "shuo",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "zai"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G07",
+        "kind": "listening-dialogue",
+        "reference": "G07",
+        "prerequisites": [
+          "bei",
+          "bu",
+          "gei",
+          "haishi",
+          "hao",
+          "keqi",
+          "keyi",
+          "kuai",
+          "liang",
+          "liu",
+          "ma",
+          "neng",
+          "ni",
+          "shi-number",
+          "shuaka",
+          "shui",
+          "wo",
+          "xianjin",
+          "xiexie",
+          "xingdongzhifu",
+          "yao",
+          "yigong"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G08",
+        "kind": "listening-dialogue",
+        "reference": "G08",
+        "prerequisites": [
+          "bu",
+          "caidan",
+          "chi",
+          "gei",
+          "haishi",
+          "hao",
+          "ji",
+          "jirou",
+          "kan",
+          "keqi",
+          "keyi",
+          "la",
+          "liang",
+          "ma",
+          "meiyou",
+          "mian",
+          "ni",
+          "niurou",
+          "qing",
+          "wan-bowl",
+          "wei",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G09",
+        "kind": "listening-dialogue",
+        "reference": "G09",
+        "prerequisites": [
+          "bu",
+          "dui",
+          "guomin",
+          "hao",
+          "huasheng",
+          "keqi",
+          "meiyou",
+          "mian",
+          "ni",
+          "wo",
+          "xiexie",
+          "yao",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G10",
+        "kind": "listening-dialogue",
+        "reference": "G10",
+        "prerequisites": [
+          "bu",
+          "cesuo",
+          "hao",
+          "keqi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "qingwen",
+          "rukou",
+          "xiexie",
+          "yuan-far",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G11",
+        "kind": "listening-dialogue",
+        "reference": "G11",
+        "prerequisites": [
+          "bu",
+          "budui",
+          "chukou",
+          "dao",
+          "dui",
+          "keqi",
+          "ma",
+          "wang",
+          "xian",
+          "xiexie",
+          "you-dir",
+          "zai",
+          "zenme",
+          "zhizou",
+          "zou",
+          "zuo-dir"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G12",
+        "kind": "listening-dialogue",
+        "reference": "G12",
+        "prerequisites": [
+          "bu",
+          "chezhan",
+          "da-ride",
+          "dao",
+          "dui",
+          "duojiu",
+          "er",
+          "fenzhong",
+          "hao",
+          "hong",
+          "keqi",
+          "le",
+          "ma",
+          "na",
+          "shi-number",
+          "tiao",
+          "wo",
+          "xiache",
+          "xian-line",
+          "xiexie",
+          "yao",
+          "yi",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G13",
+        "kind": "listening-dialogue",
+        "reference": "G13",
+        "prerequisites": [
+          "bu",
+          "chezhan",
+          "hao",
+          "jichang",
+          "jieyun",
+          "keqi",
+          "keyi",
+          "ma",
+          "na",
+          "nali",
+          "nali-dem",
+          "ni",
+          "piao",
+          "qu",
+          "shi",
+          "wo",
+          "xiache",
+          "xiexie",
+          "yao",
+          "zai-loc",
+          "zhan",
+          "zhe",
+          "zuo-ride"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G14A",
+        "kind": "listening-dialogue",
+        "reference": "G14A",
+        "prerequisites": [
+          "bu",
+          "hao",
+          "jichengche",
+          "keqi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "xiexie",
+          "yuan-far",
+          "zai-loc"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G14",
+        "kind": "listening-dialogue",
+        "reference": "G14",
+        "prerequisites": [
+          "bu",
+          "dao",
+          "dui",
+          "fandian",
+          "hao",
+          "keqi",
+          "ma",
+          "ni",
+          "qing",
+          "qu",
+          "tingche",
+          "wo",
+          "xiexie",
+          "yao",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G15",
+        "kind": "listening-dialogue",
+        "reference": "G15",
+        "prerequisites": [
+          "anna",
+          "bu",
+          "chenghu",
+          "de",
+          "fangjian",
+          "fangka",
+          "gei",
+          "hao",
+          "huzhao",
+          "ji",
+          "jiao",
+          "kan",
+          "keqi",
+          "keyi",
+          "liang",
+          "lou",
+          "ma",
+          "ni",
+          "nin",
+          "qingwen",
+          "san",
+          "shi",
+          "wan-night",
+          "wo",
+          "xiexie",
+          "yixia",
+          "you",
+          "yuding",
+          "zai-loc",
+          "zenme",
+          "zhe",
+          "zheli",
+          "zhu"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G16",
+        "kind": "listening-dialogue",
+        "reference": "G16",
+        "prerequisites": [
+          "bu",
+          "de",
+          "duibuqi",
+          "fangka",
+          "hao",
+          "huai",
+          "huan",
+          "keqi",
+          "keyi",
+          "le",
+          "ma",
+          "ni",
+          "nin",
+          "shi",
+          "xiexie",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G17",
+        "kind": "listening-dialogue",
+        "reference": "G17",
+        "prerequisites": [
+          "bu",
+          "duibuqi",
+          "fangjian",
+          "hao",
+          "huan",
+          "keqi",
+          "keyi",
+          "ma",
+          "meiyou",
+          "neng",
+          "ni",
+          "reshui",
+          "shangwang",
+          "wanglu",
+          "xiexie",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G18",
+        "kind": "listening-dialogue",
+        "reference": "G18",
+        "prerequisites": [
+          "baifan",
+          "bei",
+          "bu",
+          "hao",
+          "he",
+          "keqi",
+          "ma",
+          "ni",
+          "shenme",
+          "shui",
+          "wan-bowl",
+          "wo",
+          "xiexie",
+          "yao",
+          "yi",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G19",
+        "kind": "listening-dialogue",
+        "reference": "G19",
+        "prerequisites": [
+          "ban",
+          "bu",
+          "dian-clock",
+          "guanmen",
+          "hao",
+          "ji",
+          "jiu",
+          "kaimen",
+          "keqi",
+          "le",
+          "liang",
+          "liu",
+          "ni",
+          "shangwu",
+          "xianzai",
+          "xiawu",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G20",
+        "kind": "listening-dialogue",
+        "reference": "G20",
+        "prerequisites": [
+          "ban",
+          "bu",
+          "dao",
+          "de",
+          "dian-clock",
+          "haishi",
+          "jichang",
+          "jintian",
+          "keqi",
+          "keyi",
+          "liang",
+          "ma",
+          "mai",
+          "mingtian",
+          "piao",
+          "qi",
+          "san",
+          "shangwu",
+          "shi-number",
+          "shuaka",
+          "wo",
+          "xiawu",
+          "xiexie",
+          "xing",
+          "yao",
+          "yi",
+          "yigong",
+          "yuan",
+          "zhang"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G21",
+        "kind": "listening-dialogue",
+        "reference": "G21",
+        "prerequisites": [
+          "ban",
+          "bangmang",
+          "bu",
+          "dian-clock",
+          "dui",
+          "hao",
+          "jichang",
+          "keqi",
+          "keyi",
+          "liang",
+          "ma",
+          "mingtian",
+          "ni",
+          "qu",
+          "shijian",
+          "wo",
+          "xiawu",
+          "xiexie",
+          "you"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G22",
+        "kind": "listening-dialogue",
+        "reference": "G22",
+        "prerequisites": [
+          "bai",
+          "bu",
+          "chongdianqi",
+          "de",
+          "dianchi",
+          "duoshao",
+          "fuqian",
+          "ge",
+          "gui",
+          "haishi",
+          "hao",
+          "keqi",
+          "le",
+          "ling",
+          "ma",
+          "ni",
+          "pianyi",
+          "qi",
+          "qian",
+          "qing",
+          "qingwen",
+          "saoma",
+          "shenme",
+          "shi",
+          "shi-number",
+          "tai",
+          "tingbudong",
+          "wo",
+          "xianjin",
+          "xiexie",
+          "xingdongzhifu",
+          "yao",
+          "yi",
+          "yidian",
+          "you",
+          "yuan",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G23",
+        "kind": "listening-dialogue",
+        "reference": "G23",
+        "prerequisites": [
+          "bu",
+          "da",
+          "daizi",
+          "de",
+          "ge",
+          "hao",
+          "hen",
+          "keqi",
+          "le",
+          "ma",
+          "tai",
+          "wo",
+          "xiao",
+          "xiexie",
+          "yao",
+          "yidian",
+          "you",
+          "zhe"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G24",
+        "kind": "listening-dialogue",
+        "reference": "G24",
+        "prerequisites": [
+          "bu",
+          "chongdian",
+          "chongdianqi",
+          "gei",
+          "hao",
+          "kan",
+          "keqi",
+          "keyi",
+          "ma",
+          "nali",
+          "ni",
+          "qing",
+          "shouji",
+          "wo",
+          "xiexie",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G25",
+        "kind": "listening-dialogue",
+        "reference": "G25",
+        "prerequisites": [
+          "bang",
+          "bangmang",
+          "bu",
+          "de",
+          "diu",
+          "dui",
+          "hao",
+          "huzhao",
+          "jiao",
+          "jingcha",
+          "keqi",
+          "keyi",
+          "le",
+          "ma",
+          "qing",
+          "wo",
+          "xiexie"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G26",
+        "kind": "listening-dialogue",
+        "reference": "G26",
+        "prerequisites": [
+          "bang",
+          "bangmang",
+          "bu",
+          "duzi",
+          "hao",
+          "jiao",
+          "keqi",
+          "keyi",
+          "ma",
+          "ni",
+          "qing",
+          "tong",
+          "wo",
+          "xiexie",
+          "yisheng"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
+      },
+      {
+        "id": "tw:listening-dialogue:G27",
+        "kind": "listening-dialogue",
+        "reference": "G27",
+        "prerequisites": [
+          "bangmang",
+          "bu",
+          "hao",
+          "keqi",
+          "keyi",
+          "ma",
+          "nali",
+          "nali-dem",
+          "ni",
+          "tong",
+          "tou",
+          "wo",
+          "xiexie",
+          "yaoju",
+          "yiyuan",
+          "zai-loc",
+          "zheli"
+        ],
+        "scriptSpecific": true,
+        "states": [
+          "introduction",
+          "model",
+          "questions",
+          "resolution",
+          "recap",
+          "complete"
+        ]
       }
     ],
     "exerciseTypes": [
@@ -9615,6 +10904,6 @@
       "structured_route",
       "contextual_reply_selection"
     ],
-    "audio": "deferred; text evidence only"
+    "audio": "AWS Zhiyu cmn-CN; explicit listening completion; script help is assisted; text fallback remains reading"
   }
 }

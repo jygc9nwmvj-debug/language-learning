@@ -29,3 +29,5 @@ for(const entry of manifest.assets){
 
 import {checkTaiwanIntegration} from '../src/languages/mandarin/taiwan/course.ts';
 console.log('Taiwan text population:',checkTaiwanIntegration());
+
+await import('./validate-taiwan-audio.mjs');

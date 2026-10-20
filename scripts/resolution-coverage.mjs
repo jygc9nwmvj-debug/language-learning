@@ -8,6 +8,8 @@ import {content,itemMap} from '../src/languages/mandarin/content/index.ts';
 import {operationForTask,resolutionContracts} from '../src/core/exercises/resolution-contract.ts';
 import {referenceRole,fixedReferenceParts} from '../src/languages/mandarin/reference-role.ts';
 export const renderers={
+ 'src/languages/mandarin/taiwan/audio.ts':['target','listen'],
+ 'src/languages/mandarin/taiwan/TaiwanAudio.tsx':['target','listen'],
  'src/languages/mandarin/taiwan/TaiwanActivity.tsx':['text','writing','matching'],
  'src/languages/mandarin/taiwan/course.ts':['text'],
  'src/languages/mandarin/taiwan/state.ts':['text'],
@@ -34,7 +36,7 @@ export const renderers={
  'src/languages/mandarin/schema/content.ts':Object.keys(resolutionContracts),
 };
 export function enumerateResolutions(){
- return {taiwan:{activities:[...activityMap.values()].map(a=>({id:a.id,kind:a.kind,reference:a.ref,prerequisites:a.words,scriptSpecific:true,states:a.kind==='dialogue'?['introduction','model','questions','resolution','recap','complete']:a.kind==='exercise'?['introduction','prompt','resolution','complete']:a.kind==='matching'?['introduction','matching','complete']:a.kind.startsWith('writing')?['introduction','writing','saved','complete']:['introduction','model','complete']})),exerciseTypes:[...new Set(taiwan.exercises.map(x=>x.type))],audio:'deferred; text evidence only'},matching:matchingSets.map(s=>({id:s.id,revision:s.revision,relation:s.relation,items:s.items,operation:'matching',states:['matching','complete'],boundary:'additional; ordinary plan unchanged'})),tasks:content.tasks.map(t=>{
+ return {taiwan:{activities:[...activityMap.values()].map(a=>({id:a.id,kind:a.kind,reference:a.ref,prerequisites:a.words,scriptSpecific:true,states:['dialogue','listening-dialogue'].includes(a.kind)?['introduction','model','questions','resolution','recap','complete']:a.kind==='exercise'?['introduction','prompt','resolution','complete']:a.kind==='matching'?['introduction','matching','complete']:a.kind.startsWith('writing')?['introduction','writing','saved','complete']:['introduction','model','complete']})),exerciseTypes:[...new Set(taiwan.exercises.map(x=>x.type))],audio:'AWS Zhiyu cmn-CN; explicit listening completion; script help is assisted; text fallback remains reading'},matching:matchingSets.map(s=>({id:s.id,revision:s.revision,relation:s.relation,items:s.items,operation:'matching',states:['matching','complete'],boundary:'additional; ordinary plan unchanged'})),tasks:content.tasks.map(t=>{
   const operation=operationForTask(t.kind), c=operation&&resolutionContracts[operation],item=itemMap.get(t.itemId);
   const purpose=t.kind==='recall'?'production':t.kind==='encounter'?'introduction':'comprehension';
   return {slotReference:item?.slot?{slot:item.slot,role:referenceRole(item,purpose),fixedParts:fixedReferenceParts(item),introduction:'explicit example',screenless:'renderer-level fixed-components; eligibility unchanged',states:['prompt','help','resolved','reload']}:null,id:t.id,kind:t.kind,operation,states:c?c.states:[],base:c?c.required:[],reference:c?c.reference:'No graded resolution; continuous boundary routes paper/transfer or next batch.',

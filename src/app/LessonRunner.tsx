@@ -84,7 +84,7 @@ export function LessonRunner() {
       if(cancelled)return;
       clock.block('loading',false,performance.now());setAttentionSnapshot({key:`${session.id}:${session.index}`,events:history}); const previous=t.itemId?exposure(history).get(t.itemId):undefined;
       if(t.kind==='closure'&&!paper.length)return;
-      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:activityMap.has(t.id)?'text':t.kind,role:activityMap.has(t.id)?'text_learning':taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
+      return logEvent({sessionId:session.id,taskId:t.id,type:'task_presented',detail:{...timing(),item:t.itemId??'',modality:activityMap.has(t.id)?'mixed':t.kind,role:activityMap.has(t.id)?'taiwan_learning':taskPresentationRole(t,session.script,history),elapsedSincePreviousMs:previous===undefined?-1:Date.now()-previous,index:session.index}});
     }).catch(()=>setError(ui.storageError));
     return ()=>{cancelled=true;checkpoint();document.removeEventListener('visibilitychange',change);document.removeEventListener('pointerdown',touch);document.removeEventListener('keydown',touch);document.removeEventListener('input',touch);window.removeEventListener('pagehide',checkpoint);};
   },[view,session?.id,session?.index]);

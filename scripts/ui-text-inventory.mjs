@@ -68,6 +68,8 @@ export function enumerate(base = root) {
   // editorial QA metadata are not learner copy. Source hashing binds the entire
   // canonical file; each displayed member has its own ledger decision.
   if(base===root) {
+  const audioManifest='docs/curriculum/china-travel/POLLY_AUDIO_MANIFEST.json';
+  sources[audioManifest]=hash(readFileSync(resolve(base,audioManifest),'utf8'));
   const canon='docs/curriculum/china-travel/editorial/editorial.json';
   sources[canon]=hash(readFileSync(resolve(base,canon),'utf8'));
   const field=(id,key,value)=>{if(typeof value==='string'&&value.trim())add(canon,`taiwan:${id}:${key}`,value,id+'.'+key,{family:'taiwan-learning-content'});};

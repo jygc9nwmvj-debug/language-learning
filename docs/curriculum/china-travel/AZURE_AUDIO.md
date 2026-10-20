@@ -48,3 +48,8 @@ Die 19 Audio–Schrift-Matching-Varianten und eigenständiges Hörlernen sind no
 - [Microsoft: Text-to-Speech REST](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech): Ressource, Schlüssel/Region, SSML, Ausgabeformat und HTTP-Schnittstelle.
 
 Eingesehen am 20. Oktober 2026. Diese Produktdokumentation belegt Schnittstellen und Verfügbarkeit, nicht die Qualität unserer noch nicht hergestellten Hörfassung.
+
+
+## Nachtrag vom 20. Oktober 2026: AWS gewählt
+
+Der Nutzer hat die Herstellung mit dem bisherigen AWS-Zugang beauftragt. Die obige Azure-Vorbereitung bleibt als historischer Stand erhalten; Azure wurde nicht aufgerufen. Umgesetzt und lokal eingebunden ist die AWS-Fassung: [POLLY_AUDIO.md](POLLY_AUDIO.md). Die hier genannten 404 Azure-Anfragen beschreiben den damaligen Vorbereitungsplan und sind keine erzeugten Dateien.

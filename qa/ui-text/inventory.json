@@ -18,14 +18,14 @@
       "reason": "Conservative source envelope: enumerate text candidates and dynamic display expressions; classify non-display internals separately."
     },
     "src/app/LessonRunner.tsx": {
-      "sha256": "a67bb73b4a03b33311c5928e5d8c4487991a60162e1250c2a00551d09117f84a",
+      "sha256": "eb1949f00e864393362b5d526756980e94b9c32fe8d0735f250157a341744c42",
       "scope": "production-source",
-      "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+      "reason": "Only Taiwan task-presented metadata changed from text-only to mixed; actual per-attempt evidence remains distinct. Display routing unchanged."
     },
     "src/app/app.css": {
-      "sha256": "e8aac1ed8ecbfac719858ca0c42993fd8273dcd4b69bd764d094a3429563a266",
+      "sha256": "8da0c4df37a1aed4dfda0b2ecbedfbddbd1722d2458af4fa9e9de3f63b30523c",
       "scope": "production-source",
-      "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
     },
     "src/core/audio/Recorder.tsx": {
       "sha256": "3f2016feaa7f19f140501737f7c245186e5a9a10c149584cc37605fef76a4966",
@@ -408,24 +408,39 @@
       "reason": "Local geometry model for one approved writing target; no displayed prose. Provenance and checksum in STROKE_DATA.json."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx": {
-      "sha256": "1a02c862a1dcd2636b2b353e17639b8cb600f760fce02d60e8c04d2f98a77490",
+      "sha256": "d734995def687a2d089184c3003b35656f877ef574d37ac069be5813ada48634",
       "scope": "production-source",
-      "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
     },
     "src/languages/mandarin/taiwan/course.ts": {
-      "sha256": "46ff00a9fbecfbbe592eb75920ac0cf08bdac485c95eb8ac093ecd08ad5e04dc",
+      "sha256": "4789a558592223bd66b9ad403874f37ee4ac0e8ce017ef8340fa45552f9e249a",
       "scope": "production-source",
-      "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
     },
     "src/languages/mandarin/taiwan/state.ts": {
-      "sha256": "f4f4c35ffb10092ba0f50cdcc9a96435e28df5e6f58ca6103186e3cb6ee8df03",
+      "sha256": "373e3bdea15c43d6d166960c69cb0e1f7761c51ee143b10c4a8652a1bbabf36e",
       "scope": "production-source",
-      "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
     },
     "docs/curriculum/china-travel/editorial/editorial.json": {
       "sha256": "a3a76c9943691bcdc59420da9a41b72cbf818134402341d26f25e1fc11cee7d7",
       "scope": "production-source",
       "reason": "Taiwan integration: reviewed canonical text fields, explicit text routing and durable checkpoints; no acoustic evidence from text. Stroke JSON is model geometry under existing Arphic license."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx": {
+      "sha256": "7686998f3ede1436e52368c1c71e55ed05235acdb08ef2b5cff875ee01b6637a",
+      "scope": "production-source",
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
+    },
+    "src/languages/mandarin/taiwan/audio.ts": {
+      "sha256": "a027bf1abb6ea96218e570cd8e5d129c0608cc3882d54dce6dca049f72ae79b5",
+      "scope": "production-source",
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
+    },
+    "docs/curriculum/china-travel/POLLY_AUDIO_MANIFEST.json": {
+      "sha256": "596f1fa6304503623b6c91501484d9fbdbdbb20395594a4e8c01f66b1e2710b0",
+      "scope": "production-source",
+      "reason": "Taiwan AWS integration: reviewed references, exact word/sentence/dialogue mappings, optional text help, actual ended-playback evidence and durable checkpoints; no acoustic certification inferred. Stroke JSON is model geometry under existing Arphic license."
     }
   },
   "decisions": {
@@ -62178,13 +62193,6 @@
       "disposition": "retain",
       "reason": "Reviewed internal ImportDeclaration at src/app/LessonRunner.tsx:11; identifier/import/type/event/selector or control state, not displayed prose."
     },
-    "src/app/LessonRunner.tsx:Literal:466a89795d885857": {
-      "text": "text_learning",
-      "scope": "non-display",
-      "functions": [],
-      "disposition": "retain",
-      "reason": "Reviewed internal ConditionalExpression at src/app/LessonRunner.tsx:87; identifier/import/type/event/selector or control state, not displayed prose."
-    },
     "src/app/LessonRunner.tsx:Literal:4fc944369e28cd83": {
       "text": "../core/progress/model",
       "scope": "non-display",
@@ -62683,28 +62691,6 @@
       "disposition": "retain",
       "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:55aaa62030d75962": {
-      "text": "!state.feedback?<button type=\"button\" disabled={blocked||((production||structured)?!state.input.trim():!state.selected.length)} onClick={()=>void check()}>Prüfen</button>:<div className=\"twFeedback\" role=\"status\"><Resolution operation=\"text\" parts={{response:<p>{production||structured?state.input:state.selected.map(optionLabel).join(' / ')}</p>,feedback:<p>{state.notice}</p>,reference:production?<div>{variants.map((v,i)=>typeof v==='object'&&v!==null&&'hant'in v?<div key={i}><p lang=\"zh\">{v[script]}</p><p>{v.pinyinLexical}</p></div>:null)}</div>:uid?sentence(uid,true):'correct'in x?<p>{(x.correct??[]).map(optionLabel).join(' / ')}</p>:<p>{'expected'in x?route?optionLabel(JSON.stringify(x.expected)):String(x.expected):null}</p>,next:<button type=\"button\" disabled={blocked} onClick={()=>void advance()}>Weiter</button>}}/></div>",
-      "scope": "production",
-      "functions": [
-        "learning-content",
-        "action",
-        "feedback"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:56083ee88493652c": {
-      "text": "m.pairs.map(p=><button key={p.word} lang=\"zh\" type=\"button\" className={state.left===p.word?'selected':''} disabled={blocked||state.matched.includes(p.word)} onClick={()=>void save({left:p.word,notice:''})}>{form(p.word)}</button>)",
-      "scope": "production",
-      "functions": [
-        "learning-content",
-        "action",
-        "feedback"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:65ee966857cf3058": {
       "text": "variants.map((v,i)=>typeof v==='object'&&v!==null&&'hant'in v?<div key={i}><p lang=\"zh\">{v[script]}</p><p>{v.pinyinLexical}</p></div>:null)",
       "scope": "production",
@@ -62751,17 +62737,6 @@
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:914d6891b861c59b": {
       "text": "pinyinVisible&&<p>{u.pinyinLexical}</p>",
-      "scope": "production",
-      "functions": [
-        "learning-content",
-        "action",
-        "feedback"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:97a08cc53432bbf8": {
-      "text": "shuffled(m.pairs.map(p=>p.word),a.id).map(k=>{const p=m.pairs.find(p=>p.word===k)!;return <button key={k} type=\"button\" disabled={blocked||!selected||state.matched.includes(k)} onClick={()=>void save(selected?.word===k?{matched:[...state.matched,k],left:'',notice:'Das passt.'}:{notice:'Diese Bedeutung passt noch nicht. Versuche eine andere Verbindung.'})}>{p.de}</button>;})",
       "scope": "production",
       "functions": [
         "learning-content",
@@ -62988,13 +62963,6 @@
       "disposition": "retain",
       "reason": "Reviewed internal restored at src/languages/mandarin/taiwan/TaiwanActivity.tsx:58; identifier/import/type/event/selector or control state, not displayed prose."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:57ea4f63a7854365": {
-      "text": "()=>void save({wordIndex:state.wordIndex+1},[{type:'taiwan_word_introduced',detail:{word:currentWord,script,form:w[script],meaning:true,hanzi:true,pronunciation:false}}])",
-      "scope": "non-display",
-      "functions": [],
-      "disposition": "retain",
-      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:50; identifier/import/type/event/selector or control state, not displayed prose."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:59d76a18d71e8e60": {
       "text": "form(p.word)",
       "scope": "production",
@@ -63039,26 +63007,8 @@
       "disposition": "retain",
       "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:48; identifier/import/type/event/selector or control state, not displayed prose."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:754467593ddc8b87": {
-      "text": "uid&&!production&&sentence(uid)",
-      "scope": "production",
-      "functions": [
-        "learning-content"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:76034327e7bc3dca": {
       "text": "o.title",
-      "scope": "production",
-      "functions": [
-        "learning-content"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:7df0cc17d9fcdafa": {
-      "text": "p.de",
       "scope": "production",
       "functions": [
         "learning-content"
@@ -63090,15 +63040,6 @@
       "functions": [],
       "disposition": "retain",
       "reason": "Reviewed internal key at src/languages/mandarin/taiwan/TaiwanActivity.tsx:53; identifier/import/type/event/selector or control state, not displayed prose."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:8495646b7d995f4f": {
-      "text": "type==='sentence_meaning'?'Welche Bedeutung hat dieser Satz?':structured?'Welchen Wert nennt der Text? Gib Betrag oder Dauer als Zahl, eine Uhrzeit als HH:MM an.':route?'Welchen Weg nennt der Text? Du blickst im Lageplan nach oben.':x.prompt",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:87272b74e8f1fb3a": {
       "text": "u[script]",
@@ -63172,13 +63113,6 @@
       ],
       "disposition": "retain",
       "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:a0816622af796dff": {
-      "text": "()=>void save(selected?.word===k?{matched:[...state.matched,k],left:'',notice:'Das passt.'}:{notice:'Diese Bedeutung passt noch nicht. Versuche eine andere Verbindung.'})",
-      "scope": "non-display",
-      "functions": [],
-      "disposition": "retain",
-      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:62; identifier/import/type/event/selector or control state, not displayed prose."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:a18603086e5bdf9d": {
       "text": "support",
@@ -63268,13 +63202,6 @@
       ],
       "disposition": "retain",
       "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:cdeca8b05024b475": {
-      "text": "blocked||((production||structured)?!state.input.trim():!state.selected.length)",
-      "scope": "non-display",
-      "functions": [],
-      "disposition": "retain",
-      "reason": "Reviewed internal disabled at src/languages/mandarin/taiwan/TaiwanActivity.tsx:103; identifier/import/type/event/selector or control state, not displayed prose."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:cfd70a4852c2aa8f": {
       "text": "d.roles[t.speaker as keyof typeof d.roles]",
@@ -63453,15 +63380,6 @@
       "disposition": "retain",
       "reason": "Recovered saved completion, not a mastery assertion."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:75f0df8573b9f49c": {
-      "text": "Schrift und Bedeutung verbinden",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Names the active text matching relation; audio relation is deferred."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:849885c05eeb20a4": {
       "text": "Vergleiche selbst. Deine freie Zusammenfassung wird nicht automatisch bewertet.",
       "scope": "production",
@@ -63489,24 +63407,6 @@
       "disposition": "retain",
       "reason": "Reveals the self-comparison model after own summary."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:aba76047a5a2944e": {
-      "text": "Lies das Gespräch. Die Fragen danach prüfen Textverständnis.",
-      "scope": "production",
-      "functions": [
-        "necessary-system-information"
-      ],
-      "disposition": "retain",
-      "reason": "Makes the modality/evidence boundary clear before the dialogue."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:afe3191ee9203745": {
-      "text": "Reise nach Taiwan · Textfassung",
-      "scope": "production",
-      "functions": [
-        "orientation"
-      ],
-      "disposition": "retain",
-      "reason": "Names the enabled text version; no missing-audio spinner."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:c6a9290b899c073b": {
       "text": "Teile dieses Ausdrucks",
       "scope": "production",
@@ -63525,15 +63425,6 @@
       "disposition": "retain",
       "reason": "Labels ungraded own recap."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:d4fee1dc11bc549a": {
-      "text": "Reise nach Taiwan · Textverständnis",
-      "scope": "production",
-      "functions": [
-        "orientation"
-      ],
-      "disposition": "retain",
-      "reason": "Names the actual assessment modality."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:f99bafb4437c02da": {
       "text": "Wähle alle passenden Antworten.",
       "scope": "production",
@@ -63542,15 +63433,6 @@
       ],
       "disposition": "retain",
       "reason": "Communicates set-valued reply selection instead of a hidden preference."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:f9bd26eaaad9c800": {
-      "text": "Wähle links einen Ausdruck und rechts seine Bedeutung.",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Describes the matching interaction."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:00e13ed7af55b276": {
       "text": "work",
@@ -63862,15 +63744,6 @@
       "disposition": "retain",
       "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:81; identifier/import/type/event/selector or control state, not displayed prose."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6a7aee39ef643750": {
-      "text": "Welchen Weg nennt der Text? Du blickst im Lageplan nach oben.",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Preserves the authored route orientation while naming text as the source."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:7a04aa1579972541": {
       "text": "hant",
       "scope": "non-display",
@@ -63986,15 +63859,6 @@
       "functions": [],
       "disposition": "retain",
       "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:20; identifier/import/type/event/selector or control state, not displayed prose."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:ae0d9d878e6c14fe": {
-      "text": "Welchen Wert nennt der Text? Gib Betrag oder Dauer als Zahl, eine Uhrzeit als HH:MM an.",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Clarifies structured input format without revealing a value."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:aee408847d35e44e": {
       "text": "success",
@@ -64187,15 +64051,6 @@
       ],
       "disposition": "retain",
       "reason": "Authored route option label."
-    },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:ef529782528e94d4": {
-      "text": "Diese Bedeutung passt noch nicht. Versuche eine andere Verbindung.",
-      "scope": "production",
-      "functions": [
-        "feedback"
-      ],
-      "disposition": "retain",
-      "reason": "Allows correcting one mismatched pair without restarting the group."
     },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:f2584dd6562a586f": {
       "text": "unsure",
@@ -64545,15 +64400,6 @@
       "disposition": "retain",
       "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
     },
-    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:010e1dca4261dca9": {
-      "text": "!production&&support",
-      "scope": "production",
-      "functions": [
-        "action"
-      ],
-      "disposition": "retain",
-      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
-    },
     "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:c7bf4381c0aabc0b": {
       "text": "()=>{setPinyinVisible(v=>!v);if(a.kind==='exercise'&&!pinyinVisible)void save({revealed:true});}",
       "scope": "non-display",
@@ -64715,6 +64561,751 @@
       "functions": [],
       "disposition": "retain",
       "reason": "Reviewed internal y at src/languages/mandarin/taiwan/TaiwanActivity.tsx:101; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:02bd175f32972037": {
+      "text": "json",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportAttribute at src/languages/mandarin/taiwan/audio.ts:1; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:086f8a2b65a32fe3": {
+      "text": "../../../../docs/curriculum/china-travel/POLLY_AUDIO_MANIFEST.json",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/audio.ts:1; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:12765295db4f1e79": {
+      "text": "natural",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/audio.ts:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:67ff1bd6673f951e": {
+      "text": "careful_slow",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/audio.ts:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:821119d79af8b9fc": {
+      "text": "sentence",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/audio.ts:2; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:98c1eb4ee9347674": {
+      "text": "word",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/audio.ts:2; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:Literal:abe0ba24dae6eb85": {
+      "text": "dialogue",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/audio.ts:2; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/audio.ts:template:33e9ea3b0f452010": {
+      "text": "`${kind}:${reference}:${variant}`",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/audio.ts:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:Literal:101f84c941d31465": {
+      "text": "listening-dialogue",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/course.ts:19; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:Literal:c279e4ea76dcd8fc": {
+      "text": "Ein Gespräch verstehen",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal Property at src/languages/mandarin/taiwan/course.ts:92; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:Literal:ce978dc7829d3b1d": {
+      "text": "pronunciation",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/course.ts:95; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:Literal:d514fa92bfd04d38": {
+      "text": "./audio.ts",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/course.ts:2; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:Literal:e2c5fdd2cec39572": {
+      "text": "taiwan_word_audio_completed",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/course.ts:94; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:template:2a134214f4baeae2": {
+      "text": "`tw:listening-dialogue:${d.id}`",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal Property at src/languages/mandarin/taiwan/course.ts:92; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/course.ts:template:5b0b9a09be59ea12": {
+      "text": "`tw:listening-dialogue:${a.ref}`",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/course.ts:84; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/state.ts:Literal:6ed8919ce20490a5": {
+      "text": "audio",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ArrayExpression at src/languages/mandarin/taiwan/state.ts:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/state.ts:Literal:982d9e3eb996f559": {
+      "text": "text",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ArrayExpression at src/languages/mandarin/taiwan/state.ts:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:1c48d9375ed176c4": {
+      "text": "uid&&!production&&(listening?<><TaiwanAudio kind=\"sentence\" reference={uid} label=\"Satz anhören\" disabled={blocked} onFinished={v=>void heard('sentence',uid,v)}/><button type=\"button\" className=\"textButton\" disabled={blocked} onClick={()=>void save({transcript:true,revealed:true})}>Text als Hilfe anzeigen</button><button type=\"button\" className=\"textButton\" disabled={blocked} onClick={()=>void save({modality:'text',revealed:true})}>Als Text bearbeiten</button>{state.transcript&&sentence(uid,false,false)}</>:sentence(uid))",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:4066fe3367905afc": {
+      "text": "!state.feedback?<button type=\"button\" disabled={blocked||(listening&&!hasHeard)||((production||structured)?!state.input.trim():!state.selected.length)} onClick={()=>void check()}>Prüfen</button>:<div className=\"twFeedback\" role=\"status\"><Resolution operation=\"text\" parts={{response:<p>{production||structured?state.input:state.selected.map(optionLabel).join(' / ')}</p>,feedback:<p>{state.notice}</p>,reference:production?<div>{variants.map((v,i)=>typeof v==='object'&&v!==null&&'hant'in v?<div key={i}><p lang=\"zh\">{v[script]}</p><p>{v.pinyinLexical}</p></div>:null)}</div>:uid?sentence(uid,true):'correct'in x?<p>{(x.correct??[]).map(optionLabel).join(' / ')}</p>:<p>{'expected'in x?route?optionLabel(JSON.stringify(x.expected)):String(x.expected):null}</p>,next:<button type=\"button\" disabled={blocked} onClick={()=>void advance()}>Weiter</button>}}/></div>",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:7489ef7d1d9ab019": {
+      "text": "state.modality==='audio'&&!state.played['word:'+currentWord]&&<button type=\"button\" className=\"textButton\" disabled={blocked} onClick={()=>void save({modality:'text'})}>Nur Text verwenden</button>",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:c43912d3b5556923": {
+      "text": "m.pairs.map((p,n)=>sound?<div key={p.word} className={state.left===p.word?'selected':''}><TaiwanAudio kind=\"word\" reference={p.word} label={`Klang ${n+1} anhören`} disabled={blocked||state.matched.includes(p.word)} onFinished={()=>void save({left:p.word,notice:''})}/></div>:<button key={p.word} lang=\"zh\" type=\"button\" className={state.left===p.word?'selected':''} disabled={blocked||state.matched.includes(p.word)} onClick={()=>void save({left:p.word,notice:''})}>{form(p.word)}</button>)",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:e0a900c381fad4ab": {
+      "text": "shuffled(m.pairs.map(p=>p.word),a.id).map(k=>{const p=m.pairs.find(p=>p.word===k)!;return <button key={k} type=\"button\" disabled={blocked||!selected||state.matched.includes(k)} onClick={()=>void pair(k)}>{sound?form(k):p.de}</button>;})",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:composition:ee410283dc57ca6b": {
+      "text": "withAudio&&<TaiwanAudio kind=\"sentence\" reference={k} disabled={blocked}/>",
+      "scope": "production",
+      "functions": [
+        "learning-content",
+        "action",
+        "feedback"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed text-activity branch: canonical reference or own response, contextual models, bounded feedback and continuation; Resolution enforces answer-state roles."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:066d14227807ec65": {
+      "text": "state.modality==='audio'&&!state.played['word:'+currentWord]",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal autoPlay at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:0a149486801741ef": {
+      "text": "sound?'Laut und Schrift verbinden':'Schrift und Bedeutung verbinden'",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:17b788a70eeccbdc": {
+      "text": "uid",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal reference at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:1bfc703b97d57c57": {
+      "text": "()=>void save({wordIndex:state.wordIndex+1},[{type:'taiwan_word_introduced',detail:{word:currentWord,script,form:w[script],meaning:true,hanzi:true,pronunciation:!!state.played['word:'+currentWord]}}])",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:1f4f7c083ad8bf3c": {
+      "text": "currentWord",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal reference at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:21f0e3818d2c2c34": {
+      "text": "()=>void save({modality:'text'})",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:2312973f204ffd93": {
+      "text": "type==='sentence_meaning'?'Welche Bedeutung hat dieser Satz?':structured?'Welchen Wert nennt der Satz? Gib Betrag oder Dauer als Zahl, eine Uhrzeit als HH:MM an.':route?'Welchen Weg nennt der Satz? Du blickst im Lageplan nach oben.':x.prompt",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:2964cfdbd3dc1af4": {
+      "text": "()=>void save({modality:state.modality==='audio'?'text':'audio',revealed:true})",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:72; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:2d129bd073674e97": {
+      "text": "()=>void pair(k)",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:67; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:3b9c4b2480667e6c": {
+      "text": "state.transcript&&sentence(uid,false,false)",
+      "scope": "production",
+      "functions": [
+        "learning-content"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:4c90a1392981e543": {
+      "text": "state.modality==='audio'?'Als Text bearbeiten':'Als Hörübung bearbeiten'",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:5439a0e49a571252": {
+      "text": "d.id",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal reference at src/languages/mandarin/taiwan/TaiwanActivity.tsx:72; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:641a11b65f3aeba5": {
+      "text": "v=>void heard('dialogue',d.id,v)",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onFinished at src/languages/mandarin/taiwan/TaiwanActivity.tsx:72; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:659c3d943d43e62e": {
+      "text": "`Klang ${n+1} anhören`",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal label at src/languages/mandarin/taiwan/TaiwanActivity.tsx:67; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:7af9ac706deb895e": {
+      "text": "v=>void heard('word',currentWord,v)",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onFinished at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:7b89fc67ffc3897a": {
+      "text": "()=>void save({modality:'text',revealed:true})",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:8783e6d6f14031d7": {
+      "text": "v=>void heard('sentence',uid,v)",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onFinished at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:c2b179033998a087": {
+      "text": "blocked||(listening&&!hasHeard)||((production||structured)?!state.input.trim():!state.selected.length)",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal disabled at src/languages/mandarin/taiwan/TaiwanActivity.tsx:110; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:cd972de337aab4a5": {
+      "text": "()=>void save({transcript:true,revealed:true})",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onClick at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:d03cc11b6165ce2e": {
+      "text": "!production&&(!listening||state.transcript)&&support",
+      "scope": "production",
+      "functions": [
+        "learning-content"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:e85bdbc8dc028b0f": {
+      "text": "sound?'Höre links einen Ausdruck an und wähle rechts die passende Schriftform.':'Wähle links einen Ausdruck und rechts seine Bedeutung.'",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed action/support or text-mode instruction branch; no answer-key generation."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:ef6649b2c1645b33": {
+      "text": "blocked||(state.modality==='audio'&&!state.played['word:'+currentWord])",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal disabled at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:expression:f9e922b681f0cbc8": {
+      "text": "sound?form(k):p.de",
+      "scope": "production",
+      "functions": [
+        "learning-content"
+      ],
+      "disposition": "retain",
+      "reason": "Reviewed dynamic canonical field/option/model family; exact displayed members are individually bound in the Taiwan data ledger."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:0e43371fd5122cd0": {
+      "text": "Nur Text verwenden",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Switches prerequisites to explicit reading fallback, with no listening success."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:1f677bbffe1acf6b": {
+      "text": "Text als Hilfe anzeigen",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Discloses transcript and records assistance on the listening attempt."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:33fb3cbe6c1ce728": {
+      "text": "Höre das Gespräch an. Danach kannst du die einzelnen Sätze verstehen und prüfen.",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Names the guided model and sentence checks."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:8e5b624f5dccaf1e": {
+      "text": "Reise nach Taiwan · Verstehen",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Names the shared reading/listening surface."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:b1426770662c71c5": {
+      "text": "Als Text bearbeiten",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Explicitly switches from listening to reading evidence."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:JSXText:c66b103600b4f0d3": {
+      "text": "Reise nach Taiwan",
+      "scope": "production",
+      "functions": [
+        "orientation"
+      ],
+      "disposition": "retain",
+      "reason": "Task descriptor for the text route, not a new visible module."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:05f6eb671e119143": {
+      "text": "./TaiwanAudio",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/TaiwanActivity.tsx:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:073e86d7409f469a": {
+      "text": "Dialog anhören",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Names the exact whole-dialogue or individual sentence recording; no answer revealed."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:101f84c941d31465": {
+      "text": "listening-dialogue",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:23; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:1f8fa3a65b17e590": {
+      "text": "./audio",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/TaiwanActivity.tsx:4; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:47e275c843b3c5b2": {
+      "text": "Welchen Weg nennt der Satz? Du blickst im Lageplan nach oben.",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6515a562f9edde60": {
+      "text": "Diese Verbindung passt noch nicht. Versuche eine andere.",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal Property at src/languages/mandarin/taiwan/TaiwanActivity.tsx:66; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6a11e74aef639636": {
+      "text": "listening_comprehension",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:46; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6a240e3bc8a3fd4f": {
+      "text": "Laut und Schrift verbinden",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:67; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6e92b8d963054315": {
+      "text": "audio-hanzi",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:65; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:6ed8919ce20490a5": {
+      "text": "audio",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:24; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:75f0df8573b9f49c": {
+      "text": "Schrift und Bedeutung verbinden",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Names the active text matching relation; audio relation is deferred."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:7dbba6498b182724": {
+      "text": "Als Hörübung bearbeiten",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:72; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:8037bd78273e12bc": {
+      "text": "Welchen Wert nennt der Satz? Gib Betrag oder Dauer als Zahl, eine Uhrzeit als HH:MM an.",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:108; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:821119d79af8b9fc": {
+      "text": "sentence",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/TaiwanActivity.tsx:48; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:8560878b8782af43": {
+      "text": "listening",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/TaiwanActivity.tsx:41; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:98c1eb4ee9347674": {
+      "text": "word",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal TSLiteralType at src/languages/mandarin/taiwan/TaiwanActivity.tsx:48; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:a25ca53298f27d5f": {
+      "text": "audio_guided",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:37; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:a85be2230a35c2ad": {
+      "text": "Höre links einen Ausdruck an und wähle rechts die passende Schriftform.",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:67; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:aad6f95f1b8f0d9e": {
+      "text": "Satz anhören",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Names the exact whole-dialogue or individual sentence recording; no answer revealed."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:b1426770662c71c5": {
+      "text": "Als Text bearbeiten",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Explicitly switches from listening to reading evidence."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:b560610c02aad815": {
+      "text": "sentence:",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:37; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:bd8c8c5f6380b758": {
+      "text": "taiwan_reference_completed",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:48; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:e22e2311ebfe8f45": {
+      "text": "taiwan_matching_pair",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal Property at src/languages/mandarin/taiwan/TaiwanActivity.tsx:66; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:e2c5fdd2cec39572": {
+      "text": "taiwan_word_audio_completed",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ConditionalExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:48; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:f99fde754328eb4f": {
+      "text": "dialogue:",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:37; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:f9bd26eaaad9c800": {
+      "text": "Wähle links einen Ausdruck und rechts seine Bedeutung.",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Describes the matching interaction."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:Literal:fb3ea719786a4aba": {
+      "text": "word:",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal BinaryExpression at src/languages/mandarin/taiwan/TaiwanActivity.tsx:54; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanActivity.tsx:template:659c3d943d43e62e": {
+      "text": "`Klang ${n+1} anhören`",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal JSXExpressionContainer at src/languages/mandarin/taiwan/TaiwanActivity.tsx:67; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:composition:5a9bb01b1ebfa3d3": {
+      "text": "slow&&<AudioButton src={slow} label={ui.slow} onEnded={()=>onFinished?.('careful_slow')}/>",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Existing playback control labels: caller-supplied Dialog/Satz/Klang label or shared Anhören/Langsam; no source word disclosed by sound-matching labels."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:12765295db4f1e79": {
+      "text": "natural",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal src at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:17eb3c0168d0d7b2": {
+      "text": "disabled",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal disabled at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:2077fa7db21b7c1a": {
+      "text": "label??ui.listen",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Existing playback control labels: caller-supplied Dialog/Satz/Klang label or shared Anhören/Langsam; no source word disclosed by sound-matching labels."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:4b7d57c0737757a7": {
+      "text": "ui.slow",
+      "scope": "production",
+      "functions": [
+        "action"
+      ],
+      "disposition": "retain",
+      "reason": "Existing playback control labels: caller-supplied Dialog/Satz/Klang label or shared Anhören/Langsam; no source word disclosed by sound-matching labels."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:4fe3afa8b8bbc431": {
+      "text": "()=>onFinished?.('careful_slow')",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onEnded at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:5e0cf7bd1dfa3831": {
+      "text": "slow",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal src at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:84349b0dbb2f6644": {
+      "text": "()=>onFinished?.('natural')",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal onEnded at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:expression:cdb595e84f435042": {
+      "text": "autoPlay",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal autoPlay at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:12765295db4f1e79": {
+      "text": "natural",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:1f8fa3a65b17e590": {
+      "text": "./audio",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/TaiwanAudio.tsx:3; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:67ff1bd6673f951e": {
+      "text": "careful_slow",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal CallExpression at src/languages/mandarin/taiwan/TaiwanAudio.tsx:5; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:7ccd74eb72454807": {
+      "text": "../../../core/exercises/AudioButton",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/TaiwanAudio.tsx:1; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:9db5265ff3845254": {
+      "text": "twAudioControls",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal className at src/languages/mandarin/taiwan/TaiwanAudio.tsx:7; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/languages/mandarin/taiwan/TaiwanAudio.tsx:Literal:c3e3a84b177ddac2": {
+      "text": "../../../core/i18n/de",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Reviewed internal ImportDeclaration at src/languages/mandarin/taiwan/TaiwanAudio.tsx:2; identifier/import/type/event/selector or control state, not displayed prose."
+    },
+    "src/app/LessonRunner.tsx:Literal:3f8fee624f43b2a9": {
+      "text": "mixed",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Task-presented research metadata identifies multimodal Taiwan work. Actual listening/reading evidence is recorded per attempt, not inferred from presentation."
+    },
+    "src/app/LessonRunner.tsx:Literal:5be3092237fc040c": {
+      "text": "taiwan_learning",
+      "scope": "non-display",
+      "functions": [],
+      "disposition": "retain",
+      "reason": "Task-presented research metadata identifies multimodal Taiwan work. Actual listening/reading evidence is recorded per attempt, not inferred from presentation."
     }
   }
 }

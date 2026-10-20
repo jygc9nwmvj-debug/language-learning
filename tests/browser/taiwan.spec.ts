@@ -7,7 +7,7 @@ async function seed(page:Page,id:string,script:'hant'|'hans'='hant'){
   const db=await new Promise<IDBDatabase>(r=>{const q=indexedDB.open('language-learning-local');q.onsuccess=()=>r(q.result);});
   await new Promise<void>((r,reject)=>{const t=db.transaction(['sessions','events'],'readwrite');
    t.objectStore('sessions').put({id:'taiwan-browser',plannerVersion:'d1',plan:[id,'closure'],index:0,completed:false,startedAt:Date.now(),updatedAt:Date.now(),script});
-   for(const word of words)t.objectStore('events').put({id:'word-'+word,at:Date.now(),sessionId:'introduced',taskId:id,type:'taiwan_word_introduced',contentVersion:'taiwan-text-1',detail:{word,script}});
+   for(const word of words)for(const type of ['taiwan_word_introduced','taiwan_word_audio_completed'])t.objectStore('events').put({id:type+word,at:Date.now(),sessionId:'introduced',taskId:id,type,contentVersion:'taiwan-text-1',detail:{word,script}});
    t.oncomplete=()=>r();t.onerror=()=>reject(t.error);});db.close();
  },{id,script,words:editorial.words.map(w=>w.id)});
  await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/,exact:true}).click();await expect(page.locator('[data-task-kind="taiwan-text"]')).toBeVisible();
@@ -21,6 +21,7 @@ for(const script of ['hant','hans'] as const){
   await expect(page.locator('audio')).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:`/tmp/taiwan-text-${script}-${browserName}.png`,fullPage:true});
+  await page.getByRole('button',{name:'Als Text bearbeiten',exact:true}).click();
   await page.getByRole('button',{name:'Zum Verständnis',exact:true}).click();
   await page.getByRole('button',{name:'Hallo.',exact:true}).click();await page.getByRole('button',{name:'Prüfen',exact:true}).click();
   await expect(page.locator('.twFeedback')).toContainText('Hallo.');
@@ -39,11 +40,12 @@ test('Weiterlernen starts reachable text content with focused prerequisite intro
  await expect(page.locator('[data-taiwan-mode="introduction"]')).toBeVisible();
  await expect(page.locator('.twFocus')).toBeVisible();
  await page.getByRole('button',{name:'Pinyin anzeigen',exact:true}).click();await expect(page.getByRole('button',{name:'Pinyin ausblenden',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Nur Text verwenden',exact:true}).click();
  await page.getByRole('button',{name:'Weiter',exact:true}).click();
  expect((await history(page)).some(e=>e.type==='taiwan_word_introduced'&&e.detail.pronunciation===false)).toBe(true);
 });
 test('structured time and written Mandarin variants have bounded feedback',async({page})=>{
- await seed(page,'tw:exercise:value:t1430');await page.getByLabel('Deine Antwort').fill('14:30');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.twFeedback')).toContainText('14:30');
+ await seed(page,'tw:exercise:value:t1430');await page.getByRole('button',{name:'Als Text bearbeiten',exact:true}).click();await page.getByLabel('Deine Antwort').fill('14:30');await page.getByRole('button',{name:'Prüfen',exact:true}).click();await expect(page.locator('.twFeedback')).toContainText('14:30');
 });
 test('unlisted Mandarin response remains a comparison, not a false failure',async({page})=>{
  const x=editorial.exercises.find(x=>x.type==='communicative_text_production')!;
@@ -62,11 +64,50 @@ test('new writing model loads locally and preserves foundation history',async({p
  expect((await history(page)).filter(e=>e.type==='taiwan_attempt'&&e.detail.target==='listening')).toHaveLength(0);
 });
 test('route map and persistent Pinyin help match the actual text evidence',async({page})=>{
- await page.setViewportSize({width:375,height:812});await seed(page,'tw:exercise:route:right');
+ await page.setViewportSize({width:375,height:812});await seed(page,'tw:exercise:route:right');await page.getByRole('button',{name:'Als Text bearbeiten',exact:true}).click();
  await expect(page.getByRole('img',{name:/Lageplan/})).toBeVisible();
  await page.getByRole('button',{name:'Pinyin anzeigen',exact:true}).click();
  await page.getByRole('button',{name:'geradeaus → rechts',exact:true}).click();
  await page.getByRole('button',{name:'Prüfen',exact:true}).click();
  const attempt=(await history(page)).find(e=>e.type==='taiwan_attempt');expect(attempt.detail.result).toBe('success');expect(attempt.detail.assisted).toBe(true);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+test('real sentence playback gates listening evidence, survives reload and reveals a transcript only as help',async({page})=>{
+ await seed(page,'tw:exercise:value:t1430');
+ await expect(page.locator('.twSentence')).toHaveCount(0);
+ await page.getByLabel('Deine Antwort').fill('14:30');
+ await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toBeDisabled();
+ await page.getByRole('button',{name:'Satz anhören',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toBeEnabled({timeout:20000});
+ await page.reload();await page.getByRole('button',{name:/^(Weiterlernen|Lernen starten)$/,exact:true}).click();
+ await page.getByLabel('Deine Antwort').fill('14:30');
+ await expect(page.locator('.twSentence')).toHaveCount(0);
+ await page.getByRole('button',{name:'Text als Hilfe anzeigen',exact:true}).click();
+ await expect(page.locator('.twSentence')).toBeVisible();
+ await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+ const e=(await history(page)).find(e=>e.type==='taiwan_attempt');expect(e.detail.target).toBe('listening');expect(e.detail.result).toBe('success');expect(e.detail.assisted).toBe(true);
+});
+test('real word audio matching has no written answer in its sound cue',async({page})=>{
+ const m=editorial.matching.find(m=>m.relation==='audio-hanzi')!;await seed(page,'tw:matching:'+m.id);
+ await expect(page.getByRole('heading',{name:'Laut und Schrift verbinden'})).toBeVisible();
+ for(let i=0;i<m.pairs.length;i++){
+  const p=m.pairs[i],w=editorial.words.find(w=>w.id===p.word)!;
+  const answer=page.getByRole('button',{name:w.hant,exact:true});await expect(answer).toBeDisabled();
+  await page.getByRole('button',{name:`Klang ${i+1} anhören`,exact:true}).click();await expect(answer).toBeEnabled({timeout:20000});await answer.click();
+ }
+ await expect(page.getByRole('button',{name:'Weiter',exact:true})).toBeVisible();
+ const pairs=(await history(page)).filter(e=>e.type==='taiwan_matching_pair');expect(pairs).toHaveLength(m.pairs.length);expect(pairs.every(e=>e.detail.listening&&e.detail.result==='success')).toBe(true);
+});
+test('dialogue model offers normal and slow recordings plus independent sentence references',async({page,browserName})=>{
+ await page.setViewportSize({width:375,height:812});await seed(page,'tw:dialogue:G07');
+ const controls=page.locator('.twActivity > .twAudioControls');
+ await expect(controls.getByRole('button',{name:'Dialog anhören',exact:true})).toBeVisible();
+ await expect(controls.getByRole('button',{name:'Langsam gesprochen',exact:true})).toBeVisible();
+ await controls.getByRole('button',{name:'Langsam gesprochen',exact:true}).click();
+ await expect(controls.locator('[data-playing="true"]')).toHaveCount(1);
+ await page.locator('.twSentence').first().getByRole('button',{name:'Anhören',exact:true}).click();
+ await expect(page.locator('.twActivity')).not.toContainText('Das Audio konnte');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await page.screenshot({path:`/tmp/taiwan-audio-${browserName}.png`,fullPage:true});
 });

@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {taiwan,activityMap,taiwanActivities,appTaskMap,checkTaiwanIntegration,composeLearning} from '../src/languages/mandarin/taiwan/course.ts';
 import {content} from '../src/languages/mandarin/content/index.ts';
 const foundationEvents=()=>content.tasks.filter(t=>t.kind==='encounter').map(t=>({id:t.id,taskId:t.id,type:'task_completed',at:Date.now(),sessionId:'foundation',contentVersion:'build-d-1',detail:{}}));
-const event=(id,script='hant',at=0)=>({id,taskId:id,type:'taiwan_completed',at,sessionId:'test',contentVersion:'taiwan-text-1',detail:{script}});
-test('bounded Taiwan population: 134 objects, 28 dialogues, all 221 exercises reachable without audio',()=>{
- assert.deepEqual(checkTaiwanIntegration(),{objects:134,dialogues:28,utterances:176,exercises:221,activities:273,matching:19,deferredAudioMatching:19,writing:10});
+const event=(id,script='hant',at=0)=>({id,taskId:id,type:'taiwan_completed',at,sessionId:'test',contentVersion:'taiwan-text-1',detail:{script,listening:true}});
+test('bounded Taiwan population: 134 objects, 28 dialogues, all 221 exercises and 38 matching groups reachable',()=>{
+ assert.deepEqual(checkTaiwanIntegration(),{objects:134,dialogues:28,utterances:176,exercises:221,activities:292,matching:38,deferredAudioMatching:0,writing:10});
  for(const a of activityMap.values())assert.ok(appTaskMap.has(a.id));
  for(const d of taiwan.dialogues)for(const check of d.sentenceChecks){assert.equal(check.exercise,'sense:'+check.utterance);assert.ok(taiwan.exercises.some(x=>x.id===check.exercise));}
  assert.equal(content.items.length,36);assert.equal(content.words.length,44);
@@ -32,4 +32,13 @@ test('script-specific completion and delayed writing stay separate from listenin
 import {restoreTextState} from '../src/languages/mandarin/taiwan/state.ts';
 test('malformed imported UI checkpoints restart teaching instead of crashing or granting completion',()=>{
  for(const value of ['{}','null','{"phase":"done"}','broken'])assert.equal(restoreTextState(value),undefined);
+});
+
+test('previous text-only dialogue completion gets one hearing follow-up without rewriting reading evidence',()=>{
+ const id='tw:dialogue:G01',old={...event(id),detail:{script:'hant',listening:false}};
+ const events=[...foundationEvents(),old];
+ assert.ok(composeLearning([],events,'hant',1).includes('tw:listening-dialogue:G01'));
+ assert.equal(composeLearning([],events,'hant',1).includes(id),false);
+ assert.equal(composeLearning([],events.concat(event('tw:listening-dialogue:G01')),'hant',1).includes('tw:listening-dialogue:G01'),false);
+ assert.equal(old.detail.listening,false);
 });
