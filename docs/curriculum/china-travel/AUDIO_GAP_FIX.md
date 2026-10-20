@@ -20,3 +20,24 @@ Repräsentative Browserfälle: 32/32 Fälle in Chrome und WebKit bestanden. Gege
 Grenzen unverändert: AWS Zhiyu/cmn-CN ist eine Stimme; kein behaupteter Taiwan-Akzent und keine muttersprachliche Audiofreigabe. Taiwan-Wortwahl und Textkanon bleiben unverändert. Die Nutzerfreigabe zur Veröffentlichung ohne verfügbare menschliche Audioabnahme besteht fort. Der separate Feature-Worktree bleibt unberührt.
 
 Manifest und aktuelle Zahlen: [POLLY_AUDIO_MANIFEST.json](POLLY_AUDIO_MANIFEST.json), [POLLY_AUDIO_COUNTS.json](POLLY_AUDIO_COUNTS.json). Auslieferungsnachweis wird nach erfolgreicher Veröffentlichung angehängt.
+
+
+## Veröffentlicht und Auslieferung bestätigt
+
+Implementierung `68b9d1a` auf `fix/taiwan-audio-gaps`, Merge `321d2fd` auf `main`. Cloudflare-Deployment `c4b8d65b-c47d-4398-afd0-f4aec2dac323` hat den GitHub-Check mit `success` abgeschlossen. Live: https://language-learning-abk.pages.dev/ ; unveränderliche Fassung: https://c4b8d65b.language-learning-abk.pages.dev/ .
+
+Ein frischer Chrome-Kontext bestätigt das neue App-Bundle und den identischen Service Worker, erreichbare Taiwan-Lernstrecke und echte Wiedergabe ohne JavaScript-Seitenfehler. Sechs Audio-Stichproben einschließlich des neuen 14:30-Vollmodells stimmen bytegenau mit dem Manifest überein. 573/573 Taiwan-Dateien stehen in der ausgelieferten Offline-Dateiliste. Keine erneute allgemeine QA- oder redaktionelle Runde.
+
+```json
+{
+  "origin": "https://language-learning-abk.pages.dev",
+  "bundle": "/assets/index-Czsy5c30.js",
+  "appLoaded": true,
+  "newCourseReachable": true,
+  "realPlayback": true,
+  "audioSamplesVerified": 6,
+  "offlineInventory": 573,
+  "serviceWorkerMatches": true,
+  "consoleErrors": []
+}
+```
