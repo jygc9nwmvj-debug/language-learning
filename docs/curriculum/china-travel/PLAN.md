@@ -8,6 +8,8 @@ Die nächste Lernstrecke erweitert die bestehenden 36 Lernobjekte um **134 sprac
 
 Freigegeben sind Umfang und Progression sowie die Auswahl der Erkennungs- und Schreibziele. Das regionale Modell ist durch die folgende ausdrückliche Nutzerfestlegung Taiwan. **Beauftragt ist die redaktionelle Ausarbeitung von Texten, Dialogen und Übungen.** Audios, App, Scheduler und UI bleiben unverändert; es gibt keine Veröffentlichung, kein Deployment und keinen Merge.
 
+Die gesammelte Sprachredaktion ist in [editorial/LANGUAGE_REVIEW.md](editorial/LANGUAGE_REVIEW.md) dokumentiert. Die beiden obigen Lernfunktionen bleiben unverändert; ihre Hilfs- und Vorlagebitten sind im Plan mit dem redigierten Alltagsmodell synchronisiert.
+
 ## Ausgangspunkt und vorhandenes Material
 
 Basis ist der am 20. Oktober 2026 frisch von origin/main abgerufene Commit **f7fbfdb3baa488e7dd931f55c86fba1472455d82**. Der lokale Branch mit dem Namen main lag zurück; maßgeblich ist der aktualisierte Remote-Verweis. Der Planungsbranch startet unmittelbar auf dieser Basis und übernimmt keine Änderungen aus feature/mobile-learning-v2.
@@ -66,7 +68,7 @@ Die folgenden Objektlisten sind der prüfbare Umfang. Semikolons trennen gezähl
 
 **Wortobjekte 5:** 可以; 幫忙/帮忙; 這/这; 那; 看.
 
-**Ausdrücke und Konstruktionen 4:** 請問/请问 als Gesprächseröffnung; 這是什麼/这是什么 als Frage nach einer gezeigten Sache; 請幫忙/请帮忙 als Hilfebitte; 可以[Handlung]嗎/可以[Handlung]吗 als Erlaubnisfrage.
+**Ausdrücke und Konstruktionen 4:** 請問/请问 als Gesprächseröffnung; 這是什麼/这是什么 als Frage nach einer gezeigten Sache; 可以幫忙嗎/可以帮忙吗 als höfliches Alltagsmodell der Hilfebitte; 可以[Handlung]嗎/可以[Handlung]吗 als Erlaubnisfrage.
 
 Der vorhandene Gruß führt zu einem echten Anliegen: begrüßen → höflich ansprechen → auf etwas zeigen → nachfragen → kurze Antwort erhalten → um Hilfe bitten → Zustimmung verstehen → danken. Dafür reichen zunächst bekannte Wörter, gezeigte Gegenstände und 看 als Handlungsverb. Noch unbekannte Gegenstandsbezeichnungen dürfen nicht verdeckt als Hörtest erscheinen. Ein gezeigtes Bild ist legitimer Referenzkontext, keine Kenntnis seiner chinesischen Bezeichnung.
 
@@ -126,7 +128,7 @@ E3 liefert Zahlen, E5 räumliche Ausdrücke; 搭、條/条、線/线、哪、多
 
 **Wortobjekte 11:** 預訂/预订; 房間/房间; 護照/护照; 住; 晚; 房卡; 熱水/热水; 網路/网路; 樓/楼; 換/换; 壞/坏.
 
-**Ausdrücke und Konstruktionen 4:** 我有預訂/我有预订 als Reservierungsmitteilung; 請給我看[Dokument]/请给我看 als rezeptive Aufforderung zur Vorlage; 住幾晚/住几晚; [Einrichtung oder Gegenstand]壞了/坏了 als Meldung eines Defekts.
+**Ausdrücke und Konstruktionen 4:** 我有預訂/我有预订 als Reservierungsmitteilung; 可以給我看一下您的[Dokument]嗎/可以给我看一下您的[Dokument]吗 als rezeptive höfliche Vorlagebitte; 住幾晚/住几晚; [Einrichtung oder Gegenstand]壞了/坏了 als Meldung eines Defekts.
 
 Gespräch: begrüßen → Reservierung nennen → Name erfragt und genannt → Vorlagebitte verstehen → Pass vorlegen → Aufenthaltsdauer beantworten → Etage/Raum und Karte verstehen → Rückfrage → bestätigen. Eine spätere Rückkehr zur Rezeption meldet fehlendes heißes Wasser oder eine defekte Karte und bittet mit bekanntem 可以 um Tausch. Das sind Fortsetzungen derselben Reise, keine erneute Lektion zu 你好 oder Name.
 

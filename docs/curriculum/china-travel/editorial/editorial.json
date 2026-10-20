@@ -1266,7 +1266,7 @@
       "firstStage": 3,
       "role": "lexeme",
       "baseline": false,
-      "note": "Beim Bezahlen als QR-Code-Verfahren; kein bestimmter Dienst vorausgesetzt.",
+      "note": "Einen Code scannen. In der dargestellten Kasse scannt der Gast den Händlercode; andere Dienste lassen den Händler den Kundencode scannen. Kein Synonym für jedes mobile Bezahlen.",
       "status": "draft",
       "objectStage": 3,
       "sourceCheck": {
@@ -3673,11 +3673,11 @@
       "tones": [
         "de5"
       ],
-      "de": "das gemeinte Exemplar",
+      "de": "Attributpartikel; verbindet eine nähere Bestimmung mit ihrem Bezugswort",
       "firstStage": 2,
       "role": "bound",
       "baseline": false,
-      "note": "In 熱的/冰的 wird das bekannte Getränk ausgelassen.",
+      "note": "我/您的: mein/Ihr; 到機場的票: Ticket zum Flughafen; 熱的: das heiße Getränk mit ausgelassenem Nomen. Die Bedeutung entsteht aus der ganzen Verbindung.",
       "status": "draft",
       "sourceCheck": {
         "source": "CC-CEDICT",
@@ -4283,11 +4283,11 @@
       "tones": [
         "le5"
       ],
-      "de": "Partikel für erreichten Zustand",
+      "de": "Satz-/Aspektpartikel; Funktion aus der jeweiligen Konstruktion erschließen",
       "firstStage": 6,
       "role": "bound",
       "baseline": false,
-      "note": "Ankunft und später festgestellte Veränderung jeweils kontextuell erklären.",
+      "note": "Hier unter anderem Zustandsänderung/Ergebnis in 到了、壞了、丟了; in 太…了 eine Gradbewertung. Nicht pauschal als Vergangenheitszeichen lernen.",
       "status": "draft",
       "sourceCheck": {
         "source": "CC-CEDICT",
@@ -4685,6 +4685,230 @@
           "reason": "No independent sentence or native review implied."
         }
       }
+    },
+    {
+      "id": "nin",
+      "hant": "您",
+      "hans": "您",
+      "tones": [
+        "nin2"
+      ],
+      "de": "Sie; höfliche Anrede einer Person",
+      "firstStage": 7,
+      "role": "bound",
+      "baseline": false,
+      "note": "In diesem Servicegespräch höfliche Anrede; 你 bleibt in vielen Alltagssituationen angemessen.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": true,
+        "matchedCandidateTones": [
+          [
+            "nin2"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Exact dictionary form and reading match",
+          "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+          "reason": "Script pair and reading only; no sentence certification."
+        }
+      }
+    },
+    {
+      "id": "chenghu",
+      "hant": "稱呼",
+      "hans": "称呼",
+      "tones": [
+        "cheng1",
+        "hu1"
+      ],
+      "de": "ansprechen; nennen",
+      "firstStage": 7,
+      "role": "bound",
+      "baseline": false,
+      "note": "怎麼稱呼 fragt höflich nach der gewünschten Anrede beziehungsweise dem Namen.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": false,
+        "matchedCandidateTones": [
+          [
+            "cheng1",
+            "hu5"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Taiwan MOE reading retained",
+          "source": "https://pedia.cloud.edu.tw/Entry/Detail?title=%E7%A8%B1%E5%91%BC",
+          "reason": "MOE chēng hū; neutral-final readings elsewhere are not declared invalid."
+        }
+      }
+    },
+    {
+      "id": "yixia",
+      "hant": "一下",
+      "hans": "一下",
+      "tones": [
+        "yi1",
+        "xia4"
+      ],
+      "de": "kurz; einmal (nach einem Verb)",
+      "firstStage": 7,
+      "role": "bound",
+      "baseline": false,
+      "note": "看一下 mildert die Vorlagebitte: kurz ansehen. Keine neue Zeitmessaufgabe.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": true,
+        "matchedCandidateTones": [
+          [
+            "yi1",
+            "xia4"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Exact dictionary form and reading match",
+          "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+          "reason": "Script pair and reading only; no sentence certification."
+        }
+      }
+    },
+    {
+      "id": "neng",
+      "hant": "能",
+      "hans": "能",
+      "tones": [
+        "neng2"
+      ],
+      "de": "können; möglich sein",
+      "firstStage": 3,
+      "role": "bound",
+      "baseline": false,
+      "note": "不能刷卡 meldet hier, dass Kartenzahlung nicht möglich ist; keine allgemeine Verbotsregel.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": true,
+        "matchedCandidateTones": [
+          [
+            "neng2"
+          ],
+          [
+            "neng2"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Exact dictionary form and reading match",
+          "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+          "reason": "Script pair and reading only; no sentence certification."
+        }
+      }
+    },
+    {
+      "id": "shangwang",
+      "hant": "上網",
+      "hans": "上网",
+      "tones": [
+        "shang4",
+        "wang3"
+      ],
+      "de": "ins Internet gehen; das Internet nutzen",
+      "firstStage": 7,
+      "role": "bound",
+      "baseline": false,
+      "note": "不能上網 beschreibt das beobachtete Problem, ohne einen Hardwaredefekt zu behaupten.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": true,
+        "matchedCandidateTones": [
+          [
+            "shang4",
+            "wang3"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Exact dictionary form and reading match",
+          "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+          "reason": "Script pair and reading only; no sentence certification."
+        }
+      }
+    },
+    {
+      "id": "xing",
+      "hant": "行",
+      "hans": "行",
+      "tones": [
+        "xing2"
+      ],
+      "de": "gehen; funktionieren; in Ordnung sein",
+      "firstStage": 8,
+      "role": "bound",
+      "baseline": false,
+      "note": "不行 lehnt hier eine vorgeschlagene Zeit ab. Diese Lesung nicht auf alle Verwendungen von 行 übertragen.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": true,
+        "toneSequenceMatched": true,
+        "matchedCandidateTones": [
+          [
+            "hang2"
+          ],
+          [
+            "heng2"
+          ],
+          [
+            "xing2"
+          ]
+        ],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Exact dictionary form and reading match",
+          "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+          "reason": "Script pair and reading only; no sentence certification."
+        }
+      }
+    },
+    {
+      "id": "xingdongzhifu",
+      "hant": "行動支付",
+      "hans": "行动支付",
+      "tones": [
+        "xing2",
+        "dong4",
+        "zhi1",
+        "fu4"
+      ],
+      "de": "mobiles Bezahlen",
+      "firstStage": 3,
+      "role": "bound",
+      "baseline": false,
+      "note": "Oberbegriff. 掃碼 benennt ein Scanverfahren; wer welchen Code scannt, ergibt sich erst aus der konkreten Situation.",
+      "status": "draft",
+      "sourceCheck": {
+        "source": "CC-CEDICT",
+        "pairFound": false,
+        "toneSequenceMatched": false,
+        "matchedCandidateTones": [],
+        "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+        "disposition": {
+          "disposition": "Official Taiwan usage plus component reading check",
+          "source": "https://www.post.gov.tw/post/FileCenter/post_ww2/ad/ad_linkpage/114_digitalvouchercampaign_qrpay.html; CC-CEDICT 行動/行动 xing2 dong4 and 支付 zhi1 fu4",
+          "reason": "No combined CC-CEDICT entry. Both component pairs/readings checked; official Taiwan payment context supports the term, not a claim of universal acceptance."
+        }
+      }
     }
   ],
   "objects": [
@@ -4712,9 +4936,11 @@
         "G07",
         "G08",
         "G13",
+        "G15",
         "G16",
         "G17",
         "G20",
+        "G21",
         "G24",
         "G25",
         "G26",
@@ -4724,9 +4950,11 @@
         "G07",
         "G08",
         "G13",
+        "G15",
         "G16",
         "G17",
         "G20",
+        "G21",
         "G24",
         "G25",
         "G26",
@@ -4757,7 +4985,7 @@
       "kind": "lexeme",
       "word": "bangmang",
       "title": "幫忙 / helfen",
-      "learningText": "Die ganze Verbindung lernen; 幫 ist nicht schon als Einzelwort eingeführt.",
+      "learningText": "幫忙 heißt helfen. 可以幫忙嗎？ ist eine kurze höfliche Bitte; das konkrete Anliegen folgt aus dem Zusammenhang.",
       "example": "help",
       "introduction": {
         "meaning": "helfen",
@@ -4772,11 +5000,13 @@
       ],
       "contextDialogs": [
         "G01",
+        "G21",
         "G25",
         "G26",
         "G27"
       ],
       "reuse": [
+        "G21",
         "G25",
         "G26",
         "G27"
@@ -4790,7 +5020,8 @@
       ],
       "contextWords": [
         "bangmang",
-        "qing"
+        "keyi",
+        "ma"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -4822,11 +5053,15 @@
       "contextDialogs": [
         "G02",
         "G13",
+        "G15",
+        "G16",
         "G22",
         "G23"
       ],
       "reuse": [
         "G13",
+        "G15",
+        "G16",
         "G22",
         "G23"
       ],
@@ -4874,9 +5109,7 @@
       "contextDialogs": [
         "G02"
       ],
-      "reuse": [
-        "G02"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -5079,8 +5312,6 @@
         "G18"
       ],
       "reuse": [
-        "G04",
-        "G05",
         "G06",
         "G07",
         "G18"
@@ -5135,6 +5366,7 @@
         "G08",
         "G09",
         "G12",
+        "G13",
         "G14",
         "G18",
         "G20",
@@ -5142,13 +5374,12 @@
         "G23"
       ],
       "reuse": [
-        "G04",
-        "G05",
         "G06",
         "G07",
         "G08",
         "G09",
         "G12",
+        "G13",
         "G14",
         "G18",
         "G20",
@@ -5201,8 +5432,6 @@
         "G18"
       ],
       "reuse": [
-        "G04",
-        "G05",
         "G06",
         "G18"
       ],
@@ -5347,9 +5576,7 @@
         "G04",
         "G05"
       ],
-      "reuse": [
-        "G05"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -5443,9 +5670,7 @@
         "G06",
         "G07"
       ],
-      "reuse": [
-        "G07"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -5493,6 +5718,7 @@
         "G22"
       ],
       "reuse": [
+        "G20",
         "G22"
       ],
       "status": "draft",
@@ -5706,8 +5932,8 @@
       ],
       "contextWords": [
         "haishi",
-        "saoma",
-        "xianjin"
+        "xianjin",
+        "xingdongzhifu"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -5769,7 +5995,7 @@
       "kind": "lexeme",
       "word": "saoma",
       "title": "掃碼 / einen Code scannen",
-      "learningText": "Beim Bezahlen als QR-Code-Verfahren; kein bestimmter Dienst vorausgesetzt.",
+      "learningText": "Einen Code scannen. In der dargestellten Kasse scannt der Gast den Händlercode; andere Dienste lassen den Händler den Kundencode scannen. Kein Synonym für jedes mobile Bezahlen.",
       "example": "cash-or-scan",
       "introduction": {
         "meaning": "einen Code scannen",
@@ -5784,7 +6010,6 @@
         "reading"
       ],
       "contextDialogs": [
-        "G07",
         "G22"
       ],
       "reuse": [
@@ -5800,8 +6025,8 @@
       ],
       "contextWords": [
         "haishi",
-        "saoma",
-        "xianjin"
+        "xianjin",
+        "xingdongzhifu"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -5876,9 +6101,7 @@
       "contextDialogs": [
         "G08"
       ],
-      "reuse": [
-        "G08"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -5971,9 +6194,7 @@
         "G08",
         "G09"
       ],
-      "reuse": [
-        "G09"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6017,9 +6238,7 @@
       "contextDialogs": [
         "G08"
       ],
-      "reuse": [
-        "G08"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6031,7 +6250,8 @@
       "contextWords": [
         "caidan",
         "gei",
-        "qing",
+        "keyi",
+        "ma",
         "wo"
       ],
       "assessmentPrerequisites": {
@@ -6064,9 +6284,7 @@
       "contextDialogs": [
         "G08"
       ],
-      "reuse": [
-        "G08"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6110,9 +6328,7 @@
       "contextDialogs": [
         "G08"
       ],
-      "reuse": [
-        "G08"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6157,9 +6373,7 @@
       "contextDialogs": [
         "G09"
       ],
-      "reuse": [
-        "G09"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6204,9 +6418,7 @@
       "contextDialogs": [
         "G08"
       ],
-      "reuse": [
-        "G08"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6257,7 +6469,6 @@
         "G23"
       ],
       "reuse": [
-        "G09",
         "G15",
         "G17",
         "G18",
@@ -6309,7 +6520,6 @@
         "G17"
       ],
       "reuse": [
-        "G09",
         "G17"
       ],
       "status": "draft",
@@ -6400,9 +6610,7 @@
       "contextDialogs": [
         "G09"
       ],
-      "reuse": [
-        "G09"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6655,9 +6863,7 @@
       "contextDialogs": [
         "G11"
       ],
-      "reuse": [
-        "G11"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6705,9 +6911,7 @@
       "contextDialogs": [
         "G11"
       ],
-      "reuse": [
-        "G11"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6754,9 +6958,7 @@
       "contextDialogs": [
         "G11"
       ],
-      "reuse": [
-        "G11"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6803,9 +7005,7 @@
       "contextDialogs": [
         "G10"
       ],
-      "reuse": [
-        "G10"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6850,9 +7050,7 @@
       "contextDialogs": [
         "G11"
       ],
-      "reuse": [
-        "G11"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6896,9 +7094,7 @@
       "contextDialogs": [
         "G10"
       ],
-      "reuse": [
-        "G10"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -6985,6 +7181,7 @@
         "writing"
       ],
       "contextDialogs": [
+        "G13",
         "G14",
         "G21"
       ],
@@ -7040,8 +7237,6 @@
         "G20"
       ],
       "reuse": [
-        "G12",
-        "G14",
         "G20"
       ],
       "status": "draft",
@@ -7091,9 +7286,7 @@
       "contextDialogs": [
         "G13"
       ],
-      "reuse": [
-        "G13"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7137,9 +7330,7 @@
       "contextDialogs": [
         "G13"
       ],
-      "reuse": [
-        "G13"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7183,11 +7374,10 @@
         "reading"
       ],
       "contextDialogs": [
+        "G12",
         "G13"
       ],
-      "reuse": [
-        "G13"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7229,7 +7419,7 @@
         "reading"
       ],
       "contextDialogs": [
-        "G12",
+        "G13",
         "G20",
         "G21"
       ],
@@ -7285,9 +7475,7 @@
       "contextDialogs": [
         "G14"
       ],
-      "reuse": [
-        "G14"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7380,9 +7568,7 @@
       "contextDialogs": [
         "G13"
       ],
-      "reuse": [
-        "G13"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7427,9 +7613,7 @@
         "G12",
         "G13"
       ],
-      "reuse": [
-        "G13"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7474,9 +7658,7 @@
       "contextDialogs": [
         "G12"
       ],
-      "reuse": [
-        "G12"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7520,9 +7702,7 @@
       "contextDialogs": [
         "G14A"
       ],
-      "reuse": [
-        "G14A"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7566,9 +7746,7 @@
       "contextDialogs": [
         "G15"
       ],
-      "reuse": [
-        "G15"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7612,9 +7790,7 @@
         "G15",
         "G17"
       ],
-      "reuse": [
-        "G17"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7672,11 +7848,15 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "de",
         "gei",
         "huzhao",
         "kan",
-        "qing",
-        "wo"
+        "keyi",
+        "ma",
+        "nin",
+        "wo",
+        "yixia"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -7707,9 +7887,7 @@
       "contextDialogs": [
         "G15"
       ],
-      "reuse": [
-        "G15"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7751,9 +7929,7 @@
       "contextDialogs": [
         "G15"
       ],
-      "reuse": [
-        "G15"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7797,9 +7973,7 @@
         "G15",
         "G16"
       ],
-      "reuse": [
-        "G16"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7809,9 +7983,11 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "de",
         "fangka",
-        "gei",
-        "ni"
+        "nin",
+        "shi",
+        "zhe"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -7843,9 +8019,7 @@
       "contextDialogs": [
         "G17"
       ],
-      "reuse": [
-        "G17"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7888,9 +8062,7 @@
       "contextDialogs": [
         "G17"
       ],
-      "reuse": [
-        "G17"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7934,9 +8106,7 @@
       "contextDialogs": [
         "G15"
       ],
-      "reuse": [
-        "G15"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -7981,9 +8151,7 @@
         "G16",
         "G17"
       ],
-      "reuse": [
-        "G17"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8024,12 +8192,9 @@
         "listening"
       ],
       "contextDialogs": [
-        "G16",
-        "G17"
+        "G16"
       ],
-      "reuse": [
-        "G17"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8072,9 +8237,7 @@
       "contextDialogs": [
         "G20"
       ],
-      "reuse": [
-        "G20"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8119,9 +8282,7 @@
         "G20",
         "G21"
       ],
-      "reuse": [
-        "G21"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8169,9 +8330,7 @@
       "contextDialogs": [
         "G19"
       ],
-      "reuse": [
-        "G19"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8216,9 +8375,7 @@
         "G19",
         "G20"
       ],
-      "reuse": [
-        "G20"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8265,10 +8422,7 @@
         "G20",
         "G21"
       ],
-      "reuse": [
-        "G20",
-        "G21"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8312,9 +8466,7 @@
       "contextDialogs": [
         "G21"
       ],
-      "reuse": [
-        "G21"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8358,9 +8510,7 @@
       "contextDialogs": [
         "G19"
       ],
-      "reuse": [
-        "G19"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8404,9 +8554,7 @@
       "contextDialogs": [
         "G19"
       ],
-      "reuse": [
-        "G19"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8449,9 +8597,7 @@
       "contextDialogs": [
         "G20"
       ],
-      "reuse": [
-        "G20"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8500,9 +8646,7 @@
       "contextDialogs": [
         "G24"
       ],
-      "reuse": [
-        "G24"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8513,11 +8657,13 @@
       ],
       "contextWords": [
         "chongdian",
-        "de",
+        "gei",
         "keyi",
         "ma",
         "shouji",
-        "wo"
+        "wo",
+        "zai-loc",
+        "zheli"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -8548,9 +8694,7 @@
       "contextDialogs": [
         "G24"
       ],
-      "reuse": [
-        "G24"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8560,11 +8704,13 @@
       ],
       "contextWords": [
         "chongdian",
-        "de",
+        "gei",
         "keyi",
         "ma",
         "shouji",
-        "wo"
+        "wo",
+        "zai-loc",
+        "zheli"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -8597,9 +8743,7 @@
         "G22",
         "G24"
       ],
-      "reuse": [
-        "G24"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8642,9 +8786,7 @@
       "contextDialogs": [
         "G23"
       ],
-      "reuse": [
-        "G23"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8690,9 +8832,7 @@
       "contextDialogs": [
         "G23"
       ],
-      "reuse": [
-        "G23"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8739,9 +8879,7 @@
       "contextDialogs": [
         "G23"
       ],
-      "reuse": [
-        "G23"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8787,9 +8925,7 @@
       "contextDialogs": [
         "G22"
       ],
-      "reuse": [
-        "G22"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8833,9 +8969,7 @@
       "contextDialogs": [
         "G22"
       ],
-      "reuse": [
-        "G22"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8880,9 +9014,7 @@
       "contextDialogs": [
         "G22"
       ],
-      "reuse": [
-        "G22"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8926,9 +9058,7 @@
       "contextDialogs": [
         "G27"
       ],
-      "reuse": [
-        "G27"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -8972,9 +9102,7 @@
       "contextDialogs": [
         "G27"
       ],
-      "reuse": [
-        "G27"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -9017,9 +9145,7 @@
       "contextDialogs": [
         "G26"
       ],
-      "reuse": [
-        "G26"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -9064,9 +9190,7 @@
         "G26",
         "G27"
       ],
-      "reuse": [
-        "G27"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -9108,9 +9232,7 @@
       "contextDialogs": [
         "G25"
       ],
-      "reuse": [
-        "G25"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -9155,9 +9277,7 @@
       "contextDialogs": [
         "G25"
       ],
-      "reuse": [
-        "G25"
-      ],
+      "reuse": [],
       "status": "draft",
       "introductionSequence": [
         "Situation und gemeinte Bedeutung erklären.",
@@ -9338,24 +9458,25 @@
       "examples": [
         "help"
       ],
-      "learningText": "Mit 請幫忙 bittest du um Hilfe. Ein Grund oder eine konkrete Bitte kann folgen. Du musst noch nicht jede mögliche Hilfesituation beschreiben können.",
+      "learningText": "可以幫忙嗎？ ist eine kurze höfliche Frage um Hilfe. Eine konkrete Bitte kann folgen. 請幫忙 ist ebenfalls möglich, wirkt aber unmittelbarer; in der Alltagsszene ist die Frage das Modell.",
       "practiceMode": "productive",
       "productionPrompt": "Bitte kurz und höflich um Hilfe.",
       "acceptedTokenSequences": [
         [
-          "qing",
-          "bangmang"
-        ],
-        [
           "keyi",
           "bangmang",
           "ma"
+        ],
+        [
+          "qing",
+          "bangmang"
         ]
       ],
       "status": "draft",
       "words": [
         "bangmang",
-        "qing"
+        "keyi",
+        "ma"
       ],
       "introduction": {
         "meaning": true,
@@ -9379,6 +9500,8 @@
       "dependencies": {
         "requiredIntroductionWords": [
           "bangmang",
+          "keyi",
+          "ma",
           "qing"
         ],
         "writingRequired": false,
@@ -9392,6 +9515,8 @@
       ],
       "contextWords": [
         "bangmang",
+        "keyi",
+        "ma",
         "qing"
       ],
       "assessmentPrerequisites": {
@@ -9452,7 +9577,8 @@
         "requiredIntroductionWords": [
           "kan",
           "keyi",
-          "ma"
+          "ma",
+          "wo"
         ],
         "writingRequired": false,
         "wholeStageMasteryRequired": false
@@ -9466,7 +9592,8 @@
       "contextWords": [
         "kan",
         "keyi",
-        "ma"
+        "ma",
+        "wo"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -9540,6 +9667,7 @@
           "kafei",
           "shui",
           "wo",
+          "xiexie",
           "yao",
           "yi"
         ],
@@ -9558,6 +9686,7 @@
         "kafei",
         "shui",
         "wo",
+        "xiexie",
         "yao",
         "yi"
       ],
@@ -9774,7 +9903,9 @@
           "bing",
           "de",
           "re",
-          "xiexie"
+          "wo",
+          "xiexie",
+          "yao"
         ],
         "writingRequired": false,
         "wholeStageMasteryRequired": false
@@ -9789,7 +9920,9 @@
         "bing",
         "de",
         "re",
-        "xiexie"
+        "wo",
+        "xiexie",
+        "yao"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -9853,6 +9986,7 @@
         "requiredIntroductionWords": [
           "bu",
           "kafei",
+          "wo",
           "xiexie",
           "yao"
         ],
@@ -9868,6 +10002,7 @@
       "contextWords": [
         "bu",
         "kafei",
+        "wo",
         "xiexie",
         "yao"
       ],
@@ -10088,7 +10223,9 @@
         "requiredIntroductionWords": [
           "bai",
           "er",
+          "kuai",
           "ling",
+          "qian",
           "shi-number",
           "yi",
           "yuan"
@@ -10105,7 +10242,9 @@
       "contextWords": [
         "bai",
         "er",
+        "kuai",
         "ling",
+        "qian",
         "shi-number",
         "yi",
         "yuan"
@@ -10173,6 +10312,7 @@
           "liang",
           "shui",
           "wo",
+          "xiexie",
           "yao"
         ],
         "writingRequired": false,
@@ -10189,6 +10329,7 @@
         "liang",
         "shui",
         "wo",
+        "xiexie",
         "yao"
       ],
       "assessmentPrerequisites": {
@@ -10207,7 +10348,7 @@
         "give-sixty",
         "give-hundred"
       ],
-      "learningText": "給你 kündigt an, dass du dem Gegenüber etwas gibst. Der nachfolgende Betrag ist das überreichte Geld. Die Aufgabe verlangt keine verdeckte Wechselgeldrechnung.",
+      "learningText": "給你 kündigt hier an, dass du dem Gegenüber den genannten Geldbetrag überreichst. Es handelt sich um die Zahlung, nicht um ein Geschenk. 謝謝 kann die Übergabe freundlich begleiten. Die Aufgabe verlangt keine verdeckte Wechselgeldrechnung.",
       "practiceMode": "productive",
       "productionPrompt": "Du gibst genau 60 Taiwan-Dollar. Sage das beim Überreichen.",
       "acceptedTokenSequences": [
@@ -10260,7 +10401,8 @@
           "liu",
           "ni",
           "shi-number",
-          "yi"
+          "yi",
+          "yuan"
         ],
         "writingRequired": false,
         "wholeStageMasteryRequired": false
@@ -10278,7 +10420,8 @@
         "liu",
         "ni",
         "shi-number",
-        "yi"
+        "yi",
+        "yuan"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -10780,6 +10923,7 @@
         "requiredIntroductionWords": [
           "chukou",
           "dao",
+          "qingwen",
           "zenme",
           "zou"
         ],
@@ -10795,6 +10939,7 @@
       "contextWords": [
         "chukou",
         "dao",
+        "qingwen",
         "zenme",
         "zou"
       ],
@@ -10953,7 +11098,8 @@
       "examples": [
         "which-line",
         "red-line",
-        "blue-line"
+        "blue-line",
+        "which-line-station"
       ],
       "learningText": "到…要搭哪一條線 fragt in dieser Taiwan-Szene, welche Linie zum Ziel führt. 搭 ist hier mit einem Verkehrsmittel fahren; 條 zählt eine Linie. Die Farbantwort bezieht sich auf die eigens eingeführte Beispielkarte.",
       "practiceMode": "productive",
@@ -10983,6 +11129,7 @@
       ],
       "status": "draft",
       "words": [
+        "chezhan",
         "da-ride",
         "dao",
         "hong",
@@ -11012,12 +11159,14 @@
       ],
       "dependencies": {
         "requiredIntroductionWords": [
+          "chezhan",
           "da-ride",
           "dao",
           "hong",
           "jichang",
           "lan",
           "na",
+          "qingwen",
           "tiao",
           "xian-line",
           "yao",
@@ -11033,12 +11182,14 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "chezhan",
         "da-ride",
         "dao",
         "hong",
         "jichang",
         "lan",
         "na",
+        "qingwen",
         "tiao",
         "xian-line",
         "yao",
@@ -11130,7 +11281,8 @@
       "kind": "construction",
       "title": "Eine Ankunft verstehen",
       "examples": [
-        "arrived-airport"
+        "arrived-airport",
+        "arrived-station"
       ],
       "learningText": "到…了 meldet, dass das Ziel jetzt erreicht ist. 了 markiert hier die neue Situation. Ein Zielwunsch allein ist noch keine Ankunft.",
       "practiceMode": "receptive",
@@ -11138,6 +11290,7 @@
       "acceptedTokenSequences": [],
       "status": "draft",
       "words": [
+        "chezhan",
         "dao",
         "jichang",
         "le"
@@ -11159,6 +11312,7 @@
       ],
       "dependencies": {
         "requiredIntroductionWords": [
+          "chezhan",
           "dao",
           "jichang",
           "le"
@@ -11173,6 +11327,7 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "chezhan",
         "dao",
         "jichang",
         "le"
@@ -11192,7 +11347,8 @@
       "examples": [
         "airport-exit",
         "at-this-station",
-        "which-station"
+        "which-station",
+        "station-exit"
       ],
       "learningText": "Bei 在…下車 steht der Ausstiegsort vor der Handlung. Eine Station zum Aussteigen ist etwas anderes als die Zahl der Stationen. Den genannten Ort musst du zuvor identifizieren können.",
       "practiceMode": "receptive",
@@ -11200,6 +11356,7 @@
       "acceptedTokenSequences": [],
       "status": "draft",
       "words": [
+        "chezhan",
         "jichang",
         "na",
         "xiache",
@@ -11225,6 +11382,7 @@
       ],
       "dependencies": {
         "requiredIntroductionWords": [
+          "chezhan",
           "jichang",
           "na",
           "xiache",
@@ -11242,6 +11400,7 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "chezhan",
         "jichang",
         "na",
         "xiache",
@@ -11308,6 +11467,7 @@
         "requiredIntroductionWords": [
           "qing",
           "tingche",
+          "xiexie",
           "zai-loc",
           "zheli"
         ],
@@ -11323,6 +11483,7 @@
       "contextWords": [
         "qing",
         "tingche",
+        "xiexie",
         "zai-loc",
         "zheli"
       ],
@@ -11408,17 +11569,21 @@
       "examples": [
         "show-passport"
       ],
-      "learningText": "請給我看護照 bedeutet, den Pass zum Ansehen zu zeigen. 給我看 gehört als Vorlagebitte zusammen. Zimmerkarte und Pass sind verschiedene Gegenstände.",
+      "learningText": "可以給我看一下您的護照嗎？ bittet höflich um kurzes Vorzeigen des Passes. 給我看 heißt hier mir zeigen/ansehen lassen, nicht mir schenken. 看一下 mildert die Bitte; 您 ist eine höfliche Anrede, 您的 bedeutet Ihr. 請問，您怎麼稱呼？ fragt zuvor nach Name beziehungsweise Anrede.",
       "practiceMode": "receptive",
       "productionPrompt": "",
       "acceptedTokenSequences": [],
       "status": "draft",
       "words": [
+        "de",
         "gei",
         "huzhao",
         "kan",
-        "qing",
-        "wo"
+        "keyi",
+        "ma",
+        "nin",
+        "wo",
+        "yixia"
       ],
       "introduction": {
         "meaning": true,
@@ -11437,11 +11602,15 @@
       ],
       "dependencies": {
         "requiredIntroductionWords": [
+          "de",
           "gei",
           "huzhao",
           "kan",
-          "qing",
-          "wo"
+          "keyi",
+          "ma",
+          "nin",
+          "wo",
+          "yixia"
         ],
         "writingRequired": false,
         "wholeStageMasteryRequired": false
@@ -11453,11 +11622,15 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "de",
         "gei",
         "huzhao",
         "kan",
-        "qing",
-        "wo"
+        "keyi",
+        "ma",
+        "nin",
+        "wo",
+        "yixia"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -11519,6 +11692,7 @@
           "ji",
           "liang",
           "wan-night",
+          "wo",
           "zhu"
         ],
         "writingRequired": false,
@@ -11534,6 +11708,7 @@
         "ji",
         "liang",
         "wan-night",
+        "wo",
         "zhu"
       ],
       "assessmentPrerequisites": {
@@ -11549,10 +11724,9 @@
       "kind": "construction",
       "title": "Einen Defekt melden",
       "examples": [
-        "card-broken",
-        "network-broken"
+        "card-broken"
       ],
-      "learningText": "Nenne zuerst den Gegenstand, dann 壞了. So meldest du einen festgestellten Defekt. Das unterscheidet sich von 丟了 für verloren und 沒有 für nicht vorhanden.",
+      "learningText": "房卡壞了 meldet, dass die Zimmerkarte nicht funktioniert. 了 markiert hier den eingetretenen Zustand; es ist kein allgemeines Vergangenheitszeichen. Bei Internetproblemen beschreibt 不能上網 zunächst nur, dass die Nutzung nicht möglich ist, ohne die Ursache zu diagnostizieren.",
       "practiceMode": "productive",
       "productionPrompt": "Melde, dass die Zimmerkarte nicht funktioniert.",
       "acceptedTokenSequences": [
@@ -11573,8 +11747,7 @@
       "words": [
         "fangka",
         "huai",
-        "le",
-        "wanglu"
+        "le"
       ],
       "introduction": {
         "meaning": true,
@@ -11585,8 +11758,7 @@
         "toneAssessment": false
       },
       "contextDialogs": [
-        "G16",
-        "G17"
+        "G16"
       ],
       "skillTargets": [
         "meaning",
@@ -11595,10 +11767,11 @@
       ],
       "dependencies": {
         "requiredIntroductionWords": [
+          "de",
           "fangka",
           "huai",
           "le",
-          "wanglu"
+          "wo"
         ],
         "writingRequired": false,
         "wholeStageMasteryRequired": false
@@ -11610,10 +11783,11 @@
         "Erst nach Einführung der benötigten Bestandteile die konkrete Satz-/Anwendungsprüfung anbieten."
       ],
       "contextWords": [
+        "de",
         "fangka",
         "huai",
         "le",
-        "wanglu"
+        "wo"
       ],
       "assessmentPrerequisites": {
         "meaningAndPronunciation": "Alle im Prüfziel benötigten ganzen Ausdrücke und gebundenen Teile gezielt eingeführt.",
@@ -12690,7 +12864,7 @@
           "hant": "一點",
           "hans": "一点",
           "pinyin": "yīdiǎn",
-          "gloss": "ein wenig",
+          "gloss": "etwas (günstiger/kleiner/langsamer)",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -12853,7 +13027,7 @@
       ],
       "hant": "晚安。",
       "hans": "晚安。",
-      "pinyinLexical": "wǎnān",
+      "pinyinLexical": "wǎn'ān",
       "toneNumbers": "wan3 an1",
       "de": "Gute Nacht.",
       "atoms": [
@@ -12873,7 +13047,7 @@
           "word": "wanan",
           "hant": "晚安",
           "hans": "晚安",
-          "pinyin": "wǎnān",
+          "pinyin": "wǎn'ān",
           "gloss": "gute Nacht",
           "audioDecision": "deferred_no_audio_authorization"
         }
@@ -12944,12 +13118,12 @@
       "hans": "可以。",
       "pinyinLexical": "kěyǐ",
       "toneNumbers": "ke3 yi3",
-      "de": "Das geht; du darfst.",
+      "de": "Ja, das geht.",
       "atoms": [
         "Zustimmung zur Erlaubnisfrage"
       ],
       "context": "Antwort auf eine vorherige 可以-Frage.",
-      "note": "",
+      "note": "Die kurze Zustimmung bezieht sich auf die konkrete Bitte: Erlaubnis, Möglichkeit oder zugesagte Hilfe. Keine allgemeine Fähigkeitsprüfung.",
       "status": "draft",
       "pronunciationReview": "pending",
       "surfaceNotes": [],
@@ -13018,16 +13192,17 @@
       "id": "help",
       "stage": 1,
       "words": [
-        "qing",
-        "bangmang"
+        "keyi",
+        "bangmang",
+        "ma"
       ],
-      "hant": "請幫忙。",
-      "hans": "请帮忙。",
-      "pinyinLexical": "qǐng bāngmáng",
-      "toneNumbers": "qing3 bang1 mang2",
-      "de": "Bitte hilf mir.",
+      "hant": "可以幫忙嗎？",
+      "hans": "可以帮忙吗？",
+      "pinyinLexical": "kěyǐ bāngmáng ma",
+      "toneNumbers": "ke3 yi3 bang1 mang2 ma5",
+      "de": "Können Sie mir bitte helfen?",
       "atoms": [
-        "Hilfebitte"
+        "höfliche Bitte um Hilfe"
       ],
       "context": "",
       "note": "",
@@ -13035,16 +13210,16 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "qing3 bang1 mang2",
-      "pinyinSurfaceDraft": "qǐng bāng máng",
+      "surfaceToneNumbersDraft": "ke3 yi3 bang1 mang2 ma5",
+      "pinyinSurfaceDraft": "kě yǐ bāng máng ma",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "qing",
-          "hant": "請",
-          "hans": "请",
-          "pinyin": "qǐng",
-          "gloss": "bitte",
+          "word": "keyi",
+          "hant": "可以",
+          "hans": "可以",
+          "pinyin": "kěyǐ",
+          "gloss": "können; dürfen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -13053,6 +13228,14 @@
           "hans": "帮忙",
           "pinyin": "bāngmáng",
           "gloss": "helfen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -13668,7 +13851,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "markiert die gewählte Eigenschaft; Getränk ist ausgelassen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -13692,7 +13875,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "markiert die gewählte Eigenschaft; Getränk ist ausgelassen",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -13738,7 +13921,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "markiert die gewählte Eigenschaft; Getränk ist ausgelassen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -13792,7 +13975,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "markiert die gewählte Eigenschaft; Getränk ist ausgelassen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -14378,17 +14561,16 @@
       "stage": 3,
       "words": [
         "bu",
-        "keyi",
+        "neng",
         "shuaka"
       ],
-      "hant": "不可以刷卡。",
-      "hans": "不可以刷卡。",
-      "pinyinLexical": "bù kěyǐ shuākǎ",
-      "toneNumbers": "bu4 ke3 yi3 shua1 ka3",
-      "de": "Kartenzahlung geht nicht.",
+      "hant": "不能刷卡。",
+      "hans": "不能刷卡。",
+      "pinyinLexical": "bù néng shuākǎ",
+      "toneNumbers": "bu4 neng2 shua1 ka3",
+      "de": "Kartenzahlung ist hier nicht möglich.",
       "atoms": [
-        "Verneinte Möglichkeit",
-        "Karte"
+        "Kartenzahlung nicht möglich"
       ],
       "context": "",
       "note": "",
@@ -14396,8 +14578,8 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "bu4 ke3 yi3 shua1 ka3",
-      "pinyinSurfaceDraft": "bù kě yǐ shuā kǎ",
+      "surfaceToneNumbersDraft": "bu4 neng2 shua1 ka3",
+      "pinyinSurfaceDraft": "bù néng shuā kǎ",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
@@ -14409,11 +14591,11 @@
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "keyi",
-          "hant": "可以",
-          "hans": "可以",
-          "pinyin": "kěyǐ",
-          "gloss": "können; dürfen",
+          "word": "neng",
+          "hant": "能",
+          "hans": "能",
+          "pinyin": "néng",
+          "gloss": "können; möglich sein",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -14433,26 +14615,24 @@
       "words": [
         "xianjin",
         "haishi",
-        "saoma"
+        "xingdongzhifu"
       ],
-      "hant": "現金還是掃碼？",
-      "hans": "现金还是扫码？",
-      "pinyinLexical": "xiànjīn háishì sǎomǎ",
-      "toneNumbers": "xian4 jin1 hai2 shi4 sao3 ma3",
-      "de": "Bargeld oder Scannen?",
+      "hant": "現金還是行動支付？",
+      "hans": "现金还是行动支付？",
+      "pinyinLexical": "xiànjīn háishì xíngdòngzhīfù",
+      "toneNumbers": "xian4 jin1 hai2 shi4 xing2 dong4 zhi1 fu4",
+      "de": "Bargeld oder mobiles Bezahlen?",
       "atoms": [
-        "Auswahl",
-        "Bargeld",
-        "Code-Zahlung"
+        "Wahl zwischen Bargeld und mobilem Bezahlen"
       ],
       "context": "",
-      "note": "",
+      "note": "Stabile redaktionelle ID; die Formulierung nennt jetzt den Oberbegriff 行動支付. 掃碼 bleibt als konkretes Verfahren separat.",
       "status": "draft",
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "xian4 jin1 hai2 shi4 sao3 ma3",
-      "pinyinSurfaceDraft": "xiàn jīn hái shì sǎo mǎ",
+      "surfaceToneNumbersDraft": "xian4 jin1 hai2 shi4 xing2 dong4 zhi1 fu4",
+      "pinyinSurfaceDraft": "xiàn jīn hái shì xíng dòng zhī fù",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
@@ -14472,11 +14652,11 @@
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "saoma",
-          "hant": "掃碼",
-          "hans": "扫码",
-          "pinyin": "sǎomǎ",
-          "gloss": "einen Code scannen",
+          "word": "xingdongzhifu",
+          "hant": "行動支付",
+          "hans": "行动支付",
+          "pinyin": "xíngdòngzhīfù",
+          "gloss": "mobiles Bezahlen",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -14576,10 +14756,9 @@
       "hans": "给你一百块。",
       "pinyinLexical": "gěi nǐ yī bǎi kuài",
       "toneNumbers": "gei3 ni3 yi1 bai3 kuai4",
-      "de": "Hier sind hundert Taiwan-Dollar für dich.",
+      "de": "Hier bitte: hundert Taiwan-Dollar.",
       "atoms": [
-        "Überreichen",
-        "Betrag 100"
+        "Überreichen von 100 TWD"
       ],
       "context": "",
       "note": "",
@@ -15041,19 +15220,19 @@
       "id": "menu-please",
       "stage": 4,
       "words": [
-        "qing",
+        "keyi",
         "gei",
         "wo",
-        "caidan"
+        "caidan",
+        "ma"
       ],
-      "hant": "請給我菜單。",
-      "hans": "请给我菜单。",
-      "pinyinLexical": "qǐng gěi wǒ càidān",
-      "toneNumbers": "qing3 gei3 wo3 cai4 dan1",
-      "de": "Gib mir bitte die Speisekarte.",
+      "hant": "可以給我菜單嗎？",
+      "hans": "可以给我菜单吗？",
+      "pinyinLexical": "kěyǐ gěi wǒ càidān ma",
+      "toneNumbers": "ke3 yi3 gei3 wo3 cai4 dan1 ma5",
+      "de": "Kann ich bitte die Speisekarte haben?",
       "atoms": [
-        "Bitte",
-        "Speisekarte erhalten"
+        "Bitte um die Speisekarte"
       ],
       "context": "",
       "note": "",
@@ -15061,16 +15240,16 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "qing3 gei3 wo3 cai4 dan1",
-      "pinyinSurfaceDraft": "qǐng gěi wǒ cài dān",
+      "surfaceToneNumbersDraft": "ke3 yi3 gei3 wo3 cai4 dan1 ma5",
+      "pinyinSurfaceDraft": "kě yǐ gěi wǒ cài dān ma",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "qing",
-          "hant": "請",
-          "hans": "请",
-          "pinyin": "qǐng",
-          "gloss": "bitte",
+          "word": "keyi",
+          "hant": "可以",
+          "hans": "可以",
+          "pinyin": "kěyǐ",
+          "gloss": "können; dürfen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -15095,6 +15274,14 @@
           "hans": "菜单",
           "pinyin": "càidān",
           "gloss": "Speisekarte",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -15705,7 +15892,7 @@
           "hant": "對",
           "hans": "对",
           "pinyin": "duì",
-          "gloss": "richtig; in Bezug auf",
+          "gloss": "gegen; bezogen auf (Allergie)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -15973,7 +16160,7 @@
       "hans": "在那里。",
       "pinyinLexical": "zài nàlǐ",
       "toneNumbers": "zai4 na4 li3",
-      "de": "Sie ist dort.",
+      "de": "Dort.",
       "atoms": [
         "Ort dort"
       ],
@@ -16326,7 +16513,7 @@
           "hant": "再",
           "hans": "再",
           "pinyin": "zài",
-          "gloss": "noch einmal",
+          "gloss": "dann; anschließend",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -16407,7 +16594,7 @@
           "hant": "再",
           "hans": "再",
           "pinyin": "zài",
-          "gloss": "noch einmal",
+          "gloss": "dann; anschließend",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -16952,7 +17139,7 @@
           "hant": "要",
           "hans": "要",
           "pinyin": "yào",
-          "gloss": "wollen; möchten; nehmen",
+          "gloss": "brauchen; dauern (Zeitbedarf)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -16999,7 +17186,7 @@
           "hant": "要",
           "hans": "要",
           "pinyin": "yào",
-          "gloss": "wollen; möchten; nehmen",
+          "gloss": "brauchen; dauern (Zeitbedarf)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -17204,7 +17391,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -17439,7 +17626,7 @@
           "hant": "坐",
           "hans": "坐",
           "pinyin": "zuò",
-          "gloss": "sitzen; mit einem Verkehrsmittel fahren",
+          "gloss": "mit einem Verkehrsmittel fahren",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -17620,7 +17807,7 @@
           "hant": "坐",
           "hans": "坐",
           "pinyin": "zuò",
-          "gloss": "sitzen; mit einem Verkehrsmittel fahren",
+          "gloss": "mit einem Verkehrsmittel fahren",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -17762,18 +17949,18 @@
       "id": "ask-name",
       "stage": 7,
       "words": [
-        "ni",
-        "jiao",
-        "shenme",
-        "mingzi"
+        "qingwen",
+        "nin",
+        "zenme",
+        "chenghu"
       ],
-      "hant": "你叫什麼名字？",
-      "hans": "你叫什么名字？",
-      "pinyinLexical": "nǐ jiào shénme míngzi",
-      "toneNumbers": "ni3 jiao4 shen2 me5 ming2 zi5",
-      "de": "Wie heißt du?",
+      "hant": "請問，您怎麼稱呼？",
+      "hans": "请问，您怎么称呼？",
+      "pinyinLexical": "qǐngwèn nín zěnme chēnghū",
+      "toneNumbers": "qing3 wen4 nin2 zen3 me5 cheng1 hu1",
+      "de": "Darf ich fragen, wie ich Sie ansprechen darf?",
       "atoms": [
-        "Frage nach Namen"
+        "höfliche Frage nach Name/Anrede"
       ],
       "context": "",
       "note": "Reaktivierung des bestehenden askname-Ausdrucks; kein neues Lernobjekt.",
@@ -17781,40 +17968,40 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "ni3 jiao4 shen2 me5 ming2 zi5",
-      "pinyinSurfaceDraft": "nǐ jiào shén me míng zi",
+      "surfaceToneNumbersDraft": "qing3 wen4 nin2 zen3 me5 cheng1 hu1",
+      "pinyinSurfaceDraft": "qǐng wèn nín zěn me chēng hū",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "ni",
-          "hant": "你",
-          "hans": "你",
-          "pinyin": "nǐ",
-          "gloss": "du",
+          "word": "qingwen",
+          "hant": "請問",
+          "hans": "请问",
+          "pinyin": "qǐngwèn",
+          "gloss": "entschuldige, darf ich fragen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "jiao",
-          "hant": "叫",
-          "hans": "叫",
-          "pinyin": "jiào",
-          "gloss": "heißen",
+          "word": "nin",
+          "hant": "您",
+          "hans": "您",
+          "pinyin": "nín",
+          "gloss": "Sie; höfliche Anrede einer Person",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "shenme",
-          "hant": "什麼",
-          "hans": "什么",
-          "pinyin": "shénme",
-          "gloss": "was",
+          "word": "zenme",
+          "hant": "怎麼",
+          "hans": "怎么",
+          "pinyin": "zěnme",
+          "gloss": "wie",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "mingzi",
-          "hant": "名字",
-          "hans": "名字",
-          "pinyin": "míngzi",
-          "gloss": "Name",
+          "word": "chenghu",
+          "hant": "稱呼",
+          "hans": "称呼",
+          "pinyin": "chēnghū",
+          "gloss": "ansprechen; nennen",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -17878,37 +18065,46 @@
       "id": "show-passport",
       "stage": 7,
       "words": [
-        "qing",
+        "keyi",
         "gei",
         "wo",
         "kan",
-        "huzhao"
+        "yixia",
+        "nin",
+        "de",
+        "huzhao",
+        "ma"
       ],
-      "hant": "請給我看護照。",
-      "hans": "请给我看护照。",
-      "pinyinLexical": "qǐng gěi wǒ kàn hùzhào",
-      "toneNumbers": "qing3 gei3 wo3 kan4 hu4 zhao4",
-      "de": "Zeig mir bitte den Reisepass.",
+      "hant": "可以給我看一下您的護照嗎？",
+      "hans": "可以给我看一下您的护照吗？",
+      "pinyinLexical": "kěyǐ gěi wǒ kàn yīxià nín de hùzhào ma",
+      "toneNumbers": "ke3 yi3 gei3 wo3 kan4 yi1 xia4 nin2 de5 hu4 zhao4 ma5",
+      "de": "Dürfte ich bitte kurz Ihren Reisepass sehen?",
       "atoms": [
-        "Vorlagebitte",
-        "Reisepass"
+        "Bitte um kurzes Vorzeigen des Reisepasses"
       ],
       "context": "",
       "note": "給我看 als gemeinsame Vorlagebitte erklären; der Pass wird nicht als Geschenk verlangt.",
       "status": "draft",
       "pronunciationReview": "pending",
       "surfaceNotes": [],
-      "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "qing3 gei3 wo3 kan4 hu4 zhao4",
-      "pinyinSurfaceDraft": "qǐng gěi wǒ kàn hù zhào",
+      "surfaceRuleCandidates": [
+        {
+          "characterIndex": 5,
+          "lexical": "yi1",
+          "surfaceCandidate": "yi2"
+        }
+      ],
+      "surfaceToneNumbersDraft": "ke3 yi3 gei3 wo3 kan4 yi2 xia4 nin2 de5 hu4 zhao4 ma5",
+      "pinyinSurfaceDraft": "kě yǐ gěi wǒ kàn yí xià nín de hù zhào ma",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "qing",
-          "hant": "請",
-          "hans": "请",
-          "pinyin": "qǐng",
-          "gloss": "bitte",
+          "word": "keyi",
+          "hant": "可以",
+          "hans": "可以",
+          "pinyin": "kěyǐ",
+          "gloss": "können; dürfen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -17916,7 +18112,7 @@
           "hant": "給",
           "hans": "给",
           "pinyin": "gěi",
-          "gloss": "geben; für",
+          "gloss": "in 給我看: mir zeigen/ansehen lassen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -17936,11 +18132,43 @@
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
+          "word": "yixia",
+          "hant": "一下",
+          "hans": "一下",
+          "pinyin": "yīxià",
+          "gloss": "kurz; einmal (nach einem Verb)",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "nin",
+          "hant": "您",
+          "hans": "您",
+          "pinyin": "nín",
+          "gloss": "Sie; höfliche Anrede einer Person",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "de",
+          "hant": "的",
+          "hans": "的",
+          "pinyin": "de",
+          "gloss": "verbindet Besitzer und Gegenstand: mein/Ihr",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
           "word": "huzhao",
           "hant": "護照",
           "hans": "护照",
           "pinyin": "hùzhào",
           "gloss": "Reisepass",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -18012,7 +18240,7 @@
       "hans": "住几晚？",
       "pinyinLexical": "zhù jǐ wǎn",
       "toneNumbers": "zhu4 ji3 wan3",
-      "de": "Wie viele Nächte bleibst du?",
+      "de": "Wie viele Nächte bleiben Sie?",
       "atoms": [
         "Frage nach Aufenthaltsdauer",
         "Nächte"
@@ -18229,18 +18457,19 @@
       "id": "give-card",
       "stage": 7,
       "words": [
-        "gei",
-        "ni",
+        "zhe",
+        "shi",
+        "nin",
+        "de",
         "fangka"
       ],
-      "hant": "給你房卡。",
-      "hans": "给你房卡。",
-      "pinyinLexical": "gěi nǐ fángkǎ",
-      "toneNumbers": "gei3 ni3 fang2 ka3",
-      "de": "Hier ist deine Zimmerkarte.",
+      "hant": "這是您的房卡。",
+      "hans": "这是您的房卡。",
+      "pinyinLexical": "zhè shì nín de fángkǎ",
+      "toneNumbers": "zhe4 shi4 nin2 de5 fang2 ka3",
+      "de": "Hier ist Ihre Zimmerkarte.",
       "atoms": [
-        "Überreichen",
-        "Zimmerkarte"
+        "Zuordnung der überreichten Zimmerkarte"
       ],
       "context": "",
       "note": "",
@@ -18248,24 +18477,40 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "gei3 ni3 fang2 ka3",
-      "pinyinSurfaceDraft": "gěi nǐ fáng kǎ",
+      "surfaceToneNumbersDraft": "zhe4 shi4 nin2 de5 fang2 ka3",
+      "pinyinSurfaceDraft": "zhè shì nín de fáng kǎ",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "gei",
-          "hant": "給",
-          "hans": "给",
-          "pinyin": "gěi",
-          "gloss": "geben; für",
+          "word": "zhe",
+          "hant": "這",
+          "hans": "这",
+          "pinyin": "zhè",
+          "gloss": "dies; dieses hier",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "ni",
-          "hant": "你",
-          "hans": "你",
-          "pinyin": "nǐ",
-          "gloss": "du",
+          "word": "shi",
+          "hant": "是",
+          "hans": "是",
+          "pinyin": "shì",
+          "gloss": "sein",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "nin",
+          "hant": "您",
+          "hans": "您",
+          "pinyin": "nín",
+          "gloss": "Sie; höfliche Anrede einer Person",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "de",
+          "hant": "的",
+          "hans": "的",
+          "pinyin": "de",
+          "gloss": "verbindet Besitzer und Gegenstand: mein/Ihr",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -18327,7 +18572,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -18562,51 +18807,50 @@
       "id": "network-broken",
       "stage": 7,
       "words": [
-        "wanglu",
-        "huai",
-        "le"
+        "bu",
+        "neng",
+        "shangwang"
       ],
-      "hant": "網路壞了。",
-      "hans": "网路坏了。",
-      "pinyinLexical": "wǎnglù huài le",
-      "toneNumbers": "wang3 lu4 huai4 le5",
-      "de": "Das Internet funktioniert nicht.",
+      "hant": "不能上網。",
+      "hans": "不能上网。",
+      "pinyinLexical": "bù néng shàngwǎng",
+      "toneNumbers": "bu4 neng2 shang4 wang3",
+      "de": "Ich kann nicht ins Internet.",
       "atoms": [
-        "Internet",
-        "Funktionsstörung"
+        "Internetnutzung nicht möglich"
       ],
       "context": "",
-      "note": "",
+      "note": "Die ID bleibt aus Referenzgründen erhalten. Der Satz behauptet keinen festgestellten Netzwerkdefekt.",
       "status": "draft",
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "wang3 lu4 huai4 le5",
-      "pinyinSurfaceDraft": "wǎng lù huài le",
+      "surfaceToneNumbersDraft": "bu4 neng2 shang4 wang3",
+      "pinyinSurfaceDraft": "bù néng shàng wǎng",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
-          "word": "wanglu",
-          "hant": "網路",
-          "hans": "网路",
-          "pinyin": "wǎnglù",
-          "gloss": "Internet; Netzwerk",
+          "word": "bu",
+          "hant": "不",
+          "hans": "不",
+          "pinyin": "bù",
+          "gloss": "nicht",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "huai",
-          "hant": "壞",
-          "hans": "坏",
-          "pinyin": "huài",
-          "gloss": "kaputt",
+          "word": "neng",
+          "hant": "能",
+          "hans": "能",
+          "pinyin": "néng",
+          "gloss": "können; möglich sein",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "le",
-          "hant": "了",
-          "hans": "了",
-          "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "word": "shangwang",
+          "hant": "上網",
+          "hans": "上网",
+          "pinyin": "shàngwǎng",
+          "gloss": "ins Internet gehen; das Internet nutzen",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -19000,7 +19244,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "Satzpartikel in der Frage nach der aktuellen Uhrzeit",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -19018,9 +19262,10 @@
       "hans": "两点半。",
       "pinyinLexical": "liǎng diǎn bàn",
       "toneNumbers": "liang3 dian3 ban4",
-      "de": "Halb drei, also 2:30 Uhr.",
+      "de": "Halb drei; die Tageshälfte wird nicht genannt.",
       "atoms": [
-        "Uhrzeit 2:30"
+        "halbe Stunde nach zwei",
+        "Tageshälfte nicht festgelegt"
       ],
       "context": "",
       "note": "Chinesisch zwei Uhr plus eine halbe Stunde. Tageshälfte nur aus einem ausdrücklich genannten Kontext ergänzen.",
@@ -19325,7 +19570,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "verbindet das Fahrtziel mit dem Ticket",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -19606,24 +19851,24 @@
       "stage": 8,
       "words": [
         "bu",
-        "keyi"
+        "xing"
       ],
-      "hant": "不可以。",
-      "hans": "不可以。",
-      "pinyinLexical": "bù kěyǐ",
-      "toneNumbers": "bu4 ke3 yi3",
+      "hant": "不行。",
+      "hans": "不行。",
+      "pinyinLexical": "bù xíng",
+      "toneNumbers": "bu4 xing2",
       "de": "Das geht nicht.",
       "atoms": [
-        "Ablehnung der erfragten Möglichkeit"
+        "vorgeschlagener Zeitpunkt geht nicht"
       ],
-      "context": "Konkreter Zeitvorschlag; keine pauschale Fähigkeitseinschätzung.",
+      "context": "Antwort auf einen konkreten Zeitvorschlag.",
       "note": "",
       "status": "draft",
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "bu4 ke3 yi3",
-      "pinyinSurfaceDraft": "bù kě yǐ",
+      "surfaceToneNumbersDraft": "bu4 xing2",
+      "pinyinSurfaceDraft": "bù xíng",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
@@ -19635,11 +19880,11 @@
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "keyi",
-          "hant": "可以",
-          "hans": "可以",
-          "pinyin": "kěyǐ",
-          "gloss": "können; dürfen",
+          "word": "xing",
+          "hant": "行",
+          "hans": "行",
+          "pinyin": "xíng",
+          "gloss": "gehen; funktionieren; in Ordnung sein",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -20257,7 +20502,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "gehört zur Gradbewertung 太…了",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -20321,7 +20566,7 @@
           "hant": "一點",
           "hans": "一点",
           "pinyin": "yīdiǎn",
-          "gloss": "ein wenig",
+          "gloss": "etwas (günstiger/kleiner/langsamer)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20329,7 +20574,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "nominalisiert hier die Eigenschaft; das passende Exemplar",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20598,7 +20843,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "gehört zur Gradbewertung 太…了",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -20662,7 +20907,7 @@
           "hant": "一點",
           "hans": "一点",
           "pinyin": "yīdiǎn",
-          "gloss": "ein wenig",
+          "gloss": "etwas (günstiger/kleiner/langsamer)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20670,7 +20915,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "nominalisiert hier die Eigenschaft; das passende Exemplar",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20758,7 +21003,7 @@
           "hant": "一點",
           "hans": "一点",
           "pinyin": "yīdiǎn",
-          "gloss": "ein wenig",
+          "gloss": "etwas (günstiger/kleiner/langsamer)",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -20769,21 +21014,23 @@
       "stage": 9,
       "words": [
         "wo",
-        "de",
-        "shouji",
         "keyi",
+        "zai-loc",
+        "zheli",
+        "gei",
+        "shouji",
         "chongdian",
         "ma"
       ],
-      "hant": "我的手機可以充電嗎？",
-      "hans": "我的手机可以充电吗？",
-      "pinyinLexical": "wǒ de shǒujī kěyǐ chōngdiàn ma",
-      "toneNumbers": "wo3 de5 shou3 ji1 ke3 yi3 chong1 dian4 ma5",
-      "de": "Kann ich mein Telefon aufladen?",
+      "hant": "我可以在這裡給手機充電嗎？",
+      "hans": "我可以在这里给手机充电吗？",
+      "pinyinLexical": "wǒ kěyǐ zài zhèlǐ gěi shǒujī chōngdiàn ma",
+      "toneNumbers": "wo3 ke3 yi3 zai4 zhe4 li3 gei3 shou3 ji1 chong1 dian4 ma5",
+      "de": "Darf ich hier mein Telefon aufladen?",
       "atoms": [
-        "eigene Sache",
-        "Telefon",
-        "Ladeerlaubnis"
+        "Erlaubnisfrage",
+        "Telefon aufladen",
+        "hier"
       ],
       "context": "",
       "note": "",
@@ -20791,8 +21038,8 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "wo3 de5 shou3 ji1 ke3 yi3 chong1 dian4 ma5",
-      "pinyinSurfaceDraft": "wǒ de shǒu jī kě yǐ chōng diàn ma",
+      "surfaceToneNumbersDraft": "wo3 ke3 yi3 zai4 zhe4 li3 gei3 shou3 ji1 chong1 dian4 ma5",
+      "pinyinSurfaceDraft": "wǒ kě yǐ zài zhè lǐ gěi shǒu jī chōng diàn ma",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
         {
@@ -20804,11 +21051,35 @@
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
-          "word": "de",
-          "hant": "的",
-          "hans": "的",
-          "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "word": "keyi",
+          "hant": "可以",
+          "hans": "可以",
+          "pinyin": "kěyǐ",
+          "gloss": "können; dürfen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "zai-loc",
+          "hant": "在",
+          "hans": "在",
+          "pinyin": "zài",
+          "gloss": "sich befinden; an einem Ort",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "zheli",
+          "hant": "這裡",
+          "hans": "这里",
+          "pinyin": "zhèlǐ",
+          "gloss": "hier",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "gei",
+          "hant": "給",
+          "hans": "给",
+          "pinyin": "gěi",
+          "gloss": "führt das mit Strom versorgte Gerät ein",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20817,14 +21088,6 @@
           "hans": "手机",
           "pinyin": "shǒujī",
           "gloss": "Mobiltelefon",
-          "audioDecision": "deferred_no_audio_authorization"
-        },
-        {
-          "word": "keyi",
-          "hant": "可以",
-          "hans": "可以",
-          "pinyin": "kěyǐ",
-          "gloss": "können; dürfen",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20942,7 +21205,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "verbindet Besitzer und Gegenstand: mein/Ihr",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -20966,7 +21229,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -21020,7 +21283,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -21120,7 +21383,7 @@
           "hant": "叫",
           "hans": "叫",
           "pinyin": "jiào",
-          "gloss": "heißen",
+          "gloss": "rufen; herbeiholen (hier keine Namensangabe)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -21176,7 +21439,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "verbindet Besitzer und Gegenstand: mein/Ihr",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -21200,7 +21463,7 @@
           "hant": "了",
           "hans": "了",
           "pinyin": "le",
-          "gloss": "Partikel für erreichten Zustand",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
           "audioDecision": "deferred_no_audio_authorization"
         }
       ],
@@ -21373,7 +21636,7 @@
           "hant": "叫",
           "hans": "叫",
           "pinyin": "jiào",
-          "gloss": "heißen",
+          "gloss": "rufen; herbeiholen (hier keine Namensangabe)",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -21904,7 +22167,7 @@
           "hant": "的",
           "hans": "的",
           "pinyin": "de",
-          "gloss": "das gemeinte Exemplar",
+          "gloss": "nominalisiert hier die Eigenschaft; das passende Exemplar",
           "audioDecision": "deferred_no_audio_authorization"
         },
         {
@@ -22040,20 +22303,17 @@
       "id": "today-now",
       "stage": 8,
       "words": [
-        "jintian",
         "xianzai",
         "keyi",
         "ma"
       ],
-      "hant": "今天現在可以嗎？",
-      "hans": "今天现在可以吗？",
-      "pinyinLexical": "jīntiān xiànzài kěyǐ ma",
-      "toneNumbers": "jin1 tian1 xian4 zai4 ke3 yi3 ma5",
-      "de": "Geht es heute jetzt?",
+      "hant": "現在可以嗎？",
+      "hans": "现在可以吗？",
+      "pinyinLexical": "xiànzài kěyǐ ma",
+      "toneNumbers": "xian4 zai4 ke3 yi3 ma5",
+      "de": "Geht es jetzt?",
       "atoms": [
-        "Zeitvorschlag",
-        "heute",
-        "jetzt"
+        "Frage, ob es jetzt passt"
       ],
       "context": "",
       "note": "",
@@ -22061,18 +22321,10 @@
       "pronunciationReview": "pending",
       "surfaceNotes": [],
       "surfaceRuleCandidates": [],
-      "surfaceToneNumbersDraft": "jin1 tian1 xian4 zai4 ke3 yi3 ma5",
-      "pinyinSurfaceDraft": "jīn tiān xiàn zài kě yǐ ma",
+      "surfaceToneNumbersDraft": "xian4 zai4 ke3 yi3 ma5",
+      "pinyinSurfaceDraft": "xiàn zài kě yǐ ma",
       "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
       "exploration": [
-        {
-          "word": "jintian",
-          "hant": "今天",
-          "hans": "今天",
-          "pinyin": "jīntiān",
-          "gloss": "heute",
-          "audioDecision": "deferred_no_audio_authorization"
-        },
         {
           "word": "xianzai",
           "hant": "現在",
@@ -22198,6 +22450,573 @@
         }
       ],
       "senseCheck": "sense:where-taxi"
+    },
+    {
+      "id": "mobile-payment",
+      "stage": 3,
+      "words": [
+        "xingdongzhifu",
+        "xiexie"
+      ],
+      "hant": "行動支付，謝謝。",
+      "hans": "行动支付，谢谢。",
+      "pinyinLexical": "xíngdòngzhīfù xièxie",
+      "toneNumbers": "xing2 dong4 zhi1 fu4 xie4 xie5",
+      "de": "Mit mobilem Bezahlen, danke.",
+      "atoms": [
+        "mobile Zahlungsart gewählt"
+      ],
+      "context": "",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "xing2 dong4 zhi1 fu4 xie4 xie5",
+      "pinyinSurfaceDraft": "xíng dòng zhī fù xiè xie",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "xingdongzhifu",
+          "hant": "行動支付",
+          "hans": "行动支付",
+          "pinyin": "xíngdòngzhīfù",
+          "gloss": "mobiles Bezahlen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "xiexie",
+          "hant": "謝謝",
+          "hans": "谢谢",
+          "pinyin": "xièxie",
+          "gloss": "danke",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:mobile-payment"
+    },
+    {
+      "id": "go-airport",
+      "stage": 6,
+      "words": [
+        "wo",
+        "yao",
+        "qu",
+        "jichang"
+      ],
+      "hant": "我要去機場。",
+      "hans": "我要去机场。",
+      "pinyinLexical": "wǒ yào qù jīchǎng",
+      "toneNumbers": "wo3 yao4 qu4 ji1 chang3",
+      "de": "Ich möchte zum Flughafen fahren.",
+      "atoms": [
+        "Ziel Flughafen"
+      ],
+      "context": "",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "wo3 yao4 qu4 ji1 chang3",
+      "pinyinSurfaceDraft": "wǒ yào qù jī chǎng",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "wo",
+          "hant": "我",
+          "hans": "我",
+          "pinyin": "wǒ",
+          "gloss": "ich",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "yao",
+          "hant": "要",
+          "hans": "要",
+          "pinyin": "yào",
+          "gloss": "wollen; möchten; nehmen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "qu",
+          "hant": "去",
+          "hans": "去",
+          "pinyin": "qù",
+          "gloss": "gehen; zu einem Ziel fahren",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "jichang",
+          "hant": "機場",
+          "hans": "机场",
+          "pinyin": "jīchǎng",
+          "gloss": "Flughafen",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:go-airport"
+    },
+    {
+      "id": "which-line-station",
+      "stage": 6,
+      "words": [
+        "dao",
+        "chezhan",
+        "yao",
+        "da-ride",
+        "na",
+        "yi",
+        "tiao",
+        "xian-line"
+      ],
+      "hant": "到車站要搭哪一條線？",
+      "hans": "到车站要搭哪一条线？",
+      "pinyinLexical": "dào chēzhàn yào dā nǎ yī tiáo xiàn",
+      "toneNumbers": "dao4 che1 zhan4 yao4 da1 na3 yi1 tiao2 xian4",
+      "de": "Welche Linie muss ich zum Bahnhof nehmen?",
+      "atoms": [
+        "Ziel Bahnhof",
+        "Linie erfragen"
+      ],
+      "context": "Die Übungskarte unterscheidet den Bahnhof von den übrigen Metrostationen.",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [
+        {
+          "characterIndex": 6,
+          "lexical": "yi1",
+          "surfaceCandidate": "yi4"
+        }
+      ],
+      "surfaceToneNumbersDraft": "dao4 che1 zhan4 yao4 da1 na3 yi4 tiao2 xian4",
+      "pinyinSurfaceDraft": "dào chē zhàn yào dā nǎ yì tiáo xiàn",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "dao",
+          "hant": "到",
+          "hans": "到",
+          "pinyin": "dào",
+          "gloss": "erreichen; bei einem Ziel ankommen; bis zu",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "chezhan",
+          "hant": "車站",
+          "hans": "车站",
+          "pinyin": "chēzhàn",
+          "gloss": "Bahnhof; Haltestelle oder Station",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "yao",
+          "hant": "要",
+          "hans": "要",
+          "pinyin": "yào",
+          "gloss": "wollen; möchten; nehmen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "da-ride",
+          "hant": "搭",
+          "hans": "搭",
+          "pinyin": "dā",
+          "gloss": "mit einem Verkehrsmittel fahren",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "na",
+          "hant": "哪",
+          "hans": "哪",
+          "pinyin": "nǎ",
+          "gloss": "welcher",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "yi",
+          "hant": "一",
+          "hans": "一",
+          "pinyin": "yī",
+          "gloss": "eins",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "tiao",
+          "hant": "條",
+          "hans": "条",
+          "pinyin": "tiáo",
+          "gloss": "Zählwort für Linien",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "xian-line",
+          "hant": "線",
+          "hans": "线",
+          "pinyin": "xiàn",
+          "gloss": "Linie",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:which-line-station"
+    },
+    {
+      "id": "station-exit-confirm",
+      "stage": 6,
+      "words": [
+        "wo",
+        "zai-loc",
+        "chezhan",
+        "xiache",
+        "ma"
+      ],
+      "hant": "我在車站下車嗎？",
+      "hans": "我在车站下车吗？",
+      "pinyinLexical": "wǒ zài chēzhàn xiàchē ma",
+      "toneNumbers": "wo3 zai4 che1 zhan4 xia4 che1 ma5",
+      "de": "Steige ich am Bahnhof aus?",
+      "atoms": [
+        "Bahnhof als Ausstieg bestätigen lassen"
+      ],
+      "context": "",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "wo3 zai4 che1 zhan4 xia4 che1 ma5",
+      "pinyinSurfaceDraft": "wǒ zài chē zhàn xià chē ma",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "wo",
+          "hant": "我",
+          "hans": "我",
+          "pinyin": "wǒ",
+          "gloss": "ich",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "zai-loc",
+          "hant": "在",
+          "hans": "在",
+          "pinyin": "zài",
+          "gloss": "sich befinden; an einem Ort",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "chezhan",
+          "hant": "車站",
+          "hans": "车站",
+          "pinyin": "chēzhàn",
+          "gloss": "Bahnhof; Haltestelle oder Station",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "xiache",
+          "hant": "下車",
+          "hans": "下车",
+          "pinyin": "xiàchē",
+          "gloss": "aussteigen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:station-exit-confirm"
+    },
+    {
+      "id": "station-exit",
+      "stage": 6,
+      "words": [
+        "zai-loc",
+        "chezhan",
+        "xiache"
+      ],
+      "hant": "在車站下車。",
+      "hans": "在车站下车。",
+      "pinyinLexical": "zài chēzhàn xiàchē",
+      "toneNumbers": "zai4 che1 zhan4 xia4 che1",
+      "de": "Am Bahnhof aussteigen.",
+      "atoms": [
+        "Ausstieg am Bahnhof"
+      ],
+      "context": "",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "zai4 che1 zhan4 xia4 che1",
+      "pinyinSurfaceDraft": "zài chē zhàn xià chē",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "zai-loc",
+          "hant": "在",
+          "hans": "在",
+          "pinyin": "zài",
+          "gloss": "sich befinden; an einem Ort",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "chezhan",
+          "hant": "車站",
+          "hans": "车站",
+          "pinyin": "chēzhàn",
+          "gloss": "Bahnhof; Haltestelle oder Station",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "xiache",
+          "hant": "下車",
+          "hans": "下车",
+          "pinyin": "xiàchē",
+          "gloss": "aussteigen",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:station-exit"
+    },
+    {
+      "id": "arrived-station",
+      "stage": 6,
+      "words": [
+        "dao",
+        "chezhan",
+        "le"
+      ],
+      "hant": "到車站了。",
+      "hans": "到车站了。",
+      "pinyinLexical": "dào chēzhàn le",
+      "toneNumbers": "dao4 che1 zhan4 le5",
+      "de": "Wir sind am Bahnhof angekommen.",
+      "atoms": [
+        "Ankunft am Bahnhof"
+      ],
+      "context": "B begleitet Anna auf der späteren Fahrt.",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "dao4 che1 zhan4 le5",
+      "pinyinSurfaceDraft": "dào chē zhàn le",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "dao",
+          "hant": "到",
+          "hans": "到",
+          "pinyin": "dào",
+          "gloss": "erreichen; bei einem Ziel ankommen; bis zu",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "chezhan",
+          "hant": "車站",
+          "hans": "车站",
+          "pinyin": "chēzhàn",
+          "gloss": "Bahnhof; Haltestelle oder Station",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "le",
+          "hant": "了",
+          "hans": "了",
+          "pinyin": "le",
+          "gloss": "hier: eingetretener Zustand/Ergebnis",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:arrived-station"
+    },
+    {
+      "id": "have-time",
+      "stage": 8,
+      "words": [
+        "you"
+      ],
+      "hant": "有。",
+      "hans": "有。",
+      "pinyinLexical": "yǒu",
+      "toneNumbers": "you3",
+      "de": "Ja, ich habe Zeit.",
+      "atoms": [
+        "Zeitfrage bejahen"
+      ],
+      "context": "Antwort auf 你有時間嗎？; die ausgelassene Ergänzung ist 時間.",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "you3",
+      "pinyinSurfaceDraft": "yǒu",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "you",
+          "hant": "有",
+          "hans": "有",
+          "pinyin": "yǒu",
+          "gloss": "haben; die gemeinte Zeit haben",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:have-time"
+    },
+    {
+      "id": "can-help-tomorrow",
+      "stage": 8,
+      "words": [
+        "mingtian",
+        "xiawu",
+        "liang",
+        "dian-clock",
+        "ban",
+        "keyi",
+        "bangmang",
+        "ma"
+      ],
+      "hant": "明天下午兩點半可以幫忙嗎？",
+      "hans": "明天下午两点半可以帮忙吗？",
+      "pinyinLexical": "míngtiān xiàwǔ liǎng diǎn bàn kěyǐ bāngmáng ma",
+      "toneNumbers": "ming2 tian1 xia4 wu3 liang3 dian3 ban4 ke3 yi3 bang1 mang2 ma5",
+      "de": "Kannst du morgen um halb drei nachmittags helfen?",
+      "atoms": [
+        "morgen",
+        "14:30",
+        "Bitte um Hilfe"
+      ],
+      "context": "Die bekannte Person weiß, dass Hilfe bei der Abfahrt zum Flughafen gemeint ist.",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "ming2 tian1 xia4 wu3 liang3 dian3 ban4 ke3 yi3 bang1 mang2 ma5",
+      "pinyinSurfaceDraft": "míng tiān xià wǔ liǎng diǎn bàn kě yǐ bāng máng ma",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "mingtian",
+          "hant": "明天",
+          "hans": "明天",
+          "pinyin": "míngtiān",
+          "gloss": "morgen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "xiawu",
+          "hant": "下午",
+          "hans": "下午",
+          "pinyin": "xiàwǔ",
+          "gloss": "Nachmittag",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "liang",
+          "hant": "兩",
+          "hans": "两",
+          "pinyin": "liǎng",
+          "gloss": "zwei vor einem Zählwort",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "dian-clock",
+          "hant": "點",
+          "hans": "点",
+          "pinyin": "diǎn",
+          "gloss": "Uhr als Uhrzeitbaustein",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ban",
+          "hant": "半",
+          "hans": "半",
+          "pinyin": "bàn",
+          "gloss": "halb; eine halbe Stunde",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "keyi",
+          "hant": "可以",
+          "hans": "可以",
+          "pinyin": "kěyǐ",
+          "gloss": "können; dürfen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "bangmang",
+          "hant": "幫忙",
+          "hans": "帮忙",
+          "pinyin": "bāngmáng",
+          "gloss": "helfen",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:can-help-tomorrow"
+    },
+    {
+      "id": "passport-confirm",
+      "stage": 10,
+      "words": [
+        "huzhao",
+        "ma"
+      ],
+      "hant": "護照嗎？",
+      "hans": "护照吗？",
+      "pinyinLexical": "hùzhào ma",
+      "toneNumbers": "hu4 zhao4 ma5",
+      "de": "Der Reisepass?",
+      "atoms": [
+        "Reisepass als gemeinten Gegenstand rückfragen"
+      ],
+      "context": "Bestätigungsrückfrage nach Annas Verlustmeldung.",
+      "note": "",
+      "status": "draft",
+      "pronunciationReview": "pending",
+      "surfaceNotes": [],
+      "surfaceRuleCandidates": [],
+      "surfaceToneNumbersDraft": "hu4 zhao4 ma5",
+      "pinyinSurfaceDraft": "hù zhào ma",
+      "surfaceReviewNote": "Nur vorhersagbare 一/不-Regeln als Entwurf. Dritte Töne, Neutralton, Satzrhythmus und Phrasierung brauchen eine eigene qualifizierte Prüfung; keine Audiofassung existiert.",
+      "exploration": [
+        {
+          "word": "huzhao",
+          "hant": "護照",
+          "hans": "护照",
+          "pinyin": "hùzhào",
+          "gloss": "Reisepass",
+          "audioDecision": "deferred_no_audio_authorization"
+        },
+        {
+          "word": "ma",
+          "hant": "嗎",
+          "hans": "吗",
+          "pinyin": "ma",
+          "gloss": "Fragepartikel",
+          "audioDecision": "deferred_no_audio_authorization"
+        }
+      ],
+      "senseCheck": "sense:passport-confirm"
     }
   ],
   "dialogues": [
@@ -23166,7 +23985,7 @@
       "id": "G07",
       "stage": 3,
       "title": "Zwei Getränke und die Zahlungsart",
-      "context": "Anna hat zwei Gläser Wasser bestellt. Der Gesamtpreis ist fiktiv 60 Taiwan-Dollar. B akzeptiert in dieser Szene keine Karte, bietet aber Bargeld oder Scannen an.",
+      "context": "Anna hat zwei Gläser Wasser bestellt. Der Gesamtpreis ist fiktiv 60 Taiwan-Dollar. B akzeptiert in dieser Szene keine Karte, bietet aber Bargeld oder Scannen an. Diese Übungskasse bietet Bargeld und mobiles Bezahlen an. Beim Scanverfahren zeigt der Händler seinen QR-Code; Anna würde ihn selbst scannen. Das ist eine konkrete Übungssituation, keine allgemeine Zusage zur Akzeptanz von Zahlungsmitteln.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -23330,14 +24149,15 @@
         "liang",
         "liu",
         "ma",
+        "neng",
         "ni",
-        "saoma",
         "shi-number",
         "shuaka",
         "shui",
         "wo",
         "xianjin",
         "xiexie",
+        "xingdongzhifu",
         "yao",
         "yigong"
       ],
@@ -24056,8 +24876,8 @@
     {
       "id": "G12",
       "stage": 6,
-      "title": "Mit der Metro zum Flughafen",
-      "context": "B erklärt eine fiktive Linienkarte mit roter und blauer Linie. Während einer späteren Fahrt meldet B die Ankunft; die Szene nennt keine reale Taiwan-Verbindung.",
+      "title": "Mit der Metro zum Bahnhof",
+      "context": "Eine ausdrücklich fiktive Linienkarte einer unbenannten Stadt zeigt einen Bahnhof sowie rote und blaue Metrolinien. B erklärt Anna den Weg zum Bahnhof und begleitet sie später auf der Fahrt. Das Beispiel bildet keine reale Taiwan-Verbindung ab.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -24066,7 +24886,7 @@
         {
           "speaker": "A",
           "utterances": [
-            "which-line"
+            "which-line-station"
           ]
         },
         {
@@ -24090,14 +24910,14 @@
         {
           "speaker": "A",
           "utterances": [
-            "airport-exit-confirm"
+            "station-exit-confirm"
           ]
         },
         {
           "speaker": "B",
           "utterances": [
             "correct",
-            "airport-exit"
+            "station-exit"
           ]
         },
         {
@@ -24109,7 +24929,7 @@
         {
           "speaker": "B",
           "utterances": [
-            "arrived-airport"
+            "arrived-station"
           ]
         },
         {
@@ -24126,20 +24946,20 @@
         }
       ],
       "after": [
-        "which-line",
+        "which-line-station",
         "red-line",
         "duration",
         "twenty-minutes",
-        "airport-exit-confirm",
-        "airport-exit",
-        "arrived-airport"
+        "station-exit-confirm",
+        "station-exit",
+        "arrived-station"
       ],
       "recap": {
         "question": "Welche Linie, welche Dauer und welcher Ausstieg werden genannt?",
         "expected": [
           "Rote Linie der fiktiven Karte.",
           "20 Minuten.",
-          "Am Flughafen."
+          "Am Bahnhof."
         ],
         "sceneTransition": "Zwischen dem Ausstiegsplan und der Ankunft liegt eine erzählerisch markierte Fahrt, kein sofortiger Ortswechsel.",
         "assessment": "guided_self_comparison",
@@ -24151,8 +24971,8 @@
       "sentenceChecks": [
         {
           "turn": 1,
-          "utterance": "which-line",
-          "exercise": "sense:which-line",
+          "utterance": "which-line-station",
+          "exercise": "sense:which-line-station",
           "context": "G12"
         },
         {
@@ -24175,8 +24995,8 @@
         },
         {
           "turn": 5,
-          "utterance": "airport-exit-confirm",
-          "exercise": "sense:airport-exit-confirm",
+          "utterance": "station-exit-confirm",
+          "exercise": "sense:station-exit-confirm",
           "context": "G12"
         },
         {
@@ -24187,8 +25007,8 @@
         },
         {
           "turn": 6,
-          "utterance": "airport-exit",
-          "exercise": "sense:airport-exit",
+          "utterance": "station-exit",
+          "exercise": "sense:station-exit",
           "context": "G12"
         },
         {
@@ -24199,8 +25019,8 @@
         },
         {
           "turn": 8,
-          "utterance": "arrived-airport",
-          "exercise": "sense:arrived-airport",
+          "utterance": "arrived-station",
+          "exercise": "sense:arrived-station",
           "context": "G12"
         },
         {
@@ -24218,6 +25038,7 @@
       ],
       "listeningPrerequisites": [
         "bu",
+        "chezhan",
         "da-ride",
         "dao",
         "dui",
@@ -24226,7 +25047,6 @@
         "fenzhong",
         "hao",
         "hong",
-        "jichang",
         "keqi",
         "le",
         "ma",
@@ -24247,7 +25067,7 @@
       "id": "G13",
       "stage": 6,
       "title": "Ein Ticket zuordnen und den Ausstieg klären",
-      "context": "An einem Informationspunkt zeigt B die gesuchte Station auf einer fiktiven Karte. Danach ordnet B das gezeigte Ticket zu und markiert die Ausstiegsstation.",
+      "context": "An einem Informationspunkt zeigt B die gesuchte Station auf einer fiktiven Karte. B ordnet das gezeigte Ticket zu. Anna nennt danach ausdrücklich den Flughafen als Ziel; B markiert den passenden Ausstieg. Eine konkrete reale Verbindung wird nicht behauptet.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -24293,6 +25113,7 @@
         {
           "speaker": "A",
           "utterances": [
+            "go-airport",
             "which-station"
           ]
         },
@@ -24319,13 +25140,14 @@
         "metro-ticket",
         "may-ride-metro",
         "which-station",
-        "at-this-station"
+        "at-this-station",
+        "go-airport"
       ],
       "recap": {
         "question": "Wozu gehört das Ticket, und welche Station ist zum Aussteigen gemeint?",
         "expected": [
           "Zur Metro.",
-          "Die gerade markierte Station."
+          "Anna will zum Flughafen; B markiert die passende Ausstiegsstation auf der Karte."
         ],
         "assessment": "guided_self_comparison",
         "feedback": "Vergleiche deine Zusammenfassung mit den genannten Komponenten. Eine freie deutsche Antwort erhält kein automatisches Richtig/Falsch aus Schlüsselwörtern."
@@ -24378,6 +25200,12 @@
         },
         {
           "turn": 7,
+          "utterance": "go-airport",
+          "exercise": "sense:go-airport",
+          "context": "G13"
+        },
+        {
+          "turn": 7,
           "utterance": "which-station",
           "exercise": "sense:which-station",
           "context": "G13"
@@ -24405,6 +25233,7 @@
         "bu",
         "chezhan",
         "hao",
+        "jichang",
         "jieyun",
         "keqi",
         "keyi",
@@ -24414,9 +25243,12 @@
         "nali-dem",
         "ni",
         "piao",
+        "qu",
         "shi",
+        "wo",
         "xiache",
         "xiexie",
+        "yao",
         "zai-loc",
         "zhan",
         "zhe",
@@ -24882,6 +25714,8 @@
       "listeningPrerequisites": [
         "anna",
         "bu",
+        "chenghu",
+        "de",
         "fangjian",
         "fangka",
         "gei",
@@ -24891,19 +25725,24 @@
         "jiao",
         "kan",
         "keqi",
+        "keyi",
         "liang",
         "lou",
-        "mingzi",
+        "ma",
         "ni",
-        "qing",
+        "nin",
+        "qingwen",
         "san",
-        "shenme",
+        "shi",
         "wan-night",
         "wo",
         "xiexie",
+        "yixia",
         "you",
         "yuding",
         "zai-loc",
+        "zenme",
+        "zhe",
         "zheli",
         "zhu"
       ],
@@ -25027,9 +25866,9 @@
       ],
       "listeningPrerequisites": [
         "bu",
+        "de",
         "duibuqi",
         "fangka",
-        "gei",
         "hao",
         "huai",
         "huan",
@@ -25038,7 +25877,10 @@
         "le",
         "ma",
         "ni",
-        "xiexie"
+        "nin",
+        "shi",
+        "xiexie",
+        "zhe"
       ],
       "assessmentPolicy": "Zuerst Modell und fehlende Bestandteile einführen. Satzprüfungen sind verfügbar, aber bekannte Routinezüge nicht bei jedem Auftreten erneut obligatorisch prüfen. Modellhören und Hilfen bleiben geführt; wiederholte Äußerungen nicht als unabhängigen Erstabruf zählen."
     },
@@ -25189,15 +26031,15 @@
         "duibuqi",
         "fangjian",
         "hao",
-        "huai",
         "huan",
         "keqi",
         "keyi",
-        "le",
         "ma",
         "meiyou",
+        "neng",
         "ni",
         "reshui",
+        "shangwang",
         "wanglu",
         "xiexie",
         "you"
@@ -25437,7 +26279,7 @@
         "question": "Wann öffnet und schließt das Geschäft? Ist die aktuelle Uhrzeit eine weitere Öffnungszeit?",
         "expected": [
           "09:00 öffnen, 18:00 schließen.",
-          "Nein; 2:30 beantwortet eine eigene Frage."
+          "Nein; halb drei (Tageshälfte nicht genannt) beantwortet eine eigene Frage."
         ],
         "assessment": "guided_self_comparison",
         "feedback": "Vergleiche deine Zusammenfassung mit den genannten Komponenten. Eine freie deutsche Antwort erhält kein automatisches Richtig/Falsch aus Schlüsselwörtern."
@@ -25748,6 +26590,7 @@
         "wo",
         "xiawu",
         "xiexie",
+        "xing",
         "yao",
         "yi",
         "yigong",
@@ -25760,7 +26603,7 @@
       "id": "G21",
       "stage": 8,
       "title": "Zeit haben und einen Plan nennen",
-      "context": "Anna spricht mit einer bereits bekannten Person. Es wird ein einfacher Zeitplan mitgeteilt, kein bisher unbekannter Terminort eingeführt.",
+      "context": "Anna bittet eine bereits bekannte Person um die zuvor besprochene Hilfe bei der Abfahrt zum Flughafen. Nach der allgemeinen Zeitfrage nennt sie ihren Plan und fragt ausdrücklich, ob die Person morgen um 14:30 helfen kann. Der Termin wird rückversichert.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -25776,13 +26619,25 @@
         {
           "speaker": "B",
           "utterances": [
-            "have"
+            "have-time"
           ]
         },
         {
           "speaker": "A",
           "utterances": [
             "tomorrow-afternoon-go"
+          ]
+        },
+        {
+          "speaker": "B",
+          "utterances": [
+            "ack"
+          ]
+        },
+        {
+          "speaker": "A",
+          "utterances": [
+            "can-help-tomorrow"
           ]
         },
         {
@@ -25800,7 +26655,7 @@
         {
           "speaker": "B",
           "utterances": [
-            "ack"
+            "can"
           ]
         },
         {
@@ -25819,13 +26674,15 @@
       "after": [
         "time-available",
         "tomorrow-afternoon-go",
-        "tomorrow"
+        "tomorrow",
+        "have-time",
+        "can-help-tomorrow"
       ],
       "recap": {
-        "question": "Wann und wohin fährt Anna?",
+        "question": "Wann und wohin fährt Anna, und welche Bitte bestätigt die andere Person?",
         "expected": [
-          "Morgen um 14:30.",
-          "Zum Flughafen."
+          "Morgen um 14:30 zum Flughafen.",
+          "Die bekannte Person sagt ihre Hilfe für den erfragten Zeitpunkt zu."
         ],
         "assessment": "guided_self_comparison",
         "feedback": "Vergleiche deine Zusammenfassung mit den genannten Komponenten. Eine freie deutsche Antwort erhält kein automatisches Richtig/Falsch aus Schlüsselwörtern."
@@ -25848,8 +26705,8 @@
         },
         {
           "turn": 2,
-          "utterance": "have",
-          "exercise": "sense:have",
+          "utterance": "have-time",
+          "exercise": "sense:have-time",
           "context": "G21"
         },
         {
@@ -25860,30 +26717,42 @@
         },
         {
           "turn": 4,
-          "utterance": "tomorrow-confirm",
-          "exercise": "sense:tomorrow-confirm",
-          "context": "G21"
-        },
-        {
-          "turn": 5,
-          "utterance": "correct",
-          "exercise": "sense:correct",
-          "context": "G21"
-        },
-        {
-          "turn": 6,
           "utterance": "ack",
           "exercise": "sense:ack",
           "context": "G21"
         },
         {
+          "turn": 5,
+          "utterance": "can-help-tomorrow",
+          "exercise": "sense:can-help-tomorrow",
+          "context": "G21"
+        },
+        {
+          "turn": 6,
+          "utterance": "tomorrow-confirm",
+          "exercise": "sense:tomorrow-confirm",
+          "context": "G21"
+        },
+        {
           "turn": 7,
+          "utterance": "correct",
+          "exercise": "sense:correct",
+          "context": "G21"
+        },
+        {
+          "turn": 8,
+          "utterance": "can",
+          "exercise": "sense:can",
+          "context": "G21"
+        },
+        {
+          "turn": 9,
           "utterance": "thanks",
           "exercise": "sense:thanks",
           "context": "G21"
         },
         {
-          "turn": 8,
+          "turn": 10,
           "utterance": "welcome",
           "exercise": "sense:welcome",
           "context": "G21"
@@ -25891,12 +26760,14 @@
       ],
       "listeningPrerequisites": [
         "ban",
+        "bangmang",
         "bu",
         "dian-clock",
         "dui",
         "hao",
         "jichang",
         "keqi",
+        "keyi",
         "liang",
         "ma",
         "mingtian",
@@ -25914,7 +26785,7 @@
       "id": "G22",
       "stage": 9,
       "title": "Ladegerät und günstigere Variante",
-      "context": "Im Geschäft zeigt Anna auf ein Gerät. Das Missverständnis Batterie/Ladegerät wird geklärt, danach der Preis einer anderen Variante.",
+      "context": "Im Geschäft zeigt Anna auf ein Gerät. Das Missverständnis Batterie/Ladegerät wird geklärt, danach der Preis einer anderen Variante. Diese Übungskasse bietet Bargeld und mobiles Bezahlen an. Beim Scanverfahren zeigt der Händler seinen QR-Code; Anna scannt ihn selbst. Das ist eine konkrete Übungssituation, keine allgemeine Zusage zur Akzeptanz von Zahlungsmitteln.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -25936,6 +26807,7 @@
         {
           "speaker": "A",
           "utterances": [
+            "not-understand",
             "battery"
           ]
         },
@@ -25987,13 +26859,13 @@
         {
           "speaker": "A",
           "utterances": [
-            "cash"
+            "mobile-payment"
           ]
         },
         {
           "speaker": "B",
           "utterances": [
-            "ack"
+            "please-scan"
           ]
         },
         {
@@ -26017,13 +26889,16 @@
         "too-expensive",
         "cheaper",
         "this-seventy",
-        "want-this"
+        "want-this",
+        "mobile-payment",
+        "please-scan"
       ],
       "recap": {
         "question": "Welches Gerät wurde geklärt und welche Preisvariante gewählt?",
         "expected": [
           "Ein Ladegerät, kein Akku.",
-          "Die gezeigte günstigere Variante zu 70 TWD."
+          "Die gezeigte günstigere Variante zu 70 TWD.",
+          "Mobiles Bezahlen; Anna soll den gezeigten Händlercode scannen."
         ],
         "assessment": "guided_self_comparison",
         "feedback": "Vergleiche deine Zusammenfassung mit den genannten Komponenten. Eine freie deutsche Antwort erhält kein automatisches Richtig/Falsch aus Schlüsselwörtern."
@@ -26048,6 +26923,12 @@
           "turn": 2,
           "utterance": "this-charger",
           "exercise": "sense:this-charger",
+          "context": "G22"
+        },
+        {
+          "turn": 3,
+          "utterance": "not-understand",
+          "exercise": "sense:not-understand",
           "context": "G22"
         },
         {
@@ -26118,14 +26999,14 @@
         },
         {
           "turn": 11,
-          "utterance": "cash",
-          "exercise": "sense:cash",
+          "utterance": "mobile-payment",
+          "exercise": "sense:mobile-payment",
           "context": "G22"
         },
         {
           "turn": 12,
-          "utterance": "ack",
-          "exercise": "sense:ack",
+          "utterance": "please-scan",
+          "exercise": "sense:please-scan",
           "context": "G22"
         },
         {
@@ -26161,15 +27042,18 @@
         "pianyi",
         "qi",
         "qian",
+        "qing",
         "qingwen",
         "saoma",
         "shenme",
         "shi",
         "shi-number",
         "tai",
+        "tingbudong",
         "wo",
         "xianjin",
         "xiexie",
+        "xingdongzhifu",
         "yao",
         "yi",
         "yidian",
@@ -26468,7 +27352,7 @@
         "bu",
         "chongdian",
         "chongdianqi",
-        "de",
+        "gei",
         "hao",
         "kan",
         "keqi",
@@ -26489,7 +27373,7 @@
       "id": "G25",
       "stage": 10,
       "title": "Ein verlorener Pass",
-      "context": "Anna bittet an der Rezeption um Hilfe. Auf die Rückfrage konkretisiert sie den verlorenen Gegenstand und bittet um die Polizei.",
+      "context": "Anna bittet an der Rezeption um Hilfe und meldet ihren verlorenen Reisepass. B versichert den Gegenstand mit einer kurzen Echofrage rück. Anna bestätigt und bittet darum, die Polizei zu rufen.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -26498,21 +27382,7 @@
         {
           "speaker": "A",
           "utterances": [
-            "help",
-            "passport-lost"
-          ]
-        },
-        {
-          "speaker": "B",
-          "utterances": [
-            "not-understand",
-            "what-lost"
-          ]
-        },
-        {
-          "speaker": "A",
-          "utterances": [
-            "passport"
+            "help"
           ]
         },
         {
@@ -26524,6 +27394,19 @@
         {
           "speaker": "A",
           "utterances": [
+            "passport-lost"
+          ]
+        },
+        {
+          "speaker": "B",
+          "utterances": [
+            "passport-confirm"
+          ]
+        },
+        {
+          "speaker": "A",
+          "utterances": [
+            "correct",
             "call-police"
           ]
         },
@@ -26547,9 +27430,9 @@
         }
       ],
       "after": [
+        "help",
         "passport-lost",
-        "what-lost",
-        "passport",
+        "passport-confirm",
         "call-police"
       ],
       "recap": {
@@ -26572,33 +27455,27 @@
           "context": "G25"
         },
         {
-          "turn": 1,
+          "turn": 2,
+          "utterance": "can",
+          "exercise": "sense:can",
+          "context": "G25"
+        },
+        {
+          "turn": 3,
           "utterance": "passport-lost",
           "exercise": "sense:passport-lost",
           "context": "G25"
         },
         {
-          "turn": 2,
-          "utterance": "not-understand",
-          "exercise": "sense:not-understand",
-          "context": "G25"
-        },
-        {
-          "turn": 2,
-          "utterance": "what-lost",
-          "exercise": "sense:what-lost",
-          "context": "G25"
-        },
-        {
-          "turn": 3,
-          "utterance": "passport",
-          "exercise": "sense:passport",
-          "context": "G25"
-        },
-        {
           "turn": 4,
-          "utterance": "can",
-          "exercise": "sense:can",
+          "utterance": "passport-confirm",
+          "exercise": "sense:passport-confirm",
+          "context": "G25"
+        },
+        {
+          "turn": 5,
+          "utterance": "correct",
+          "exercise": "sense:correct",
           "context": "G25"
         },
         {
@@ -26632,6 +27509,7 @@
         "bu",
         "de",
         "diu",
+        "dui",
         "hao",
         "huzhao",
         "jiao",
@@ -26639,9 +27517,8 @@
         "keqi",
         "keyi",
         "le",
+        "ma",
         "qing",
-        "shenme",
-        "tingbudong",
         "wo",
         "xiexie"
       ],
@@ -26651,7 +27528,7 @@
       "id": "G26",
       "stage": 10,
       "title": "Eine Ärztin oder einen Arzt rufen lassen",
-      "context": "Anna nennt Bauchschmerzen und eine konkrete Hilfebitte. Das Gespräch endet mit der angenommenen Bitte; es enthält keine Diagnose oder Behandlung.",
+      "context": "Anna befindet sich an einer medizinischen Anlaufstelle, an deren Empfang eine Arztperson gerufen werden kann. Sie meldet Bauchschmerzen und bittet um einen Arzt oder eine Ärztin. Die Szene enthält keine Diagnose und verspricht keinen allgemeinen Hotelservice.",
       "roles": {
         "A": "Anna, Reisende",
         "B": "Gegenüber in der Situation"
@@ -26771,6 +27648,7 @@
         "jiao",
         "keqi",
         "keyi",
+        "ma",
         "ni",
         "qing",
         "tong",
@@ -26929,10 +27807,10 @@
         "hao",
         "keqi",
         "keyi",
+        "ma",
         "nali",
         "nali-dem",
         "ni",
-        "qing",
         "tong",
         "tou",
         "wo",
@@ -27180,14 +28058,14 @@
       "utterance": "can",
       "prompt": "Welche Antwort wird gegeben?",
       "correct": [
-        "Die erfragte Handlung ist erlaubt oder möglich."
+        "Ja, das geht."
       ],
       "incorrect": [
         "Die Handlung ist untersagt.",
         "Es wird nach einem Preis gefragt."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Das geht; du darfst.",
+      "feedback": "Vergleiche die gesamte Aussage: Ja, das geht.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "Antwort auf eine vorherige 可以-Frage.",
       "audio": "not_created",
@@ -27216,16 +28094,16 @@
       "id": "sense:help",
       "type": "sentence_meaning",
       "utterance": "help",
-      "prompt": "Was erbittet die Person?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Hilfe."
+        "Können Sie mir bitte helfen?"
       ],
       "incorrect": [
-        "Einen Preis.",
-        "Einen Namen."
+        "Ich kann helfen.",
+        "Ich brauche keine Hilfe."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Bitte hilf mir.",
+      "feedback": "Vergleiche die gesamte Aussage: Können Sie mir bitte helfen?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -27634,16 +28512,16 @@
       "id": "sense:no-card",
       "type": "sentence_meaning",
       "utterance": "no-card",
-      "prompt": "Welche Aussage trifft zu?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Kartenzahlung ist in dieser Szene nicht möglich."
+        "Kartenzahlung ist hier nicht möglich."
       ],
       "incorrect": [
         "Kartenzahlung ist möglich.",
-        "Bezahlen ist grundsätzlich unmöglich."
+        "Hier kann man nur mit Karte bezahlen."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Kartenzahlung geht nicht.",
+      "feedback": "Vergleiche die gesamte Aussage: Kartenzahlung ist hier nicht möglich.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -27653,16 +28531,16 @@
       "id": "sense:cash-or-scan",
       "type": "sentence_meaning",
       "utterance": "cash-or-scan",
-      "prompt": "Welche Möglichkeiten werden angeboten?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Bargeld oder per Code scannen."
+        "Bargeld oder mobiles Bezahlen?"
       ],
       "incorrect": [
-        "Kartenzahlung oder kostenlos.",
-        "Zwei verschiedene Preise."
+        "Mit Karte oder bar?",
+        "Möchten Sie einen Beleg?"
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Bargeld oder Scannen?",
+      "feedback": "Vergleiche die gesamte Aussage: Bargeld oder mobiles Bezahlen?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -27710,16 +28588,16 @@
       "id": "sense:give-hundred",
       "type": "sentence_meaning",
       "utterance": "give-hundred",
-      "prompt": "Was wird überreicht?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "100 TWD."
+        "Hier bitte: hundert Taiwan-Dollar."
       ],
       "incorrect": [
-        "10 TWD.",
-        "101 TWD."
+        "Das kostet 101 Taiwan-Dollar.",
+        "Bitte geben Sie mir hundert Taiwan-Dollar."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Hier sind hundert Taiwan-Dollar für dich.",
+      "feedback": "Vergleiche die gesamte Aussage: Hier bitte: hundert Taiwan-Dollar.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -27862,16 +28740,16 @@
       "id": "sense:menu-please",
       "type": "sentence_meaning",
       "utterance": "menu-please",
-      "prompt": "Was erbittet die Person?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Die Speisekarte."
+        "Kann ich bitte die Speisekarte haben?"
       ],
       "incorrect": [
-        "Eine Schüssel.",
-        "Die Rechnungssumme."
+        "Die Speisekarte ist nicht verfügbar.",
+        "Ich möchte schon bezahlen."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Gib mir bitte die Speisekarte.",
+      "feedback": "Vergleiche die gesamte Aussage: Kann ich bitte die Speisekarte haben?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -28168,14 +29046,14 @@
       "utterance": "there",
       "prompt": "Auf welchen Ort verweist die Antwort?",
       "correct": [
-        "Auf den in der Szene entfernten markierten Ort."
+        "Dort."
       ],
       "incorrect": [
         "Auf den nahen eigenen Standort.",
         "Auf eine Uhrzeit."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Sie ist dort.",
+      "feedback": "Vergleiche die gesamte Aussage: Dort.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "Der Bezug stammt aus der unmittelbar vorausgehenden Ortsfrage; ein Lagebild markiert hier und dort.",
       "audio": "not_created",
@@ -28755,16 +29633,16 @@
       "id": "sense:ask-name",
       "type": "sentence_meaning",
       "utterance": "ask-name",
-      "prompt": "Welche Information wird erfragt?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Der Name."
+        "Darf ich fragen, wie ich Sie ansprechen darf?"
       ],
       "incorrect": [
-        "Die Nationalität.",
-        "Die Zimmernummer."
+        "Wie viele Nächte bleiben Sie?",
+        "Wo ist Ihr Zimmer?"
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Wie heißt du?",
+      "feedback": "Vergleiche die gesamte Aussage: Darf ich fragen, wie ich Sie ansprechen darf?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -28793,16 +29671,16 @@
       "id": "sense:show-passport",
       "type": "sentence_meaning",
       "utterance": "show-passport",
-      "prompt": "Was soll vorgezeigt werden?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Der Reisepass."
+        "Dürfte ich bitte kurz Ihren Reisepass sehen?"
       ],
       "incorrect": [
-        "Die Zimmerkarte.",
-        "Eine Fahrkarte."
+        "Bitte geben Sie mir die Zimmerkarte.",
+        "Ihr Reisepass ist verloren."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Zeig mir bitte den Reisepass.",
+      "feedback": "Vergleiche die gesamte Aussage: Dürfte ich bitte kurz Ihren Reisepass sehen?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -28833,14 +29711,14 @@
       "utterance": "how-many-nights",
       "prompt": "Was wird erfragt?",
       "correct": [
-        "Die Anzahl der Übernachtungen."
+        "Wie viele Nächte bleiben Sie?"
       ],
       "incorrect": [
         "Die Zimmernummer.",
         "Die Anzahl der Personen."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Wie viele Nächte bleibst du?",
+      "feedback": "Vergleiche die gesamte Aussage: Wie viele Nächte bleiben Sie?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -28907,16 +29785,16 @@
       "id": "sense:give-card",
       "type": "sentence_meaning",
       "utterance": "give-card",
-      "prompt": "Was wird übergeben?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Eine Zimmerkarte."
+        "Hier ist Ihre Zimmerkarte."
       ],
       "incorrect": [
-        "Ein Reisepass.",
-        "Ein Metro-Ticket."
+        "Hier ist Ihr Reisepass.",
+        "Ihre Zimmerkarte funktioniert nicht."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Hier ist deine Zimmerkarte.",
+      "feedback": "Vergleiche die gesamte Aussage: Hier ist Ihre Zimmerkarte.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -29021,16 +29899,16 @@
       "id": "sense:network-broken",
       "type": "sentence_meaning",
       "utterance": "network-broken",
-      "prompt": "Welches Problem wird gemeldet?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Das Internet funktioniert nicht."
+        "Ich kann nicht ins Internet."
       ],
       "incorrect": [
-        "Es wurde keine Reservierung gemacht.",
-        "Die Zimmerkarte ist verloren."
+        "Das Internet funktioniert jetzt.",
+        "Es gibt kein warmes Wasser."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Das Internet funktioniert nicht.",
+      "feedback": "Vergleiche die gesamte Aussage: Ich kann nicht ins Internet.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -29173,16 +30051,16 @@
       "id": "sense:two-thirty",
       "type": "sentence_meaning",
       "utterance": "two-thirty",
-      "prompt": "Welche Uhrzeit nennt der Satz?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "2:30 Uhr."
+        "Halb drei; die Tageshälfte wird nicht genannt."
       ],
       "incorrect": [
-        "3:30 Uhr.",
-        "2:00 Uhr."
+        "Halb vier.",
+        "Zwei Uhr ohne halbe Stunde."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Halb drei, also 2:30 Uhr.",
+      "feedback": "Vergleiche die gesamte Aussage: Halb drei; die Tageshälfte wird nicht genannt.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -29344,18 +30222,18 @@
       "id": "sense:not-possible",
       "type": "sentence_meaning",
       "utterance": "not-possible",
-      "prompt": "Wie wird der gerade erfragte Vorschlag beantwortet?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Er wird abgelehnt."
+        "Das geht nicht."
       ],
       "incorrect": [
-        "Er wird angenommen.",
-        "Es wird eine Summe genannt."
+        "Der Zeitpunkt passt.",
+        "Es ist jetzt halb drei."
       ],
       "evidence": "guided_listening_recognition",
       "feedback": "Vergleiche die gesamte Aussage: Das geht nicht.",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
-      "context": "Konkreter Zeitvorschlag; keine pauschale Fähigkeitseinschätzung.",
+      "context": "Antwort auf einen konkreten Zeitvorschlag.",
       "audio": "not_created",
       "status": "draft"
     },
@@ -29667,16 +30545,16 @@
       "id": "sense:may-charge-phone",
       "type": "sentence_meaning",
       "utterance": "may-charge-phone",
-      "prompt": "Welche Handlung wird erfragt?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Das eigene Telefon aufladen."
+        "Darf ich hier mein Telefon aufladen?"
       ],
       "incorrect": [
-        "Eine Batterie kaufen.",
-        "Eine Telefonnummer nennen."
+        "Ist mein Telefon bereits aufgeladen?",
+        "Wo kann ich ein Telefon kaufen?"
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Kann ich mein Telefon aufladen?",
+      "feedback": "Vergleiche die gesamte Aussage: Darf ich hier mein Telefon aufladen?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -30066,16 +30944,16 @@
       "id": "sense:today-now",
       "type": "sentence_meaning",
       "utterance": "today-now",
-      "prompt": "Welcher Zeitpunkt wird vorgeschlagen?",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
       "correct": [
-        "Heute jetzt."
+        "Geht es jetzt?"
       ],
       "incorrect": [
-        "Morgen Nachmittag.",
-        "Heute in zwanzig Minuten."
+        "Passt es morgen?",
+        "Jetzt ist es nicht möglich."
       ],
       "evidence": "guided_listening_recognition",
-      "feedback": "Vergleiche die gesamte Aussage: Geht es heute jetzt?",
+      "feedback": "Vergleiche die gesamte Aussage: Geht es jetzt?",
       "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
       "context": "",
       "audio": "not_created",
@@ -30195,16 +31073,6 @@
       "expected": [
         {
           "words": [
-            "qing",
-            "bangmang"
-          ],
-          "hant": "請幫忙",
-          "hans": "请帮忙",
-          "pinyinLexical": "qǐng bāngmáng",
-          "toneNumbers": "qing3 bang1 mang2"
-        },
-        {
-          "words": [
             "keyi",
             "bangmang",
             "ma"
@@ -30213,6 +31081,16 @@
           "hans": "可以帮忙吗",
           "pinyinLexical": "kěyǐ bāngmáng ma",
           "toneNumbers": "ke3 yi3 bang1 mang2 ma5"
+        },
+        {
+          "words": [
+            "qing",
+            "bangmang"
+          ],
+          "hant": "請幫忙",
+          "hans": "请帮忙",
+          "pinyinLexical": "qǐng bāngmáng",
+          "toneNumbers": "qing3 bang1 mang2"
         }
       ],
       "assessment": {
@@ -31608,6 +32486,195 @@
         "exchange-card"
       ],
       "feedback": "醫生 bezeichnet die gewünschte Arztperson; 警察 wäre die Polizei.",
+      "evidence": "contextual_recognition_not_free_production",
+      "status": "draft"
+    },
+    {
+      "id": "sense:mobile-payment",
+      "type": "sentence_meaning",
+      "utterance": "mobile-payment",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Mit mobilem Bezahlen, danke."
+      ],
+      "incorrect": [
+        "Mit Bargeld, danke.",
+        "Keine Zahlung möglich."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Mit mobilem Bezahlen, danke.",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:go-airport",
+      "type": "sentence_meaning",
+      "utterance": "go-airport",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Ich möchte zum Flughafen fahren."
+      ],
+      "incorrect": [
+        "Ich möchte zum Hotel fahren.",
+        "Ich komme gerade vom Flughafen."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Ich möchte zum Flughafen fahren.",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:which-line-station",
+      "type": "sentence_meaning",
+      "utterance": "which-line-station",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Welche Linie muss ich zum Bahnhof nehmen?"
+      ],
+      "incorrect": [
+        "Wie viel kostet das Ticket?",
+        "Welche Linie fährt zum Flughafen?"
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Welche Linie muss ich zum Bahnhof nehmen?",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "Die Übungskarte unterscheidet den Bahnhof von den übrigen Metrostationen.",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:station-exit-confirm",
+      "type": "sentence_meaning",
+      "utterance": "station-exit-confirm",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Steige ich am Bahnhof aus?"
+      ],
+      "incorrect": [
+        "Steige ich am Flughafen aus?",
+        "Wo kaufe ich ein Ticket?"
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Steige ich am Bahnhof aus?",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:station-exit",
+      "type": "sentence_meaning",
+      "utterance": "station-exit",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Am Bahnhof aussteigen."
+      ],
+      "incorrect": [
+        "Am Flughafen aussteigen.",
+        "An der nächsten Kreuzung links abbiegen."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Am Bahnhof aussteigen.",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:arrived-station",
+      "type": "sentence_meaning",
+      "utterance": "arrived-station",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Wir sind am Bahnhof angekommen."
+      ],
+      "incorrect": [
+        "Wir fahren erst morgen zum Bahnhof.",
+        "Wir sind am Flughafen angekommen."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Wir sind am Bahnhof angekommen.",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "B begleitet Anna auf der späteren Fahrt.",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:have-time",
+      "type": "sentence_meaning",
+      "utterance": "have-time",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Ja, ich habe Zeit."
+      ],
+      "incorrect": [
+        "Nein, ich habe keine Zeit.",
+        "Ja, es gibt Nudeln."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Ja, ich habe Zeit.",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "Antwort auf 你有時間嗎？; die ausgelassene Ergänzung ist 時間.",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:can-help-tomorrow",
+      "type": "sentence_meaning",
+      "utterance": "can-help-tomorrow",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Kannst du morgen um halb drei nachmittags helfen?"
+      ],
+      "incorrect": [
+        "Können Sie heute um halb drei nachmittags helfen?",
+        "Können Sie morgen um halb vier nachmittags helfen?"
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Kannst du morgen um halb drei nachmittags helfen?",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "Die bekannte Person weiß, dass Hilfe bei der Abfahrt zum Flughafen gemeint ist.",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "sense:passport-confirm",
+      "type": "sentence_meaning",
+      "utterance": "passport-confirm",
+      "prompt": "Welche vollständige Aussage passt in diesem Zusammenhang?",
+      "correct": [
+        "Der Reisepass?"
+      ],
+      "incorrect": [
+        "Die Zimmerkarte?",
+        "Der Reisepass ist hier."
+      ],
+      "evidence": "guided_listening_recognition",
+      "feedback": "Vergleiche die gesamte Aussage: Der Reisepass?",
+      "automaticScope": "Nur die vorgegebenen Optionen. Freie Paraphrasen bleiben unbewertet.",
+      "context": "Bestätigungsrückfrage nach Annas Verlustmeldung.",
+      "audio": "not_created",
+      "status": "draft"
+    },
+    {
+      "id": "reply:payment",
+      "type": "contextual_reply_selection",
+      "dialog": "G07",
+      "afterTurn": 4,
+      "prompt": "Welche Antworten wählen eine der angebotenen Zahlungsarten?",
+      "correct": [
+        "cash",
+        "mobile-payment"
+      ],
+      "incorrect": [
+        "price",
+        "tea-one"
+      ],
+      "feedback": "現金 wählt Bargeld, 行動支付 mobiles Bezahlen. 掃碼 ist ein mögliches Verfahren; erst die Situation klärt, wer welchen Code scannt.",
       "evidence": "contextual_recognition_not_free_production",
       "status": "draft"
     }
@@ -35895,6 +36962,133 @@
         "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
         "reason": "No independent sentence or native review implied."
       }
+    },
+    {
+      "word": "nin",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": true,
+      "matchedCandidateTones": [
+        [
+          "nin2"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Exact dictionary form and reading match",
+        "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+        "reason": "Script pair and reading only; no sentence certification."
+      }
+    },
+    {
+      "word": "chenghu",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": false,
+      "matchedCandidateTones": [
+        [
+          "cheng1",
+          "hu5"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Taiwan MOE reading retained",
+        "source": "https://pedia.cloud.edu.tw/Entry/Detail?title=%E7%A8%B1%E5%91%BC",
+        "reason": "MOE chēng hū; neutral-final readings elsewhere are not declared invalid."
+      }
+    },
+    {
+      "word": "yixia",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": true,
+      "matchedCandidateTones": [
+        [
+          "yi1",
+          "xia4"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Exact dictionary form and reading match",
+        "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+        "reason": "Script pair and reading only; no sentence certification."
+      }
+    },
+    {
+      "word": "neng",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": true,
+      "matchedCandidateTones": [
+        [
+          "neng2"
+        ],
+        [
+          "neng2"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Exact dictionary form and reading match",
+        "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+        "reason": "Script pair and reading only; no sentence certification."
+      }
+    },
+    {
+      "word": "shangwang",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": true,
+      "matchedCandidateTones": [
+        [
+          "shang4",
+          "wang3"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Exact dictionary form and reading match",
+        "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+        "reason": "Script pair and reading only; no sentence certification."
+      }
+    },
+    {
+      "word": "xing",
+      "source": "CC-CEDICT",
+      "pairFound": true,
+      "toneSequenceMatched": true,
+      "matchedCandidateTones": [
+        [
+          "hang2"
+        ],
+        [
+          "heng2"
+        ],
+        [
+          "xing2"
+        ]
+      ],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Exact dictionary form and reading match",
+        "source": "CC-CEDICT snapshot fc7cca0211589863fa314dd6e42ce382076fcda555bd62c8e644d6429cf267b8",
+        "reason": "Script pair and reading only; no sentence certification."
+      }
+    },
+    {
+      "word": "xingdongzhifu",
+      "source": "CC-CEDICT",
+      "pairFound": false,
+      "toneSequenceMatched": false,
+      "matchedCandidateTones": [],
+      "scope": "Schriftpaar und nummerierte lexikalische Lesung; keine Satzfreigabe.",
+      "disposition": {
+        "disposition": "Official Taiwan usage plus component reading check",
+        "source": "https://www.post.gov.tw/post/FileCenter/post_ww2/ad/ad_linkpage/114_digitalvouchercampaign_qrpay.html; CC-CEDICT 行動/行动 xing2 dong4 and 支付 zhi1 fu4",
+        "reason": "No combined CC-CEDICT entry. Both component pairs/readings checked; official Taiwan payment context supports the term, not a claim of universal acceptance."
+      }
     }
   ],
   "release": {
@@ -35903,5 +37097,12 @@
     "applicationIntegrationAuthorized": false,
     "publicationAuthorized": false,
     "nativeReview": "pending"
+  },
+  "languageEditorialReview": {
+    "date": "2026-10-20",
+    "type": "AI-assisted source and editorial review",
+    "scope": "All entries in the bounded Taiwan editorial corpus; see LANGUAGE_REVIEW.md and language-review.json.",
+    "nativeCertification": false,
+    "publicationAuthorized": false
   }
 }

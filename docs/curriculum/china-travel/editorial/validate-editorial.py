@@ -17,7 +17,7 @@ expected=[(5,4),(8,5),(10,5),(12,5),(11,4),(12,5),(11,4),(9,4),(9,2),(6,3)]
 for stage,(l,c) in enumerate(expected,1):
  assert sum(o['stage']==stage and o['kind']=='lexeme' for o in O.values())==l
  assert sum(o['stage']==stage and o['kind']=='construction' for o in O.values())==c
-assert len(W)==171 and sum(not w['baseline'] for w in W.values())==127
+assert len(W)==178 and sum(not w['baseline'] for w in W.values())==134
 for w in W.values():
  assert len(w['hant'])==len(w['hans'])==len(w['tones']),w['id']
  assert all(re.fullmatch(r'[a-zü]+[1-5]',t) for t in w['tones']),w['id']
@@ -63,7 +63,7 @@ for x in X.values():
   assert x['dialog'] in D and all(k in U for k in x['correct']+x['incorrect'])
   assert not set(x['correct'])&set(x['incorrect'])
  if 'utterance' in x:assert x['utterance'] in U
-assert len(X)==211
+assert len(X)==221
 recognition=set()
 for m in M.values():
  ks=[p['word'] for p in m['pairs']];assert len(ks)==len(set(ks))>=2
@@ -74,13 +74,28 @@ for m in M.values():
 assert len(M)==38 and len(recognition)==62
 assert len(T)==10 and {w['word'] for w in T.values()}=={'shui','bei','yuan','bai','zuo-dir','you-dir','qu','dao','da','xiao'}
 assert all(w['object'] in O and w['hant']==w['hans'] for w in T.values())
-assert len(b['sourceFacts'])==127 and all(x['disposition']['disposition'] for x in b['sourceFacts'])
-assert sum(x['toneSequenceMatched'] for x in b['sourceFacts'])==123
+assert len(b['sourceFacts'])==134 and all(x['disposition']['disposition'] for x in b['sourceFacts'])
+assert sum(x['toneSequenceMatched'] for x in b['sourceFacts'])==128
 assert b['title']=='Reise nach Taiwan' and b['currency']=='TWD'
 assert not any(v for k,v in b['release'].items() if k!='nativeReview')
 for p in root.glob('*.md'):
  for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):
   if '://' not in link and link!='verification.json':assert (p.parent/link.split('#')[0]).exists(),(p,link)
-summary={'status':'pass','scope':'Exhaustive structural accounting of this editorial batch; not native, acoustic, app or learner QA.','objects':len(O),'words':len(W),'newWordEntries':127,'dialogues':len(D),'turnOccurrences':sum(len(d['turns']) for d in D.values()),'sentenceOccurrences':sum(len(t['utterances']) for d in D.values() for t in d['turns']),'distinctUtterances':len(U),'exercises':len(X),'exerciseTypes':dict(collections.Counter(x['type'] for x in X.values())),'matchingVariants':len(M),'recognitionForms':len(recognition),'writingTargets':len(T),'jsonSha256':hashlib.sha256((root/'editorial.json').read_bytes()).hexdigest()}
+# Bind the per-ID reading ledger to this exact corpus; it is not a language oracle.
+ledger=json.loads((root/'language-review.json').read_text())
+assert ledger['corpusSha256']==hashlib.sha256((root/'editorial.json').read_bytes()).hexdigest()
+assert ledger['nativeCertification'] is False and ledger['audioReviewed'] is False
+for kind,rows in ledger['members'].items():
+ current={r['id']:r for r in b[kind]}
+ assert {r['id'] for r in rows}==set(current),kind
+ for r in rows:
+  digest=hashlib.sha256(json.dumps(current[r['id']],ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+  assert digest==r['afterSha256'],(kind,r['id'])
+assert all(o['contextDialogs'] for o in O.values())
+assert sum(w['baseline'] for w in W.values())==44
+assert U['goodnight']['pinyinLexical']=="wǎn'ān"
+assert X['value:t1430']['utterance']=='two-thirty-okay' and 'xiawu' in U['two-thirty-okay']['words']
+assert X['value:t1530']['utterance']=='three-thirty-okay' and 'xiawu' in U['three-thirty-okay']['words']
+summary={'status':'pass','scope':'Exhaustive structural accounting of this editorial batch; not native, acoustic, app or learner QA.','objects':len(O),'words':len(W),'newWordEntries':134,'dialogues':len(D),'turnOccurrences':sum(len(d['turns']) for d in D.values()),'sentenceOccurrences':sum(len(t['utterances']) for d in D.values() for t in d['turns']),'distinctUtterances':len(U),'exercises':len(X),'exerciseTypes':dict(collections.Counter(x['type'] for x in X.values())),'matchingVariants':len(M),'recognitionForms':len(recognition),'writingTargets':len(T),'jsonSha256':hashlib.sha256((root/'editorial.json').read_bytes()).hexdigest()}
 (root/'verification.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(summary,ensure_ascii=False,indent=2))

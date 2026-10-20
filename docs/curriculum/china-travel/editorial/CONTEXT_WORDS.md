@@ -6,7 +6,7 @@ Diese Einträge ergänzen den bestehenden Kanon und die 93 eigenständigen neuen
 | ---: | --- | --- | --- | --- |
 | 1 | 請問 | 请问 | qǐngwèn | entschuldige, darf ich fragen. Höfliche Eröffnung; kein eigener Satzinhalt der folgenden Frage. |
 | 1 | 台灣 | 台湾 | táiwān | Taiwan. Kontextname der Reise; keine neue Karte und keine Umdeutung des bestehenden China-Eintrags. |
-| 2 | 的 | 的 | de | das gemeinte Exemplar. In 熱的/冰的 wird das bekannte Getränk ausgelassen. |
+| 2 | 的 | 的 | de | Attributpartikel; verbindet eine nähere Bestimmung mit ihrem Bezugswort. 我/您的: mein/Ihr; 到機場的票: Ticket zum Flughafen; 熱的: das heiße Getränk mit ausgelassenem Nomen. Die Bedeutung entsteht aus der ganzen Verbindung. |
 | 2 | 還是 | 还是 | háishì | oder in einer Auswahlfrage. Beide Alternativen werden angeboten; kein Ja-Nein-Test. |
 | 3 | 多少 | 多少 | duōshǎo | wie viel; wie viele. In der Preisfrage; eine mögliche Neutraltonrealisierung bleibt gesondert. |
 | 3 | 一共 | 一共 | yīgòng | insgesamt. Gesamtpreis statt Preis je Stück. |
@@ -25,7 +25,7 @@ Diese Einträge ergänzen den bestehenden Kanon und die 93 eigenständigen neuen
 | 6 | 紅 | 红 | hóng | rot. Kontextetikett einer fiktiven Linie, nicht echte Routeninformation. |
 | 6 | 藍 | 蓝 | lán | blau. Zweite vorab eingeführte Linienfarbe; kein neues Pflichtfarbkapitel. |
 | 6 | 多久 | 多久 | duōjiǔ | wie lange. Dauerfrage; keine Frage nach Uhrzeit oder Preis. |
-| 6 | 了 | 了 | le | Partikel für erreichten Zustand. Ankunft und später festgestellte Veränderung jeweils kontextuell erklären. |
+| 6 | 了 | 了 | le | Satz-/Aspektpartikel; Funktion aus der jeweiligen Konstruktion erschließen. Hier unter anderem Zustandsänderung/Ergebnis in 到了、壞了、丟了; in 太…了 eine Gradbewertung. Nicht pauschal als Vergangenheitszeichen lernen. |
 | 6 | 停車 | 停车 | tíngchē | anhalten; parken. Im Taxi: an der genannten Stelle halten. |
 | 7 | 安娜 | 安娜 | ānnà | Anna. Fiktiver Name der Reisenden, vor dem Namensabruf vorgestellt. |
 | 10 | 藥店 | 药店 | yàodiàn | Apotheke. Verständliche Rezeptionsvariante neben dem Taiwan-Lernziel 藥局. |
@@ -38,6 +38,13 @@ Diese Einträge ergänzen den bestehenden Kanon und die 93 eigenständigen neuen
 | 10 | 肚子 | 肚子 | dùzi | Bauch. Ganze Körperbezeichnung in der Beschwerde einführen. |
 | 10 | 幫 | 帮 | bāng | jemandem helfen. 幫我叫… als neuer ganzer Hilferahmen, trotz bekanntem 幫忙. |
 | 10 | 疼 | 疼 | téng | wehtun; Schmerz. Rezeptionsvariante neben dem hier verwendeten 痛; keine allgemeine Austauschbarkeit behauptet. |
+| 7 | 您 | 您 | nín | Sie; höfliche Anrede einer Person. In diesem Servicegespräch höfliche Anrede; 你 bleibt in vielen Alltagssituationen angemessen. |
+| 7 | 稱呼 | 称呼 | chēnghū | ansprechen; nennen. 怎麼稱呼 fragt höflich nach der gewünschten Anrede beziehungsweise dem Namen. |
+| 7 | 一下 | 一下 | yīxià | kurz; einmal (nach einem Verb). 看一下 mildert die Vorlagebitte: kurz ansehen. Keine neue Zeitmessaufgabe. |
+| 3 | 能 | 能 | néng | können; möglich sein. 不能刷卡 meldet hier, dass Kartenzahlung nicht möglich ist; keine allgemeine Verbotsregel. |
+| 7 | 上網 | 上网 | shàngwǎng | ins Internet gehen; das Internet nutzen. 不能上網 beschreibt das beobachtete Problem, ohne einen Hardwaredefekt zu behaupten. |
+| 8 | 行 | 行 | xíng | gehen; funktionieren; in Ordnung sein. 不行 lehnt hier eine vorgeschlagene Zeit ab. Diese Lesung nicht auf alle Verwendungen von 行 übertragen. |
+| 3 | 行動支付 | 行动支付 | xíngdòngzhīfù | mobiles Bezahlen. Oberbegriff. 掃碼 benennt ein Scanverfahren; wer welchen Code scannt, ergibt sich erst aus der konkreten Situation. |
 
 ## Zusammenhang mit bestehenden Wörtern
 

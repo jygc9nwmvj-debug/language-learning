@@ -1,10 +1,12 @@
 # Quellen und Prüfstand der redaktionellen Ausarbeitung
 
-20. Oktober 2026 · Status draft für den ausgearbeiteten Bestand
+20. Oktober 2026 · Historischer Erstprüfstand aus de7b608 · Status draft
+
+Die nachfolgende Quellen-/Strukturbilanz beschreibt die ursprüngliche Ausarbeitung. Die späteren gesammelten Sprachkorrekturen und aktuellen Mengen stehen in [LANGUAGE_REVIEW.md](LANGUAGE_REVIEW.md). Die ursprüngliche Strukturprüfung bleibt in [verification-initial.json](verification-initial.json) erhalten.
 
 ## Umfang der Prüfung
 
-Die strukturelle Prüfung erfasst die 134 neuen Objekte, 171 referenzierten Worteinträge einschließlich 44 bestehender Einträge, 167 verschiedene Äußerungen, 28 Dialoge, 211 Satz-/Anwendungsaufgaben, 38 Matching-Varianten und zehn Schreibziele. Das ist die abgegrenzte Population für vollständige Zähl- und Verweisabdeckung. Die lokale Prüfung erfasst IDs, Formen, Wort-/Silbenabdeckung, Einführungsetappen, Satzprüfungen, Dialogreferenzen, Antwortschlüssel und die ausgewählten Erkennungs-/Schreibformen. Ergebnisse und Bindung an die JSON-Fassung: [verification.json](verification.json). Reproduzierbar mit dem hier gespeicherten Offline-Prüfer validate-editorial.py.
+Die strukturelle Prüfung erfasst die 134 neuen Objekte, 171 referenzierten Worteinträge einschließlich 44 bestehender Einträge, 167 verschiedene Äußerungen, 28 Dialoge, 211 Satz-/Anwendungsaufgaben, 38 Matching-Varianten und zehn Schreibziele. Das ist die abgegrenzte Population für vollständige Zähl- und Verweisabdeckung. Die lokale Prüfung erfasst IDs, Formen, Wort-/Silbenabdeckung, Einführungsetappen, Satzprüfungen, Dialogreferenzen, Antwortschlüssel und die ausgewählten Erkennungs-/Schreibformen. Ergebnisse und Bindung an die JSON-Fassung: [verification-initial.json](verification-initial.json). Reproduzierbar mit der damaligen Fassung des Offline-Prüfers in de7b608; der heutige Prüfer bilanziert die korrigierte Fassung.
 
 Alle 134 Objekte, 167 Äußerungen und 28 Dialoge bleiben redaktionelle Entwürfe. Die strukturelle Prüfung ist keine qualifizierte Sprach-, Natürlichkeits-, Hör-, Geräte- oder Wirksamkeitsprüfung. Die App wird von dem Offline-Prüfer weder geladen noch verändert.
 

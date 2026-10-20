@@ -1,8 +1,8 @@
 # Redaktionelle Ausarbeitung Reise nach Taiwan
 
-20. Oktober 2026 · Curriculum freigegeben, Textbestand als Entwurf ausgearbeitet
+20. Oktober 2026 · Curriculum freigegeben, Textbestand ausgearbeitet und gesammelt sprachlich redigiert
 
-Der Bestand umfasst 134 Lernobjekte mit Lernhinweisen und Beispielen, 28 zusammenhängende Dialoge, 167 verschiedene satzweise Prüftexte, 33 produktive Formulierungsaufträge und weitere Zahlen-, Zeit-, Weg- und Reaktionsaufgaben. 19 kuratierte Matching-Gruppen ergeben 38 getrennte Varianten für 62 Erkennungsformen. Zehn Schreibziele besitzen konkrete Aufträge für Einführung, eigene Produktion und späteren Abruf.
+Der Bestand umfasst 134 Lernobjekte mit Lernhinweisen und Beispielen, 28 zusammenhängende Dialoge, 176 verschiedene satzweise Prüftexte, 33 produktive Formulierungsaufträge und weitere Zahlen-, Zeit-, Weg- und Reaktionsaufgaben. 19 kuratierte Matching-Gruppen ergeben 38 getrennte Varianten für 62 Erkennungsformen. Zehn Schreibziele besitzen konkrete Aufträge für Einführung, eigene Produktion und späteren Abruf.
 
 Die zusätzlichen zehn neuen Schreibziele und die Erkennungsformen sind Relationen der 134 Objekte. Wiederholte Sätze und Dialogvarianten sind keine neuen Lernobjekte. Bekannte Grüße und Dank werden nicht als neue Inhalte gezählt oder bei jedem Auftreten erneut obligatorisch geprüft.
 
@@ -23,7 +23,8 @@ Die zusätzlichen zehn neuen Schreibziele und die Erkennungsformen sind Relation
 
 - [Übungen mit Antwortschlüsseln](EXERCISES.md)
 - [Gebundene Teile, Kontextwörter und Aussprachekonventionen](CONTEXT_WORDS.md)
-- [Quellen, Prüfstand und verbleibende Sprachprüfung](REVIEW.md)
+- [Gesammelte Sprachkorrekturen und Prüfumfang](LANGUAGE_REVIEW.md)
+- [Frühere Quellen- und Strukturprüfung](REVIEW.md)
 - [Strukturierter redaktioneller Bestand](editorial.json)
 - [Freigegebener und auf Taiwan korrigierter Curriculumplan](../PLAN.md)
 
@@ -37,10 +38,10 @@ Dialoge beginnen mit den ersten sinnvollen Frage-Antwort-Folgen, beispielsweise 
 
 Nach der ausdrücklichen Nutzerfestlegung heißt die Strecke Reise nach Taiwan. Es gibt keine stillschweigende Umstellung auf Festlandmandarin. Beide Schriftformen bleiben verfügbar; die Schriftwahl bestimmt nicht die regionale Wortwahl. 白飯, 捷運, 飯店, 計程車, 網路, 藥局 und 痛 setzen die entsprechenden geplanten Lernziele taiwanbezogen um, ohne zusätzliche Pflichtobjekte. 地鐵, 出租車, 酒店, 網絡, 藥店 oder 疼 werden höchstens als bewusst erklärte Rezeptionsvarianten behandelt. Die bestehenden 36 Lernobjekte und ihre Historie werden nicht umgedeutet.
 
-Taiwan-Dollar ist der durchgängige Währungskontext. Zeitangaben und Linienkarten sind fiktive Unterrichtsbeispiele. Die Metrofrage erfragt eine Linie, nicht eine vermeintlich überall übliche Liniennummer. Die 34 neuen gebundenen oder kontextuellen Worteinträge werden in ihren Äußerungen gezielt erklärt; sie begründen keine weitere Pflichtkartenzahl.
+Taiwan-Dollar ist der durchgängige Währungskontext. Zeitangaben und Linienkarten sind fiktive Unterrichtsbeispiele. Die Metrofrage erfragt eine Linie, nicht eine vermeintlich überall übliche Liniennummer. Die 41 neuen gebundenen oder kontextuellen Worteinträge werden in ihren Äußerungen gezielt erklärt; sie begründen keine weitere Pflichtkartenzahl.
 
 ## Status und Arbeitsgrenze
 
-Die Ausarbeitung ist ein redaktioneller Entwurf mit Quellenabgleich. Eine qualifizierte Taiwan-Mandarin-Prüfung von Natürlichkeit, Pragmatik und endgültiger Lautfassung steht aus; sie wird nicht durch einen automatisch gesetzten source_checked-Status ersetzt. Der konkrete Restumfang und die vier behandelten Wörterbuchabweichungen stehen im Prüfstand.
+Die Ausarbeitung ist ein redaktioneller Entwurf mit Quellenabgleich. Der gesamte hier abgegrenzte Textbestand wurde anschließend KI-gestützt auf Sprachform, Natürlichkeit, Taiwan-Pragmatik und passende Antwortschlüssel gelesen und gesammelt korrigiert. Bericht und einzelnerfasste Prüfliste dokumentieren Umfang und Befunde. Das ist keine muttersprachliche oder lehrkraftseitige Zertifizierung; die endgültige Lautfassung existiert noch nicht. Die sechs ausdrücklich behandelten Wörterbuchabweichungen sind im Quellenbestand dokumentiert.
 
 Keine Audios erzeugt oder beauftragt, keine Audio-Manifeste angelegt, kein Audio-Dry-Run, keine App-/Scheduler-/UI-Änderung, kein Deployment, Merge oder Veröffentlichung. Der vorhandene Feature-Arbeitsstand bleibt isoliert. Dieser Textbestand wird ausschließlich im Dokumentationsbranch gehalten.

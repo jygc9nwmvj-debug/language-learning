@@ -172,7 +172,7 @@ Nötiger Kontext: Nur als Antwort auf eine konkrete Ist-das-Frage.
 
 ### sense:goodnight
 
-Textreferenz: 晚安。 / 晚安。 — wǎnān
+Textreferenz: 晚安。 / 晚安。 — wǎn'ān
 
 Bedeutung: Gute Nacht.
 
@@ -206,17 +206,17 @@ Vergleiche die gesamte Aussage: Darf ich es ansehen?
 
 Textreferenz: 可以。 / 可以。 — kěyǐ
 
-Bedeutung: Das geht; du darfst.
+Bedeutung: Ja, das geht.
 
 Prüfziel: Zustimmung zur Erlaubnisfrage.
 
 Frage: Welche Antwort wird gegeben?
 
-Richtig: Die erfragte Handlung ist erlaubt oder möglich.
+Richtig: Ja, das geht.
 
 Gezielt falsch: Die Handlung ist untersagt. / Es wird nach einem Preis gefragt.
 
-Vergleiche die gesamte Aussage: Das geht; du darfst.
+Vergleiche die gesamte Aussage: Ja, das geht.
 
 Nötiger Kontext: Antwort auf eine vorherige 可以-Frage.
 
@@ -238,19 +238,19 @@ Vergleiche die gesamte Aussage: Bitte schau es dir an.
 
 ### sense:help
 
-Textreferenz: 請幫忙。 / 请帮忙。 — qǐng bāngmáng
+Textreferenz: 可以幫忙嗎？ / 可以帮忙吗？ — kěyǐ bāngmáng ma
 
-Bedeutung: Bitte hilf mir.
+Bedeutung: Können Sie mir bitte helfen?
 
-Prüfziel: Hilfebitte.
+Prüfziel: höfliche Bitte um Hilfe.
 
-Frage: Was erbittet die Person?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Hilfe.
+Richtig: Können Sie mir bitte helfen?
 
-Gezielt falsch: Einen Preis. / Einen Namen.
+Gezielt falsch: Ich kann helfen. / Ich brauche keine Hilfe.
 
-Vergleiche die gesamte Aussage: Bitte hilf mir.
+Vergleiche die gesamte Aussage: Können Sie mir bitte helfen?
 
 ### sense:what-this
 
@@ -596,35 +596,35 @@ Vergleiche die gesamte Aussage: Kann ich mit Karte bezahlen?
 
 ### sense:no-card
 
-Textreferenz: 不可以刷卡。 / 不可以刷卡。 — bù kěyǐ shuākǎ
+Textreferenz: 不能刷卡。 / 不能刷卡。 — bù néng shuākǎ
 
-Bedeutung: Kartenzahlung geht nicht.
+Bedeutung: Kartenzahlung ist hier nicht möglich.
 
-Prüfziel: Verneinte Möglichkeit; Karte.
+Prüfziel: Kartenzahlung nicht möglich.
 
-Frage: Welche Aussage trifft zu?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Kartenzahlung ist in dieser Szene nicht möglich.
+Richtig: Kartenzahlung ist hier nicht möglich.
 
-Gezielt falsch: Kartenzahlung ist möglich. / Bezahlen ist grundsätzlich unmöglich.
+Gezielt falsch: Kartenzahlung ist möglich. / Hier kann man nur mit Karte bezahlen.
 
-Vergleiche die gesamte Aussage: Kartenzahlung geht nicht.
+Vergleiche die gesamte Aussage: Kartenzahlung ist hier nicht möglich.
 
 ### sense:cash-or-scan
 
-Textreferenz: 現金還是掃碼？ / 现金还是扫码？ — xiànjīn háishì sǎomǎ
+Textreferenz: 現金還是行動支付？ / 现金还是行动支付？ — xiànjīn háishì xíngdòngzhīfù
 
-Bedeutung: Bargeld oder Scannen?
+Bedeutung: Bargeld oder mobiles Bezahlen?
 
-Prüfziel: Auswahl; Bargeld; Code-Zahlung.
+Prüfziel: Wahl zwischen Bargeld und mobilem Bezahlen.
 
-Frage: Welche Möglichkeiten werden angeboten?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Bargeld oder per Code scannen.
+Richtig: Bargeld oder mobiles Bezahlen?
 
-Gezielt falsch: Kartenzahlung oder kostenlos. / Zwei verschiedene Preise.
+Gezielt falsch: Mit Karte oder bar? / Möchten Sie einen Beleg?
 
-Vergleiche die gesamte Aussage: Bargeld oder Scannen?
+Vergleiche die gesamte Aussage: Bargeld oder mobiles Bezahlen?
 
 ### sense:cash
 
@@ -664,17 +664,17 @@ Vergleiche die gesamte Aussage: Bitte scanne den Code.
 
 Textreferenz: 給你一百塊。 / 给你一百块。 — gěi nǐ yī bǎi kuài
 
-Bedeutung: Hier sind hundert Taiwan-Dollar für dich.
+Bedeutung: Hier bitte: hundert Taiwan-Dollar.
 
-Prüfziel: Überreichen; Betrag 100.
+Prüfziel: Überreichen von 100 TWD.
 
-Frage: Was wird überreicht?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: 100 TWD.
+Richtig: Hier bitte: hundert Taiwan-Dollar.
 
-Gezielt falsch: 10 TWD. / 101 TWD.
+Gezielt falsch: Das kostet 101 Taiwan-Dollar. / Bitte geben Sie mir hundert Taiwan-Dollar.
 
-Vergleiche die gesamte Aussage: Hier sind hundert Taiwan-Dollar für dich.
+Vergleiche die gesamte Aussage: Hier bitte: hundert Taiwan-Dollar.
 
 ### sense:pay
 
@@ -790,19 +790,19 @@ Vergleiche die gesamte Aussage: Zwei Personen.
 
 ### sense:menu-please
 
-Textreferenz: 請給我菜單。 / 请给我菜单。 — qǐng gěi wǒ càidān
+Textreferenz: 可以給我菜單嗎？ / 可以给我菜单吗？ — kěyǐ gěi wǒ càidān ma
 
-Bedeutung: Gib mir bitte die Speisekarte.
+Bedeutung: Kann ich bitte die Speisekarte haben?
 
-Prüfziel: Bitte; Speisekarte erhalten.
+Prüfziel: Bitte um die Speisekarte.
 
-Frage: Was erbittet die Person?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Die Speisekarte.
+Richtig: Kann ich bitte die Speisekarte haben?
 
-Gezielt falsch: Eine Schüssel. / Die Rechnungssumme.
+Gezielt falsch: Die Speisekarte ist nicht verfügbar. / Ich möchte schon bezahlen.
 
-Vergleiche die gesamte Aussage: Gib mir bitte die Speisekarte.
+Vergleiche die gesamte Aussage: Kann ich bitte die Speisekarte haben?
 
 ### sense:look-menu
 
@@ -1052,17 +1052,17 @@ Vergleiche die gesamte Aussage: Entschuldige, wo ist die Toilette?
 
 Textreferenz: 在那裡。 / 在那里。 — zài nàlǐ
 
-Bedeutung: Sie ist dort.
+Bedeutung: Dort.
 
 Prüfziel: Ort dort.
 
 Frage: Auf welchen Ort verweist die Antwort?
 
-Richtig: Auf den in der Szene entfernten markierten Ort.
+Richtig: Dort.
 
 Gezielt falsch: Auf den nahen eigenen Standort. / Auf eine Uhrzeit.
 
-Vergleiche die gesamte Aussage: Sie ist dort.
+Vergleiche die gesamte Aussage: Dort.
 
 Nötiger Kontext: Der Bezug stammt aus der unmittelbar vorausgehenden Ortsfrage; ein Lagebild markiert hier und dort.
 
@@ -1570,19 +1570,19 @@ Vergleiche die gesamte Aussage: Ich habe eine Reservierung.
 
 ### sense:ask-name
 
-Textreferenz: 你叫什麼名字？ / 你叫什么名字？ — nǐ jiào shénme míngzi
+Textreferenz: 請問，您怎麼稱呼？ / 请问，您怎么称呼？ — qǐngwèn nín zěnme chēnghū
 
-Bedeutung: Wie heißt du?
+Bedeutung: Darf ich fragen, wie ich Sie ansprechen darf?
 
-Prüfziel: Frage nach Namen.
+Prüfziel: höfliche Frage nach Name/Anrede.
 
-Frage: Welche Information wird erfragt?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Der Name.
+Richtig: Darf ich fragen, wie ich Sie ansprechen darf?
 
-Gezielt falsch: Die Nationalität. / Die Zimmernummer.
+Gezielt falsch: Wie viele Nächte bleiben Sie? / Wo ist Ihr Zimmer?
 
-Vergleiche die gesamte Aussage: Wie heißt du?
+Vergleiche die gesamte Aussage: Darf ich fragen, wie ich Sie ansprechen darf?
 
 ### sense:anna-name
 
@@ -1604,19 +1604,19 @@ Nötiger Kontext: Die fiktive Reisende Anna wurde vor diesem Satz vorgestellt; k
 
 ### sense:show-passport
 
-Textreferenz: 請給我看護照。 / 请给我看护照。 — qǐng gěi wǒ kàn hùzhào
+Textreferenz: 可以給我看一下您的護照嗎？ / 可以给我看一下您的护照吗？ — kěyǐ gěi wǒ kàn yīxià nín de hùzhào ma
 
-Bedeutung: Zeig mir bitte den Reisepass.
+Bedeutung: Dürfte ich bitte kurz Ihren Reisepass sehen?
 
-Prüfziel: Vorlagebitte; Reisepass.
+Prüfziel: Bitte um kurzes Vorzeigen des Reisepasses.
 
-Frage: Was soll vorgezeigt werden?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Der Reisepass.
+Richtig: Dürfte ich bitte kurz Ihren Reisepass sehen?
 
-Gezielt falsch: Die Zimmerkarte. / Eine Fahrkarte.
+Gezielt falsch: Bitte geben Sie mir die Zimmerkarte. / Ihr Reisepass ist verloren.
 
-Vergleiche die gesamte Aussage: Zeig mir bitte den Reisepass.
+Vergleiche die gesamte Aussage: Dürfte ich bitte kurz Ihren Reisepass sehen?
 
 ### sense:passport-here
 
@@ -1638,17 +1638,17 @@ Vergleiche die gesamte Aussage: Der Reisepass ist hier.
 
 Textreferenz: 住幾晚？ / 住几晚？ — zhù jǐ wǎn
 
-Bedeutung: Wie viele Nächte bleibst du?
+Bedeutung: Wie viele Nächte bleiben Sie?
 
 Prüfziel: Frage nach Aufenthaltsdauer; Nächte.
 
 Frage: Was wird erfragt?
 
-Richtig: Die Anzahl der Übernachtungen.
+Richtig: Wie viele Nächte bleiben Sie?
 
 Gezielt falsch: Die Zimmernummer. / Die Anzahl der Personen.
 
-Vergleiche die gesamte Aussage: Wie viele Nächte bleibst du?
+Vergleiche die gesamte Aussage: Wie viele Nächte bleiben Sie?
 
 ### sense:two-nights
 
@@ -1700,19 +1700,19 @@ Vergleiche die gesamte Aussage: Wo ist das Zimmer?
 
 ### sense:give-card
 
-Textreferenz: 給你房卡。 / 给你房卡。 — gěi nǐ fángkǎ
+Textreferenz: 這是您的房卡。 / 这是您的房卡。 — zhè shì nín de fángkǎ
 
-Bedeutung: Hier ist deine Zimmerkarte.
+Bedeutung: Hier ist Ihre Zimmerkarte.
 
-Prüfziel: Überreichen; Zimmerkarte.
+Prüfziel: Zuordnung der überreichten Zimmerkarte.
 
-Frage: Was wird übergeben?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Eine Zimmerkarte.
+Richtig: Hier ist Ihre Zimmerkarte.
 
-Gezielt falsch: Ein Reisepass. / Ein Metro-Ticket.
+Gezielt falsch: Hier ist Ihr Reisepass. / Ihre Zimmerkarte funktioniert nicht.
 
-Vergleiche die gesamte Aussage: Hier ist deine Zimmerkarte.
+Vergleiche die gesamte Aussage: Hier ist Ihre Zimmerkarte.
 
 ### sense:card-broken
 
@@ -1798,19 +1798,19 @@ Vergleiche die gesamte Aussage: Gibt es Internet?
 
 ### sense:network-broken
 
-Textreferenz: 網路壞了。 / 网路坏了。 — wǎnglù huài le
+Textreferenz: 不能上網。 / 不能上网。 — bù néng shàngwǎng
 
-Bedeutung: Das Internet funktioniert nicht.
+Bedeutung: Ich kann nicht ins Internet.
 
-Prüfziel: Internet; Funktionsstörung.
+Prüfziel: Internetnutzung nicht möglich.
 
-Frage: Welches Problem wird gemeldet?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Das Internet funktioniert nicht.
+Richtig: Ich kann nicht ins Internet.
 
-Gezielt falsch: Es wurde keine Reservierung gemacht. / Die Zimmerkarte ist verloren.
+Gezielt falsch: Das Internet funktioniert jetzt. / Es gibt kein warmes Wasser.
 
-Vergleiche die gesamte Aussage: Das Internet funktioniert nicht.
+Vergleiche die gesamte Aussage: Ich kann nicht ins Internet.
 
 ### sense:network-present
 
@@ -1930,17 +1930,17 @@ Vergleiche die gesamte Aussage: Wie spät ist es jetzt?
 
 Textreferenz: 兩點半。 / 两点半。 — liǎng diǎn bàn
 
-Bedeutung: Halb drei, also 2:30 Uhr.
+Bedeutung: Halb drei; die Tageshälfte wird nicht genannt.
 
-Prüfziel: Uhrzeit 2:30.
+Prüfziel: halbe Stunde nach zwei; Tageshälfte nicht festgelegt.
 
-Frage: Welche Uhrzeit nennt der Satz?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: 2:30 Uhr.
+Richtig: Halb drei; die Tageshälfte wird nicht genannt.
 
-Gezielt falsch: 3:30 Uhr. / 2:00 Uhr.
+Gezielt falsch: Halb vier. / Zwei Uhr ohne halbe Stunde.
 
-Vergleiche die gesamte Aussage: Halb drei, also 2:30 Uhr.
+Vergleiche die gesamte Aussage: Halb drei; die Tageshälfte wird nicht genannt.
 
 ### sense:time-available
 
@@ -2076,21 +2076,21 @@ Vergleiche die gesamte Aussage: Geht nachmittags um halb vier, also 15:30?
 
 ### sense:not-possible
 
-Textreferenz: 不可以。 / 不可以。 — bù kěyǐ
+Textreferenz: 不行。 / 不行。 — bù xíng
 
 Bedeutung: Das geht nicht.
 
-Prüfziel: Ablehnung der erfragten Möglichkeit.
+Prüfziel: vorgeschlagener Zeitpunkt geht nicht.
 
-Frage: Wie wird der gerade erfragte Vorschlag beantwortet?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Er wird abgelehnt.
+Richtig: Das geht nicht.
 
-Gezielt falsch: Er wird angenommen. / Es wird eine Summe genannt.
+Gezielt falsch: Der Zeitpunkt passt. / Es ist jetzt halb drei.
 
 Vergleiche die gesamte Aussage: Das geht nicht.
 
-Nötiger Kontext: Konkreter Zeitvorschlag; keine pauschale Fähigkeitseinschätzung.
+Nötiger Kontext: Antwort auf einen konkreten Zeitvorschlag.
 
 ### sense:two-thirty-okay
 
@@ -2352,19 +2352,19 @@ Nötiger Kontext: Die Alternative wird mit dem zuvor gezeigten größeren Beutel
 
 ### sense:may-charge-phone
 
-Textreferenz: 我的手機可以充電嗎？ / 我的手机可以充电吗？ — wǒ de shǒujī kěyǐ chōngdiàn ma
+Textreferenz: 我可以在這裡給手機充電嗎？ / 我可以在这里给手机充电吗？ — wǒ kěyǐ zài zhèlǐ gěi shǒujī chōngdiàn ma
 
-Bedeutung: Kann ich mein Telefon aufladen?
+Bedeutung: Darf ich hier mein Telefon aufladen?
 
-Prüfziel: eigene Sache; Telefon; Ladeerlaubnis.
+Prüfziel: Erlaubnisfrage; Telefon aufladen; hier.
 
-Frage: Welche Handlung wird erfragt?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Das eigene Telefon aufladen.
+Richtig: Darf ich hier mein Telefon aufladen?
 
-Gezielt falsch: Eine Batterie kaufen. / Eine Telefonnummer nennen.
+Gezielt falsch: Ist mein Telefon bereits aufgeladen? / Wo kann ich ein Telefon kaufen?
 
-Vergleiche die gesamte Aussage: Kann ich mein Telefon aufladen?
+Vergleiche die gesamte Aussage: Darf ich hier mein Telefon aufladen?
 
 ### sense:where-charger
 
@@ -2690,19 +2690,19 @@ Vergleiche die gesamte Aussage: An dieser Station aussteigen.
 
 ### sense:today-now
 
-Textreferenz: 今天現在可以嗎？ / 今天现在可以吗？ — jīntiān xiànzài kěyǐ ma
+Textreferenz: 現在可以嗎？ / 现在可以吗？ — xiànzài kěyǐ ma
 
-Bedeutung: Geht es heute jetzt?
+Bedeutung: Geht es jetzt?
 
-Prüfziel: Zeitvorschlag; heute; jetzt.
+Prüfziel: Frage, ob es jetzt passt.
 
-Frage: Welcher Zeitpunkt wird vorgeschlagen?
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
 
-Richtig: Heute jetzt.
+Richtig: Geht es jetzt?
 
-Gezielt falsch: Morgen Nachmittag. / Heute in zwanzig Minuten.
+Gezielt falsch: Passt es morgen? / Jetzt ist es nicht möglich.
 
-Vergleiche die gesamte Aussage: Geht es heute jetzt?
+Vergleiche die gesamte Aussage: Geht es jetzt?
 
 ### sense:tomorrow-confirm
 
@@ -2736,6 +2736,160 @@ Gezielt falsch: Die Metro. / Ein Flugzeug.
 
 Vergleiche die gesamte Aussage: Wo finde ich ein Taxi?
 
+### sense:mobile-payment
+
+Textreferenz: 行動支付，謝謝。 / 行动支付，谢谢。 — xíngdòngzhīfù xièxie
+
+Bedeutung: Mit mobilem Bezahlen, danke.
+
+Prüfziel: mobile Zahlungsart gewählt.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Mit mobilem Bezahlen, danke.
+
+Gezielt falsch: Mit Bargeld, danke. / Keine Zahlung möglich.
+
+Vergleiche die gesamte Aussage: Mit mobilem Bezahlen, danke.
+
+### sense:go-airport
+
+Textreferenz: 我要去機場。 / 我要去机场。 — wǒ yào qù jīchǎng
+
+Bedeutung: Ich möchte zum Flughafen fahren.
+
+Prüfziel: Ziel Flughafen.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Ich möchte zum Flughafen fahren.
+
+Gezielt falsch: Ich möchte zum Hotel fahren. / Ich komme gerade vom Flughafen.
+
+Vergleiche die gesamte Aussage: Ich möchte zum Flughafen fahren.
+
+### sense:which-line-station
+
+Textreferenz: 到車站要搭哪一條線？ / 到车站要搭哪一条线？ — dào chēzhàn yào dā nǎ yī tiáo xiàn
+
+Bedeutung: Welche Linie muss ich zum Bahnhof nehmen?
+
+Prüfziel: Ziel Bahnhof; Linie erfragen.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Welche Linie muss ich zum Bahnhof nehmen?
+
+Gezielt falsch: Wie viel kostet das Ticket? / Welche Linie fährt zum Flughafen?
+
+Vergleiche die gesamte Aussage: Welche Linie muss ich zum Bahnhof nehmen?
+
+Nötiger Kontext: Die Übungskarte unterscheidet den Bahnhof von den übrigen Metrostationen.
+
+### sense:station-exit-confirm
+
+Textreferenz: 我在車站下車嗎？ / 我在车站下车吗？ — wǒ zài chēzhàn xiàchē ma
+
+Bedeutung: Steige ich am Bahnhof aus?
+
+Prüfziel: Bahnhof als Ausstieg bestätigen lassen.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Steige ich am Bahnhof aus?
+
+Gezielt falsch: Steige ich am Flughafen aus? / Wo kaufe ich ein Ticket?
+
+Vergleiche die gesamte Aussage: Steige ich am Bahnhof aus?
+
+### sense:station-exit
+
+Textreferenz: 在車站下車。 / 在车站下车。 — zài chēzhàn xiàchē
+
+Bedeutung: Am Bahnhof aussteigen.
+
+Prüfziel: Ausstieg am Bahnhof.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Am Bahnhof aussteigen.
+
+Gezielt falsch: Am Flughafen aussteigen. / An der nächsten Kreuzung links abbiegen.
+
+Vergleiche die gesamte Aussage: Am Bahnhof aussteigen.
+
+### sense:arrived-station
+
+Textreferenz: 到車站了。 / 到车站了。 — dào chēzhàn le
+
+Bedeutung: Wir sind am Bahnhof angekommen.
+
+Prüfziel: Ankunft am Bahnhof.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Wir sind am Bahnhof angekommen.
+
+Gezielt falsch: Wir fahren erst morgen zum Bahnhof. / Wir sind am Flughafen angekommen.
+
+Vergleiche die gesamte Aussage: Wir sind am Bahnhof angekommen.
+
+Nötiger Kontext: B begleitet Anna auf der späteren Fahrt.
+
+### sense:have-time
+
+Textreferenz: 有。 / 有。 — yǒu
+
+Bedeutung: Ja, ich habe Zeit.
+
+Prüfziel: Zeitfrage bejahen.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Ja, ich habe Zeit.
+
+Gezielt falsch: Nein, ich habe keine Zeit. / Ja, es gibt Nudeln.
+
+Vergleiche die gesamte Aussage: Ja, ich habe Zeit.
+
+Nötiger Kontext: Antwort auf 你有時間嗎？; die ausgelassene Ergänzung ist 時間.
+
+### sense:can-help-tomorrow
+
+Textreferenz: 明天下午兩點半可以幫忙嗎？ / 明天下午两点半可以帮忙吗？ — míngtiān xiàwǔ liǎng diǎn bàn kěyǐ bāngmáng ma
+
+Bedeutung: Kannst du morgen um halb drei nachmittags helfen?
+
+Prüfziel: morgen; 14:30; Bitte um Hilfe.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Kannst du morgen um halb drei nachmittags helfen?
+
+Gezielt falsch: Können Sie heute um halb drei nachmittags helfen? / Können Sie morgen um halb vier nachmittags helfen?
+
+Vergleiche die gesamte Aussage: Kannst du morgen um halb drei nachmittags helfen?
+
+Nötiger Kontext: Die bekannte Person weiß, dass Hilfe bei der Abfahrt zum Flughafen gemeint ist.
+
+### sense:passport-confirm
+
+Textreferenz: 護照嗎？ / 护照吗？ — hùzhào ma
+
+Bedeutung: Der Reisepass?
+
+Prüfziel: Reisepass als gemeinten Gegenstand rückfragen.
+
+Frage: Welche vollständige Aussage passt in diesem Zusammenhang?
+
+Richtig: Der Reisepass?
+
+Gezielt falsch: Die Zimmerkarte? / Der Reisepass ist hier.
+
+Vergleiche die gesamte Aussage: Der Reisepass?
+
+Nötiger Kontext: Bestätigungsrückfrage nach Annas Verlustmeldung.
+
 ## Eigene Mandarinformulierungen
 
 Der Auftrag erscheint ohne Mandarinmuster oder Pinyin. Die folgenden Varianten sind der interne Antwortschlüssel. Lexikalischer Inhalt, Konstruktion, Pinyin-/Tonnotation und gesprochene Aussprache werden getrennt beurteilt. Eine funktional passende Alternativstruktur belegt die kommunikative Funktion; sie belegt die Zielkonstruktion nur, wenn diese tatsächlich verwendet wurde. Nicht gelistete Antworten bleiben zum Modellvergleich offen.
@@ -2761,8 +2915,8 @@ Eine passende Form ist 這是什麼 — zhè shì shénme.
 
 Bitte kurz und höflich um Hilfe.
 
-- 請幫忙 / 请帮忙 — qǐng bāngmáng
 - 可以幫忙嗎 / 可以帮忙吗 — kěyǐ bāngmáng ma
+- 請幫忙 / 请帮忙 — qǐng bāngmáng
 
 Eine passende Form ist 請幫忙 — qǐng bāngmáng.
 
@@ -3142,6 +3296,18 @@ Passende Optionen: 請幫我叫醫生。 — Bitte ruf für mich einen Arzt oder
 Unpassende Optionen: 請幫我叫警察。 — Bitte ruf für mich die Polizei. / 可以換房卡嗎？ — Kann ich die Zimmerkarte tauschen?
 
 醫生 bezeichnet die gewünschte Arztperson; 警察 wäre die Polizei.
+
+### reply:payment
+
+Welche Antworten wählen eine der angebotenen Zahlungsarten?
+
+Kontext: G07, nach Zug 4.
+
+Passende Optionen: 現金。 — Mit Bargeld. / 行動支付，謝謝。 — Mit mobilem Bezahlen, danke.
+
+Unpassende Optionen: 請問，多少錢？ — Wie viel kostet das bitte? / 我要一杯茶。 — Ich hätte gern eine Tasse Tee.
+
+現金 wählt Bargeld, 行動支付 mobiles Bezahlen. 掃碼 ist ein mögliches Verfahren; erst die Situation klärt, wer welchen Code scannt.
 
 ## Frühes Hanzi Laut Bedeutung Matching
 
