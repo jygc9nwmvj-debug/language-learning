@@ -1,0 +1,74 @@
+{
+  "releasedCommit": "2d2374262d0f5b26e53a038d12929e90d78ba28d",
+  "mainBaseline": "0a486a5",
+  "deploymentId": "a0866230-2b52-4203-96be-83ca48aea9d0",
+  "deploymentUrl": "https://a0866230.language-learning-abk.pages.dev/",
+  "checkUrl": "https://github.com/jygc9nwmvj-debug/language-learning/runs/118644858717",
+  "checkConclusion": "success",
+  "served": {
+    "origin": "https://language-learning-abk.pages.dev",
+    "files": [
+      {
+        "file": "index.html",
+        "matches": true,
+        "sha256": "a946e6749506a2a5ac243537c7a82fd5ca2153078eb0d5717eed64ff49c4adcb"
+      },
+      {
+        "file": "manifest.webmanifest",
+        "matches": true,
+        "sha256": "707eeeed28a27c0292417773d6b856f619a8ac3cfdc9bb686e240896f8d3d07d"
+      },
+      {
+        "file": "sw.js",
+        "matches": true,
+        "sha256": "89317bda900f1e27b9c045386bad5469ecea55d9618bcfcb57a476373a686538"
+      },
+      {
+        "file": "assets/App-BrdU-FHF.js",
+        "matches": true,
+        "sha256": "1cde276e3cf0ea69e4b5cc8c439894ceb3eae22dcd2dbfa57621943035e2102c"
+      },
+      {
+        "file": "assets/index-C9W_qGW8.css",
+        "matches": true,
+        "sha256": "815d0d0e89419038c273228300088b7b6dbd967559f8f755a01781ede44cdab1"
+      },
+      {
+        "file": "assets/index-sygcZw2j.js",
+        "matches": true,
+        "sha256": "551a3fb456b2c7c8de8a4864b6f089c49979197344bdd8a31c13798db1b96a62"
+      },
+      {
+        "file": "assets/jsx-runtime-BnjtG7yY.js",
+        "matches": true,
+        "sha256": "8e1b65c2a42ec895d9a89b3c4d25659f814a6626c2a0e24c4ae6a363b2a7499a"
+      }
+    ],
+    "matched": 7,
+    "total": 7,
+    "cache": "mandarin-v01-03e35dc85fcfd785"
+  },
+  "smoke": {
+    "origin": "https://language-learning-abk.pages.dev",
+    "primary": {
+      "height": 60,
+      "arrow": 56
+    },
+    "learningFlow": true,
+    "audioShape": "50%",
+    "errors": []
+  },
+  "checks": {
+    "unitAndContract": 77,
+    "integrationBrowser": 12,
+    "screenSample": {
+      "states": 23,
+      "configurations": [
+        "Chrome 320",
+        "Chrome 390",
+        "Chrome 1280",
+        "WebKit 390"
+      ]
+    }
+  }
+}
