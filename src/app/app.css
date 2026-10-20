@@ -380,7 +380,7 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .viewportFlow .stepStack,.viewportFlow .speakingPractice,.viewportFlow .productionFeedback,.viewportFlow .responseWork,.viewportFlow .attentionIntroduction { gap: 10px; }
 .viewportFlow .speakingPractice { margin: 0; }
 .viewportFlow .responseWork { min-block-size: 0 !important; }
-.viewportFlow .reference,.viewportFlow .correctionReference,.viewportFlow .resolutionReference { margin: 0; padding: 8px 0; }
+.viewportFlow .reference,.viewportFlow .correctionReference,.viewportFlow .resolutionReference { margin: 0; padding: 8px 0; border-left: 0; }
 .viewportFlow .phraseForm,.viewportFlow .phraseUnits { margin: 0; }
 .viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2.5rem,10vw,4.5rem) !important; line-height: 1.2; }
 .viewportFlow .phraseForm { --text-hero: 4.5rem; }
@@ -420,7 +420,7 @@ button.phraseUnit { border-bottom: 1px dotted var(--line-strong); }button.phrase
 .viewportFlow input,.viewportFlow textarea { min-height: 44px; }
 .viewportFlow .hanziHero,.viewportFlow .unitHanzi { font-size: clamp(2rem,9vw,4rem) !important; }
 .viewportFlow .speakingPractice:has(.phraseForm) .practiceReference { min-height: 0; }
-.viewportFlow .correctionVersions { white-space: pre-wrap; overflow-wrap: anywhere; display: grid; gap: 8px; }
+.viewportFlow .correctionVersions { white-space: pre-wrap; tab-size: 1; overflow-wrap: anywhere; display: grid; gap: 8px; }
 .correctionOriginal,.correctionAccepted { margin: 0; }
 .correctionLeadingSpace { font-size: 0; line-height: 0; }
 .correctionError { color: #a23d32; text-decoration: underline wavy; text-decoration-thickness: 1px; text-underline-offset: 3px; }
