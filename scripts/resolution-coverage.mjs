@@ -8,6 +8,7 @@ import {content,itemMap} from '../src/languages/mandarin/content/index.ts';
 import {operationForTask,resolutionContracts} from '../src/core/exercises/resolution-contract.ts';
 import {referenceRole,fixedReferenceParts} from '../src/languages/mandarin/reference-role.ts';
 export const renderers={
+ 'src/languages/mandarin/taiwan/audio-bindings.ts':['target','listen'],
  'src/languages/mandarin/taiwan/audio.ts':['target','listen'],
  'src/languages/mandarin/taiwan/TaiwanAudio.tsx':['target','listen'],
  'src/languages/mandarin/taiwan/TaiwanActivity.tsx':['text','writing','matching'],

@@ -111,3 +111,28 @@ test('dialogue model offers normal and slow recordings plus independent sentence
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
  await page.screenshot({path:`/tmp/taiwan-audio-${browserName}.png`,fullPage:true});
 });
+
+for(const slow of [false,true])test(`replay keeps natural practice separate from slow help (${slow}) and resolution has one audio group`,async({page})=>{
+ await seed(page,'tw:exercise:value:t1430');await page.getByLabel('Deine Antwort').fill('14:30');
+ await page.getByRole('button',{name:'Satz anhören',exact:true}).click();await expect(page.getByRole('button',{name:'Prüfen',exact:true})).toBeEnabled({timeout:20000});
+ await page.getByRole('button',{name:slow?'Langsam gesprochen':'Satz anhören',exact:true}).click();
+ await expect.poll(async()=> (await history(page)).filter(e=>e.type==='taiwan_reference_completed').length,{timeout:20000}).toBe(2);
+ await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+ const events=await history(page),attempt=events.find(e=>e.type==='taiwan_attempt');expect(attempt.detail.assisted).toBe(slow);
+ const replay=events.filter(e=>e.type==='taiwan_reference_completed').sort((a,b)=>a.at-b.at).at(-1);expect(replay.detail.optionalPractice).toBe(!slow);expect(replay.detail.help).toBe(slow);
+ await expect(page.locator('.twActivity .twAudioControls')).toHaveCount(1);await expect(page.getByRole('button',{name:'Satz anhören',exact:true})).toHaveCount(0);
+});
+for(const id of ['produce:E08.C02',editorial.exercises.find(x=>x.type==='communicative_text_production')!.id])test(`production full model audio is available only after answer: ${id}`,async({page})=>{
+ const x=editorial.exercises.find(x=>x.id===id)!;await seed(page,'tw:exercise:'+id);
+ await expect(page.locator('.twAudioControls')).toHaveCount(0);
+ await page.getByRole('textbox').fill((x.expected as any[])[0].hant);await page.getByRole('button',{name:'Prüfen',exact:true}).click();
+ const controls=page.locator('.twFeedback .twAudioControls');await expect(controls).toHaveCount(1);
+ await controls.getByRole('button',{name:'Anhören',exact:true}).click();await expect(controls.locator('[data-playing="true"]')).toHaveCount(1);
+ await expect(page.locator('.twFeedback')).not.toContainText('Das Audio konnte');
+});
+test('expression details offer isolated words and sentence context with existing recordings',async({page})=>{
+ await seed(page,'tw:object:E01.L01');await page.getByText('Teile dieses Ausdrucks',{exact:true}).click();
+ const details=page.locator('.twActivity details');await expect(details.getByRole('button',{name:'Im Satz anhören',exact:true})).toHaveCount(1);
+ const word=details.getByRole('button',{name:'Wort einzeln anhören',exact:true}).first();await word.click();await expect(details.locator('[data-playing="true"]')).toHaveCount(1);
+ await details.getByRole('button',{name:'Im Satz anhören',exact:true}).click();await expect(details.locator('[data-playing="true"]')).toHaveCount(1);
+});

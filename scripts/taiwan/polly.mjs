@@ -1,4 +1,5 @@
 import {pollyRequest,hash} from '../polly-generation.mjs';
+import {productionAudioBindings} from '../../src/languages/mandarin/taiwan/audio-bindings.ts';
 import {pcmWave,readPcm} from './audio.mjs';
 export const sampleRate=16000;
 export function pollyPlan(canon){
@@ -13,6 +14,7 @@ export function pollyPlan(canon){
  }
  for(const w of words.values())if(used.has(w.id))add('word',w,'natural');
  for(const u of canon.utterances)for(const variant of ['natural','careful_slow'])add('sentence',u,variant);
+ for(const b of productionAudioBindings(canon).filter(b=>b.generated))add('model',{...b.model,id:b.audio.reference,surfaceToneNumbersDraft:b.model.toneNumbers},'natural');
  const dialogues=canon.dialogues.flatMap(d=>['natural','careful_slow'].map(variant=>({id:`dialogue:${d.id}:${variant}`,reference:d.id,variant,path:`/audio/mandarin/tw-polly-dialogue-${d.id.toLowerCase()}-${variant}.wav`,sentences:d.turns.flatMap((t,n)=>t.utterances.map(uid=>({turn:n+1,speaker:t.speaker,utterance:uid,source:`sentence:${uid}:${variant}`})))})));
  return {version:1,provider:'Amazon Polly',voice:'Zhiyu',locale:'cmn-CN',vocabularyRegion:'Taiwan',sampleRate,sourceSha256:hash(JSON.stringify(canon)),jobs,dialogues,speakerPolicy:'One AWS Mandarin voice; authored roles remain separate with turn pauses. No Taiwan accent or distinct speakers claimed.'};
 }
